@@ -1,0 +1,9 @@
+# Working with Performance Data in the Amazon Redshift Console<a name="performance-metrics-console"></a>
+
+This section explains how to view performance data in the Amazon Redshift console which includes information about cluster and query performance\. Additionally, you can create alarms on cluster metrics directly from the Amazon Redshift console\.
+
+When you view performance data in the Amazon Redshift console, you view it by cluster\. The performance data graphs for a cluster are designed to give you access to data to answer your most common performance questions\. For some performance data \(see [Amazon Redshift CloudWatch Metrics](metrics-listing.md#cloudwatch-metrics-listing)\), you can also use Amazon CloudWatch to further customize your metrics graphs, for example, choose longer times or combine metrics across clusters\. For more information about working with the Amazon CloudWatch console, see [Working with Performance Metrics in the Amazon CloudWatch Console](using-cloudwatch-console.md)\. 
+
+To start working with performance data find your cluster in the *cluster performance dashboard*\. The dashboard is a list of clusters that shows at a glance the status of the cluster \(e\.g\. **available**\), the **DB Health** of the cluster \(e\.g\. **healthy**\), whether the cluster is undergoing maintenance, and count of recent events\. From the dashboard, select a cluster to work with and go to the details of the cluster\. From this page you can access the **Events\+Alarms**, **Performance**, **Queries**, and **Loads** tabs which contain the performance data\. These tabs are shown in the following example\.
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/performance-metrics-start-10.png)
