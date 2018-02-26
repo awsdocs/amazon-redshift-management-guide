@@ -8,7 +8,7 @@ An event source type indicates what the event was about\. The following source t
 
 ## Filtering Events<a name="filtering-events"></a>
 
-Sometimes you want to find a specific category of events or events for a specific cluster\. In these cases, you can filter the events displayed\.
+Sometimes you want to find a specific category of events or events for a specific cluster\. In these cases, you can filter the events displayed\.<a name="filtering-event-task"></a>
 
 **To filter events**
 

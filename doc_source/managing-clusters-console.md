@@ -16,7 +16,7 @@ You can expand the cluster to view more information about the cluster, such as t
 
 ## Creating a Cluster<a name="create-cluster"></a>
 
- Before you create a cluster, review the information in the [Overview](working-with-clusters.md#working-with-clusters-overview) of this section\.
+ Before you create a cluster, review the information in the [Overview](working-with-clusters.md#working-with-clusters-overview) of this section\.<a name="create-cluster-task"></a>
 
 **To create a cluster**
 
@@ -209,7 +209,7 @@ When you modify a cluster, changes to the following options are applied immediat
 
 + **Cluster Parameter Group** 
 
-If you decrease the automated snapshot retention period, existing automated snapshots whose settings fall outside of the new retention period are deleted\. For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md)\. 
+If you decrease the automated snapshot retention period, existing automated snapshots whose settings fall outside of the new retention period are deleted\. For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md)\. <a name="modify-cluster-task"></a>
 
 **To modify a cluster**
 
@@ -228,7 +228,7 @@ If you decrease the automated snapshot retention period, existing automated snap
 
 ## Deleting a Cluster<a name="delete-cluster"></a>
 
-If you no longer need your cluster, you can delete it\. If you plan to provision a new cluster with the same data and configuration as the one you are deleting, you will need a manual snapshot so that you can restore the snapshot at a later time and resume using the cluster\. If you delete your cluster but you don't create a final manual snapshot, the cluster data will be deleted\. In either case, automated snapshots are deleted after the cluster is deleted, but any manual snapshots are retained until you delete them\. You might be charged Amazon Simple Storage Service storage rates for manual snapshots, depending on the amount of storage you have available for Amazon Redshift snapshots for your clusters\. For more information, see [Shutting Down and Deleting Clusters](working-with-clusters.md#rs-mgmt-shutdown-delete-cluster)\. 
+If you no longer need your cluster, you can delete it\. If you plan to provision a new cluster with the same data and configuration as the one you are deleting, you will need a manual snapshot so that you can restore the snapshot at a later time and resume using the cluster\. If you delete your cluster but you don't create a final manual snapshot, the cluster data will be deleted\. In either case, automated snapshots are deleted after the cluster is deleted, but any manual snapshots are retained until you delete them\. You might be charged Amazon Simple Storage Service storage rates for manual snapshots, depending on the amount of storage you have available for Amazon Redshift snapshots for your clusters\. For more information, see [Shutting Down and Deleting Clusters](working-with-clusters.md#rs-mgmt-shutdown-delete-cluster)\. <a name="delete-cluster-task"></a>
 
 **To delete a cluster**
 
@@ -259,7 +259,7 @@ If you no longer need your cluster, you can delete it\. If you plan to provision
 
 ## Rebooting a Cluster<a name="reboot-cluster"></a>
 
-When you reboot a cluster, the cluster status is set to `rebooting` and a cluster event is created when the reboot is completed\. Any pending cluster modifications are applied at this reboot\.
+When you reboot a cluster, the cluster status is set to `rebooting` and a cluster event is created when the reboot is completed\. Any pending cluster modifications are applied at this reboot\.<a name="reboot-cluster-task"></a>
 
 **To reboot a cluster**
 
@@ -281,7 +281,7 @@ When you reboot a cluster, the cluster status is set to `rebooting` and a cluste
 
  When you resize a cluster, you specify a number of nodes or node type that is different from the current configuration of the cluster\. While the cluster is in the process of resizing, you cannot run any write or read/write queries on the cluster; you can run only read queries\. 
 
- For more information about resizing clusters, including walking through the process of resizing clusters using different approaches, see [Tutorial: Resizing Clusters in Amazon Redshift](rs-resize-tutorial.md)\. 
+ For more information about resizing clusters, including walking through the process of resizing clusters using different approaches, see [Tutorial: Resizing Clusters in Amazon Redshift](rs-resize-tutorial.md)\. <a name="resize-cluster-task"></a>
 
 **To resize a cluster**
 
@@ -299,7 +299,7 @@ When you reboot a cluster, the cluster status is set to `rebooting` and a cluste
    You can monitor the progress of the resize on the **Status** tab\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-resize-status.png)
 
-## Getting Information About Cluster Configuration<a name="describe-cluster"></a>
+## Getting Information About Cluster Configuration<a name="describe-cluster"></a><a name="describe-cluster-task"></a>
 
 **To get cluster configuration details**
 
@@ -312,7 +312,7 @@ When you reboot a cluster, the cluster status is set to `rebooting` and a cluste
 
 ## Getting an Overview of Cluster Status<a name="status-cluster"></a>
 
-The cluster **Status** tab provides a high level overview of the status of a cluster, a summary of events related to the cluster, and a list of Amazon CloudWatch alarms associated with the cluster\.
+The cluster **Status** tab provides a high level overview of the status of a cluster, a summary of events related to the cluster, and a list of Amazon CloudWatch alarms associated with the cluster\.<a name="status-cluster-task"></a>
 
 **To get an overview of cluster status**
 
@@ -328,7 +328,7 @@ The cluster **Status** tab provides a high level overview of the status of a clu
 
 ## Taking a Snapshot of a Cluster<a name="snapshot-cluster"></a>
 
-You can take a snapshot of your cluster from the **Configuration** tab of your cluster as shown following\. You can also take a snapshot of your cluster from the snapshots part of the Amazon Redshift console\. For more information, go to [Managing Snapshots Using the Console](managing-snapshots-console.md)\.
+You can take a snapshot of your cluster from the **Configuration** tab of your cluster as shown following\. You can also take a snapshot of your cluster from the snapshots part of the Amazon Redshift console\. For more information, go to [Managing Snapshots Using the Console](managing-snapshots-console.md)\.<a name="snapshot-cluster-task"></a>
 
 **To take a snapshot of a cluster**
 
@@ -353,7 +353,7 @@ You can take a snapshot of your cluster from the **Configuration** tab of your c
 
 ## Editing the Default Disk Space Alarm<a name="rs-mgmt-edit-default-disk-space-alarm"></a>
 
-If you opted to create a default disk space alarm when you created your Amazon Redshift cluster, you can edit the alarm\. For example, you might want to change the percentage at which the alarm triggers, or you might want to change the duration settings\. 
+If you opted to create a default disk space alarm when you created your Amazon Redshift cluster, you can edit the alarm\. For example, you might want to change the percentage at which the alarm triggers, or you might want to change the duration settings\. <a name="how-to-edit-default-disk-space-alarm"></a>
 
 **To edit the default disk space alarm**
 

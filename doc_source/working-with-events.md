@@ -15,4 +15,4 @@ You can use the Amazon Redshift console, the Amazon Redshift API, or the AWS SDK
 
 You can create Amazon Redshift event notification subscriptions that specify a set of event filters\. When an event occurs that matches the filter criteria, Amazon Redshift uses Amazon Simple Notification Service to actively inform you that the event has occurred\.
 
-For a list of Amazon Redshift events by source type and category, see [[ERROR] BAD/MISSING LINK TEXT](working-with-event-notifications.md#redshift-event-messages)
+For a list of Amazon Redshift events by source type and category, see [Amazon Redshift Event Categories and Event Messages](working-with-event-notifications.md#redshift-event-messages)

@@ -22,7 +22,7 @@ The first step to create a data warehouse is to launch a set of nodes, called an
 
  For information about the CLI, API, and SDKs, go to the following links: 
 
-+ [AWS Command Line Interface Reference](http://docs.aws.amazon.com/cli/latest/reference/)
++ [AWS CLI Command Reference](http://docs.aws.amazon.com/cli/latest/reference/)
 
 + [Amazon Redshift API Reference](http://docs.aws.amazon.com/redshift/latest/APIReference/)
 

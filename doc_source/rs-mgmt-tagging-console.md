@@ -22,7 +22,7 @@
 
 ## How to Manage Tags in the Amazon Redshift Console<a name="rs-mgmt-console-tags-how-to"></a>
 
-Use the table in the previous section to navigate to the resource that you want to work with, and then use the procedures in this section to add, modify, delete, and view tags for the resource\. 
+Use the table in the previous section to navigate to the resource that you want to work with, and then use the procedures in this section to add, modify, delete, and view tags for the resource\. <a name="rs-mgmt-console-add-tags"></a>
 
 **To add tags to a resource**
 
@@ -30,7 +30,7 @@ Use the table in the previous section to navigate to the resource that you want 
 
 1.  Under **Add Tags**, type a key name in the **Key** box and the key value in the **Value** box\. For example, type `environment` in the **Key** box and `production` in the **Value** box\. Repeat this step to add any additional tags\. 
 
-1.  Click **Apply Changes**\. 
+1.  Click **Apply Changes**\. <a name="rs-mgmt-console-modify-tags"></a>
 
 **To modify tags associated with a resource**
 
@@ -38,7 +38,7 @@ Use the table in the previous section to navigate to the resource that you want 
 
 1.  Under **Applied Tags**, locate the key that you want to modify\. In the **Value** box, type a new key value\. Repeat for any other tags that you want to modify\. 
 
-1.  Click **Apply Changes**\. 
+1.  Click **Apply Changes**\. <a name="rs-mgmt-console-delete-tags"></a>
 
 **To delete tags associated with a resource**
 

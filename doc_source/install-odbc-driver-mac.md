@@ -8,7 +8,7 @@ You install the driver on client computers accessing an Amazon Redshift data war
 
 + 215 MB of available disk space
 
-+ iODBC Driver Manager version 3\.52\.7 or later\. For more information about the iODBC driver manager and links to download it, go to the [Independent Open Database Connectivity website](http://www.iodbc.org/dataspace/iodbc/wiki/iODBC/)\.
++ iODBC Driver Manager version 3\.52\.7 or later\. For more information about the iODBC driver manager and links to download it, go to the [Independent Open Database Connectivity website](https://www.iodbc.org/dataspace/iodbc/wiki/iODBC/)\.
 
 + An Amazon Redshift master user or user account to connect to the database
 
@@ -20,7 +20,7 @@ Use the steps in this section to download and install the Amazon Redshift ODBC d
 
 + /opt/amazon/redshift/ErrorMessages
 
-+ /opt/amazon/redshift/Setup
++ /opt/amazon/redshift/Setup<a name="rs-mgmt-install-odbc-drivers-mac"></a>
 
 **To install the Amazon Redshift ODBC driver on Mac OS X**
 

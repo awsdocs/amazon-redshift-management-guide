@@ -1,6 +1,6 @@
 # Migrating an Unencrypted Cluster to an Encrypted Cluster<a name="migrating-to-an-encrypted-cluster"></a>
 
-You enable encryption when you launch a cluster\. To migrate from an unencrypted cluster to an encrypted cluster, you first unload your data from the existing, source cluster\. Then you reload the data in a new, target cluster with the chosen encryption setting\. For more information about launching an encrypted cluster, see [Amazon Redshift Database Encryption](working-with-db-encryption.md)\. During the migration process, your source cluster is available for read\-only queries until the last step\. The last step is to rename the target and source clusters, which switches endpoints so all traffic is routed to the new, target cluster\. The target cluster is unavailable until you reboot following the rename\. Suspend all data loads and other write operations on the source cluster while data is being transferred\. 
+You enable encryption when you launch a cluster\. To migrate from an unencrypted cluster to an encrypted cluster, you first unload your data from the existing, source cluster\. Then you reload the data in a new, target cluster with the chosen encryption setting\. For more information about launching an encrypted cluster, see [Amazon Redshift Database Encryption](working-with-db-encryption.md)\. During the migration process, your source cluster is available for read\-only queries until the last step\. The last step is to rename the target and source clusters, which switches endpoints so all traffic is routed to the new, target cluster\. The target cluster is unavailable until you reboot following the rename\. Suspend all data loads and other write operations on the source cluster while data is being transferred\. <a name="prepare-for-migration"></a>
 
 **To prepare for migration**
 
@@ -61,7 +61,7 @@ You enable encryption when you launch a cluster\. To migrate from an unencrypted
 
    During the unload and load operations, maintain data consistency by suspending data loads and other write operations\. Using one of your largest tables, run through the unload and load process to help you estimate timing\. 
 
-1. Create database objects, such as schemas, views, and tables\. To help you generate the necessary data definition language \(DDL\) statements, you can use the scripts in [AdminViews](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/AdminViews) in the AWS GitHub repository\.
+1. Create database objects, such as schemas, views, and tables\. To help you generate the necessary data definition language \(DDL\) statements, you can use the scripts in [AdminViews](https://github.com/awslabs/amazon-redshift-utils/tree/master/src/AdminViews) in the AWS GitHub repository\.<a name="migration-your-cluster"></a>
 
 **To migrate your cluster:**
 

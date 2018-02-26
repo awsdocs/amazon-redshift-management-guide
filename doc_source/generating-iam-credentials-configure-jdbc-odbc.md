@@ -1,6 +1,6 @@
 # Step 5: Configure a JDBC or ODBC Connection to Use IAM Credentials<a name="generating-iam-credentials-configure-jdbc-odbc"></a>
 
-You can configure your SQL client with an Amazon Redshift JDBC or ODBC driver that manages the process of creating database user credentials and establishing a connection between your SQL client and your Amazon Redshift database\. 
+You can configure your SQL client with an Amazon Redshift JDBC or ODBC driver that manages the process of creating database user credentials and establishing a connection between your SQL client and your Amazon Redshift database\. <a name="to-configure-a-jdbc-connection"></a>
 
 **To configure a JDBC connection to use IAM credentials**
 
@@ -46,7 +46,7 @@ The Amazon Redshift JDBC driver must be version 1\.2\.7\.1003 or later\.
 
    ```
    jdbc:redshift:iam://examplecluster:us-west-2/dev?Profile=user2&DbUser=newuser&AutoCreate=true&DbGroups=group1,group2
-   ```
+   ```<a name="to-configure-an-odbc-connection"></a>
 
 **To configure an ODBC connection to use IAM credentials**
 
@@ -223,5 +223,9 @@ The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
 
       + **Okta App ID** 
 
-        An ID for an Okta application\. The value for App ID follows "amazon\_aws" in the Okta Application Embed Link\. Work with your IdP administrator to get this value\. The following is an example of an application embed link\.  
+        An ID for an Okta application\. The value for App ID follows "amazon\_aws" in the Okta Application Embed Link\. Work with your IdP administrator to get this value\. The following is an example of an application embed link\.
+
+        ```
+        https://example.okta.com/home/amazon_aws/0oa2hylwrpM8UGehd1t7/272
+        ```  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/CreatingTemporaryCredentials-odbc-connection-settings-okta.png)

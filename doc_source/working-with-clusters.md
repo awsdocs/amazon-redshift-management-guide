@@ -104,7 +104,7 @@ The DS1 node types are deprecated\.  The new DS2 node types provide higher perfo
 | dc1\.8xlarge | 32 | 104 | 244 | 32 | 2\.56 TB SSD | 2–128 | 326 TB | 
 | dc2\.large | 2 | 7 | 15\.25 | 2 | 160 GB NVMe\-SSD | 1–32 | 5\.12 TB | 
 | dc2\.8xlarge | 32 | 99 | 244 | 16 | 2\.56 TB NVMe\-SSD | 2–128 | 326 TB | 
-
+<a name="rs-old-node-names"></a>
 **Previous Node Type Names**  
 In previous releases of Amazon Redshift, the node types had different names\. You can use the old names in the Amazon Redshift API and AWS Command Line Interface \(AWS CLI\)\. However, we recommend that you update any scripts that reference those names to use the current names instead\. The current and previous names are as follows\. 
 

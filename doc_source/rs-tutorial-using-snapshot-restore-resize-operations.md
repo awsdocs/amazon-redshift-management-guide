@@ -164,7 +164,7 @@ The sample data for this tutorial is provided in Amazon S3 buckets that are owne
 
 +  Your access key and secret access key\. If you do not know these, you can create new ones\. For more information, go to [ Administering Access Keys for IAM Users](http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html) in *IAM User Guide*\. 
 
-+  At least `LIST` and `GET` permissions to Amazon S3 resources\. You can grant your IAM user these permissions by attaching the `AmazonS3ReadOnlyAccess` managed policy to your IAM user or to the group to which your IAM user belongs\. For more information about attaching policies, go to [Working with Managed Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-using.html) in *IAM User Guide*\. 
++  At least `LIST` and `GET` permissions to Amazon S3 resources\. You can grant your IAM user these permissions by attaching the `AmazonS3ReadOnlyAccess` managed policy to your IAM user or to the group to which your IAM user belongs\. For more information about attaching policies, go to [Managing IAM Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html) in the *IAM User Guide*\. 
 **Note**  
 Without proper permissions to Amazon S3, you receive the following error message when running the COPY command: `S3ServiceException: Access Denied`\.
 

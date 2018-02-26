@@ -8,7 +8,7 @@ In the example cluster subnet group list below, there is one cluster subnet grou
 
 ## Creating a Cluster Subnet Group<a name="create-cluster-subnet-group"></a>
 
-You must have at least one cluster subnet group defined to provision a cluster in a VPC\.
+You must have at least one cluster subnet group defined to provision a cluster in a VPC\.<a name="create-cluster-subnet-group-task"></a>
 
 **To create a cluster subnet group**
 
@@ -37,7 +37,7 @@ You must have at least one cluster subnet group defined to provision a cluster i
 
    The new group will be displayed in the list of cluster subnet groups\.
 
-## Modifying a Cluster Subnet Group<a name="describe-cluster-subnet-group"></a>
+## Modifying a Cluster Subnet Group<a name="describe-cluster-subnet-group"></a><a name="describe-cluster-subnet-group-task"></a>
 
 **To modify a cluster subnet group**
 
@@ -55,7 +55,7 @@ You must have at least one cluster subnet group defined to provision a cluster i
 
 ## Deleting a Cluster Subnet Group<a name="modify-cluster-subnet-group"></a>
 
-You cannot delete a cluster subnet group that is used by a cluster\.
+You cannot delete a cluster subnet group that is used by a cluster\.<a name="delete-cluster-subnet-group-task"></a>
 
 **To delete a cluster subnet group**
 

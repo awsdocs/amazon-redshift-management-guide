@@ -111,21 +111,21 @@ The Amazon Redshift Maven drivers with no SDKs include the following optional de
 <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-core</artifactId>
-      <version>1.2.10.1009</version>
+      <version>1.11.118</version>
       <scope>runtime</scope>
       <optional>true</optional>
 </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-redshift</artifactId>
-      <version>1.2.10.1009</version>
+      <version>1.11.118</version>
       <scope>runtime</scope>
       <optional>true</optional>
 </dependency>
 <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-sts</artifactId>
-      <version>1.2.10.1009</version>
+      <version>1.11.118</version>
       <scope>runtime</scope>
       <optional>true</optional>
 </dependency>

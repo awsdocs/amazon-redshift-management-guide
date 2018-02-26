@@ -8,7 +8,7 @@ All snapshot tasks in the Amazon Redshift console start from the snapshot list\.
 
 ## Creating a Manual Snapshot<a name="snapshot-create"></a>
 
-You can create a manual snapshot of a cluster from the snapshots list as follows\. Or, you can take a snapshot of a cluster in the cluster configuration pane\. For more information, see [Taking a Snapshot of a Cluster](managing-clusters-console.md#snapshot-cluster)\.
+You can create a manual snapshot of a cluster from the snapshots list as follows\. Or, you can take a snapshot of a cluster in the cluster configuration pane\. For more information, see [Taking a Snapshot of a Cluster](managing-clusters-console.md#snapshot-cluster)\.<a name="snapshot-create-task"></a>
 
 **To create a manual snapshot**
 
@@ -31,7 +31,7 @@ You can create a manual snapshot of a cluster from the snapshots list as follows
    The snapshot might take some time to complete\. The new snapshot is displayed in the list of snapshots with its current status\. The example following shows that `examplecluster-manual-02-13-13` is in the process of being created\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-create-30.png)
 
-## Deleting a Manual Snapshot<a name="snapshot-delete"></a>
+## Deleting a Manual Snapshot<a name="snapshot-delete"></a><a name="snapshot-delete-task"></a>
 
 **To delete a manual snapshot**
 
@@ -57,7 +57,7 @@ You can create a manual snapshot of a cluster from the snapshots list as follows
 
 ## Copying an Automated Snapshot<a name="snapshot-copy"></a>
 
-Automated snapshots are automatically deleted when their retention period expires, when you disable automated snapshots, or when you delete a cluster\. If you want to keep an automated snapshot, you can copy it to a manual snapshot\. Because Amazon Redshift never automatically deletes manual snapshots, you can keep this copy as long as you want\. 
+Automated snapshots are automatically deleted when their retention period expires, when you disable automated snapshots, or when you delete a cluster\. If you want to keep an automated snapshot, you can copy it to a manual snapshot\. Because Amazon Redshift never automatically deletes manual snapshots, you can keep this copy as long as you want\. <a name="snapshot-copy-task"></a>
 
 **To copy an automated snapshot**
 
@@ -85,7 +85,7 @@ Automated snapshots are automatically deleted when their retention period expire
 
 ## Restoring a Cluster from a Snapshot<a name="snapshot-restore"></a>
 
-When you restore a cluster from a snapshot, Amazon Redshift creates a new cluster with all the snapshot data on the new cluster\.
+When you restore a cluster from a snapshot, Amazon Redshift creates a new cluster with all the snapshot data on the new cluster\.<a name="snapshot-restore-task"></a>
 
 **To restore a cluster from a snapshot**
 
@@ -160,7 +160,7 @@ When you restore a cluster from a snapshot, Amazon Redshift creates a new cluste
 
 ## Sharing a Cluster Snapshot<a name="snapshot-share"></a>
 
-You can authorize other users to access a manual snapshot you own, and you can later revoke that access when it is no longer required\.
+You can authorize other users to access a manual snapshot you own, and you can later revoke that access when it is no longer required\.<a name="snapshot-share-task"></a>
 
 **To share a cluster snapshot**
 
@@ -190,7 +190,7 @@ You can authorize other users to access a manual snapshot you own, and you can l
 
 ## Configuring Cross\-Region Snapshot Copy for a Non\-Encrypted Cluster<a name="snapshot-crossregioncopy-configure"></a>
 
-You can configure Amazon Redshift to copy snapshots for a cluster to another region\. To configure cross\-region snapshot copy, you need to enable this copy feature for each cluster and configure where to copy snapshots and how long to keep copied automated snapshots in the destination region\. When cross\-region copy is enabled for a cluster, all new manual and automatic snapshots are copied to the specied region\. Copied snapshot names are prefixed with **copy:**\.
+You can configure Amazon Redshift to copy snapshots for a cluster to another region\. To configure cross\-region snapshot copy, you need to enable this copy feature for each cluster and configure where to copy snapshots and how long to keep copied automated snapshots in the destination region\. When cross\-region copy is enabled for a cluster, all new manual and automatic snapshots are copied to the specified region\. Copied snapshot names are prefixed with **copy:**\.<a name="snapshot-crossregioncopy-configure-task"></a>
 
 **To configure cross\-region snapshot copy for a non\-encrypted cluster**
 
@@ -210,7 +210,7 @@ You can configure Amazon Redshift to copy snapshots for a cluster to another reg
 
 ## Configure Cross\-Region Snapshot Copy for an AWS KMS\-Encrypted Cluster<a name="xregioncopy-kms-encrypted-snapshot"></a>
 
- When you launch an Amazon Redshift cluster, you can choose to encrypt it with a master key from the AWS Key Management Service \(AWS KMS\)\. AWS KMS keys are specific to a region\. If you want to enable cross\-region snapshot copy for an AWS KMS\-encrypted cluster, you must configure a *snapshot copy grant* for a master key in the destination region so that Amazon Redshift can perform encryption operations in the destination region\. The following procedure describes the process of enabling cross\-region snapshot copy for an AWS KMS\-encrypted cluster\. For more information about encryption in Amazon Redshift and snapshot copy grants, see [Copying AWS KMS\-Encrypted Snapshots to Another Region](working-with-db-encryption.md#configure-snapshot-copy-grant)\. 
+ When you launch an Amazon Redshift cluster, you can choose to encrypt it with a master key from the AWS Key Management Service \(AWS KMS\)\. AWS KMS keys are specific to a region\. If you want to enable cross\-region snapshot copy for an AWS KMS\-encrypted cluster, you must configure a *snapshot copy grant* for a master key in the destination region so that Amazon Redshift can perform encryption operations in the destination region\. The following procedure describes the process of enabling cross\-region snapshot copy for an AWS KMS\-encrypted cluster\. For more information about encryption in Amazon Redshift and snapshot copy grants, see [Copying AWS KMS\-Encrypted Snapshots to Another Region](working-with-db-encryption.md#configure-snapshot-copy-grant)\. <a name="xregioncopy-kms-encrypted-snapshot-task"></a>
 
 **To configure cross\-region snapshot copy for an AWS KMS\-encrypted cluster**
 
@@ -241,7 +241,7 @@ You can configure Amazon Redshift to copy snapshots for a cluster to another reg
 After you configure cross\-region snapshot copy, you might want to change the settings\. You can easily change the retention period by selecting a new number of days and saving the changes\. 
 
 **Warning**  
-You cannot modify the destination region after cross\-region snapshot copy is configured\. If you want to copy snapshots to a different region, you must first disable cross\-region snapshot copy, and then re\-enable it with a new destination region and retention period\. Because any copied automated snapshots are deleted after you disable cross\-region snapshot copy, you should determine if there are any that you want to keep and copy them to manual snapshots before disabling cross\-region snapshot copy\.
+You cannot modify the destination region after cross\-region snapshot copy is configured\. If you want to copy snapshots to a different region, you must first disable cross\-region snapshot copy, and then re\-enable it with a new destination region and retention period\. Because any copied automated snapshots are deleted after you disable cross\-region snapshot copy, you should determine if there are any that you want to keep and copy them to manual snapshots before disabling cross\-region snapshot copy\.<a name="snapshot-crossregioncopy-modify-task"></a>
 
 **To modify the retention period for snapshots copied to a destination cluster**
 
@@ -259,7 +259,7 @@ You cannot modify the destination region after cross\-region snapshot copy is co
 
 ## Disabling Cross\-Region Snapshot Copy<a name="snapshot-crossregioncopy-disable"></a>
 
-You can disable cross\-region snapshot copy for a cluster when you no longer want Amazon Redshift to copy snapshots to a destination region\.
+You can disable cross\-region snapshot copy for a cluster when you no longer want Amazon Redshift to copy snapshots to a destination region\.<a name="snapshot-crossregioncopy-disable-task"></a>
 
 **To disable cross\-region snapshot copy for a cluster**
 

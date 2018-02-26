@@ -14,7 +14,7 @@ When you create an event notification subscription, you specify one or more even
 
 You can easily turn off notification without deleting a subscription by setting the **Enabled** radio button to `No` in the AWS Management Console or by setting the `Enabled` parameter to `false` using the Amazon Redshift CLI or API\.
 
-Billing for Amazon Redshift event notification is through the Amazon Simple Notification Service \(Amazon SNS\)\. Amazon SNS fees apply when using event notification; for more information on Amazon SNS billing, go to [ Amazon Simple Notification Service Pricing](http://aws.amazon.com/sns/#pricing)\.
+Billing for Amazon Redshift event notification is through the Amazon Simple Notification Service \(Amazon SNS\)\. Amazon SNS fees apply when using event notification; for more information on Amazon SNS billing, go to [ Amazon Simple Notification Service Pricing](https://aws.amazon.com/sns/#pricing)\.
 
 You can also view Amazon Redshift events that have occurred by using the management console\. For more information, see [Amazon Redshift Events](working-with-events.md)\.
 

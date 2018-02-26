@@ -6,7 +6,7 @@ You use the **Reserved Nodes** page in the Amazon Redshift console to purchase r
 
 After you purchase an offering, the **Reserved Node** list displays your reservations and the details of each one, such as the node type, number of nodes, and status of the reservation\. For more information about the reservation details, see [How Reserved Nodes Work](purchase-reserved-node-instance.md#how-reserved-nodes-work)\. 
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/reserved-nodes-list-20.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/reserved-nodes-list-20.png)<a name="list-reserved-nodes-task"></a>
 
 **To view reserved node reservations**
 
@@ -14,7 +14,7 @@ After you purchase an offering, the **Reserved Node** list displays your reserva
 
 1. In the navigation pane, choose **Reserved Nodes**\.
 
-1. \(Optional\) In **Filter**, specify search criteria to reduce the results in the reservations list\.
+1. \(Optional\) In **Filter**, specify search criteria to reduce the results in the reservations list\.<a name="purchase-reserved-nodes-task"></a>
 
 **To purchase a reserved node offering**
 

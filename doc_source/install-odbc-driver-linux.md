@@ -18,9 +18,9 @@ You install the Amazon Redshift ODBC driver on client computers accessing an Ama
 
 + One of the following ODBC driver managers: 
 
-  + iODBC Driver Manager 3\.52\.7 or later\. For more information about the iODBC driver manager and links to download it, go to the [Independent Open Database Connectivity website](http://www.iodbc.org/dataspace/iodbc/wiki/iODBC/)\.
+  + iODBC Driver Manager 3\.52\.7 or later\. For more information about the iODBC driver manager and links to download it, go to the [Independent Open Database Connectivity website](https://www.iodbc.org/dataspace/iodbc/wiki/iODBC/)\.
 
-  + unixODBC 2\.3\.0 or later\. For more information about the unixODBC driver manager and links to download it, go to the [unixODBC website](http://www.unixodbc.org/)\. 
+  + unixODBC 2\.3\.0 or later\. For more information about the unixODBC driver manager and links to download it, go to the [unixODBC website](https://www.unixodbc.org/)\. 
 
 + An Amazon Redshift master user or user account to connect to the database
 
@@ -34,7 +34,7 @@ Use the steps in this section to download and install the Amazon Redshift ODBC d
 
 + /opt/amazon/redshiftodbc/ErrorMessages
 
-+ /opt/amazon/redshiftodbc/Setup
++ /opt/amazon/redshiftodbc/Setup<a name="rs-mgmt-install-odbc-drivers-linux"></a>
 
 **To install the Amazon Redshift ODBC driver**
 

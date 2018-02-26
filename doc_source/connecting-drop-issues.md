@@ -24,7 +24,7 @@ You experience an issue with queries completing, where the queries appear to be 
 
 ## Configuring the MTU of an Instance<a name="set-mtu"></a>
 
- If your cluster uses the EC2\-Classic platform or you cannot allow the custom ICMP rule for inbound traffic in your case, then we recommend that you adjust the MTU to 1500 on the network interface \(NIC\) of the Amazon EC2 instances from which you connect to your Amazon Redshift cluster\. This adjustment disables TCP/IP jumbo frames to ensure that connections consistently use the same packet size\. However, note that this option reduces your maximum network throughput for the instance entirely, not just for connections to Amazon Redshift\. For more information, see the following procedures\. 
+ If your cluster uses the EC2\-Classic platform or you cannot allow the custom ICMP rule for inbound traffic in your case, then we recommend that you adjust the MTU to 1500 on the network interface \(NIC\) of the Amazon EC2 instances from which you connect to your Amazon Redshift cluster\. This adjustment disables TCP/IP jumbo frames to ensure that connections consistently use the same packet size\. However, note that this option reduces your maximum network throughput for the instance entirely, not just for connections to Amazon Redshift\. For more information, see the following procedures\. <a name="set-mtu-win-os"></a>
 
 **To set MTU on a Microsoft Windows operating system**
 
@@ -44,7 +44,7 @@ If your client runs in a Microsoft Windows operating system, you can review and 
    netsh interface ipv4 set subinterface "Ethernet" mtu=1500 store=persistent
    ```
 
-   After you set this value, restart your computer for the changes to take effect\.
+   After you set this value, restart your computer for the changes to take effect\.<a name="set-mtu-linux-os"></a>
 
 **To set MTU on a Linux operating system**
 
@@ -62,8 +62,8 @@ If your client runs in a Microsoft Windows operating system, you can review and 
 
    ```
    $ sudo ip link set dev eth0 mtu 1500
-   ```
+   ```<a name="set-mtu-mac-os"></a>
 
 **To set MTU on a Mac operating system**
 
-+ To set the MTU on a Mac operating system, follow the instructions in [Mac OS X 10\.4 or later: How to change the MTU for troubleshooting purposes](http://support.apple.com/kb/ht2532)\.
++ To set the MTU on a Mac operating system, follow the instructions in [Mac OS X 10\.4 or later: How to change the MTU for troubleshooting purposes](https://support.apple.com/kb/ht2532)\.

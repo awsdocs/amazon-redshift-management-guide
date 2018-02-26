@@ -4,7 +4,7 @@ You can use the Amazon Redshift console to configure Amazon Redshift to use an H
 
 ## Configuring Amazon Redshift to Use an HSM Using the Amazon Redshift console<a name="manage-HSM-console"></a>
 
-You can use the following procedures to specify HSM connection and configuration information for Amazon Redshift by using the Amazon Redshift console\.
+You can use the following procedures to specify HSM connection and configuration information for Amazon Redshift by using the Amazon Redshift console\.<a name="create-hsm-connection-task"></a>
 
 **To create an HSM Connection**
 
@@ -33,7 +33,7 @@ You can use the following procedures to specify HSM connection and configuration
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/hsm-connections-create-01.png)
 
 1. After the connection is created, you can create an HSM client certificate\. If you want to create an HSM client certificate immediately after creating the connection, click **Yes** and complete the steps in the next procedure\. Otherwise, click **Not now** to return to the list of HSM connections and complete the remainder of the process at another time\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/hsm-connections-create-02.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/hsm-connections-create-02.png)<a name="create-hsm-client-cert-task"></a>
 
 **To create an HSM client certificate**
 
@@ -85,7 +85,7 @@ You can use the following procedures to specify HSM connection and configuration
 
      **Previous**\. This option returns you to the **Create HSM Client Certificates** confirmation page\.
 
-     **Close**\. This option returns you to **HSM** in the navigation pane and displays a list of HSM connections on the **Connections** tab\.
+     **Close**\. This option returns you to **HSM** in the navigation pane and displays a list of HSM connections on the **Connections** tab\.<a name="display-hsm-client-cert-task"></a>
 
 **To display the public key for an HSM client certificate**
 
@@ -94,7 +94,7 @@ You can use the following procedures to specify HSM connection and configuration
 1.  In the navigation pane, click **Security**, and then click the **HSM Certificates** tab\. 
 
 1. Click the HSM client certificate to display the public key\. This key is the same one that you added to the HSM in the procedure preceding procedure, [To create an HSM client certificate](#create-hsm-client-cert-task)   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/hsm-client-cert-details.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/hsm-client-cert-details.png)<a name="delete-hsm-connection-task"></a>
 
 **To delete an HSM connection**
 
@@ -104,7 +104,7 @@ You can use the following procedures to specify HSM connection and configuration
 
 1. Click the HSM connection that you want to delete\.
 
-1. In the **Delete HSM Connection** dialog box, click **Delete** to delete the connection from Amazon Redshift, or click **Cancel** to return to the **HSM Connections** tab without deleting the connection\.
+1. In the **Delete HSM Connection** dialog box, click **Delete** to delete the connection from Amazon Redshift, or click **Cancel** to return to the **HSM Connections** tab without deleting the connection\.<a name="delete-hsm-client-cert-task"></a>
 
 **To delete an HSM client certificate**
 
@@ -118,7 +118,7 @@ You can use the following procedures to specify HSM connection and configuration
 
 ## Rotating Encryption Keys Using the Amazon Redshift console<a name="manage-key-rotation-console"></a>
 
-You can use the following procedure to rotate encryption keys by using the Amazon Redshift console\.
+You can use the following procedure to rotate encryption keys by using the Amazon Redshift console\.<a name="rotate-encryption-key-task"></a>
 
 **To rotate an encryption key**
 

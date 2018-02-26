@@ -100,7 +100,7 @@ public class Docs {
 When you use \.NET \(C\#\) to programmatically connect to your cluster, you can do so with or without server authentication\. If you plan to use server authentication, follow the instructions in [Configure Security Options for Connections](connecting-ssl-support.md) to download the Amazon Redshift server certificate, and then put the certificate in the correct form for your \.NET code\.
 
 **Example Connect to a Cluster by Using \.NET**  
- The following example connects to a cluster and runs a sample query that returns system tables\. It does not show server authentication\. It is not necessary to have data in your database to use this example\. This example uses the [System\.Data\.Odbc Namespace](http://msdn.microsoft.com/en-us/library/system.data.odbc.aspx), a \.NET Framework Data Provider for ODBC\.   
+ The following example connects to a cluster and runs a sample query that returns system tables\. It does not show server authentication\. It is not necessary to have data in your database to use this example\. This example uses the [System\.Data\.Odbc Namespace](https://msdn.microsoft.com/en-us/library/system.data.odbc.aspx), a \.NET Framework Data Provider for ODBC\.   
 
 ```
 using System;

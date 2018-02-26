@@ -43,6 +43,14 @@ In this section, you can find steps to programmatically call the GetClusterCrede
 
    The result is as follows\.
 
+   ```
+   {
+     "DbUser": "IAM:temp_creds_user", 
+     "Expiration": "2016-12-08T21:12:53Z", 
+     "DbPassword": "EXAMPLEjArE3hcnQj8zt4XQj9Xtma8oxYEM8OyxpDHwXVPyJYBDm/gqX2Eeaq6P3DgTzgPg=="
+   }
+   ```
+
    The following example uses the Amazon Redshift CLI with autocreate to generate temporary database credentials for a new user and add the user to the group `example_group`\.
 
    ```
@@ -50,6 +58,14 @@ In this section, you can find steps to programmatically call the GetClusterCrede
    ```
 
    The result is as follows\.
+
+   ```
+   {
+     "DbUser": "IAMA:temp_creds_user:example_group", 
+     "Expiration": "2016-12-08T21:12:53Z", 
+     "DbPassword": "EXAMPLEjArE3hcnQj8zt4XQj9Xtma8oxYEM8OyxpDHwXVPyJYBDm/gqX2Eeaq6P3DgTzgPg=="
+   }
+   ```
 
 1. Establish a Secure Socket Layer \(SSL\) authentication connection with the Amazon Redshift cluster and send a logon request with the user name and password from the GetClusterCredentials response\. Include the IAM: or IAMA: prefix with the user name, for example, `IAM:temp_creds_user` or `IAMA:temp_creds_user`\.
 **Important**  

@@ -18,7 +18,7 @@ Enable FIPS\-compliant SSL mode only if your system is required to be FIPS compl
 
 To enable FIPS\-compliant SSL mode, set both the `use_fips_ssl` parameter and the `require_SSL` parameter to `true` in the parameter group that is associated with the cluster\. For information about modifying a parameter group, see [Amazon Redshift Parameter Groups](working-with-parameter-groups.md)\. 
 
- Amazon Redshift supports the Elliptic Curve Diffie—Hellman Ephemeral \(ECDHE\) key agreement protocol\. With ECDHE, the client and server each have an elliptic curve public\-private key pair that is used to establish a shared secret over an insecure channel\. You do not need to configure anything in Amazon Redshift to enable ECDHE; if you connect from a SQL client tool that uses ECDHE to encrypt communication between the client and server, Amazon Redshift will use the provided cipher list to make the appropriate connection\. For more information, see [Elliptic Curve Diffie—Hellman](http://en.wikipedia.org/wiki/Elliptic_curve_Diffie%E2%80%93Hellman) on Wikipedia and [Ciphers](https://www.openssl.org/) on the OpenSSL website\. 
+ Amazon Redshift supports the Elliptic Curve Diffie—Hellman Ephemeral \(ECDHE\) key agreement protocol\. With ECDHE, the client and server each have an elliptic curve public\-private key pair that is used to establish a shared secret over an insecure channel\. You do not need to configure anything in Amazon Redshift to enable ECDHE; if you connect from a SQL client tool that uses ECDHE to encrypt communication between the client and server, Amazon Redshift will use the provided cipher list to make the appropriate connection\. For more information, see [Elliptic Curve Diffie—Hellman](https://en.wikipedia.org/wiki/Elliptic_curve_Diffie%E2%80%93Hellman) on Wikipedia and [Ciphers](https://www.openssl.org/) on the OpenSSL website\. 
 
 ## Using SSL and Trust CA Certificates in ODBC<a name="connecting-ssl-support-odbc"></a>
 
@@ -70,7 +70,7 @@ The Amazon Redshift certificate authority bundle is stored at [https://s3\.amazo
 
 ## Using SSL and Server Certificates in Java<a name="connecting-ssl-support-java"></a>
 
-SSL provides one layer of security by encrypting data that moves between your client and cluster\. Using a server certificate provides an extra layer of security by validating that the cluster is an Amazon Redshift cluster\. It does so by checking the server certificate that is automatically installed on all clusters that you provision\. For more information about using server certificates with JDBC, go to [Configuring the Client](http://jdbc.postgresql.org/documentation/91/ssl-client.html) in the PostgreSQL documentation\.
+SSL provides one layer of security by encrypting data that moves between your client and cluster\. Using a server certificate provides an extra layer of security by validating that the cluster is an Amazon Redshift cluster\. It does so by checking the server certificate that is automatically installed on all clusters that you provision\. For more information about using server certificates with JDBC, go to [Configuring the Client](https://jdbc.postgresql.org/documentation/91/ssl-client.html) in the PostgreSQL documentation\.
 
 ### Connect Using Trust CA Certificates in Java<a name="connecting-ssl-support-java-with-cert"></a>
 

@@ -69,7 +69,7 @@ Amazon's trademarks and trade dress may not be used in
    + [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)
    + [Generating IAM Database Credentials Using the Amazon Redshift CLI or API](generating-iam-credentials-cli-api.md)
 + [Authorizing Amazon Redshift to Access Other AWS Services on Your Behalf](authorizing-redshift-service.md)
-   + [Authorizing COPY and UNLOAD Operations Using IAM Roles](copy-unload-iam-role.md)
+   + [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA Operations Using IAM Roles](copy-unload-iam-role.md)
 + [Accessing Amazon Redshift Clusters and Databases](using-rs-tools.md)
    + [Using the Amazon Redshift Management Interfaces](using-aws-sdk.md)
       + [Using the AWS SDK for Java with Amazon Redshift](using-aws-sdk-for-java.md)

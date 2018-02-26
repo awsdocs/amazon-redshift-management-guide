@@ -3,7 +3,7 @@
 After you create an Amazon Redshift cluster, you can use psql, a terminal\-based front end from PostgreSQL, to query the data in your cluster\. You can type the queries interactively or read them from a file\. To connect from psql, you must specify the cluster endpoint, database, and port\.
 
 **Note**  
- Amazon Redshift does not provide the psql tool; it is installed with PostgreSQL\. For information about using psql, go to [http://www\.postgresql\.org/docs/8\.4/static/app\-psql\.html](http://www.postgresql.org/docs/8.4/static/app-psql.html)\. For information about installing the PostgreSQL client tools, select your operating system from the PostgreSQL binary downloads page at [http://www\.postgresql\.org/download/](http://www.postgresql.org/download/)\.
+ Amazon Redshift does not provide the psql tool; it is installed with PostgreSQL\. For information about using psql, go to [https://www\.postgresql\.org/docs/8\.4/static/app\-psql\.html](https://www.postgresql.org/docs/8.4/static/app-psql.html)\. For information about installing the PostgreSQL client tools, select your operating system from the PostgreSQL binary downloads page at [https://www\.postgresql\.org/download/](https://www.postgresql.org/download/)\.
 
 ## Connect by Using the psql Defaults<a name="connecting-from-psql-default"></a>
 
@@ -46,7 +46,7 @@ By default, psql does not validate the Amazon Redshift service; it makes an encr
 
 To control whether psql authenticates the service using a certificate, you must use a connection information string to specify connection information, and specify the `sslmode` keyword\. By default, psql operates with `sslmode=prefer`\. To specify that psql opens an encrypted connection and uses an Amazon Redshift certificate to verify the service, download an Amazon Redshift certificate to your computer\. Specify `verify-full` unless you use a DNS alias\. If you use a DNS alias, select v`erify-ca`\. Specify `sslrootcert` with the location of the certificate\. For more information about `sslmode`, see [Configure Security Options for Connections](connecting-ssl-support.md)\. 
 
- For more information about connection information string parameters, see [http://www\.postgresql\.org/docs/8\.4/static/libpq\-connect\.html](http://www.postgresql.org/docs/8.4/static/libpq-connect.html)\.
+ For more information about connection information string parameters, see [https://www\.postgresql\.org/docs/8\.4/static/libpq\-connect\.html](https://www.postgresql.org/docs/8.4/static/libpq-connect.html)\.
 
 **To connect by using a certificate**
 

@@ -54,7 +54,7 @@ https://redshift.us-east-1.amazonaws.com/
    &x-amz-signedheaders=content-type;host;x-amz-date
 ```
 
-The canonical form of the request calculated for Task 1: Create a Canonical Request is:
+The canonical form of the request calculated for [Task 1: Create a Canonical Request](#SignatureCalculationTask1) is:
 
 ```
 POST
@@ -70,7 +70,7 @@ content-type;host;x-amz-date
 
 The last line of the canonical request is the hash of the request body\. The third line in the canonical request is empty because there are no query parameters for this API\. 
 
-The string to sign for Task 2: Create a String to Sign is:
+The string to sign for [Task 2: Create a String to Sign](#SignatureCalculationTask2) is:
 
 ```
 AWS4-HMAC-SHA256
@@ -79,9 +79,9 @@ AWS4-HMAC-SHA256
 06b6bef4f4f060a5558b60c627cc6c5b5b5a959b9902b5ac2187be80cbac0714
 ```
 
-The first line of the *string to sign* is the algorithm, the second line is the time stamp, the third line is the *credential scope*, and the last line is a hash of the canonical request from Task 1: Create a Canonical Request\. The service name to use in the credential scope is `redshift`\.
+The first line of the *string to sign* is the algorithm, the second line is the time stamp, the third line is the *credential scope*, and the last line is a hash of the canonical request from [Task 1: Create a Canonical Request](#SignatureCalculationTask1)\. The service name to use in the credential scope is `redshift`\.
 
-For Task 3: Create a Signature, the derived key can be represented as:
+For [Task 3: Create a Signature](#SignatureCalculationTask3), the derived key can be represented as:
 
 ```
 derived key = HMAC(HMAC(HMAC(HMAC("AWS4" + YourSecretAccessKey,"20121207"),"us-east-1"),"redshift"),"aws4_request")

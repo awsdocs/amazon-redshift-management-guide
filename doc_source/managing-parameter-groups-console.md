@@ -10,7 +10,7 @@ You can expand any of the parameter groups in the list to see a summary of the v
 
 ## Creating a Parameter Group<a name="parameter-group-create"></a>
 
-You can create a parameter group if you want to set parameter values that are different from the default parameter group\.
+You can create a parameter group if you want to set parameter values that are different from the default parameter group\.<a name="parameter-group-create-task"></a>
 
 **To create a parameter group**
 
@@ -30,7 +30,7 @@ You can create a parameter group if you want to set parameter values that are di
  You can modify parameters to change the parameter settings and WLM configuration properties\. 
 
 **Note**  
-You cannot modify the default parameter group\.
+You cannot modify the default parameter group\.<a name="parameter-group-modify-task"></a>
 
 **To modify parameters in a parameter group**
 
@@ -49,7 +49,7 @@ You cannot modify the default parameter group\.
 
 1. Choose **Save Changes**\.
 **Note**  
- If you modify these parameters in a parameter group that is already associated with a cluster, reboot the cluster for the changes to be applied\. For more information, see [Rebooting a Cluster](managing-clusters-console.md#reboot-cluster)\. 
+ If you modify these parameters in a parameter group that is already associated with a cluster, reboot the cluster for the changes to be applied\. For more information, see [Rebooting a Cluster](managing-clusters-console.md#reboot-cluster)\. <a name="parameter-group-modify-wlm-task"></a>
 
 **To modify the WLM configuration in a parameter group**
 
@@ -88,7 +88,7 @@ You can use the AWS Management Console to create and modify WLM query management
 
 When you create a rule, you define the rule name, one or more predicates, and an action\. 
 
-When you save WLM configuration that includes a rule, you can view the JSON code for the rule definition as part of the JSON for the WLM configuration parameter\. 
+When you save WLM configuration that includes a rule, you can view the JSON code for the rule definition as part of the JSON for the WLM configuration parameter\. <a name="parameter-group-modify-qmr-task"></a>
 
 **To create a query monitoring rule**
 
@@ -147,7 +147,7 @@ You cannot modify the default parameter group\.
 
 ## Deleting a Parameter Group<a name="parameter-group-delete"></a>
 
-You can delete a parameter group if you no longer need it and it is not associated with any clusters\. You can only delete custom parameter groups\.
+You can delete a parameter group if you no longer need it and it is not associated with any clusters\. You can only delete custom parameter groups\.<a name="parameter-group-delete-task"></a>
 
 **To delete a parameter group**
 

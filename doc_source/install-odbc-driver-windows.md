@@ -56,29 +56,29 @@ If you installed the 32\-bit driver, the folder is named **Amazon Redshift ODBC 
 1.  Select the **Amazon Redshift** ODBC driver, and then click **Finish**\. The ** Amazon Redshift ODBC Driver DSN Setup** window opens\.
 
 1. Under **Connection Settings**, enter the following information:
-
+<a name="rs-mgmt-dsn"></a>
 **Data Source Name**  
 Type a name for the data source\. You can use any name that you want to identify the data source later when you create the connection to the cluster\. For example, if you followed the *Amazon Redshift Getting Started*, you might type `exampleclusterdsn` to make it easy to remember the cluster that you will associate with this DSN\.
-
+<a name="rs-mgmt-server"></a>
 **Server**  
 Specify the endpoint for your Amazon Redshift cluster\. You can find this information in the Amazon Redshift console on the cluster’s details page\. For more information, see [Configuring Connections in Amazon Redshift](configuring-connections.md)\.
-
+<a name="rs-mgmt-port"></a>
 **Port**  
 Type the port number that the database uses\. By default, Amazon Redshift uses 5439, but you should use the port that the cluster was configured to use when it was launched\.
-
+<a name="rs-mgmt-database"></a>
 **Database**  
 Type the name of the Amazon Redshift database\. If you launched your cluster without specifying a database name, type *dev*; otherwise, use the name that you chose during the launch process\. If you followed the *Amazon Redshift Getting Started*, type *dev*\.
 
 1. Under **Credentials**, enter the following information:
-
+<a name="rs-mgmt-creds-user"></a>
 **User**  
 Type the user name for the database user account that you want to use to access the database\. If you followed the *Amazon Redshift Getting Started*, type *masteruser*\.
-
+<a name="rs-mgmt-creds-password"></a>
 **Password**  
 Type the password that corresponds to the database user account\.
 
 1. Under **SSL Settings**, specify a value for the following:
-
+<a name="rs-mgmt-ssl-authentication"></a>
 **SSL Authentication**  
 Select a mode for handling Secure Sockets Layer \(SSL\)\. In a test environment, you might use `prefer`, but for production environments and when secure data exchange is required, use `verify-ca` or `verify-full`\. For more information about using SSL, see [Connect Using SSL](connecting-ssl-support.md#connect-using-ssl)\.
 

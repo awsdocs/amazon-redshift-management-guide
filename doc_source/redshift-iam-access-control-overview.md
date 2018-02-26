@@ -99,7 +99,7 @@ For a table showing all of the Amazon Redshift API actions and the resources tha
 
 ## Specifying Conditions in a Policy<a name="redshift-policy-resources.specifying-conditions"></a>
 
-When you grant permissions, you can use the access policy language to specify the conditions when a policy should take effect\. For example, you might want a policy to be applied only after a specific date\. For more information about specifying conditions in an access policy language, see [Condition](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#Condition) in the *IAM User Guide*\.
+When you grant permissions, you can use the access policy language to specify the conditions when a policy should take effect\. For example, you might want a policy to be applied only after a specific date\. For more information about specifying conditions in an access policy language, see [IAM JSON Policy Elements: Condition](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
 
 To identify conditions where a permissions policy applies, include a `Condition` element in your IAM permissions policy\. For example, you can create a policy that permits a user to create a cluster using the `redshift:CreateCluster` action, and you can add a `Condition` element to restrict that user to only create the cluster in a specific region\. For details, see [Using IAM Policy Conditions for Fine\-Grained Access Control](#redshift-policy-resources.conditions)\. For a list showing all of condition key values and the Amazon Redshift actions and resources that they apply to, see [Amazon Redshift API Permissions Reference](redshift-policy-resources.resource-permissions.md)\.
 

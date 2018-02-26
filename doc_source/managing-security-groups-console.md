@@ -10,7 +10,7 @@ You cannot delete the default cluster security group, but you can modify it by a
 
 To add or modify the rules associated with a security group, click on the security group to go to the **Security Group Connections** page\.
 
-## Creating a Cluster Security Group<a name="security-group-create"></a>
+## Creating a Cluster Security Group<a name="security-group-create"></a><a name="security-group-create-task"></a>
 
 **To create a cluster security group**
 
@@ -28,7 +28,7 @@ To add or modify the rules associated with a security group, click on the securi
 
    The new group will be displayed in the list of cluster security groups\.
 
-## Tagging a Cluster Security Group<a name="security-group-tag"></a>
+## Tagging a Cluster Security Group<a name="security-group-tag"></a><a name="security-group-tag-task"></a>
 
 **To tag a cluster security group**
 
@@ -57,7 +57,7 @@ To add or modify the rules associated with a security group, click on the securi
 
       For more information about tagging an Amazon Redshift resource, see [How to Manage Tags in the Amazon Redshift Console](rs-mgmt-tagging-console.md#rs-mgmt-console-tags-how-to)\.
 
-## Managing Ingress Rules for a Cluster Security Group<a name="security-group-modify"></a>
+## Managing Ingress Rules for a Cluster Security Group<a name="security-group-modify"></a><a name="security-group-modify-task"></a>
 
 **To manage ingress rules for a cluster security group**
 
@@ -92,7 +92,7 @@ To add or modify the rules associated with a security group, click on the securi
       + Click **Authorize**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-modify-30.png)
 
-## Revoking Ingress Rules for a Cluster Security Group<a name="security-group-revoke"></a>
+## Revoking Ingress Rules for a Cluster Security Group<a name="security-group-revoke"></a><a name="security-group-revoke-task"></a>
 
 **To revoke ingress rules for a cluster security group**
 
@@ -105,7 +105,7 @@ To add or modify the rules associated with a security group, click on the securi
 1. On the **Security Group Connections** tab, select the rule you want to remove and click **Revoke**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-revoke.png)
 
-## Tagging Ingress Rules for a Cluster Security Group<a name="security-rule-tag"></a>
+## Tagging Ingress Rules for a Cluster Security Group<a name="security-rule-tag"></a><a name="security-rule-tag-task"></a>
 
 **To tag ingress rules for a cluster security group**
 
@@ -140,7 +140,7 @@ Tagging an EC2 Security Group rule only tags that rule, not the EC2 Security Gro
 
 ## Deleting a Cluster Security Group<a name="security-group-delete"></a>
 
-If a cluster security group is associated with one or more clusters, you cannot delete it\. 
+If a cluster security group is associated with one or more clusters, you cannot delete it\. <a name="security-group-delete-task"></a>
 
 **To delete a cluster security group**
 

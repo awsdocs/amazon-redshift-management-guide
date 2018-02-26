@@ -4,21 +4,21 @@
 
 ## Install SQL Workbench/J<a name="set-up-sqlworkbench"></a>
 
- The *Amazon Redshift Getting Started* uses SQL Workbench/J\. In this section, we explain in detail how to connect to your cluster by using SQL Workbench/J\. 
+ The *Amazon Redshift Getting Started* uses SQL Workbench/J\. In this section, we explain in detail how to connect to your cluster by using SQL Workbench/J\. <a name="how-to-set-up-sqlworkbench"></a>
 
 **To install SQL Workbench/J**
 
-1. Review the [SQL Workbench/J software license](http://www.sql-workbench.net/manual/license.html#license-restrictions)\.
+1. Review the [SQL Workbench/J software license](https://www.sql-workbench.net/manual/license.html#license-restrictions)\.
 
-1. Go to the [SQL Workbench/J](http://www.sql-workbench.net/) website and download the appropriate package for your operating system on your client computer or Amazon EC2 instance\.
+1. Go to the [SQL Workbench/J](https://www.sql-workbench.net/) website and download the appropriate package for your operating system on your client computer or Amazon EC2 instance\.
 
-1. Go to the [Installing and starting SQL Workbench/J](http://www.sql-workbench.net/manual/install.html) page\. Follow the instructions for installing SQL Workbench/J on your system\.
+1. Go to the [Installing and starting SQL Workbench/J](https://www.sql-workbench.net/manual/install.html) page\. Follow the instructions for installing SQL Workbench/J on your system\.
 **Note**  
 SQL Workbench/J requires the Java Runtime Environment \(JRE\) be installed on your system\. Ensure you are using the correct version of the JRE required by the SQL Workbench/J client\. To determine which version of the Java Runtime Environment is running on your system, do one of the following:  
 Mac: In the **System Preferences**, click the Java icon\.
 Windows: In the **Control Panel**, click the Java icon\.
-Any system: In a command shell, type `java -version`\. You can also visit [http://www\.java\.com](http://www.java.com), click the [Do I Have Java?](http://www.java.com/en/download/installed.jsp) link, and click on the **Verify Java** button\. 
-For information about installing and configuring the Java Runtime Environment, go to [http://www\.java\.com](http://www.java.com)\.
+Any system: In a command shell, type `java -version`\. You can also visit [https://www\.java\.com](https://www.java.com), click the [Do I Have Java?](https://www.java.com/en/download/installed.jsp) link, and click on the **Verify Java** button\. 
+For information about installing and configuring the Java Runtime Environment, go to [https://www\.java\.com](https://www.java.com)\.
 
 ## Connect to Your Cluster over a JDBC Connection in SQL Workbench/J<a name="connect-to-workbench-via-jdbc"></a>
 
