@@ -27,7 +27,7 @@ The URL in the following code will return an error if used in a browser\. The UR
 
    Add a dependency for the driver from the following list\.
 **Note**  
-For version 1\.2\.1\.1001 and later, you can use either the generic driver class name `com.amazon.redshift.jdbc.Driver` or the version\-specific class name listed with the driver in the list following; for example `com.amazon.redshift.jdbc42.Driver`\. For releases prior to 1\.2\.1001, only version specific class names are supported\.
+For version 1\.2\.1\.1001 and later, you can use either the generic driver class name `com.amazon.redshift.jdbc.Driver` or the version\-specific class name listed with the driver in the list following; for example `com.amazon.redshift.jdbc42.Driver`\. For releases prior to 1\.2\.1\.1001, only version specific class names are supported\.
 
    + JDBC 4\.2–compatible driver: 
 
