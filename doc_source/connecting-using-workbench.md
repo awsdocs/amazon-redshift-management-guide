@@ -8,11 +8,11 @@
 
 **To install SQL Workbench/J**
 
-1. Review the [SQL Workbench/J software license](https://www.sql-workbench.net/manual/license.html#license-restrictions)\.
+1. Review the [SQL Workbench/J software license](http://www.sql-workbench.net/manual/license.html#license-restrictions)\.
 
-1. Go to the [SQL Workbench/J](https://www.sql-workbench.net/) website and download the appropriate package for your operating system on your client computer or Amazon EC2 instance\.
+1. Go to the [SQL Workbench/J](http://www.sql-workbench.net/) website and download the appropriate package for your operating system on your client computer or Amazon EC2 instance\.
 
-1. Go to the [Installing and starting SQL Workbench/J](https://www.sql-workbench.net/manual/install.html) page\. Follow the instructions for installing SQL Workbench/J on your system\.
+1. Go to the [Installing and starting SQL Workbench/J](http://www.sql-workbench.net/manual/install.html) page\. Follow the instructions for installing SQL Workbench/J on your system\.
 **Note**  
 SQL Workbench/J requires the Java Runtime Environment \(JRE\) be installed on your system\. Ensure you are using the correct version of the JRE required by the SQL Workbench/J client\. To determine which version of the Java Runtime Environment is running on your system, do one of the following:  
 Mac: In the **System Preferences**, click the Java icon\.

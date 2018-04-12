@@ -40,7 +40,7 @@ In addition to the inbound access rules, you create database users to provide cr
 
 ### Encryption<a name="rs-overview-encryption"></a>
 
-When you provision the cluster, you can optionally choose to encrypt the cluster for additional security\. When you enable encryption, Amazon Redshift stores all data in user\-created tables in an encrypted format\. You can use either AWS Key Management Service \(AWS KMS\) or a hardware security module \(HSM\) to manage your Amazon Redshift encryption keys\. 
+When you provision the cluster, you can optionally choose to encrypt the cluster for additional security\. When you enable encryption, Amazon Redshift stores all data in user\-created tables in an encrypted format\. You can use AWS Key Management Service \(AWS KMS\) to manage your Amazon Redshift encryption keys\. 
 
 Encryption is an immutable property of the cluster\. The only way to switch from an encrypted cluster to a nonencrypted cluster is to unload the data and reload it into a new cluster\. Encryption applies to the cluster and any backups\. When you restore a cluster from an encrypted snapshot, the new cluster is encrypted as well\.
 

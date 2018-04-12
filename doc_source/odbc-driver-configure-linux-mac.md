@@ -10,7 +10,7 @@ If you installed to the default location, the `amazon.redshiftodbc.ini` configur
 
 + /opt/amazon/redshiftodbc/lib/64 \(for the 64\-bit driver on Linux operating systems\)
 
-+ /opt/amazon/redshift/lib/universal \(for the driver on Mac OS X\)
++ /opt/amazon/redshift/ \(for the driver on Mac OS X\)
 
 Additionally, under /opt/amazon/redshiftodbc/Setup on Linux or /opt/amazon/redshift/Setup on Mac OS X, there are sample `odbc.ini` and `odbcinst.ini` files for you to use as examples for configuring the Amazon Redshift ODBC driver and the data source name \(DSN\)\.
 
@@ -85,7 +85,7 @@ locale=locale
 Amazon_Redshift_dylib=Amazon Redshift DSN for Mac OS X
 
 [Amazon Redshift DSN for Mac OS X]
-Driver=/opt/amazon/redshift/lib/universal/libamazonredshiftodbc.dylib
+Driver=/opt/amazon/redshift/libamazonredshiftodbc.dylib
 Host=examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com
 Port=5932
 Database=dev
@@ -148,7 +148,7 @@ Amazon RedshiftODBC DSN=Installed
 
 [Amazon RedshiftODBC DSN]
 Description=Amazon Redshift ODBC Driver for Mac OS X
-Driver=/opt/amazon/redshift/lib/universal/libamazonredshiftodbc.dylib
+Driver=/opt/amazon/redshift/libamazonredshiftodbc.dylib
 ```
 
 ## Configuring Environment Variables for Driver Configuration Files<a name="rs-mgmt-config-global-env-variables"></a>

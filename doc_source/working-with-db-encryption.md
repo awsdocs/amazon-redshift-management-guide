@@ -10,7 +10,7 @@ Amazon Redshift uses a hierarchy of encryption keys to encrypt the database\. Yo
 
 Additionally, Amazon Redshift automatically integrates with AWS KMS but not with an HSM\. When you use an HSM, you must use client and server certificates to configure a trusted connection between Amazon Redshift and your HSM\.
 
-## About Database Encryption for Amazon Redshift Using AWS KMS<a name="working-with-aws-kms"></a>
+## Database Encryption for Amazon Redshift Using AWS KMS<a name="working-with-aws-kms"></a>
 
 When you choose AWS KMS for key management with Amazon Redshift, there is a four\-tier hierarchy of encryption keys\. These keys, in hierarchical order, are the master key, a cluster encryption key \(CEK\), a database encryption key \(DEK\), and data encryption keys\.
 
@@ -55,9 +55,17 @@ Before the snapshot is copied to the destination region, Amazon Redshift decrypt
 
 For more information about configuring snapshot copy grants for AWS KMS\-encrypted clusters, see [Configuring Amazon Redshift to Use AWS KMS Encryption Keys Using the Amazon Redshift API and AWS CLI](configuring-db-encryption-api.md#manage-aws-kms-api-cli)\.
 
-## About Encryption for Amazon Redshift Using Hardware Security Modules<a name="working-with-HSM"></a>
+## Encryption for Amazon Redshift Using Hardware Security Modules<a name="working-with-HSM"></a>
 
-If you don’t use AWS KMS for key management, you can use a hardware security module \(HSM\) for key management with Amazon Redshift\. HSMs are devices that provide direct control of key generation and management\. They provide greater security by separating key management from the application and database layers\. Amazon Redshift supports both AWS CloudHSM and on\-premises HSMs for key management\. The encryption process is different when you use HSM to manage your encryption keys instead of AWS KMS\.
+If you don’t use AWS KMS for key management, you can use a hardware security module \(HSM\) for key management with Amazon Redshift\. 
+
+**Important**  
+HSM encryption is not supported for DC2 node types\.
+
+HSMs are devices that provide direct control of key generation and management\. They provide greater security by separating key management from the application and database layers\. Amazon Redshift supports AWS CloudHSM Classic for key management\. The encryption process is different when you use HSM to manage your encryption keys instead of AWS KMS\.
+
+**Important**  
+Amazon Redshift supports only AWS CloudHSM Classic\. We don't support the newer AWS CloudHSM service\. AWS CloudHSM Classic isn't available in all regions\. For more information about available regions, see [Region Table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)\. 
 
 When you configure your cluster to use an HSM, Amazon Redshift sends a request to the HSM to generate and store a key to be used as the CEK\. However, unlike AWS KMS, the HSM doesn’t export the CEK to Amazon Redshift\. Instead, Amazon Redshift randomly generates the DEK in the cluster and passes it to the HSM to be encrypted by the CEK\. The HSM returns the encrypted DEK to Amazon Redshift, where it is further encrypted using a randomly\-generated, internal master key and stored internally on disk in a separate network from the cluster\. Amazon Redshift also loads the decrypted version of the DEK in memory in the cluster so that the DEK can be used to encrypt and decrypt the individual keys for the data blocks\.
 

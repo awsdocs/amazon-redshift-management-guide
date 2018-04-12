@@ -11,6 +11,10 @@ Amazon Redshift has changed the way that we manage SSL certificates\. If you mus
 
  These are previous JDBC 4\.2–compatible drivers: 
 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC42\-1\.2\.10\.1009\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC42-1.2.10.1009.jar)\. 
+
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC42\-no\-awssdk\-1\.2\.10\.1009\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC42-no-awssdk-1.2.10.1009.jar)\. 
+
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC42\-1\.2\.8\.1005\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC42-1.2.8.1005.jar)\. 
 
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC42\-no\-awssdk\-1\.2\.8\.1005\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC42-no-awssdk-1.2.8.1005.jar)
@@ -25,9 +29,13 @@ Amazon Redshift has changed the way that we manage SSL certificates\. If you mus
 
  These are previous JDBC 4\.1–compatible drivers: 
 
++  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC41\-1\.2\.10\.1009\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC41-1.2.10.1009.jar) 
+
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC41\-no\-awssdk\-1\.2\.10\.1009\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC41-no-awssdk-1.2.10.1009.jar)\. 
+
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC41\-1\.2\.8\.1005\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC41-1.2.8.1005.jar)\. 
 
-  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC41\-no\-awssdk\-1\.2\.8\.1005\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC41-no-awssdk-1.2.8.1005.jar)
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC41\-no\-awssdk\-1\.2\.8\.1005\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC41-no-awssdk-1.2.8.1005.jar)
 
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC41\-1\.2\.7\.1003\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC41-1.2.7.1003.jar)\. 
 
@@ -52,6 +60,10 @@ Amazon Redshift has changed the way that we manage SSL certificates\. If you mus
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC41\-1\.1\.0\.0000\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC41-1.1.0.0000.jar)
 
 These are previous JDBC 4\.0–compatible drivers: 
+
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC4\-1\.2\.10\.1009\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC4-1.2.10.1009.jar)\. 
+
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC4\-no\-awssdk\-1\.2\.10\.1009\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC4-no-awssdk-1.2.10.1009.jar)\. 
 
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC4\-1\.2\.8\.1005\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC4-1.2.8.1005.jar)\. 
 

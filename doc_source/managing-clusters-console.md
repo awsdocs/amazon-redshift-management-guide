@@ -99,7 +99,7 @@ Select a cluster type\. When you do, the maximum number of compute nodes for the
 **Cluster Parameter Group**  
  Select a cluster parameter group to associate with the cluster\. If you don't select one, the cluster uses the default parameter group\.   
 **Encrypt Database**  
-Select whether you want to encrypt all data within the cluster and its snapshots\. If you leave the default setting, **None**, encryption is not enabled\. If you want to enable encryption, select whether you want to use AWS Key Management Service \(AWS KMS\) or a hardware security module \(HSM\), and then configure the related settings\. For more information about encryption in Amazon Redshift, see [Amazon Redshift Database Encryption](working-with-db-encryption.md)\.  
+Select whether you want to encrypt all data within the cluster and its snapshots\. If you leave the default setting, **None**, encryption is not enabled\.  If you want to enable encryption, select whether you want to use AWS Key Management Service \(AWS KMS\) or a hardware security module \(HSM\), and then configure the related settings\. For more information about encryption in Amazon Redshift, see [Amazon Redshift Database Encryption](working-with-db-encryption.md)\.  
 
       + **KMS**
 
@@ -107,13 +107,13 @@ Select whether you want to encrypt all data within the cluster and its snapshots
 **Note**  
 If you want to use a key from another AWS account, choose **Enter a key ARN** from **Master Key**\. Then type the ARN for the key to use\. You must have permission to use the key\. For more information about access to keys in AWS KMS, go to [Controlling Access to Your Keys](http://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) in the *AWS Key Management Service Developer Guide*\.
 
-        For more information about using AWS KMS encryption keys in Amazon Redshift, see [About Database Encryption for Amazon Redshift Using AWS KMS](working-with-db-encryption.md#working-with-aws-kms)\.
+        For more information about using AWS KMS encryption keys in Amazon Redshift, see [Database Encryption for Amazon Redshift Using AWS KMS](working-with-db-encryption.md#working-with-aws-kms)\.
 
       + **HSM**
 
         Choose **HSM** if you want to enable encryption and use a hardware security module \(HSM\) to manage your encryption key\.
 
-        If you choose **HSM**, select values from **HSM Connection** and **HSM Client Certificate**\. These values are required for Amazon Redshift and the HSM to form a trusted connection over which the cluster key can be passed\. The HSM connection and client certificate must be set up in Amazon Redshift before you launch a cluster\. For more information about setting up HSM connections and client certificates, see [About Encryption for Amazon Redshift Using Hardware Security Modules](working-with-db-encryption.md#working-with-HSM)\.
+        If you choose **HSM**, select values from **HSM Connection** and **HSM Client Certificate**\. These values are required for Amazon Redshift and the HSM to form a trusted connection over which the cluster key can be passed\. The HSM connection and client certificate must be set up in Amazon Redshift before you launch a cluster\. For more information about setting up HSM connections and client certificates, see [Encryption for Amazon Redshift Using Hardware Security Modules](working-with-db-encryption.md#working-with-HSM)\.
 
    1. For **Configure Networking Options**, you configure whether to launch your cluster in a virtual private cloud \(VPC\) or outside a VPC\. The option you choose affects the additional options available in this section\. Amazon Redshift uses the EC2\-Classic and EC2\-VPC platforms to launch clusters\. Your AWS account determines which platform or platforms are available to you for your cluster\. For more information, see [Supported Platforms](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html) in the *Amazon EC2 User Guide for Linux Instances*\.   
 **Choose a VPC**  

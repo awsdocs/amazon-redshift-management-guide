@@ -21,6 +21,17 @@ The URL in the following code will return an error if used in a browser\. The UR
    </repositories>
    ```
 
+   To connect using SSL, add the following repository to your `pom.xml` file\.
+
+   ```
+   <repositories>
+       <repository>
+         <id>redshift</id>
+         <url>https://s3.amazonaws.com/redshift-maven-repository/release</url>
+       </repository>
+   </repositories>
+   ```
+
 1. Declare the version of the driver you want to use in the dependencies section of your `pom.xml` file\.
 
    Amazon Redshift offers drivers for tools that are compatible with either the JDBC 4\.2 API, JDBC 4\.1 API, or JDBC 4\.0 API\. For information about the functionality supported by these drivers, see the [Amazon Redshift JDBC Driver Release Notes](https://s3.amazonaws.com/redshift-downloads/drivers/Amazon+Redshift+JDBC+Release+Notes.pdf)\. 

@@ -14,7 +14,7 @@ You can determine the Amazon Redshift engine and database versions for your clus
 **Note**  
  Although the console displays this information in one field, it is two parameters in the Amazon Redshift API: `ClusterVersion` and `ClusterRevisionNumber`\. For more information, go to [Cluster](http://docs.aws.amazon.com/redshift/latest/APIReference/API_Cluster.html) in the *Amazon Redshift API Reference*\. 
 
-Amazon Redshift provides a setting, **Allow Version Upgrade**, to specify whether to automatically upgrade the Amazon Redshift engine in your cluster if a new version of the engine becomes available\. This setting does not affect the database version upgrades, which are applied during the maintenance window that you specify for your cluster\. Amazon Redshift engine upgrades are *major version upgrades*, and Amazon Redshift database upgrades are *minor version upgrades*\. You can disable automatic version upgrades for major versions only\. For more information about maintenance windows for minor version upgrades, see [Maintenance Windows](#rs-maintenance-windows)\. 
+Amazon Redshift provides a setting, **Allow Version Upgrade**, to specify whether to automatically upgrade the Amazon Redshift engine in your cluster if a new version of the engine becomes available\. This setting doesn't affect the database version upgrades, which are applied during the maintenance window that you specify for your cluster\. Amazon Redshift engine upgrades are *major version upgrades*, and Amazon Redshift database upgrades are *minor version upgrades*\. You can disable automatic version upgrades for major versions only\. For more information about maintenance windows for minor version upgrades, see [Maintenance Windows](#rs-maintenance-windows)\. 
 
 ## Clusters and Nodes in Amazon Redshift<a name="rs-about-clusters-and-nodes"></a>
 
@@ -38,7 +38,7 @@ The node type that you choose depends heavily on three things:
 
 + The needs of downstream systems that depend on the results from those queries and operations
 
-Node types are available in different sizes\. DS2 nodes are available in xlarge and 8xlarge sizes\. DC1 nodes are available in large and 8xlarge sizes\. Node size and the number of nodes determine the total storage for a cluster\. 
+Node types are available in different sizes\. DS2 nodes are available in xlarge and 8xlarge sizes\. DC2 nodes are available in large and 8xlarge sizes\. Node size and the number of nodes determine the total storage for a cluster\. 
 
 Some node types allow one node \(single\-node\) or two or more nodes \(multi\-node\)\. The minimum for 8xlarge clusters is two nodes\. On a single\-node cluster, the node is shared for leader and compute functionality\. On a multi\-node cluster, the leader node is separate from the compute nodes\. 
 
@@ -120,7 +120,7 @@ In previous releases of Amazon Redshift, the node types had different names\. Yo
 
 ### Determining the Number of Nodes<a name="how-many-nodes"></a>
 
-The number of nodes that you choose depends on the size of your dataset and your desired query performance\. Using the dense storage node types as an example, if you have 32 TB of data, you can choose either 16 ds2\.xlarge nodes or 2 ds2\.8xlarge nodes\. If your data grows in small increments, choosing the ds1\.xlarge node size will allow you to scale in increments of 2 TB\. If you typically see data growth in larger increments, a ds2\.8xlarge node size might be a better choice\. 
+The number of nodes that you choose depends on the size of your dataset and your desired query performance\. Using the dense storage node types as an example, if you have 32 TB of data, you can choose either 16 ds2\.xlarge nodes or 2 ds2\.8xlarge nodes\. If your data grows in small increments, choosing the ds2\.xlarge node size allows you to scale in increments of 2 TB\. If you typically see data growth in larger increments, a ds2\.8xlarge node size might be a better choice\. 
 
 Because Amazon Redshift distributes and executes queries in parallel across all of a cluster’s compute nodes, you can increase query performance by adding nodes to your cluster\. Amazon Redshift also distributes your data across all compute nodes in a cluster\. When you run a cluster with at least two compute nodes, data on each node will always be mirrored on disks on another node and you reduce the risk of incurring data loss\. 
 
@@ -148,7 +148,7 @@ If you intend to keep your cluster running continuously for a prolonged period, 
 
 When you resize your cluster, it will remain in read\-only mode until the resize completes\. You can view the resize progress on the cluster's **Status** tab in the Amazon Redshift console\. The time it takes to resize a cluster depends on the amount of data in each node\. Typically, the resize process varies from a couple of hours to a day, although clusters with larger amounts of data might take even longer\. This is because the data is copied in parallel from each node on the source cluster to the nodes in the target cluster\. For more information about resizing clusters, see [Tutorial: Resizing Clusters in Amazon Redshift](rs-resize-tutorial.md) and [Resizing a Cluster](managing-clusters-console.md#resizing-cluster)\. 
 
-Amazon Redshift does not sort tables during a resize operation\. When you resize a cluster, Amazon Redshift distributes the database tables to the new compute nodes based on their distribution styles and runs an ANALYZE to update statistics\. Rows that are marked for deletion are not transferred, so you will only need to run a VACUUM if your tables need to be resorted\. For more information, see [Vacuuming tables](http://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) in the *Amazon Redshift Database Developer Guide*\. 
+Amazon Redshift doesn't sort tables during a resize operation\. When you resize a cluster, Amazon Redshift distributes the database tables to the new compute nodes based on their distribution styles and runs an ANALYZE to update statistics\. Rows that are marked for deletion are not transferred, so you will only need to run a VACUUM if your tables need to be resorted\. For more information, see [Vacuuming tables](http://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) in the *Amazon Redshift Database Developer Guide*\. 
 
 If your cluster is public and is in a VPC, it keeps the same elastic IP address \(EIP\) for the leader node after resizing\. If your cluster is private and is in a VPC, it keeps the same private IP address for the leader node after resizing\. If your cluster is not in a VPC, a new public IP address is assigned for the leader node as part of the resize operation\.
 
@@ -297,7 +297,7 @@ The cluster status displays the current state of the cluster\. The following tab
 | deleting | Amazon Redshift is deleting the cluster\. For more information, see [Deleting a Cluster](managing-clusters-console.md#delete-cluster)\. | 
 | final\-snapshot | Amazon Redshift is taking a final snapshot of the cluster before deleting it\. For more information, see [Deleting a Cluster](managing-clusters-console.md#delete-cluster)\. | 
 | hardware\-failure |  The cluster suffered a hardware failure\. If you have a single\-node cluster, the node cannot be replaced\. To recover your cluster, restore a snapshot\. For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md)\.  | 
-| incompatible\-hsm |  Amazon Redshift cannot connect to the hardware security module \(HSM\)\. Check the HSM configuration between the cluster and HSM\. For more information, see [About Encryption for Amazon Redshift Using Hardware Security Modules](working-with-db-encryption.md#working-with-HSM)\.  | 
+| incompatible\-hsm |  Amazon Redshift cannot connect to the hardware security module \(HSM\)\. Check the HSM configuration between the cluster and HSM\. For more information, see [Encryption for Amazon Redshift Using Hardware Security Modules](working-with-db-encryption.md#working-with-HSM)\.  | 
 | incompatible\-network |  There is an issue with the underlying network configuration\. Make sure that the VPC in which you launched the cluster exists and its settings are correct\. For more information, see [Managing Clusters in an Amazon Virtual Private Cloud \(VPC\)](managing-clusters-vpc.md)\.  | 
 | incompatible\-parameters | There is an issue with one or more parameter values in the associated parameter group, and the parameter value or values cannot be applied\. Modify the parameter group and update any invalid values\. For more information, see [Amazon Redshift Parameter Groups](working-with-parameter-groups.md)\.  | 
 | incompatible\-restore |  There was an issue restoring the cluster from the snapshot\. Try restoring the cluster again with a different snapshot\. For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md)\.  | 
@@ -307,4 +307,4 @@ The cluster status displays the current state of the cluster\. The following tab
 | resizing |  Amazon Redshift is resizing the cluster\. For more information, see [Resizing a Cluster](managing-clusters-console.md#resizing-cluster)\.  | 
 | rotating\-keys |  Amazon Redshift is rotating encryption keys for the cluster\. For more information, see [About Rotating Encryption Keys in Amazon Redshift](working-with-db-encryption.md#working-with-key-rotation)\.  | 
 | storage\-full |  The cluster has reached its storage capacity\. Resize the cluster to add nodes or to choose a different node size\. For more information, see [Resizing a Cluster](managing-clusters-console.md#resizing-cluster)\.  | 
-| updating\-hsm |  Amazon Redshift is updating the HSM configuration\. For more information, see [About Encryption for Amazon Redshift Using Hardware Security Modules](working-with-db-encryption.md#working-with-HSM)\.  | 
+| updating\-hsm |  Amazon Redshift is updating the HSM configuration\. \.  | 
