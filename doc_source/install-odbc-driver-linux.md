@@ -40,13 +40,13 @@ Use the steps in this section to download and install the Amazon Redshift ODBC d
 
 1. Download one of the following, depending on the system architecture of your SQL client tool or application: 
 
-   + 32\-bit \.rpm: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC\-32\-bit\-1\.4\.1\.1001\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-32-bit-1.4.1.1001-1.i686.rpm)
+   + Red Hat 32\-bit \.rpm: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC\-32\-bit\-1\.4\.1\.1001\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-32-bit-1.4.1.1001-1.i686.rpm)
 
-   + 64\-bit \.rpm: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64\-bit\-1\.3\.7\.1000\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-64-bit-1.4.1.1001-1.x86_64.rpm) 
+   + Red Hat 64\-bit \.rpm: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64\-bit\-1\.3\.7\.1000\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-64-bit-1.4.1.1001-1.x86_64.rpm) 
 
-   + Debian 32\-bit \.rpm: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC\-32\-bit\-1\.4\.1\.1001\-1\.i686\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-32-bit-1.4.1.1001-1.i686.deb)
+   + Debian 32\-bit \.deb: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC\-32\-bit\-1\.4\.1\.1001\-1\.i686\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-32-bit-1.4.1.1001-1.i686.deb)
 
-   + Debian 64\-bit \.rpm: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC\-64\-bit\-1\.4\.1\.1001\-1\.x86\_64\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-64-bit-1.4.1.1001-1.x86_64.deb) 
+   + Debian 64\-bit \.deb: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC\-64\-bit\-1\.4\.1\.1001\-1\.x86\_64\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-64-bit-1.4.1.1001-1.x86_64.deb) 
 
    The name for both of these drivers is Amazon Redshift ODBC Driver\.
 **Note**  
