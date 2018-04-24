@@ -180,7 +180,9 @@ A role that passes to another role must establish a trust relationship with the 
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::role/RoleA"
-      }
+      },
+      "Action": "sts:AssumeRole"
+    }
   ]
 }
 ```
@@ -195,7 +197,9 @@ The following trust policy establishes a trust relationship with the owner of `R
       "Effect": "Allow",
       "Principal": {
         "AWS": "arn:aws:iam::123456789012:root"
-      }
+      },
+      "Action": "sts:AssumeRole"
+    }
   ]
 }
 ```
