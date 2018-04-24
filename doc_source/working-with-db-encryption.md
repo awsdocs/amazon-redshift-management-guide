@@ -2,7 +2,7 @@
 
 In Amazon Redshift, you can enable database encryption for your clusters to help protect data at rest\. When you enable encryption for a cluster, the data blocks and system metadata are encrypted for the cluster and its snapshots\.
 
-Encryption is an optional, immutable setting of a cluster\. If you want encryption, you enable it during the cluster launch process\.To go from an unencrypted cluster to an encrypted cluster or the other way around, unload your data from the existing cluster and reload it in a new cluster with the chosen encryption setting\. For more information, see [Migrating an Unencrypted Cluster to an Encrypted Cluster](migrating-to-an-encrypted-cluster.md)
+Encryption is an optional, immutable setting of a cluster\. If you want encryption, you enable it during the cluster launch process\. To go from an unencrypted cluster to an encrypted cluster or the other way around, unload your data from the existing cluster and reload it in a new cluster with the chosen encryption setting\. For more information, see [Migrating an Unencrypted Cluster to an Encrypted Cluster](migrating-to-an-encrypted-cluster.md)
 
 Though encryption is an optional setting in Amazon Redshift, we recommend enabling it for clusters that contain sensitive data\. Additionally, you might be required to use encryption depending on the guidelines or regulations that govern your data\. For example, the Payment Card Industry Data Security Standard \(PCI DSS\), the Sarbanes\-Oxley Act \(SOX\), the Health Insurance Portability and Accountability Act \(HIPAA\), and other such regulations provide guidelines for handling specific types of data\.
 
@@ -32,7 +32,7 @@ For more information about creating Amazon Redshift clusters that are encrypted 
 
 ### Copying AWS KMS\-Encrypted Snapshots to Another Region<a name="configure-snapshot-copy-grant"></a>
 
-AWS KMS keys are specific to a region\. If you enable copying of Amazon Redshift snapshots to another region, and the source cluster and its snapshots are encrypted using a master key from AWS KMS, you need to configure a grant for Amazon Redshift to use a master key in the destination region\. This grant enables Amazon Redshift to encrypt snapshots in the destination region\. For more information cross\-region snapshot copy, see [Copying Snapshots to Another Region](working-with-snapshots.md#cross-region-snapshot-copy)\.
+AWS KMS keys are specific to a region\. If you enable copying of Amazon Redshift snapshots to another region, and the source cluster and its snapshots are encrypted using a master key from AWS KMS, you need to configure a grant for Amazon Redshift to use a master key in the destination region\. This grant enables Amazon Redshift to encrypt snapshots in the destination region\. For more information about cross\-region snapshot copy, see [Copying Snapshots to Another Region](working-with-snapshots.md#cross-region-snapshot-copy)\.
 
 **Note**  
 If you enable copying of snapshots from an encrypted cluster and use AWS KMS for your master key, you cannot rename your cluster because the cluster name is part of the encryption context\. If you must rename your cluster, you can disable copying of snapshots in the source region, rename the cluster, and then configure and enable copying of snapshots again\.
