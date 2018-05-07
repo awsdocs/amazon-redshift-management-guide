@@ -43,7 +43,7 @@ You enable encryption when you launch a cluster\. To migrate from an unencrypted
    count(distinct query) num_qs
    from stl_scan s
    where s.userid > 1
-   and   s.perm_table_name not in ('internal worktable','s3')
+   and   s.perm_table_name not in ('Internal Worktable','S3')
    group by tbl,
    perm_table_name) s on s.tbl = t.table_id
    where t."schema" not in ('pg_internal');
