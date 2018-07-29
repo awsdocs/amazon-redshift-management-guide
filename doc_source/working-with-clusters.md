@@ -235,6 +235,8 @@ The leader node IP address is at the end of the ANSWER SECTION in the results, a
 
 + EU \(London\) region: 22:00–06:00 UTC
 
++ EU \(Paris\) region: 21:00–05:00 UTC
+
 + South America \(São Paulo\) region: 19:00–03:00 UTC
 
 If a maintenance event is scheduled for a given week, it will start during the assigned 30 minute maintenance window\. While Amazon Redshift is performing maintenance, it terminates any queries or other operations that are in progress\. Most maintenance completes during the 30 minute maintenance window, but some maintenance tasks might continue running after the window closes\. If there are no maintenance tasks to perform during the scheduled maintenance window, your cluster continues to operate normally until the next scheduled maintenance window\. 
