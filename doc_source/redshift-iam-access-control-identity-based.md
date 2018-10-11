@@ -449,11 +449,11 @@ The following policy allows the `GetCredentials` action, along with the `CreateC
         "arn:aws:redshift:us-west-2:123456789012:dbname:examplecluster/*",
         "arn:aws:redshift:us-west-2:123456789012:dbgroup:examplecluster/common_group"
       ],
-        "Condition": {
-            "StringEquals": {
-                "aws:userid":"AIDIODR4TAW7CSEXAMPLE:${redshift:DbUser}@yourdomain.com"
-            }
+      "Condition": {
+        "StringEquals": {
+          "aws:userid":"AIDIODR4TAW7CSEXAMPLE:${redshift:DbUser}@yourdomain.com"
         }
+      }
     },
     {
       "Sid": "CreateClusterUserStatement",
