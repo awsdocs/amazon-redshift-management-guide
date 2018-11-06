@@ -54,7 +54,7 @@ In this section, you can find steps to programmatically call the GetClusterCrede
    The following example uses the Amazon Redshift CLI with autocreate to generate temporary database credentials for a new user and add the user to the group `example_group`\.
 
    ```
-   aws redshift get-cluster-credentials --cluster-identifier examplecluster --db-user temp_creds_user -–autocreate true --db-name exampledb -–db-groups example_group --duration-seconds 3600
+   aws redshift get-cluster-credentials --cluster-identifier examplecluster --db-user temp_creds_user -–auto-create --db-name exampledb -–db-groups example_group --duration-seconds 3600
    ```
 
    The result is as follows\.
