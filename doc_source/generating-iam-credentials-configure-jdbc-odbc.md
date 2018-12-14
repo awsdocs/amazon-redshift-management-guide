@@ -59,21 +59,15 @@ The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
 1. Follow the steps for your operating system to configure connection settings\.
 
    For more information, see one of the following topics:
-
    + [Install and Configure the Amazon Redshift ODBC Driver on Microsoft Windows Operating Systems](install-odbc-driver-windows.md)
-
    + [Configure the ODBC Driver on Linux and Mac OS X Operating Systems](odbc-driver-configure-linux-mac.md) 
 
 1. On Microsoft Windows Operation Systems, access the Amazon Redshift ODBC Driver DSN Setup window\.
 
    1. Under **Connection Settings**, type the following information:
-
       + **Data Source Name** 
-
       + **Server** \(optional\) 
-
       + **Port** \(optional\) 
-
       + **Database** 
 
       If your IAM user or role has permission to call the `redshift:DescribeClusters` action, only **Data Source Name** and **Database** are required\. Amazon Redshift uses **ClusterId** and **Region** to get the server and port by calling the `DescribeCluster` action\. 
@@ -88,21 +82,15 @@ The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
       **AWS Profile** 
 
       Enter the following information: 
-
       + **ClusterID** 
-
       + **Region** 
 
       Optionally, provide details for options that the ODBC driver uses to call the GetClusterCredentials API action\. 
-
       + **DbUser** 
-
       + **User AutoCreate** 
-
       + **DbGroups** 
 
       For more information, see [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)\. 
-
       + **Profile name** 
 
         Type the name of a profile in an AWS config file that contains values for the ODBC connection options\. For more information, see [Using a Configuration Profile](options-for-providing-iam-credentials.md#using-configuration-profile)\.   
@@ -111,28 +99,21 @@ The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
       **AWS IAM Credentials**
 
       Enter the following information: 
-
       + **ClusterID** 
-
       + **Region** 
 
       Provide details for options that the ODBC driver uses to call the GetClusterCredentials API action\. 
-
       + **DbUser** \(required\) 
-
       + **User AutoCreate** \(optional\) 
-
       + **DbGroups** \(optional\) 
 
       For more information, see [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)\. 
-
       + **AccessKeyID** and **SecretAccessKey** 
 
         The access key ID and secret access key for the IAM role or IAM user configured for IAM database authentication\. 
-
       + **SessionToken** 
 
-        **SessionToken** is required for an IAM role with temporary credentials\. For more information, see [ Temporary Security Credentials](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html)\.   
+        **SessionToken** is required for an IAM role with temporary credentials\. For more information, see [ Temporary Security Credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html)\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/CreatingTemporaryCredentials-odbc-connection-settings-iam-creds.png)
 
       **Identity Provider: AD FS**
@@ -140,25 +121,19 @@ The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
       For Windows Integrated Authentication with AD FS, leave **User** and **Password** empty\.
 
       Optionally, provide details for options that the ODBC driver uses to call the GetClusterCredentials API action\. 
-
       + **DbUser** 
-
       + **User AutoCreate** 
-
       + **DbGroups** 
 
       For more information, see [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)\. 
 
       Provide IdP details\.
-
       + **IdP Host** 
 
         The name of the corporate identity provider host\. This name should not include any slashes \( / \)\.
-
       + **IdP Port** \(optional\)
 
         The port used by identity provider\. The default is 443\. 
-
       + **Preferred Role** 
 
         A role Amazon Resource Name \(ARN\) from the AttributeValue elements for the Role attribute in the SAML assertion\. Work with your IdP administrator to find the appropriate value for the preferred role\. For more information, see [Configure SAML Assertions for Your IdP](configuring-saml-assertions.md)\.  
@@ -169,25 +144,19 @@ The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
       For **User** and **Password**, type your IdP user name and password\.
 
       Optionally, provide details for options that the ODBC driver uses to call the GetClusterCredentials API action\. 
-
       + **DbUser** 
-
       + **User AutoCreate** 
-
       + **DbGroups** 
 
       For more information, see [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)\. 
 
       Provide IdP details\.
-
       + **IdP Host** 
 
         The name of the corporate identity provider host\. This name should not include any slashes \( / \)\.
-
       + **IdP Port** \(optional\)
 
         The port used by identity provider\. The default is 443\. 
-
       + **Preferred Role** 
 
         A role Amazon Resource Name \(ARN\) from the AttributeValue elements for the Role attribute in the SAML assertion\. Work with your IdP administrator to find the appropriate value for the preferred role\. For more information, see [Configure SAML Assertions for Your IdP](configuring-saml-assertions.md)\.  
@@ -198,29 +167,22 @@ The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
       For **User** and **Password**, type your IdP user name and password\.
 
       Optionally, provide details for options that the ODBC driver uses to call the GetClusterCredentials API action\. 
-
       + **DbUser** 
-
       + **User AutoCreate** 
-
       + **DbGroups** 
 
       For more information, see [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)\. 
 
       Provide IdP details\.
-
       + **IdP Host** 
 
         The name of the corporate identity provider host\. This name should not include any slashes \( / \)\.
-
       + **IdP Port ** 
 
         IdP Port is not used by Okta\. 
-
       + **Preferred Role** 
 
         A role Amazon Resource Name \(ARN\) from the AttributeValue elements for the Role attribute in the SAML assertion\. Work with your IdP administrator to find the appropriate value for the preferred role\. For more information, see [Configure SAML Assertions for Your IdP](configuring-saml-assertions.md)\.
-
       + **Okta App ID** 
 
         An ID for an Okta application\. The value for App ID follows "amazon\_aws" in the Okta Application Embed Link\. Work with your IdP administrator to get this value\. The following is an example of an application embed link\.

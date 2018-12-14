@@ -4,7 +4,7 @@ You can use an ODBC connection to connect to your Amazon Redshift cluster from m
 
 Amazon Redshift provides ODBC drivers for Linux, Windows, and Mac OS X operating systems\. Before you install an ODBC driver, you need to determine whether your SQL client tool is 32\-bit or 64\-bit\. You should install the ODBC driver that matches the requirements of your SQL client tool; otherwise, the connection will not work\. If you use more than one SQL client tool on the same computer or instance, make sure that you download the appropriate drivers\. You might need to install both the 32\-bit and the 64\-bit drivers if the tools differ in their system architecture\. 
 
-
+**Topics**
 + [Obtain the ODBC URL for Your Cluster](#obtain-odbc-url)
 + [Install and Configure the Amazon Redshift ODBC Driver on Microsoft Windows Operating Systems](install-odbc-driver-windows.md)
 + [Install the Amazon Redshift ODBC Driver on Linux Operating Systems](install-odbc-driver-linux.md)

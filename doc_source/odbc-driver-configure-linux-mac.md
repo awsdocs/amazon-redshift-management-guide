@@ -5,12 +5,9 @@ On Linux and Mac OS X operating systems, you use an ODBC driver manager to confi
 Three files are required for configuring the Amazon Redshift ODBC driver: `amazon.redshiftodbc.ini`, `odbc.ini`, and `odbcinst.ini`\.
 
 If you installed to the default location, the `amazon.redshiftodbc.ini` configuration file is located in one of the following directories:
-
 + /opt/amazon/redshiftodbc/lib/32 \(for the 32\-bit driver on Linux operating systems\)
-
 + /opt/amazon/redshiftodbc/lib/64 \(for the 64\-bit driver on Linux operating systems\)
-
-+ /opt/amazon/redshift/ \(for the driver on Mac OS X\)
++ /opt/amazon/redshift/lib \(for the driver on Mac OS X\)
 
 Additionally, under /opt/amazon/redshiftodbc/Setup on Linux or /opt/amazon/redshift/Setup on Mac OS X, there are sample `odbc.ini` and `odbcinst.ini` files for you to use as examples for configuring the Amazon Redshift ODBC driver and the data source name \(DSN\)\.
 
@@ -156,9 +153,7 @@ Driver=/opt/amazon/redshift/libamazonredshiftodbc.dylib
 In order for the Amazon Redshift ODBC driver to function properly, you need to set a number of environmental variables, as described following\.
 
 Set an environment variable to specify the path to the driver manager libraries:
-
 + On Linux, set `LD_LIBRARY_PATH` to point to the directory containing the driver manager libraries\. For more information on supported driver managers, see [Install the Amazon Redshift ODBC Driver on Linux Operating Systems](install-odbc-driver-linux.md)\.
-
 + On Mac OS X, set `DYLD_LIBRARY_PATH` to point to the directory containing the driver manager libraries\. For more information on supported driver managers, see [Install the Amazon Redshift ODBC Driver on Mac OS X](install-odbc-driver-mac.md)\.
 
 Optionally, set `AMAZONREDSHIFTODBCINI` to point to your amazon\.redshiftodbc\.ini file\. `AMAZONREDSHIFTODBCINI` must specify the full path, including the file name\. You must either set this variable, or place this file in a location where the system will find it in a search\. The following search order is used to locate the amazon\.redshiftodbc\.ini file: 
@@ -170,9 +165,7 @@ Optionally, set `AMAZONREDSHIFTODBCINI` to point to your amazon\.redshiftodbc\.i
 1. If the amazon\.redshiftodbc\.ini file cannot be found, the driver tries to automatically determine the driver manager settings and connect\. However, error messages won't display correctly in this case\.
 
 If you decide to use a directory other than the user's home directory for the odbc\.ini and odbcinst\.ini files, you also need to set environment variables to specify where the configuration files appear: 
-
 + Set `ODBCINI` to point to your odbc\.ini file\.
-
 + Set `ODBCSYSINI` to point to the directory containing the odbcinst\.ini file\.
 
 If you are on Linux, your driver manager libraries are located in the /usr/local/lib directory, your odbc\.ini and amazon\.redshiftodbc\.ini files are located in the /etc directory, and your odbcinst\.ini file is located in the /usr/local/odbc directory, then set the environment variables as shown in the following example: 

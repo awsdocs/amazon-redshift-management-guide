@@ -7,21 +7,17 @@ Your SQL client needs authorization to call the GetClusterCredentials action on 
 1. Using the IAM service, create an IAM user or role\. You can also use an existing user or role\. For example, if you created an IAM role for identity provider access, you can attach the necessary IAM policies to that role\. 
 
 1. Attach a permission policy with permission to call the `redshift:GetClusterCredentials` action\. Depending on which optional parameters you specify, you can also allow or restrict additional actions and resources in your policy:
-
    + To permit your SQL client to retrieve cluster ID, region, and port, include permission to call the `redshift:DescribeClusters` action with the Redshift cluster resource\. 
-
    + If you use the AutoCreate option, include permission to call `redshift:CreateClusterUser` with the `dbuser` resource\. The following Amazon Resource Name \(ARN\) specifies the Amazon Redshift `dbuser` \. Replace *region*, *account\-id*, and *cluster\-name* with the values for your region, account, and cluster, respectively\. For *dbuser\-name*, specify the user name that will be used to log on to the cluster database\. 
 
      ```
      arn:aws:redshift:region:account-id:dbuser:cluster-name/dbuser-name
      ```
-
    + Optionally, add an ARN that specifies the Amazon Redshift `dbname` resource in the following format\. Replace *region*, *account\-id*, and *cluster\-name* with the values for your region, account, and cluster, respectively\. For *database\-name*, specify the name of a database that the user will log on to\. 
 
      ```
      arn:aws:redshift:region:account-id:dbname:cluster-name/database-name
      ```
-
    + If you use the DbGroups option, include permission to call the `redshift:JoinGroup` action with the Amazon Redshift `dbgroup` resource in the following format\. Replace *region*, *account\-id*, and *cluster\-name* with the values for your region, account, and cluster, respectively\. For *dbgroup\-name*, specify the name of a user group that the user joins at logon\.
 
      ```
@@ -44,6 +40,9 @@ The following example shows a policy that allows the IAM role to call the `GetCl
 ```
 
 You can use a wildcard \(\*\) to replace all, or a portion of, the cluster name, user name, and database group names\. The following example allows any user name beginning with `temp_` with any cluster in the specified account\.
+
+**Important**  
+The statement in the following example specifies a wildcard character \(\*\) as part of the value for the resource so that the policy permits any resource that begins with the specified characters\. Using a wildcard character in your IAM policies might be overly permissive\. As a best practice, we recommend using the most restrictive policy feasible for your business application\. 
 
 ```
 {
@@ -73,4 +72,4 @@ The following example shows a policy that allows the IAM role to call the `GetCl
 }
 ```
 
-For more information, see [Amazon Redshift ARN syntax](http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-redshift)\.
+For more information, see [Amazon Redshift ARN syntax](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-redshift)\.

@@ -23,13 +23,9 @@ By default, psql does not validate the Amazon Redshift service; it makes an encr
    ```
 
     Where: 
-
    +  *<endpoint>* is the **Endpoint** you recorded in the previous step\.
-
    +  *<userid>* is a user ID with permissions to connect to the cluster\.
-
    +  *<databasename>* is the **Database Name** you recorded in the previous step\.
-
    +  *<port>* is the **Port** you recorded in the previous step\.
 
    For example:
@@ -62,15 +58,10 @@ To control whether psql authenticates the service using a certificate, you must 
    ```
 
     Where: 
-
    +  *<endpoint>* is the **Endpoint** you recorded in the previous step\.
-
    +  *<userid>* is a user ID with permissions to connect to the cluster\.
-
    +  *<databasename>* is the **Database Name** you recorded in the previous step\.
-
    +  *<port>* is the **Port** you recorded in the previous step\.
-
    +  *<certificate>* is the full path to the certificate file\. On Windows systems, the certificate path must be specified using Linux\-style / separators instead of the Windows \\ separator\.
 
      On Linux and Mac OS X operating systems, the path is 

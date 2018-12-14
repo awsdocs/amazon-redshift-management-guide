@@ -66,15 +66,13 @@ You cannot modify the default parameter group\.
 
 1. To enable short query acceleration \(SQA\), choose **Enable short query acceleration**\.
 
+1. When you enable SQA, ** Maximum run time for short queries \(1 to 20 seconds\)** is set to **Dynamic** by default\. To set the maximum run time to a fixed value, choose a value of 1–20
+
 1. Do one or more of the following to modify the queue configuration: 
-
    + To create a queue, choose **Add Queue**\.
-
    + To modify a queue, change property values in the table\.
-
    + To change the order of queues, choose the **Up** and **Down** arrow buttons in the table\.
-
-   + To delete a queue, choose the **Delete** button in the queue's row in the table\.
+   + To delete a queue, choose **Delete** in the queue's row in the table\.
 
 1. To have changes applied to associated clusters after their next reboot, choose **Apply dynamic changes after cluster reboot**\.
 **Note**  
@@ -84,7 +82,7 @@ Some changes require a cluster reboot regardless of this setting\. For more info
 
 ## Creating or Modifying a Query Monitoring Rule Using the Console<a name="parameter-group-modify-qmr-console"></a>
 
-You can use the AWS Management Console to create and modify WLM query management rules\. Query monitoring rules are part of the WLM configuration parameter for a parameter group\. For more information, see [WLM Query Monitoring Rules](http://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)\. 
+You can use the AWS Management Console to create and modify WLM query management rules\. Query monitoring rules are part of the WLM configuration parameter for a parameter group\. For more information, see [WLM Query Monitoring Rules](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)\. 
 
 When you create a rule, you define the rule name, one or more predicates, and an action\. 
 
@@ -98,7 +96,7 @@ When you save WLM configuration that includes a rule, you can view the JSON code
 
 1. For **Parameter groups,** choose the parameter group that you want to modify\.
 **Note**  
-You cannot modify the default parameter group\.
+You can't modify the default parameter group\.
 
 1. To edit the WLM configuration, choose **Edit**\. 
 
@@ -136,7 +134,7 @@ You cannot modify the default parameter group\.
 
 1. To add additional predicates, choose the add icon to the right of the predicates\. You can have up to three predicates per rule\. If all of the predicates are met, WLM triggers the associated action\. 
 
-1. Choose an **Action**\. Each rule has one action\. For this example, accept the default action, **Log**\. The Log action writes a record to the [STL\_WLM\_RULE\_ACTION](http://docs.aws.amazon.com/redshift/latest/dg/r_STL_WLM_RULE_ACTION.html) system table and leaves the query running in the queue\. 
+1. Choose an **Action**\. Each rule has one action\. For this example, accept the default action, **Log**\. The Log action writes a record to the [STL\_WLM\_RULE\_ACTION](https://docs.aws.amazon.com/redshift/latest/dg/r_STL_WLM_RULE_ACTION.html) system table and leaves the query running in the queue\. 
 
 1. Choose **Done Editing**\. The queue details collapse\.
 
@@ -164,4 +162,4 @@ You cannot delete the default parameter group\.
 
 ## Associating a Parameter Group with a Cluster<a name="parameter-group-associate"></a>
 
-When you launch a cluster, you must associate it with a parameter group\. If you want to change the parameter group later, you can modify the cluster and choose a different parameter group\. For more information, see [To create a cluster](managing-clusters-console.md#create-cluster-task) and [To modify a cluster](managing-clusters-console.md#modify-cluster-task)\. 
+When you launch a cluster, you must associate it with a parameter group\. If you want to change the parameter group later, you can modify the cluster and choose a different parameter group\. For more information, see [Creating a Cluster by Using Launch Cluster](managing-clusters-console.md#create-cluster-task) and [To modify a cluster](managing-clusters-console.md#modify-cluster-task)\. 

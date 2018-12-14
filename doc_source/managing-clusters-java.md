@@ -1,11 +1,8 @@
 # Managing Clusters Using the AWS SDK for Java<a name="managing-clusters-java"></a>
 
 The following Java code example demonstrates common cluster management operations including:
-
 + Creating a cluster\.
-
 + Listing metadata about a cluster\.
-
 + Modifying configuration options\.
 
 After you initiate the request for the cluster to be created, you must wait until the cluster is in the `available` state before you can modify it\. This example uses a loop to periodically check the status of the cluster using the `describeClusters` method\. When the cluster is available, the preferred maintenance window for the cluster is changed\.

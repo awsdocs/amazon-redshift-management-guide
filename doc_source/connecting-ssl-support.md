@@ -29,27 +29,21 @@ You might need to update your current trust root CA certificates to continue to 
 The Amazon Redshift certificate authority bundle is stored at [https://s3\.amazonaws\.com/redshift\-downloads/redshift\-ca\-bundle\.crt](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt)\. If the certificate bundle doesn't download, right\-click the previous link and choose **Save link as\.\.\.**\. The expected MD5 checksum number is e7a76d62fc7775ac54cfc4d21e89d36b\. The sha256 checksum is e77daa6243a940eb2d144d26757135195b4bdefd345c32a064d4ebea02b9f8a1\. You can use the Md5sum program \(on Linux operating systems\) or other tool \(on Windows and Mac OS X operating systems\) to verify that the certificate that you downloaded matches this expected MD5 checksum number\. 
 
  ODBC DSNs contain an `sslmode` setting that determines how to handle encryption for client connections and server certificate verification\. Amazon Redshift supports the following `sslmode` values from the client connection: 
-
 + `disable`
 
   SSL is disabled and the connection is not encrypted\.
-
 + `allow`
 
   SSL is used if the server requires it\.
-
 + `prefer`
 
   SSL is used if the server supports it\. Amazon Redshift supports SSL, so SSL is used when you set `sslmode` to `prefer`\.
-
 + `require`
 
   SSL is required\.
-
 + `verify-ca`
 
   SSL must be used and the server certificate must be verified\.
-
 + `verify-full`
 
   SSL must be used\. The server certificate must be verified and the server hostname must match the hostname attribute on the certificate\. 
@@ -74,7 +68,7 @@ SSL provides one layer of security by encrypting data that moves between your cl
 
 ### Connect Using Trust CA Certificates in Java<a name="connecting-ssl-support-java-with-cert"></a>
 
-If you connect using the latest Amazon Redshift JDBC drivers \(version 1\.2\.8\.1005 or later\), you can skip this section\. To download the latest drivers, see [Configure a JDBC Connection](http://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html)\. 
+If you connect using the latest Amazon Redshift JDBC drivers \(version 1\.2\.8\.1005 or later\), you can skip this section\. To download the latest drivers, see [Configure a JDBC Connection](https://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html)\. 
 
 **Important**  
 Amazon Redshift has changed the way that we manage SSL certificates\. You might need to update your current trust root CA certificates to continue to connect to your clusters using SSL\. For more information, see [Transitioning to ACM Certificates for SSL Connections](connecting-transitioning-to-acm-certs.md)\.
@@ -88,13 +82,11 @@ You can use redshift\-keytool\.jar to import CA certificates in the Redshift Cer
 1. Download the [redshift\-keytool\.jar](https://s3.amazonaws.com/redshift-downloads/redshift-keytool.jar)
 
 1. Do one of the following:
-
    + To import Redshift Certificate Authority bundle into a Java TrustStore, run the following command\. 
 
      ```
      java -jar redshift-keytool.jar -s
      ```
-
    + To import Redshift Certificate Authority bundle into your private TrustStore, run the following command: 
 
      ```

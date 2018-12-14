@@ -2,7 +2,7 @@
 
 Amazon Redshift takes automatic, incremental snapshots of your data periodically and saves them to Amazon S3\. Additionally, you can take manual snapshots of your data whenever you want\. This section explains how to manage your snapshots from the Amazon Redshift console\. For more information about snapshots, see [Amazon Redshift Snapshots](working-with-snapshots.md)\.
 
-All snapshot tasks in the Amazon Redshift console start from the snapshot list\. You can filter the list by using the snapshot type, a time range, and the cluster associated with the snapshot\. When you select an existing snapshot, the snapshot details are shown inline in the list, as shown in the example following\. Depending on the snapshot type that you select, you will have different options available for working with the snapshot\. 
+All snapshot tasks in the Amazon Redshift console start from the snapshot list\. You can filter the list by using a time range, the snapshot type, and the cluster associated with the snapshot\. In addition, you can sort the list by date, size, and snapshot type\. When you select an existing snapshot, the snapshot details are shown inline in the list, as shown in the example following\. Depending on the snapshot type that you select, you will have different options available for working with the snapshot\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-list-10.png)
 
@@ -14,74 +14,101 @@ You can create a manual snapshot of a cluster from the snapshots list as follows
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Snapshots**\.
+1. In the navigation pane, choose **Snapshots**\.
 
-1. Click **Create Snapshot**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-create-10.png)
+1. Choose **Create Snapshot**\.
 
 1. In the **Create Snapshot** dialog box, do the following: 
 
-   1. In the **Cluster Identifier** box, click the cluster that you want to take a snapshot of\.
+   1. In the **Cluster identifier** box, choose the cluster that you want to take a snapshot of\.
 
-   1. In the **Snapshot Identifier** box, type a name for the snapshot\.  
+   1. In the **Snapshot identifier** box, type a name for the snapshot\.
+
+   1. For **Snapshot retention period**, enter the number of days to retain the snapshot\. To retain the snapshot indefinitely, enter **\-1**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-create-20.png)
 
-1. Click **Create**\.
+1. Choose **Create**\.
 
-   The snapshot might take some time to complete\. The new snapshot is displayed in the list of snapshots with its current status\. The example following shows that `examplecluster-manual-02-13-13` is in the process of being created\.  
+   The snapshot might take some time to complete\. The new snapshot appears in the list of snapshots with its current status\. The example following shows that `snapshot-example` is in the process of being created\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-create-30.png)
 
-## Deleting a Manual Snapshot<a name="snapshot-delete"></a><a name="snapshot-delete-task"></a>
+## Changing the Manual Snapshot Retention Period<a name="snapshot-manual-retention-period"></a>
+
+You can change the retention period for a manual snapshot by modifying the snapshot settings\.<a name="snapshot-manual-retention-period-task"></a>
+
+**To change the manual snapshot retention period**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. In the navigation pane, choose **Snapshots**\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-list-10.png)
+
+1. To filter the list in order to find the snapshot that you want to copy, do any or all of the following:
+   + In the **Time Range** box, choose a time range that will narrow your search appropriately\.
+   + In the **Type** box, choose **manual**\.
+   + In the **Cluster** box, choose a cluster name to list snapshots for a single cluster, or choose **All Clusters** to list snapshots from all clusters\.
+   + In the **Sort by** field, choose how you want the list ordered\.
+
+1. In the snapshot list, select the snapshot that you want to modify\.
+
+1. Choose **Manual Snapshot Settings**\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/manual-settings.png)
+
+1. For **Snapshot retention period**, enter the number of days to retain the snapshot\. To retain the snapshot indefinitely, enter **\-1**\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-manual-retention-period.png)
+
+1. Choose **Save**\.
+
+## Deleting Manual Snapshots<a name="snapshot-delete"></a>
+
+You can delete manual snapshots by selecting one or more snapshots in the snapshot list\.<a name="snapshot-delete-task"></a>
 
 **To delete a manual snapshot**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Snapshots**\.
+1. In the navigation pane, choose **Snapshots**\.
 
-1. If you need to filter the list in order to find the snapshot that you want to delete, do any or all of the following:
+1. To filter the list, do any or all of the following:
+   + In the **Time Range** box, choose a time range that will narrow your search appropriately\.
+   + In the **Type** box, choose **manual**\.
+   + In the **Cluster** box, choose a cluster name to list snapshots for a single cluster, or choose **All Clusters** to list snapshots from all clusters\.
+   + In the **Sort by** field, choose how you want the list ordered\.
 
-   + In the **Time Range** box, click a time range that will narrow your search appropriately\.
+1. In the snapshot list, select the rows that contains the snapshots that you want to delete\.
 
-   + In the **Type** box, click **manual**\.
-
-   + In the **Cluster** box, click the cluster whose snapshot you want to delete\.
-
-1. In the snapshot list, click the row that contains the snapshot that you want to delete\.
-
-1. Click **Delete Manual Snapshot**\.  
+1. Choose **Delete Manual Snapshot**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-delete-10.png)
 
-1. In the **Delete Manual Snapshot** dialog box, click **Delete**\.  
+1. In the **Delete Manual Snapshot** dialog box, choose **Continue**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-delete-20.png)
 
 ## Copying an Automated Snapshot<a name="snapshot-copy"></a>
 
-Automated snapshots are automatically deleted when their retention period expires, when you disable automated snapshots, or when you delete a cluster\. If you want to keep an automated snapshot, you can copy it to a manual snapshot\. Because Amazon Redshift never automatically deletes manual snapshots, you can keep this copy as long as you want\. <a name="snapshot-copy-task"></a>
+Automated snapshots are automatically deleted when their retention period expires, when you disable automated snapshots, or when you delete a cluster\. If you want to keep an automated snapshot, you can copy it to a manual snapshot\. <a name="snapshot-copy-task"></a>
 
 **To copy an automated snapshot**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Snapshots**\.
+1. In the navigation pane, choose **Snapshots**\.
 
-1. If you need to filter the list in order to find the snapshot that you want to copy, do any or all of the following:
+1. To filter the list, do any or all of the following:
+   + In the **Time Range** box, choose a time range that will narrow your search appropriately\.
+   + In the **Type** box, choose **automated**\.
+   + In the **Cluster** box, choose a cluster name to list snapshots for a single cluster, or choose **All Clusters** to list snapshots from all clusters\.
+   + In the **Sort by** field, choose how you want the list ordered\.
 
-   + In the **Time Range** box, click a time range that will narrow your search appropriately\.
+1. In the snapshot list, select the snapshot that you want to copy\.
 
-   + In the **Type** box, click **automated**\.
+1. Choose **Copy Automated Snapshot**\.
 
-   + In the **Cluster** box, click the cluster whose snapshot you want to copy\.
+1. In the **Snapshot Identifier** box of the **Copy Automated Snapshot** dialog box, enter a name for the snapshot copy\.
 
-1. In the snapshot list, click the row of the snapshot that you want to copy\.
-
-1. Click **Copy Automated Snapshot**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-copy-10.png)
-
-1. In the **Snapshot Identifier** box of the **Copy Automated Snapshot** dialog box, type a name for the snapshot copy\.  
+1. For **Snapshot retention period**, enter the number of days to retain the snapshot\. To retain the snapshot indefinitely, enter **\-1**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-copy-20.png)
 
-1. Click **Copy**\.
+1. Choose **Continue**\.
 
 ## Restoring a Cluster from a Snapshot<a name="snapshot-restore"></a>
 
@@ -91,35 +118,30 @@ When you restore a cluster from a snapshot, Amazon Redshift creates a new cluste
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Snapshots**\.
+1. In the navigation pane, choose **Snapshots**\.
 
-1. If you need to filter the list in order to find the snapshot that you want to use, do any or all of the following:
+1. To filter the list, do any or all of the following:
+   + In the **Time Range** box, choose a time range that will narrow your search appropriately\.
+   + In the **Type** box, choose **manual** or **automated**\.
+   + In the **Cluster** box, choose a cluster name to list snapshots for a single cluster, or choose **All Clusters** to list snapshots from all clusters\.
+   + In the **Sort by** field, choose how you want the list ordered\.
 
-   + In the **Time Range** box, click a time range that will narrow your search appropriately\.
+1. In the snapshot list, choose the row that contains the snapshot that you want to use\.
 
-   + In the **Type** box, click **manual** or **automated**\.
+1. In the snapshot list, choose the row that contains the snapshot that you want to use\.
 
-   + In the **Cluster** box, click the cluster whose snapshot you want to restore\.
-
-1. In the snapshot list, click the row that contains the snapshot that you want to use\.
-
-1. Click **Restore From Snapshot**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-restore-from-snapshot-list.png)
+1. Choose **Restore From Snapshot**\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/restore-from-snapshot-list.png)
 
 1. In the **Restore Cluster from Snapshot** dialog box, do the following:
 
    1. In the **Cluster Identifier** box, type a cluster identifier for the restored cluster\. 
 
       Cluster identifiers must meet the following conditions:
-
       + They must contain from 1 to 255 alphanumeric characters or hyphens\.
-
       + Alphabetic characters must be lowercase\.
-
       + The first character must be a letter\.
-
       + They cannot end with a hyphen or contain two consecutive hyphens\.
-
       + They must be unique for all clusters within an AWS account\.
 
    1. In the **Port** box, accept the port from the snapshot or change the value as appropriate\.
@@ -156,7 +178,7 @@ When you restore a cluster from a snapshot, Amazon Redshift creates a new cluste
    The following is an example of restoring a snapshot into a cluster that uses the EC2\-Classic platform\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-restore-from-snapshot-classic.png)
 
-1. Click **Restore**\.
+1. Choose **Restore**\.
 
 ## Sharing a Cluster Snapshot<a name="snapshot-share"></a>
 
@@ -166,27 +188,23 @@ You can authorize other users to access a manual snapshot you own, and you can l
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Snapshots**\.
+1. In the navigation pane, choose **Snapshots**\.
 
 1. If you need to filter the list in order to find the snapshot that you want to share, do any or all of the following:
+   + In the **Time Range** box, choose a time range that will narrow your search appropriately\.
+   + In the **Cluster** box, choose the cluster whose snapshot you want to share\.
 
-   + In the **Time Range** box, click a time range that will narrow your search appropriately\.
+1. In the snapshot list, choose the row that contains the snapshot that you want to use\.
 
-   + In the **Cluster** box, click the cluster whose snapshot you want to share\.
-
-1. In the snapshot list, click the row that contains the snapshot that you want to use\.
-
-1. Click **Manage Access**\.
+1. Choose **Manage Access**\.
 
 1. In the **Manage Snapshot Access** dialog box, you can either authorize a user to access the snapshot or revoke a previously authorized access\.
-
-   + To authorize a user to access the snapshot, type that user's 12\-digit AWS account ID in the box \(omit the dashes\), and then click **Add Account**\.  
+   + To authorize a user to access the snapshot, type that user's 12\-digit AWS account ID in the box \(omit the dashes\), and then choose **Add Account**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-share-10.png)
-
-   + To revoke the authorization for a user, click **X** beside that user's AWS account ID\.  
+   + To revoke the authorization for a user, choose **X** beside that user's AWS account ID\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-share-20.png)
 
-1. Click **Save** to save your changes, or **Cancel** to roll back the changes\.
+1. Choose **Save** to save your changes, or **Cancel** to roll back the changes\.
 
 ## Configuring Cross\-Region Snapshot Copy for a Non\-Encrypted Cluster<a name="snapshot-crossregioncopy-configure"></a>
 
@@ -196,9 +214,9 @@ You can configure Amazon Redshift to copy snapshots for a cluster to another reg
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Clusters**\.
+1. In the navigation pane, choose **Clusters**\.
 
-1. Click **Backup**, and then click **Configure Cross\-Region Snapshots**\.
+1. Choose **Backup**, and then choose **Configure Cross\-Region Snapshots**\.
 
 1. In the **Configure Cross\-Region Snapshots** dialog box, for **Copy Snapshots** choose **Yes**\.
 
@@ -206,21 +224,21 @@ You can configure Amazon Redshift to copy snapshots for a cluster to another reg
 
 1. In **Retention Period \(days\)**, choose the number of days for which you want automated snapshots to be retained in the destination region before they are deleted\.
 
-1. Click **Save**\.
+1. Choose **Save**\.
 
 ## Configure Cross\-Region Snapshot Copy for an AWS KMS\-Encrypted Cluster<a name="xregioncopy-kms-encrypted-snapshot"></a>
 
- When you launch an Amazon Redshift cluster, you can choose to encrypt it with a master key from the AWS Key Management Service \(AWS KMS\)\. AWS KMS keys are specific to a region\. If you want to enable cross\-region snapshot copy for an AWS KMS\-encrypted cluster, you must configure a *snapshot copy grant* for a master key in the destination region so that Amazon Redshift can perform encryption operations in the destination region\. The following procedure describes the process of enabling cross\-region snapshot copy for an AWS KMS\-encrypted cluster\. For more information about encryption in Amazon Redshift and snapshot copy grants, see [Copying AWS KMS\-Encrypted Snapshots to Another Region](working-with-db-encryption.md#configure-snapshot-copy-grant)\. <a name="xregioncopy-kms-encrypted-snapshot-task"></a>
+ When you launch an Amazon Redshift cluster, you can choose to encrypt it with a master key from the AWS Key Management Service \(AWS KMS\)\. AWS KMS keys are specific to a region\. If you want to enable cross\-region snapshot copy for an AWS KMS\-encrypted cluster, you must configure a *snapshot copy grant* for a master key in the destination region so that Amazon Redshift can perform encryption operations in the destination region\. The following procedure describes the process of enabling cross\-region snapshot copy for an AWS KMS\-encrypted cluster\. For more information about encryption in Amazon Redshift and snapshot copy grants, see [Copying AWS KMS\-Encrypted Snapshots to Another AWS Region](working-with-db-encryption.md#configure-snapshot-copy-grant)\. <a name="xregioncopy-kms-encrypted-snapshot-task"></a>
 
 **To configure cross\-region snapshot copy for an AWS KMS\-encrypted cluster**
 
 1. Open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Clusters**\.
+1. In the navigation pane, choose **Clusters**\.
 
 1. In the cluster list, choose a cluster name to open the **Configuration** view for the cluster\.
 
-1. Click **Backup**, and then click **Configure Cross\-Region Snapshots**\.
+1. Choose **Backup**, and then choose **Configure Cross\-Region Snapshots**\.
 
 1. In the **Configure Cross\-Region Snapshots** dialog box, for **Copy Snapshots** choose **Yes**\.
 
@@ -234,7 +252,7 @@ You can configure Amazon Redshift to copy snapshots for a cluster to another reg
 
    1. Choose **Yes** to choose an existing snapshot copy grant from the destination region\. Then choose a grant from **Snapshot Copy Grant**\.
 
-1. Click **Save**\.
+1. Choose **Save**\.
 
 ## Modifying the Retention Period for Cross\-Region Snapshot Copy<a name="snapshot-crossregioncopy-modify"></a>
 
@@ -247,15 +265,15 @@ You cannot modify the destination region after cross\-region snapshot copy is co
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Clusters**\.
+1. In the navigation pane, choose **Clusters**\.
 
-1. Click **Backup**, and then click **Configure Cross Region Snapshots**\.
+1. Choose **Backup**, and then choose **Configure Cross Region Snapshots**\.
 
 1. In the **Retention Period** box, select the new number of days that you want automated snapshots to be retained in the destination region\.
 
    If you select a smaller number of days to retain snapshots in the destination region, any automated snapshots that were taken before the new retention period will be deleted\. If you select a larger number of days to retain snapshots in the destination region, the retention period for existing automated snapshots will be extended by the difference between the old value and the new value\.
 
-1. Click **Save Configuration**\.
+1. Choose **Save Configuration**\.
 
 ## Disabling Cross\-Region Snapshot Copy<a name="snapshot-crossregioncopy-disable"></a>
 
@@ -265,10 +283,10 @@ You can disable cross\-region snapshot copy for a cluster when you no longer wan
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Clusters**\.
+1. In the navigation pane, choose **Clusters**\.
 
-1. Click **Backup**, and then click **Configure Cross Region Snapshots** to open the **Configure Cross Region Snapshots** dialog box\.
+1. Choose **Backup**, and then choose **Configure Cross Region Snapshots** to open the **Configure Cross Region Snapshots** dialog box\.
 
-1. In the **Enable Cross Region Snapshots** box, click **No**\.
+1. In the **Enable Cross Region Snapshots** box, choose **No**\.
 
-1. Click **Save Configuration**\.
+1. Choose **Save Configuration**\.

@@ -4,6 +4,10 @@ To use the Amazon Redshift JDBC or ODBC driver to create database user credentia
 
 If you use an identity provider \(IdP\), work with your IdP administrator to determine the correct values for these options\. Your IdP administrator can also configure your IdP to provide these options, in which case you don't need to provide them as JDBC or ODBC options\. For more information, see [Configure SAML Assertions for Your IdP](configuring-saml-assertions.md)\. 
 
+**Note**  
+If you use an IAM policy variable `${redshift:DbUser}`, as described in [Resource Policies for GetClusterCredentials](redshift-iam-access-control-identity-based.md#redshift-policy-resources.getclustercredentials-resources) the value for `DbUser` is replaced with the value retrieved by the API operation's request context\. The Amazon Redshift drivers use the value for the `DbUser` variable provided by the connection URL, rather than the value supplied as a SAML attribute\.   
+To help secure this configuration, we recommend that you use a condition in an IAM policy to validate the `DbUser` value with the `RoleSessionName`\. You can find examples of how to set a condition using an IAM policy in [Example Policy for Using GetClusterCredentials](redshift-iam-access-control-identity-based.md#redshift-policy-examples-getclustercredentials)\.
+
 The following table lists the options for creating database user credentials\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/jdbc-and-odbc-options-for-database-credentials.html)

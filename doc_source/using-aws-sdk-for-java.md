@@ -1,25 +1,29 @@
 # Using the AWS SDK for Java with Amazon Redshift<a name="using-aws-sdk-for-java"></a>
 
-The AWS SDK for Java provides a class named `AmazonRedshiftClient`, which you can use to interact with Amazon Redshift\. For information about downloading the AWS SDK for Java, go to [AWS SDK for Java](https://aws.amazon.com/sdk-for-java/)\. 
+The AWS SDK for Java provides a class named `AmazonRedshiftClientBuilder`, which you can use to interact with Amazon Redshift\. For information about downloading the AWS SDK for Java, go to [AWS SDK for Java](https://aws.amazon.com/sdk-for-java/)\. 
 
 **Note**  
 The AWS SDK for Java provides thread\-safe clients for accessing Amazon Redshift\. As a best practice, your applications should create one client and reuse the client between threads\.
 
-The `AmazonRedshiftClient` class defines methods that map to underlying Amazon Redshift Query API actions\. \(These actions are described in the Amazon Redshift [API Reference](http://docs.aws.amazon.com/redshift/latest/APIReference/API_Operations.html)\)\. When you call a method, you must create a corresponding request object and response object\. The request object includes information that you must pass with the actual request\. The response object include information returned from Amazon Redshift in response to the request\. 
+You can use the `AmazonRedshiftClientBuilder` and `AwsClientBuilder` classes to configure an endpoint and create an `AmazonRedshift` client\. You can then use the client object to create an instance of a `Cluster` object\. The `Cluster` object includes methods that map to underlying Amazon Redshift Query API actions\. \(These actions are described in the Amazon Redshift [API Reference](https://docs.aws.amazon.com/redshift/latest/APIReference/API_Operations.html)\)\. When you call a method, you must create a corresponding request object\. The request object includes information that you must pass with the actual request\. The `Cluster` object provides information returned from Amazon Redshift in response to the request\. 
 
-For example, the `AmazonRedshiftClient` class provides the `createCluster` method to provision a cluster\. This method maps to the underlying [CreateCluster](http://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateCluster.html) API action\. You create a `CreateClusterRequest` object to pass information with the `createCluster` method\. 
+The following example illustrates using the `AmazonRedshiftClientBuilder` class to configure an endpoint and then create a 2\-node **ds1\.xlarge** cluster\. 
 
 ```
-AmazonRedshiftClient client = new AmazonRedshiftClient(credentials);
-client.setEndpoint("https://redshift.us-east-1.amazonaws.com/");
+String endpoint = "https://redshift.us-east-1.amazonaws.com/";
+String region = "us-east-1";
+AwsClientBuilder.EndpointConfiguration config = new AwsClientBuilder.EndpointConfiguration(endpoint, region);
+AmazonRedshiftClientBuilder clientBuilder = AmazonRedshiftClientBuilder.standard();
+clientBuilder.setEndpointConfiguration(config);
+AmazonRedshift client = clientBuilder.build();
 
 CreateClusterRequest request = new CreateClusterRequest()
-    .withClusterIdentifier("exampleclusterusingjava")
-    .withMasterUsername("masteruser")
-    .withMasterUserPassword("12345678Aa")
-    .withNodeType("ds1.xlarge")
-    .withNumberOfNodes(2);
-    
+  .withClusterIdentifier("exampleclusterusingjava")
+  .withMasterUsername("masteruser")
+  .withMasterUserPassword("12345678Aa")
+  .withNodeType("ds1.xlarge")
+  .withNumberOfNodes(2);
+
 Cluster createResponse = client.createCluster(request);
 System.out.println("Created cluster " + createResponse.getClusterIdentifier());
 ```
@@ -30,7 +34,7 @@ System.out.println("Created cluster " + createResponse.getClusterIdentifier());
 
 1. Create a new **AWS Java Project** in Eclipse\. 
 
-   Follow the steps in [Setting Up the AWS Toolkit for Eclipse](http://docs.aws.amazon.com/AWSToolkitEclipse/latest/GettingStartedGuide/tke_setup.html) in the *AWS Toolkit for Eclipse Getting Started Guide*\.
+   Follow the steps in [Setting Up the AWS Toolkit for Eclipse](https://docs.aws.amazon.com/AWSToolkitEclipse/latest/GettingStartedGuide/tke_setup.html) in the *AWS Toolkit for Eclipse Getting Started Guide*\.
 
 1. Copy the sample code from the section of this document that you are reading and paste it into your project as a new Java class file\.
 
@@ -46,7 +50,7 @@ System.out.println("Created cluster " + createResponse.getClusterIdentifier());
 
    1. Download the AWS SDK for Java and unzip it to the `sdk` subfolder you created\. After you unzip the SDK, you should have four subdirectories in the `sdk` folder, including a `lib` and `third-party` folder\.
 
-   1.  Supply your AWS credentials to the SDK for Java\. For more information, go to [Providing AWS Credentials in the AWS SDK for Java](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html) in the *AWS SDK for Java Developer Guide*\. 
+   1.  Supply your AWS credentials to the SDK for Java\. For more information, go to [Providing AWS Credentials in the AWS SDK for Java](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html) in the *AWS SDK for Java Developer Guide*\. 
 
    1. Ensure that you can run the Java program compiler \(`javac`\) and the Java application launcher \(`java`\) from your working directory\. You can test by running the following commands:
 
@@ -91,4 +95,4 @@ client = new AmazonRedshiftClient(credentials);
 client.setEndpoint("https://redshift.us-east-1.amazonaws.com/");
 ```
 
-For a list of supported AWS regions where you can provision a cluster, go to the [Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region) section in the *Amazon Web Services Glossary*\. 
+For a list of supported AWS regions where you can provision a cluster, go to the [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region) section in the *Amazon Web Services Glossary*\. 

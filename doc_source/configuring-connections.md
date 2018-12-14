@@ -2,6 +2,10 @@
 
 Use this section to learn how to configure JDBC and ODBC connections to connect to your cluster from SQL client tools\. This section describes how to set up JDBC and ODBC connections and how to use Secure Sockets Layer \(SSL\) and server certificates to encrypt communication between the client and server\. 
 
+**Topics**
++ [JDBC and ODBC Drivers for Amazon Redshift](#connecting-drivers)
++ [Finding Your Cluster Connection String](#connecting-connection-string)
+
 ## JDBC and ODBC Drivers for Amazon Redshift<a name="connecting-drivers"></a>
 
 To work with data in your cluster, you need JDBC or ODBC drivers for connectivity from your client computer or instance\. Code your applications to use JDBC or ODBC data access APIs, and use SQL client tools that support either JDBC or ODBC\.

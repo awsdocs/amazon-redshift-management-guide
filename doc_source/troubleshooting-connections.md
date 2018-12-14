@@ -7,7 +7,7 @@ Amazon Redshift has changed the way that we manage SSL certificates\. If you hav
 
  The following section has some example error messages and possible solutions for connection issues\. Because different SQL client tools provide different error messages, this is not a complete list, but should be a good starting point for troubleshooting issues\. 
 
-
+**Topics**
 + [Connecting from Outside of Amazon EC2 —Firewall Timeout Issue](connecting-firewall-guidance.md)
 + [The Connection Is Refused or Fails](connecting-refusal-failure-issues.md)
 + [The Client and Driver Are Incompatible](connecting-architecture-mismatch.md)

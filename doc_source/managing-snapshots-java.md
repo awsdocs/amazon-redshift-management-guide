@@ -1,11 +1,8 @@
 # Managing Snapshots Using the AWS SDK for Java<a name="managing-snapshots-java"></a>
 
 The following example demonstrates these common operations involving a snapshot:
-
 + Creating a manual cluster snapshot of a cluster\.
-
 + Displaying information about all the snapshots of a cluster\.
-
 + Deleting manual snapshots of a cluster\.
 
 In this example, a snapshot of the cluster is initiated\. When the snapshot is successfully created, all manual snapshots for the cluster that were created before the new snapshot are deleted\. When creation of the manual snapshot is initiated, the snapshot is not immediately available\. Therefore, this example uses a loop to poll for the status of the snapshot by calling the `describeClusterSnapshot` method\. It normally takes a few moments for a snapshot to become available after initiation\. For more information about snapshots, see [Amazon Redshift Snapshots](working-with-snapshots.md)\.

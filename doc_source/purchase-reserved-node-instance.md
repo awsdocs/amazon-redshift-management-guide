@@ -21,11 +21,8 @@ In the evaluation phase of your project or when you’re developing a proof of c
 An offering can apply to one or more compute nodes\. You specify the number of compute nodes to reserve when you purchase the offering\. You might choose to purchase one offering for multiple compute nodes, or you might choose to purchase multiple offerings and specify a certain number of compute nodes in each offering\.
 
 For example, any of the following are valid ways to purchase an offering for three compute nodes: 
-
 + Purchase one offering and specify three compute nodes\.
-
 + Purchase two offerings, and specify one compute node for the first offering and two compute nodes for the second offering\.
-
 + Purchase three offerings, and specify one compute node for each of the offerings\.
 
 ### Comparing Pricing Among Reserved Node Offerings<a name="comparing-reserved-node-pricing"></a>
@@ -55,7 +52,7 @@ With reserved node offerings, you pay according to the payment terms as describe
 
 When you purchase an offering, your reservation has a status of **payment\-pending** until the reservation is processed\. If the reservation fails to be processed, the status displays as **payment\-failed** and you can try the process again\. Once your reservation is successfully processed, its status changes to **active**\. The applicable discounted rate in your reservation is not applied to your bill until the status changes to **active**\. After the reservation duration elapses, the status changes to **retired** but you can continue to access information about the reservation for historical purposes\. When a reservation is **retired**, your clusters continue to run but you might be billed at the on\-demand rate unless you have another reservation that applies discounted pricing to the nodes\.
 
-Reserved nodes are specific to the region in which you purchase the offering\. If you purchase an offering by using the Amazon Redshift console, select the AWS region in which you want to purchase an offering, and then complete the reservation process\. If you purchase an offering programmatically, the region is determined by the Amazon Redshift endpoint that you connect to\. For more information about Amazon Redshift regions, go to [Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region) in the *Amazon Web Services General Reference*\.
+Reserved nodes are specific to the region in which you purchase the offering\. If you purchase an offering by using the Amazon Redshift console, select the AWS region in which you want to purchase an offering, and then complete the reservation process\. If you purchase an offering programmatically, the region is determined by the Amazon Redshift endpoint that you connect to\. For more information about Amazon Redshift regions, go to [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region) in the *Amazon Web Services General Reference*\.
 
 To ensure that the discounted rate is applied to all of the nodes when you launch a cluster, make sure that the region, the node type, and the number of nodes that you select match one or more active reservations\. Otherwise, you’ll be charged at the on\-demand rate for nodes that don’t match an active reservation\.
 
@@ -65,20 +62,15 @@ If you resize your cluster into a different node type and you haven’t reserved
 
 ### Reserved Nodes and Consolidated Billing<a name="reserved-nodes-consolidated-billing"></a>
 
-The pricing benefits of Reserved Nodes are shared when the purchasing account is part of a set of accounts billed under one consolidated billing payer account\. The hourly usage across all sub\-accounts is aggregated in the payer account every month\. This is typically useful for companies in which there are different functional teams or groups; then, the normal Reserved Nodes logic is applied to calculate the bill\. For more information, see [Consolidated Billing](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html) in the AWS Billing and Cost Management User Guide\.
+The pricing benefits of Reserved Nodes are shared when the purchasing account is part of a set of accounts billed under one consolidated billing payer account\. The hourly usage across all sub\-accounts is aggregated in the payer account every month\. This is typically useful for companies in which there are different functional teams or groups; then, the normal Reserved Nodes logic is applied to calculate the bill\. For more information, see [Consolidated Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html) in the AWS Billing and Cost Management User Guide\.
 
 ### Reserved Node Examples<a name="reserved-node-examples"></a>
 
 The scenarios in this section demonstrate how nodes accrue charges based on on\-demand and discounted rates using the following reservation details: 
-
 + Region: US West \(Oregon\)
-
 + Node Type: ds1\.xlarge
-
 + Payment Option: No Upfront
-
 + Duration: one year
-
 + Number of Reserved Nodes: 16
 
 #### Example 1<a name="reserved-node-example-1"></a>

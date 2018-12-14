@@ -4,7 +4,7 @@ To better manage the access your users have to your Amazon Redshift database, yo
 
 Commonly, Amazon Redshift database users log on to the database by providing a database user name and password\. As an alternative to maintaining user names and passwords in your Amazon Redshift database, you can configure your system to permit users to create user credentials and log on to the database based on their IAM credentials\. You can also configure your system to let users sign on using federated single sign\-on \(SSO\) through a SAML 2\.0\-compliant identity provider\. 
 
-
+**Topics**
 + [Overview](generating-iam-credentials-overview.md)
 + [Creating Temporary IAM User Credentials](generating-iam-credentials-steps.md)
 + [Options for Providing IAM Credentials](options-for-providing-iam-credentials.md)

@@ -25,9 +25,7 @@ You must have at least one cluster subnet group defined to provision a cluster i
    1. Specify a **Name**, **Description**, and **VPC ID** for the cluster subnet group\.
 
    1. Add subnets to the group by doing one of the following:
-
       + Click **add all the subnets** link\. or
-
       + Use the **Availability Zone** and **Subnet ID** boxes to choose a specific subnet and then click **Add**\.
 
       The following example shows a cluster subnet group specified with one subnet group\.  

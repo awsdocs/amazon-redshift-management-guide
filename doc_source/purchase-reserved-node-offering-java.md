@@ -1,11 +1,8 @@
 # Purchasing a Reserved Node Offering Using the AWS SDK for Java<a name="purchase-reserved-node-offering-java"></a>
 
 The following example demonstrates how to use the AWS SDK for Java to do the following:
-
 + List existing reserved nodes\.
-
 + Search for a new reserved node offering based on specified node criteria\.
-
 + Purchase a reserved node\.
 
 This example, first selects all the reserved node offerings that match a specified node type and fixed price value\. Then, this example goes through each offering found and lets you purchase the offering\. 

@@ -9,9 +9,7 @@ You experience an issue with queries completing, where the queries appear to be 
  This issue can happen due to packet drop, when there is a difference in the maximum transmission unit \(MTU\) size in the network path between two Internet Protocol \(IP\) hosts\. The MTU size determines the maximum size, in bytes, of a packet that can be transferred in one Ethernet frame over a network connection\. In AWS, some Amazon EC2 instance types support an MTU of 1500 \(Ethernet v2 frames\) and other instance types support an MTU of 9001 \(TCP/IP jumbo frames\)\. 
 
  To avoid issues that can occur with differences in MTU size, we recommend doing one of the following: 
-
 + If your cluster uses the EC2\-VPC platform, configure the Amazon VPC security group with an inbound custom Internet Control Message Protocol \(ICMP\) rule that returns `Destination Unreachable`, thus instructing the originating host to use the lowest MTU size along the network path\. For details on this approach, see [Configuring Security Groups to Allow ICMP "Destination Unreachable"](#configure-custom-icmp)\. 
-
 + If your cluster uses the EC2\-Classic platform, or you cannot allow the ICMP inbound rule, disable TCP/IP jumbo frames so that Ethernet v2 frames are used\. For details on this approach, see [Configuring the MTU of an Instance](#set-mtu)\.
 
 ## Configuring Security Groups to Allow ICMP "Destination Unreachable"<a name="configure-custom-icmp"></a>
@@ -20,7 +18,7 @@ You experience an issue with queries completing, where the queries appear to be 
 
  If you don't explicitly configure this ICMP inbound rule for your Amazon VPC security group, PMTUD is blocked\. In AWS, security groups are virtual firewalls that specify rules for inbound and outbound traffic to an instance\. For clusters using the EC2\-VPC platform, Amazon Redshift uses VPC security groups to allow or deny traffic to the cluster\. By default, the security groups are locked down and deny all inbound traffic\.
 
- For more information about how to add rules to VPC security groups, see [Managing VPC Security Groups for a Cluster](managing-vpc-security-groups.md)\. For more information about specific PMTUD settings required in this rule, see [Path MTU Discovery](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/network_mtu.html#path_mtu_discovery) in the *Amazon EC2 User Guide for Linux Instances\.* 
+ For more information about how to add rules to VPC security groups, see [Managing VPC Security Groups for a Cluster](managing-vpc-security-groups.md)\. For more information about specific PMTUD settings required in this rule, see [Path MTU Discovery](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/network_mtu.html#path_mtu_discovery) in the *Amazon EC2 User Guide for Linux Instances\.* 
 
 ## Configuring the MTU of an Instance<a name="set-mtu"></a>
 
@@ -65,5 +63,4 @@ If your client runs in a Microsoft Windows operating system, you can review and 
    ```<a name="set-mtu-mac-os"></a>
 
 **To set MTU on a Mac operating system**
-
 + To set the MTU on a Mac operating system, follow the instructions in [Mac OS X 10\.4 or later: How to change the MTU for troubleshooting purposes](https://support.apple.com/kb/ht2532)\.

@@ -20,7 +20,7 @@ Snapshots are point\-in\-time backups of a cluster\. There are two types of snap
 
 ## Cluster Access and Security<a name="rs-overview-cluster-access-and-security"></a>
 
-There are several features related to cluster access and security in Amazon Redshift\. These features help you to control access to your cluster, define connectivity rules, and encrypt data and connections\. These features are in addition to features related to database access and security in Amazon Redshift\. For more information about database security, see [Managing Database Security](http://docs.aws.amazon.com/redshift/latest/dg/r_Database_objects.html) in the *Amazon Redshift Database Developer Guide*\.
+There are several features related to cluster access and security in Amazon Redshift\. These features help you to control access to your cluster, define connectivity rules, and encrypt data and connections\. These features are in addition to features related to database access and security in Amazon Redshift\. For more information about database security, see [Managing Database Security](https://docs.aws.amazon.com/redshift/latest/dg/r_Database_objects.html) in the *Amazon Redshift Database Developer Guide*\.
 
 ### AWS Accounts and IAM Credentials<a name="rs-overview-aws-accounts-and-iam-credentials"></a>
 
@@ -29,9 +29,7 @@ By default, an Amazon Redshift cluster is only accessible to the AWS account tha
 ### Security Groups<a name="rs-overview-security-groups"></a>
 
 By default, any cluster that you create is closed to everyone\. IAM credentials only control access to the Amazon Redshift API\-related resources: the Amazon Redshift console, command line interface \(CLI\), API, and SDK\. To enable access to the cluster from SQL client tools via JDBC or ODBC, you use security groups: 
-
 + If you are using the EC2\-Classic platform for your Amazon Redshift cluster, you must use Amazon Redshift security groups\.
-
 + If you are using the EC2\-VPC platform for your Amazon Redshift cluster, you must use VPC security groups\.
 
 In either case, you add rules to the security group to grant explicit inbound access to a specific range of CIDR/IP addresses or to an Amazon Elastic Compute Cloud \(Amazon EC2\) security group if your SQL client runs on an Amazon EC2 instance\. For more information, see [Amazon Redshift Cluster Security Groups](working-with-security-groups.md)\.
@@ -68,10 +66,10 @@ Amazon Redshift provides performance metrics and data so that you can track the 
 
 ## Databases<a name="rs-overview-databases"></a>
 
-Amazon Redshift creates one database when you provision a cluster\. This is the database you use to load data and run queries on your data\. You can create additional databases as needed by running a SQL command\. For more information about creating additional databases, go to [Step 1: Create a database](http://docs.aws.amazon.com/redshift/latest/dg/t_creating_database.html) in the *Amazon Redshift Database Developer Guide*\.
+Amazon Redshift creates one database when you provision a cluster\. This is the database you use to load data and run queries on your data\. You can create additional databases as needed by running a SQL command\. For more information about creating additional databases, go to [Step 1: Create a database](https://docs.aws.amazon.com/redshift/latest/dg/t_creating_database.html) in the *Amazon Redshift Database Developer Guide*\.
 
-When you provision a cluster, you specify a master user who has access to all of the databases that are created within the cluster\. This master user is a superuser who is the only user with access to the database initially, though this user can create additional superusers and users\. For more information, go to [Superusers](http://docs.aws.amazon.com/redshift/latest/dg/r_superusers.html) and [Users](http://docs.aws.amazon.com/redshift/latest/dg/r_Users.html) in the *Amazon Redshift Database Developer Guide*\.
+When you provision a cluster, you specify a master user who has access to all of the databases that are created within the cluster\. This master user is a superuser who is the only user with access to the database initially, though this user can create additional superusers and users\. For more information, go to [Superusers](https://docs.aws.amazon.com/redshift/latest/dg/r_superusers.html) and [Users](https://docs.aws.amazon.com/redshift/latest/dg/r_Users.html) in the *Amazon Redshift Database Developer Guide*\.
 
 Amazon Redshift uses parameter groups to define the behavior of all databases in a cluster, such as date presentation style and floating\-point precision\. If you don’t specify a parameter group when you provision your cluster, Amazon Redshift associates a default parameter group with the cluster\. For more information, see [Amazon Redshift Parameter Groups](working-with-parameter-groups.md)\.
 
-For more information about databases in Amazon Redshift, go to the [Amazon Redshift Database Developer Guide](http://docs.aws.amazon.com/redshift/latest/dg/)\.
+For more information about databases in Amazon Redshift, go to the [Amazon Redshift Database Developer Guide](https://docs.aws.amazon.com/redshift/latest/dg/)\.

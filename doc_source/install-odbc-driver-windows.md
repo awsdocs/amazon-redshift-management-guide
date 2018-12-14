@@ -3,13 +3,9 @@
 ## System Requirements<a name="odbc-driver-sysreq-windows"></a>
 
 You install the Amazon Redshift ODBC driver on client computers accessing an Amazon Redshift data warehouse\. Each computer where you install the driver must meet the following minimum system requirements: 
-
 + Microsoft Windows Vista operating system or later
-
 + 55 MB of available disk space
-
 + Administrator privileges on the client computer
-
 + An Amazon Redshift master user or user account to connect to the database
 
 ## Installing the Amazon Redshift Driver on Windows Operating Systems<a name="odbc-driver-windows-how-to-install"></a>
@@ -19,12 +15,10 @@ Use the steps in this section to download the Amazon Redshift ODBC drivers for M
 **To install the ODBC driver**
 
 1. Download one of the following, depending on the system architecture of your SQL client tool or application:
-
-   + 32\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC32\-1\.4\.1\.1001\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC32-1.4.1.1001.msi                                     ) 
+   + 32\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.3\.1000/AmazonRedshiftODBC32\-1\.4\.3\.1000\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.3.1000/AmazonRedshiftODBC32-1.4.3.1000.msi                                     ) 
 
      The name for this driver is Amazon Redshift \(x86\)\.
-
-   +  64\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC64\-1\.4\.1\.1001\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC64-1.4.1.1001.msi) 
+   +  64\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.3\.1000/AmazonRedshiftODBC64\-1\.4\.3\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.3.1000/AmazonRedshiftODBC64-1.4.3.1000.msi) 
 
      The name for this driver is Amazon Redshift \(x64\)\.
 **Note**  
@@ -83,37 +77,25 @@ Type the password that corresponds to the database user account\.
 Select a mode for handling Secure Sockets Layer \(SSL\)\. In a test environment, you might use `prefer`, but for production environments and when secure data exchange is required, use `verify-ca` or `verify-full`\. For more information about using SSL, see [Connect Using SSL](connecting-ssl-support.md#connect-using-ssl)\.
 
 1. Under **Additional Options**, select one of the following options to specify how to return query results to your SQL client tool or application: 
-
    + **Single Row Mode**\. Select this option if you want query results to be returned one row at a time to the SQL client tool or application\. Use this option if you plan to query for large result sets and don't want the entire result in memory\. Disabling this option improves performance, but it can increase the number of out\-of\-memory errors\.
-
    + **Use Declare/Fetch**\. Select this option if you want query results to be returned to the SQL client tool or application in a specified number of rows at a time\. Specify the number of rows in **Cache Size**\.
-
    + **Use Multiple Statements**\. Select this option to return results based on multiple SQL statements in a query\.
-
    + **Retrieve Entire Result Into Memory**\. Select this option if you want query results to be returned all at once to the SQL client tool or application\. The default is enabled\. 
 
 1. In **Logging Options**, specify values for the following: 
-
    + **Log Level**\. Select an option to specify whether to enable logging and the level of detail that you want captured in the logs\. 
 **Important**  
 You should only enable logging when you need to capture information about an issue\. Logging decreases performance, and it can consume a large amount of disk space\.
-
    + **Log Path**\. Specify the full path to the folder where you want to save log files\.
 
     Then click **OK**\.
 
 1. In **Data Type Options**, specify values for the following: 
-
    + **Use Unicode**\. Select this option to enable support for Unicode characters\. The default is enabled\.
-
    + **Show Boolean Column As String**\. Select this option if you want Boolean values to be displayed as string values instead of bit values\. If you enable this, **"1"** and **"0"** display instead of **1** and **0**\. The default is enabled\.
-
    + **Text as LongVarChar**\. Select this option to enable showing text as LongVarChar\. The default is enabled\.
-
    + **Max Varchar**\. Specify the maximum value for the Varchar data type\. A Varchar field with a value larger than the maximum specified will be promoted to LongVarchar\. The default value is 255\.
-
    + **Max LongVarChar**\. Specify the maximum value for the LongVarChar data type\. A LongVarChar field value that is larger than the maximum specified will be truncated\. The default value is 8190\.
-
    + **Max Bytea**\. Specify the maximum value for the Bytea data type\. A Bytea field value that is larger than the maximum specified will be truncated\. The default value is 255\. 
 **Note**  
 The Bytea data type is only used by Amazon Redshift system tables and views, and otherwise is not supported\.

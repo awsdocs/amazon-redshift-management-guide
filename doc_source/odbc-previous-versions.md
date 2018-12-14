@@ -10,83 +10,63 @@ Amazon Redshift has changed the way that we manage SSL certificates\. If you mus
 ## Previous ODBC Driver Versions for Windows<a name="odbc-previous-versions-windows"></a>
 
 The following are the previous 32\-bit drivers: 
-
++ 32\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.2\.1010/AmazonRedshiftODBC32\-1\.4\.2\.1010\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.2.1010/AmazonRedshiftODBC32-1.4.2.1010.msi) 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC32\-1\.4\.1\.1001\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC32-1.4.1.1001.msi                             ) 
 + [ https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC32\-1\.3\.7\.1000\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC32-1.3.7.1000.msi) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC32\-1\.3\.6\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC32-1.3.6.1000.msi) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC32\-1\.3\.1\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC32-1.3.1.1000.msi) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC32\-1\.2\.7\.1007\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC32-1.2.7.1007.msi) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC32\-1\.2\.6\.1006\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC32-1.2.6.1006.msi) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC32\-1\.2\.1\.1001\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC32-1.2.1.1001.msi) 
 
 The following are the previous 64\-bit drivers: 
-
++  64\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.2\.1010/AmazonRedshiftODBC64\-1\.4\.2\.1010\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.2.1010/AmazonRedshiftODBC64-1.4.2.1010.msi) 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC64\-1\.4\.1\.1001\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC64-1.4.1.1001.msi) 
 + [ https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC64\-1\.3\.7\.1000\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC64-1.3.7.1000.msi) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC64\-1\.3\.6\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC64-1.3.6.1000.msi) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC64\-1\.3\.1\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC64-1.3.1.1000.msi) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC64\-1\.2\.7\.1007\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC64-1.2.7.1007.msi) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC64\-1\.2\.6\.1006\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC64-1.2.6.1006.msi) 
-
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC64\-1\.2\.1\.1001\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC64-1.2.1.1001.msi) 
 
 ## Previous ODBC Driver Versions for Linux<a name="odbc-previous-versions-linux"></a>
 
 The following are the previous versions of the 32–bit driver: 
-
++ 32\-bit \.rpm: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.2\.1010/AmazonRedshiftODBC\-32\-bit\-1\.4\.2\.1010\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.2.1010/AmazonRedshiftODBC-32-bit-1.4.2.1010-1.i686.rpm)
++  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC\-32\-bit\-1\.4\.1\.1001\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-32-bit-1.4.1.1001-1.i686.rpm)
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-32bit\-1\.3\.7\.1000\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-32bit-1.3.7.1000-1.i686.rpm)
-
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.2\.1010/AmazonRedshiftODBC\-32\-bit\-1\.4\.2\.1010\-1\.i686\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.2.1010/AmazonRedshiftODBC-32-bit-1.4.2.1010-1.i686.deb)
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC\-32\-bit\-1\.4\.1\.1001\-1\.i686\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-32-bit-1.4.1.1001-1.i686.deb)
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-32bit\-1\.3\.7\.1000\-1\.i686\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-32bit-1.3.7.1000-1.i686.deb)
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-32bit\-1\.3\.6\.1000\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-32bit-1.3.6.1000-1.i686.rpm)
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-32bit\-1\.3\.1\.1000\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-32bit-1.3.1.1000-1.i686.rpm)
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-32bit\-1\.2\.7\.1007\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-32bit-1.2.7.1007-1.i686.rpm)
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-32bit\-1\.2\.6\.1006\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-32bit-1.2.6.1006-1.i686.rpm)
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-32bit\-1\.2\.1\.1001\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-32bit-1.2.1.1001-1.i686.rpm)
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-32bit\-1\.1\.0\.0000\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-32bit-1.1.0.0000-1.i686.rpm) 
 
 The following are the previous versions of the 64–bit driver: 
-
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64\-bit\-1\.4\.2\.1010\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.2.1010/AmazonRedshiftODBC-64-bit-1.4.2.1010-1.x86_64.rpm) 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64\-bit\-1\.4\.1\.1000\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-64-bit-1.4.1.1001-1.x86_64.rpm) 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64bit\-1\.3\.7\.1000\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-64bit-1.3.7.1000-1.x86_64.rpm) 
-
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.2\.1010/AmazonRedshiftODBC\-64\-bit\-1\.4\.2\.1010\-1\.x86\_64\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.2.1010/AmazonRedshiftODBC-64-bit-1.4.2.1010-1.x86_64.deb) 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.1\.1001/AmazonRedshiftODBC\-64\-bit\-1\.4\.1\.1001\-1\.x86\_64\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-64-bit-1.4.1.1001-1.x86_64.deb) 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64bit\-1\.3\.7\.1000\-1\.x86\_64\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-64bit-1.3.7.1000-1.x86_64.deb) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64bit\-1\.3\.6\.1000\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-64bit-1.3.6.1000-1.i686.rpm) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64bit\-1\.3\.1\.1000\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-64bit-1.3.1.1000-1.x86_64.rpm) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64bit\-1\.2\.7\.1007\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-64bit-1.2.7.1007-1.x86_64.rpm) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64bit\-1\.2\.6\.1006\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-64bit-1.2.6.1006-1.x86_64.rpm) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64bit\-1\.2\.1\.1001\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-64bit-1.2.1.1001-1.x86_64.rpm) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-64bit\-1\.1\.0\.0000\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-64bit-1.1.0.0000-1.x86_64.rpm) 
 
 ## Previous ODBC Driver Versions for Mac<a name="odbc-previous-versions-mac"></a>
 
 The following are the previous versions of the Amazon Redshift ODBC driver for Mac OS X: 
-
++  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/AmazonRedshiftODBC\-1\.4\.2\.1010\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.2.1010/AmazonRedshiftODBC-1.4.2.1010.dmg)\.
++  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/AmazonRedshiftODBC\-1\.4\.1\.1001\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.1.1001/AmazonRedshiftODBC-1.4.1.1001.dmg) 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-1\.3\.7\.1000\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-1.3.7.1000.dmg) 
-
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-1\.3\.6\.1000\-1\.i686\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-1.3.6.1000-1.i686.dmg) 
-
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-1\.3\.1\.1000\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-1.3.1.1000.dmg) 
-
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-1\.2\.7\.1007\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-1.2.7.1007.dmg) 
-
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\_1\.2\.6\.1006\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC_1.2.6.1006.dmg) 
-
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/AmazonRedshiftODBC\-1\.2\.1\.1001\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/AmazonRedshiftODBC-1.2.1.1001.dmg) 

@@ -18,7 +18,7 @@ If you want to use different parameter values than the default parameter group, 
 **Note**  
 The Amazon Redshift console does not display the `source` of each parameter\. You must use the Amazon Redshift API, the AWS CLI, or one of the AWS SDKs to view the `source`\.
 
-For parameter groups that you create, you can modify a parameter value at any time, or you can reset all parameter values to their defaults\. You can also associate a different parameter group with a cluster\. If you modify parameter values in a parameter group that is already associated with a cluster or you associate a different parameter group with the cluster, you might need to restart the cluster for the updated parameter values to take effect\. If the cluster fails and is restarted by Amazon Redshift, your changes are applied at that time\. For more information, see [WLM Dynamic and Static Properties](workload-mgmt-config.md#wlm-dynamic-and-static-properties)\.
+For parameter groups that you create, you can modify a parameter value at any time, or you can reset all parameter values to their defaults\. You can also associate a different parameter group with a cluster\. If you modify parameter values in a parameter group that is already associated with a cluster or you associate a different parameter group with the cluster, you might need to restart the cluster for the updated parameter values to take effect\. If the cluster fails and is restarted by Amazon Redshift, your changes are applied at that time\. Changes are not applied if your cluster is restarted during maintenance\. For more information, see [WLM Dynamic and Static Properties](workload-mgmt-config.md#wlm-dynamic-and-static-properties)\.
 
 ## Default Parameter Values<a name="default-param-group-values"></a>
 
@@ -27,21 +27,20 @@ The following table shows the default parameter values at a glance with links to
 
 | Parameter Name | Value | More Information | 
 | --- | --- | --- | 
-|  analyze\_threshold\_percent  |  10  |  [analyze\_threshold\_percent](http://docs.aws.amazon.com/redshift/latest/dg/r_analyze_threshold_percent.html) in the Amazon Redshift Database Developer Guide  | 
-|  datestyle  |   ISO, MDY   |  [datestyle](http://docs.aws.amazon.com/redshift/latest/dg/r_datestyle.html) in the Amazon Redshift Database Developer Guide  | 
+|  datestyle  |   ISO, MDY   |  [datestyle](https://docs.aws.amazon.com/redshift/latest/dg/r_datestyle.html) in the Amazon Redshift Database Developer Guide  | 
 |  enable\_user\_activity\_logging  |   false   |  [Database Audit Logging](db-auditing.md) in this guide  | 
-|  extra\_float\_digits  |  0  |  [extra\_float\_digits](http://docs.aws.amazon.com/redshift/latest/dg/r_extra_float_digits.html) in the Amazon Redshift Database Developer Guide  | 
-|  query\_group  |  default   |  [query\_group](http://docs.aws.amazon.com/redshift/latest/dg/r_query_group.html) in the Amazon Redshift Database Developer Guide  | 
+|  extra\_float\_digits  |  0  |  [extra\_float\_digits](https://docs.aws.amazon.com/redshift/latest/dg/r_extra_float_digits.html) in the Amazon Redshift Database Developer Guide  | 
+|  query\_group  |  default   |  [query\_group](https://docs.aws.amazon.com/redshift/latest/dg/r_query_group.html) in the Amazon Redshift Database Developer Guide  | 
 |  require\_ssl  |  false  |  [Configure Security Options for Connections](connecting-ssl-support.md) in this guide  | 
-|  search\_path  |   $user, public   |  [search\_path](http://docs.aws.amazon.com/redshift/latest/dg/r_search_path.html) in the Amazon Redshift Database Developer Guide  | 
-|  statement\_timeout  |  0  |  [statement\_timeout](http://docs.aws.amazon.com/redshift/latest/dg/r_statement_timeout.html) in the Amazon Redshift Database Developer Guide  | 
+|  search\_path  |   $user, public   |  [search\_path](https://docs.aws.amazon.com/redshift/latest/dg/r_search_path.html) in the Amazon Redshift Database Developer Guide  | 
+|  statement\_timeout  |  0  |  [statement\_timeout](https://docs.aws.amazon.com/redshift/latest/dg/r_statement_timeout.html) in the Amazon Redshift Database Developer Guide  | 
 |  wlm\_json\_configuration  |   \[\{"query\_concurrency":5\}\]   |  [Configuring Workload Management](workload-mgmt-config.md) in this guide  | 
 |  use\_fips\_ssl  |  false  |  Enable FIPS\-compliant SSL mode only if your system is required to be FIPS compliant\. | 
 
 **Note**  
-The `max_cursor_result_set_size` parameter is deprecated\. For more information about cursor result set size, see [ Cursor Constraints](http://docs.aws.amazon.com/redshift/latest/dg/declare.html#declare-constraints) in the *Amazon Redshift Database Developer Guide*\.
+The `max_cursor_result_set_size` parameter is deprecated\. For more information about cursor result set size, see [ Cursor Constraints](https://docs.aws.amazon.com/redshift/latest/dg/declare.html#declare-constraints) in the *Amazon Redshift Database Developer Guide*\.
 
-You can temporarily override a parameter by using the `SET` command in the database\. The `SET` command overrides the parameter for the duration of your current session only\. In addition to the parameters listed in the preceding table, you can also temporarily adjust the slot count by setting `wlm_query_slot_count` in the database\. The `wlm_query_slot_count` parameter is not available for configuration in parameter groups\. For more information about adjusting the slot count, see [wlm\_query\_slot\_count](http://docs.aws.amazon.com/redshift/latest/dg/r_wlm_query_slot_count.html) in the *Amazon Redshift Database Developer Guide*\. For more information about temporarily overriding the other parameters, see [ Modifying the Server Configuration](http://docs.aws.amazon.com/redshift/latest/dg/t_Modifying_the_default_settings.html) in the *Amazon Redshift Database Developer Guide*\.
+You can temporarily override a parameter by using the `SET` command in the database\. The `SET` command overrides the parameter for the duration of your current session only\. In addition to the parameters listed in the preceding table, you can also temporarily adjust the slot count by setting `wlm_query_slot_count` in the database\. The `wlm_query_slot_count` parameter is not available for configuration in parameter groups\. For more information about adjusting the slot count, see [wlm\_query\_slot\_count](https://docs.aws.amazon.com/redshift/latest/dg/r_wlm_query_slot_count.html) in the *Amazon Redshift Database Developer Guide*\. For more information about temporarily overriding the other parameters, see [ Modifying the Server Configuration](https://docs.aws.amazon.com/redshift/latest/dg/t_Modifying_the_default_settings.html) in the *Amazon Redshift Database Developer Guide*\.
 
 ## Configuring Parameter Values Using the AWS CLI<a name="configure-parameters-using-the-cli"></a>
 

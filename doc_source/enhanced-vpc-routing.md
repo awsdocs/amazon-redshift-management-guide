@@ -1,26 +1,24 @@
 # Amazon Redshift Enhanced VPC Routing<a name="enhanced-vpc-routing"></a>
 
-When you use Amazon Redshift Enhanced VPC Routing, Amazon Redshift forces all [COPY](http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) and [UNLOAD](http://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) traffic between your cluster and your data repositories through your Amazon VPC\. You can now use standard VPC features, such as [VPC security groups](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html), [network access control lists \(ACLs\)](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html), [VPC endpoints](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints-s3.html), [VPC endpoint policies](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints-s3.html#vpc-endpoints-policies-s3), [Internet gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html), and [Domain Name System \(DNS\)](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-dns.html) servers, to tightly manage the flow of data between your Amazon Redshift cluster and other resources\. When you use Enhanced VPC Routing to route traffic through your VPC, you can also use [VPC flow logs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html) to monitor COPY and UNLOAD traffic\.
+When you use Amazon Redshift Enhanced VPC Routing, Amazon Redshift forces all [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) and [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) traffic between your cluster and your data repositories through your Amazon VPC\. By using Enhanced VPC Routing, you can use standard VPC features, such as [VPC security groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html), [network access control lists \(ACLs\)](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html), [VPC endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-s3.html), [VPC endpoint policies](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-s3.html#vpc-endpoints-policies-s3), [internet gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html), and [Domain Name System \(DNS\)](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html) servers, as described in the *Amazon VPC User Guide\.* You use these features to tightly manage the flow of data between your Amazon Redshift cluster and other resources\. When you use Enhanced VPC Routing to route traffic through your VPC, you can also use [VPC flow logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html) to monitor COPY and UNLOAD traffic\.
 
-If Enhanced VPC Routing is not enabled, Amazon Redshift routes traffic through the Internet, including traffic to other services within the AWS network\.
+If Enhanced VPC Routing is not enabled, Amazon Redshift routes traffic through the internet, including traffic to other services within the AWS network\.
 
 **Important**  
 Because Enhanced VPC Routing affects the way that Amazon Redshift accesses other resources, COPY and UNLOAD commands might fail unless you configure your VPC correctly\. You must specifically create a network path between your cluster's VPC and your data resources, as described following\.
 
-When you execute a COPY or UNLOAD command on a cluster that has Enhanced VPC Routing enabled, your VPC routes the traffic to the specified resource using the *strictest*, or most specific, network path available\. 
+When you execute a COPY or UNLOAD command on a cluster with Enhanced VPC Routing enabled, your VPC routes the traffic to the specified resource using the *strictest*, or most specific, network path available\. 
 
 For example, you can configure the following pathways in your VPC:
++ ** VPC endpoints **– For traffic to an Amazon S3 bucket in the same AWS Region as your cluster, you can create a VPC endpoint to direct traffic directly to the bucket\. When you use VPC endpoints, you can attach an endpoint policy to manage access to Amazon S3\. For more information about using endpoints with Amazon Redshift, see [Working with VPC Endpoints](enhanced-vpc-working-with-endpoints.md)\.
++ **NAT gateway** – You can connect to an Amazon S3 bucket in another AWS Region, and you can connect to another service within the AWS network\. You can also access a host instance outside the AWS network\. To do so, configure a [ network address translation \(NAT\) gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html), as described in the *Amazon VPC User Guide\.*
++ **Internet gateway** – To connect to AWS services outside your VPC, you can attach an [internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) to your VPC subnet, as described in the *Amazon VPC User Guide\.* To use an internet gateway, your cluster must have a public IP to allow other services to communicate with your cluster\.
 
-+ ** VPC Endpoints ** – For traffic to an Amazon S3 bucket in the same region as your cluster, you can create a VPC endpoint to direct traffic directly to the bucket\. When you use VPC endpoints, you can attach an endpoint policy to manage access to Amazon S3\. For more information about using endpoints with Amazon Redshift, see [Working with VPC Endpoints](enhanced-vpc-working-with-endpoints.md)\.
+For more information, see [VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html) in the Amazon VPC User Guide\.
 
-+ **NAT gateway** – To connect to an Amazon S3 bucket in another region or to another service within the AWS network, or to access a host instance outside the AWS network, you can configure a [ network address translation \(NAT\) gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html)\. 
+There is no additional charge for using Enhanced VPC Routing\. You might incur additional data transfer charges for certain operations\. These include such operations as UNLOAD to Amazon S3 in a different AWS Region\. COPY from Amazon EMR, or Secure Shell \(SSH\) with public IP addresses\. For more information about pricing, see [Amazon EC2 Pricing](https://aws.amazon.com//ec2/pricing/)\.
 
-+ **Internet gateway** – To connect to AWS services outside your VPC, you can attach an [Internet gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) to your VPC subnet\. To use an Internet gateway, your cluster must have a public IP to allow other services to communicate with your cluster\.
-
-For more information, see [VPC Endpoints](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html) in the Amazon VPC User Guide\.
-
-There is no additional charge for using Enhanced VPC Routing\. You might incur additional data transfer charges for certain operations, such as UNLOAD to Amazon S3 in a different region or COPY from Amazon EMR or SSH with public IP addresses\. For more information about pricing, see [Amazon EC2 Pricing](https://aws.amazon.com//ec2/pricing/)\.
-
-
+**Topics**
 + [Working with VPC Endpoints](enhanced-vpc-working-with-endpoints.md)
 + [Enabling Enhanced VPC Routing](enhanced-vpc-enabling-cluster.md)
++ [Using Amazon Redshift Spectrum with Enhanced VPC Routing](spectrum-enhanced-vpc.md)

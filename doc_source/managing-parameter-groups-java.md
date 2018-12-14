@@ -1,19 +1,13 @@
 # Managing Parameter Groups Using the AWS SDK for Java<a name="managing-parameter-groups-java"></a>
 
 This example demonstrates the following tasks related to parameter groups:
-
 + Creating a parameter group
-
 + Modifying a parameter group
-
 + Associating a parameter group with a cluster
-
 + Getting information about parameter groups
 
 This example creates a new parameter group, `parametergroup1`, and makes the following updates:
-
 + Changes the parameter `extra_float_digits` to 2 from the default value of 0\. 
-
 + Replaces the existing workload management configuration \(`wlm_json_configuration` parameter\) with the following JSON which defines a queue in addition to the default queue\. 
 
   ```
@@ -55,7 +49,7 @@ Because this example replaces the WLM configuration, this JSON configuration als
 }
 ```
 
-For more information about Workload Management \(WML\) configuration, go to [Implementing workload management](http://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html)\. 
+For more information about Workload Management \(WML\) configuration, go to [Implementing workload management](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html)\. 
 
 For step\-by\-step instructions to run the following example, see [Running Java Examples for Amazon Redshift Using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and provide a cluster identifier\.
 

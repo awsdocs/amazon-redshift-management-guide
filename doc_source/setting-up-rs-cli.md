@@ -10,11 +10,11 @@ If you have already installed and configured the AWS CLI for another AWS service
 
 **To install the AWS Command Line Interface**
 
-1. Go to [Getting Set Up with the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html), and then follow the instructions for installing the AWS CLI\.
+1. Go to [Getting Set Up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html), and then follow the instructions for installing the AWS CLI\.
 
-    For CLI access, you need an access key ID and secret access key\. Use IAM user access keys instead of AWS account root user access keys\. IAM lets you securely control access to AWS services and resources in your AWS account\. For more information about creating access keys, see [Understanding and Getting Your Security Credentials](http://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html) in the *AWS General Reference*\. 
+    For CLI access, you need an access key ID and secret access key\. Use IAM user access keys instead of AWS account root user access keys\. IAM lets you securely control access to AWS services and resources in your AWS account\. For more information about creating access keys, see [Understanding and Getting Your Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html) in the *AWS General Reference*\. 
 
-1. Create a file containing configuration information such as your access keys, default region, and command output format\. Then set the `AWS_CONFIG_FILE` environment variable to reference that file\. For detailed instructions, go to [Configuring the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) in the AWS Command Line Interface User Guide\.
+1. Create a file containing configuration information such as your access keys, default region, and command output format\. Then set the `AWS_CONFIG_FILE` environment variable to reference that file\. For detailed instructions, go to [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) in the AWS Command Line Interface User Guide\.
 
 1. Run a test command to confirm that the AWS CLI interface is working\. For example, the following command should display help information for the AWS CLI:
 
@@ -28,4 +28,4 @@ If you have already installed and configured the AWS CLI for another AWS service
    aws redshift help
    ```
 
-For reference material on the Amazon Redshift CLI commands, go to [Amazon Redshift](http://docs.aws.amazon.com/cli/latest/reference/redshift/index.html) in the AWS CLI Reference\.
+For reference material on the Amazon Redshift CLI commands, go to [Amazon Redshift](https://docs.aws.amazon.com/cli/latest/reference/redshift/index.html) in the AWS CLI Reference\.

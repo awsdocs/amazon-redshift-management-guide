@@ -1,6 +1,6 @@
 # Getting Started with the AWS Command Line Interface<a name="getting-started-cli"></a>
 
-To help you get started using the command line interface, this section shows how to perform basic administrative tasks for an Amazon Redshift cluster\. These tasks are very similar to those in the [Amazon Redshift Getting Started](http://docs.aws.amazon.com/redshift/latest/gsg/), but they are focused on the command line interface rather than the Amazon Redshift console\.
+To help you get started using the command line interface, this section shows how to perform basic administrative tasks for an Amazon Redshift cluster\. These tasks are very similar to those in the [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/), but they are focused on the command line interface rather than the Amazon Redshift console\.
 
 This section walks you through the process of creating a cluster, creating database tables, uploading data, and testing queries\. You will use the Amazon Redshift CLI to provision a cluster and to authorize necessary access permissions\. You will then use the SQL Workbench client to connect to the cluster and create sample tables, upload sample data, and execute test queries\.
 
@@ -10,7 +10,7 @@ If you don't already have an AWS account, you must sign up for one\. Then you'll
 
 ### Step 1\.1: Sign Up for an AWS account<a name="getting-started-cli.before-you-begin.sign-up"></a>
 
-For information about signing up for an AWS user account, go to the [Amazon Redshift Getting Started](http://docs.aws.amazon.com/redshift/latest/gsg/)\.
+For information about signing up for an AWS user account, go to the [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/)\.
 
 ### Step 1\.2: Download and Install the AWS Command Line Interface \(CLI\)<a name="getting-started-cli.download-aws-cli"></a>
 
@@ -20,7 +20,7 @@ If you have not installed the AWS Command Line Interface, see [Setting Up the Am
 
 You can use any SQL client tools to connect to an Amazon Redshift cluster with PostgreSQL JDBC or ODBC drivers\. If you do not currently have such software installed, you can use SQL Workbench, a free cross\-platform tool that you can use to query tables in an Amazon Redshift cluster\. The examples in this section will use the SQL Workbench client\.
 
-To download SQL Workbench and the PostgreSQL drivers, go to the [Amazon Redshift Getting Started Guide](http://docs.aws.amazon.com/redshift/latest/gsg/before-you-begin.html)\.
+To download SQL Workbench and the PostgreSQL drivers, go to the [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/before-you-begin.html)\.
 
 ## Step 2: Launch a Cluster<a name="getting-started-launch-cluster-cli"></a>
 
@@ -30,7 +30,7 @@ Now you're ready to launch a cluster by using the AWS Command Line Interface \(C
 The cluster that you're about to launch will be live \(and not running in a sandbox\)\. You will incur the standard usage fees for the cluster until you terminate it\. For pricing information, go to [the Amazon Redshift pricing page](https://aws.amazon.com/redshift/pricing/)\.  
 If you complete the exercise described here in one sitting and terminate your cluster when you are finished, the total charges will be minimal\. 
 
-The `create-cluster` command has a large number of parameters\. For this exercise, you will use the parameter values that are described in the following table\. Before you create a cluster in a production environment, we recommend that you review all the required and optional parameters so that your cluster configuration matches your requirements\. For more information, see [create\-cluster](http://docs.aws.amazon.com/cli/latest/reference/redshift/create-cluster.html)
+The `create-cluster` command has a large number of parameters\. For this exercise, you will use the parameter values that are described in the following table\. Before you create a cluster in a production environment, we recommend that you review all the required and optional parameters so that your cluster configuration matches your requirements\. For more information, see [create\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-cluster.html)
 
 
 | Parameter Name | Parameter Value for This Exercise | 
@@ -114,11 +114,11 @@ Now that you have added an ingress rule to the default cluster security group, i
 
 You are now ready to connect to the cluster\.
 
-For information about connecting to your cluster, go to the [Amazon Redshift Getting Started Guide](http://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html)\.
+For information about connecting to your cluster, go to the [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html)\.
 
 ## Step 5: Create Tables, Upload Data, and Try Example Queries<a name="getting-started-create-sample-db-cli"></a>
 
-For information about creating tables, uploading data, and issuing queries, go to the [Amazon Redshift Getting Started](http://docs.aws.amazon.com/redshift/latest/gsg/)\.
+For information about creating tables, uploading data, and issuing queries, go to the [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/)\.
 
 ## Step 6: Delete Your Sample Cluster<a name="getting-started-terminate-cluster-cli"></a>
 

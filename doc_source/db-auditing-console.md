@@ -15,10 +15,8 @@ You can configure Amazon Redshift to create audit log files and store them in S3
 1. In the **Configure Audit Logging** dialog box, in the **Enable Audit Logging** box, click **Yes**\.
 
 1. For **S3 Bucket**, do one of the following:
-
    + If you already have an S3 bucket that you want to use, select **Use Existing** and then select the bucket from the **Bucket** list\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cluster-audit-logging-existing.png)
-
    + If you need a new S3 bucket, select **Create New**, and in the **New Bucket Name** box, type a name\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cluster-audit-logging-new.png)
 

@@ -9,15 +9,12 @@
  This happens when you connect to Amazon Redshift from a computer other than an Amazon EC2 instance, and idle connections are terminated by an intermediate network component, such as a firewall, after a period of inactivity\. This behavior is typical when you log on from a Virtual Private Network \(VPN\) or your local network\. 
 
 To avoid these timeouts, we recommend the following changes:
-
 + Increase client system values that deal with TCP/IP timeouts\. You should make these changes on the computer you are using to connect to your cluster\. The timeout period should be adjusted for your client and network\. See [Change TCP/IP Timeout Settings](#connecting-firewall-guidance.change-tcpip-settings)\.
-
 + Optionally, set keep\-alive behavior at the DSN level\. See [Change DSN Timeout Settings](#connecting-firewall-guidance.change-dsn-settings)\.
 
 ## Change TCP/IP Timeout Settings<a name="connecting-firewall-guidance.change-tcpip-settings"></a>
 
 To change TCP/IP timeout settings, configure the timeout settings according to the operating system that you use to connect to your cluster\. 
-
 + Linux — If your client is running on Linux, run the following command as the root user to change the timeout settings for the current session: 
 
   ```
@@ -31,19 +28,14 @@ To change TCP/IP timeout settings, configure the timeout settings according to t
   net.ipv4.tcp_keepalive_intvl=200
   net.ipv4.tcp_keepalive_probes=5
   ```
-
 + Windows — If your client runs on Windows, edit the values for the following registry settings under HKEY\_LOCAL\_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\: 
-
   + KeepAliveTime: 30000
-
   + KeepAliveInterval: 1000
-
   + TcpMaxDataRetransmissions: 10
 
   These settings use the DWORD data type\. If they do not exist under the registry path, you can create the settings and specify these recommended values\. For more information about editing the Windows registry, refer to Windows documentation\. 
 
   After you set these values, restart your computer for the changes to take effect\. 
-
 + Mac — If your client is running on a Mac, run the following commands to change the timeout settings for the current session: 
 
   ```
