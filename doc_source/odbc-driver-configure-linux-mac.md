@@ -46,14 +46,14 @@ Amazon_Redshift_x32=Amazon Redshift (x86)
 Amazon_Redshift_x64=Amazon Redshift (x64)
 
 [Amazon Redshift (x86)]
-Driver=/opt/amazon/redshiftodbc/lib/32/libamazonredshiftodbc32.so
+Driver=/opt/amazon/redshiftodbc/lib/32/lib/amazonredshiftodbc32.so
 Host=examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com
 Port=5932
 Database=dev
 locale=en-US
 
 [Amazon Redshift (x64)]
-Driver=/opt/amazon/redshiftodbc/lib/64/libamazonredshiftodbc64.so
+Driver=/opt/amazon/redshiftodbc/lib/64/lib/amazonredshiftodbc64.so
 Host=examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com
 Port=5932
 Database=dev
@@ -67,7 +67,7 @@ Use the following format on Mac OS X operating systems:
 driver_name=dsn_name
 
 [dsn_name]
-Driver=path/libamazonredshiftodbc.dylib
+Driver=path/lib/amazonredshiftodbc.dylib
 
 Host=cluster_endpoint
 Port=port_number
@@ -82,7 +82,7 @@ locale=locale
 Amazon_Redshift_dylib=Amazon Redshift DSN for Mac OS X
 
 [Amazon Redshift DSN for Mac OS X]
-Driver=/opt/amazon/redshift/libamazonredshiftodbc.dylib
+Driver=/opt/amazon/redshift/lib/amazonredshiftodbc.dylib
 Host=examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com
 Port=5932
 Database=dev
@@ -116,11 +116,11 @@ Amazon Redshift (x64)=Installed
 
 [Amazon Redshift (x86)]
 Description=Amazon Redshift ODBC Driver (32-bit)
-Driver=/opt/amazon/redshiftodbc/lib/32/libamazonredshiftodbc32.so
+Driver=/opt/amazon/redshiftodbc/lib/32/lib/amazonredshiftodbc32.so
 
 [Amazon Redshift (x64)]
 Description=Amazon Redshift ODBC Driver (64-bit)
-Driver=/opt/amazon/redshiftodbc/lib/64/libamazonredshiftodbc64.so
+Driver=/opt/amazon/redshiftodbc/lib/64/lib/amazonredshiftodbc64.so
 ```
 
 Use the following format on Mac OS X operating systems:
@@ -132,7 +132,7 @@ driver_name=Installed
                             
 [driver_name]
 Description=driver_description
-Driver=path/libamazonredshiftodbc.dylib
+Driver=path/lib/amazonredshiftodbc.dylib
     
 ...
 ```
@@ -145,7 +145,7 @@ Amazon RedshiftODBC DSN=Installed
 
 [Amazon RedshiftODBC DSN]
 Description=Amazon Redshift ODBC Driver for Mac OS X
-Driver=/opt/amazon/redshift/libamazonredshiftodbc.dylib
+Driver=/opt/amazon/redshift/lib/amazonredshiftodbc.dylib
 ```
 
 ## Configuring Environment Variables for Driver Configuration Files<a name="rs-mgmt-config-global-env-variables"></a>

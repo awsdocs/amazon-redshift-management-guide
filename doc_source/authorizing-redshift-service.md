@@ -178,7 +178,7 @@ A role that passes to another role must establish a trust relationship with the 
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "iam:PassRole",
+      "Action": "sts:AssumeRole",
       "Principal": {
         "AWS": "arn:aws:iam::role/RoleA"
       }

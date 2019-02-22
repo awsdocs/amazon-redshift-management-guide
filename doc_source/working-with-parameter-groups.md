@@ -27,6 +27,7 @@ The following table shows the default parameter values at a glance with links to
 
 | Parameter Name | Value | More Information | 
 | --- | --- | --- | 
+|  auto\_analyze  |  true  |  [auto\_analyze](https://docs.aws.amazon.com/redshift/latest/dg/r_auto_analyze.html) in the Amazon Redshift Database Developer Guide  | 
 |  datestyle  |   ISO, MDY   |  [datestyle](https://docs.aws.amazon.com/redshift/latest/dg/r_datestyle.html) in the Amazon Redshift Database Developer Guide  | 
 |  enable\_user\_activity\_logging  |   false   |  [Database Audit Logging](db-auditing.md) in this guide  | 
 |  extra\_float\_digits  |  0  |  [extra\_float\_digits](https://docs.aws.amazon.com/redshift/latest/dg/r_extra_float_digits.html) in the Amazon Redshift Database Developer Guide  | 

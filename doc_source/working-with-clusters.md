@@ -83,6 +83,8 @@ For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md)
 + *ECU* is the number of Amazon EC2 compute units for each node\.
 + *RAM* is the amount of memory in gibibytes \(GiB\) for each node\.
 + *Slices per Node* is the number of slices into which a compute node is partitioned\.
+
+  The number of slices per node might change if the cluster is resized using elastic resize\.
 + *Storage* is the capacity and type of storage for each node\.
 +  *Node Range* is the minimum and maximum number of nodes that Amazon Redshift supports for the node type and size\. 
 **Note**  
@@ -208,13 +210,14 @@ To prevent connection issues between SQL client tools and the Amazon Redshift da
 
 ## Cluster Maintenance<a name="rs-cluster-maintenance"></a>
 
-Amazon Redshift periodically performs maintenance to apply upgrades to your cluster\. During these updates, your Amazon Redshift cluster isn't available for normal operations\. You have several ways to control how we maintain your cluster\. You have several ways to control how we maintain your cluster\. For example, you can control when we deploy updates to your clusters\. You can also choose whether your cluster will always run the most recently released version, or the version released previously to the most recently released version\. Finally, you have the option to defer non\-mandatory maintenance updates to a later date\.
+Amazon Redshift periodically performs maintenance to apply upgrades to your cluster\. During these updates, your Amazon Redshift cluster isn't available for normal operations\. You have several ways to control how we maintain your cluster\. For example, you can control when we deploy updates to your clusters\. You can also choose whether your cluster will always run the most recently released version, or the version released previously to the most recently released version\. Finally, you have the option to defer non\-mandatory maintenance updates for a period of time\.
 
 **Topics**
 + [Maintenance Windows](#rs-maintenance-windows)
 + [Defer Maintenance](#rs-mgmt-defer-maintenance)
 + [Choosing Cluster Maintenance Tracks](#rs-mgmt-maintenance-tracks)
 + [Managing Cluster Versions](#rs-mgmt-cluster-version)
++ [Rolling Back the Cluster Version](#rs-mgmt-rollback-version)
 
 ### Maintenance Windows<a name="rs-maintenance-windows"></a>
 
@@ -248,7 +251,7 @@ You can change the scheduled maintenance window by modifying the cluster, either
 
 ### Defer Maintenance<a name="rs-mgmt-defer-maintenance"></a>
 
-If you need to reschedule your cluster’s maintenance window, you have the option to defer maintenance by up to 14 days\. For example, if your cluster’s maintenance window is set to Wednesday 8:30 – 9:00 UTC and you need to have access to your cluster at that time, you can defer the maintenance to a later time period\. We will not perform any maintenance on your cluster when you have specified a deferment, unless we need to update hardware\.
+If you need to reschedule your cluster’s maintenance window, you have the option to defer maintenance by up to 45 days\. For example, if your cluster’s maintenance window is set to Wednesday 8:30 – 9:00 UTC and you need to have access to your cluster at that time, you can defer the maintenance to a later time period\. We will not perform any maintenance on your cluster when you have specified a deferment, unless we need to update hardware\.
 
 If we need to update hardware or make other mandatory updates during your period of deferment, we notify you and make the required changes\. Your cluster isn't available during these updates\.
 
@@ -263,11 +266,11 @@ For more information, see [Deferring Maintenance](managing-clusters-console.md#d
 
 When Amazon Redshift releases a new cluster version, your cluster is updated during its maintenance window\. You can control whether your cluster is updated to the most recent approved release or to the previous release\. 
 
-The maintenance track controls which cluster version is applied during a maintenance window\. When Amazon Redshift releases a new cluster version, that version is assigned to the *current* track, and the previous version is assigned to the *trailing* track\. To set the maintenance track for the cluster\. specify one of the following values:
+The maintenance track controls which cluster version is applied during a maintenance window\. When Amazon Redshift releases a new cluster version, that version is assigned to the *current* track, and the previous version is assigned to the *trailing* track\. To set the maintenance track for the cluster, specify one of the following values:
 + **Current** – Use the most current approved cluster version\.
 + **Trailing** – Use the cluster version before the current version\.
 
-For example, suppose your cluster is currently running version 1\.0\.2762 and the Amazon Redshift current version is 1\.0\.3072\. If you set the maintenance track value to **Current**, your cluster is updated to\. version 1\.0\.3072 \(the next approved release\) during the next maintenance window\. If you set the maintenance track value to **Trailing**, your cluster isn't updated until there is a new release after 1\.0\.3072\. 
+For example, suppose your cluster is currently running version 1\.0\.2762 and the Amazon Redshift current version is 1\.0\.3072\. If you set the maintenance track value to **Current**, your cluster is updated to version 1\.0\.3072 \(the next approved release\) during the next maintenance window\. If you set the maintenance track value to **Trailing**, your cluster isn't updated until there is a new release after 1\.0\.3072\. 
 
 **Switching between Maintenance Tracks**
 
@@ -286,6 +289,25 @@ A maintenance track is a series of releases\. You can decide if your cluster is 
 The **Release Status** column in the Amazon Redshift console list of clusters indicates whether one of your clusters is available for upgrade\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-upgrade.png)
+
+### Rolling Back the Cluster Version<a name="rs-mgmt-rollback-version"></a>
+
+If your cluster is up to date with the latest cluster version, you can choose to roll it back to the previous version\.
+
+For detailed information about features and improvements included with each cluster version, see [Cluster Version History](rs-mgmt-cluster-version-notes.md)\.
+
+**To roll back to a previous cluster version**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. In the navigation pane, choose **Clusters**\.
+
+1. Choose the cluster that you want to roll back and choose the **Status** tab\.
+
+   If there is a version available to roll back to, it appears on the status tab of the details page\.   
+![\[Roll-back version details screen\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/roll-back.png)
+
+1. Choose **Rollback to release \(release number\)**\.
 
 ## Default Disk Space Alarm<a name="rs-clusters-default-disk-usage-alarm"></a>
 

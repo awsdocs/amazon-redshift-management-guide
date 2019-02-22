@@ -84,4 +84,4 @@ To control whether psql authenticates the service using a certificate, you must 
 
 1.  At the psql password prompt, enter the password for the *<userid>* user\.
 
- You are connected to the cluster, and you can interactively enter commands\.
+You are connected to the cluster, and you can interactively enter commands\.

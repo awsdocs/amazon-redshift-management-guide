@@ -126,6 +126,6 @@ You can resize a cluster using either elastic resize or classic resize\. For mor
 
 ## Resizing a Cluster Using the CLI and API<a name="rs-tutorial-resize-cluster-cli-api"></a>
 
-To resize a cluster using the CLI, run the [resize\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/redshift/resize-cluster.html) command\. 
+To resize a cluster using the CLI, run the [resize\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/resize-cluster.html) command\. 
 
 To resize a cluster using the API, use the [ResizeCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ResizeCluster.html) action\. 

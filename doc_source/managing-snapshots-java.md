@@ -12,50 +12,69 @@ For step\-by\-step instructions to run the following example, see [Running Java 
 **Example**  
 
 ```
+/**
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * This file is licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License. A copy of
+ * the License is located at
+ *
+ * http://aws.amazon.com/apache2.0/
+ *
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
+*/
+
+// snippet-sourcedescription:[CreateAndDescribeSnapshot demonstrates how to create an Amazon Redshift cluster snapshot and describe existing snapshots.]
+// snippet-service:[redshift]
+// snippet-keyword:[Java]
+// snippet-keyword:[Amazon Redshift]
+// snippet-keyword:[Code Sample]
+// snippet-keyword:[CreateClusterSnapshot]
+// snippet-keyword:[DeleteClusterSnapshot]
+// snippet-keyword:[DescribeClusterSnapshots]
+// snippet-sourcetype:[full-example]
+// snippet-sourcedate:[2019-01-30]
+// snippet-sourceauthor:[AWS]
+// snippet-start:[redshift.java.CreateAndDescribeSnapshot.complete]
+
+package com.amazonaws.services.redshift;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.PropertiesCredentials;
-import com.amazonaws.services.redshift.AmazonRedshiftClient;
-import com.amazonaws.services.redshift.model.CreateClusterSnapshotRequest;
-import com.amazonaws.services.redshift.model.DeleteClusterSnapshotRequest;
-import com.amazonaws.services.redshift.model.DescribeClusterSnapshotsRequest;
-import com.amazonaws.services.redshift.model.DescribeClusterSnapshotsResult;
-import com.amazonaws.services.redshift.model.Snapshot;
+import com.amazonaws.services.redshift.model.*;
 
 public class CreateAndDescribeSnapshot {
 
-    public static AmazonRedshiftClient client;
-    public static String clusterIdentifier = "***provide cluster identifier***";
-    public static long sleepTime = 10; 
-        
+    public static AmazonRedshift client;
+    public static String clusterIdentifier = "***provide a cluster identifier***";
+    public static long sleepTime = 20;
+
     public static void main(String[] args) throws IOException {
-    
-        AWSCredentials credentials = new PropertiesCredentials(
-                CreateAndDescribeSnapshot.class
-                        .getResourceAsStream("AwsCredentials.properties"));
-    
-        client = new AmazonRedshiftClient(credentials);
-        
+
+         // Default client using the {@link com.amazonaws.auth.DefaultAWSCredentialsProviderChain}
+        client = AmazonRedshiftClientBuilder.defaultClient();
+
         try {
              // Unique snapshot identifier
              String snapshotId = "my-snapshot-" + (new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss")).format(new Date());
 
-             Date createDate = createManualSnapshot(snapshotId);   
+             Date createDate = createManualSnapshot(snapshotId);
              waitForSnapshotAvailable(snapshotId);
              describeSnapshots();
              deleteManualSnapshotsBefore(createDate);
              describeSnapshots();
-             
+
         } catch (Exception e) {
             System.err.println("Operation failed: " + e.getMessage());
         }
     }
 
     private static Date createManualSnapshot(String snapshotId) {
-        
+
         CreateClusterSnapshotRequest request = new CreateClusterSnapshotRequest()
         .withClusterIdentifier(clusterIdentifier)
         .withSnapshotIdentifier(snapshotId);
@@ -63,33 +82,33 @@ public class CreateAndDescribeSnapshot {
         System.out.format("Created cluster snapshot: %s\n", snapshotId);
         return snapshot.getSnapshotCreateTime();
     }
-    
+
     private static void describeSnapshots() {
 
         DescribeClusterSnapshotsRequest request = new DescribeClusterSnapshotsRequest()
             .withClusterIdentifier(clusterIdentifier);
         DescribeClusterSnapshotsResult result = client.describeClusterSnapshots(request);
-                
+
         printResultSnapshots(result);
     }
 
     private static void deleteManualSnapshotsBefore(Date creationDate) {
-        
+
         DescribeClusterSnapshotsRequest request = new DescribeClusterSnapshotsRequest()
             .withEndTime(creationDate)
             .withClusterIdentifier(clusterIdentifier)
             .withSnapshotType("manual");
-        
+
         DescribeClusterSnapshotsResult result = client.describeClusterSnapshots(request);
-        
+
         for (Snapshot s : result.getSnapshots()) {
             DeleteClusterSnapshotRequest deleteRequest = new DeleteClusterSnapshotRequest()
             .withSnapshotIdentifier(s.getSnapshotIdentifier());
             Snapshot deleteResult = client.deleteClusterSnapshot(deleteRequest);
-            System.out.format("Deleted snapshot %s\n", deleteResult.getSnapshotIdentifier());            
+            System.out.format("Deleted snapshot %s\n", deleteResult.getSnapshotIdentifier());
         }
     }
-    
+
     private static void printResultSnapshots(DescribeClusterSnapshotsResult result) {
         System.out.println("\nSnapshot listing:");
         for (Snapshot snapshot : result.getSnapshots()) {
@@ -99,7 +118,7 @@ public class CreateAndDescribeSnapshot {
             System.out.format("Snapshot status: %s\n\n", snapshot.getStatus());
         }
     }
-    
+
     private static Boolean waitForSnapshotAvailable(String snapshotId) throws InterruptedException {
         Boolean snapshotAvailable = false;
         System.out.println("Wating for snapshot to become available.");
@@ -119,4 +138,5 @@ public class CreateAndDescribeSnapshot {
     }
 
 }
+// snippet-end:[redshift.java.CreateAndDescribeSnapshot.complete]
 ```
