@@ -344,7 +344,7 @@ The following policy uses these sample parameter values:
 + AWS Account: `123456789012` 
 + Cluster name: `examplecluster` 
 
-The following policy enables the `GetCredentials`, `CreateCluserUser`, and `JoinGroup` actions\. The policy uses condition keys to allow the `GetClusterCredentials` and `CreateClusterUser` actions only when the AWS user ID matches `"AIDIODR4TAW7CSEXAMPLE:${redshift:DbUser}@yourdomain.com"`\. IAM access is requested for the `"testdb"` database only\. The policy also allows users to join a group named `"common_group"`\. 
+The following policy enables the `GetCredentials`, `CreateClusterUser`, and `JoinGroup` actions\. The policy uses condition keys to allow the `GetClusterCredentials` and `CreateClusterUser` actions only when the AWS user ID matches `"AIDIODR4TAW7CSEXAMPLE:${redshift:DbUser}@yourdomain.com"`\. IAM access is requested for the `"testdb"` database only\. The policy also allows users to join a group named `"common_group"`\. 
 
 ```
 {

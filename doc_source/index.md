@@ -107,6 +107,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Amazon Redshift Performance Data](metrics-listing.md)
    + [Working with Performance Data in the Amazon Redshift Console](performance-metrics-console.md)
       + [Viewing Cluster Performance Data](performance-metrics-perf.md)
+      + [Viewing Concurrency Scaling Data](performance-metrics-concurrency-scaling.md)
       + [Viewing Query Performance Data](performance-metrics-queries.md)
          + [Viewing Query Details](performance-metrics-query-execution-details.md)
             + [Analyzing Query Execution](analyzing-query-execution.md)

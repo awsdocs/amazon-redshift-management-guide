@@ -2,12 +2,26 @@
 
 Find notes about cluster versions for Amazon Redshift\.
 
-## Version 1\.0\.6145<a name="rs-mgmt-cluster-version-notes-106145"></a><a name="rs-mgmt-cluster-version-notes-106145"></a>
+## Versions 1\.0\.6527, 1\.0\.6630, 1\.06670, 1\.0\.6761<a name="rs-mgmt-cluster-version-notes-106527"></a><a name="rs-mgmt-cluster-version-notes-106527"></a>
+
+Time period: March 13–April 5, 2019
+
+**Features and Improvements**
++ **Amazon Redshift:** now automatically and elastically scales query processing power to provide consistently fast performance for hundreds of concurrent queries\. Concurrency Scaling resources are added to your Amazon Redshift cluster transparently in seconds, as concurrency increases, to process queries without wait time\. 
++ **Amazon Redshift:** You can now UNLOAD the result of a query to one or more text files in CSV format to Amazon S3\. 
++ **Amazon Redshift:** You can use the COPY command to load data from ZSTD compressed files\.
++ **Amazon Redshift:** The TO\_DATE\(\) and TO\_TIMESTAMP\(\) functions now accept new format fields\.
+
+**Fixes**
++ Fix for a query issue when arguments to user\-defined functions are NULL\.
++ Fix for a query issue when LIKE predicates are used\.
++ Fix for an issue with mismatched datatypes in queries using SET operations
+
+## Versions 1\.0\.6145, 1\.0\.6230, 1\.0\.6246, 1\.0\.6431, 1\.0\.6476, 1\.0\.6754<a name="rs-mgmt-cluster-version-notes-106145"></a><a name="rs-mgmt-cluster-version-notes-106145"></a>
 
 Time period: February 20–March 21, 2019
 
 **Features and Improvements**
-+ **Amazon Redshift:** You can now UNLOAD the result of a query to one or more text files in CSV format to Amazon S3\. 
 + **Amazon Redshift:** You can now use the ALTER TABLE command to increase the size of VARCHAR columns\. 
 + **Amazon Redshift:** Significant performance improvements by enhancing the Redshift optimizer for queries including NOT IN hash joins\. 
 + **Amazon Redshift:** Optimized processing of LEAST\(\) and GREATEST\(\) over constant input expressions\. 

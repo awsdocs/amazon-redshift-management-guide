@@ -112,7 +112,10 @@ Automated snapshots are automatically deleted when their retention period expire
 
 ## Restoring a Cluster from a Snapshot<a name="snapshot-restore"></a>
 
-When you restore a cluster from a snapshot, Amazon Redshift creates a new cluster with all the snapshot data on the new cluster\.<a name="snapshot-restore-task"></a>
+When you restore a cluster from a snapshot, Amazon Redshift creates a new cluster with all the snapshot data on the new cluster\.
+
+**Note**  
+You can use these steps to change a cluster platform from EC2\-Classic to EC2\-VPC and vice versa\.<a name="snapshot-restore-task"></a>
 
 **To restore a cluster from a snapshot**
 
@@ -168,9 +171,11 @@ When you restore a cluster from a snapshot, Amazon Redshift creates a new cluste
 
    1. In **Cluster Parameter Group**, select a parameter group to associate with the cluster\. 
 
-   1. In **Cluster Security Groups** or **VPC Security Groups**, select a security group to associate with the cluster\. The types of security group that appear here depend on whether you're restoring the cluster into the EC2\-Classic or EC2\-VPC platform\. 
+   1. In **Cluster Security Groups** or **VPC Security Groups**, select a security group to associate with the cluster\. The types of security group that appear here depend on whether you're restoring the cluster into the EC2\-VPC or EC2\-Classic platform\. 
 
-      The option to select a cluster security group or a VPC security group depends on whether you restore the cluster into the EC2\-Classic platform or the EC2\-VPC platform\. 
+      The option to select a cluster security group or a VPC security group depends on whether you restore the cluster into the EC2\-VPC platform or the EC2\-Classic platform\. 
+
+   1. In **Maintenance track**, the value of the maintenance track is displayed\. In **Change maintenance track to**, optionally choose to restore the cluster using one of the maintenance tracks listed\. 
 
    The following is an example of restoring a snapshot into a cluster that uses the EC2\-VPC platform\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-restore-from-snapshot-vpc.png)

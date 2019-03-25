@@ -1,10 +1,8 @@
 # Managing Parameter Groups Using the Console<a name="managing-parameter-groups-console"></a>
 
- You can view, create, modify, and delete parameter groups by using the Amazon Redshift console\. To initiate these tasks, use the buttons on the **Parameter Groups** page, as shown in the following screenshot\. 
+ You can view, create, modify, and delete parameter groups on the Amazon Redshift console\. To initiate these tasks, choose **Workload management**, then choose the **Parameter Groups** to manage or create one\. 
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/parameter-groups-menu-buttons.png)
-
-You can expand any of the parameter groups in the list to see a summary of the values for parameters and workload management \(WLM\) configuration\. In the following screenshot, the parameter group called `custom-parameter-group` is expanded to show the summary of parameter values\. 
+ You can view any of the parameter groups in the list to see a summary of the values for parameters and workload management \(WLM\) configuration\. **Group parameters** are shown on the **Parameters** tab and **Workload queues** are shown on the **Workload Management** tab\. In the following screenshot, the parameter group called `custom-param-group` is expanded to show the summary of parameter values\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/parameter-groups-list.png)
 
@@ -42,8 +40,18 @@ You cannot modify the default parameter group\.<a name="parameter-group-modify-t
 
 1. To edit the parameters other than the WLM configuration parameter, choose **Edit Parameters**\.
 
-   The **Parameters** tab opens as shown in the following screenshot\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/parameter-group-modify-parameters.png)
+   The **Parameters** tab opens and enables you to update parameters in the parameter group\. You can update values for parameters such as:
+   + auto\_analyze
+   + datestyle
+   + enable\_user\_activity\_logging
+   + extra\_float\_digits
+   + force\_acm
+   + max\_concurrency\_scaling\_clusters
+   + query\_group
+   + require\_ssl
+   + search\_path
+   + statement\_timeout
+   + use\_fips\_ssl
 
 1. In the **Value** box that corresponds to the parameter you want to modify, type a new value\. For more information about these parameters, see [Amazon Redshift Parameter Groups](working-with-parameter-groups.md)\.
 
@@ -61,20 +69,26 @@ You cannot modify the default parameter group\.<a name="parameter-group-modify-t
 **Note**  
 You cannot modify the default parameter group\.
 
-1. To edit the WLM configuration, choose **Edit**\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/parameter-group-modify-wlm.png)
+1. To edit the WLM configuration, choose **Edit**\. 
 
-1. To enable short query acceleration \(SQA\), choose **Enable short query acceleration**\.
+1. To enable short query acceleration \(SQA\), select **Enable short query acceleration**\.
 
-1. When you enable SQA, ** Maximum run time for short queries \(1 to 20 seconds\)** is set to **Dynamic** by default\. To set the maximum run time to a fixed value, choose a value of 1–20
+1. When you enable SQA, ** Maximum run time for short queries \(1 to 20 seconds\)** is set to **Dynamic** by default\. To set the maximum run time to a fixed value, choose a value of 1–20\.
 
 1. Do one or more of the following to modify the queue configuration: 
    + To create a queue, choose **Add Queue**\.
-   + To modify a queue, change property values in the table\.
+   + To modify the **Max Concurrency Scaling clusters** parameter, choose **Edit** next to the current value that is displayed\.
+   + To modify a queue, change property values in the table\. Depending on the type of queue, properties can include:
+     + **Memory \(%\)**
+     + **Concurrency on main** cluster
+     + **Concurrency Scaling mode** can be `off` or `auto`
+     + **Timeout \(ms\)**
+     + **User groups**
+     + **Query groups**
    + To change the order of queues, choose the **Up** and **Down** arrow buttons in the table\.
    + To delete a queue, choose **Delete** in the queue's row in the table\.
 
-1. To have changes applied to associated clusters after their next reboot, choose **Apply dynamic changes after cluster reboot**\.
+1. To have changes applied to associated clusters after their next reboot, select **Defer dynamic changes until reboot**\.
 **Note**  
 Some changes require a cluster reboot regardless of this setting\. For more information, see [WLM Dynamic and Static Properties](workload-mgmt-config.md#wlm-dynamic-and-static-properties)\.
 
@@ -100,11 +114,7 @@ You can't modify the default parameter group\.
 
 1. To edit the WLM configuration, choose **Edit**\. 
 
-1.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/parameter-group-modify-wlm.png)
-
-1. Choose **Add queue**\. A new queue appears, as shown in the following screenshot\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/parameter-group-qmr-add-queue.png)
+1. Choose **Add queue**\. A new queue appears\.
 
 1. To create a new rule using a predefined template, in the **Rules for Queue 1** group, choose **Add Rule from Templates**\. The **Rule Templates** dialog appears, as shown in the following screenshot\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/parameter-group-qmr-rule-template-dialog.png)

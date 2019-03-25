@@ -41,6 +41,11 @@ An Amazon Redshift cluster consists of nodes\. Each cluster has a leader node an
 
 *Compute nodes* execute the query execution plans and transmit data among themselves to serve these queries\. The intermediate results are sent to the leader node for aggregation before being sent back to the client applications\. For more information about leader nodes and compute nodes, see [Data Warehouse System Architecture](https://docs.aws.amazon.com/redshift/latest/dg/c_high_level_system_architecture.html) in the *Amazon Redshift Database Developer Guide*\. 
 
+
+|  | 
+| --- |
+|  You can use the **Redshift dashboard** on the Amazon Redshift console \([https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\) to **Find the best cluster configuration for your needs**\. With this tool, you can specify the size of your data and receive a recommendation for your cluster\. Then **Launch this cluster** right from the console\.  | 
+
 When you launch a cluster, one option you specify is the node type\. The node type determines the CPU, RAM, storage capacity, and storage drive type for each node\. The *dense storage* \(DS\) node types are storage optimized\. The *dense compute* \(DC\) node types are compute optimized\. 
 
 DS2 node types are optimized for large data workloads and use hard disk drive \(HDD\) storage\. 
@@ -66,9 +71,9 @@ The cost of your cluster depends on the region, node type, number of nodes, and 
 
 To take advantage of performance improvements, you can migrate your DC1 cluster to the newer DC2 node types\. 
 
-Clusters that use the DC2 node types must be launched in a virtual private cloud \(EC2\-VPC\)\. If your cluster isn't in a VPC \(EC2\-CLASSIC\), first create a snapshot of your cluster, and then choose one of the following options: 
+Clusters that use the DC2 node types must be launched in a virtual private cloud \(EC2\-VPC\)\. If your cluster isn't in a VPC \(EC2\-Classic\), first create a snapshot of your cluster, and then choose one of the following options: 
 + From a dc1\.large cluster, restore directly to a dc2\.large cluster in a VPC\.
-+  From a dc1\.8xlarge cluster in EC2\-CLASSIC, first restore to a dc1\.8xlarge cluster in a VPC, and then resize your dc1\.8xlarge cluster to a dc2\.8xlarge cluster\. You can't restore directly to a dc2\.8xl cluster because the dc2\.8xlarge node type has a different number of slices than the dc1\.8xlarge node type\. 
++  From a dc1\.8xlarge cluster in EC2\-Classic, first restore to a dc1\.8xlarge cluster in a VPC, and then resize your dc1\.8xlarge cluster to a dc2\.8xlarge cluster\. You can't restore directly to a dc2\.8xl cluster because the dc2\.8xlarge node type has a different number of slices than the dc1\.8xlarge node type\. 
 
 If your cluster is in a VPC, choose one of the following options:
 + From a dc1\.large cluster, restore directly to a dc2\.large cluster in a VPC\.
@@ -171,14 +176,10 @@ The leader node IP address is at the end of the ANSWER SECTION in the results, a
 
 ## Supported Platforms to Launch Your Cluster<a name="cluster-platforms"></a>
 
- Amazon Redshift clusters run in Amazon Elastic Compute Cloud \(Amazon EC2\) instances that are configured for the Amazon Redshift node type and size that you select\. You can launch an Amazon Redshift cluster in one of two platforms: EC2\-Classic or EC2\-VPC, which are the supported platforms for Amazon EC2 instances\. For more information about these platforms, see [Supported Platforms](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html) in the *Amazon EC2 User Guide for Linux Instances*\. The platform or platforms available to you depend on your AWS account settings\. 
+ Amazon Redshift clusters run in Amazon Elastic Compute Cloud \(Amazon EC2\) instances that are configured for the Amazon Redshift node type and size that you select\. You can launch an Amazon Redshift cluster in one of two platforms: EC2\-VPC or EC2\-Classic, which are the supported platforms for Amazon EC2 instances\. We recommend that you launch your cluster in an EC2\-VPC platform instead of an EC2\-Classic platform\. For more information about these platforms, see [Supported Platforms](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html) in the *Amazon EC2 User Guide for Linux Instances*\. The platform or platforms available to you depend on your AWS account settings\. 
 
 **Note**  
 To prevent connection issues between SQL client tools and the Amazon Redshift database, we recommend doing one of two things\. You can configure an inbound rule that enables the hosts to negotiate packet size\. Alternatively, you can disable TCP/IP jumbo frames by setting the maximum transmission unit \(MTU\) to 1500 on the network interface \(NIC\) of your Amazon EC2 instances\. For more information about these approaches, see [Queries Appear to Hang and Sometimes Fail to Reach the Cluster](connecting-drop-issues.md)\. 
-
-### EC2\-Classic Platform<a name="cluster-platforms-ec2-classic"></a>
-
- In the EC2\-Classic platform, your cluster runs in a single, flat network that you share with other AWS customers\. If you provision your cluster in the EC2\-Classic platform, you control access to your cluster by associating one or more Amazon Redshift cluster security groups with the cluster\. For more information, see [Amazon Redshift Cluster Security Groups](working-with-security-groups.md)\. 
 
 ### EC2\-VPC Platform<a name="cluster-platforms-ec2-vpc"></a>
 
@@ -187,6 +188,10 @@ To prevent connection issues between SQL client tools and the Amazon Redshift da
  To create a cluster in a VPC, you must first create an Amazon Redshift cluster subnet group by providing subnet information of your VPC, and then provide the subnet group when launching the cluster\. For more information, see [Amazon Redshift Cluster Subnet Groups](working-with-cluster-subnet-groups.md)\. 
 
  For more information about Amazon Virtual Private Cloud \(Amazon VPC\), see the [Amazon VPC product detail page](https://aws.amazon.com/vpc/)\. 
+
+### EC2\-Classic Platform<a name="cluster-platforms-ec2-classic"></a>
+
+ In the EC2\-Classic platform, your cluster runs in a single, flat network that you share with other AWS customers\. If you provision your cluster in the EC2\-Classic platform, you control access to your cluster by associating one or more Amazon Redshift cluster security groups with the cluster\. For more information, see [Amazon Redshift Cluster Security Groups](working-with-security-groups.md)\. 
 
 ### Choose a Platform<a name="choose-rs-cluster-platform"></a>
 
@@ -232,6 +237,7 @@ The following list shows the time blocks for each region from which the default 
 + US West \(Oregon\) region: 06:00–14:00 UTC
 + Canada \(Central\) region: 03:00–11:00 UTC
 + Asia Pacific \(Mumbai\) region: 16:30–00:30 UTC
++ Asia Pacific \(Osaka\-Local\) region: 13:00–21:00 UTC
 + Asia Pacific \(Seoul\) region: 13:00–21:00 UTC
 + Asia Pacific \(Singapore\) region: 14:00–22:00 UTC
 + Asia Pacific \(Sydney\) region: 12:00–20:00 UTC

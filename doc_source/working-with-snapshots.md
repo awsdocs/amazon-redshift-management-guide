@@ -48,11 +48,11 @@ Amazon Redshift has a quota that limits the total number of manual snapshots tha
 
 ## Managing Snapshot Storage<a name="managing-snapshot-storage"></a>
 
-Because snapshots accrue storage charges, it’s important that you delete them when you no longer need them\. Amazon Redshift deletes automatic and manual snapshots at the end of the snapshot retention period\. You can also delete manual snapshots using the AWS Management Console or with the [batch\-delete\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/redshift/batch-delete-snapshots) CLI command\. 
+Because snapshots accrue storage charges, it’s important that you delete them when you no longer need them\. Amazon Redshift deletes automatic and manual snapshots at the end of the snapshot retention period\. You can also delete manual snapshots using the AWS Management Console or with the [batch\-delete\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/redshift/batch-delete-snapshots.html) CLI command\. 
 
 You can change the retention period for a manual snapshot by modifying the manual snapshot settings\. 
 
-You can get information about how much storage your snapshots are consuming using the Amazon Redshift Console or using the [describe\-storage](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-storage) CLI command\. 
+You can get information about how much storage your snapshots are consuming using the Amazon Redshift Console or using the [describe\-storage](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-storage.html) CLI command\. 
 
 ## Excluding Tables From Snapshots<a name="snapshots-no-backup-tables"></a>
 
@@ -76,7 +76,7 @@ If you want to copy snapshots for AWS KMS\-encrypted clusters to another region,
 
 ## Restoring a Cluster from a Snapshot<a name="working-with-snapshot-restore-cluster-from-snapshot"></a>
 
-A snapshot contains data from any databases that are running on your cluster, and also information about your cluster, including the number of nodes, node type, and master user name\. If you need to restore your cluster from a snapshot, Amazon Redshift uses the cluster information to create a new cluster and then restores all the databases from the snapshot data\. The new cluster that Amazon Redshift creates from the snapshot will have same configuration, including the number and type of nodes, as the original cluster from which the snapshot was taken\. The cluster is restored in the same region and a random, system\-chosen Availability Zone, unless you specify another Availability Zone in your request\.
+A snapshot contains data from any databases that are running on your cluster, and also information about your cluster, including the number of nodes, node type, and master user name\. If you need to restore your cluster from a snapshot, Amazon Redshift uses the cluster information to create a new cluster and then restores all the databases from the snapshot data\. The new cluster that Amazon Redshift creates from the snapshot will have same configuration, including the number and type of nodes, as the original cluster from which the snapshot was taken\. The cluster is restored in the same region and a random, system\-chosen Availability Zone, unless you specify another Availability Zone in your request\. When you restore a cluster from a snapshot, you can optionally choose a compatible maintenance track for the new cluster\.
 
 You can monitor the progress of a restore by either calling the [DescribeClusters](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusters.html) API action, or viewing the cluster details in the AWS Management Console\. For an in\-progress restore, these display information such as the size of the snapshot data, the transfer rate, the elapsed time, and the estimated time remaining\. For a description of these metrics, go to [RestoreStatus](https://docs.aws.amazon.com/redshift/latest/APIReference/API_RestoreStatus.html)\.
 

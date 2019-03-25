@@ -1,12 +1,6 @@
 # Viewing Query Performance Data<a name="performance-metrics-queries"></a>
 
- The Amazon Redshift console provides information about performance of queries that run in the database\. You can use this information to identify and troubleshoot queries that take a long time to process and that create bottlenecks preventing other queries from processing efficiently\. You can use the **Queries** tab on the cluster details page to view this information\. The **Queries** tab shows a table that lists queries that are currently running or have run recently in the cluster\. 
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cm-metrics-query-tab.png)
-
-Use the button bar, shown following, to refresh the data in the table, to configure the columns that appear in the table, or to open the Amazon Redshift documentation\.
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cm-metrics-button-bar.png)
+ The Amazon Redshift console provides information about performance of queries that run in the database\. You can use this information to identify and troubleshoot queries that take a long time to process and that create bottlenecks preventing other queries from processing efficiently\. You can use the **Queries** tab on the cluster details page to view this information\. The **Queries** tab shows a table that lists queries that are currently running or have run recently in the cluster\. This list includes **Query ID**, **Run time**, **Start time**, and other information about the query\.
 
 **To view query performance data**
 
@@ -14,8 +8,7 @@ Use the button bar, shown following, to refresh the data in the table, to config
 
 1. In the navigation pane, choose **Clusters**\.
 
-1. For **Cluster**, choose the magnifying glass icon beside the cluster for which you want to view performance data\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cm-metrics-10.png)
+1. Choose the cluster for which you want to view performance data\.
 
 1. Choose the **Queries** tab\.
 

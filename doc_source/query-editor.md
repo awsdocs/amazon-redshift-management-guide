@@ -18,7 +18,7 @@ Using the Query Editor, you can do the following:
 
 Be aware of the following considerations when you use the Query Editor:
 + Up to 50 users can connect to a cluster with the Query Editor at the same time\.
-+ Up to 500 users can connect to a cluster simultaneously\. This total includes the users connecting through the Query Editor\.
++ The maximum number of users connecting to a cluster includes those connecting through the Query Editor\.
 + Up to 50 workload management \(WLM\) query slots can be active at the same time\. For more information about query slots, see [Implementing Workload Management](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html)\.
 + Query Editor only runs short queries that can complete within two minutes\. 
 + Query result sets are paginated with 100 rows per page\.
@@ -27,9 +27,26 @@ Be aware of the following considerations when you use the Query Editor:
 
 ## Enabling Access to the Query Editor<a name="query-cluster-configure"></a>
 
-To access the Query Editor, you need permission\. To enable access, attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` policies for AWS Identity and Access Management \(IAM\) to the AWS account that you use to access your cluster\.
+To access the Query Editor, you need permission\. To enable access, attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` policies for AWS Identity and Access Management \(IAM\) to the IAM user that you use to access your cluster\.
 
 If you have already created an IAM user to access Amazon Redshift, you can attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` policies to that user\. If you haven't created an IAM user yet, create one and attach the policies to the IAM user\.
+
+**Note**  
+The AWS managed policy `AmazonRedshiftQueryEditor`, allows the action `redshift:GetClusterCredentials`, which by default gives a database user superuser access to the database\. To restrict access, you can do one of the following items:  
+Create a custom policy that allows calling `redshift:GetClusterCredentials` and restricts the resource to a `DbUser`\.
+Add a policy to the user that denies permission to `redshift:GetClusterCredentials` and then require users of the Query Editor to sign in with temporary credentials\. For example, the denial policy is similar to this policy:  
+
+  ```
+  {
+    "Version": "2012-10-17",
+    "Statement": {
+      "Effect": "Deny",
+      "Action": "redshift:GetClusterCredentials",
+      "Resource": "*"
+    }
+  }
+  ```
+For more information, see [Create an IAM Role or User With Permissions to Call GetClusterCredentials](generating-iam-credentials-role-permissions.md)\.
 
 **To attach the required IAM policies for the Query Editor**
 

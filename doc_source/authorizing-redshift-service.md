@@ -198,6 +198,7 @@ The following trust policy establishes a trust relationship with the owner of `R
       "Principal": {
         "AWS": "arn:aws:iam::123456789012:root"
       }
+    }      
   ]
 }
 ```

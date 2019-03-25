@@ -29,8 +29,10 @@ By default, an Amazon Redshift cluster is only accessible to the AWS account tha
 ### Security Groups<a name="rs-overview-security-groups"></a>
 
 By default, any cluster that you create is closed to everyone\. IAM credentials only control access to the Amazon Redshift API\-related resources: the Amazon Redshift console, command line interface \(CLI\), API, and SDK\. To enable access to the cluster from SQL client tools via JDBC or ODBC, you use security groups: 
++ If you are using the EC2\-VPC platform for your Amazon Redshift cluster, you must use VPC security groups\. We recommend that you launch your cluster in an EC2\-VPC platform\.
+
+  You cannot move a cluster to a VPC after it has been launch with EC2\-Classic\. However, you can restore an EC2\-Classic snapshot to an EC2\-VPC cluster using the Amazon Redshift console\. For more information, see [Restoring a Cluster from a Snapshot](managing-snapshots-console.md#snapshot-restore)\.
 + If you are using the EC2\-Classic platform for your Amazon Redshift cluster, you must use Amazon Redshift security groups\.
-+ If you are using the EC2\-VPC platform for your Amazon Redshift cluster, you must use VPC security groups\.
 
 In either case, you add rules to the security group to grant explicit inbound access to a specific range of CIDR/IP addresses or to an Amazon Elastic Compute Cloud \(Amazon EC2\) security group if your SQL client runs on an Amazon EC2 instance\. For more information, see [Amazon Redshift Cluster Security Groups](working-with-security-groups.md)\.
 

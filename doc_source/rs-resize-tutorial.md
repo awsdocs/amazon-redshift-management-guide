@@ -43,8 +43,11 @@ Elastic resize doesn't sort tables or reclaim disk space, so it isn't a substitu
 Elastic resize has the following constraints: 
 + Elastic resize is available only for clusters that use the EC2\-VPC platform\. For more information, see [Supported Platforms to Launch Your Cluster](working-with-clusters.md#cluster-platforms)
 + The new node configuration must have enough storage for existing data\. Even when you add nodes, your new configuration might not have enough storage because of the way that data is redistributed\. 
-+ You can resize only by a factor of 2, up or down, for dc2\.large or ds2\.xlarge node types\. For example, you can resize a four\-node cluster up to eight nodes or down to two nodes\. 
-+ For dc2\.8xlarge or ds2\.8xlarge, you can resize up to two times the original node count, or down to one\-half the original node count\. For example, you can resize a 16\-node cluster to any size up to 32 nodes, or any size down to 8 nodes\. 
++ For dc2\.large or ds2\.xlarge node types, you can double the size or half the size of the number of nodes of the original cluster\. For example, a 4\-node cluster can increase to eight nodes or decrease to two nodes with elastic resize\. To resize to a different number of nodes, you must use [Classic Resize](#classic-resize)\.
++ For dc2\.8xlarge or ds2\.8xlarge node types, you can change the number of nodes to half the current number to double the current number of nodes\. For example, a 4\-node cluster can be resized to 2, 3, 5, 6, 7, or 8 nodes\.
+
+**Note**  
+Use [Classic Resize](#classic-resize) to reset the maximum node limit\. For example, to increase from 4 nodes to 10 nodes, first change to 5 nodes using classic resize\. 
 
 ## Classic Resize<a name="classic-resize"></a>
 

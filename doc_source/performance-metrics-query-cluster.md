@@ -8,16 +8,14 @@ You can use the **Cluster Performance During Query Execution** section of the **
 
 1. In the navigation pane, choose **Clusters**\.
 
-1. For **Cluster**, choose the cluster for which you want to view cluster performance during query execution\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cm-metrics-10.png)
+1. For **Cluster**, choose the cluster for which you want to view cluster performance during query execution\.
 
-1. Choose the **Queries** tab\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cm-metrics-70.png)
+1. Choose the **Queries** tab\.
 
 1. In the query list, find the query you want to work with, and choose the query ID in the **Query** column\.
 
-   In the following example, the queries are sorted by **Run time** to find the query with the maximum run time\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cm-metrics-80.png)
+   In the following example, the queries are sorted by **Run time** to find the queries with the longest run times\.   
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cluster-queries-list.png)
 
 1. In the **Query** page that opens, scroll to the **Cluster Performance During Query Execution** section to view cluster metrics\.
 

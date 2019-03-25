@@ -20,6 +20,7 @@ You can expand the cluster to view more information about the cluster, such as t
 + [Deleting a Cluster](#delete-cluster)
 + [Rebooting a Cluster](#reboot-cluster)
 + [Resizing a Cluster](#resizing-cluster)
++ [Upgrade Cluster Release Version](#upgrade-release-version-cluster)
 + [Getting Information About Cluster Configuration](#describe-cluster)
 + [Getting an Overview of Cluster Status](#status-cluster)
 + [Taking a Snapshot of a Cluster](#snapshot-cluster)
@@ -141,13 +142,11 @@ If you want to use a key from another AWS account, choose **Enter a key ARN** fr
 
         If you choose **HSM**, choose values from **HSM Connection** and **HSM Client Certificate**\. These values are required for Amazon Redshift and the HSM to form a trusted connection over which the cluster key can be passed\. The HSM connection and client certificate must be set up in Amazon Redshift before you launch a cluster\. For more information about setting up HSM connections and client certificates, see [Encryption for Amazon Redshift Using Hardware Security Modules](working-with-db-encryption.md#working-with-HSM)\.
 
-   1. For **Configure Networking Options**, you configure whether to launch your cluster in a virtual private cloud \(VPC\) or outside a VPC\. The option you choose affects the additional options available in this section\. Amazon Redshift uses the EC2\-Classic and EC2\-VPC platforms to launch clusters\. Your AWS account determines which platform or platforms are available to you for your cluster\. For more information, see [Supported Platforms](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html) in the *Amazon EC2 User Guide for Linux Instances*\.   
+   1. For **Configure Networking Options**, you configure whether to launch your cluster in a virtual private cloud \(VPC\) or outside a VPC\. The option you choose affects the additional options available in this section\. Amazon Redshift uses the EC2\-VPC and EC2\-Classic platforms to launch clusters\. Your AWS account determines which platform or platforms are available to you for your cluster\. For more information, see [Supported Platforms](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html) in the *Amazon EC2 User Guide for Linux Instances*\.   
 **Choose a VPC**  
-To launch your cluster in a virtual private cloud \(VPC\), choose the VPC you want to use\. You must have at least one Amazon Redshift subnet group set up to use VPCs\. For more information, see [Amazon Redshift Cluster Subnet Groups](working-with-cluster-subnet-groups.md)\.   
-
+      + To launch your cluster in a virtual private cloud \(VPC\), choose the VPC you want to use\. You must have at least one Amazon Redshift subnet group set up to use VPCs\. For more information, see [Amazon Redshift Cluster Subnet Groups](working-with-cluster-subnet-groups.md)\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-launch-addl-config-networking-vpc.png)
-To launch your cluster outside a VPC, choose **Not in VPC**\. This option is available only to AWS accounts that support the EC2\-Classic platform\. Otherwise, you must launch your cluster in a VPC\.   
-
+      + To launch your cluster outside a VPC, choose **Not in VPC**\. This option is available only to AWS accounts that support the EC2\-Classic platform\. Otherwise, you must launch your cluster in a VPC\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-launch-addl-config-networking-no-vpc.png)  
 **Cluster Subnet Group**  
  Select the Amazon Redshift subnet group in which to launch the cluster\.   
@@ -167,16 +166,16 @@ This option is available only for clusters in a VPC where **Publicly Accessible*
 Choose **Yes** to enable enhanced VPC routing\. Enhanced VPC routing might require some additional configuration\. For more information, see [Amazon Redshift Enhanced VPC Routing](enhanced-vpc-routing.md)\. 
 
    1. For **Optionally, associate your cluster with one or more security groups**, specify values for the following options:  
-**Cluster Security Groups**  
- Choose an Amazon Redshift security group or groups for the cluster\. By default, the chosen security group is the default security group\. For more information about cluster security groups, see [Amazon Redshift Cluster Security Groups](working-with-security-groups.md)\.   
- This option is only available if you launch your cluster in the EC2\-Classic platform\. 
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-launch-addl-config-cluster-security-group.png)  
 **VPC Security Groups**  
  Choose a VPC security group or groups for the cluster\. By default, the chosen security group is the default VPC security group\. For more information about VPC security groups, see [Security Groups for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) in the *Amazon VPC User Guide*\.   
  This option is only available if you launch your cluster in the EC2\-VPC platform\. 
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-launch-addl-config-vpc-security-group.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-launch-addl-config-vpc-security-group.png)  
+**Cluster Security Groups**  
+ Choose an Amazon Redshift security group or groups for the cluster\. By default, the chosen security group is the default security group\. For more information about cluster security groups, see [Amazon Redshift Cluster Security Groups](working-with-security-groups.md)\.   
+ This option is only available if you launch your cluster in the EC2\-Classic platform\. 
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-launch-addl-config-cluster-security-group.png)
 
    1.  For **Optionally create a basic alarm for this cluster**, configure the following options, and then choose **Continue**:   
 **Create CloudWatch Alarm**  
@@ -264,7 +263,7 @@ You can set the maintenance track for a cluster with the console\. For more info
 
 ### Deferring Maintenance<a name="defer-maintenance-window"></a>
 
-If you need to reschedule your cluster’s maintenance window, you have the option to defer maintenance by up to 14 days\.<a name="defer-maintenance-task"></a>
+If you need to reschedule your cluster’s maintenance window, you have the option to defer maintenance by up to 45 days\.<a name="defer-maintenance-task"></a>
 
 **To defer the maintenance window**
 
@@ -348,6 +347,25 @@ When you reboot a cluster, the cluster status is set to `rebooting` and a cluste
 
    You can cancel a resize before it's complete by choosing **cancel resize** on the cluster list\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-cancel-resize.png)
+
+## Upgrade Cluster Release Version<a name="upgrade-release-version-cluster"></a>
+
+You can upgrade the release maintenance version of a cluster that has a **Release Status** value of **New release available**\. When you upgrade the maintenance version you can choose to upgrade immediately or upgrade in the next maintenance window\.
+
+**Important**  
+If you upgrade immediately, your cluster is offline until the upgrade completes\.<a name="upgrade-release-version-cluster-task"></a>
+
+**To upgrade a cluster release version**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1.  In the navigation pane, choose **Clusters**, and then choose the cluster that you want to upgrade\. 
+
+1. On the **Clusters** tab, choose **Cluster**, and then choose **Upgrade release version**\.
+
+1. In the **Upgrade** window, you can view version numbers of the **Current release** and **New release**, a link to details about the [Cluster Version History](rs-mgmt-cluster-version-notes.md), and the **Maintenance window schedule**\. If you choose **Yes, Upgrade now**, you must acknowledge that the cluster is offline during the upgrade\. Otherwise, you can **Never mind, upgrade in my maintenance window**\.
+
+   When the upgrade completes, you can see the new status in the **Release status** column\.
 
 ## Getting Information About Cluster Configuration<a name="describe-cluster"></a><a name="describe-cluster-task"></a>
 

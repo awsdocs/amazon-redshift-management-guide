@@ -31,6 +31,7 @@ The following table shows the default parameter values at a glance with links to
 |  datestyle  |   ISO, MDY   |  [datestyle](https://docs.aws.amazon.com/redshift/latest/dg/r_datestyle.html) in the Amazon Redshift Database Developer Guide  | 
 |  enable\_user\_activity\_logging  |   false   |  [Database Audit Logging](db-auditing.md) in this guide  | 
 |  extra\_float\_digits  |  0  |  [extra\_float\_digits](https://docs.aws.amazon.com/redshift/latest/dg/r_extra_float_digits.html) in the Amazon Redshift Database Developer Guide  | 
+|  max\_concurrency\_scaling\_clusters  |  1  |  [max\_concurrency\_scaling\_clusters](https://docs.aws.amazon.com/redshift/latest/dg/r_max_concurrency_scaling_clusters.html) in the Amazon Redshift Database Developer Guide  | 
 |  query\_group  |  default   |  [query\_group](https://docs.aws.amazon.com/redshift/latest/dg/r_query_group.html) in the Amazon Redshift Database Developer Guide  | 
 |  require\_ssl  |  false  |  [Configure Security Options for Connections](connecting-ssl-support.md) in this guide  | 
 |  search\_path  |   $user, public   |  [search\_path](https://docs.aws.amazon.com/redshift/latest/dg/r_search_path.html) in the Amazon Redshift Database Developer Guide  | 

@@ -1,6 +1,8 @@
 # Amazon Redshift Cluster Security Groups<a name="working-with-security-groups"></a>
 
-When you provision an Amazon Redshift cluster, it is locked down by default so nobody has access to it\. To grant other users inbound access to an Amazon Redshift cluster, you associate the cluster with a security group\. If you are on the EC2\-Classic platform, you define a cluster security group and associate it with a cluster as described following\. If you are on the EC2\-VPC platform, you can either use an existing Amazon VPC security group or define a new one and then associate it with a cluster\. For more information on managing a cluster on the EC2\-VPC platform, see [Managing Clusters in an Amazon Virtual Private Cloud \(VPC\)](managing-clusters-vpc.md)\.
+When you provision an Amazon Redshift cluster, it is locked down by default so nobody has access to it\. To grant other users inbound access to an Amazon Redshift cluster, you associate the cluster with a security group\. If you are on the EC2\-VPC platform, you can either use an existing Amazon VPC security group or define a new one and then associate it with a cluster\. For more information on managing a cluster on the EC2\-VPC platform, see [Managing Clusters in an Amazon Virtual Private Cloud \(VPC\)](managing-clusters-vpc.md)\.
+
+If you are on the EC2\-Classic platform, you define a cluster security group and associate it with a cluster as described in the following sections\. We recommend that you launch your cluster in a EC2\-VPC platform instead of an EC2\-Classic platform\. However, you can restore an EC2\-Classic snapshot to an EC2\-VPC cluster using the Amazon Redshift console\. For more information, see [Restoring a Cluster from a Snapshot](managing-snapshots-console.md#snapshot-restore)\.
 
 **Topics**
 + [Overview](#working-with-security-groups-overview)
