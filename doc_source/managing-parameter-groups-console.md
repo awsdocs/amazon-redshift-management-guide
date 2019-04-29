@@ -28,7 +28,7 @@ You can create a parameter group if you want to set parameter values that are di
  You can modify parameters to change the parameter settings and WLM configuration properties\. 
 
 **Note**  
-You cannot modify the default parameter group\.<a name="parameter-group-modify-task"></a>
+You can't modify the default parameter group\.<a name="parameter-group-modify-task"></a>
 
 **To modify parameters in a parameter group**
 
@@ -67,7 +67,7 @@ You cannot modify the default parameter group\.<a name="parameter-group-modify-t
 
 1. For **Parameter groups,** choose the parameter group that you want to modify\.
 **Note**  
-You cannot modify the default parameter group\.
+You can't modify the default parameter group\.
 
 1. To edit the WLM configuration, choose **Edit**\. 
 
@@ -76,12 +76,17 @@ You cannot modify the default parameter group\.
 1. When you enable SQA, ** Maximum run time for short queries \(1 to 20 seconds\)** is set to **Dynamic** by default\. To set the maximum run time to a fixed value, choose a value of 1–20\.
 
 1. Do one or more of the following to modify the queue configuration: 
+   + Choose **Switch WLM mode** to choose between **Auto WLM** and **Manual WLM**\.
+
+     With **Auto WLM**, the **Memory** and **Concurrency on main** values are set to **auto**\.
    + To create a queue, choose **Add Queue**\.
+
+     You can't add a queue to an **Auto WLM** configuration\.
    + To modify the **Max Concurrency Scaling clusters** parameter, choose **Edit** next to the current value that is displayed\.
-   + To modify a queue, change property values in the table\. Depending on the type of queue, properties can include:
+   + To modify a queue, change property values in the table\. Depending on the type of queue, properties can include the following:
      + **Memory \(%\)**
      + **Concurrency on main** cluster
-     + **Concurrency Scaling mode** can be `off` or `auto`
+     + **Concurrency Scaling mode** can be **off** or **auto**
      + **Timeout \(ms\)**
      + **User groups**
      + **Query groups**
@@ -112,9 +117,7 @@ When you save WLM configuration that includes a rule, you can view the JSON code
 **Note**  
 You can't modify the default parameter group\.
 
-1. To edit the WLM configuration, choose **Edit**\. 
-
-1. Choose **Add queue**\. A new queue appears\.
+1. To edit the WLM configuration \(to add a rule\), choose **Edit**\. 
 
 1. To create a new rule using a predefined template, in the **Rules for Queue 1** group, choose **Add Rule from Templates**\. The **Rule Templates** dialog appears, as shown in the following screenshot\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/parameter-group-qmr-rule-template-dialog.png)
@@ -135,7 +138,7 @@ You can't modify the default parameter group\.
 
 1. To modify the rules for a queue, choose **Edit**\.
 
-1. To add a new queue from scratch, choose **Add Custom Rule**\. You can a maximum of five rules per queue, and a total of eight rules for all queues\.
+1. To add a new rule from scratch, choose **Add Custom Rule**\. You can a maximum of five rules per queue, and a total of eight rules for all queues\.
 
 1. Type a **Rule name**; for example, **NestedLoop**\. 
 
@@ -165,7 +168,7 @@ You can delete a parameter group if you no longer need it and it is not associat
 
 1. Select the row of the parameter group that you want to delete, and then choose **Delete**\. 
 **Note**  
-You cannot delete the default parameter group\.
+You can't delete the default parameter group\.
 
 1. In the **Delete Cluster Parameter Groups** dialog box, choose **Continue**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/parameter-group-delete.png)

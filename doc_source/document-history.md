@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: March 21, 2019** 
+ **Latest documentation update: April 24, 2019** 
 
 For a list of the changes to the *Amazon Redshift Database Developer Guide*, see [Amazon Redshift Database Developer Guide Document History](https://docs.aws.amazon.com/redshift/latest/dg/doc-history.html)\.
 
@@ -12,8 +12,9 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Cluster release version](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html) | Release notes for a new cluster release version are available\. For more information, see [Cluster Version History](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html)\. | April 24, 2019 | 
+| [Snapshot enhancements](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html) | Amazon Redshift now supports several enhancements to managing and scheduling snapshots\. | April 4, 2019 | 
 | [Concurrency Scaling](http://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) | You can configure workload management \(WLM\) to enable Concurrency Scaling mode\. For more information, see [Configuring Workload Management](http://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html)\. | March 21, 2019 | 
-| [Cluster release version 1\.0\.6527 and 1\.0\.6630](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html) | Release notes for cluster release version 1\.0\.6527 and 1\.0\.6630 are available\. For more information, see [Cluster Version History](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html)\. | March 13, 2019 | 
 | [Updated JDBC and ODBC drivers](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-to-cluster.html) | Amazon Redshift now supports new versions of the JDBC and ODBC drivers\. For more information, see [Configure a JDBC Connection](https://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html) and [Configure and ODBC Connection](https://docs.aws.amazon.com/redshift/latest/mgmt/configure-odbc-connection.html)\. | February 4, 2019 | 
 | [Deferred Maintenance](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-mgmt-defer-maintenance) | If you need to reschedule your cluster’s maintenance window, you have the option to defer maintenance by up to 14 days\. If we need to update hardware or make other mandatory updates during your period of deferment, we notify you and make the required changes\. Your cluster isn't available during these updates\. For more information, see [Deferring Maintenance](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#defer-maintenance-window)\. | November 20, 2018 | 
 | [Advance Notification](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-events.html) | Amazon Redshift provides notification in advance for some events\. These events have an event category of `pending`\. For example, we send an advance notification if a hardware upddate is required for one of the nodes in your cluster\. You can subscribe to pending events the same as other Amazon Redshift events\. For more information, see [Subscribing to Amazon Redshift Event Notifications](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-event-notifications.html#working-with-event-notifications-subscribe)\. | November 20, 2018 | 

@@ -19,13 +19,13 @@ The `AWS/Redshift` namespace includes the following metrics\.
 
 | Metric | Description | 
 | --- | --- | 
-| ConcurrencyScalingActiveClusters |  The number of Concurrency Scaling clusters that are actively processing queries at any given time\. Units: Count Dimensions: `ClusterIdentifier`  | 
-| ConcurrencyScalingSeconds |  The number of seconds used by Concurrency Scaling clusters that have active query processing activity\. Units: Sum Dimensions: `ClusterIdentifier`  | 
+| ConcurrencyScalingActiveClusters |  The number of concurrency scaling clusters that are actively processing queries at any given time\. Units: Count Dimensions: `ClusterIdentifier`  | 
+| ConcurrencyScalingSeconds |  The number of seconds used by concurrency scaling clusters that have active query processing activity\. Units: Sum Dimensions: `ClusterIdentifier`  | 
 | CPUUtilization |  The percentage of CPU utilization\. For clusters, this metric represents an aggregation of all nodes \(leader and compute\) CPU utilization values\. Units: Percent Dimensions: `NodeID`, `ClusterIdentifier`  | 
 | DatabaseConnections |  The number of database connections to a cluster\. Units: Count Dimensions: `ClusterIdentifier`  | 
 | HealthStatus |  Indicates the health of the cluster\. Every minute the cluster connects to its database and performs a simple query\. If it is able to perform this operation successfully, the cluster is considered healthy\. Otherwise, the cluster is unhealthy\. An unhealthy status can occur when the cluster database is under extremely heavy load or if there is a configuration problem with a database on the cluster\.   In Amazon CloudWatch, this metric is reported as 1 or 0 whereas in the Amazon Redshift console, this metric is displayed with the words `HEALTHY` or `UNHEALTHY` for convenience\. When this metric is displayed in the Amazon Redshift console, sampling averages are ignored and only `HEALTHY` or `UNHEALTHY` are displayed\. In Amazon CloudWatch, values different than 1 and 0 might occur because of sampling issue\. Any value below 1 for `HealthStatus` is reported as 0 \(`UNHEALTHY`\)\.  Units: 1/0 \(`HEALTHY`/`UNHEALTHY` in the Amazon Redshift console\) Dimensions: `ClusterIdentifier`  | 
 | MaintenanceMode |  Indicates whether the cluster is in maintenance mode\.  In Amazon CloudWatch, this metric is reported as 1 or 0 whereas in the Amazon Redshift console, this metric is displayed with the words `ON` or `OFF` for convenience\. When this metric is displayed in the Amazon Redshift console, sampling averages are ignored and only `ON` or `OFF` are displayed\. In Amazon CloudWatch, values different than 1 and 0 might occur because of sampling issues\. Any value greater than 0 for `MaintenanceMode` is reported as 1 \(`ON`\)\.  Units: 1/0 \(`ON`/`OFF` in the Amazon Redshift console\)\. Dimensions: `ClusterIdentifier`  | 
-| MaxConcurrencyScalingClusters |  Maximum number of Concurrency Scaling clusters configured from the parameter group\. For more information, see [Amazon Redshift Parameter Groups](working-with-parameter-groups.md)\.  Units: Count Dimensions: `ClusterIdentifier`  | 
+| MaxConfiguredConcurrencyScalingClusters |  Maximum number of concurrency scaling clusters configured from the parameter group\. For more information, see [Amazon Redshift Parameter Groups](working-with-parameter-groups.md)\.  Units: Count Dimensions: `ClusterIdentifier`  | 
 | NetworkReceiveThroughput |  The rate at which the node or cluster receives data\. Units: Bytes/seconds \(MB/s in the Amazon Redshift console\) Dimensions: `NodeID`, `ClusterIdentifier`  | 
 | NetworkTransmitThroughput |  The rate at which the node or cluster writes data\. Units: Bytes/second \(MB/s in the Amazon Redshift console\) Dimensions: `NodeID`, `ClusterIdentifier`  | 
 | PercentageDiskSpaceUsed |  The percent of disk space used\. Units: Percent Dimensions: `NodeID`, `ClusterIdentifier`  | 
@@ -35,9 +35,9 @@ The `AWS/Redshift` namespace includes the following metrics\.
 | ReadLatency |  The average amount of time taken for disk read I/O operations\. Units: Seconds Dimensions: `NodeID`  | 
 | ReadThroughput |  The average number of bytes read from disk per second\. Units: Bytes \(GB/s in the Amazon Redshift console\) Dimensions: `NodeID`  | 
 | TotalTableCount |  The number of user tables open at a particular point in time\. This total does not include Spectrum tables\. Units: Count Dimensions: `ClusterIdentifier`  | 
-| WLMQueueLength |  The number of queries in the queue for a Workload Management \(WLM\) queue\. Units: Count Dimensions: `service class`  | 
-| WLMQueriesCompletedPerSecond |  The average number of queries completed per second for a Workload Management \(WLM\) queue\. Reported in five\-minute intervals\. Units: Count/second Dimensions: `wlmid`  | 
-| WLMQueryDuration |  The average length of time to complete a query for a Workload Management \(WLM\) queue\. Reported in five\-minute intervals\. Units: Microseconds Dimensions: `wlmid`  | 
+| WLMQueueLength |  The number of queries waiting to enter a workload management \(WLM\) queue\. Units: Count Dimensions: `service class`  | 
+| WLMQueriesCompletedPerSecond |  The average number of queries completed per second for a workload management \(WLM\) queue\. Reported in five\-minute intervals\. Units: Count/second Dimensions: `wlmid`  | 
+| WLMQueryDuration |  The average length of time to complete a query for a workload management \(WLM\) queue\. Reported in five\-minute intervals\. Units: Microseconds Dimensions: `wlmid`  | 
 | WriteIOPS |  The average number of write operations per second\. Units: Count/seconds Dimensions: `NodeID`, `ClusterIdentifier`  | 
 | WriteLatency |  The average amount of time taken for disk write I/O operations\. Units: Seconds Dimensions: `NodeID`  | 
 | WriteThroughput |  The average number of bytes written to disk per second\. Units: Bytes \(GB/s in the Amazon Redshift console\) Dimensions: `NodeID`  | 
@@ -51,12 +51,12 @@ Amazon Redshift data can be filtered along any of the following dimensions in th
 
 |  Dimension  |  Description  | 
 | --- | --- | 
-|  latency  |  Values are short, medium, and long\.  | 
+|  latency  |  Possible values are: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/metrics-listing.html)  | 
 |  NodeID  |  Filters requested data that is specific to the nodes of a cluster\. `NodeID` is either "Leader", "Shared", or "Compute\-N" where N is 0, 1, \.\.\. for the number of nodes in the cluster\. "Shared" means that the cluster has only one node, that is the leader node and compute node are combined\. Metrics are reported for the leader node and compute nodes only for `CPUUtilization`, `NetworkTransmitThroughput`, and `ReadIOPS`\. Other metrics that use the `NodeId` dimension are reported only for compute nodes\.  | 
 |  ClusterIdentifier  |  Filters requested data that is specific to the cluster\. Metrics that are specific to clusters include `HealthStatus`, `MaintenanceMode`, and `DatabaseConnections`\. General metrics for this dimension \(for example, `ReadIOPS`\) that are also metrics of nodes represent an aggregate of the node metric data\. Take care in interpreting these metrics because they aggregate behavior of leader and compute nodes\.  | 
 |  Service class  |  The identifier for a `WLM` service class\.  | 
 |  Stage  |  The execution stages for a query\. The possible values are: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/metrics-listing.html)  | 
-|  wmlid  |  The identifier for a Workload Management Queue\.  | 
+|  wmlid  |  The identifier for a workload management queue\.  | 
 
 ## Amazon Redshift Query/Load Performance Data<a name="custom-metrics-listing"></a>
 

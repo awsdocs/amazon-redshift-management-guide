@@ -75,7 +75,7 @@ You can manage IAM role associations for a cluster with the console by using the
 
 1. In the list, choose the cluster that you want to manage IAM role associations for\.
 
-1. Choose **Manage IAM Roles**\.
+1. Choose **See IAM Roles**\.
 
 1. To associate an IAM role with the cluster, select your IAM role from the **Available roles** list\. You can also manually enter an IAM role if you don’t see it included the list \(for example, if the IAM role hasn’t been created yet\)\.
 

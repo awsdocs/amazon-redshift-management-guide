@@ -213,11 +213,10 @@ When you modify a cluster, changes to the following options are applied immediat
 + **VPC Security Groups** 
 + **Publicly Accessible** 
 + **Master User Password** 
-+ **Automated Snapshot Retention Period** 
 + **HSM Connection** 
 + **HSM Client Certificate** 
-+ **Maintenance Window Start** 
-+ **Maintenance Window End** 
++ **Maintenance settings** 
++ **Snapshot preferences** 
 
  Changes to the following options take effect only after the cluster is restarted:
 + **Cluster Identifier**
@@ -240,10 +239,7 @@ If you decrease the automated snapshot retention period, existing automated snap
 1. On the **Configuration** tab of the cluster details page, choose **Cluster**, and then choose **Modify**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-cluster-menu.png)
 
-1. In the **Modify Cluster** window, change your cluster, and then choose **Modify**\.
-
-   The following screenshot shows the **Modify Cluster** options for a cluster in a VPC\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-modify.png)
+1. In the **Modify Cluster** window, change your cluster, and then choose **Modify**\. The resulting window shows the options available to modify a cluster\. Including tabs with options to update **Cluster settings**, **Maintenance settings**, and **Snapshot settings**\.
 
 ### Setting the Maintenance Track for a Cluster<a name="rs-mgmt-set-maintenance-track"></a>
 

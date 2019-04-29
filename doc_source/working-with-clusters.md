@@ -235,16 +235,17 @@ The following list shows the time blocks for each region from which the default 
 + US East \(Ohio\) region: 03:00–11:00 UTC
 + US West \(N\. California\) region: 06:00–14:00 UTC
 + US West \(Oregon\) region: 06:00–14:00 UTC
-+ Canada \(Central\) region: 03:00–11:00 UTC
++  region: 13:00–21:00 UTC
 + Asia Pacific \(Mumbai\) region: 16:30–00:30 UTC
 + Asia Pacific \(Osaka\-Local\) region: 13:00–21:00 UTC
 + Asia Pacific \(Seoul\) region: 13:00–21:00 UTC
 + Asia Pacific \(Singapore\) region: 14:00–22:00 UTC
 + Asia Pacific \(Sydney\) region: 12:00–20:00 UTC
 + Asia Pacific \(Tokyo\) region: 13:00–21:00 UTC
-+ EU \(Frankfurt\) region: 06:00–14:00 UTC
++ Canada \(Central\) region: 03:00–11:00 UTC
 + China \(Beijing\) region: 13:00–21:00 UTC
 + China \(Ningxia\) region: 13:00–21:00 UTC
++ EU \(Frankfurt\) region: 06:00–14:00 UTC
 + EU \(Ireland\) region: 22:00–06:00 UTC
 + EU \(London\) region: 22:00–06:00 UTC
 + EU \(Paris\) region: 23:00–07:00 UTC

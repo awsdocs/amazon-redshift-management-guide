@@ -13,6 +13,8 @@
 1. Choose the **Queries** tab\.
 
    By default, the **Queries** tab displays query performance over the past 24 hours\. To change the data displayed, use the **Filter** list to select the time period for which you want to view queries\. You can also type a keyword in the **Search** box to search for queries that match your search criteria\.
+**Important**  
+The **Queries** tab displays the longest running queries in the system; up to 100 queries\.
 
 ## Terminating a Running Query<a name="terminate-queries"></a>
 

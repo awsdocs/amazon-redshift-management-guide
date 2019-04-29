@@ -3,6 +3,8 @@
 **Topics**
 + [Overview](#working-with-snapshots-overview)
 + [Automated Snapshots](#about-automated-snapshots)
++ [Automated Snapshot Schedules](#automated-snapshot-schedules)
++ [Snapshot Schedule Format](#working-with-snapshot-scheduling)
 + [Manual Snapshots](#about-manual-snapshots)
 + [Managing Snapshot Storage](#managing-snapshot-storage)
 + [Excluding Tables From Snapshots](#snapshots-no-backup-tables)
@@ -18,7 +20,7 @@
 
 Snapshots are point\-in\-time backups of a cluster\. There are two types of snapshots: *automated* and *manual*\. Amazon Redshift stores these snapshots internally in Amazon S3 by using an encrypted Secure Sockets Layer \(SSL\) connection\. 
 
-Amazon Redshift automatically takes incremental snapshots that track changes to the cluster since the previous automated snapshot\. Automated snapshots retain all of the data required to restore a cluster from a snapshot\. You can take a manual snapshot any time\.
+Amazon Redshift automatically takes incremental snapshots that track changes to the cluster since the previous automated snapshot\. Automated snapshots retain all of the data required to restore a cluster from a snapshot\. You can create a snapshot schedule to control when automated snapshots are taken, or you can take a manual snapshot any time\.
 
 When you restore from a snapshot, Amazon Redshift creates a new cluster and makes the new cluster available before all of the data is loaded, so you can begin querying the new cluster immediately\. The cluster streams data on demand from the snapshot in response to active queries, then loads the remaining data in the background\. 
 
@@ -26,11 +28,13 @@ When you launch a cluster, you can set the retention period for automated and ma
 
 You can monitor the progress of snapshots by viewing the snapshot details in the AWS Management Console, or by calling [describe\-cluster\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-cluster-snapshots.html) in the CLI or the [DescribeClusterSnapshots](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusterSnapshots.html) API action\. For an in\-progress snapshot, these display information such as the size of the incremental snapshot, the transfer rate, the elapsed time, and the estimated time remaining\. 
 
-To ensure that your backups are always available to your cluster, Amazon Redshift stores snapshots in an internally managed Amazon S3 bucket that is managed by Amazon Redshift\. Amazon Redshift provides free storage for snapshots that is equal to the storage capacity of your cluster until you delete the cluster\. After you reach the free snapshot storage limit, you are charged for any additional storage at the normal rate\. Because of this, you should evaluate how many days you need to keep snapshots and configure their retention period accordingly, and delete any manual snapshots that you no longer need\. For pricing information, go to the Amazon Redshift [product detail page](https://aws.amazon.com/redshift/)\. 
+To ensure that your backups are always available to your cluster, Amazon Redshift stores snapshots in an internally managed Amazon S3 bucket that is managed by Amazon Redshift\. Amazon Redshift provides free storage for snapshots that is equal to the storage capacity of your cluster until you delete the cluster\. After you reach the free snapshot storage limit, you are charged for any additional storage at the normal rate\. Because of this, you should evaluate how many days you need to keep snapshots and configure their retention period accordingly, and delete any manual snapshots that you no longer need\. For pricing information, see the Amazon Redshift [product detail page](https://aws.amazon.com/redshift/)\. 
 
 ## Automated Snapshots<a name="about-automated-snapshots"></a>
 
-When automated snapshots are enabled for a cluster, Amazon Redshift periodically takes snapshots of that cluster, usually every eight hours or following every 5 GB per node of data changes, or whichever comes first\. Automated snapshots are enabled by default when you create a cluster\. These snapshots are deleted at the end of a retention period\. The default retention period is one day, but you can modify it by using the Amazon Redshift console or programmatically by using the Amazon Redshift API or CLI\. 
+When automated snapshots are enabled for a cluster, Amazon Redshift periodically takes snapshots of that cluster\. By default Amazon Redshift takes a snapshot about every eight hours or following every 5 GB per node of data changes, or whichever comes first\. Alternatively, you can create a snapshot schedule to control when automated snapshots are taken\. Automated snapshots are enabled by default when you create a cluster\. 
+
+Automated snapshots are deleted at the end of a retention period\. The default retention period is one day, but you can modify it by using the Amazon Redshift console or programmatically by using the Amazon Redshift API or CLI\.
 
 To disable automated snapshots, set the retention period to zero\. If you disable automated snapshots, Amazon Redshift stops taking snapshots and deletes any existing automated snapshots for the cluster\.
 
@@ -38,9 +42,67 @@ Only Amazon Redshift can delete an automated snapshot; you cannot delete them ma
 
 If you want to keep an automated snapshot for a longer period, you can create a copy of it as a manual snapshot\. The automated snapshot is retained until the end of the retention period, but the corresponding manual snapshot is retained until you manually delete it or until the end of the retention period\.
 
+## Automated Snapshot Schedules<a name="automated-snapshot-schedules"></a>
+
+To precisely control when snapshots are taken, you can create a snapshot schedule and attach it to one or more clusters\. When you modify a snapshot schedule, the schedule is modified for all associated clusters\. If a cluster doesn't have a snapshot schedule attached, the cluster uses the default automated snapshot schedule\. 
+
+A *snapshot schedule* is a set of schedule rules\. You can define a simple schedule rule based on a specified interval, such as every 8 hours or every 12 hours\. You can also add rules to take snapshots on certain days of the week, at specific times, or during specific periods\. Rules can also be defined using Unix\-like cron expressions\. 
+
+## Snapshot Schedule Format<a name="working-with-snapshot-scheduling"></a>
+
+On the Amazon Redshift console, you can create a snapshot schedule\. Then, you can attach a schedule to a cluster to trigger the creation of a system snapshot\. A schedule can be attached to multiple clusters, and you can create multiple cron defintions in a schedule to trigger a snapshot\.
+
+You can define a schedule for your snapshots using a cron syntax\. The definition of these schedules uses a modified Unix\-like  [cron](http://en.wikipedia.org/wiki/Cron) syntax\. You specify time in [Coordinated Universal Time \(UTC\)](http://en.wikipedia.org/wiki/Coordinated_Universal_Time)\. You can create schedules with a maximum frequency of one hour and minimum precision of one minute\.
+
+Amazon Redshift modified cron expressions have 3 required fields, which are separated by white space\. 
+
+**Syntax**
+
+```
+cron(Minutes Hours Day-of-week)
+```
+
+
+| **Fields** | **Values** | **Wildcards** | 
+| --- | --- | --- | 
+|  Minutes  |  0–59  |   | 
+|  Hours  |  0–23  |  , \- \* /   | 
+|  Day\-of\-week  |  1–7 or SUN\-SAT  |  , \- \* /   | 
+
+**Wildcards**
++ The **,** \(comma\) wildcard includes additional values\. In the `Day-of-week` field, `MON,WED,FRI` would include Monday, Wednesday, and Friday\. Total values are limited to 24 per field\.
++ The **\-** \(dash\) wildcard specifies ranges\. In the `Hour` field, 1–15 would include hours 1 through 15 of the specified day\.
++ The **\*** \(asterisk\) wildcard includes all values in the field\. In the `Hours` field, **\*** would include every hour\.
++ The **/** \(forward slash\) wildcard specifies increments\. In the `Hours` field, you could enter **1/10** to specify every 10th hour, starting from the first hour of the day \(for example, the 01:00, 11:00, and 21:00\)\.
+
+**Limits**
++ Snapshot schedules that lead to backup frequencies less than 1 hour or greater than 24 hours are not supported\. If you have overlapping schedules that result in scheduling snapshots within a 1 hour window, a validation error results\. 
+
+When creating a schedule, you can use the following sample cron strings\.
+
+
+| Minutes | Hours | Day of week | Meaning | 
+| --- | --- | --- | --- | 
+|  0  |  14\-20/1  |  TUE  |  Every hour between 2pm and 8pm on Tuesday\.  | 
+|  0  |  21  |  MON\-FRI  |  Every night at 9pm Monday–Friday\.  | 
+|  30  |  0/6  |  SAT\-SUN  |  Every 6 hour increment on Saturday and Sunday starting at 30 minutes after midnight \(00:30\) that day\. This results in a snapshot at \[00:30, 06:30, 12:30, and 18:30\] each day\.  | 
+|  30  |  12/4  |  \*  |  Every 4 hour increment starting at 12:30 each day\. This resolves to \[12:30, 16:30, 20:30\]\.  | 
+
+For example to run on a schedule on an every 2 hour increment starting at 15:15 each day\. This resolves to \[15:15, 17:15, 19:15, 21:15, 23:15\] , specify:
+
+```
+cron(15 15/2 *)   
+```
+
+You can create multiple cron schedule definitions within as schedule\. For example the following AWS CLI command contains two cron schedules in one schedule\.
+
+```
+create-snapshot-schedule --schedule-identifier "my-test" --schedule-definition "cron(0 17 SAT,SUN)" "cron(0 9,17 MON-FRI)"   
+```
+
 ## Manual Snapshots<a name="about-manual-snapshots"></a>
 
-You can take a manual snapshot any time\. By default, manual snapshots are retained indefinitely, even after you delete your cluster\. You can specify the retention period when you create a manual snapshot, or you can change the retention period by modifying the snapshot\.
+You can take a manual snapshot any time\. By default, manual snapshots are retained indefinitely, even after you delete your cluster\. You can specify the retention period when you create a manual snapshot, or you can change the retention period by modifying the snapshot\. If you create a snapshot using the Amazon Redshift console, it defaults the snapshot retention period to 365 days\.
 
 If a snapshot is deleted, you can't start any new operations that reference that snapshot\. However, if a restore operation is in progress, that restore operation will run to completion\. 
 
@@ -48,7 +110,7 @@ Amazon Redshift has a quota that limits the total number of manual snapshots tha
 
 ## Managing Snapshot Storage<a name="managing-snapshot-storage"></a>
 
-Because snapshots accrue storage charges, it’s important that you delete them when you no longer need them\. Amazon Redshift deletes automatic and manual snapshots at the end of the snapshot retention period\. You can also delete manual snapshots using the AWS Management Console or with the [batch\-delete\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/redshift/batch-delete-snapshots.html) CLI command\. 
+Because snapshots accrue storage charges, it’s important that you delete them when you no longer need them\. Amazon Redshift deletes automatic and manual snapshots at the end of their respective snapshot retention periods\. You can also delete manual snapshots using the AWS Management Console or with the [batch\-delete\-cluster\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/redshift/batch-delete-cluster-snapshots.html) CLI command\. 
 
 You can change the retention period for a manual snapshot by modifying the manual snapshot settings\. 
 
@@ -64,7 +126,7 @@ You can configure Amazon Redshift to automatically copy snapshots \(automated or
 
 When you enable Amazon Redshift to automatically copy snapshots to another region, you specify the destination region where you want snapshots to be copied\. In the case of automated snapshots, you can also specify the retention period that they should be kept in the destination region\. After an automated snapshot is copied to the destination region and it reaches the retention time period there, it is deleted from the destination region, keeping your snapshot usage low\. You can change this retention period if you need to keep the automated snapshots for a shorter or longer period of time in the destination region\.
 
-The retention period that you set for automated snapshots that are copied to the destination region is separate from the retention period for automated snapshots in the source region\. The default retention period for copied snapshots is seven days\. That seven\-day period only applies to automated snapshots\. Manual snapshots are not affected by the retention period in either the source or destination regions, and they remain until you manually delete them\.
+The retention period that you set for automated snapshots that are copied to the destination region is separate from the retention period for automated snapshots in the source region\. The default retention period for copied snapshots is seven days\. That seven\-day period only applies to automated snapshots\. In both the source and destination regions, manual snapshots are deleted at the end of the snapshot retention period or when you manually delete them\.
 
 You can disable automatic snapshot copy for a cluster at any time\. When you disable this feature, snapshots are no longer copied from the source region to the destination region\. Any automated snapshots copied to the destination region are deleted as they reach the retention period limit, unless you create manual snapshot copies of them\. These manual snapshots, and any manual snapshots that were copied from the destination region, are retained in the destination region until you manually delete them\.
 

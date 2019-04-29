@@ -1,6 +1,6 @@
 # Previous JDBC Driver Versions<a name="jdbc-previous-versions"></a>
 
-Download a previous version of the Amazon Redshift JDBC driver only if your tool requires a specific version of the driver\. For information about the functionality supported in previous versions of the drivers, download [Amazon Redshift JDBC Driver Release Notes](https://s3.amazonaws.com/redshift-downloads/drivers/Amazon+Redshift+JDBC+Release+Notes.pdf)\. 
+Download a previous version of the Amazon Redshift JDBC driver only if your tool requires a specific version of the driver\. For information about the functionality supported in these versions of the drivers, see [Download the Amazon Redshift JDBC Driver](configure-jdbc-connection.md#download-jdbc-driver)\.  
 
 For authentication using AWS Identity and Access Management \(IAM\) credentials or identity provider \(IdP\) credentials, use Amazon Redshift JDBC driver version 1\.2\.8\.1005 or later\.
 
@@ -15,7 +15,8 @@ We strongly recommend using an Amazon Redshift JDBC driver that doesn't include 
  
 
  These are previous JDBC 4\.2–compatible drivers: 
-+  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.16\.1027/RedshiftJDBC42\-no\-awssdk\-1\.2\.16\.1027\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/1.2.16.1027/RedshiftJDBC42-no-awssdk-1.2.16.1027.jar) 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.20\.1043/RedshiftJDBC42\-no\-awssdk\-1\.2\.20\.1043\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.20.1043/RedshiftJDBC42-no-awssdk-1.2.20.1043.jar)\. 
++  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.16\.1027/RedshiftJDBC42\-no\-awssdk\-1\.2\.16\.1027\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.16.1027/RedshiftJDBC42-no-awssdk-1.2.16.1027.jar)  
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.15\.1025/RedshiftJDBC42\-no\-awssdk\-1\.2\.15\.1025\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.15.1025/RedshiftJDBC42-no-awssdk-1.2.15.1025.jar) 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.12\.1017/RedshiftJDBC42\-no\-awssdk\-1\.2\.12\.1017\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.12.1017/RedshiftJDBC42-no-awssdk-1.2.12.1017.jar)\.
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC42\-no\-awssdk\-1\.2\.10\.1009\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC42-no-awssdk-1.2.10.1009.jar)\. 
@@ -25,6 +26,7 @@ We strongly recommend using an Amazon Redshift JDBC driver that doesn't include 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC42\-1\.1\.17\.1017\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC42-1.1.17.1017.jar)\. 
 
  These are previous JDBC 4\.1–compatible drivers: 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.20\.1043/RedshiftJDBC41\-no\-awssdk\-1\.2\.20\.1043\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.20.1043/RedshiftJDBC41-no-awssdk-1.2.20.1043.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.16\.1027/RedshiftJDBC41\-no\-awssdk\-1\.2\.16\.1027\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.16.1027/RedshiftJDBC41-no-awssdk-1.2.16.1027.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.15\.1025/RedshiftJDBC41\-no\-awssdk\-1\.2\.15\.1025\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.15.1025/RedshiftJDBC41-no-awssdk-1.2.15.1025.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.12\.1017/RedshiftJDBC41\-no\-awssdk\-1\.2\.12\.1017\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.12.1017/RedshiftJDBC41-no-awssdk-1.2.12.1017.jar)
@@ -40,6 +42,7 @@ We strongly recommend using an Amazon Redshift JDBC driver that doesn't include 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/RedshiftJDBC41\-1\.1\.0\.0000\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/RedshiftJDBC41-1.1.0.0000.jar)
 
 These are previous JDBC 4\.0–compatible drivers: 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jbdc/1\.2\.20\.1043/RedshiftJDBC4\-no\-awssdk\-1\.2\.20\.1043\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.20.1043/RedshiftJDBC4-no-awssdk-1.2.20.1043.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jbdc/1\.2\.16\.1027/RedshiftJDBC4\-no\-awssdk\-1\.2\.16\.1027\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.16.1027/RedshiftJDBC4-no-awssdk-1.2.16.1027.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jbdc/1\.2\.15\.1025/RedshiftJDBC4\-no\-awssdk\-1\.2\.15\.1025\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.15.1025/RedshiftJDBC4-no-awssdk-1.2.15.1025.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jbdc/1\.2\.12\.1017/RedshiftJDBC4\-no\-awssdk\-1\.2\.12\.1017\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.12.1017/RedshiftJDBC4-no-awssdk-1.2.12.1017.jar)
@@ -62,6 +65,9 @@ If you use the JDBC driver for database authentication, you must have AWS SDK fo
 
 **Important**  
 We strongly recommend using an Amazon Redshift JDBC driver that doesn't include the AWS SDK if possible\.
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.27\.1051/RedshiftJDBC42\-1\.2\.27\.1051\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.27.1051/RedshiftJDBC42-1.2.27.1051.jar)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.27\.1051/RedshiftJDBC41\-1\.2\.27\.1051\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.27.1051/RedshiftJDBC41-1.2.27.1051.jar)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.27\.1051/RedshiftJDBC4\-1\.2\.27\.1051\.jar ](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.27.1051/RedshiftJDBC4-1.2.27.1051.jar )\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.20\.1043/RedshiftJDBC42\-1\.2\.20\.1043\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.20.1043/RedshiftJDBC42-1.2.20.1043.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.20\.1043/RedshiftJDBC41\-1\.2\.20\.1043\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.20.1043/RedshiftJDBC41-1.2.20.1043.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.20\.1043/RedshiftJDBC4\-1\.2\.20\.1043\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.20.1043/RedshiftJDBC4-1.2.20.1043.jar)\. 
@@ -88,9 +94,7 @@ We strongly recommend using an Amazon Redshift JDBC driver that doesn't include 
 
 ## Previous JDBC Driver Versions Using Maven<a name="jdbc-previous-versions-maven"></a>
 
-Add a previous version of the Amazon Redshift JDBC driver to your project only if your tool requires a specific version of the driver\. For information about the functionality supported in previous versions of the drivers, download [Amazon Redshift JDBC Driver Release Notes](https://s3.amazonaws.com/redshift-downloads/drivers/Amazon+Redshift+JDBC+Release+Notes.pdf)\. 
-
- 
+Add a previous version of the Amazon Redshift JDBC driver to your project only if your tool requires a specific version of the driver\. For information about the functionality supported in these versions of the drivers, see [Download the Amazon Redshift JDBC Driver](configure-jdbc-connection.md#download-jdbc-driver)\.  
 
  These are previous JDBC 4\.2–compatible drivers: 
 + JDBC42\-1\.2\.8\.1005

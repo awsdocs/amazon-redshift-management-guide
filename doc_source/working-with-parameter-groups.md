@@ -18,7 +18,7 @@ If you want to use different parameter values than the default parameter group, 
 **Note**  
 The Amazon Redshift console does not display the `source` of each parameter\. You must use the Amazon Redshift API, the AWS CLI, or one of the AWS SDKs to view the `source`\.
 
-For parameter groups that you create, you can modify a parameter value at any time, or you can reset all parameter values to their defaults\. You can also associate a different parameter group with a cluster\. If you modify parameter values in a parameter group that is already associated with a cluster or you associate a different parameter group with the cluster, you might need to restart the cluster for the updated parameter values to take effect\. If the cluster fails and is restarted by Amazon Redshift, your changes are applied at that time\. Changes are not applied if your cluster is restarted during maintenance\. For more information, see [WLM Dynamic and Static Properties](workload-mgmt-config.md#wlm-dynamic-and-static-properties)\.
+For parameter groups that you create, you can modify a parameter value at any time, or you can reset all parameter values to their defaults\. You can also associate a different parameter group with a cluster\. In some cases, you might modify parameter values in a parameter group that is already associated with a cluster or associate a different parameter group with a cluster\. In these cases, you might need to restart the cluster for the updated parameter values to take effect\. If the cluster fails and is restarted by Amazon Redshift, your changes are applied at that time\. Changes aren't applied if your cluster is restarted during maintenance\. For more information, see [WLM Dynamic and Static Properties](workload-mgmt-config.md#wlm-dynamic-and-static-properties)\.
 
 ## Default Parameter Values<a name="default-param-group-values"></a>
 
@@ -36,8 +36,8 @@ The following table shows the default parameter values at a glance with links to
 |  require\_ssl  |  false  |  [Configure Security Options for Connections](connecting-ssl-support.md) in this guide  | 
 |  search\_path  |   $user, public   |  [search\_path](https://docs.aws.amazon.com/redshift/latest/dg/r_search_path.html) in the Amazon Redshift Database Developer Guide  | 
 |  statement\_timeout  |  0  |  [statement\_timeout](https://docs.aws.amazon.com/redshift/latest/dg/r_statement_timeout.html) in the Amazon Redshift Database Developer Guide  | 
-|  wlm\_json\_configuration  |   \[\{"query\_concurrency":5\}\]   |  [Configuring Workload Management](workload-mgmt-config.md) in this guide  | 
-|  use\_fips\_ssl  |  false  |  Enable FIPS\-compliant SSL mode only if your system is required to be FIPS compliant\. | 
+|  wlm\_json\_configuration  |   \[\{"auto\_wlm":true\}\]   |  [Configuring Workload Management](workload-mgmt-config.md) in this guide | 
+|  use\_fips\_ssl  |  false  |  Enable FIPS\-compliant SSL mode only if your system is required to be FIPS\-compliant\. | 
 
 **Note**  
 The `max_cursor_result_set_size` parameter is deprecated\. For more information about cursor result set size, see [ Cursor Constraints](https://docs.aws.amazon.com/redshift/latest/dg/declare.html#declare-constraints) in the *Amazon Redshift Database Developer Guide*\.
@@ -51,7 +51,7 @@ You can temporarily override a parameter by using the `SET` command in the datab
 **Note**  
 There are special considerations when configuring the `wlm_json_configuration` parameter by using the AWS CLI\. The examples in this section apply to all of the parameters except `wlm_json_configuration`\. For more information about configuring `wlm_json_configuration` by using the AWS CLI, see [Configuring Workload Management](workload-mgmt-config.md)\. 
 
-After you modify parameter values, you must reboot any clusters that are associated with the modified parameter group\. The cluster status displays `applying` for `ParameterApplyStatus` while the values are being applied, and then `pending-reboot` after the values have been applied\. After you reboot, the databases in your cluster begin use the new parameter values\. For more information about rebooting clusters, see [Rebooting a Cluster](managing-clusters-console.md#reboot-cluster)\. 
+After you modify parameter values, you must reboot any clusters that are associated with the modified parameter group\. The cluster status displays `applying` for `ParameterApplyStatus` while the values are being applied, and then `pending-reboot` after the values have been applied\. After you reboot, the databases in your cluster begin to use the new parameter values\. For more information about rebooting clusters, see [Rebooting a Cluster](managing-clusters-console.md#reboot-cluster)\. 
 
 **Note**  
 The `wlm_json_configuration` parameter contains some properties that are dynamic and do not require you to reboot associated clusters for the changes to be applied\. For more information about dynamic and static properties, see [WLM Dynamic and Static Properties](workload-mgmt-config.md#wlm-dynamic-and-static-properties)\. 

@@ -2,7 +2,36 @@
 
 Find notes about cluster versions for Amazon Redshift\.
 
-## Versions 1\.0\.6527, 1\.0\.6630, 1\.06670, 1\.0\.6761<a name="rs-mgmt-cluster-version-notes-106527"></a><a name="rs-mgmt-cluster-version-notes-106527"></a>
+## Version 1\.0\.7287<a name="rs-mgmt-cluster-version-notes-7287"></a><a name="rs-mgmt-cluster-version-notes-107287"></a>
+
+Time period: April 24–May 16, 2019
+
+**Features and Improvements**
++ **Amazon Redshift:** Support for an automatic WLM configuration\. 
++ **Amazon Redshift:** Support for stored procedures in the PL/pgSQL language\. 
++ **Amazon Redshift:** Performance improvements for date and timestamp values when using EXTRACT\(\), DATEPART\(\) and DATEDIFF\(\)\. 
+
+**Fixes**
++ Fix for an issue with aggregate pushdown below UNION ALL operator for certain data types\. 
++ Improved error handling for REGEXP\_REPLACE\(\)\.
+
+## Versions 1\.0\.6882, 1\.0\.7075, 1\.0\.7078, 1\.0\.7152<a name="rs-mgmt-cluster-version-notes-106882"></a><a name="rs-mgmt-cluster-version-notes-106882"></a>
+
+Time period: April 3–April 25, 2019
+
+**Features and Improvements**
++ **Amazon Redshift:** Augmented the UNLOAD command to apply Zstandard compression to text and CSV files unloaded to Amazon S3\.
++ **Amazon Redshift:** Performance improvements in ORDER BY processing when the ORDER BY clause has constants\. 
++ **Redshift Spectrum:** Improved error reporting when accessing Amazon S3 data in a different region than the Amazon Redshift cluster\.
++ **Redshift Spectrum:** Performance enhancement for queries against external tables in ORC format in Amazon S3 by using file level statistics\.
+
+**Fixes**
++ Improved handling of user interrupts during query planning\.
++ Tolerate 'ERROR: table <id> dropped by concurrent transaction' in late\-binding views
++ Fixed an issue with IS NOT NULL handling in certain queries\.
++  Fixed a cardinality issue with LEFT OUTER JOIN queries\.
+
+## Versions 1\.0\.6527, 1\.0\.6630, 1\.06670, 1\.0\.6761, 1\.0\.6805<a name="rs-mgmt-cluster-version-notes-106527"></a><a name="rs-mgmt-cluster-version-notes-106527"></a>
 
 Time period: March 13–April 5, 2019
 
@@ -22,7 +51,6 @@ Time period: March 13–April 5, 2019
 Time period: February 20–March 21, 2019
 
 **Features and Improvements**
-+ **Amazon Redshift:** You can now use the ALTER TABLE command to increase the size of VARCHAR columns\. 
 + **Amazon Redshift:** Significant performance improvements by enhancing the Redshift optimizer for queries including NOT IN hash joins\. 
 + **Amazon Redshift:** Optimized processing of LEAST\(\) and GREATEST\(\) over constant input expressions\. 
 + **Amazon Redshift:** Faster Classic resize with optimized data transfer protocol\. 

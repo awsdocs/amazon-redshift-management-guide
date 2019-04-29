@@ -1,10 +1,48 @@
 # Managing Snapshots Using the Console<a name="managing-snapshots-console"></a>
 
+**Topics**
++ [Creating a Snapshot Schedule](#snapshot-schedule-create)
++ [Creating a Manual Snapshot](#snapshot-create)
++ [Changing the Manual Snapshot Retention Period](#snapshot-manual-retention-period)
++ [Deleting Manual Snapshots](#snapshot-delete)
++ [Copying an Automated Snapshot](#snapshot-copy)
++ [Restoring a Cluster from a Snapshot](#snapshot-restore)
++ [Sharing a Cluster Snapshot](#snapshot-share)
++ [Configuring Cross\-Region Snapshot Copy for a Non\-Encrypted Cluster](#snapshot-crossregioncopy-configure)
++ [Configure Cross\-Region Snapshot Copy for an AWS KMS\-Encrypted Cluster](#xregioncopy-kms-encrypted-snapshot)
++ [Modifying the Retention Period for Cross\-Region Snapshot Copy](#snapshot-crossregioncopy-modify)
++ [Disabling Cross\-Region Snapshot Copy](#snapshot-crossregioncopy-disable)
+
 Amazon Redshift takes automatic, incremental snapshots of your data periodically and saves them to Amazon S3\. Additionally, you can take manual snapshots of your data whenever you want\. This section explains how to manage your snapshots from the Amazon Redshift console\. For more information about snapshots, see [Amazon Redshift Snapshots](working-with-snapshots.md)\.
 
 All snapshot tasks in the Amazon Redshift console start from the snapshot list\. You can filter the list by using a time range, the snapshot type, and the cluster associated with the snapshot\. In addition, you can sort the list by date, size, and snapshot type\. When you select an existing snapshot, the snapshot details are shown inline in the list, as shown in the example following\. Depending on the snapshot type that you select, you will have different options available for working with the snapshot\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-list-10.png)
+
+## Creating a Snapshot Schedule<a name="snapshot-schedule-create"></a>
+
+To precisely control when snapshots are taken, you can create a snapshot schedule and attach it to one or more clusters\. You can attach a schedule when you create a cluster or by modifying the cluster\. For more information, see [Automated Snapshot Schedules](working-with-snapshots.md#automated-snapshot-schedules)\.<a name="snapshot-schedule-create-task"></a>
+
+**To create a snapshot schedule**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. In the navigation pane, choose **Snapshots**\.
+
+1. Choose **Snapshot Schedules**\.
+
+1. Choose **Add Schedule**\.
+
+1. Under **When do you want to take automated snapshots?** choose **Configure custom automated snapshot rules** and then add one or more rules\. Alternatively, choose **Take a snapshot every 8 hours** and specify the number of hours\.
+
+1. Choose **Select a snapshot rule to add ** and choose a rule template from the drop\-down list\. You can add multiple rules\.
+
+1. Modify the template fields to customize your schedule\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/snapshot-sample-schedule.png)
+
+1. To view the schedule, choose **Preview schedule for all rules**\.
+
+1. Choose **Add Schedule**\.
 
 ## Creating a Manual Snapshot<a name="snapshot-create"></a>
 
@@ -128,8 +166,6 @@ You can use these steps to change a cluster platform from EC2\-Classic to EC2\-V
    + In the **Type** box, choose **manual** or **automated**\.
    + In the **Cluster** box, choose a cluster name to list snapshots for a single cluster, or choose **All Clusters** to list snapshots from all clusters\.
    + In the **Sort by** field, choose how you want the list ordered\.
-
-1. In the snapshot list, choose the row that contains the snapshot that you want to use\.
 
 1. In the snapshot list, choose the row that contains the snapshot that you want to use\.
 

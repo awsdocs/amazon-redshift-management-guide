@@ -7,7 +7,7 @@ The Workload Execution Breakdown chart isn't shown for single\-node clusters\.
 
 The following list of metrics describes the various processing stages:
 + `QueryPlanning`: Time spent parsing and optimizing SQL statements\.
-+ `QueryWaiting`: Time spent waiting in the Workload Management \(WLM\) queue\.
++ `QueryWaiting`: Time spent waiting in the workload management \(WLM\) queue\.
 + `QueryExecutingRead`: Time spent running read queries\. 
 + `QueryExecutingInsert`: Time spent running insert queries\.
 + `QueryExecutingDelete`: Time spent running delete queries\.

@@ -13,29 +13,33 @@ When you add additional queues, the last queue in the configuration is the *defa
 The WLM configuration properties are either dynamic or static\. Dynamic properties can be applied to the database without a cluster reboot, but static properties require a cluster reboot for changes to take effect\. However, if you change dynamic and static properties at the same time, then you must reboot the cluster for all the property changes to take effect regardless of whether they are dynamic or static\. While dynamic properties are being applied, your cluster status will be `modifying`\.
 
 The following WLM properties are static:
-+ User groups
-+ User group wildcard
-+ Query groups
-+ Query group wildcard
++ Query group wildcard 
++ Query groups 
++ User group wildcard 
++ User groups 
 
 Adding, removing, or reordering query queues is a static change and requires a cluster reboot to take effect\.
 
 The following WLM properties are dynamic:
++ Concurrency
 + Concurrency Scaling mode
 + Enable short query acceleration
-+ Maximum run time for short queries 
-+ Concurrency
++ Maximum run time for short queries
 + Percent of memory to use
 + Timeout
 
-If the timeout value is changed, the new value is applied to any query that begins execution after the value is changed\. If the concurrency or percent of memory to use are changed, Amazon Redshift transitions to the new configuration dynamically so that currently running queries are not affected by the change\. For more information, see [WLM Dynamic Memory Allocation\.](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-dynamic-memory-allocation.html)
+If the timeout value is changed, the new value is applied to any query that begins execution after the value is changed\. If the concurrency or percent of memory to use are changed, Amazon Redshift transitions to the new configuration dynamically\. Thus, currently running queries aren't affected by the change\. For more information, see [WLM Dynamic Memory Allocation\.](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-dynamic-memory-allocation.html)
 
-## Properties in the wlm\_json\_configuration Parameter<a name="wlm-json-config-properties"></a>
+## Properties for the wlm\_json\_configuration Parameter<a name="wlm-json-config-properties"></a>
 
-You can configure WLM by using the Amazon Redshift console, the AWS CLI, Amazon Redshift API, or one of the AWS SDKs\. WLM configuration uses several properties to define queue behavior, such as memory allocation across queues, the number of queries that can run concurrently in a queue, and so on\. The following list describes the WLM properties that you can configure for each queue\. 
+You can configure WLM by using the Amazon Redshift console, the AWS CLI, the Amazon Redshift API, or one of the AWS SDKs\. WLM configuration uses several properties to define queue behavior, such as memory allocation across queues, the number of queries that can run concurrently in a queue, and so on\. The following list describes the WLM properties that you can configure for each queue\. 
 
 **Note**  
  The following properties appear with their Amazon Redshift console names, with the corresponding JSON property names in the descriptions\. 
+
+**Auto WLM**  
+**Auto WLM** set to `true` enables automatic WLM\. Automatic WLM uses one queue and sets the values for **Concurrency on main** and **Memory \(%\)** to `auto`\. Amazon Redshift manages query concurrency and memory allocation\. The default is `true`\.  
+JSON property: `auto_wlm`
 
 **Enable short query acceleration**  
 Short query acceleration \(SQA\) prioritizes selected short\-running queries ahead of longer\-running queries\. SQA executes short\-running queries in a dedicated space, so that SQA queries aren't forced to wait in queues behind longer queries\. With SQA, short\-running queries begin executing more quickly and users see results sooner\. When you enable SQA, you can also specify the maximum run time for short queries\. To enable SQA, specify `true`\. The default is `false`\.  
@@ -46,11 +50,11 @@ When you enable SQA, you can specify 0 to let WLM dynamically set the maximum ru
 JSON property: `max_execution_time`
 
 **Concurrency Scaling mode**  
-To enable Concurrency Scaling on a queue, set Concurrency Scaling mode to `auto`\. When the number of queries routed to a queue exceeds the queue's configured concurrency, eligible queries are sent to the scaling cluster\. When slots become available, queries are run on the main cluster\. The default is `off`\.  
+To enable Concurrency Scaling on a queue, set **Concurrency Scaling mode** to `auto`\. When the number of queries routed to a queue exceeds the queue's configured concurrency, eligible queries are sent to the scaling cluster\. When slots become available, queries are run on the main cluster\. The default is `off`\.  
 JSON property: `concurrency_scaling`
 
 **Concurrency**  
-The number of queries that can run concurrently in a queue\. If Concurrency Scaling mode is enabled, eligible queries are sent to a scaling cluster when a queue reaches the concurrency level\. If Concurrency Scaling mode is disabled, queries wait in the queue until a slot becomes available\. The range is between 1 and 50\.  
+The number of queries that can run concurrently in a queue\. If Concurrency Scaling mode is enabled, eligible queries are sent to a scaling cluster when a queue reaches the concurrency level\. If Concurrency Scaling is disabled, queries wait in the queue until a slot becomes available\. The range is between 1 and 50\.  
 JSON property: `query_concurrency`
 
 **User Groups**  
@@ -70,11 +74,11 @@ A Boolean value that indicates whether to enable wildcards for query groups\. If
 JSON property: `query_group_wild_card`
 
 **Timeout \(ms\)**  
-The maximum time, in milliseconds, queries can run before being canceled\. If a read\-only query, such as a SELECT statement, is canceled due to a WLM timeout, WLM attempts to route the query to the next matching queue based on the WLM Queue Assignment Rules\. If the query doesn't match any other queue definition, the query is canceled; it is not assigned to the default queue\. For more information, see [WLM Query Queue Hopping](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-defining-query-queues.html#wlm-queue-hopping)\. WLM timeout doesn’t apply to a query that has reached the `returning` state\. To view the state of a query, see the [STV\_WLM\_QUERY\_STATE](https://docs.aws.amazon.com/redshift/latest/dg/r_STV_WLM_QUERY_STATE.html) system table\.  
+The maximum time, in milliseconds, that queries can run before being canceled\. In some cases, a read\-only query, such as a SELECT statement, might be canceled due to a WLM timeout\. In these cases, WLM attempts to route the query to the next matching queue based on the WLM queue assignment rules\. If the query doesn't match any other queue definition, the query is canceled; it isn't assigned to the default queue\. For more information, see [WLM Query Queue Hopping](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-defining-query-queues.html#wlm-queue-hopping)\. WLM timeout doesn’t apply to a query that has reached the `returning` state\. To view the state of a query, see the [STV\_WLM\_QUERY\_STATE](https://docs.aws.amazon.com/redshift/latest/dg/r_STV_WLM_QUERY_STATE.html) system table\.  
 JSON property: `max_execution_time`
 
 **Memory \(%\)**  
-The percentage of memory to allocate to the queue\. If you specify a memory percentage for at least one of the queues, you must specify a percentage for all of the other queues up to a total of 100 percent\. If your memory allocation is below 100 percent across all of the queues, the unallocated memory is managed by the service and can be temporarily given to a queue that requests additional memory for processing\.  
+The percentage of memory to allocate to the queue\. If you specify a memory percentage for at least one of the queues, you must specify a percentage for all other queues, up to a total of 100 percent\. If your memory allocation is below 100 percent across all of the queues, the unallocated memory is managed by the service\. The service can temporarily give this unallocated memory to a queue that requests additional memory for processing\.  
 JSON property: `memory_percent_to_use`
 
 **Query Monitoring Rules**  
@@ -133,11 +137,21 @@ For more information about each of these properties and strategies for configuri
  To configure WLM, you modify the `wlm_json_configuration` parameter\. The value is formatted in JavaScript Object Notation \(JSON\)\. If you configure WLM by using the AWS CLI, Amazon Redshift API, or one of the AWS SDKs, use the rest of this section to learn how to construct the JSON structure for the `wlm_json_configuration` parameter\. 
 
 **Note**  
- If you configure WLM by using the Amazon Redshift console, you do not need to understand JSON formatting because the console provides an easy way to add queues and configure their properties\. For more information about configuring WLM by using the Amazon Redshift console, see [Modifying a Parameter Group](managing-parameter-groups-console.md#parameter-group-modify)\. 
+ If you configure WLM by using the Amazon Redshift console, you don't need to understand JSON formatting because the console provides an easy way to add queues and configure their properties\. For more information about configuring WLM by using the console, see [Modifying a Parameter Group](managing-parameter-groups-console.md#parameter-group-modify)\. 
 
 Example
 
-The following example is the default WLM configuration, which defines one queue with a concurrency level of five\. 
+The following example is the default WLM configuration, which defines one queue with automatic WLM\. 
+
+```
+{
+   "auto_wlm": true
+}
+```
+
+Example
+
+The following example is a custom WLM configuration, which defines one queue with a concurrency level of five\. 
 
 ```
 {
@@ -147,7 +161,7 @@ The following example is the default WLM configuration, which defines one queue 
 
 Syntax
 
- The default WLM configuration is very simple, with only queue and one property\. You can add more queues and configure multiple properties for each queue in the JSON structure\. The following syntax represents the JSON structure that you use to configure multiple queues with multiple properties: 
+The default WLM configuration is very simple, with only queue and one property\. You can add more queues and configure multiple properties for each queue in the JSON structure\. The following syntax represents the JSON structure that you use to configure multiple queues with multiple properties: 
 
 ```
 [
@@ -181,7 +195,7 @@ The `wlm_json_configuration` parameter requires a specific format when you use t
 
 Examples
 
-The following example command configures WLM for a parameter group called `example-parameter-group`\. The configuration enables short\-query acceleration with a maximum run time for short queries set to 0, which instructs WLM to set the value dynamically\.\. The `ApplyType` setting is `dynamic`\. This setting means that any changes made to dynamic properties in the parameter are applied immediately unless other static changes have been made to the configuration\. The configuration defines three queues with the following: 
+The following example command configures WLM for a parameter group called `example-parameter-group`\. The configuration enables short\-query acceleration with a maximum run time for short queries set to 0, which instructs WLM to set the value dynamically\. The `ApplyType` setting is `dynamic`\. This setting means that any changes made to dynamic properties in the parameter are applied immediately unless other static changes have been made to the configuration\. The configuration defines three queues with the following: 
 +  The first queue enables users to specify `report` as a label \(as specified in the `query_group` property\) in their queries to help in routing queries to that queue\. Wildcard searches are enabled for the `report*` label, so the label doesn't need to be exact for queries to be routed to the queue\. For example, `reports` and `reporting` both match this query group\. The queue is allocated 25 percent of the total memory across all queues, and can run up to four queries at the same time\. Queries are limited to a maximum time of 20000 milliseconds \(ms\)\. Concurrency Scaling mode is set to auto, so when the queue's query slots are full eligible queries are sent to a scaling cluster\. 
 +  The second queue enables users who are members of `admin` or `dba` groups in the database to have their queries routed to the queue for processing\. Wildcard searches are disabled for user groups, so users must be matched exactly to groups in the database in order for their queries to be routed to the queue\. The queue is allocated 40 percent of the total memory across all queues, and it can run up to five queries at the same time\. Concurrency Scaling mode is set to off, so all queries sent by members of the admin or dba groups run on the main cluster\.
 +  The last queue in the configuration is the default queue\. This queue is allocated 35 percent of the total memory across all queues, and it can process up to five queries at a time\. Concurrency Scaling mode is set to auto\. 

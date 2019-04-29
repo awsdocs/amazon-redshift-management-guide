@@ -9,7 +9,7 @@ You can use the following Amazon Redshift CLI operations to manage parameter gro
 + [modify\-cluster\-parameter\-group](https://docs.aws.amazon.com/cli/latest/reference/redshift/modify-cluster-parameter-group.html)
 + [reset\-cluster\-parameter\-group](https://docs.aws.amazon.com/cli/latest/reference/redshift/reset-cluster-parameter-group.html)
 
-You can use the following Amazon Redshift APIs to manage parameter groups\.
+You can use the following Amazon Redshift API operations to manage parameter groups\.
 + [CreateClusterParameterGroup](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateClusterParameterGroup.html)
 + [DeleteClusterParameterGroup](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DeleteClusterParameterGroup.html)
 + [DescribeClusterParameters](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusterParameters.html)
