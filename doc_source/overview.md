@@ -24,7 +24,7 @@ There are several features related to cluster access and security in Amazon Reds
 
 ### AWS Accounts and IAM Credentials<a name="rs-overview-aws-accounts-and-iam-credentials"></a>
 
-By default, an Amazon Redshift cluster is only accessible to the AWS account that creates the cluster\. The cluster is locked down so that no one else has access\. Within your AWS account, you use the AWS Identity and Access Management \(IAM\) service to create user accounts and manage permissions for those accounts to control cluster operations\. For more information, see [Security](iam-redshift-user-mgmt.md)\.
+By default, an Amazon Redshift cluster is only accessible to the AWS account that creates the cluster\. The cluster is locked down so that no one else has access\. Within your AWS account, you use the AWS Identity and Access Management \(IAM\) service to create user accounts and manage permissions for those accounts to control cluster operations\. For more information, see [Security in Amazon Redshift](iam-redshift-user-mgmt.md)\.
 
 ### Security Groups<a name="rs-overview-security-groups"></a>
 

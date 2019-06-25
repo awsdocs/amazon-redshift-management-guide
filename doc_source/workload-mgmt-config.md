@@ -20,6 +20,8 @@ The following WLM properties are static:
 
 Adding, removing, or reordering query queues is a static change and requires a cluster reboot to take effect\.
 
+Switching between automatic WLM and manual WLM is a static change and requires a cluster reboot to take effect\.
+
 The following WLM properties are dynamic:
 + Concurrency
 + Concurrency Scaling mode
@@ -74,6 +76,7 @@ A Boolean value that indicates whether to enable wildcards for query groups\. If
 JSON property: `query_group_wild_card`
 
 **Timeout \(ms\)**  
+WLM timeout \(`max_execution_time`\) is deprecated\. Instead, create a query monitoring rule \(QMR\) using `query_execution_time` to limit the elapsed execution time for a query\. For more information, see [WLM Query Monitoring Rules](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)\.   
 The maximum time, in milliseconds, that queries can run before being canceled\. In some cases, a read\-only query, such as a SELECT statement, might be canceled due to a WLM timeout\. In these cases, WLM attempts to route the query to the next matching queue based on the WLM queue assignment rules\. If the query doesn't match any other queue definition, the query is canceled; it isn't assigned to the default queue\. For more information, see [WLM Query Queue Hopping](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-defining-query-queues.html#wlm-queue-hopping)\. WLM timeout doesn’t apply to a query that has reached the `returning` state\. To view the state of a query, see the [STV\_WLM\_QUERY\_STATE](https://docs.aws.amazon.com/redshift/latest/dg/r_STV_WLM_QUERY_STATE.html) system table\.  
 JSON property: `max_execution_time`
 

@@ -42,7 +42,7 @@ The `AWS/Redshift` namespace includes the following metrics\.
 | WriteLatency |  The average amount of time taken for disk write I/O operations\. Units: Seconds Dimensions: `NodeID`  | 
 | WriteThroughput |  The average number of bytes written to disk per second\. Units: Bytes \(GB/s in the Amazon Redshift console\) Dimensions: `NodeID`  | 
 
-## Dimensions for Amazon Redshift Metrics<a name="w4aac31c11c23"></a>
+## Dimensions for Amazon Redshift Metrics<a name="w4aac33c11c23"></a>
 
 Amazon Redshift data can be filtered along any of the following dimensions in the table below\.
 
@@ -56,7 +56,7 @@ Amazon Redshift data can be filtered along any of the following dimensions in th
 |  ClusterIdentifier  |  Filters requested data that is specific to the cluster\. Metrics that are specific to clusters include `HealthStatus`, `MaintenanceMode`, and `DatabaseConnections`\. General metrics for this dimension \(for example, `ReadIOPS`\) that are also metrics of nodes represent an aggregate of the node metric data\. Take care in interpreting these metrics because they aggregate behavior of leader and compute nodes\.  | 
 |  Service class  |  The identifier for a `WLM` service class\.  | 
 |  Stage  |  The execution stages for a query\. The possible values are: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/metrics-listing.html)  | 
-|  wmlid  |  The identifier for a workload management queue\.  | 
+|  wlmid  |  The identifier for a workload management queue\.  | 
 
 ## Amazon Redshift Query/Load Performance Data<a name="custom-metrics-listing"></a>
 

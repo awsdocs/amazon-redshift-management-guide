@@ -1,4 +1,4 @@
-# Authentication and Access Control for Amazon Redshift<a name="redshift-iam-authentication-access-control"></a>
+# Identity and Access Management in Amazon Redshift<a name="redshift-iam-authentication-access-control"></a>
 
 Access to Amazon Redshift requires credentials that AWS can use to authenticate your requests\. Those credentials must have permissions to access AWS resources, such as an Amazon Redshift cluster\. The following sections provide details on how you can use [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) and Amazon Redshift to help secure your resources by controlling who can access them:
 + [Authentication](#authentication)

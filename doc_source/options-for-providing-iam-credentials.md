@@ -14,7 +14,7 @@ To provide IAM credentials for a JDBC or ODBC connection, choose one of the foll
   + PingFederate
   + Okta
 
-  You can provide the plugin name and related values in the form of JDBC or ODBC settings or by using a profile\. 
+  You can provide the plugin name and related values in the form of JDBC or ODBC settings or by using a profile\. For more information, see see [JDBC Driver Configuration Options](configure-jdbc-options.md) and [ODBC Driver Configuration Options](configure-odbc-options.md)\. 
 
 For more information, see [Configure a JDBC or ODBC Connection to Use IAM Credentials](generating-iam-credentials-configure-jdbc-odbc.md)\.
 

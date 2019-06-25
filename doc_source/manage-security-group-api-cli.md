@@ -7,7 +7,7 @@ You can use the following Amazon Redshift CLI operations to manage cluster secur
 + [describe\-cluster\-security\-groups](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-cluster-security-groups.html)
 + [revoke\-cluster\-security\-group\-ingress](https://docs.aws.amazon.com/cli/latest/reference/redshift/revoke-cluster-security-group-ingress.html)
 
- You can use the following Amazon Redshift APIs to manage cluster security groups\.
+ You can use the following Amazon Redshift API operations to manage cluster security groups\.
 + [AuthorizeClusterSecurityGroupIngress](https://docs.aws.amazon.com/redshift/latest/APIReference/API_AuthorizeClusterSecurityGroupIngress.html)
 + [CreateClusterSecurityGroup](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateClusterSecurityGroup.html)
 + [DeleteClusterSecurityGroup](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DeleteClusterSecurityGroup.html)

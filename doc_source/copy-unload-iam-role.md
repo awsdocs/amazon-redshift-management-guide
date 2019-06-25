@@ -13,7 +13,7 @@ In this topic you learn how to associate an IAM role with an Amazon Redshift clu
 
 After you have created an IAM role that authorizes Amazon Redshift to access other AWS services on your behalf, you must associate that role with an Amazon Redshift cluster before you can use the role to load or unload data\. 
 
-### Permissions Required to Associate an IAM Role with a Cluster<a name="w4aac25c17c11b5"></a>
+### Permissions Required to Associate an IAM Role with a Cluster<a name="w4aac23c24c28c17c11b5"></a>
 
 To associate an IAM role with a cluster, an IAM user must have `iam:PassRole` permission for that IAM role\. This permission allows an administrator to restrict which IAM roles a user can associate with Amazon Redshift clusters\. 
 
@@ -58,14 +58,14 @@ Once an IAM user has the appropriate permissions, that user can associate an IAM
 
 For more information on IAM policies, see [Overview of IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) in the *IAM User Guide*\.
 
-### Managing IAM Role Association With a Cluster<a name="w4aac25c17c11b7"></a>
+### Managing IAM Role Association With a Cluster<a name="w4aac23c24c28c17c11b7"></a>
 
 You can associate an IAM role with an Amazon Redshift cluster when you create the cluster, or you can modify an existing cluster and add or remove one or more IAM role associations\. Note the following:
 + You can associate a maximum of 10 IAM roles with an Amazon Redshift cluster\.
 + An IAM role can be associated with multiple Amazon Redshift clusters\.
 + An IAM role can be associated with an Amazon Redshift cluster only if both the IAM role and the cluster are owned by the same AWS account\. 
 
-#### Using the Console to Manage IAM Role Associations<a name="w4aac25c17c11b7b7"></a>
+#### Using the Console to Manage IAM Role Associations<a name="w4aac23c24c28c17c11b7b7"></a>
 
 You can manage IAM role associations for a cluster with the console by using the following procedure\.
 
@@ -87,11 +87,11 @@ The **Manage IAM Roles** panel shows you the status of your cluster IAM role ass
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cluster-iam-roles.png)
 
-#### Using the AWS CLI to Manage IAM Role Associations<a name="w4aac25c17c11b7b9"></a>
+#### Using the AWS CLI to Manage IAM Role Associations<a name="w4aac23c24c28c17c11b7b9"></a>
 
 You can manage IAM role associations for a cluster with the AWS CLI by using the following approaches\.
 
-##### Associating an IAM Role with a Cluster Using the AWS CLI<a name="w4aac25c17c11b7b9b5"></a>
+##### Associating an IAM Role with a Cluster Using the AWS CLI<a name="w4aac23c24c28c17c11b7b9b5"></a>
 
 To associate an IAM role with a cluster when the cluster is created, specify the Amazon Resource Name \(ARN\) of the IAM role for the `--iam-role-arns` parameter of the `create-cluster` command\. You can specify up to 10 IAM roles to add when calling the `create-cluster` command\.
 
@@ -118,7 +118,7 @@ aws redshift modify-cluster-iam-roles \
     --add-iam-roles "arn:aws:iam::123456789012:role/RedshiftCopyUnload"
 ```
 
-##### Disassociating an IAM Role from a Cluster Using the AWS CLI<a name="w4aac25c17c11b7b9b7"></a>
+##### Disassociating an IAM Role from a Cluster Using the AWS CLI<a name="w4aac23c24c28c17c11b7b9b7"></a>
 
 To disassociate an IAM role from a cluster, specify the ARN of the IAM role for the `--remove-iam-roles` parameter of the `modify-cluster-iam-roles` command\. You can specify up to 10 IAM roles to remove when calling the `modify-cluster-iam-roles` command\.
 
@@ -130,7 +130,7 @@ aws redshift modify-cluster-iam-roles \
     --remove-iam-roles "arn:aws:iam::123456789012:role/RedshiftCopyUnload"
 ```
 
-##### Listing IAM Role Associations for a Cluster Using the AWS CLI<a name="w4aac25c17c11b7b9b9"></a>
+##### Listing IAM Role Associations for a Cluster Using the AWS CLI<a name="w4aac23c24c28c17c11b7b9b9"></a>
 
 To list all of the IAM roles that are associated with an Amazon Redshift cluster, and the status of the IAM role association, call the `describe-clusters` command\. The ARN for each IAM role associated with the cluster is returned in the `IamRoles` list as shown in the following example output\.
 

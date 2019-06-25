@@ -43,6 +43,10 @@ The policy has two statements:
 + The first statement grants permissions for a user to a user to create, delete, modify, and reboot clusters\. The statement specifies a wildcard character \(\*\) as the `Resource` value so that the policy applies to all Amazon Redshift resources owned by the root AWS account\. 
 + The second statement denies permission to delete or modify a cluster\. The statement specifies a cluster Amazon Resource Name \(ARN\) for the `Resource` value that includes a wildcard character \(\*\)\. As a result, this statement applies to all Amazon Redshift clusters owned by the root AWS account where the cluster identifier begins with `production`\.
 
+## Permissions Required to Use Redshift Spectrum<a name="redshift-spectrum-policy-resources"></a>
+
+Redshift Spectrum requires permissions to other AWS services to access resources\. For details about permissions in IAM policies for Redshift Spectrum, see [IAM Policies for Amazon Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-iam-policies.html) in the Amazon Redshift Database Developer Guide\.
+
 ## Permissions Required to Use the Amazon Redshift Console<a name="redshift-policy-resources.required-permissions.console"></a>
 
 For a user to work with the Amazon Redshift console, that user must have a minimum set of permissions that allows the user to describe the Amazon Redshift resources for their AWS account\. These permissions must also allow the user to describe other related information, including Amazon EC2 security and network information\.

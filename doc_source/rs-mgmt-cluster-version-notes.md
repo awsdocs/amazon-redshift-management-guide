@@ -2,7 +2,17 @@
 
 Find notes about cluster versions for Amazon Redshift\.
 
-## Version 1\.0\.7657, 1\.0\.7767<a name="rs-mgmt-cluster-version-notes-7657"></a><a name="rs-mgmt-cluster-version-notes-107657"></a>
+## Versions 1\.0\.8058, 1\.0\.8123, or 1\.0\.8205<a name="rs-mgmt-cluster-version-notes-108058"></a><a name="rs-mgmt-cluster-version-notes-108058"></a>
+
+Time period: June 13–July 3, 2019
+
+**Features and Improvements**
++ **Amazon Redshift:** Improved performance of ingestion into an empty table using the COPY command by providing COMPUPDATE PRESET as the new default parameter\. 
++ **Amazon Redshift:** Performance improvements for joins over tables that require distribution during query runtime\. 
++ **Amazon Redshift:** Improved performance of the queries tab on the Amazon Redshift console when a cluster is processing heavy workloads\. 
++ **Amazon Redshift:** Significant performance improvements to aggregation queries that include large VARCHAR columns\. 
+
+## Versions 1\.0\.7657, 1\.0\.7767, 1\.0\.7804, or 1\.0\.8187<a name="rs-mgmt-cluster-version-notes-107657"></a><a name="rs-mgmt-cluster-version-notes-107657"></a>
 
 Time period: May 22–June 12, 2019
 
@@ -16,7 +26,7 @@ Time period: May 22–June 12, 2019
 **Fixes**
 + Fix for DROP DATABASE when dropping external database using JDBC driver\. 
 
-## Versions 1\.0\.7287, 1\.0\.7464, 1\.0\.7562<a name="rs-mgmt-cluster-version-notes-7287"></a><a name="rs-mgmt-cluster-version-notes-107287"></a>
+## Versions 1\.0\.7287, 1\.0\.7464, 1\.0\.7562<a name="rs-mgmt-cluster-version-notes-107287"></a><a name="rs-mgmt-cluster-version-notes-107287"></a>
 
 Time period: April 24–May 22, 2019
 

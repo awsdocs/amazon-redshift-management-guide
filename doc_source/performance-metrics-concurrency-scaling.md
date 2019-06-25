@@ -21,7 +21,7 @@ Concurrency Scaling metrics in Amazon Redshift enable the following common perfo
 The Amazon Redshift console displays the following graphs\.
 + *Concurrency Scaling Activity* – Shows the number of active concurrency scaling clusters for the chosen time range\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/concurrency-scaling-activity-graph.png)
-+ *Max Configured Concurrency Scaling Clusters* – Shows the maximum number of concurrency scaling clusters configured during the chosen time range\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/max-configured-concurrency-scaling-clusters-graph.png)
++ *Queued vs\. Running Queries* – Compares queued and running queries of concurrency scaling clusters configured during the chosen time range\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/queued-running-configured-concurrency-scaling-clusters-graph.png)
 + *Concurrency Scaling Usage in Minutes \(Sum\)* – Shows the total usage of concurrency scaling clusters for the chosen time range\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/concurrency-scaling-usage-minutes-graph.png)
