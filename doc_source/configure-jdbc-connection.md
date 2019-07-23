@@ -20,7 +20,7 @@ JDBC drivers version 1\.2\.8\.1005 and later support database authentication usi
 If you use the Amazon Redshift JDBC driver for database authentication, you must have AWS SDK for Java 1\.11\.118 or later in your Java class path\. If you don't have AWS SDK for Java installed, you can use a driver that includes the AWS SDK\. For more information, see [Previous JDBC Driver Versions With the AWS SDK for Java](jdbc-previous-versions.md#jdbc-previous-versions-with-sdk)
 
 **Important**  
-We strongly recommend using an Amazon Redshift JDBC driver that doesn't include the AWS SDK if possible\. The drivers in the following list don't include the AWS SDK\.
+We strongly recommend using an Amazon Redshift JDBC driver that doesn't include the AWS SDK if possible because the AWS SDK can be upgraded quite frequently and the driver doesn't get updated that quickly\. The drivers that includes AWS SDK actually has the AWS Java SDK embedded into the \.jar file, so when API usage get updated, the driver will not be able to handle that but if the Java AWS SDK is external, you can upgrade that easier\. The drivers in the following list don't include the AWS SDK\.
 
 Download one of the following, depending on the version of the JDBC API that your SQL client tool or application uses\. If you're not sure, download the latest version of the JDBC 4\.2 API driver\.
 
