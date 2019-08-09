@@ -21,6 +21,7 @@ Amazon Redshift Spectrum has the following limits when using the Athena or AWS G
 + A maximum of 100,000 tables per database\.
 + A maximum of 1,000,000 partitions per table\.
 + A maximum of 10,000,000 partitions per account\.
++ You can add a maximum of 100 partitions using a single ALTER TABLE statement\.
 + All S3 data must be located in the same region as the Redshift cluster\. 
 + Timestamps in ION and JSON must use [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) format\. 
 + The maximum allowed size of a row object in a ION/JSON file is 8MB\. 

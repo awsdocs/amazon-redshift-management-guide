@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: June 24, 2019** 
+ **Latest documentation update: July 31, 2019** 
 
 For a list of the changes to the *Amazon Redshift Database Developer Guide*, see [Amazon Redshift Database Developer Guide Document History](https://docs.aws.amazon.com/redshift/latest/dg/doc-history.html)\.
 
@@ -12,8 +12,8 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Cluster release version](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html) | Release notes for a new cluster release version are available\. For more information, see [Cluster Version History](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html)\. | July 31, 2019 | 
 | [Security information updates](http://docs.aws.amazon.com/redshift/latest/mgmt/iam-redshift-user-mgmt.html) | Updates to the security information documentation structure\. | June 24, 2019 | 
-| [Cluster release version](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html) | Release notes for a new cluster release version are available\. For more information, see [Cluster Version History](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html)\. | June 13, 2019 | 
 | [Snapshot enhancements](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html) | Amazon Redshift now supports several enhancements to managing and scheduling snapshots\. | April 4, 2019 | 
 | [Concurrency Scaling](http://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) | You can configure workload management \(WLM\) to enable Concurrency Scaling mode\. For more information, see [Configuring Workload Management](http://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html)\. | March 21, 2019 | 
 | [Updated JDBC and ODBC drivers](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-to-cluster.html) | Amazon Redshift now supports new versions of the JDBC and ODBC drivers\. For more information, see [Configure a JDBC Connection](https://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html) and [Configure and ODBC Connection](https://docs.aws.amazon.com/redshift/latest/mgmt/configure-odbc-connection.html)\. | February 4, 2019 | 

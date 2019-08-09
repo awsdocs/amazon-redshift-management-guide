@@ -15,10 +15,10 @@ Use the steps in this section to download the Amazon Redshift ODBC drivers for M
 **To install the ODBC driver**
 
 1. Download one of the following, depending on the system architecture of your SQL client tool or application:
-   + 32\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.6\.1000/AmazonRedshiftODBC32\-1\.4\.6\.1000\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.6.1000/AmazonRedshiftODBC32-1.4.6.1000.msi) 
+   + 32\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.7\.1000/AmazonRedshiftODBC32\-1\.4\.7\.1000\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.7.1000/AmazonRedshiftODBC32-1.4.7.1000.msi) 
 
      The name for this driver is Amazon Redshift \(x86\)\.
-   +  64\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.6\.1000/AmazonRedshiftODBC64\-1\.4\.6\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.6.1000/AmazonRedshiftODBC64-1.4.6.1000.msi) 
+   +  64\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.7\.1000/AmazonRedshiftODBC64\-1\.4\.7\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.7.1000/AmazonRedshiftODBC64-1.4.7.1000.msi) 
 
      The name for this driver is Amazon Redshift \(x64\)\.
 **Note**  

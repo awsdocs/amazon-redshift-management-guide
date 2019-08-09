@@ -11,7 +11,7 @@ You can use a JDBC connection to connect to your Amazon Redshift cluster from ma
 
 ## Download the Amazon Redshift JDBC Driver<a name="download-jdbc-driver"></a>
 
-Amazon Redshift offers drivers for tools that are compatible with either the JDBC 4\.2 API, JDBC 4\.1 API, or JDBC 4\.0 API\. For information about the functionality supported by these drivers, go to the [Amazon Redshift JDBC Driver Release Notes](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.27.1051/Amazon+Redshift+JDBC+Release+Notes.pdf)\.  
+Amazon Redshift offers drivers for tools that are compatible with either the JDBC 4\.2 API, JDBC 4\.1 API, or JDBC 4\.0 API\. For information about the functionality supported by these drivers, go to the [Amazon Redshift JDBC Driver Release Notes](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.32.1056/Amazon+Redshift+JDBC+Release+Notes.pdf)\.  
 
 JDBC drivers version 1\.2\.27\.1051 and later support Amazon Redshift stored procedures\. For more information, see [Amazon Redshift Database Developer Guide Creating Stored Procedures](https://docs.aws.amazon.com/redshift/latest/dg/stored-procedure-overview.html)\.
 
@@ -26,13 +26,13 @@ Download one of the following, depending on the version of the JDBC API that you
 
 **Note**  
 For driver class name, use either com\.amazon\.redshift\.jdbc\.Driver or the version\-specific class name listed with the driver in the list following\.
-+ JDBC 4\.2–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.27\.1051/RedshiftJDBC42\-no\-awssdk\-1\.2\.27\.1051\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.27.1051/RedshiftJDBC42-no-awssdk-1.2.27.1051.jar)\. 
++ JDBC 4\.2–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.32\.1056/RedshiftJDBC42\-no\-awssdk\-1\.2\.32\.1056\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.32.1056/RedshiftJDBC42-no-awssdk-1.2.32.1056.jar)\. 
 
   The class name for this driver is `com.amazon.redshift.jdbc42.Driver`\.
-+  JDBC 4\.1–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.27\.1051/RedshiftJDBC41\-no\-awssdk\-1\.2\.27\.1051\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.27.1051/RedshiftJDBC41-no-awssdk-1.2.27.1051.jar)\. 
++  JDBC 4\.1–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.32\.1056/RedshiftJDBC41\-no\-awssdk\-1\.2\.32\.1056\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.32.1056/RedshiftJDBC41-no-awssdk-1.2.32.1056.jar)\. 
 
   The class name for this driver is `com.amazon.redshift.jdbc41.Driver`\.
-+  JDBC 4\.0–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.27\.1051/RedshiftJDBC4\-no\-awssdk\-1\.2\.27\.1051\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.27.1051/RedshiftJDBC4-no-awssdk-1.2.27.1051.jar)\. 
++  JDBC 4\.0–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.32\.1056/RedshiftJDBC4\-no\-awssdk\-1\.2\.32\.1056\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.32.1056/RedshiftJDBC4-no-awssdk-1.2.32.1056.jar)\. 
 
   The class name for this driver is `com.amazon.redshift.jdbc4.Driver`\.
 

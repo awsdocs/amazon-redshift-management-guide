@@ -17,7 +17,7 @@ Use the steps in this section to download and install the Amazon Redshift ODBC d
 
 **To install the Amazon Redshift ODBC driver on Mac OS X**
 
-1. Download [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.6\.1000/AmazonRedshiftODBC\-1\.4\.6\.1000\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.6.1000/AmazonRedshiftODBC-1.4.6.1000.dmg)\. The name for this driver is Amazon Redshift ODBC Driver\.
+1. Download [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.7\.1000/AmazonRedshiftODBC\-1\.4\.7\.1000\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.7.1000/AmazonRedshiftODBC-1.4.7.1000.dmg)\. The name for this driver is Amazon Redshift ODBC Driver\.
 
    Then download and review the [Amazon Redshift ODBC Driver License Agreement](https://s3.amazonaws.com/redshift-downloads/drivers/Amazon+Redshift+ODBC+Driver+License+Agreement.pdf)\. If you need to distribute these drivers to your customers or other third parties, please email *redshift\-pm@amazon\.com* to arrange an appropriate license\. 
 

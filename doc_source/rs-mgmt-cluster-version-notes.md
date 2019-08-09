@@ -2,15 +2,46 @@
 
 Find notes about cluster versions for Amazon Redshift\.
 
-## Versions 1\.0\.8058, 1\.0\.8123, or 1\.0\.8205<a name="rs-mgmt-cluster-version-notes-108058"></a><a name="rs-mgmt-cluster-version-notes-108058"></a>
+## Version 1\.0\.9003 or 1\.0\.9041<a name="rs-mgmt-cluster-version-notes-109003"></a><a name="rs-mgmt-cluster-version-notes-109003"></a>
 
-Time period: June 13–July 3, 2019
+Time period: July 31–August 22, 2019
+
+**Features and Improvements**
++ **Amazon Redshift:** New metric WLMQueueWaitTime added to monitor the total time queries spent waiting in a workload management \(WLM\) queue\. 
++ **Amazon Redshift:** Improvement to COPY performance when running in parallel with a snapshot restore\. 
++ **Amazon Redshift:** Performance improvements to queries that use APPROXIMATE COUNT \(DISTINCT <column>\)\. 
+
+**Fixes**
++ Fix for a correct reconstruction of original SQL statement from one of the system tables or views including stl\_querytext, stl\_utilitytext, stl\_ddltext, and svl\_statementtext\. 
++  COPY from columnar data format allows special characters in the table name\. 
++ Fix for PG\_TABLE\_DEF incorrectly listing indexes\. 
+
+## Versions 1\.0\.8610, 1\.0\.8727, 1\.0\.8815, 1\.0\.8901, or 1\.0\.8995<a name="rs-mgmt-cluster-version-notes-108610"></a><a name="rs-mgmt-cluster-version-notes-108610"></a>
+
+Time period: July 10–July 31, 2019
+
+**Features and Improvements**
++ **Amazon Redshift:** Advisor now gives recommendations to apply the right distribution keys for the tables that benefit the most, resulting in significant performance improvements\. 
++ **Amazon Redshift:** Improvement to COPY performance when running in parallel with a snapshot restore\. 
++ **Amazon Redshift:** Amazon Redshift now supports transactions \(for example, COMMIT and ROLLBACK\) within SQL stored procedures 
++ **Amazon Redshift:** On an empty table, the EXPLAIN command previously recommended that ANALYZE must be run since statistics are missing\. The misleading recommendation has been addressed\. 
++ **Amazon Redshift:** Amazon Redshift now supports the SHOW PROCEDURE command with JDBC\. 
++ **Redshift Spectrum:** Performance improvement for prepared statements that use parameters in predicates when accessing external tables\. 
+
+**Fixes**
++ Fix for error message to inform the user that Amazon Redshift does not support `percentile_disc` as an aggregate\. Currently, a user can use either approximate `percentile_disc`, or window function `percentile_disc` with an empty partitioning function\. 
+
+## Versions 1\.0\.8058, 1\.0\.8123, 1\.0\.8205, or 1\.0\.8360<a name="rs-mgmt-cluster-version-notes-108058"></a><a name="rs-mgmt-cluster-version-notes-108058"></a>
+
+Time period: June 13–July 10, 2019
 
 **Features and Improvements**
 + **Amazon Redshift:** Improved performance of ingestion into an empty table using the COPY command by providing COMPUPDATE PRESET as the new default parameter\. 
 + **Amazon Redshift:** Performance improvements for joins over tables that require distribution during query runtime\. 
 + **Amazon Redshift:** Improved performance of the queries tab on the Amazon Redshift console when a cluster is processing heavy workloads\. 
 + **Amazon Redshift:** Significant performance improvements to aggregation queries that include large VARCHAR columns\. 
++ **Amazon Redshift:** Support for applying a new distribution key to an existing EVEN and KEY distribution tables with ALTER TABLE\. 
++ **Amazon Redshift:** You can now use the ALTER TABLE command to decrease the size of VARCHAR columns\. 
 
 ## Versions 1\.0\.7657, 1\.0\.7767, 1\.0\.7804, or 1\.0\.8187<a name="rs-mgmt-cluster-version-notes-107657"></a><a name="rs-mgmt-cluster-version-notes-107657"></a>
 

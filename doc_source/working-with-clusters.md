@@ -258,6 +258,7 @@ The following list shows the time blocks for each region from which the default 
 + EU \(London\) region: 22:00–06:00 UTC
 + EU \(Paris\) region: 23:00–07:00 UTC
 + EU \(Stockholm\) region: 23:00–07:00 UTC
++  region: 13:00–21:00 UTC
 + South America \(São Paulo\) region: 19:00–03:00 UTC
 
 If a maintenance event is scheduled for a given week, it will start during the assigned 30 minute maintenance window\. While Amazon Redshift is performing maintenance, it terminates any queries or other operations that are in progress\. Most maintenance completes during the 30 minute maintenance window, but some maintenance tasks might continue running after the window closes\. If there are no maintenance tasks to perform during the scheduled maintenance window, your cluster continues to operate normally until the next scheduled maintenance window\. 
@@ -378,7 +379,6 @@ The cluster status displays the current state of the cluster\. The following tab
 | available | The cluster is running and available\. | 
 | available, prep\-for\-resize | The cluster is being prepared for elastic resize\. The cluster is running and available for read and write queries, but cluster operations, such as creating a snapshot, are not available\. | 
 | available, resize\-cleanup  | An elastic resize operation is completing data transfer to the new cluster nodes\. The cluster is running and available for read and write queries, but cluster operations, such as creating a snapshot, are not available\. | 
-| available | The cluster is running and available\. | 
 | creating | Amazon Redshift is creating the cluster\. For more information, see [Creating a Cluster](managing-clusters-console.md#create-cluster)\. | 
 | deleting | Amazon Redshift is deleting the cluster\. For more information, see [Deleting a Cluster](managing-clusters-console.md#delete-cluster)\. | 
 | final\-snapshot | Amazon Redshift is taking a final snapshot of the cluster before deleting it\. For more information, see [Deleting a Cluster](managing-clusters-console.md#delete-cluster)\. | 

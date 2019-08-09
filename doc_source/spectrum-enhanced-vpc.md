@@ -93,9 +93,9 @@ For more information, see the AWS Security blog post [How to Use Bucket Policies
 
 ### Access to AWS Glue or Amazon Athena<a name="spectrum-enhanced-vpc-considerations-glue-access"></a>
 
-Redshift Spectrum accesses your data catalogs in AWS Glue or Athena through the public endpoints, not through your VPC\. If access to the internet isn't an option, use a dedicated Hive Metastore for your data catalogs\. 
+Redshift Spectrum accesses your data catalog in AWS Glue or Athena\. Another option is to use a dedicated Hive Metastore for your data catalog\. 
 
-To enable access to AWS Glue or Athena, configure your VPC with an internet gateway or NAT gateway\. Configure your VPC security groups to allow outbound traffic to the public endpoints for AWS Glue and Athena\. 
+To enable access to AWS Glue or Athena, configure your VPC with an internet gateway or NAT gateway\. Configure your VPC security groups to allow outbound traffic to the public endpoints for AWS Glue and Athena\. Alternatively, you can configure an interface VPC endpoint for AWS Glue to access your AWS Glue Data Catalog\. When you use a VPC interface endpoint, communication between your VPC and AWS Glue is conducted within the AWS network\. For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint)\.
 
 You can configure the following pathways in your VPC: 
 + **Internet gateway** –To connect to AWS services outside your VPC, you can attach an [internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) to your VPC subnet, as described in the *Amazon VPC User Guide\.* To use an internet gateway, your cluster must have a public IP address to allow other services to communicate with your cluster\. 
