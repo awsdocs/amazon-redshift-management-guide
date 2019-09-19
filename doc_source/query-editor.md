@@ -20,7 +20,7 @@ Be aware of the following considerations when you use the Query Editor:
 + Up to 50 users can connect to a cluster with the Query Editor at the same time\.
 + The maximum number of users connecting to a cluster includes those connecting through the Query Editor\.
 + Up to 50 workload management \(WLM\) query slots can be active at the same time\. For more information about query slots, see [Implementing Workload Management](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html)\.
-+ Query Editor only runs short queries that can complete within two minutes\. 
++ Query Editor only runs short queries that can complete within 10 minutes\. 
 + Query result sets are paginated with 100 rows per page\.
 + You can't use the Query Editor with Enhanced VPC Routing\. For more information, see [Amazon Redshift Enhanced VPC Routing](enhanced-vpc-routing.md)\. 
 + You can't use transactions in the Query Editor\. For more information about transactions, see [BEGIN](https://docs.aws.amazon.com/redshift/latest/dg/r_BEGIN.html) in the *Amazon Redshift Database Developer Guide\.*

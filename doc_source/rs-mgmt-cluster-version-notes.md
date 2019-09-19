@@ -2,6 +2,32 @@
 
 Find notes about cluster versions for Amazon Redshift\.
 
+## Version 1\.0\.10013<a name="rs-mgmt-cluster-version-notes-10013"></a><a name="rs-mgmt-cluster-version-notes-10013"></a>
+
+Time period: September 18–October 9, 2019
+
+**Features and Improvements**
++ **Amazon Redshift:** Now supports AZ64 compression which delivers both optimized storage and high query performance\. 
++ **Amazon Redshift:** Now incorporates the latest global time zone data\. 
++ **Amazon Redshift:** The CREATE TABLE command now supports the new DEFAULT IDENTITY column type, which will implicitly generate unique values\. 
++ **Amazon Redshift:** The ALTER TABLE ALTER DISTKEY command for tables with a sort key now performs an inline sort\. Therefore, running VACUUM afterwards is no longer required\. 
+
+**Fixes**
++ For some queries that contain an outer join, Redshift would return "ERROR: failed to build any 3\-way joins"\. This issue is now addressed\. 
++ The metrics WLMQueriesCompletedPerSecond and WLMQueryDuration were incorrectly reported when the Query Priorities feature was enabled\. This is now resolved\. 
+
+## Versions 1\.0\.9459, 1\.0\.9734, 1\.0\.9761, 1\.0\.9865, 1\.0\.9867, or 1\.0\.9871<a name="rs-mgmt-cluster-version-notes-109459"></a><a name="rs-mgmt-cluster-version-notes-109459"></a>
+
+Time period: August 22–September 19, 2019
+
+**Features and Improvements**
++ **Amazon Redshift:** Automatic Workload Management \(automatic WLM\) now supports query priorities, allowing users to prioritize query admission and resource allocation based on relative importance of workloads or user groups\. 
++ **Amazon Redshift:** Performance improvement for queries with join operations when a table is broadcasted to all the compute nodes\. 
++ **Redshift Spectrum:** Updated syntax for GRANT and REVOKE statements on external AWS Lake Formation tables that specify a column list\. 
+
+**Fixes**
++ Fix for an error when a query uses window functions with a PARTITION BY clause that specifies over 100 columns\. 
+
 ## Version 1\.0\.9003 or 1\.0\.9041<a name="rs-mgmt-cluster-version-notes-109003"></a><a name="rs-mgmt-cluster-version-notes-109003"></a>
 
 Time period: July 31–August 22, 2019
@@ -52,7 +78,7 @@ Time period: May 22–June 12, 2019
 + **Amazon Redshift:** Significant improvements to the query performance by caching compiled code segments at scale\. 
 + **Amazon Redshift:** Improved performance of the queries tab on the Amazon Redshift console when cluster is processing heavy workloads\. 
 + **Amazon Redshift:** Performance improvements for queries that involve DISTINCT over many columns\. 
-+ **Redshift Spectrum:** UNLOAD and queries that use Spectrum to reference external tables are now eligible for Concurrency Scaling\. 
++ **Redshift Spectrum:** UNLOAD and queries that use Spectrum to reference external tables are now eligible for concurrency scaling\. 
 
 **Fixes**
 + Fix for DROP DATABASE when dropping external database using JDBC driver\. 
@@ -91,7 +117,7 @@ Time period: April 3–May 1, 2019
 Time period: March 13–April 5, 2019
 
 **Features and Improvements**
-+ **Amazon Redshift:** now automatically and elastically scales query processing power to provide consistently fast performance for hundreds of concurrent queries\. Concurrency Scaling resources are added to your Amazon Redshift cluster transparently in seconds, as concurrency increases, to process queries without wait time\. 
++ **Amazon Redshift:** now automatically and elastically scales query processing power to provide consistently fast performance for hundreds of concurrent queries\. Concurrency scaling resources are added to your Amazon Redshift cluster transparently in seconds, as concurrency increases, to process queries without wait time\. 
 + **Amazon Redshift:** You can now UNLOAD the result of a query to one or more text files in CSV format to Amazon S3\. 
 + **Amazon Redshift:** You can use the COPY command to load data from ZSTD compressed files\.
 + **Amazon Redshift:** The TO\_DATE\(\) and TO\_TIMESTAMP\(\) functions now accept new format fields\.

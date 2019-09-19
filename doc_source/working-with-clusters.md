@@ -227,7 +227,7 @@ Amazon Redshift periodically performs maintenance to apply upgrades to your clus
 
 **Topics**
 + [Maintenance Windows](#rs-maintenance-windows)
-+ [Defer Maintenance](#rs-mgmt-defer-maintenance)
++ [Deferring Maintenance](#rs-mgmt-defer-maintenance)
 + [Choosing Cluster Maintenance Tracks](#rs-mgmt-maintenance-tracks)
 + [Managing Cluster Versions](#rs-mgmt-cluster-version)
 + [Rolling Back the Cluster Version](#rs-mgmt-rollback-version)
@@ -265,7 +265,7 @@ If a maintenance event is scheduled for a given week, it will start during the a
 
 You can change the scheduled maintenance window by modifying the cluster, either programmatically or by using the Amazon Redshift console\. The window must be at least 30 minutes and not longer than 24 hours\. For more information, see [Managing Clusters Using the Console](managing-clusters-console.md)\.
 
-### Defer Maintenance<a name="rs-mgmt-defer-maintenance"></a>
+### Deferring Maintenance<a name="rs-mgmt-defer-maintenance"></a>
 
 If you need to reschedule your cluster’s maintenance window, you have the option to defer maintenance by up to 45 days\. For example, if your cluster’s maintenance window is set to Wednesday 8:30 – 9:00 UTC and you need to have access to your cluster at that time, you can defer the maintenance to a later time period\. We will not perform any maintenance on your cluster when you have specified a deferment, unless we need to update hardware\.
 

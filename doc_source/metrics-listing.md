@@ -36,28 +36,28 @@ The `AWS/Redshift` namespace includes the following metrics\.
 | ReadThroughput |  The average number of bytes read from disk per second\. Units: Bytes \(GB/s in the Amazon Redshift console\) Dimensions: `NodeID`  | 
 | TotalTableCount |  The number of user tables open at a particular point in time\. This total does not include Spectrum tables\. Units: Count Dimensions: `ClusterIdentifier`  | 
 | WLMQueueLength |  The number of queries waiting to enter a workload management \(WLM\) queue\. Units: Count Dimensions: `service class`  | 
-| WLMQueueWaitTime |  The total time queries spent waiting in the workload management \(WLM\) queue\. Units: Milliseconds\. Dimensions: `ClusterIdentifier`, `wlmid`  | 
+| WLMQueueWaitTime |  The total time queries spent waiting in the workload management \(WLM\) queue\. Units: Milliseconds\. Dimensions: `ClusterIdentifier`, `wlmid`, `QueryPriority`  | 
 | WLMQueriesCompletedPerSecond |  The average number of queries completed per second for a workload management \(WLM\) queue\. Reported in five\-minute intervals\. Units: Count/Second Dimensions: `wlmid`  | 
 | WLMQueryDuration |  The average length of time to complete a query for a workload management \(WLM\) queue\. Reported in five\-minute intervals\. Units: Microseconds Dimensions: `wlmid`  | 
+| WLMRunningQueries |  The number of queries running from both the main cluster and Concurrency Scaling cluster per WLM queue\. Units: Count Dimensions: `ClusterIdentifier`, `wlmid`  | 
 | WriteIOPS |  The average number of write operations per second\. Units: Count/Second Dimensions: `NodeID`, `ClusterIdentifier`  | 
 | WriteLatency |  The average amount of time taken for disk write I/O operations\. Units: Seconds Dimensions: `NodeID`  | 
 | WriteThroughput |  The average number of bytes written to disk per second\. Units: Bytes \(GB/s in the Amazon Redshift console\) Dimensions: `NodeID`  | 
 
-## Dimensions for Amazon Redshift Metrics<a name="w4aac33c11c23"></a>
+## Dimensions for Amazon Redshift Metrics<a name="metrics-filterable-dimensions"></a>
 
-Amazon Redshift data can be filtered along any of the following dimensions in the table below\.
+Amazon Redshift data can be filtered along any of the dimensions in the table following\.
 
-
-**Title**  
 
 |  Dimension  |  Description  | 
 | --- | --- | 
-|  latency  |  Possible values are: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/metrics-listing.html)  | 
+|  latency  |  Possible values are as follows: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/metrics-listing.html)  | 
 |  NodeID  |  Filters requested data that is specific to the nodes of a cluster\. `NodeID` is either "Leader", "Shared", or "Compute\-N" where N is 0, 1, \.\.\. for the number of nodes in the cluster\. "Shared" means that the cluster has only one node, that is the leader node and compute node are combined\. Metrics are reported for the leader node and compute nodes only for `CPUUtilization`, `NetworkTransmitThroughput`, and `ReadIOPS`\. Other metrics that use the `NodeId` dimension are reported only for compute nodes\.  | 
 |  ClusterIdentifier  |  Filters requested data that is specific to the cluster\. Metrics that are specific to clusters include `HealthStatus`, `MaintenanceMode`, and `DatabaseConnections`\. General metrics for this dimension \(for example, `ReadIOPS`\) that are also metrics of nodes represent an aggregate of the node metric data\. Take care in interpreting these metrics because they aggregate behavior of leader and compute nodes\.  | 
 |  service class  |  The identifier for a `WLM` service class\.  | 
-|  stage  |  The execution stages for a query\. The possible values are: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/metrics-listing.html)  | 
+|  stage  |  The execution stages for a query\. The possible values are as follows: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/metrics-listing.html)  | 
 |  wlmid  |  The identifier for a workload management queue\.  | 
+|  QueryPriority  |  The priority of the query\. Possible values are `CRITICAL`, `HIGHEST`, `HIGH`, `NORMAL`, `LOW`, and `LOWEST`\.  | 
 
 ## Amazon Redshift Query/Load Performance Data<a name="custom-metrics-listing"></a>
 

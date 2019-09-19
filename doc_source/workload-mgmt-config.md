@@ -4,43 +4,47 @@ In Amazon Redshift, you use workload management \(WLM\) to define the number of 
 
 When you create a parameter group, the default WLM configuration contains one queue that can run up to five queries concurrently\. You can add additional queues and configure WLM properties in each of them if you want more control over query processing\. Each queue that you add has the same default WLM configuration until you configure its properties\.
 
-When you add additional queues, the last queue in the configuration is the *default queue*\. Unless a query is routed to another queue based on criteria in the WLM configuration, it is processed by the default queue\. You can specify Concurrency Scaling mode and concurrency level for the default queue, but you can't specify user groups or query groups for the default queue\.
+When you add additional queues, the last queue in the configuration is the *default queue*\. Unless a query is routed to another queue based on criteria in the WLM configuration, it is processed by the default queue\. You can specify mode and concurrency level for the default queue, but you can't specify user groups or query groups for the default queue\.
 
  As with other parameters, you cannot modify the WLM configuration in the default parameter group\. Clusters associated with the default parameter group always use the default WLM configuration\. To modify the WLM configuration, create a new parameter group and then associate that parameter group with any clusters that require your custom WLM configuration\. 
 
 ## WLM Dynamic and Static Properties<a name="wlm-dynamic-and-static-properties"></a>
 
-The WLM configuration properties are either dynamic or static\. Dynamic properties can be applied to the database without a cluster reboot, but static properties require a cluster reboot for changes to take effect\. However, if you change dynamic and static properties at the same time, then you must reboot the cluster for all the property changes to take effect regardless of whether they are dynamic or static\. While dynamic properties are being applied, your cluster status will be `modifying`\.
-
-The following WLM properties are static:
-+ Query group wildcard 
-+ Query groups 
-+ User group wildcard 
-+ User groups 
-
-Adding, removing, or reordering query queues is a static change and requires a cluster reboot to take effect\.
-
-Switching between automatic WLM and manual WLM is a static change and requires a cluster reboot to take effect\.
-
-The following WLM properties are dynamic:
-+ Concurrency
-+ Concurrency Scaling mode
-+ Enable short query acceleration
-+ Maximum run time for short queries
-+ Percent of memory to use
-+ Timeout
-
-If the timeout value is changed, the new value is applied to any query that begins execution after the value is changed\. If the concurrency or percent of memory to use are changed, Amazon Redshift transitions to the new configuration dynamically\. Thus, currently running queries aren't affected by the change\. For more information, see [WLM Dynamic Memory Allocation\.](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-dynamic-memory-allocation.html)
+The WLM configuration properties are either dynamic or static\. You can apply dynamic properties to the database without a cluster reboot, but static properties require a cluster reboot for changes to take effect\. For more information about static and dynamic properties, see [WLM Dynamic and Static Configuration Properties](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-dynamic-properties.html)\.
 
 ## Properties for the wlm\_json\_configuration Parameter<a name="wlm-json-config-properties"></a>
 
-You can configure WLM by using the Amazon Redshift console, the AWS CLI, the Amazon Redshift API, or one of the AWS SDKs\. WLM configuration uses several properties to define queue behavior, such as memory allocation across queues, the number of queries that can run concurrently in a queue, and so on\. The following list describes the WLM properties that you can configure for each queue\. 
+You can configure WLM by using the Amazon Redshift console, the AWS CLI, the Amazon Redshift API, or one of the AWS SDKs\. WLM configuration uses several properties to define queue behavior, such as memory allocation across queues, the number of queries that can run concurrently in a queue, and so on\.
 
 **Note**  
  The following properties appear with their Amazon Redshift console names, with the corresponding JSON property names in the descriptions\. 
 
+The following table summarizes whether a property is applicable to automatic WLM or manual WLM\.
+
+
+****  
+
+| WLM Property | Automatic WLM | Manual WLM | 
+| --- | --- | --- | 
+| Auto WLM | Yes | Yes | 
+| Enable short query acceleration | Yes | Yes | 
+| Maximum run time for short queries | Yes | Yes | 
+| Priority | Yes | No | 
+| Queue type | Yes | Yes | 
+| Concurrency Scaling mode | Yes | Yes | 
+| Concurrency | No | Yes | 
+| User groups | Yes | Yes | 
+| User group wildcard | Yes | Yes | 
+| Query groups | Yes | Yes | 
+| Query group wildcard | Yes | Yes | 
+| Timeout | No | Deprecated | 
+| Memory | No | Yes | 
+| Query Monitoring Rules | Yes | Yes | 
+
+The following list describes the WLM properties that you can configure for each queue\. 
+
 **Auto WLM**  
-**Auto WLM** set to `true` enables automatic WLM\. Automatic WLM uses one queue and sets the values for **Concurrency on main** and **Memory \(%\)** to `auto`\. Amazon Redshift manages query concurrency and memory allocation\. The default is `true`\.  
+**Auto WLM** set to `true` enables automatic WLM\. Automatic WLM sets the values for **Concurrency on main** and **Memory \(%\)** to `Auto`\. Amazon Redshift manages query concurrency and memory allocation\. The default is `true`\.  
 JSON property: `auto_wlm`
 
 **Enable short query acceleration**  
@@ -51,12 +55,20 @@ JSON property: `short_query_queue`
 When you enable SQA, you can specify 0 to let WLM dynamically set the maximum run time for short queries\. Alternatively, you can specify a value of 1–20 seconds, in milliseconds\. The default value is `0`\.  
 JSON property: `max_execution_time`
 
+**Priority**  
+Priority sets the priority of queries that run in a queue\. To set the priority, **WLM mode** must be set to **Auto WLM**; that is, `auto_wlm` must be `true`\. Priority values can be `highest`, `high`, `normal`, `low`, and `lowest`\.  The default is `normal`\.  
+JSON property: `priority`
+
+**Queue type**  
+Queue type designates a queue as used either by **Auto WLM** or **Manual WLM**\. Set `queue_type` to either `auto` or `manual`\. If not specified, the default is `manual`\.  
+JSON property: `queue_type`
+
 **Concurrency Scaling mode**  
-To enable Concurrency Scaling on a queue, set **Concurrency Scaling mode** to `auto`\. When the number of queries routed to a queue exceeds the queue's configured concurrency, eligible queries are sent to the scaling cluster\. When slots become available, queries are run on the main cluster\. The default is `off`\.  
+To enable concurrency scaling on a queue, set **Concurrency Scaling mode** to `auto`\. When the number of queries routed to a queue exceeds the queue's configured concurrency, eligible queries go to the scaling cluster\. When slots become available, queries run on the main cluster\. The default is `off`\.  
 JSON property: `concurrency_scaling`
 
 **Concurrency**  
-The number of queries that can run concurrently in a queue\. If Concurrency Scaling mode is enabled, eligible queries are sent to a scaling cluster when a queue reaches the concurrency level\. If Concurrency Scaling is disabled, queries wait in the queue until a slot becomes available\. The range is between 1 and 50\.  
+The number of queries that can run concurrently in a queue\. If concurrency scaling is enabled, eligible queries go to a scaling cluster when a queue reaches the concurrency level\. If concurrency scaling isn't enabled, queries wait in the queue until a slot becomes available\. The range is between 1 and 50\.  
 JSON property: `query_concurrency`
 
 **User Groups**  
@@ -76,7 +88,7 @@ A Boolean value that indicates whether to enable wildcards for query groups\. If
 JSON property: `query_group_wild_card`
 
 **Timeout \(ms\)**  
-WLM timeout \(`max_execution_time`\) is deprecated\. Instead, create a query monitoring rule \(QMR\) using `query_execution_time` to limit the elapsed execution time for a query\. For more information, see [WLM Query Monitoring Rules](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)\.   
+WLM timeout \(`max_execution_time`\) is deprecated\. It is not available when using automatic WLM\. Instead, create a query monitoring rule \(QMR\) using `query_execution_time` to limit the elapsed execution time for a query\. For more information, see [WLM Query Monitoring Rules](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)\.   
 The maximum time, in milliseconds, that queries can run before being canceled\. In some cases, a read\-only query, such as a SELECT statement, might be canceled due to a WLM timeout\. In these cases, WLM attempts to route the query to the next matching queue based on the WLM queue assignment rules\. If the query doesn't match any other queue definition, the query is canceled; it isn't assigned to the default queue\. For more information, see [WLM Query Queue Hopping](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-defining-query-queues.html#wlm-queue-hopping)\. WLM timeout doesn’t apply to a query that has reached the `returning` state\. To view the state of a query, see the [STV\_WLM\_QUERY\_STATE](https://docs.aws.amazon.com/redshift/latest/dg/r_STV_WLM_QUERY_STATE.html) system table\.  
 JSON property: `max_execution_time`
 
@@ -87,7 +99,7 @@ JSON property: `memory_percent_to_use`
 **Query Monitoring Rules**  
 You can use WLM query monitoring rules to continuously monitor your WLM queues for queries based on criteria, or predicates, that you specify\. For example, you might monitor queries that tend to consume excessive system resources, and then initiate a specified action when a query exceeds your specified performance boundaries\.   
 If you choose to create rules programmatically, we strongly recommend using the console to generate the JSON that you include in the parameter group definition\.
-You associate a query monitoring rule with a specific query queue\. You can have up to eight rules per queue, and the total limit for all queues is eight rules\.  
+You associate a query monitoring rule with a specific query queue\. You can have up to 25 rules per queue, and the total limit for all queues is 25 rules\.  
 JSON property: `rules`  
 JSON properties hierarchy:   
 
@@ -99,6 +111,7 @@ rules
         operator
         value
     action
+        value
 ```
 For each rule, you specify the following properties:  
 + `rule_name` – Rule names must be unique within WLM configuration\. Rule names can be up to 32 alphanumeric characters or underscores, and can't contain spaces or quotation marks\. You can have up to eight rules per queue, and the total limit for all queues is eight rules\.
@@ -108,8 +121,9 @@ For each rule, you specify the following properties:
     + `value` – The threshold value for the specified metric that triggers an action\. 
 + `action` – Each rule is associated with one action\. Valid actions are:
   + `log`
-  + `hop`
+  + `hop` \(only available with manual WLM\)
   + `abort`
+  + `change_query_priority` \(only available with automatic WLM\)
 The following example shows the JSON for a WLM query monitoring rule named `rule_1`, with two predicates and the action `hop`\.   
 
 ```
@@ -118,7 +132,7 @@ The following example shows the JSON for a WLM query monitoring rule named `rule
             "rule_name": "rule_1",
             "predicate": [
               {
-                "metric_name": "query_cpu_time",
+                "metric_name": "query_execution_time",
                 "operator": ">",
                 "value": 100000
               },
@@ -198,10 +212,10 @@ The `wlm_json_configuration` parameter requires a specific format when you use t
 
 Examples
 
-The following example command configures WLM for a parameter group called `example-parameter-group`\. The configuration enables short\-query acceleration with a maximum run time for short queries set to 0, which instructs WLM to set the value dynamically\. The `ApplyType` setting is `dynamic`\. This setting means that any changes made to dynamic properties in the parameter are applied immediately unless other static changes have been made to the configuration\. The configuration defines three queues with the following: 
-+  The first queue enables users to specify `report` as a label \(as specified in the `query_group` property\) in their queries to help in routing queries to that queue\. Wildcard searches are enabled for the `report*` label, so the label doesn't need to be exact for queries to be routed to the queue\. For example, `reports` and `reporting` both match this query group\. The queue is allocated 25 percent of the total memory across all queues, and can run up to four queries at the same time\. Queries are limited to a maximum time of 20000 milliseconds \(ms\)\. Concurrency Scaling mode is set to auto, so when the queue's query slots are full eligible queries are sent to a scaling cluster\. 
-+  The second queue enables users who are members of `admin` or `dba` groups in the database to have their queries routed to the queue for processing\. Wildcard searches are disabled for user groups, so users must be matched exactly to groups in the database in order for their queries to be routed to the queue\. The queue is allocated 40 percent of the total memory across all queues, and it can run up to five queries at the same time\. Concurrency Scaling mode is set to off, so all queries sent by members of the admin or dba groups run on the main cluster\.
-+  The last queue in the configuration is the default queue\. This queue is allocated 35 percent of the total memory across all queues, and it can process up to five queries at a time\. Concurrency Scaling mode is set to auto\. 
+The following example command configures manual WLM for a parameter group called `example-parameter-group`\. The configuration enables short\-query acceleration with a maximum run time for short queries set to 0, which instructs WLM to set the value dynamically\. The `ApplyType` setting is `dynamic`\. This setting means that any changes made to dynamic properties in the parameter are applied immediately unless other static changes have been made to the configuration\. The configuration defines three queues with the following: 
++  The first queue enables users to specify `report` as a label \(as specified in the `query_group` property\) in their queries to help in routing queries to that queue\. Wildcard searches are enabled for the `report*` label, so the label doesn't need to be exact for queries to be routed to the queue\. For example, `reports` and `reporting` both match this query group\. The queue is allocated 25 percent of the total memory across all queues, and can run up to four queries at the same time\. Queries are limited to a maximum time of 20000 milliseconds \(ms\)\. mode is set to auto, so when the queue's query slots are full eligible queries are sent to a scaling cluster\. 
++  The second queue enables users who are members of `admin` or `dba` groups in the database to have their queries routed to the queue for processing\. Wildcard searches are disabled for user groups, so users must be matched exactly to groups in the database in order for their queries to be routed to the queue\. The queue is allocated 40 percent of the total memory across all queues, and it can run up to five queries at the same time\. mode is set to off, so all queries sent by members of the admin or dba groups run on the main cluster\.
++  The last queue in the configuration is the default queue\. This queue is allocated 35 percent of the total memory across all queues, and it can process up to five queries at a time\. mode is set to auto\. 
 
 **Note**  
  The example is shown on several lines for demonstration purposes\. Actual commands should not have line breaks\. 
@@ -219,7 +233,8 @@ aws redshift modify-cluster-parameter-group
     "query_group_wild_card": 1,
     "user_group": [],
     "user_group_wild_card": 0,
-    "concurrency_scaling": "auto"
+    "concurrency_scaling": "auto", 
+    "queue_type": "manual"
   },
   {
     "query_concurrency": 5,
@@ -231,7 +246,8 @@ aws redshift modify-cluster-parameter-group
       "dba"
     ],
     "user_group_wild_card": 0,
-    "concurrency_scaling": "off"
+    "concurrency_scaling": "off",
+    "queue_type": "manual"    
   },
   {
     "query_concurrency": 5,
@@ -239,16 +255,17 @@ aws redshift modify-cluster-parameter-group
     "query_group_wild_card": 0,
     "user_group": [],
     "user_group_wild_card": 0,
-    "concurrency_scaling": "auto"
+    "concurrency_scaling": "auto",
+    "queue_type": "manual"    
   },
   {"short_query_queue": true}
 ]'
 ```
 
-The following is an example of configuring WLM query monitoring rules\. The example creates a parameter group named `example-monitoring-rules`\. The configuration defines the same three queues as the previous example, and adds the following rules:
-+ The first queue defines a rule named `rule_1`\. The rule has two predicates: `query_cpu_time > 10000000` and `query_blocks_read > 1000`\. The rule action is `log` \. 
-+ The second queue defines a rule named `rule_2` \. The rule has two predicates: `query_execution_time > 600000000` and `scan_row_count > 1000000000`\. The rule action is `hop`\.
-+ The last queue in the configuration is the default queue\. 
+The following is an example of configuring WLM query monitoring rules for an automatic WLM configuration\. The example creates a parameter group named `example-monitoring-rules`\. The configuration defines the same three queues as the previous example, but the `query_concurrency` and `memory_percent_to_use` are not specified anymore\. The configuration also adds the following rules and query priorities:
++ The first queue defines a rule named `rule_1`\. The rule has two predicates: `query_cpu_time > 10000000` and `query_blocks_read > 1000`\. The rule action is `log`\. The priority of this queue is `Normal`\. 
++ The second queue defines a rule named `rule_2`\. The rule has two predicates: `query_execution_time > 600000000` and `scan_row_count > 1000000000`\. The rule action is `abort`\. The priority of this queue is `Highest`\. 
++ The last queue in the configuration is the default queue\. The priority of this queue is `Low`\. 
 
 **Note**  
  The example is shown on several lines for demonstration purposes\. Actual commands should not have line breaks\. 
@@ -258,9 +275,6 @@ aws redshift modify-cluster-parameter-group
 --parameter-group-name example-monitoring-rules 
 --parameters
 '[ {
-  "query_concurrency" : 4,
-  "max_execution_time" : 20000,
-  "memory_percent_to_use" : 25,
   "query_group" : [ "report" ],
   "query_group_wild_card" : 1,
   "user_group" : [ ],
@@ -277,10 +291,10 @@ aws redshift modify-cluster-parameter-group
       "value": 1000
     } ],
     "action" : "log"
-  } ]
+  } ],
+   "priority": "normal",
+   "queue_type": "auto"
 }, {  
-  "query_concurrency" : 5,
-  "memory_percent_to_use" : 40,
   "query_group" : [ ],
   "query_group_wild_card" : 0,
   "user_group" : [ "admin", "dba" ],
@@ -295,14 +309,19 @@ aws redshift modify-cluster-parameter-group
       {"metric_name": "scan_row_count",
       "operator": ">",
       "value": 1000000000}],
-      "action": "hop"}]
+      "action": "abort"}],
+   "priority": "high",
+   "queue_type": "auto"
+
 }, {
-  "query_concurrency" : 5,
   "query_group" : [ ],
   "query_group_wild_card" : 0,
   "user_group" : [ ],
   "user_group_wild_card" : 0,
-  "concurrency_scaling" : "auto"
+  "concurrency_scaling" : "auto",
+  "priority": "low",
+  "queue_type": "auto",
+  "auto_wlm": true
 }, {
   "short_query_queue" : true
 } ]'
