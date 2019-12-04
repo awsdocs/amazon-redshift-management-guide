@@ -16,7 +16,7 @@ For example, you can configure the following pathways in your VPC:
 
 For more information, see [VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html) in the Amazon VPC User Guide\.
 
-There is no additional charge for using Enhanced VPC Routing\. You might incur additional data transfer charges for certain operations\. These include such operations as UNLOAD to Amazon S3 in a different AWS Region\. COPY from Amazon EMR, or Secure Shell \(SSH\) with public IP addresses\. For more information about pricing, see [Amazon EC2 Pricing](https://aws.amazon.com//ec2/pricing/)\.
+There is no additional charge for using Enhanced VPC Routing\. You might incur additional data transfer charges for certain operations\. These include such operations as UNLOAD to Amazon S3 in a different AWS Region\. COPY from Amazon EMR, or Secure Shell \(SSH\) with public IP addresses\. For more information about pricing, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
 **Topics**
 + [Working with VPC Endpoints](enhanced-vpc-working-with-endpoints.md)

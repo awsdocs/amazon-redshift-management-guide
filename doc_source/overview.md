@@ -31,7 +31,7 @@ By default, an Amazon Redshift cluster is only accessible to the AWS account tha
 By default, any cluster that you create is closed to everyone\. IAM credentials only control access to the Amazon Redshift API\-related resources: the Amazon Redshift console, command line interface \(CLI\), API, and SDK\. To enable access to the cluster from SQL client tools via JDBC or ODBC, you use security groups: 
 + If you are using the EC2\-VPC platform for your Amazon Redshift cluster, you must use VPC security groups\. We recommend that you launch your cluster in an EC2\-VPC platform\.
 
-  You cannot move a cluster to a VPC after it has been launch with EC2\-Classic\. However, you can restore an EC2\-Classic snapshot to an EC2\-VPC cluster using the Amazon Redshift console\. For more information, see [Restoring a Cluster from a Snapshot](managing-snapshots-console.md#snapshot-restore)\.
+  You cannot move a cluster to a VPC after it has been launched with EC2\-Classic\. However, you can restore an EC2\-Classic snapshot to an EC2\-VPC cluster using the Amazon Redshift console\. For more information, see [Restoring a Cluster from a Snapshot](managing-snapshots-console.md#snapshot-restore)\.
 + If you are using the EC2\-Classic platform for your Amazon Redshift cluster, you must use Amazon Redshift security groups\.
 
 In either case, you add rules to the security group to grant explicit inbound access to a specific range of CIDR/IP addresses or to an Amazon Elastic Compute Cloud \(Amazon EC2\) security group if your SQL client runs on an Amazon EC2 instance\. For more information, see [Amazon Redshift Cluster Security Groups](working-with-security-groups.md)\.
@@ -42,7 +42,7 @@ In addition to the inbound access rules, you create database users to provide cr
 
 When you provision the cluster, you can optionally choose to encrypt the cluster for additional security\. When you enable encryption, Amazon Redshift stores all data in user\-created tables in an encrypted format\. You can use AWS Key Management Service \(AWS KMS\) to manage your Amazon Redshift encryption keys\. 
 
-Encryption is an immutable property of the cluster\. The only way to switch from an encrypted cluster to a nonencrypted cluster is to unload the data and reload it into a new cluster\. Encryption applies to the cluster and any backups\. When you restore a cluster from an encrypted snapshot, the new cluster is encrypted as well\.
+Encryption is an immutable property of the cluster\. The only way to switch from an encrypted cluster to a cluster that is not encrypted is to unload the data and reload it into a new cluster\. Encryption applies to the cluster and any backups\. When you restore a cluster from an encrypted snapshot, the new cluster is encrypted as well\.
 
 For more information about encryption, keys, and hardware security modules, see [Amazon Redshift Database Encryption](working-with-db-encryption.md)\.
 
@@ -52,7 +52,7 @@ You can use Secure Sockets Layer \(SSL\) encryption to encrypt the connection be
 
 ## Monitoring Clusters<a name="rs-overview-monitoring-clusters"></a>
 
-There are several features related to monitoring in Amazon Redshift\. You can use database audit logging to generate activity logs, configure events and notification subscriptions to track information of interest, and use the metrics in Amazon Redshift and Amazon CloudWatch to learn about the health and performance of your clusters and databases\.
+There are several features related to monitoring in Amazon Redshift\. You can use database audit logging to generate activity logs, configure events and notification subscriptions to track information of interest,\. Use the metrics in Amazon Redshift and Amazon CloudWatch to learn about the health and performance of your clusters and databases\.
 
 ### Database Audit Logging<a name="rs-overview-database-audit-logging"></a>
 

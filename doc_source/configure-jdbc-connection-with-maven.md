@@ -142,7 +142,7 @@ If you need to distribute these drivers to your customers or other third parties
 
 ## Upgrading the Driver to the Latest Version<a name="configure-jdbc-connection-with-maven-upgrading"></a>
 
-To upgrade or change the Amazon Redshift JDBC driver to the latest version, modify the version section of the dependency to the latest version of the driver and then clean your project with the Maven Clean Plugin, as shown following\. 
+To upgrade or change the Amazon Redshift JDBC driver to the latest version, first modify the version section of the dependency to the latest version of the driver\. Then clean your project with the Maven Clean Plugin, as shown following\. 
 
 ```
 mvn clean

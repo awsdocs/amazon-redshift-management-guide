@@ -1,14 +1,19 @@
 # Amazon Redshift Performance Data<a name="metrics-listing"></a>
 
-Using Amazon CloudWatch metrics for Amazon Redshift, you can get information about your cluster's health and performance and see information at the node level\. When working with these metrics, keep in mind that each metric has one or more dimensions associated with it\. These dimensions tell you what the metric is applicable to, that is the scope of the metric\. Amazon Redshift has the following two dimensions:
+Using CloudWatch metrics for Amazon Redshift, you can get information about your cluster's health and performance and see information at the node level\. When working with these metrics, keep in mind that each metric has one or more dimensions associated with it\. These dimensions tell you what the metric is applicable to, that is the scope of the metric\. Amazon Redshift has the following two dimensions:
 + Metrics that have a `NodeID` dimension are metrics that provide performance data for nodes of a cluster\. This set of metrics includes leader and compute nodes\. Examples of these metrics include `CPUUtilization`, `ReadIOPS`, `WriteIOPS`\. 
 + Metrics that have only a `ClusterIdentifier` dimension are metrics that provide performance data for clusters\. Examples of these metrics include `HealthStatus` and `MaintenanceMode`\. 
 **Note**  
 In some metric cases, a cluster\-specific metric represents an aggregation of node behavior\. In these cases, take care in the interpretation of the metric value because the leader node's behavior is aggregated with the compute node\.
 
-For general information about CloudWatch metrics and dimensions, see [Amazon CloudWatch Concepts](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html) in the *Amazon CloudWatch User Guide*\. 
+For general information about CloudWatch metrics and dimensions, see [CloudWatch Concepts](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html) in the *Amazon CloudWatch User Guide*\. 
 
 For a further description of CloudWatch metrics for Amazon Redshift, see the following sections\.
+
+**Topics**
++ [Amazon Redshift Metrics](#redshift-metrics)
++ [Dimensions for Amazon Redshift Metrics](#metrics-filterable-dimensions)
++ [Amazon Redshift Query and Load Performance Data](#custom-metrics-listing)
 
 ## Amazon Redshift Metrics<a name="redshift-metrics"></a>
 
@@ -59,11 +64,11 @@ Amazon Redshift data can be filtered along any of the dimensions in the table fo
 |  wlmid  |  The identifier for a workload management queue\.  | 
 |  QueryPriority  |  The priority of the query\. Possible values are `CRITICAL`, `HIGHEST`, `HIGH`, `NORMAL`, `LOW`, and `LOWEST`\.  | 
 
-## Amazon Redshift Query/Load Performance Data<a name="custom-metrics-listing"></a>
+## Amazon Redshift Query and Load Performance Data<a name="custom-metrics-listing"></a>
 
-In addition to the Amazon CloudWatch metrics, Amazon Redshift provides query and load performance data\. Query and load performance data can be used to help you understand the relation between database performance and cluster metrics\. For example, if you notice that a cluster's CPU spiked, you can find the spike on the cluster CPU graph and see the queries that were running at that time\. Conversely, if you are reviewing a specific query, metric data \(like CPU\) is displayed in context so that you can understand the query's impact on cluster metrics\.
+In addition to the CloudWatch metrics, Amazon Redshift provides query and load performance data\. Query and load performance data can be used to help you understand the relation between database performance and cluster metrics\. For example, if you notice that a cluster's CPU spiked, you can find the spike on the cluster CPU graph and see the queries that were running at that time\. Conversely, if you are reviewing a specific query, metric data \(like CPU\) is displayed in context so that you can understand the query's impact on cluster metrics\.
 
-Query and load performance data are not published as Amazon CloudWatch metrics and can only be viewed in the Amazon Redshift console\. Query and load performance data are generated from querying with your database's system tables \(see [System Tables Reference](https://docs.aws.amazon.com/redshift/latest/dg/cm_chap_system-tables.html) in the *Amazon Redshift Developer Guide*\)\. You can also generate your own custom database performance queries, but we recommend starting with the query and load performance data presented in the console\. For more information about measuring and monitoring your database performance yourself, see [Managing Performance](https://docs.aws.amazon.com/redshift/latest/dg/c-optimizing-query-performance.html) in the *Amazon Redshift Developer Guide\.*
+Query and load performance data are not published as CloudWatch metrics and can only be viewed in the Amazon Redshift console\. Query and load performance data are generated from querying with your database's system tables \(for more information, see [System Tables Reference](https://docs.aws.amazon.com/redshift/latest/dg/cm_chap_system-tables.html) in the *Amazon Redshift Developer Guide*\)\. You can also generate your own custom database performance queries, but we recommend starting with the query and load performance data presented in the console\. For more information about measuring and monitoring your database performance yourself, see [Managing Performance](https://docs.aws.amazon.com/redshift/latest/dg/c-optimizing-query-performance.html) in the *Amazon Redshift Developer Guide\.*
 
 The following table describes different aspects of query and load data you can access in the Amazon Redshift console\. 
 

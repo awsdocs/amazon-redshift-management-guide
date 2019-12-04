@@ -10,7 +10,26 @@ To work with Enhanced VPC Routing, your cluster must meet the following requirem
 + DNS hostnames must be enabled in your VPC\. DNS hostnames are enabled by default\.
 + Your VPC endpoint policies must allow access to any Amazon S3 buckets used with COPY, UNLOAD, or CREATE LIBRARY calls in Amazon Redshift, including access to any manifest files involved\. For COPY from remote hosts, your endpoint policies must allow access to each host machine\. For more information, see [IAM Permissions for COPY, UNLOAD, and CREATE LIBRARY](https://docs.aws.amazon.com/redshift/latest/dg/copy-usage_notes-access-permissions.html#copy-usage_notes-iam-permissions) in the *Amazon Redshift Database Developer Guide\.*
 
-You can create a cluster with Enhanced VPC Routing enabled by using the AWS Management Console\. To do so, choose **Yes** for the **Enhanced VPC Routing** option in the Launch Cluster wizard’s **Configure Networking Options** section, as shown following\. For more information, see [Creating a Cluster](managing-clusters-console.md#create-cluster)\.
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+## New Console<a name="cluster-enhanced-vpc-routing"></a>
+
+**To create a cluster with enhanced VPC routing**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**, then choose **Create cluster** and enter the **Cluster details** properties\. 
+
+1. To display the **Additional configurations** section, choose to switch off **Use defaults**\. 
+
+1. To enable **Enhanced VPC routing** select **Enabled** to force cluster traffic through the VPC\. 
+
+1. Choose **Create cluster** to create the cluster\. The cluster might take several minutes to be ready to use\.
+
+## Original Console<a name="cluster-enhanced-vpc-routing-originalconsole"></a>
+
+You can create a cluster with enhanced VPC routing enabled by using the AWS Management Console\. To do so, choose **Yes** for the **Enhanced VPC Routing** option in the Launch Cluster wizard’s **Configure Networking Options** section, as shown following\. For more information, see [Creating a Cluster](managing-clusters-console.md#create-cluster)\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/enhanced-routing-create.png)
 

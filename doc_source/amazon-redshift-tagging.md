@@ -18,8 +18,8 @@ Each resource has one *tag set*, which is a collection of one or more tags assig
 + Cluster
 + Cluster security group
 + Cluster security group ingress rule
-+ EC2 security group
-+ HSM connection
++ Amazon EC2 security group
++ Hardware security module \(HSM\) connection
 + HSM client certificate
 + Parameter group
 + Snapshot

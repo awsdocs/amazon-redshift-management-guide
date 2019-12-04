@@ -2,15 +2,37 @@
 
 Find notes about cluster versions for Amazon Redshift\.
 
-## Version 1\.0\.10013<a name="rs-mgmt-cluster-version-notes-10013"></a><a name="rs-mgmt-cluster-version-notes-10013"></a>
+## Version 1\.0\.1118, 1\.0\.11262, or 1\.0\.11420<a name="rs-mgmt-cluster-version-notes-1118"></a><a name="rs-mgmt-cluster-version-notes-1118"></a>
 
-Time period: September 18–October 9, 2019
+Time period: November 7–December 10, 2019
+
+**Features and Improvements**
++ **Amazon Redshift:** Efficient and automated way to maintain sort order of the data\. 
++ **Amazon Redshift:** New Boost option to speed up Vacuum operations\. 
++ **Amazon Redshift:** Adds native support for spatial data processing with new data type GEOMETRY and SQL spatial functions\. 
+
+**Fixes**
++ Improves performance and stability of the Queries tab on the Amazon Redshift console\. 
+
+## Version 1\.0\.10654, 1\.0\.10694, 1\.0\.10880, 1\.0\.10936, or 1\.0\.11116<a name="rs-mgmt-cluster-version-notes-10654"></a><a name="rs-mgmt-cluster-version-notes-10654"></a>
+
+Time period: October 16–November 7, 2019
+
+**Features and Improvements**
++ **Amazon Redshift:** Alter command now supports changing the sort key column for a table\. 
++ **Amazon Redshift:** Extends STL\_WLM\_RULE\_ACTION system table to log the target query priority specified in the 'CHANGE\_QUERY\_PRIORITY' QMR action\. 
++ **Amazon Redshift:** Amazon Redshift console supports a restore operation across node types\. 
+
+## Version 1\.0\.10013, 1\.0\.10221, 1\.0\.10393, 1\.0\.10480, or 1\.0\.10648<a name="rs-mgmt-cluster-version-notes-10013"></a><a name="rs-mgmt-cluster-version-notes-10013"></a>
+
+Time period: September 18–October 17, 2019
 
 **Features and Improvements**
 + **Amazon Redshift:** Now supports AZ64 compression which delivers both optimized storage and high query performance\. 
 + **Amazon Redshift:** Now incorporates the latest global time zone data\. 
 + **Amazon Redshift:** The CREATE TABLE command now supports the new DEFAULT IDENTITY column type, which will implicitly generate unique values\. 
 + **Amazon Redshift:** The ALTER TABLE ALTER DISTKEY command for tables with a sort key now performs an inline sort\. Therefore, running VACUUM afterwards is no longer required\. 
++ **Amazon Redshift:** The AWS CLI now supports a restore operation across node types\. 
 
 **Fixes**
 + For some queries that contain an outer join, Redshift would return "ERROR: failed to build any 3\-way joins"\. This issue is now addressed\. 

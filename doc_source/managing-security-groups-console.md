@@ -2,15 +2,35 @@
 
 You can create, modify, and delete cluster security groups by using the Amazon Redshift console\. You can also manage the default cluster security group in the Amazon Redshift console\. All of the tasks start from the cluster security group list\. You must choose a cluster security group to manage it\.
 
-In the example cluster security group list below, there are two cluster security groups, the `default` cluster security group and a custom cluster security group called `securitygroup1`\. Because `securitygroup1` is selected \(highlighted\), you can delete it or manage tags for it, and also see the rules and tags associated with it\. 
+You can't delete the default cluster security group, but you can modify it by authorizing or revoking ingress access\. 
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-list-10.png)
+## Creating a Cluster Security Group<a name="security-group-create"></a>
 
-You cannot delete the default cluster security group, but you can modify it by authorizing or revoking ingress access\. 
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
 
-To add or modify the rules associated with a security group, choose the security group to go to the **Security Group Connections** page\.
+### New Console<a name="cluster-security-group-create"></a>
 
-## Creating a Cluster Security Group<a name="security-group-create"></a><a name="security-group-create-task"></a>
+**To create a cluster security group**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CONFIG**, then choose **Security groups** to display the **Cluster security groups** page\. 
+**Note**  
+You can only manage cluster security groups when logged in with an EC2\-Classic AWS account\.
+
+1. Choose **Create cluster security group** to display the **Create cluster security group** window\. 
+
+1. For the new security group, enter values for the following: 
+   + **Name**
+   + **Description**
+   + **CIDR/IP range to authorize** in the form `nnn.nnn.nnn.nn/nn`
+   + **AWS account ID** \(without hyphens\)
+   + **EC2 security group name**
+
+1. Choose **Create** to create the security group\. 
+
+### Original Console<a name="cluster-security-group-create-originalconsole"></a><a name="security-group-create-task"></a>
 
 **To create a cluster security group**
 
@@ -28,7 +48,28 @@ To add or modify the rules associated with a security group, choose the security
 
    The new group is displayed in the list of cluster security groups\.
 
-## Tagging a Cluster Security Group<a name="security-group-tag"></a><a name="security-group-tag-task"></a>
+## Tagging a Cluster Security Group<a name="security-group-tag"></a>
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-security-group-tag"></a>
+
+**To tag a cluster security group**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CONFIG**, then choose **Security groups** to display the **Cluster security groups** page\. 
+**Note**  
+You can only manage cluster security groups when logged in with an EC2\-Classic AWS account\.
+
+1. Choose a cluster security group, then choose **Manage tags** to display the **Manage tags** page\. 
+
+1. On the **Manage tags** page, add new tags, and update or delete existing tags\. For each new tag, provide information for **Key** and **Value**\. 
+
+1. Choose **Apply** to save your tags\. 
+
+### Original Console<a name="cluster-security-group-tag-originalconsole"></a><a name="security-group-tag-task"></a>
 
 **To tag a cluster security group**
 
@@ -40,20 +81,20 @@ To add or modify the rules associated with a security group, choose the security
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-revoke.png)
 
 1. In the **Manage Tags** dialog box, do one of the following:
-
-   1. Remove a tag\.
-      + In the **Applied Tags** section, choose **Delete** next to the tag you want to remove\.
-      + Choose **Apply Changes**\.  
+   + Remove a tag\.
+     + In the **Applied Tags** section, choose **Delete** next to the tag you want to remove\.
+     + Choose **Apply Changes**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-remove-tag.png)
-
-   1. Add a tag\.
-      + In the **Add Tags** section, type a key\-value pair for the tag\.
-      + Choose **Apply Changes**\.  
+   + Add a tag\.
+     + In the **Add Tags** section, enter a key\-value pair for the tag\.
+     + Choose **Apply Changes**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-add-tag.png)
 
-      For more information about tagging an Amazon Redshift resource, see [How to Manage Tags in the Amazon Redshift Console](rs-mgmt-tagging-console.md#rs-mgmt-console-tags-how-to)\.
+     For more information about tagging an Amazon Redshift resource, see [How to Manage Tags in the Amazon Redshift Console](rs-mgmt-tagging-console.md#rs-mgmt-console-tags-how-to)\.
 
-## Managing Ingress Rules for a Cluster Security Group<a name="security-group-modify"></a><a name="security-group-modify-task"></a>
+## Managing Ingress Rules for a Cluster Security Group<a name="security-group-modify"></a>
+
+### \(Original Console\) Manage Ingress Rules for a Cluster Security Group<a name="cluster-security-group-ingress-rule-originalconsole"></a><a name="security-group-modify-task"></a>
 
 **To manage ingress rules for a cluster security group**
 
@@ -66,22 +107,22 @@ To add or modify the rules associated with a security group, choose the security
 1. On the **Security Group Connections** tab, choose **Add Connection Type**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-modify-10.png)
 
-1. In the **Add Connection Type** dialog, do one of the following:
-
-   1. Add an ingress rule based on CIDR/IP:
-      + In the **Connection Type** box, choose **CIDR/IP**\.
-      + In the **CIDR/IP to Authorize** box, specify the range\.
-      + Choose **Authorize**\.  
+1. In the **Add Connection Type** dialog box, do one of the following:
+   + Add an ingress rule based on CIDR/IP:
+     + In the **Connection Type** box, choose **CIDR/IP**\.
+     + In the **CIDR/IP to Authorize** box, specify the range\.
+     + Choose **Authorize**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-modify-20.png)
-
-   1. Add an ingress rule based on an EC2 security group:
-      + Under **Connection Type**, choose **EC2 Security Group**\.
-      + Choose the AWS account to use\. By default, the account currently logged into the console is used\. If you choose **Another account**, you must specify the AWS account ID\. 
-      + Choose the name of the EC2 security group you want in the **EC2 Security Group Name** box\. 
-      + Choose **Authorize**\.  
+   + Add an ingress rule based on an EC2 security group:
+     + Under **Connection Type**, choose **EC2 Security Group**\.
+     + Choose the AWS account to use\. By default, the account currently logged into the console is used\. If you choose **Another account**, specify the AWS account ID\. 
+     + For **EC2 Security Group Name**, enter the name of the EC2 security group that you want\. 
+     + Choose **Authorize**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-modify-30.png)
 
-## Revoking Ingress Rules for a Cluster Security Group<a name="security-group-revoke"></a><a name="security-group-revoke-task"></a>
+## Revoking Ingress Rules for a Cluster Security Group<a name="security-group-revoke"></a>
+
+### \(Original Console\) Revoke Ingress Rule for a Cluster Security Group<a name="cluster-security-group-ingress-rule-revoke-originalconsole"></a><a name="security-group-revoke-task"></a>
 
 **To revoke ingress rules for a cluster security group**
 
@@ -91,10 +132,12 @@ To add or modify the rules associated with a security group, choose the security
 
 1. On the **Security Groups** tab, in the cluster security group list, choose the cluster security group whose rules you want to manage\.
 
-1. On the **Security Group Connections** tab, choose the rule you want to remove and choose **Revoke**\.  
+1. On the **Security Group Connections** tab, choose the rule that you want to remove and choose **Revoke**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-revoke.png)
 
-## Tagging Ingress Rules for a Cluster Security Group<a name="security-rule-tag"></a><a name="security-rule-tag-task"></a>
+## Tagging Ingress Rules for a Cluster Security Group<a name="security-rule-tag"></a>
+
+### \(Original Console\) Tag Ingress Rules for a Cluster Security Group<a name="cluster-security-group-ingress-rule-tag-originalconsole"></a><a name="security-rule-tag-task"></a>
 
 **To tag ingress rules for a cluster security group**
 
@@ -104,28 +147,43 @@ To add or modify the rules associated with a security group, choose the security
 
 1. On the **Security Groups** tab, choose the cluster security group whose rules you want to manage\.
 
-1. On the **Security Group Connections** tab, choose the rule you want to tag and choose **Manage Tags**\.  
+1. On the **Security Group Connections** tab, choose the rule that you want to tag and choose **Manage Tags**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-tag-rule.png)
 
 1. In the **Manage Tags** dialog box, do one of the following:
-
-   1. Remove a tag:
-      + In the **Applied Tags** section, choose **Delete** next to the tag you want to remove\.
-      + Choose **Apply Changes**\.  
+   + Remove a tag:
+     + In the **Applied Tags** section, choose **Delete** next to the tag that you want to remove\.
+     + Choose **Apply Changes**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-remove-tag.png)
-
-   1. Add a tag\.
+   + Add a tag\.
 **Note**  
-Tagging an EC2 Security Group rule only tags that rule, not the EC2 Security Group itself\. If you want the EC2 Security Group tagged as well, you must do that separately\.
-      + In the **Add Tags** section, type a key\-value pair for the tag\.
-      + Choose **Apply Changes**\.  
+Tagging an EC2 security group rule only tags that rule, not the EC2 security group itself\. If you want the EC2 security group tagged also, do that separately\.
+     + In the **Add Tags** section, enter a key\-value pair for the tag\.
+     + Choose **Apply Changes**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-add-tag.png)
 
    For more information about tagging an Amazon Redshift resource, see [How to Manage Tags in the Amazon Redshift Console](rs-mgmt-tagging-console.md#rs-mgmt-console-tags-how-to)\.
 
 ## Deleting a Cluster Security Group<a name="security-group-delete"></a>
 
-If a cluster security group is associated with one or more clusters, you cannot delete it\. <a name="security-group-delete-task"></a>
+If a cluster security group is associated with one or more clusters, you can't delete it\. 
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-security-group-delete"></a>
+
+**To delete a cluster security group**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CONFIG**, then choose **Security groups** to display the **Cluster security groups** page\. 
+**Note**  
+You can only manage cluster security groups when logged in with an EC2\-Classic AWS account\.
+
+1. Choose the security group that you want to delete, then choose **Delete**\. 
+
+### Original Console<a name="cluster-security-group-create-originalconsole"></a><a name="security-group-delete-task"></a>
 
 **To delete a cluster security group**
 
@@ -137,7 +195,7 @@ If a cluster security group is associated with one or more clusters, you cannot 
 
    One row must be selected for the **Delete** button to be enabled\.
 **Note**  
-You cannot delete the `default` cluster security group\.  
+You can't delete the `default` cluster security group\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/security-group-delete-10.png)
 
 1. In the **Delete Cluster Security Groups** dialog box, choose **Continue**\.  

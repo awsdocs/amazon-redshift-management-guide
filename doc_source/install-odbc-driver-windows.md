@@ -15,10 +15,10 @@ Use the steps in this section to download the Amazon Redshift ODBC drivers for M
 **To install the ODBC driver**
 
 1. Download one of the following, depending on the system architecture of your SQL client tool or application:
-   + 32\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.7\.1000/AmazonRedshiftODBC32\-1\.4\.7\.1000\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.7.1000/AmazonRedshiftODBC32-1.4.7.1000.msi) 
+   + 32\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.8\.1000/AmazonRedshiftODBC32\-1\.4\.8\.1000\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.8.1000/AmazonRedshiftODBC32-1.4.8.1000.msi) 
 
      The name for this driver is Amazon Redshift \(x86\)\.
-   +  64\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.7\.1000/AmazonRedshiftODBC64\-1\.4\.7\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.7.1000/AmazonRedshiftODBC64-1.4.7.1000.msi) 
+   +  64\-bit: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.8\.1000/AmazonRedshiftODBC64\-1\.4\.8\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.8.1000/AmazonRedshiftODBC64-1.4.8.1000.msi) 
 
      The name for this driver is Amazon Redshift \(x64\)\.
 **Note**  
@@ -41,13 +41,13 @@ For authentication using AWS Identity and Access Management \(IAM\) credentials 
 **Note**  
 If you installed the 32\-bit driver, the folder is named **Amazon Redshift ODBC Driver \(32\-bit\)**\. If you installed the 64\-bit driver, the folder is named **Amazon Redshift ODBC Driver \(64\-bit\)**\. If you installed both drivers, you'll have a folder for each driver\. 
 
-1. Click **ODBC Administrator**, and then type your administrator credentials if you are prompted to do so\.
+1. Choose **ODBC Administrator**, and then type your administrator credentials if you are prompted to do so\.
 
 1.  Select the **System DSN** tab if you want to configure the driver for all users on the computer, or the **User DSN** tab if you want to configure the driver for your user account only\. 
 
-1.  Click **Add**\. The **Create New Data Source** window opens\. 
+1.  Choose **Add**\. The **Create New Data Source** window opens\. 
 
-1.  Select the **Amazon Redshift** ODBC driver, and then click **Finish**\. The ** Amazon Redshift ODBC Driver DSN Setup** window opens\.
+1.  Select the **Amazon Redshift** ODBC driver, and then choose **Finish**\. The ** Amazon Redshift ODBC Driver DSN Setup** window opens\.
 
 1. Under **Connection Settings**, enter the following information:
 <a name="rs-mgmt-dsn"></a>
@@ -88,7 +88,7 @@ Select a mode for handling Secure Sockets Layer \(SSL\)\. In a test environment,
 You should only enable logging when you need to capture information about an issue\. Logging decreases performance, and it can consume a large amount of disk space\.
    + **Log Path**\. Specify the full path to the folder where you want to save log files\.
 
-    Then click **OK**\.
+    Then choose **OK**\.
 
 1. In **Data Type Options**, specify values for the following: 
    + **Use Unicode**\. Select this option to enable support for Unicode characters\. The default is enabled\.
@@ -100,8 +100,8 @@ You should only enable logging when you need to capture information about an iss
 **Note**  
 The Bytea data type is only used by Amazon Redshift system tables and views, and otherwise is not supported\.
 
-   Then click **OK**\.
+   Then choose **OK**\.
 
-1.  Click **Test**\. If the client computer can connect to the Amazon Redshift database, you will see the following message: **Connection successful**\. 
+1.  Choose **Test**\. If the client computer can connect to the Amazon Redshift database, you will see the following message: **Connection successful**\. 
 
  If the client computer fails to connect to the database, you can troubleshoot possible issues\. For more information, see [Troubleshooting Connection Issues in Amazon Redshift](troubleshooting-connections.md)\. 

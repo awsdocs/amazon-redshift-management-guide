@@ -1,5 +1,22 @@
 # Analyzing Query Execution<a name="analyzing-query-execution"></a>
 
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+## New Console<a name="metric-queries-execution-details"></a>
+
+**To analyze a query**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **QUERIES**, and then choose **Queries and loads** to display the list of queries for your account\. You might need to change settings on this page to find your query\. 
+
+1. Choose the **Query** identifier in the list to display **Query details**\. 
+
+   The **Query details** page includes **Query details** and **Query plan** tabs with metrics about the query\. 
+
+## Original Console<a name="metric-queries-execution-details-originalconsole"></a>
+
 The **Query Execution Details** section of the **Query** view provides information about the way the query was processed\. This section combines data from [SVL\_QUERY\_REPORT](https://docs.aws.amazon.com/redshift/latest/dg/r_SVL_QUERY_REPORT.html), [STL\_EXPLAIN](https://docs.aws.amazon.com/redshift/latest/dg/r_STL_EXPLAIN.html), and other system views and tables\.
 
 The **Query Execution Details** section has three tabs:

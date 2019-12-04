@@ -20,7 +20,7 @@ You can use the following Amazon Redshift CLI operations to configure Amazon Red
 +  [disable\-snapshot\-copy](https://docs.aws.amazon.com/cli/latest/reference/redshift/disable-snapshot-copy.html) 
 +  [enable\-snapshot\-copy](https://docs.aws.amazon.com/cli/latest/reference/redshift/enable-snapshot-copy.html) 
 
-## Configuring Amazon Redshift to use an HSM Using the Amazon Redshift API and AWS CLI<a name="manage-HSM-api-cli"></a>
+## Configuring Amazon Redshift to Use an HSM Using the Amazon Redshift API and AWS CLI<a name="manage-HSM-api-cli"></a>
 
 You can use the following Amazon Redshift API actions to manage hardware security modules\.
 +  [CreateHsmClientCertificate](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateHsmClientCertificate.html) 

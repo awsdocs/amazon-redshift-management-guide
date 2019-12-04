@@ -11,7 +11,9 @@ You can use a JDBC connection to connect to your Amazon Redshift cluster from ma
 
 ## Download the Amazon Redshift JDBC Driver<a name="download-jdbc-driver"></a>
 
-Amazon Redshift offers drivers for tools that are compatible with either the JDBC 4\.2 API, JDBC 4\.1 API, or JDBC 4\.0 API\. For information about the functionality supported by these drivers, go to the [Amazon Redshift JDBC Driver Release Notes](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.34.1058/Amazon+Redshift+JDBC+Release+Notes.pdf)\.  
+Amazon Redshift offers drivers for tools that are compatible with either the JDBC 4\.2 API, JDBC 4\.1 API, or JDBC 4\.0 API\. For information about the functionality supported by these drivers, go to the [Amazon Redshift JDBC Driver Release Notes](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.37.1061/Amazon+Redshift+JDBC+Release+Notes.pdf)\.  
+
+For installation and configuration information, see [Amazon Redshift JDBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.37.1061/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
 
 JDBC drivers version 1\.2\.27\.1051 and later support Amazon Redshift stored procedures\. For more information, see [Amazon Redshift Database Developer Guide Creating Stored Procedures](https://docs.aws.amazon.com/redshift/latest/dg/stored-procedure-overview.html)\.
 
@@ -26,13 +28,13 @@ Download one of the following, depending on the version of the JDBC API that you
 
 **Note**  
 For driver class name, use either com\.amazon\.redshift\.jdbc\.Driver or the version\-specific class name listed with the driver in the list following\.
-+ JDBC 4\.2–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.34\.1058/RedshiftJDBC42\-no\-awssdk\-1\.2\.34\.1058\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.34.1058/RedshiftJDBC42-no-awssdk-1.2.34.1058.jar)\. 
++ JDBC 4\.2–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.37\.1061/RedshiftJDBC42\-no\-awssdk\-1\.2\.37\.1061\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.37.1061/RedshiftJDBC42-no-awssdk-1.2.37.1061.jar)\. 
 
   The class name for this driver is `com.amazon.redshift.jdbc42.Driver`\.
-+  JDBC 4\.1–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.34\.1058/RedshiftJDBC41\-no\-awssdk\-1\.2\.34\.1058\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.34.1058/RedshiftJDBC41-no-awssdk-1.2.34.1058.jar)\. 
++  JDBC 4\.1–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.37\.1061/RedshiftJDBC41\-no\-awssdk\-1\.2\.37\.1061\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.37.1061/RedshiftJDBC41-no-awssdk-1.2.37.1061.jar)\. 
 
   The class name for this driver is `com.amazon.redshift.jdbc41.Driver`\.
-+  JDBC 4\.0–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.34\.1058/RedshiftJDBC4\-no\-awssdk\-1\.2\.34\.1058\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.34.1058/RedshiftJDBC4-no-awssdk-1.2.34.1058.jar)\. 
++  JDBC 4\.0–compatible driver: [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.37\.1061/RedshiftJDBC4\-no\-awssdk\-1\.2\.37\.1061\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.37.1061/RedshiftJDBC4-no-awssdk-1.2.37.1061.jar)\. 
 
   The class name for this driver is `com.amazon.redshift.jdbc4.Driver`\.
 
@@ -55,19 +57,6 @@ A JDBC URL specified with the former format of jdbc:postgresql://*endpoint*:*por
 
 The following is an example JDBC URL: `jdbc:redshift://examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com:5439/dev` 
 
-**To obtain your JDBC URL**
-
-1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-
-1. At top right, select the region in which you created your cluster\. 
-
-    If you followed the *Amazon Redshift Getting Started*, select **US West \(Oregon\)**\. 
-
-1.  In the left navigation pane, click **Clusters**, and then click your cluster\. 
-
-    If you followed the *Amazon Redshift Getting Started*, click `examplecluster`\. 
-
-1.  On the **Configuration** tab, under **Cluster Database Properties**, copy the JDBC URL of the cluster\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-cluster-database-properties-jdbc.png)
+For information about how to get your JDBC connection, see [Finding Your Cluster Connection String](configuring-connections.md#connecting-connection-string)\. 
 
  If the client computer fails to connect to the database, you can troubleshoot possible issues\. For more information, see [Troubleshooting Connection Issues in Amazon Redshift](troubleshooting-connections.md)\. 

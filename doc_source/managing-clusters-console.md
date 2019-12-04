@@ -2,6 +2,21 @@
 
 To create, modify, resize, delete, reboot, and back up clusters, use the **Clusters** section in the Amazon Redshift console\. 
 
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+## New Console<a name="managing-clusters-console-overview"></a>
+
+**To view clusters**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**\. The clusters for your account in the current AWS Region are listed\. A subset of properties of each cluster is displayed in columns in the list\. If you don't have any clusters, choose **Create cluster** to create one\.
+
+1. Choose the cluster name in the list to view more details about a cluster\.
+
+## Original Console<a name="managing-clusters-originalconsole"></a>
+
 When you don't have any clusters in an AWS Region and you open the **Clusters** page, you have the option to launch a cluster\. In the following screenshot, the AWS Region is the US East \(N\. Virginia\) Region and there are no clusters for this account\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-launch-no-cluster.png)
@@ -20,22 +35,86 @@ You can expand the cluster to view more information about the cluster, such as t
 + [Deleting a Cluster](#delete-cluster)
 + [Rebooting a Cluster](#reboot-cluster)
 + [Resizing a Cluster](#resizing-cluster)
-+ [Upgrade Cluster Release Version](#upgrade-release-version-cluster)
++ [Upgrading the Release Version of a Cluster](#upgrade-release-version-cluster)
 + [Getting Information About Cluster Configuration](#describe-cluster)
 + [Getting an Overview of Cluster Status](#status-cluster)
-+ [Taking a Snapshot of a Cluster](#snapshot-cluster)
-+ [Editing the Default Disk Space Alarm](#rs-mgmt-edit-default-disk-space-alarm)
++ [Creating a Snapshot of a Cluster](#snapshot-cluster)
++ [Creating or Editing a Disk Space Alarm](#rs-mgmt-edit-default-disk-space-alarm)
 + [Working with Cluster Performance Data](#performance-cluster)
 
 ## Creating a Cluster<a name="create-cluster"></a>
 
-Before you create a cluster, make sure to read the clusters topics [Overview](working-with-clusters.md#working-with-clusters-overview) and [Clusters and Nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes)\.
+Before you create a cluster, read [Overview](working-with-clusters.md#working-with-clusters-overview) and [Clusters and Nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes)\.
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-create-console"></a>
+
+One way to learn about creating a cluster is to create a cluster using the console\. 
+
+**To create a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**\. The clusters for your account in the current AWS Region are listed\. A subset of properties of each cluster is displayed in columns in the list\. 
+
+1. Choose **Create cluster** to create a cluster\. 
+
+1. Follow the instructions on the console page to enter the properties for **Cluster configuration**\. You can get a recommendation of your cluster configuration based on the size of your data and number of nodes\. To use this tool, look for **Calculate the best configuration for your needs**\. 
+
+1. Follow the instructions on the console page to enter the properties for **Cluster details**\. 
+**Note**  
+If you are behind a firewall, the database port must be an open port that accepts inbound connections\. 
+
+1. \(Optional\) Follow the instructions on the console page to enter properties for **Cluster permissions**\. Provide cluster permissions if your cluster needs to access other AWS services for you, for example to load data from Amazon S3\. 
+
+1. Choose **Create cluster** to create the cluster\. The cluster might take several minutes to be ready to use\.
+
+#### Additional Configurations<a name="cluster-create-console-configuration"></a>
+
+When you create a cluster, you can specify additional properties to customize it\. You can find more details about some of these properties in the following list\. 
+
+**Enhanced VPC routing**  
+
+**VPC security group**  
+
+**Publicly accessible**  
+
+**Parameter groups**  
+ Choose a cluster parameter group to associate with the cluster\. If you don't choose one, the cluster uses the default parameter group\. 
+
+**Encryption**  
+Choose whether you want to encrypt all data within the cluster and its snapshots\. If you leave the default setting, **None**, encryption is not enabled\. If you want to enable encryption, choose whether you want to use AWS Key Management Service \(AWS KMS\) or a hardware security module \(HSM\), and then configure the related settings\. For more information about encryption in Amazon Redshift, see [Amazon Redshift Database Encryption](working-with-db-encryption.md)\.  
++ **KMS**
+
+  Choose **KMS** if you want to enable encryption and use AWS KMS to manage your encryption key\. In **Master Key**, choose **\(default\) aws/redshift** to use a default customer master key \(CMK\) or choose another key from your AWS account\.
+**Note**  
+If you want to use a key from another AWS account, choose **Enter a key ARN** from **Master Key**\. Then type the Amazon Resource Name \(ARN\) for the key to use\. You must have permission to use the key\. For more information about access to keys in AWS KMS, see [Controlling Access to Your Keys](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) in the *AWS Key Management Service Developer Guide*\.
+
+  For more information about using AWS KMS encryption keys in Amazon Redshift, see [Database Encryption for Amazon Redshift Using AWS KMS](working-with-db-encryption.md#working-with-aws-kms)\.
++ **HSM**
+
+  Choose **HSM** if you want to enable encryption and use a hardware security module \(HSM\) to manage your encryption key\.
+
+  If you choose **HSM**, choose values from **HSM Connection** and **HSM Client Certificate**\. These values are required for Amazon Redshift and the HSM to form a trusted connection over which the cluster key can be passed\. The HSM connection and client certificate must be set up in Amazon Redshift before you launch a cluster\. For more information about setting up HSM connections and client certificates, see [Encryption for Amazon Redshift Using Hardware Security Modules](working-with-db-encryption.md#working-with-HSM)\.
+
+**Maintenance track**  
+You can choose whether the cluster version used is the **Current**, **Trailing**, or sometimes **Preview** track\. 
+
+**Monitoring**  
+You can choose whether to create CloudWatch alarms\. 
+
+**Configure cross\-region snapshot**  
+You can choose whether to enable cross\-region snapshots\. 
+
+### Original Console<a name="create-cluster-originalconsole"></a>
 
 You can create a cluster in the AWS Management Console in two ways: 
 + If you're new to Amazon Redshift or just need a basic cluster, use **Quick launch cluster**\. With this approach, you specify only the node type, number of nodes, user name, password, and AWS Identity and Access Management \(IAM\) role to use for access\. For more information, see [Creating a Cluster by Using Quick Launch Cluster](#quick-create-cluster)\.
 + If you're an existing user or want to customize your cluster, use **Launch cluster**\. For example, use **Launch cluster** to use a specific virtual private cloud \(VPC\) or encrypt data in your cluster\. For more information, see [Creating a Cluster by Using Launch Cluster](#create-cluster-task)\.
 
-### Creating a Cluster by Using Quick Launch Cluster<a name="quick-create-cluster"></a>
+#### Creating a Cluster by Using Quick Launch Cluster<a name="quick-create-cluster"></a>
 
 If you're new to Amazon Redshift or just need a basic cluster, use this streamlined approach\. If you're an existing user or want to customize your cluster, see [Creating a Cluster by Using Launch Cluster](#create-cluster-task)\.
 
@@ -62,7 +141,7 @@ If you use IAM user credentials, make sure that the user has the necessary permi
 1. On the **Clusters** page, choose the cluster that you just launched and review the **Cluster Status** information\. Make sure that **Cluster Status** is **available** and **Database Health** is **healthy** before you try to connect to the database\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-gsg-clusters-config-cluster-status.png)
 
-### Creating a Cluster by Using Launch Cluster<a name="create-cluster-task"></a>
+#### Creating a Cluster by Using Launch Cluster<a name="create-cluster-task"></a>
 
 If you're an existing Amazon Redshift user or want to customize your cluster, use the following procedure to launch your cluster\. If you're new to Amazon Redshift or just need a basic cluster, see [Creating a Cluster by Using Quick Launch Cluster](#quick-create-cluster)\.
 
@@ -101,12 +180,7 @@ Master user names must meet the following conditions:
    + A master user name can't be a reserved word\. For more information, see [Reserved Words](http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html) in the *Amazon Redshift Database Developer Guide*\.  
 **Master User Password** and **Confirm Password**  
  Type a password for the master user account, and then retype it to confirm the password\.   
-The password must meet the following conditions:  
-   + It must be 8–64 characters in length\.
-   + It must contain at least one uppercase letter\.
-   + It must contain at least one lowercase letter\. 
-   + It must contain at least one number\.
-   + It can be any printable ASCII character \(ASCII code 33–126\) except single quotation mark, double quotation mark, \\, /, @, or space\.
+It can use any ASCII characters with ASCII codes 33–126, except ' \(single quote\), " \(double quote\), \\, /, or @\. 
 
    In the following screenshot, `examplecluster` is the cluster identifier, no custom database name is specified, 5439 is the port, and `masteruser` is the master user name\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-launch-cluster-details.png)
@@ -227,7 +301,28 @@ When you modify a cluster, changes to the following options are applied immediat
   Amazon Redshift restarts the cluster automatically when you change **Enhanced VPC Routing**\.
 + **Cluster Parameter Group** 
 
-If you decrease the automated snapshot retention period, existing automated snapshots whose settings fall outside of the new retention period are deleted\. For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md)\. <a name="modify-cluster-task"></a>
+If you decrease the automated snapshot retention period, existing automated snapshots whose settings fall outside of the new retention period are deleted\. For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md)\. 
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-modify"></a>
+
+**To modify a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**\. 
+
+1. Choose the cluster to modify\. 
+
+1. For **Actions**, choose **Modify**\. The **Modify cluster** page appears\.
+
+1. Update the cluster properties\. 
+
+1. Choose **Modify cluster**\.
+
+### Original Console<a name="modify-cluster-task-originalconsole"></a><a name="modify-cluster-task"></a>
 
 **To modify a cluster**
 
@@ -241,9 +336,9 @@ If you decrease the automated snapshot retention period, existing automated snap
 
 1. In the **Modify Cluster** window, change your cluster, and then choose **Modify**\. The resulting window shows the options available to modify a cluster\. Including tabs with options to update **Cluster settings**, **Maintenance settings**, and **Snapshot settings**\.
 
-### Setting the Maintenance Track for a Cluster<a name="rs-mgmt-set-maintenance-track"></a>
+#### Setting the Maintenance Track for a Cluster<a name="rs-mgmt-set-maintenance-track"></a>
 
-You can set the maintenance track for a cluster with the console\. For more information , see [Choosing Cluster Maintenance Tracks](working-with-clusters.md#rs-mgmt-maintenance-tracks)\.
+You can set the maintenance track for a cluster with the console\. For more information, see [Choosing Cluster Maintenance Tracks](working-with-clusters.md#rs-mgmt-maintenance-tracks)\.
 
 **To set a maintenance track for a cluster**
 
@@ -257,7 +352,7 @@ You can set the maintenance track for a cluster with the console\. For more info
 
 1. Choose **Modify**\. 
 
-### Deferring Maintenance<a name="defer-maintenance-window"></a>
+#### Deferring Maintenance<a name="defer-maintenance-window"></a>
 
 If you need to reschedule your cluster’s maintenance window, you have the option to defer maintenance by up to 45 days\.<a name="defer-maintenance-task"></a>
 
@@ -277,7 +372,26 @@ If you need to reschedule your cluster’s maintenance window, you have the opti
 
 ## Deleting a Cluster<a name="delete-cluster"></a>
 
-If you no longer need your cluster, you can delete it\. If you plan to provision a new cluster with the same data and configuration as the one you are deleting, you need a manual snapshot\. By using a manual snapshot, you can restore the snapshot later and resume using the cluster\. If you delete your cluster but you don't create a final manual snapshot, the cluster data is deleted\. In either case, automated snapshots are deleted after the cluster is deleted, but any manual snapshots are retained until you delete them\. You might be charged Amazon Simple Storage Service storage rates for manual snapshots, depending on the amount of storage you have available for Amazon Redshift snapshots for your clusters\. For more information, see [Shutting Down and Deleting Clusters](working-with-clusters.md#rs-mgmt-shutdown-delete-cluster)\. <a name="delete-cluster-task"></a>
+If you no longer need your cluster, you can delete it\. If you plan to provision a new cluster with the same data and configuration as the one you are deleting, you need a manual snapshot\. By using a manual snapshot, you can restore the snapshot later and resume using the cluster\. If you delete your cluster but you don't create a final manual snapshot, the cluster data is deleted\. In either case, automated snapshots are deleted after the cluster is deleted, but any manual snapshots are retained until you delete them\. You might be charged Amazon Simple Storage Service storage rates for manual snapshots, depending on the amount of storage you have available for Amazon Redshift snapshots for your clusters\. For more information, see [Shutting Down and Deleting Clusters](working-with-clusters.md#rs-mgmt-shutdown-delete-cluster)\. 
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-delete"></a>
+
+**To delete a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**\. 
+
+1. Choose the cluster to delete\. 
+
+1. For **Actions**, choose **Delete**\. The **Delete cluster** page appears\. 
+
+1. Choose **Delete cluster**\. 
+
+### Original Console<a name="cluster-delete-originalconsole"></a><a name="delete-cluster-task"></a>
 
 **To delete a cluster**
 
@@ -291,7 +405,7 @@ If you no longer need your cluster, you can delete it\. If you plan to provision
 1. In the **Delete Cluster** dialog box, do one of the following: 
    +  In **Create snapshot**, choose **Yes** to delete the cluster and take a final snapshot\. In **Snapshot name**, type a name for the final snapshot, and then choose **Delete**\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-cluster-delete-final-snapshot.png)
-   +  In **Create snapshot**, choose **No** to delete the cluster without taking a final snapshot, and then choose **Delete**\. 
+   +  In **Create snapshot**, choose **No** to delete the cluster without creating a final snapshot, and then choose **Delete**\. 
 
    After you initiate the delete of the cluster, it can take several minutes for the cluster to be deleted\. You can monitor the status in the cluster list as shown in the following screenshots\. If you requested a final snapshot, **Cluster Status** shows `final-snapshot` before `deleting`\.
 
@@ -305,7 +419,26 @@ If you no longer need your cluster, you can delete it\. If you plan to provision
 
 ## Rebooting a Cluster<a name="reboot-cluster"></a>
 
-When you reboot a cluster, the cluster status is set to `rebooting` and a cluster event is created when the reboot is completed\. Any pending cluster modifications are applied at this reboot\.<a name="reboot-cluster-task"></a>
+When you reboot a cluster, the cluster status is set to `rebooting` and a cluster event is created when the reboot is completed\. Any pending cluster modifications are applied at this reboot\.
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-reboot"></a>
+
+**To reboot a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**\. 
+
+1. Choose the cluster to reboot\. 
+
+1. For **Actions**, choose **Reboot cluster**\. The **Reboot cluster** page appears\.
+
+1. Choose **Reboot cluster**\. 
+
+### Original Console<a name="cluster-reboot-originalconsole"></a><a name="reboot-cluster-task"></a>
 
 **To reboot a cluster**
 
@@ -324,7 +457,28 @@ When you reboot a cluster, the cluster status is set to `rebooting` and a cluste
 
  When you resize a cluster, you specify a number of nodes or node type that is different from the current configuration of the cluster\. While the cluster is in the process of resizing, you cannot run any write or read/write queries on the cluster; you can run only read queries\. 
 
- For more information about resizing clusters, including walking through the process of resizing clusters using different approaches, see [Resizing Clusters in Amazon Redshift](rs-resize-tutorial.md)\. <a name="resize-cluster-task"></a>
+ For more information about resizing clusters, including walking through the process of resizing clusters using different approaches, see [Resizing Clusters in Amazon Redshift](rs-resize-tutorial.md)\. 
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-reresize"></a>
+
+**To resize a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**\. 
+
+1. Choose the cluster to resize\. 
+
+1. For **Actions**, choose **Resize**\. The **Resize cluster** page appears\.
+
+1. Follow the instructions on the page\. 
+
+1. Choose **Resize cluster**\. 
+
+### Original Console<a name="cluster-resize-originalconsole"></a><a name="resize-cluster-task"></a>
 
 **To resize a cluster**
 
@@ -344,14 +498,35 @@ When you reboot a cluster, the cluster status is set to `rebooting` and a cluste
    You can cancel a resize before it's complete by choosing **cancel resize** on the cluster list\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-cancel-resize.png)
 
-## Upgrade Cluster Release Version<a name="upgrade-release-version-cluster"></a>
+## Upgrading the Release Version of a Cluster<a name="upgrade-release-version-cluster"></a>
 
-You can upgrade the release maintenance version of a cluster that has a **Release Status** value of **New release available**\. When you upgrade the maintenance version you can choose to upgrade immediately or upgrade in the next maintenance window\.
+You can upgrade the release maintenance version of a cluster that has a **Release Status** value of **New release available**\. When you upgrade the maintenance version, you can choose to upgrade immediately or upgrade in the next maintenance window\.
 
 **Important**  
-If you upgrade immediately, your cluster is offline until the upgrade completes\.<a name="upgrade-release-version-cluster-task"></a>
+If you upgrade immediately, your cluster is offline until the upgrade completes\.
 
-**To upgrade a cluster release version**
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-upgrade"></a>
+
+**To upgrade a cluster to a new release version**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**\. 
+
+1. Choose the cluster to upgrade\. 
+
+1. For **Actions**, choose **Upgrade cluster version**\. The **Upgrade cluster version** page appears\.
+
+1. Follow the instructions on the page\. 
+
+1. Choose **Upgrade cluster version**\. 
+
+### Original Console<a name="cluster-upgrade-originalconsole"></a><a name="upgrade-release-version-cluster-task"></a>
+
+**To upgrade your cluster to a new release version**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
@@ -363,7 +538,22 @@ If you upgrade immediately, your cluster is offline until the upgrade completes\
 
    When the upgrade completes, you can see the new status in the **Release status** column\.
 
-## Getting Information About Cluster Configuration<a name="describe-cluster"></a><a name="describe-cluster-task"></a>
+## Getting Information About Cluster Configuration<a name="describe-cluster"></a>
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-describe"></a>
+
+**To display information about a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, and **Properties** tabs\.
+
+1. Choose each tab to view more details\. 
+
+### Original Console<a name="cluster-describe-originalconsole"></a><a name="describe-cluster-task"></a>
 
 **To get cluster configuration details**
 
@@ -375,6 +565,21 @@ If you upgrade immediately, your cluster is offline until the upgrade completes\
 1. On the **Configuration** tab of the cluster details page, review the configuration information\. You can view information about the cluster properties, status, database, capacity, backup, audit logging, maintenance, and SSH ingestion settings\.
 
 ## Getting an Overview of Cluster Status<a name="status-cluster"></a>
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-status"></a>
+
+**To view the status of a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**\. 
+
+1. View the status of the cluster in the **Status** column\. 
+
+### Original Console<a name="cluster-status-originalconsole"></a>
 
 The cluster **Status** tab provides a high\-level overview of the status of a cluster and a summary of events related to the cluster\. It also provides a list of Amazon CloudWatch alarms associated with the cluster\.<a name="status-cluster-task"></a>
 
@@ -390,11 +595,32 @@ The cluster **Status** tab provides a high\-level overview of the status of a cl
    The status summary page is displayed as shown in the following screenshot\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-status.png)
 
-## Taking a Snapshot of a Cluster<a name="snapshot-cluster"></a>
+## Creating a Snapshot of a Cluster<a name="snapshot-cluster"></a>
 
-You can take a snapshot of your cluster from the **Configuration** tab of your cluster as shown following\. You can also take a snapshot of your cluster from the snapshots part of the Amazon Redshift console\. For more information, see [Managing Snapshots Using the Console](managing-snapshots-console.md)\.<a name="snapshot-cluster-task"></a>
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
 
-**To take a snapshot of a cluster**
+### New Console<a name="cluster-snapshot"></a>
+
+**To create a snapshot of a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**\. 
+
+1. Choose the cluster for which to create a snapshot\. 
+
+1. For **Actions**, choose **Create snapshot**\. The **Create snapshot** page appears\.
+
+1. Follow the instructions on the page\. 
+
+1. Choose **Create snapshot**\.
+
+### Original Console<a name="cluster-snapshot-originalconsole"></a>
+
+You can create a snapshot of your cluster from the **Configuration** tab of your cluster as shown following\. You can also create a snapshot of your cluster from the snapshots part of the Amazon Redshift console\. For more information, see [Managing Snapshots Using the Console](managing-snapshots-console.md)\.<a name="snapshot-cluster-task"></a>
+
+**To create a snapshot of a cluster**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
@@ -408,16 +634,35 @@ You can take a snapshot of your cluster from the **Configuration** tab of your c
 
    1. In the **Cluster Identifier** box, choose the cluster that you want to take a snapshot of\.
 
-   1. In the **Snapshot Identifier** box, type a name for the snapshot\.  
+   1. In the **Snapshot Identifier** box, enter a name for the snapshot\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-take-snapshot.png)
 
 1. Choose **Create**\.
 
    To view details about the snapshot taken and all other snapshots for your AWS account, see the snapshots section of the Amazon Redshift console\. For more information, see [Managing Snapshots Using the Console](managing-snapshots-console.md)\.
 
-## Editing the Default Disk Space Alarm<a name="rs-mgmt-edit-default-disk-space-alarm"></a>
+## Creating or Editing a Disk Space Alarm<a name="rs-mgmt-edit-default-disk-space-alarm"></a>
 
-If you opted to create a default disk space alarm when you created your Amazon Redshift cluster, you can edit the alarm\. For example, you might want to change the percentage at which the alarm triggers, or you might want to change the duration settings\. <a name="how-to-edit-default-disk-space-alarm"></a>
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-default-disk-space-alarm"></a>
+
+**To create a disk space usage alarm for a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **ALARMS**\. 
+
+1. For **Actions**, choose **Create alarm**\. The **Create alarm** page appears\.
+
+1. Follow the instructions on the page\. 
+
+1. Choose **Create alarm**\.
+
+### Original Console<a name="cluster-default-disk-space-alarm-originalconsole"></a>
+
+If you created a default disk space alarm when you created your Amazon Redshift cluster, you can edit the alarm\. For example, you might want to change the percentage at which the alarm triggers\. Or you might want to change the duration settings\. <a name="how-to-edit-default-disk-space-alarm"></a>
 
 **To edit the default disk space alarm**
 
@@ -443,4 +688,6 @@ If you opted to create a default disk space alarm when you created your Amazon R
 
 ## Working with Cluster Performance Data<a name="performance-cluster"></a>
 
-You can work with cluster performance data using the **Performance**, **Queries**, and **Loads** tabs\. For more information about working with cluster performance, see [Working with Performance Data in the Amazon Redshift Console](performance-metrics-console.md)\.
+In the new console, you can work with cluster performance on the **Cluster performance** tab of the cluster details page\. 
+
+In the original console, you can work with cluster performance data using the **Performance**, **Queries**, and **Loads** tabs\. For more information about working with cluster performance, see [Working with Performance Data in the Amazon Redshift Console](performance-metrics-console.md)\.

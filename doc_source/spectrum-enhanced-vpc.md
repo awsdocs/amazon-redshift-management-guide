@@ -83,7 +83,7 @@ To trace all access to objects in Amazon S3, including Redshift Spectrum access,
 
 You can use CloudTrail to view, search, download, archive, analyze, and respond to account activity across your AWS infrastructure\. For more information, see [Getting Started with CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-getting-started.html)\. 
 
-By default, CloudTrail tracks only bucket\-level actions\. To track object\-level actions \(such as `GetObjec`t\), enable data and management events for each logged bucket\. 
+By default, CloudTrail tracks only bucket\-level actions\. To track object\-level actions \(such as `GetObject`\), enable data and management events for each logged bucket\. 
 
 **Amazon S3 Server Access Logging** 
 
@@ -93,7 +93,7 @@ For more information, see the AWS Security blog post [How to Use Bucket Policies
 
 ### Access to AWS Glue or Amazon Athena<a name="spectrum-enhanced-vpc-considerations-glue-access"></a>
 
-Redshift Spectrum accesses your data catalog in AWS Glue or Athena\. Another option is to use a dedicated Hive Metastore for your data catalog\. 
+Redshift Spectrum accesses your data catalog in AWS Glue or Athena\. Another option is to use a dedicated Hive metastore for your data catalog\. 
 
 To enable access to AWS Glue or Athena, configure your VPC with an internet gateway or NAT gateway\. Configure your VPC security groups to allow outbound traffic to the public endpoints for AWS Glue and Athena\. Alternatively, you can configure an interface VPC endpoint for AWS Glue to access your AWS Glue Data Catalog\. When you use a VPC interface endpoint, communication between your VPC and AWS Glue is conducted within the AWS network\. For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint)\.
 

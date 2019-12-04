@@ -5,14 +5,14 @@ You can use the following AWS CLI operations to manage tags in Amazon Redshift\.
 + [delete\-tags](https://docs.aws.amazon.com/cli/latest/reference/redshift/delete-tags.html)
 + [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-tags.html)
 
-You can use the following Amazon Redshift APIs to manage tags:
+You can use the following Amazon Redshift API operations to manage tags:
 + [CreateTags](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateTags.html)
 + [DeleteTags](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DeleteTags.html)
 + [DescribeTags](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeTags.html)
 + [Tag](https://docs.aws.amazon.com/redshift/latest/APIReference/API_Tag.html)
 + [TaggedResource](https://docs.aws.amazon.com/redshift/latest/APIReference/API_TaggedResource.html)
 
-Additionally, you can use the following Amazon Redshift APIs to manage and view tags for a specific resource:
+Also, you can use the following Amazon Redshift API operations to manage and view tags for a specific resource:
 + [CreateCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateCluster.html)
 + [CreateClusterParameterGroup](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateClusterParameterGroup.html)
 + [CreateClusterSecurityGroup](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateClusterSecurityGroup.html)

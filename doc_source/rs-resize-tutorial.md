@@ -32,6 +32,15 @@ An elastic resize operation occurs in the following stages:
 
    The cluster is available for read and write operations, but some queries might take longer to execute\. 
 
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="resize-monitor"></a>
+
+To monitor the progress of a resize operation using the Amazon Redshift console, choose **CLUSTERS**, then the choose cluster being resized to see the details\. 
+
+### Original Console<a name="resize-monitor-originalconsole"></a>
+
 To monitor the progress of an elastic resize operation using the Amazon Redshift console, choose the **Status** tab on the cluster details page\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-resize-status-example.png)
@@ -102,7 +111,24 @@ There are a couple of benefits to reusing a cluster name\. First, you don't need
 
 ## Resizing a Cluster Using the Console<a name="rs-tutorial-using-the-resize-operation"></a>
 
-You can resize a cluster using either elastic resize or classic resize\. For more information about the types of resize, see [Resizing Clusters in Amazon Redshift](#rs-resize-tutorial)\.<a name="rs-tutorial-resize-cluster-console-proc"></a>
+You can resize a cluster using either elastic resize or classic resize\. For more information about the types of resize, see [Resizing Clusters in Amazon Redshift](#rs-resize-tutorial)\.
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-resize"></a>
+
+**To resize a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster to resize\. 
+
+1. For **Actions**, choose **Resize** to display the resize page\. 
+
+1. Enter your choices for the resized cluster, then choose **Resize**\. 
+
+### Original Console<a name="cluster-resize-originalconsole"></a><a name="rs-tutorial-resize-cluster-console-proc"></a>
 
 **To resize a cluster using the console:**
 

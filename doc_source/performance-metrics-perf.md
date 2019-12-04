@@ -1,8 +1,32 @@
 # Viewing Cluster Performance Data<a name="performance-metrics-perf"></a>
 
-Cluster metrics in Amazon Redshift enable the following common performance use cases:
+By using cluster metrics in Amazon Redshift, you can do the following common performance tasks:
 + Determine if cluster metrics are abnormal over a specified time range and, if so, identify the queries responsible for the performance hit\.
 + Check if historical or current queries are impacting cluster performance\. If you identify a problematic query, you can view details about it including the cluster performance during the query's execution\. You can use this information in diagnosing why the query was slow and what can be done to improve its performance\.
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+## New Console<a name="cluster-performance-metric"></a>
+
+**To view performance data**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**, then choose the name of a cluster from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, and **Properties** tabs\.
+
+1. Choose the **Cluster performance** tab for performance information including the following:
+   + **CPU utilization**
+   + **Percentage disk space used**
+   + **Database connections**
+   + **Health status**
+   + **Query duration**
+   + **Query throughput**
+   + **Concurrency scaling usage**
+
+   Many more metrics are available\. To see the available metrics and choose which are displayed, choose the **Preferences** icon\.
+
+## Original Console<a name="cluster-performance-metric-originalconsole"></a>
 
 The default cluster view shows all nodes graphed together, an `Average` statistic, and data for the last hour\. You can change this view as needed\. Some metrics, such as `HealthStatus`, are only applicable for the leader node while others, such as `WriteOps`, are only applicable for compute nodes\. Switching the node display mode resets all filters\. 
 
@@ -23,6 +47,25 @@ The default cluster view shows all nodes graphed together, an `Average` statisti
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/performance-metrics-perf.html)
 
 ## Cluster Metrics: Examples<a name="performance-metrics-examples"></a>
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-metrics-examples"></a>
+
+Choose the **DASHBOARD** page and find the **Cluster overview** section to see graphs of metrics about your clusters, such as the following: 
++ Number of queries
++ Database connections
++ Disk space used
++ CPU utilization
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/mgmt-cluster-overview-v1.png)
+
+To see graphs of metrics about your cluster, choose the **CLUSTER** page, choose a cluster name, and then choose the **Cluster performance** tab\. For example, you might view a graph for **Network receive throughput**\. 
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/mgmt-cluster-networkreceivethroughput-v1.png)
+
+### Original Console<a name="cluster-metrics-examples-originalconsole"></a>
 
 The following example shows `CPUUtilization` and `NetworkReceiveThroughput` metrics for a single node cluster\. In this case, the graphs for cluster metrics show one line marked as **Shared** because the leader and compute node are combined\. The example shows that multiple queries were run in the time period shown\. On the **Queries** graph, the cursor is positioned over the query running at the peak values of the two metrics and the **Query ID** is displayed on the right\. You can then choose the Query ID to find out more about the query running\. 
 

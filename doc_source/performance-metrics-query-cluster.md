@@ -1,5 +1,20 @@
 # Viewing Cluster Performance During Query Execution<a name="performance-metrics-query-cluster"></a>
 
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+## New Console<a name="cluster-query-metrics"></a>
+
+**To display cluster performance during query execution**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, and **Properties** tabs\.
+
+1. Choose the **Query monitoring** tab for more details\. 
+
+## Original Console<a name="cluster-query-metrics-originalconsole"></a>
+
 You can use the **Cluster Performance During Query Execution** section of the **Query** view to see cluster metrics during query execution\. Doing so helps identify poorly performing queries, look for bottleneck queries, and determine if you need to resize your cluster for your workload\.
 
 **To view cluster metrics during query execution**

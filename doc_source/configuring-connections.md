@@ -14,13 +14,30 @@ Amazon Redshift offers JDBC and ODBC drivers for download\. Previously, Amazon R
 
 ## Finding Your Cluster Connection String<a name="connecting-connection-string"></a>
 
-To connect to your cluster with your SQL client tool, you need the cluster connection string\. You can find the cluster connection string in the Amazon Redshift console, on a cluster's configuration page\.
+To connect to your cluster with your SQL client tool, you need the cluster connection string\. You can find the cluster connection string in the Amazon Redshift console, on a cluster's details page\.
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="connect-drivers-url"></a>
+
+**To find the connection string for a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. 
+
+1. Choose the **Properties** tab for the cluster\. Then view **Connection details** and choose **View all connection details** to see the **JDDBC URL** and **ODBC URL** values\. The connection string is based on the AWS Region where the cluster runs\. 
+
+1. Choose **Copy** to copy the connection string needed for your driver\. 
+
+### Original Console<a name="connect-drivers-url-originalconsole"></a>
 
 **To get your cluster connection string**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the **Clusters** page, click the name of the cluster for which you want to get the connection string\.
+1. On the **Clusters** page, choose the name of the cluster for which you want to get the connection string\.
 
 1. On the cluster's **Configuration** tab, under **JDBC URL** or **ODBC URL**, copy the connection string\.
 

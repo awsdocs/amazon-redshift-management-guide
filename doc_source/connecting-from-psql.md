@@ -18,7 +18,13 @@ By default, psql does not validate the Amazon Redshift service; it makes an encr
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the left navigation pane, click **Clusters**\. Click your cluster to open it\. Under **Cluster Database Properties**, record the values of **Endpoint**, **Port**, and **Database Name**\.  
+1. Choose one of the following steps depending on which Amazon Redshift console you are using:
+   + \(New console\) In the navigation pane, choose **CLUSTERS**\. Then choose the cluster name from the list to open its details\. On the **Properties** tab, in the **Database configurations** section, record the **Database name** and **Port**\. View the **Connection details** section and record the **Endpoint** which is in the following form: 
+
+     ```
+     endpoint:port/databasename
+     ```
+   + \(Original console\) In the navigation pane, choose **Clusters**\. Choose your cluster to open it\. Under **Cluster Database Properties**, record the values of **Endpoint**, **Port**, and **Database Name**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-cluster-database-properties.png)
 
 1. At a command prompt, specify the connection information by using either command line parameters or a connection information string\. To use parameters:
@@ -53,7 +59,13 @@ To control whether psql authenticates the service using a certificate, you must 
 
 1.  Save the download the [Redshift Certificate Authority Bundle](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt) a \.crt file to your computer\. If you do a **File\\Save as** using Internet Explorer, specify the file type as **Text file \(\*\.txt\)** and delete the \.txt extension\. For example, save it as the file `C:\MyDownloads\redshift-ca-bundle.crt`\.
 
-1.  In the Amazon Redshift console, select the cluster to display the **Cluster Database Properties**\. Record the values displayed in the **Endpoint**, **Port**, and **Database Name** fields\.  
+1. Choose one of the following steps depending on which Amazon Redshift console you are using:
+   + \(New console\) In the navigation pane, choose **CLUSTERS**\. Then choose the cluster name from the list to open its details\. On the **Properties** tab, in the **Database configurations** section, record the **Database name** and **Port**\. View the **Connection details** section and record the **Endpoint** which is in the following form: 
+
+     ```
+     endpoint:port/databasename
+     ```
+   + \(Original console\) In the navigation pane, choose **Clusters**\. Choose your cluster to open it\. Under **Cluster Database Properties**, record the values of **Endpoint**, **Port**, and **Database Name**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-cluster-database-properties.png)
 
 1. At a command prompt, specify the connection information using a connection information string:

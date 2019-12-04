@@ -39,8 +39,6 @@ Amazon Redshift Spectrum has the following limits when using the Athena or AWS G
   To skip unneeded partitions you need to add a predicate `WHERE ship_yymmm = '201804'`\. This predicate will limit read operations to the partition `\ship_yyyymm=201804\`\.
 + The column limit for external tables is 1598 with pseudo columns enabled and 1600 without\. 
 
-You can request a limit increase by contacting AWS Support\.
-
 These limits don’t apply to a Hive metastore\.
 
 ## Naming Constraints<a name="amazon-redshift-limits-naming"></a>

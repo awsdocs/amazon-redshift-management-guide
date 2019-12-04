@@ -168,7 +168,10 @@ If you decide to use a directory other than the user's home directory for the od
 + Set `ODBCINI` to point to your odbc\.ini file\.
 + Set `ODBCSYSINI` to point to the directory containing the odbcinst\.ini file\.
 
-If you are on Linux, your driver manager libraries are located in the /usr/local/lib directory, your odbc\.ini and amazon\.redshiftodbc\.ini files are located in the /etc directory, and your odbcinst\.ini file is located in the /usr/local/odbc directory, then set the environment variables as shown in the following example: 
+On Linux, you can set the environment variables as shown in the following example if these are true: 
++ Your driver manager libraries are located in the /usr/local/lib directory\.
++ Your odbc\.ini and amazon\.redshiftodbc\.ini files are located in the /etc directory\.
++ Your odbcinst\.ini file is located in the /usr/local/odbc directory\.
 
 ```
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
@@ -177,7 +180,10 @@ export AMAZONREDSHIFTODBCINI=/etc/amazon.redshiftodbc.ini
 export ODBCSYSINI=/usr/local/odbc
 ```
 
- If you are on Mac OS X, your driver manager libraries are located in the /usr/local/lib directory, your odbc\.ini and amazon\.redshiftodbc\.ini files are located in the /etc directory, and your odbcinst\.ini file is located in the /usr/local/odbc directory, then set the environment variables as shown in the following example: 
+On macOS X, you can set the environment variables as shown in the following example if these are true:
++ Your driver manager libraries are located in the /usr/local/lib directory\.
++ Your odbc\.ini and amazon\.redshiftodbc\.ini files are located in the /etc directory\.
++ Your odbcinst\.ini file is located in the /usr/local/odbc directory\.
 
 ```
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/lib

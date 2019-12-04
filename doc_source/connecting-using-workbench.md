@@ -15,9 +15,9 @@
 1. Go to the [Installing and starting SQL Workbench/J](http://www.sql-workbench.net/manual/install.html) page\. Follow the instructions for installing SQL Workbench/J on your system\.
 **Note**  
 SQL Workbench/J requires the Java Runtime Environment \(JRE\) be installed on your system\. Ensure you are using the correct version of the JRE required by the SQL Workbench/J client\. To determine which version of the Java Runtime Environment is running on your system, do one of the following:  
-Mac: In the **System Preferences**, click the Java icon\.
-Windows: In the **Control Panel**, click the Java icon\.
-Any system: In a command shell, type `java -version`\. You can also visit [https://www\.java\.com](https://www.java.com), click the [Do I Have Java?](https://www.java.com/en/download/installed.jsp) link, and click on the **Verify Java** button\. 
+Mac: In the **System Preferences**, choose the Java icon\.
+Windows: In the **Control Panel**, choose the Java icon\.
+Any system: In a command shell, type `java -version`\. You can also visit [https://www\.java\.com](https://www.java.com), choose the [Do I Have Java?](https://www.java.com/en/download/installed.jsp) link, and choose the **Verify Java** button\. 
 For information about installing and configuring the Java Runtime Environment, go to [https://www\.java\.com](https://www.java.com)\.
 
 ## Connect to Your Cluster over a JDBC Connection in SQL Workbench/J<a name="connect-to-workbench-via-jdbc"></a>
@@ -29,19 +29,19 @@ Before you perform the steps in this procedure, make sure that your client compu
 
 1. Open SQL Workbench/J\.
 
-1. Click **File**, and then click **Connect window**\.
+1. Choose **File**, and then choose **Connect window**\.
 
-1. Click **Create a new connection profile**\.
+1. Choose **Create a new connection profile**\.
 
 1. In the **New profile** box, type a name for the profile\. For example, examplecluster\_jdbc\.
 
-1. Click **Manage Drivers**\. The **Manage Drivers** dialog opens\. In the **Name** box, type a name for the driver\.  
+1. Choose **Manage Drivers**\. The **Manage Drivers** dialog opens\. In the **Name** box, type a name for the driver\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/jdbc-manage-drivers.png)
 
-   Click the folder icon next to the **Library** box, navigate to the location of the driver, click it, and then click **Open**\.  
+   Choose the folder icon next to the **Library** box, navigate to the location of the driver, choose it, and then choose **Open**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/redshift_jdbc_file.png)
 
-   If the **Please select one driver** dialog box displays, select **com\.amazon\.redshift\.jdbc4\.Driver** or **com\.amazon\.redshift\.jdbc41\.Driver** and click **OK**\. SQL Workbench/J automatically completes the **Classname** box\. Leave the **Sample URL** box blank, and then click **OK**\. 
+   If the **Please select one driver** dialog box displays, select **com\.amazon\.redshift\.jdbc4\.Driver** or **com\.amazon\.redshift\.jdbc41\.Driver** and choose **OK**\. SQL Workbench/J automatically completes the **Classname** box\. Leave the **Sample URL** box blank, and then choose **OK**\. 
 
 1. In the **Driver** box, select the driver you just added\.
 
@@ -57,10 +57,10 @@ Before you perform the steps in this procedure, make sure that your client compu
 
 1. Select the **Autocommit** box\. 
 
-1. Click the **Save profile list** icon, as shown below:  
+1. Choose the **Save profile list** icon, as shown below:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/sql_workbench_save.png)
 
-1. Click **OK**\.  
+1. Choose **OK**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/redshift_driver_sql_workbench.png)
 
 ## Test the SQL Workbench/J Connection<a name="test-workbench-connection"></a>

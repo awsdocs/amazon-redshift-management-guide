@@ -1,51 +1,89 @@
 # Managing Cluster Subnet Groups Using the Console<a name="managing-cluster-subnet-group-console"></a>
 
-The section explains how to manage your cluster subnet groups using the Amazon Redshift console\. You can create a cluster subnet group, manage an existing one, or delete one\. All of these tasks start from the cluster subnet group list\. You must select a cluster subnet group to manage it\.
+You can manage your cluster subnet groups using the Amazon Redshift console\. You can create a cluster subnet group, manage an existing one, or delete one\. All of these tasks start from the cluster subnet group list\. You must select a cluster subnet group to manage it\.
 
-In the example cluster subnet group list below, there is one cluster subnet group\. By default, there are no cluster subnet groups defined for your AWS account\. Because `my-subnet-group` is selected \(highlighted\), you can edit or delete it\. The details of the selected security group are shown under **Cluster Subnet Group Details**\. 
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/subnet-group-list-10.png)
+You can provision a cluster on one of the subnets that you provide the subnet group\. A cluster subnet group enables you to specify a set of subnets in your virtual private cloud \(VPC\)\. 
 
 ## Creating a Cluster Subnet Group<a name="create-cluster-subnet-group"></a>
 
-You must have at least one cluster subnet group defined to provision a cluster in a VPC\.<a name="create-cluster-subnet-group-task"></a>
+You must have at least one cluster subnet group defined to provision a cluster in a VPC\.
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-subnet-create"></a>
 
 **To create a cluster subnet group**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Security**\.
+1. On the navigation menu, choose **CONFIG**, then choose **Subnet groups**\. The list of subnet groups is displayed\. 
 
-1. On the **Subnet Groups** tab, click **Create Cluster Subnet Group**\.  
+1. Choose **Create cluster subnet group** to display the create page\. 
+
+1. Enter information for the subnet group, including which subnets to add\. 
+
+1. Choose **Create cluster subnet group** to create the group with the subnets that you chose\. 
+
+### Original Console<a name="cluster-subnet-create-originalconsole"></a><a name="create-cluster-subnet-group-task"></a>
+
+**To create a cluster subnet group**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. In the navigation pane, choose **Security**\.
+
+1. On the **Subnet Groups** tab, choose **Create Cluster Subnet Group**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/subnet-group-create-05.png)
 
-1. In the** Create Cluster Subnet Group** dialog box, add subnets to the group\.  
+1. In the **Create Cluster Subnet Group** dialog box, add subnets to the group\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/subnet-group-create-10.png)
 
-   1. Specify a **Name**, **Description**, and **VPC ID** for the cluster subnet group\.
+   1. Specify a **Name**, **Description**, and **VPC ID** value for the cluster subnet group\.
 
    1. Add subnets to the group by doing one of the following:
-      + Click **add all the subnets** link\. or
-      + Use the **Availability Zone** and **Subnet ID** boxes to choose a specific subnet and then click **Add**\.
+      + Choose the **add all the subnets** link\.
+      + Use the **Availability Zone** and **Subnet ID** boxes to choose a specific subnet and then choose **Add**\.
 
       The following example shows a cluster subnet group specified with one subnet group\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/subnet-group-create-20.png)
 
-1. Click **Yes, Create**\.
+1. Choose **Yes, Create**\.
 
-   The new group will be displayed in the list of cluster subnet groups\.
+   The new group is displayed in the list of cluster subnet groups\.
 
-## Modifying a Cluster Subnet Group<a name="describe-cluster-subnet-group"></a><a name="describe-cluster-subnet-group-task"></a>
+## Modifying a Cluster Subnet Group<a name="describe-cluster-subnet-group"></a>
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-subnet-modify"></a>
 
 **To modify a cluster subnet group**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Security**\.
+1. On the navigation menu, choose **CONFIG**, then choose **Subnet groups**\. The list of subnet groups is displayed\. 
 
-1. On the **Subnet Groups** tab, in the cluster subnet group list, click the row of the group you want to modify, and then click **Edit**\.
+1. Choose the subnet group to modify\. 
 
-   In the example below, `subnetgroup2` is the cluster subnet group we want to modify\.  
+1. For **Actions**, choose **Modify** to display the details of the subnet group\. 
+
+1. Update information for the subnet group\. 
+
+1. Choose **Save** to modify the group\. 
+
+### Original Console<a name="cluster-subnet-modify-originalconsole"></a><a name="describe-cluster-subnet-group-task"></a>
+
+**To modify a cluster subnet group**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. In the navigation pane, choose **Security**\.
+
+1. On the **Subnet Groups** tab, in the cluster subnet group list, choose the row of the group that you want to modify, and then choose **Edit**\.
+
+   In the example following, `subnetgroup2` is the cluster subnet group to modify\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/subnet-group-modify-10.png)
 
 1. In the **Cluster Subnet Group Details**, take one of the following actions\.    
@@ -53,18 +91,33 @@ You must have at least one cluster subnet group defined to provision a cluster i
 
 ## Deleting a Cluster Subnet Group<a name="modify-cluster-subnet-group"></a>
 
-You cannot delete a cluster subnet group that is used by a cluster\.<a name="delete-cluster-subnet-group-task"></a>
+You can't delete a cluster subnet group that is used by a cluster\.
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+### New Console<a name="cluster-subnet-delete"></a>
 
 **To delete a cluster subnet group**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. In the navigation pane, click **Security**\.
+1. On the navigation menu, choose **CONFIG**, then choose **Subnet groups**\. The list of subnet groups is displayed\. 
 
-1. On the **Subnet Groups** tab, in the cluster subnet group list, click the row of the group you want to delete\.
+1. Choose the subnet group to delete, then choose **Delete**\. 
 
-   In the example below, `my-subnet-group` is the cluster subnet group we want to delete\.  
+### Original Console<a name="cluster-subnet-delete-originalconsole"></a><a name="delete-cluster-subnet-group-task"></a>
+
+**To delete a cluster subnet group**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. In the navigation pane, choose **Security**\.
+
+1. On the **Subnet Groups** tab, in the cluster subnet group list, choose the row of the group that you want to delete\.
+
+   In the example following, `my-subnet-group` is the cluster subnet group to delete\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/subnet-group-delete-10.png)
 
-1. In the Delete Cluster Subnet Group dialog box, click **Delete**\.  
+1. In the Delete Cluster Subnet Group dialog box, choose **Delete**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/subnet-group-delete-20.png)

@@ -4,7 +4,24 @@ You can modify an unencrypted cluster to use AWS Key Management Service \(AWS KM
 
 During the migration operation, your cluster is available in read\-only mode, and the cluster status appears as **resizing**\. 
 
-If your cluster is configured to enable cross\-AWS Region snapshot copy, you must disable it before changing encryption\. For more information, see [Copying Snapshots to Another Region](working-with-snapshots.md#cross-region-snapshot-copy) and [Configure Cross\-Region Snapshot Copy for an AWS KMS\-Encrypted Cluster](managing-snapshots-console.md#xregioncopy-kms-encrypted-snapshot)\. You can't enable hardware security module \(HSM\) encryption by modifying the cluster\. Instead, create a new, HSM\-encrypted cluster and migrate your data to the new cluster\. For more information, see [Migrating to an HSM\-Encrypted Cluster](#migrating-to-an-encrypted-cluster)\. <a name="changing-cluster-encryption-console"></a>
+If your cluster is configured to enable cross\-AWS Region snapshot copy, you must disable it before changing encryption\. For more information, see [Copying Snapshots to Another AWS Region](working-with-snapshots.md#cross-region-snapshot-copy) and [Configure Cross\-Region Snapshot Copy for an AWS KMS–Encrypted Cluster](managing-snapshots-console.md#xregioncopy-kms-encrypted-snapshot)\. You can't enable hardware security module \(HSM\) encryption by modifying the cluster\. Instead, create a new, HSM\-encrypted cluster and migrate your data to the new cluster\. For more information, see [Migrating to an HSM\-Encrypted Cluster](#migrating-to-an-encrypted-cluster)\. 
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+## New Console<a name="cluster-database-encryption-modify"></a>
+
+**To modify database encryption on a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster that you want to move snapshots for\.
+
+1. For **Actions**, choose **Modify** to display the configuration page\. 
+
+1. In the **Database configuration** section, choose the setting for **Encryption**, then choose **Modify cluster**\. 
+
+## Original Console<a name="cluster-database-encryption-modify-originalconsole"></a><a name="changing-cluster-encryption-console"></a>
 
 **To change cluster encryption using the console**
 

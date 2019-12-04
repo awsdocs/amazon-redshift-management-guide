@@ -57,6 +57,57 @@ To give a user access to the Query Editor on the Amazon Redshift console, attach
 
 You don't need to allow minimum console permissions for users that are making calls only to the AWS CLI or the Amazon Redshift API\. 
 
+## Permissions Required to Use the Amazon Redshift Scheduler<a name="iam-permission-scheduler"></a>
+
+When you use the Amazon Redshift scheduler, you set up an IAM role with a trust relationship to the Amazon Redshift scheduler \(scheduler\.redshift\.amazonaws\.com\) to allow the scheduler to assume permissions on your behalf\. You also attach a policy \(permissions\) to the role for the Amazon Redshift API operations that you want to schedule\.
+
+The following example shows the policy document in JSON format to set up a trust relationship with the Amazon Redshift scheduler and Amazon Redshift\. 
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": [
+                    "scheduler.redshift.amazonaws.com",
+                    "redshift.amazonaws.com"
+                ]
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+```
+
+For more information about trust entities, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html) in the *IAM User Guide*\.
+
+You also must add permission for the Amazon Redshift operations you want to schedule\. 
+
+For the scheduler to use the `ResizeCluster` operation, add a permission that is similar to the following to your IAM policy\. Depending on your environment, you might want to make the policy more restrictive\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "redshift:ResizeCluster",
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+For the steps to create a role for the Amazon Redshift scheduler, see [Creating a Role for an AWS Service \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html#roles-creatingrole-service-console) in the *IAM User Guide*\. Make these choices when you create a role in the IAM console: 
++ For **Choose the service that will use this role**: Choose **Redshift**\.
++ For **Select your use case**: Choose **Redshift \- Scheduler**\.
++ Create or attach a policy to the role that allows an Amazon Redshift operation to be scheduled\. Choose **Create policy** or modify the role to attach a policy\. Enter the JSON policy for the operation that is to be scheduled\. 
++ After you create the role, edit the **Trust Relationship** of the IAM role to include the service `redshift.amazonaws.com`\.
+
+The IAM role you create has trusted entities of `scheduler.redshift.amazonaws.com` and `redshift.amazonaws.com`\. It also has an attached policy that allows a supported Amazon Redshift API action, such as, `"redshift:ResizeCluster"`\. 
+
 ## Resource Policies for GetClusterCredentials<a name="redshift-policy-resources.getclustercredentials-resources"></a>
 
 To connect to a cluster database using a JDBC or ODBC connection with IAM database credentials, or to programmatically call the `GetClusterCredentials` action, you need a minimum set of permissions\. At a minimum, you need permission to call the `redshift:GetClusterCredentials` action with access to a `dbuser` resource\.

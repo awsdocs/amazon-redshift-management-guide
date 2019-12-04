@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: September 19, 2019** 
+ **Latest documentation update: November 11, 2019** 
 
 For a list of the changes to the *Amazon Redshift Database Developer Guide*, see [Amazon Redshift Database Developer Guide Document History](https://docs.aws.amazon.com/redshift/latest/dg/doc-history.html)\.
 
@@ -12,7 +12,8 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
-| [Cluster release version](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html) | Release notes for a new cluster release version are available\. For more information, see [Cluster Version History](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html)\. | September 19, 2019 | 
+| [Support for the new console](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html) | Updated the guide to describe the new Amazon Redshift console\.  | November 11, 2019 | 
+| [Cluster release version](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html) | Release notes for a new cluster release version are available\. For more information, see [Cluster Version History](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html)\. | November 7, 2019 | 
 | [Security information updates](http://docs.aws.amazon.com/redshift/latest/mgmt/iam-redshift-user-mgmt.html) | Updates to the security information documentation\. | June 24, 2019 | 
 | [Snapshot enhancements](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html) | Amazon Redshift now supports several enhancements to managing and scheduling snapshots\. | April 4, 2019 | 
 | [Concurrency scaling](http://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) | You can configure workload management \(WLM\) to enable concurrency scaling mode\. For more information, see [Configuring Workload Management](http://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html)\. | March 21, 2019 | 
@@ -103,10 +104,10 @@ The following table describes the important changes to the *Amazon Redshift Clus
 |  New Feature  |  Updated the resize procedure to show the new resize progress information on the cluster's **Status** tab\. For more information, see [Resizing a Cluster](managing-clusters-console.md#resizing-cluster)\.  |  March 21, 2014  | 
 |  Documentation Update  | Reorganized and updated [What Is Amazon Redshift?](welcome.md) and revised [Amazon Redshift Management Overview](overview.md)\. Published various documentation fixes\. | February 21, 2014 | 
 |  New Feature  |  Added new node types and sizes for Amazon Redshift clusters, and rewrote the related cluster overview topic for better organization and clarity based on feedback\. For more information, see [Amazon Redshift Clusters](working-with-clusters.md)\.  |  January 23, 2014  | 
-|  New Feature  |  Added information about using elastic IP \(EIP\) addresses for publicly\-accessible Amazon Redshift clusters in virtual private clouds\. For more information about EIP in Amazon Redshift, see [Managing Clusters in an Amazon Virtual Private Cloud \(VPC\)](managing-clusters-vpc.md) and [Creating a Cluster in a VPC](getting-started-cluster-in-vpc.md)\.  |  December 20, 2013  | 
+|  New Feature  |  Added information about using elastic IP \(EIP\) addresses for publicly\-accessible Amazon Redshift clusters in virtual private clouds\. For more information about EIP in Amazon Redshift, see [Managing Clusters in a VPC ](managing-clusters-vpc.md) and [Creating a Cluster in a VPC](getting-started-cluster-in-vpc.md)\.  |  December 20, 2013  | 
 |  New Feature  |  Added information about the AWS CloudTrail logs for Amazon Redshift\. For more information about Amazon Redshift support for CloudTrail, see [Logging Amazon Redshift API Calls with AWS CloudTrail](db-auditing.md#rs-db-auditing-cloud-trail)\.  |  December 13, 2013  | 
 |  New Feature  |  Added information about the new user activity log and the `enable_user_activity_logging` database parameter for the database audit logging feature in Amazon Redshift\. For more information about database audit logging, see [Database Audit Logging](db-auditing.md)\. For more information about database parameters, see [Amazon Redshift Parameter Groups](working-with-parameter-groups.md)\.   |  December 6, 2013  | 
-|  New Feature  |  Updated to describe configuring Amazon Redshift to automatically copy automated and manual snapshots to a secondary region\. For more information about configuring cross\-region snapshot copy, see [Copying Snapshots to Another Region](working-with-snapshots.md#cross-region-snapshot-copy)\.  |  November 14, 2013  | 
+|  New Feature  |  Updated to describe configuring Amazon Redshift to automatically copy automated and manual snapshots to a secondary region\. For more information about configuring cross\-region snapshot copy, see [Copying Snapshots to Another AWS Region](working-with-snapshots.md#cross-region-snapshot-copy)\.  |  November 14, 2013  | 
 |  New Feature  |  Added section to describe Amazon Redshift audit logging for connection and user activity, and storing these logs in Amazon S3\. For more information about database audit logging, see [Database Audit Logging](db-auditing.md)\.  |  November 11, 2013  | 
 |  New Feature  |  Added section to describe Amazon Redshift encryption with new features for managing encryption keys in a hardware security module \(HSM\) and rotating encryption keys\. For more information about encryption, HSM, and key rotation, see [Amazon Redshift Database Encryption](working-with-db-encryption.md), [Encryption for Amazon Redshift Using Hardware Security Modules](working-with-db-encryption.md#working-with-HSM), and [Encryption Key Rotation in Amazon Redshift](working-with-db-encryption.md#working-with-key-rotation)\.  |  November 11, 2013  | 
 |  New Feature  |  Updated to describe publishing notifications of Amazon Redshift events by using Amazon SNS\. For information about Amazon Redshift event notifications, see [Amazon Redshift Event Notifications](working-with-event-notifications.md)\.  |  November 11, 2013  | 

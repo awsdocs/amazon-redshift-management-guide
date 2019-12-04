@@ -4,7 +4,9 @@ You can use an ODBC connection to connect to your Amazon Redshift cluster from m
 
 Amazon Redshift provides ODBC drivers for Linux, Windows, and Mac OS X operating systems\. Before you install an ODBC driver, you need to determine whether your SQL client tool is 32\-bit or 64\-bit\. You should install the ODBC driver that matches the requirements of your SQL client tool; otherwise, the connection will not work\. If you use more than one SQL client tool on the same computer or instance, make sure that you download the appropriate drivers\. You might need to install both the 32\-bit and the 64\-bit drivers if the tools differ in their system architecture\. 
 
-Check the [Amazon Redshift ODBC Driver Release Notes](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.7.1000/Amazon+Redshift+ODBC+Driver+Release+Notes.pdf) for the lasted information about driver functionality and prerequisites\. 
+Check the [Amazon Redshift ODBC Driver Release Notes](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.8.1000/Amazon+Redshift+ODBC+Driver+Release+Notes.pdf) for the lasted information about driver functionality and prerequisites\. 
+
+For installation and configuration information, see [Amazon Redshift ODBC Driver Installation and Configuration Guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.8.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
 
 **Topics**
 + [Obtain the ODBC URL for Your Cluster](#obtain-odbc-url)
@@ -27,17 +29,4 @@ Amazon Redshift displays the ODBC URL for your cluster in the Amazon Redshift co
 
 The following is an example ODBC URL: `Driver={Amazon Redshift (x64)}; Server=examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com; Database=dev; UID=masteruser; PWD=insert_your_master_user_password_here; Port=5439` 
 
-**To obtain your ODBC URL**
-
-1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-
-1.  At top right, select the region in which you created your cluster\. 
-
-    If you followed the *Amazon Redshift Getting Started*, select **US West \(Oregon\)**\. 
-
-1.  In the left navigation pane, click **Clusters**, and then click your cluster\. 
-
-    If you followed the *Amazon Redshift Getting Started*, click `examplecluster`\. 
-
-1.  On the **Configuration** tab, under **Cluster Database Properties**, copy the ODBC URL of the cluster\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-cluster-database-properties-odbc.png)
+For information about how to get your ODBC connection, see [Finding Your Cluster Connection String](configuring-connections.md#connecting-connection-string)\. 
