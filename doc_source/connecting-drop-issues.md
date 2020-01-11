@@ -12,7 +12,7 @@ You experience an issue with queries completing, where the queries appear to be 
 + If your cluster uses the EC2\-VPC platform, configure the Amazon VPC security group with an inbound custom Internet Control Message Protocol \(ICMP\) rule that returns `Destination Unreachable`\. The rule thus instructs the originating host to use the lowest MTU size along the network path\. For details on this approach, see [Configuring Security Groups to Allow ICMP "Destination Unreachable"](#configure-custom-icmp)\. 
 + If your cluster uses the EC2\-Classic platform, or you cannot allow the ICMP inbound rule, disable TCP/IP jumbo frames so that Ethernet v2 frames are used\. For details on this approach, see [Configuring the MTU of an Instance](#set-mtu)\.
 
-## Configuring Security Groups to Allow ICMP "Destination Unreachable"<a name="configure-custom-icmp"></a>
+## Configuring EC2 Security Groups to Allow ICMP "Destination Unreachable"<a name="configure-custom-icmp"></a>
 
  When there is a difference in the MTU size in the network between two hosts, first make sure that your network settings don't block path MTU discovery \(PMTUD\)\. PMTUD enables the receiving host to respond to the originating host with the following ICMP message: `Destination Unreachable: fragmentation needed and DF set (ICMP Type 3, Code 4)`\. This message instructs the originating host to use the lowest MTU size along the network path to resend the request\. Without this negotiation, packet drop can occur because the request is too large for the receiving host to accept\. For more information about this ICMP message, go to [RFC792](http://tools.ietf.org/html/rfc792) on the *Internet Engineering Task Force \(IETF\)* website\. 
 
