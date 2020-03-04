@@ -1,4 +1,4 @@
-# Manage Clusters Using the Amazon Redshift CLI and API<a name="manage-clusters-api-cli"></a>
+# Managing Clusters Using the Amazon Redshift CLI and API<a name="manage-clusters-api-cli"></a>
 
 You can use the following Amazon Redshift CLI operations to manage clusters\.
 + [create\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-cluster.html)
@@ -8,6 +8,7 @@ You can use the following Amazon Redshift CLI operations to manage clusters\.
 + [describe\-orderable\-cluster\-options](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-orderable-cluster-options.html)
 + [modify\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/modify-cluster.html)
 + [reboot\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/reboot-cluster.html)
++ [resize\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/resize-cluster.html)
 
  You can use the following Amazon Redshift API operations to manage clusters\.
 + [CreateCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateCluster.html)
@@ -17,3 +18,4 @@ You can use the following Amazon Redshift CLI operations to manage clusters\.
 + [DescribeOrderableClusterOptions](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeOrderableClusterOptions.html)
 + [ModifyCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ModifyCluster.html)
 + [RebootCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_RebootCluster.html)
++ [ResizeCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ResizeCluster.html)

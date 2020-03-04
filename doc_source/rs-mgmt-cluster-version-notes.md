@@ -2,7 +2,26 @@
 
 Find notes about cluster versions for Amazon Redshift\.
 
-## Version 1\.0\.1118, 1\.0\.11262, or 1\.0\.11420<a name="rs-mgmt-cluster-version-notes-1118"></a><a name="rs-mgmt-cluster-version-notes-1118"></a>
+**Important**  
+For the latest information about available Amazon Redshift cluster versions, and their features, improvements, and fixes, see [Amazon Redshift Maintenance Forum Announcements](https://forums.aws.amazon.com/forum.jspa?forumID=155&start=0) in the Amazon Redshift Discussion Forum\. 
+
+## Version 1\.0\.12103, 1\.0\.12419, 1\.0\.12451, 1\.0\.12782, or 1\.0\.12911<a name="rs-mgmt-cluster-version-notes-12103"></a><a name="rs-mgmt-cluster-version-notes-12103"></a>
+
+Time period: January 8–January 30, 2020
+
+**Features and Improvements**
++ **Amazon Redshift:** Performance improvement for classic resize operation with improved utilization of system memory\. 
++ **Amazon Redshift:** Users can now retrieve the column default values from the system table information\_schema\.columns, on tables that they may not own but have appropriate access privileges\. 
++ **Redshift Spectrum:** You can now use Amazon Redshift with Lake Formation in all supported AWS Regions\.\. 
+
+## Version 1\.0\.11665, 1\.0\.11835, 1\.0\.11978, or 1\.0\.12215<a name="rs-mgmt-cluster-version-notes-11665"></a><a name="rs-mgmt-cluster-version-notes-11665"></a>
+
+Time period: December 9–January 9, 2020
+
+**Features and Improvements**
++ **Amazon Redshift:** `DatabaseConnections` metrics will now accurately report connections for enhanced VPC clusters\. 
+
+## Version 1\.0\.1118, 1\.0\.11262, 1\.0\.11420, or 1\.0\.12094<a name="rs-mgmt-cluster-version-notes-1118"></a><a name="rs-mgmt-cluster-version-notes-1118"></a>
 
 Time period: November 7–December 10, 2019
 
@@ -14,7 +33,7 @@ Time period: November 7–December 10, 2019
 **Fixes**
 + Improves performance and stability of the Queries tab on the Amazon Redshift console\. 
 
-## Version 1\.0\.10654, 1\.0\.10694, 1\.0\.10880, 1\.0\.10936, or 1\.0\.11116<a name="rs-mgmt-cluster-version-notes-10654"></a><a name="rs-mgmt-cluster-version-notes-10654"></a>
+## Version 1\.0\.10654, 1\.0\.10694, 1\.0\.10880, 1\.0\.10936, 1\.0\.11116, or 1\.0\.12077<a name="rs-mgmt-cluster-version-notes-10654"></a><a name="rs-mgmt-cluster-version-notes-10654"></a>
 
 Time period: October 16–November 7, 2019
 

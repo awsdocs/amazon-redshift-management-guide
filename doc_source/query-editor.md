@@ -12,7 +12,7 @@ The following cluster node types support the query editor:
 Using the query editor, you can do the following:
 + Run single SQL statement queries\.
 + Download result sets as large as 100 MB to a comma\-separated value \(CSV\) file\.
-+ Save queries for reuse\. You can't save queries in the EU \(Paris\) Region, the Asia Pacific \(Osaka\-Local\) Region, the Asia Pacific \(Hong Kong\) Region, or the Middle East \(Bahrain\) Region\.
++ Save queries for reuse\. You can't save queries in the Europe \(Paris\) Region, the Asia Pacific \(Osaka\-Local\) Region, the Asia Pacific \(Hong Kong\) Region, or the Middle East \(Bahrain\) Region\.
 + View query execution details for user\-defined tables\.
 
 ## Query Editor Considerations<a name="query-editor-considerations"></a>

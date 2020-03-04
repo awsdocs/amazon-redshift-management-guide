@@ -3,22 +3,20 @@
 In the following sections, you can learn the basics of creating a data warehouse by launching a set of compute nodes, called an Amazon Redshift* cluster\.*
 
 **Topics**
-+ [Overview](#working-with-clusters-overview)
-+ [Resizing a Cluster](#cluster-resize-intro)
++ [Overview of Amazon Redshift Clusters](#working-with-clusters-overview)
 + [Supported Platforms to Launch Your Cluster](#cluster-platforms)
 + [Regions and Availability Zone Considerations](#az-considerations)
 + [Cluster Maintenance](#rs-cluster-maintenance)
 + [Default Disk Space Alarm](#rs-clusters-default-disk-usage-alarm)
-+ [Renaming Clusters](#rs-mgmt-rename-cluster)
-+ [Shutting Down and Deleting Clusters](#rs-mgmt-shutdown-delete-cluster)
 + [Cluster Status](#rs-mgmt-cluster-status)
++ [Overview of Managing Clusters in Amazon Redshift](managing-cluster-operations.md)
 + [Managing Clusters Using the Console](managing-clusters-console.md)
++ [Managing Clusters Using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)
 + [Managing Clusters Using the AWS SDK for Java](managing-clusters-java.md)
-+ [Manage Clusters Using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)
 + [Managing Clusters in a VPC](managing-clusters-vpc.md)
 + [Cluster Version History](rs-mgmt-cluster-version-notes.md)
 
-## Overview<a name="working-with-clusters-overview"></a>
+## Overview of Amazon Redshift Clusters<a name="working-with-clusters-overview"></a>
 
 An Amazon Redshift data warehouse is a collection of computing resources called *nodes*, which are organized into a group called a *cluster*\. Each cluster runs an Amazon Redshift engine and contains one or more databases\. 
 
@@ -84,15 +82,17 @@ To take advantage of separating compute from storage, you can migrate your clust
 To create or update an RA3 cluster, do one of the following:
 + Create a cluster and choose RA3 as the node type\.  
 + Create a cluster from an existing cluster\. You can restore directly to an RA3 cluster with the AWS CLI command `restore-from-cluster-snapshot`\. You can also restore directly to an RA3 cluster by using the Amazon Redshift console\. To migrate a cluster to RA3, we recommend that you restore your cluster instead of resizing it\. For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md)\. 
-+ Resize an existing cluster to RA3 directly\. To do this, use the classic resize operation and change the cluster to an RA3 cluster\. To migrate a cluster to RA3, we recommend that you restore your cluster instead of resizing it\. For more information, see [Resizing Clusters](rs-resize-tutorial.md)\. 
++ Resize an existing cluster to RA3 directly\. To do this, use the classic resize operation and change the cluster to an RA3 cluster\. To migrate a cluster to RA3, we recommend that you restore your cluster instead of resizing it\. For more information, see [Resizing Clusters](managing-cluster-operations.md#rs-resize-tutorial)\. 
 
 To change an RA3 cluster size, do one of the following:
-+ To add more compute nodes to an RA3 cluster, you can use the elastic resize operation\. For more information, see [Resizing Clusters](rs-resize-tutorial.md)\.If elastic resize isn't available, use classic resize\. 
-+ To remove compute nodes from an RA3 cluster, use the classic resize operation\. For more information, see [Resizing Clusters](rs-resize-tutorial.md)\. 
++ To add more compute nodes to an RA3 cluster, you can use the elastic resize operation\. For more information, see [Resizing Clusters](managing-cluster-operations.md#rs-resize-tutorial)\.If elastic resize isn't available, use classic resize\. 
++ To remove compute nodes from an RA3 cluster, use the classic resize operation\. For more information, see [Resizing Clusters](managing-cluster-operations.md#rs-resize-tutorial)\. 
 
 #### Migrating to RA3 Node Types<a name="rs-migrating-to-ra3"></a>
 
-You can take a snapshot of your DS2 or DC2 cluster and restore it to RA3 nodes to create a new RA3 cluster\. You also can use the resize cluster operation to migrate to RA3, however the restore operation is recommended as it is faster\. You can use the Amazon Redshift console sizing calculator to get a recommended configuration when you restore or resize\. You can also get recommendations from the `DescribeNodeConfigurationOptions` API operation\.
+You can take a snapshot of your DS2 or DC2 cluster and restore it to RA3 nodes to create a new RA3 cluster\. You also can use the resize cluster operation to migrate to RA3, however the restore operation is recommended as it is faster\. You can use the Amazon Redshift console sizing calculator to get a recommended configuration when you restore or resize\. You can also get recommendations from the [`DescribeNodeConfigurationOptions` API operation](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeNodeConfigurationOptions.html) in the *Amazon Redshift API Reference*\.
+
+To keep the same endpoint for your applications and users, you can rename the new RA3 cluster with the same name as the original DS2 or DC2 cluster\. To rename the cluster, modify the cluster in the Amazon Redshift console or `ModifyCluster` API operation\. For more information, see [Renaming Clusters](managing-cluster-operations.md#rs-mgmt-rename-cluster) or [`ModifyCluster` API operation](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ModifyCluster.html) in the *Amazon Redshift API Reference*\.
 
 #### RA3 Node Type Availability in AWS Regions<a name="ra3-regions"></a>
 
@@ -105,9 +105,9 @@ The RA3 node types are available only in the following AWS Regions:
 + Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
 + Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
 + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
-+ EU \(Frankfurt\) Region \(eu\-central\-1\)
-+ EU \(Ireland\) Region \(eu\-west\-1\)
-+ EU \(London\) Region \(eu\-west\-2\)
++ Europe \(Frankfurt\) Region \(eu\-central\-1\)
++ Europe \(Ireland\) Region \(eu\-west\-1\)
++ Europe \(London\) Region \(eu\-west\-2\)
 
 #### Migrating from DC1 Node Types to DC2 Node Types<a name="rs-migrating-from-dc1-to-dc2"></a>
 
@@ -127,7 +127,7 @@ Consider the following when migrating from DC1 to DC2 nodes\.
   + Cleanup unneeded data by truncating tables\. 
   + Delete rows and vacuum tables\. 
 + DC2 clusters do not support EC2\-Classic networking\. If your DC1 cluster is not running in a VPC, create one for your DC2 migration\. For more information, see [Managing Clusters in a VPC ](managing-clusters-vpc.md)\.
-+ The cluster might be unavailable during the migration\. If you resize the cluster, it might be put into read\-only mode for the duration of the operation\. You can cancel a resize operation before it completes by choosing **cancel resize** from the cluster list in the Amazon Redshift console\. For more information, see [Resizing Clusters in Amazon Redshift](rs-resize-tutorial.md)\.
++ The cluster might be unavailable during the migration\. If you resize the cluster, it might be put into read\-only mode for the duration of the operation\. You can cancel a resize operation before it completes by choosing **cancel resize** from the cluster list in the Amazon Redshift console\. For more information, see [Resizing Clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\.
 
 For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md) \.
 
@@ -210,7 +210,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, and **Properties** tabs\.
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, **Properties**, and **Schedule** tabs\.
 
 1. Choose the **Maintenance and monitoring** tab for more details\. 
 
@@ -229,40 +229,6 @@ You can determine the Amazon Redshift engine and database versions for your clus
  Although the console displays this information in one field, it’s two parameters in the Amazon Redshift API, `ClusterVersion` and `ClusterRevisionNumber`\. For more information, see [Cluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_Cluster.html) in the *Amazon Redshift API Reference*\. 
 
 To specify whether to automatically upgrade the Amazon Redshift engine in your cluster if a new version of the engine becomes available, use the setting **Allow version upgrade**\. This setting doesn't affect the database version upgrades, which are applied during the maintenance window that you specify for your cluster\. Amazon Redshift engine upgrades are *major version upgrades*, and Amazon Redshift database upgrades are *minor version upgrades*\. You can disable automatic version upgrades for major versions only\. For more information about maintenance windows for minor version upgrades, see [Maintenance Windows](#rs-maintenance-windows)\. 
-
-## Resizing a Cluster<a name="cluster-resize-intro"></a>
-
- If your storage and performance needs change after you initially provision your cluster, you can resize your cluster\. You can scale the cluster in or out by adding or removing nodes\. Additionally, you can scale the cluster up or down by specifying a different node type\. 
-
- For example, you can add more nodes, change node types, change a single\-node cluster to a multi\-node cluster, or change a multi\-node cluster to a single\-node cluster\. However, you must ensure that the resulting cluster is large enough to hold the data that you currently have or else the resize will fail\. When using the API, you have to specify the node type, node size, and the number of nodes even if you only change one of the properties\. 
-
- The following describes the resize process: 
-
-1. When you initiate the resize process, Amazon Redshift sends an event notification that acknowledges the resize request and starts to provision the new \(target\) cluster\.
-
-1. When the new \(target\) cluster is provisioned, Amazon Redshift sends an event notification that the resize has started, then restarts your existing \(source\) cluster in read\-only mode\. The restart terminates all existing connections to the cluster\. All uncommitted transactions \(including COPY\) are rolled back\. While the cluster is in read\-only mode, you can run read queries but not write queries\.
-
-1. Amazon Redshift starts to copy data from the source cluster to the target cluster\.
-
-1. When the resize process nears completion, Amazon Redshift updates the endpoint of the target cluster, and all connections to the source cluster are terminated\.
-
-1. After the resize completes, Amazon Redshift sends an event notification that the resize has completed\. You can connect to the target cluster and resume running read and write queries\.
-
-When you resize your cluster, it will remain in read\-only mode until the resize completes\. You can view the resize progress on the cluster's **Status** tab in the Amazon Redshift console\. The time it takes to resize a cluster depends on the amount of data in each node\. Typically, the resize process varies from a couple of hours to a day, although clusters with larger amounts of data might take even longer\. This is because the data is copied in parallel from each node on the source cluster to the nodes in the target cluster\. For more information about resizing clusters, see [Resizing Clusters in Amazon Redshift](rs-resize-tutorial.md) and [Resizing a Cluster](managing-clusters-console.md#resizing-cluster)\. 
-
-Amazon Redshift doesn't sort tables during a resize operation\. When you resize a cluster, Amazon Redshift distributes the database tables to the new compute nodes based on their distribution styles and runs an ANALYZE to update statistics\. Rows that are marked for deletion aren't transferred, so you need to run a VACUUM only if your tables need to be resorted\. For more information, see [Vacuuming Tables](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) in the *Amazon Redshift Database Developer Guide*\. 
-
-If your cluster is public and is in a VPC, it keeps the same Elastic IP address \(EIP\) for the leader node after resizing\. If your cluster is private and is in a VPC, it keeps the same private IP address for the leader node after resizing\. If your cluster isn't in a VPC, a new public IP address is assigned for the leader node as part of the resize operation\.
-
-To get the leader node IP address for a cluster, use the dig utility, as shown following:
-
-```
-dig mycluster.abcd1234.us-west-2.redshift.amazonaws.com
-```
-
-The leader node IP address is at the end of the ANSWER SECTION in the results, as shown following:
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/dig_IP_address.png)
 
 ## Supported Platforms to Launch Your Cluster<a name="cluster-platforms"></a>
 
@@ -335,11 +301,11 @@ The following list shows the time blocks for each region from which the default 
 + Canada \(Central\) region: 03:00–11:00 UTC
 + China \(Beijing\) region: 13:00–21:00 UTC
 + China \(Ningxia\) region: 13:00–21:00 UTC
-+ EU \(Frankfurt\) region: 06:00–14:00 UTC
-+ EU \(Ireland\) region: 22:00–06:00 UTC
-+ EU \(London\) region: 22:00–06:00 UTC
-+ EU \(Paris\) region: 23:00–07:00 UTC
-+ EU \(Stockholm\) region: 23:00–07:00 UTC
++ Europe \(Frankfurt\) region: 06:00–14:00 UTC
++ Europe \(Ireland\) region: 22:00–06:00 UTC
++ Europe \(London\) region: 22:00–06:00 UTC
++ Europe \(Paris\) region: 23:00–07:00 UTC
++ Europe \(Stockholm\) region: 23:00–07:00 UTC
 + Middle East \(Bahrain\) region: 13:00–21:00 UTC
 + South America \(São Paulo\) region: 19:00–03:00 UTC
 
@@ -374,6 +340,7 @@ For example, suppose that your cluster is currently running version 1\.0\.2762 a
 **Preview tracks**
 
 A **Preview** track might not always be available to choose\. When you choose a **Preview** track, a track name must also be selected\. Preview tracks and its related resources are temporary, have functional limitations, and might not contain all current Amazon Redshift features available in other tracks\. When working with preview tracks: 
++ Use the new Amazon Redshift console when working with preview tracks\. For example, when you create a cluster to use with preview features\. 
 + You can't switch a cluster from one preview track to another\. 
 + You can't switch a cluster to a preview track from a current or trailing track\. 
 + You can't restore from a snapshot created from a different preview track\.
@@ -453,31 +420,6 @@ After you launch the cluster, you can view and edit the alarm from the cluster�
 **Note**  
  If you delete your cluster, the alarm associated with the cluster will not be deleted but it will not trigger\. You can delete the alarm from the CloudWatch console if you no longer need it\. 
 
-## Renaming Clusters<a name="rs-mgmt-rename-cluster"></a>
-
-You can rename a cluster if you want the cluster to use a different name\. Because the endpoint to your cluster includes the cluster name \(also referred to as the *cluster identifier*\), the endpoint will change to use the new name after the rename finishes\. For example, if you have a cluster named `examplecluster` and rename it to `newcluster`, the endpoint will change to use the `newcluster` identifier\. Any applications that connect to the cluster must be updated with the new endpoint\. 
-
-You might rename a cluster if you want to change the cluster to which your applications connect without having to change the endpoint in those applications\. In this case, you must first rename the original cluster and then change the second cluster to reuse the name of the original cluster before the rename\. Doing this is necessary because the cluster identifier must be unique within your account and region, so the original cluster and second cluster cannot have the same name\. You might do this if you restore a cluster from a snapshot and don’t want to change the connection properties of any dependent applications\. 
-
-**Note**  
- If you delete the original cluster, you are responsible for deleting any unwanted cluster snapshots\. 
-
-When you rename a cluster, the cluster status changes to `renaming` until the process finishes\. The old DNS name that was used by the cluster is immediately deleted, although it could remain cached for a few minutes\. The new DNS name for the renamed cluster becomes effective within about 10 minutes\. The renamed cluster is not available until the new name becomes effective\. The cluster will be rebooted and any existing connections to the cluster will be dropped\. After this completes, the endpoint will change to use the new name\. For this reason, you should stop queries from running before you start the rename and restart them after the rename finishes\. 
-
- Cluster snapshots are retained, and all snapshots associated with a cluster remain associated with that cluster after it is renamed\. For example, suppose you have a cluster that serves your production database and the cluster has several snapshots\. If you rename the cluster and then replace it in the production environment with a snapshot, the cluster that you renamed will still have those existing snapshots associated with it\. 
-
- Amazon CloudWatch alarms and Amazon Simple Notification Service \(Amazon SNS\) event notifications are associated with the name of the cluster\. If you rename the cluster, you need to update these accordingly\. You can update the CloudWatch alarms in the CloudWatch console, and you can update the Amazon SNS event notifications in the Amazon Redshift console on the **Events** pane\. The load and query data for the cluster continues to display data from before the rename and after the rename\. However, performance data is reset after the rename process finishes\. 
-
-For more information, see [Modifying a Cluster](managing-clusters-console.md#modify-cluster)\.
-
-## Shutting Down and Deleting Clusters<a name="rs-mgmt-shutdown-delete-cluster"></a>
-
-You can shut down your cluster if you want to stop it from running and incurring charges\. When you shut it down, you can optionally create a final snapshot\. If you create a final snapshot, Amazon Redshift will create a manual snapshot of your cluster before shutting it down\. You can later restore that snapshot if you want to resume running the cluster and querying data\. 
-
-If you no longer need your cluster and its data, you can shut it down without creating a final snapshot\. In this case, the cluster and data are deleted permanently\. For more information about shutting down and deleting clusters, see [Deleting a Cluster](managing-clusters-console.md#delete-cluster)\. 
-
-Regardless of whether you shut down your cluster with a final manual snapshot, all automated snapshots associated with the cluster will be deleted after the cluster is shut down\. Any manual snapshots associated with the cluster are retained\. Any manual snapshots that are retained, including the optional final snapshot, are charged at the Amazon Simple Storage Service storage rate if you have no other clusters running when you shut down the cluster, or if you exceed the available free storage that is provided for your running Amazon Redshift clusters\. For more information about snapshot storage charges, see the [Amazon Redshift pricing page](https://aws.amazon.com/redshift/pricing/)\. 
-
 ## Cluster Status<a name="rs-mgmt-cluster-status"></a>
 
 The cluster status displays the current state of the cluster\. The following table provides a description for each cluster status\. 
@@ -490,6 +432,7 @@ The cluster status displays the current state of the cluster\. The following tab
 | available | The cluster is running and available\. | 
 | available, prep\-for\-resize | The cluster is being prepared for elastic resize\. The cluster is running and available for read and write queries, but cluster operations, such as creating a snapshot, are not available\. | 
 | available, resize\-cleanup  | An elastic resize operation is completing data transfer to the new cluster nodes\. The cluster is running and available for read and write queries, but cluster operations, such as creating a snapshot, are not available\. | 
+| cancelling\-resize | The resize operation is being cancelled\. | 
 | creating | Amazon Redshift is creating the cluster\. For more information, see [Creating a Cluster](managing-clusters-console.md#create-cluster)\. | 
 | deleting | Amazon Redshift is deleting the cluster\. For more information, see [Deleting a Cluster](managing-clusters-console.md#delete-cluster)\. | 
 | final\-snapshot | Amazon Redshift is taking a final snapshot of the cluster before deleting it\. For more information, see [Deleting a Cluster](managing-clusters-console.md#delete-cluster)\. | 
@@ -500,7 +443,7 @@ The cluster status displays the current state of the cluster\. The following tab
 | incompatible\-restore |  There was an issue restoring the cluster from the snapshot\. Try restoring the cluster again with a different snapshot\. For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md)\.  | 
 | modifying |  Amazon Redshift is applying changes to the cluster\. For more information, see [Modifying a Cluster](managing-clusters-console.md#modify-cluster)\.  | 
 | rebooting |  Amazon Redshift is rebooting the cluster\. For more information, see [Rebooting a Cluster](managing-clusters-console.md#reboot-cluster)\.  | 
-| renaming |  Amazon Redshift is applying a new name to the cluster\. For more information, see [Renaming Clusters](#rs-mgmt-rename-cluster)\.  | 
+| renaming |  Amazon Redshift is applying a new name to the cluster\. For more information, see [Renaming Clusters](managing-cluster-operations.md#rs-mgmt-rename-cluster)\.  | 
 | resizing |  Amazon Redshift is resizing the cluster\. For more information, see [Resizing a Cluster](managing-clusters-console.md#resizing-cluster)\.  | 
 | rotating\-keys |  Amazon Redshift is rotating encryption keys for the cluster\. For more information, see [Encryption Key Rotation in Amazon Redshift](working-with-db-encryption.md#working-with-key-rotation)\.  | 
 | storage\-full |  The cluster has reached its storage capacity\. Resize the cluster to add nodes or to choose a different node size\. For more information, see [Resizing a Cluster](managing-clusters-console.md#resizing-cluster)\.  | 

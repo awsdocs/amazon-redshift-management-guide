@@ -34,7 +34,7 @@ Next, Amazon Redshift randomly generates a key to use as the DEK and loads it in
 
 When the cluster reboots, Amazon Redshift starts with the internally stored, encrypted versions of the CEK and DEK, reloads them into memory, and then calls AWS KMS to decrypt the CEK with the CMK again so it can be loaded into memory\. The decrypted CEK is then used to decrypt the DEK again, and the decrypted DEK is loaded into memory and used to encrypt and decrypt the data block keys as needed\.
 
-For more information about creating Amazon Redshift clusters that are encrypted with AWS KMS keys, see [Creating a Cluster](managing-clusters-console.md#create-cluster) and [Manage Clusters Using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)\.
+For more information about creating Amazon Redshift clusters that are encrypted with AWS KMS keys, see [Creating a Cluster](managing-clusters-console.md#create-cluster) and [Managing Clusters Using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)\.
 
 ### Copying AWS KMS\-Encrypted Snapshots to Another AWS Region<a name="configure-snapshot-copy-grant"></a>
 
@@ -63,7 +63,7 @@ For more information about configuring snapshot copy grants for AWS KMS\-encrypt
 If you don’t use AWS KMS for key management, you can use a hardware security module \(HSM\) for key management with Amazon Redshift\. 
 
 **Important**  
-HSM encryption is not supported for DC2 node types\.
+HSM encryption is not supported for DC2 and RA3 node types\.
 
 HSMs are devices that provide direct control of key generation and management\. They provide greater security by separating key management from the application and database layers\. Amazon Redshift supports AWS CloudHSM Classic for key management\. The encryption process is different when you use HSM to manage your encryption keys instead of AWS KMS\.
 

@@ -1,8 +1,8 @@
 # Step 1: Create an IAM Role for IAM Single Sign\-On \(SSO\) Access<a name="generating-iam-credentials-sso-role"></a>
 
-If you don't use an identity provider for single\-sign on access, you can skip this step\.
+If you don't use an identity provider for single sign\-on access, you can skip this step\.
 
-If you already manage user identities outside of AWS, you can authenticate users for access to an Amazon Redshift database by integrating IAM authentication and a third\-party SAML\-2\.0 identity provider \(IdP\), such as ADFS, PingFederate, or Okta\.
+If you already manage user identities outside of AWS, you can authenticate users for access to an Amazon Redshift database by integrating IAM authentication and a third\-party SAML\-2\.0 identity provider \(IdP\)\. 
 
 For more information, see [Identity Providers and Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html) in the *AWS IAM User Guide*\.
 

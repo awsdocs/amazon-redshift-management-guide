@@ -8,6 +8,8 @@ In AWS, the charges that you accrue for using Amazon Redshift are based on compu
 
 *Reserved node pricing* is less expensive than on\-demand pricing because compute nodes are billed at discounted hourly rates\. However, to receive these discounted rates, you must purchase reserved node offerings\. When you purchase an offering, you make a reservation\. The reservation sets a discounted rate for each node that you reserve for the duration of the reservation\. The discounted rate in an offering varies depending on factors such as the region, node type, duration, and payment option\.
 
+You may designate a node as a reserved node by calling the `PurchaseReservedNodeOffering` API operation or choosing **Purchase reserved nodes** on the Amazon Redshift console\. When you purchase a reserved node, you must specify an AWS Region, node type, term, quantity of nodes, and offering type for the applicable reserved node type\. The reserved node may only be used in the designated AWS Region\. 
+
 This topic discusses what reserved node offerings are and how you can purchase them to reduce the cost of running your Amazon Redshift clusters\. This topic discusses rates in general terms as on\-demand or discounted so you can understand pricing concepts and how pricing affects billing\. For more information about specific rates, go to [Amazon Redshift Pricing](https://aws.amazon.com/redshift/pricing/)\.
 
 ### About Reserved Node Offerings<a name="reserverd-node-offering-concept"></a>
@@ -68,43 +70,43 @@ The pricing benefits of Reserved Nodes are shared when the purchasing account is
 
 The scenarios in this section demonstrate how nodes accrue charges based on on\-demand and discounted rates using the following reservation details: 
 + Region: US West \(Oregon\)
-+ Node Type: ds1\.xlarge
++ Node Type: ds2\.xlarge
 + Payment Option: No Upfront
 + Duration: one year
 + Number of Reserved Nodes: 16
 
 #### Example 1<a name="reserved-node-example-1"></a>
 
-You have one ds1\.xlarge cluster in the US West \(Oregon\) region with 20 nodes\.
+You have one ds2\.xlarge cluster in the US West \(Oregon\) region with 20 nodes\.
 
 In this scenario, 16 of the nodes receive the discounted rate from the reservation, but the additional 4 nodes in the cluster are billed at the on\-demand rate\.
 
 #### Example 2<a name="reserved-node-example-2"></a>
 
-You have one ds1\.xlarge cluster in the US West \(Oregon\) region with 12 nodes\.
+You have one ds2\.xlarge cluster in the US West \(Oregon\) region with 12 nodes\.
 
 In this scenario, all 12 nodes in the cluster receive the discounted rate from the reservation\. However, you also pay for the remaining reserved nodes in the reservation even though you don't currently have a running cluster to which they apply\.
 
 #### Example 3<a name="reserved-node-example-3"></a>
 
-You have one ds1\.xlarge cluster in the US West \(Oregon\) region with 12 nodes\. You run the cluster for several months with this configuration, and then you need to add nodes to the cluster\. You resize the cluster, choosing the same node type and specifying a total of 16 nodes\.
+You have one ds2\.xlarge cluster in the US West \(Oregon\) region with 12 nodes\. You run the cluster for several months with this configuration, and then you need to add nodes to the cluster\. You resize the cluster, choosing the same node type and specifying a total of 16 nodes\.
 
 In this scenario, you are billed the discounted rate for 16 nodes\. Your charges remain the same for the full year duration because the number of nodes that you have in the cluster is equal to the number of nodes that you have reserved\.
 
 #### Example 4<a name="reserved-node-example-4"></a>
 
-You have one ds1\.xlarge cluster in the US West \(Oregon\) region with 16 nodes\. You run the cluster for several months with this configuration, and then you need to add nodes\. You resize the cluster, choosing the same node type and specifying a total of 20 nodes\.
+You have one ds2\.xlarge cluster in the US West \(Oregon\) region with 16 nodes\. You run the cluster for several months with this configuration, and then you need to add nodes\. You resize the cluster, choosing the same node type and specifying a total of 20 nodes\.
 
 In this scenario, you are billed the discounted rate for all the nodes prior to the resize\. After the resize, you are billed the discounted rate for 16 of the nodes for the rest of the year, and you are billed at the on\-demand rate for the additional 4 nodes that you added to the cluster\.
 
 #### Example 5<a name="reserved-node-example-5"></a>
 
-You have two ds1\.xlarge clusters in the US West \(Oregon\) region\. One of the clusters has 6 nodes, and the other has 10 nodes\.
+You have two ds2\.xlarge clusters in the US West \(Oregon\) region\. One of the clusters has 6 nodes, and the other has 10 nodes\.
 
 In this scenario, you are billed at the discounted rate for all of the nodes because the total number of nodes in both clusters is equal to the number of nodes that you have reserved\.
 
 #### Example 6<a name="reserved-node-example-6"></a>
 
-You have two ds1\.xlarge clusters in the US West \(Oregon\) region\. One of the clusters has 4 nodes, and the other has 6 nodes\.
+You have two ds2\.xlarge clusters in the US West \(Oregon\) region\. One of the clusters has 4 nodes, and the other has 6 nodes\.
 
 In this scenario, you are billed the discounted rate for the 10 nodes that you have in running clusters, and you also pay the discounted rate for the additional 6 nodes that you have reserved even though you don't currently have any running clusters to which they apply\.

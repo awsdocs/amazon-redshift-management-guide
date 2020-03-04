@@ -7,7 +7,7 @@ The AWS SDK for Java provides thread\-safe clients for accessing Amazon Redshift
 
 You can use the `AmazonRedshiftClientBuilder` and `AwsClientBuilder` classes to configure an endpoint and create an `AmazonRedshift` client\. You can then use the client object to create an instance of a `Cluster` object\. The `Cluster` object includes methods that map to underlying Amazon Redshift Query API actions\. \(These actions are described in the Amazon Redshift [API Reference](https://docs.aws.amazon.com/redshift/latest/APIReference/API_Operations.html)\)\. When you call a method, you must create a corresponding request object\. The request object includes information that you must pass with the actual request\. The `Cluster` object provides information returned from Amazon Redshift in response to the request\. 
 
-The following example illustrates using the `AmazonRedshiftClientBuilder` class to configure an endpoint and then create a 2\-node **ds1\.xlarge** cluster\. 
+The following example illustrates using the `AmazonRedshiftClientBuilder` class to configure an endpoint and then create a 2\-node **ds2\.xlarge** cluster\. 
 
 ```
 String endpoint = "https://redshift.us-east-1.amazonaws.com/";
@@ -21,7 +21,7 @@ CreateClusterRequest request = new CreateClusterRequest()
   .withClusterIdentifier("exampleclusterusingjava")
   .withMasterUsername("masteruser")
   .withMasterUserPassword("12345678Aa")
-  .withNodeType("ds1.xlarge")
+  .withNodeType("ds2.xlarge")
   .withNumberOfNodes(2);
 
 Cluster createResponse = client.createCluster(request);

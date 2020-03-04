@@ -46,15 +46,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 ## New Console<a name="reserved-node-upgrade"></a>
 
-**To upgrade a reserved node**
-
-1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-
-1. On the navigation menu, choose **CLUSTERS**, then choose **Reserved nodes** to display the list of reserved nodes\. 
-
-1. Choose the reserved node that you want to upgrade\. 
-
-1. Enter the new properties of the node, then choose **Purchase reserved nodes**\. 
+To upgrade a reserved node, use the **Original Console** or the AWS CLI\.
 
 ## Original Console<a name="reserved-node-upgrade-originalconsole"></a>
 
@@ -66,7 +58,7 @@ You can upgrade your DC1 reserved nodes to DC2 nodes for the remainder of your c
 
 Migrate the cluster that includes the node you plan to upgrade before upgrading the reserved nodes\. To migrate your DC1 cluster to DC2, use the resize or restore operation\. If your cluster is a **DC1\.large cluster**, you can restore to a new DC2\.large cluster using an existing snapshot\. If your cluster is a **DC1\.8xlage cluster**, you can resize it to be a DC2\.8xlarge cluster\. Make sure that the DC1 cluster is shut down before you upgrade the reserved nodes\. The DC2 cluster accrues on\-demand pricing until you upgrade the DC1 reserved nodes\. 
 
-For more information about restoring from a snapshot, see [Amazon Redshift Snapshots](working-with-snapshots.md)\. For more information about resizing a cluster, see [Resizing Clusters in Amazon Redshift](rs-resize-tutorial.md)\. <a name="upgrade-reserved-nodes-task"></a>
+For more information about restoring from a snapshot, see [Amazon Redshift Snapshots](working-with-snapshots.md)\. For more information about resizing a cluster, see [Resizing Clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\. <a name="upgrade-reserved-nodes-task"></a>
 
 **To upgrade a reserved node reservation**
 

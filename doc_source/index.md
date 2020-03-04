@@ -1,7 +1,7 @@
 # Amazon Redshift Cluster Management Guide
 
 -----
-*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -17,9 +17,10 @@ Amazon's trademarks and trade dress may not be used in
 + [What Is Amazon Redshift?](welcome.md)
    + [Amazon Redshift Management Overview](overview.md)
 + [Amazon Redshift Clusters](working-with-clusters.md)
+   + [Overview of Managing Clusters in Amazon Redshift](managing-cluster-operations.md)
    + [Managing Clusters Using the Console](managing-clusters-console.md)
+   + [Managing Clusters Using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)
    + [Managing Clusters Using the AWS SDK for Java](managing-clusters-java.md)
-   + [Manage Clusters Using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)
    + [Managing Clusters in a VPC](managing-clusters-vpc.md)
       + [Creating a Cluster in a VPC](getting-started-cluster-in-vpc.md)
       + [Managing VPC Security Groups for a Cluster](managing-vpc-security-groups.md)
@@ -137,7 +138,6 @@ Amazon's trademarks and trade dress may not be used in
    + [Amazon Redshift Event Notifications](working-with-event-notifications.md)
       + [Managing Event Notifications Using the Amazon Redshift Console](manage-event-notifications-console.md)
       + [Managing Event Notifications Using the Amazon Redshift CLI and API](manage-event-notifications-api-cli.md)
-+ [Resizing Clusters in Amazon Redshift](rs-resize-tutorial.md)
 + [Limits in Amazon Redshift](amazon-redshift-limits.md)
 + [Tagging Resources in Amazon Redshift](amazon-redshift-tagging.md)
    + [Managing Resource Tags Using the Console](rs-mgmt-tagging-console.md)

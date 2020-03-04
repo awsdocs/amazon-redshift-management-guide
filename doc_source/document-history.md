@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: November 11, 2019** 
+ **Latest documentation update: February 28, 2020** 
 
 For a list of the changes to the *Amazon Redshift Database Developer Guide*, see [Amazon Redshift Database Developer Guide Document History](https://docs.aws.amazon.com/redshift/latest/dg/doc-history.html)\.
 
@@ -12,8 +12,9 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Support for Microsoft Azure AD as an identity provider](https://docs.aws.amazon.com/redshift/latest/mgmt/options-for-providing-iam-credentials.html#setup-azure-ad-identity-provider) | Updated the guide to describe the steps to use Microsoft Azure AD as an identity provider\.  | February 10, 2020 | 
+| [Support for the RA3 node type](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html) | Updated the guide to describe the new RA3 node type\.  | December 3, 2019 | 
 | [Support for the new console](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html) | Updated the guide to describe the new Amazon Redshift console\.  | November 11, 2019 | 
-| [Cluster release version](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html) | Release notes for a new cluster release version are available\. For more information, see [Cluster Version History](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-cluster-version-notes.html)\. | November 7, 2019 | 
 | [Security information updates](http://docs.aws.amazon.com/redshift/latest/mgmt/iam-redshift-user-mgmt.html) | Updates to the security information documentation\. | June 24, 2019 | 
 | [Snapshot enhancements](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html) | Amazon Redshift now supports several enhancements to managing and scheduling snapshots\. | April 4, 2019 | 
 | [Concurrency scaling](http://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html) | You can configure workload management \(WLM\) to enable concurrency scaling mode\. For more information, see [Configuring Workload Management](http://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html)\. | March 21, 2019 | 
@@ -86,11 +87,11 @@ The following table describes the important changes to the *Amazon Redshift Clus
 |  Documentation Update  |  Added links to the Microsoft Visual C\+\+ 2010 Redistributable Packages that are required for Amazon Redshift to use PostgreSQL ODBC drivers\. For more information, see [Install and Configure the Amazon Redshift ODBC Driver on Microsoft Windows Operating Systems](install-odbc-driver-windows.md)\.   |  October 30, 2014  | 
 |  New Feature  |  Added the ability to terminate queries and loads from the Amazon Redshift console\. For more information, see [Viewing Query Performance Data](performance-metrics-queries.md) and [Viewing Cluster Metrics During Load Operations](performance-metrics-loads.md)\.   |  October 28, 2014  | 
 |  Documentation Fixes  |  Published various documentation fixes\.  |  October 17, 2014  | 
-|  New Content  |  Added content about shutting down clusters and deleting clusters\. For more information, see [Shutting Down and Deleting Clusters](working-with-clusters.md#rs-mgmt-shutdown-delete-cluster) and [Deleting a Cluster](managing-clusters-console.md#delete-cluster)\.   |  August 14, 2014  | 
-|  Documentation Update  |   Clarified the behavior of the **Allow Version Upgrade** setting for clusters\. For more information, see [Overview](working-with-clusters.md#working-with-clusters-overview)\.   |  August 14, 2014  | 
+|  New Content  |  Added content about shutting down clusters and deleting clusters\. For more information, see [Shutting Down and Deleting Clusters](managing-cluster-operations.md#rs-mgmt-shutdown-delete-cluster) and [Deleting a Cluster](managing-clusters-console.md#delete-cluster)\.   |  August 14, 2014  | 
+|  Documentation Update  |   Clarified the behavior of the **Allow Version Upgrade** setting for clusters\. For more information, see [Overview of Amazon Redshift Clusters](working-with-clusters.md#working-with-clusters-overview)\.   |  August 14, 2014  | 
 |  Documentation Update  |  Revised procedures, screenshots, and organization of topic about working with clusters in Amazon Redshift console\. For more information, see [Managing Clusters Using the Console](managing-clusters-console.md)\.  |  July 11, 2014  | 
-|  New Content  |  Added a new tutorial about resizing Amazon Redshift clusters, including how to resize a cluster while minimizing the amount of time that the cluster is in read\-only mode\. For more information, see [Resizing Clusters in Amazon Redshift](rs-resize-tutorial.md)\.  |  June 27, 2014  | 
-|  New Feature  |  Added the ability to rename clusters\. For more information, see [Renaming Clusters](working-with-clusters.md#rs-mgmt-rename-cluster) and [Modifying a Cluster](managing-clusters-console.md#modify-cluster)\.  |  June 2, 2014  | 
+|  New Content  |  Added a new tutorial about resizing Amazon Redshift clusters, including how to resize a cluster while minimizing the amount of time that the cluster is in read\-only mode\. For more information, see [Resizing Clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\.  |  June 27, 2014  | 
+|  New Feature  |  Added the ability to rename clusters\. For more information, see [Renaming Clusters](managing-cluster-operations.md#rs-mgmt-rename-cluster) and [Modifying a Cluster](managing-clusters-console.md#modify-cluster)\.  |  June 2, 2014  | 
 |  Documentation Update  |  Updated the \.NET code example to use the ODBC data provider when connecting to a cluster programmatically by using \.NET\. For more information, see [Connecting to a Cluster by Using \.NET](connecting-in-code.md#connecting-in-code-dotnet)\.   |  May 15, 2014  | 
 |  New Feature  |  Added options to select a different parameter group and security group when you restore a cluster from a snapshot\. For more information, see [Restoring a Cluster from a Snapshot](managing-snapshots-console.md#snapshot-restore)\.   |  May 12, 2014  | 
 |  New Feature  |  Added new section to describe how to configure a default Amazon CloudWatch alarm to monitor the percentage of disk space used in an Amazon Redshift cluster\. This alarm is a new option in the cluster creation process\. For more information, see [Default Disk Space Alarm](working-with-clusters.md#rs-clusters-default-disk-usage-alarm)\.  |  April 28, 2014  | 

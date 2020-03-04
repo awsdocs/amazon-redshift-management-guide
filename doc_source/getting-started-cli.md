@@ -38,13 +38,13 @@ The `create-cluster` command has a large number of parameters\. For this exercis
 |  Cluster Identifier |  `examplecluster`  | 
 |  Master Username |  `masteruser`  | 
 |  Master Password |  `TopSecret1`  | 
-| Node Type  | ds1\.xlarge or the node size that you want to use\. For more information, see [Clusters and Nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes) | 
+| Node Type  | ds2\.xlarge or the node size that you want to use\. For more information, see [Clusters and Nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes) | 
 | Cluster Type | single\-node | 
 
 To create your cluster, type the following command:
 
 ```
-aws redshift create-cluster --cluster-identifier examplecluster --master-username masteruser --master-user-password TopSecret1 --node-type ds1.xlarge --cluster-type single-node
+aws redshift create-cluster --cluster-identifier examplecluster --master-username masteruser --master-user-password TopSecret1 --node-type ds2.xlarge --cluster-type single-node
 ```
 
 The cluster creation process will take several minutes to complete\. To check the status, type the following command:

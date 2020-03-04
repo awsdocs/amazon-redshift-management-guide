@@ -44,7 +44,7 @@ You can expand the cluster to view more information about the cluster, such as t
 
 ## Creating a Cluster<a name="create-cluster"></a>
 
-Before you create a cluster, read [Overview](working-with-clusters.md#working-with-clusters-overview) and [Clusters and Nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes)\.
+Before you create a cluster, read [Overview of Amazon Redshift Clusters](working-with-clusters.md#working-with-clusters-overview) and [Clusters and Nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes)\.
 
 **Note**  
 A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
@@ -372,7 +372,7 @@ If you need to reschedule your cluster’s maintenance window, you have the opti
 
 ## Deleting a Cluster<a name="delete-cluster"></a>
 
-If you no longer need your cluster, you can delete it\. If you plan to provision a new cluster with the same data and configuration as the one you are deleting, you need a manual snapshot\. By using a manual snapshot, you can restore the snapshot later and resume using the cluster\. If you delete your cluster but you don't create a final manual snapshot, the cluster data is deleted\. In either case, automated snapshots are deleted after the cluster is deleted, but any manual snapshots are retained until you delete them\. You might be charged Amazon Simple Storage Service storage rates for manual snapshots, depending on the amount of storage you have available for Amazon Redshift snapshots for your clusters\. For more information, see [Shutting Down and Deleting Clusters](working-with-clusters.md#rs-mgmt-shutdown-delete-cluster)\. 
+If you no longer need your cluster, you can delete it\. If you plan to provision a new cluster with the same data and configuration as the one you are deleting, you need a manual snapshot\. By using a manual snapshot, you can restore the snapshot later and resume using the cluster\. If you delete your cluster but you don't create a final manual snapshot, the cluster data is deleted\. In either case, automated snapshots are deleted after the cluster is deleted, but any manual snapshots are retained until you delete them\. You might be charged Amazon Simple Storage Service storage rates for manual snapshots, depending on the amount of storage you have available for Amazon Redshift snapshots for your clusters\. For more information, see [Shutting Down and Deleting Clusters](managing-cluster-operations.md#rs-mgmt-shutdown-delete-cluster)\. 
 
 **Note**  
 A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
@@ -457,7 +457,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
  When you resize a cluster, you specify a number of nodes or node type that is different from the current configuration of the cluster\. While the cluster is in the process of resizing, you cannot run any write or read/write queries on the cluster; you can run only read queries\. 
 
- For more information about resizing clusters, including walking through the process of resizing clusters using different approaches, see [Resizing Clusters in Amazon Redshift](rs-resize-tutorial.md)\. 
+ For more information about resizing clusters, including walking through the process of resizing clusters using different approaches, see [Resizing Clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\. 
 
 **Note**  
 A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
@@ -474,9 +474,9 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. For **Actions**, choose **Resize**\. The **Resize cluster** page appears\.
 
-1. Follow the instructions on the page\. 
+1. Follow the instructions on the page\. You can resize the cluster now, once at a specific time, or increase and decrease the size of your cluster on a schedule\.
 
-1. Choose **Resize cluster**\. 
+1. Depending on your choices, choose **Resize now** or **Schedule resize**\. 
 
 ### Original Console<a name="cluster-resize-originalconsole"></a><a name="resize-cluster-task"></a>
 
@@ -495,7 +495,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
    You can monitor the progress of the resize on the **Status** tab\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-resize-status.png)
 
-   You can cancel a resize before it's complete by choosing **cancel resize** on the cluster list\.  
+   You can cancel a classic resize before it's complete by choosing **cancel resize** on the cluster list\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-cancel-resize.png)
 
 ## Upgrading the Release Version of a Cluster<a name="upgrade-release-version-cluster"></a>
@@ -549,7 +549,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, and **Properties** tabs\.
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, **Properties**, and **Schedule** tabs\.
 
 1. Choose each tab to view more details\. 
 

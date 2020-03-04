@@ -73,6 +73,6 @@ Amazon Redshift does not allow you to edit the AWSServiceRoleForRedshift service
 
 If you no longer need to use a feature or service that requires a service\-linked role, we recommend that you delete that role\. That way you don’t have an unused entity that is not actively monitored or maintained\. 
 
-Before you can delete a service\-linked role for an account, you need to shut down and delete any clusters in the account\. For more information, see [Shutting Down and Deleting Clusters](working-with-clusters.md#rs-mgmt-shutdown-delete-cluster)\.
+Before you can delete a service\-linked role for an account, you need to shut down and delete any clusters in the account\. For more information, see [Shutting Down and Deleting Clusters](managing-cluster-operations.md#rs-mgmt-shutdown-delete-cluster)\.
 
 You can use the IAM console, the AWS CLI, or the IAM API to delete a service\-linked role\. For more information, see [Deleting a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#delete-service-linked-role) in the *IAM User Guide*\.

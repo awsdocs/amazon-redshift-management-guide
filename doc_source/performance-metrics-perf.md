@@ -13,7 +13,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the name of a cluster from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, and **Properties** tabs\.
+1. On the navigation menu, choose **CLUSTERS**, then choose the name of a cluster from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, **Properties**, and **Schedule** tabs\.
 
 1. Choose the **Cluster performance** tab for performance information including the following:
    + **CPU utilization**

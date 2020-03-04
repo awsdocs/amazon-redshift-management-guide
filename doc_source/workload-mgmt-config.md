@@ -68,7 +68,7 @@ To enable concurrency scaling on a queue, set **Concurrency Scaling mode** to `a
 JSON property: `concurrency_scaling`
 
 **Concurrency**  
-The number of queries that can run concurrently in a queue\. If concurrency scaling is enabled, eligible queries go to a scaling cluster when a queue reaches the concurrency level\. If concurrency scaling isn't enabled, queries wait in the queue until a slot becomes available\. The range is between 1 and 50\.  
+The number of queries that can run concurrently in a queue\. This property only applies to manual WLM\. If concurrency scaling is enabled, eligible queries go to a scaling cluster when a queue reaches the concurrency level\. If concurrency scaling isn't enabled, queries wait in the queue until a slot becomes available\. The range is between 1 and 50\.  
 JSON property: `query_concurrency`
 
 **User Groups**  
