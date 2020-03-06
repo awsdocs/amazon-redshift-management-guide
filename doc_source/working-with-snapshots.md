@@ -162,19 +162,19 @@ The following steps take a cluster with many nodes and consolidate it into a big
 1.  Run the following command to get the details of our 24\-node `ds2.xlarge` cluster\. 
 
    ```
-   aws redshift describe-clusters --region eu-west-1 -—cluster-identifier mycluster-123456789012
+   aws redshift describe-clusters --region eu-west-1 --cluster-identifier mycluster-123456789012
    ```
 
 1. Run the following command to get the details of the snapshot\. 
 
    ```
-   aws redshift describe-cluster-snapshots --region eu-west-1 -—snapshot-identifier mycluster-snapshot
+   aws redshift describe-cluster-snapshots --region eu-west-1 --snapshot-identifier mycluster-snapshot
    ```
 
 1. Run the following command to describe the options available for this snapshot\. 
 
    ```
-   aws redshift describe-node-configuration-options --snapshot-identifier mycluster-snapshot --region eu-west-1 -—action-type restore-cluster
+   aws redshift describe-node-configuration-options --snapshot-identifier mycluster-snapshot --region eu-west-1 --action-type restore-cluster
    ```
 
    This command returns an option list with recommended node types, number of nodes, and disk utilization for each option\. For this example, the preceding command lists the following possible node configurations\. We choose to restore into a three\-node `ds2.8xlarge` cluster\.
