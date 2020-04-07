@@ -103,12 +103,17 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
      With **Automatic WLM**, the **Memory** and **Concurrency on main** values are set to **auto**\.
    + To create a queue, choose **Edit workload queues**, then choose **Add Queue**\.
    + To modify a queue, change property values in the table\. Depending on the type of queue, properties can include the following:
+     + **Queue name** can be changed\. 
      + **Memory \(%\)**
      + **Concurrency on main** cluster
      + **Concurrency scaling mode** can be **off** or **auto**
      + **Timeout \(ms\)**
      + **User groups**
      + **Query groups**
+
+     For more information about these properties, see [Properties for the wlm\_json\_configuration Parameter](workload-mgmt-config.md#wlm-json-config-properties)\.
+**Important**  
+If you change a queue name, the `QueueName` dimension value of WLM queue metrics \(such as, WLMQueueLength, WLMQueueWaitTime, WLMQueriesCompletedPerSecond, WLMQueryDuration, WLMRunningQueries, and so on\) also changes\. So, if you change the name of a queue, you might need to change CloudWatch alarms you have set up\. 
    + To change the order of queues, choose the **Up** and **Down** arrow buttons\. 
    + To delete a queue, choose **Delete** in the queue's row in the table\.
 

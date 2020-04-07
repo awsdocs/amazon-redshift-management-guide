@@ -19,7 +19,7 @@ To provide IAM credentials for a JDBC or ODBC connection, choose one of the foll
 **Note**  
 To use Azure AD with JDBC, the Amazon Redshift JDBC driver must be version 1\.2\.37\.1061 or later\. To use Azure AD with ODBC, the Amazon Redshift ODBC driver must be version 1\.4\.10\.1000 or later\. 
 
-  You can provide the plugin name and related values in the form of JDBC or ODBC settings or by using a profile\. For more information, see [JDBC Driver Configuration Options](configure-jdbc-options.md) and [ODBC Driver Configuration Options](configure-odbc-options.md)\. 
+  You can provide the plugin name and related values in the form of JDBC or ODBC settings or by using a profile\. For more information, see [Configure JDBC Driver Options](configure-jdbc-connection.md#configure-jdbc-options) and [Configure ODBC Driver Options](configure-odbc-connection.md#configure-odbc-options)\. 
 
 For more information, see [Configure a JDBC or ODBC Connection to Use IAM Credentials](generating-iam-credentials-configure-jdbc-odbc.md)\.
 
@@ -192,7 +192,7 @@ You can use Microsoft Azure AD as an identity provider \(IdP\) to access your Am
 
 1. Configure your database client to connect to your cluster through JDBC using your Azure AD single sign\-on\. 
 
-   You can use any client that uses a JDBC driver to connect using Azure AD single sign\-on or use a language like Java to connect using a script\. For installation and configuration information, see [Configure a JDBC Connection](configure-jdbc-connection.md)\.
+   You can use any client that uses a JDBC driver to connect using Azure AD single sign\-on or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a JDBC Connection](configure-jdbc-connection.md)\.
 
    For example, you can use SQLWorkbench/J as the client\. When you configure SQLWorkbench/J, the URL of your database uses the following format\.
 
@@ -225,9 +225,9 @@ You can use Microsoft Azure AD as an identity provider \(IdP\) to access your Am
    Amazon Redshift provides ODBC drivers for Linux, Windows, and MAC OS X operating systems\. Before you install an ODBC driver, determine whether your SQL client tool is 32\-bit or 64\-bit\. Install the ODBC driver that matches the requirements of your SQL client tool\. 
 
    Also install and configure the latest Amazon Redshift OBDC driver for your operating system as follows:
-   + For Windows, see [Install and Configure the Amazon Redshift ODBC Driver on Microsoft Windows Operating Systems](install-odbc-driver-windows.md)\.
-   + For MAC OS, see [Install the Amazon Redshift ODBC Driver on Mac OS X](install-odbc-driver-mac.md)\.
-   + For Linux, see [Install the Amazon Redshift ODBC Driver on Linux Operating Systems](install-odbc-driver-linux.md)\.
+   + For Windows, see [Install and Configure the Amazon Redshift ODBC Driver on Microsoft Windows](configure-odbc-connection.md#install-odbc-driver-windows)\.
+   + For MAC OS, see [Install the Amazon Redshift ODBC Driver on macOS X](configure-odbc-connection.md#install-odbc-driver-mac)\.
+   + For Linux, see [Install the Amazon Redshift ODBC Driver on Linux](configure-odbc-connection.md#install-odbc-driver-linux)\.
 
    On Windows, in the **Amazon Redshift ODBC Driver DSN Setup** page, under **Connection Settings**, enter the following information: 
    + For **Data Source Name**, enter ***your\-DSN***\. This specifies the data source name used as the ODBC profile name\. 

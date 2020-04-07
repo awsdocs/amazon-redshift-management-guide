@@ -102,7 +102,7 @@ create-snapshot-schedule --schedule-identifier "my-test" --schedule-definition "
 
 ## Manual Snapshots<a name="about-manual-snapshots"></a>
 
-You can take a manual snapshot any time\. By default, manual snapshots are retained indefinitely, even after you delete your cluster\. You can specify the retention period when you create a manual snapshot, or you can change the retention period by modifying the snapshot\. If you create a snapshot using the Amazon Redshift console, it defaults the snapshot retention period to 365 days\.
+You can take a manual snapshot any time\. By default, manual snapshots are retained indefinitely, even after you delete your cluster\. You can specify the retention period when you create a manual snapshot, or you can change the retention period by modifying the snapshot\. 
 
 If a snapshot is deleted, you can't start any new operations that reference that snapshot\. However, if a restore operation is in progress, that restore operation will run to completion\. 
 

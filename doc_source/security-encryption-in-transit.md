@@ -4,7 +4,7 @@ You can configure your environment to protect the confidentiality and integrity 
 
 Encryption of data in transit between an Amazon Redshift cluster and SQL clients over JDBC/ODBC:
 + You can connect to Amazon Redshift clusters from SQL client tools over Java Database Connectivity \(JDBC\) and Open Database Connectivity \(ODBC\) connections\. 
-+ Amazon Redshift supports Secure Sockets Layer \(SSL\) connections to encrypt data and server certificates to validate the server certificate that the client connects to\. The client connects to the leader node of an Amazon Redshift cluster\. For more information, see [Configure Security Options for Connections](connecting-ssl-support.md)\.
++ Amazon Redshift supports Secure Sockets Layer \(SSL\) connections to encrypt data and server certificates to validate the server certificate that the client connects to\. The client connects to the leader node of an Amazon Redshift cluster\. For more information, see [Configuring Security Options for Connections](connecting-ssl-support.md)\.
 + To support SSL connections, Amazon Redshift creates and installs AWS Certificate Manager \(ACM\) issued certificates on each cluster\. For more information, see [Transitioning to ACM Certificates for SSL Connections](connecting-transitioning-to-acm-certs.md)\. 
 + To protect your data in transit within the AWS Cloud, Amazon Redshift uses hardware accelerated SSL to communicate with Amazon S3 or Amazon DynamoDB for COPY, UNLOAD, backup, and restore operations\. 
 

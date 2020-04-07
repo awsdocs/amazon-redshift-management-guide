@@ -12,7 +12,7 @@ If you use an identity provider for authentication, specify the name of an ident
 
 **To configure a JDBC connection to use IAM credentials**
 
-1. Download the latest Amazon Redshift JDBC driver from the [Configure a JDBC Connection](configure-jdbc-connection.md) page\.
+1. Download the latest Amazon Redshift JDBC driver from the [Configuring a JDBC Connection](configure-jdbc-connection.md) page\.
 **Important**  
 The Amazon Redshift JDBC driver must be version 1\.2\.7\.1003 or later\.
 
@@ -58,17 +58,17 @@ The Amazon Redshift JDBC driver must be version 1\.2\.7\.1003 or later\.
 
 **To configure an ODBC connection to use IAM credentials**
 
-In the following procedure, you can find steps only to configure IAM authentication\. For steps to use standard authentication, using a database user name and password, see [Configure an ODBC Connection](configure-odbc-connection.md)\.
+In the following procedure, you can find steps only to configure IAM authentication\. For steps to use standard authentication, using a database user name and password, see [Configuring an ODBC Connection](configure-odbc-connection.md)\.
 
-1. Install and configure the latest Amazon Redshift OBDC driver for your operating system\. For more information, see [Configure an ODBC Connection](configure-odbc-connection.md) page\.
+1. Install and configure the latest Amazon Redshift OBDC driver for your operating system\. For more information, see [Configuring an ODBC Connection](configure-odbc-connection.md) page\.
 **Important**  
 The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
 
 1. Follow the steps for your operating system to configure connection settings\.
 
    For more information, see one of the following:
-   + [Install and Configure the Amazon Redshift ODBC Driver on Microsoft Windows Operating Systems](install-odbc-driver-windows.md)
-   + [Configure the ODBC Driver on Linux and Mac OS X Operating Systems](odbc-driver-configure-linux-mac.md) 
+   + [Install and Configure the Amazon Redshift ODBC Driver on Microsoft Windows](configure-odbc-connection.md#install-odbc-driver-windows)
+   + [Configure the ODBC Driver on Linux and macOS X Operating Systems](configure-odbc-connection.md#odbc-driver-configure-linux-mac) 
 
 1. On Microsoft Windows operating systems, access the Amazon Redshift ODBC Driver DSN Setup window\.
 

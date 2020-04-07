@@ -1,15 +1,17 @@
 # Overview of Managing Clusters in Amazon Redshift<a name="managing-cluster-operations"></a>
 
-After your cluster is created, there are several operations you can perform on it\. The operations include resizing, renaming, and deleting\.  
+After your cluster is created, there are several operations you can perform on it\. The operations include resizing, pausing, resuming, renaming, and deleting\. 
 
 ## Resizing Clusters in Amazon Redshift<a name="rs-resize-tutorial"></a>
 
-As your data warehousing capacity and performance needs change or grow, you can resize your cluster to make the best use of the computing and storage options that Amazon Redshift provides\.  
+As your data warehousing capacity and performance needs change or grow, you can resize your cluster to make the best use of the computing and storage options that Amazon Redshift provides\. You can use elastic resize to scale your cluster by changing the node type and number of nodes\. Or, if your new node configuration is not available through elastic resize, you can use classic resize\. 
 
 To resize your cluster, use one of the following approaches: 
-+ **Elastic resize** – Use elastic resize to change the number of nodes\. If you change the number of nodes, then queries are temporarily paused and connections are held open if possible\. During the resize operation, the cluster is read\-only\. Typically, elastic resize takes 10–15 minutes\. We recommend using elastic resize when possible\. 
++ **Elastic resize** – Use elastic resize to change the node type, number of nodes, or both\. If you only change the number of nodes, then queries are temporarily paused and connections are held open if possible\. During the resize operation, the cluster is read\-only\. Typically, elastic resize takes 10–15 minutes\. We recommend using elastic resize when possible\. 
 + **Classic resize** – Use classic resize to change the node type, number of nodes, or both\. Choose this option when you are resizing to a configuration that isn't available through elastic resize\. An example is to or from a single\-node cluster\. During the resize operation, the cluster is read\-only\. Typically, classic resize takes 2 hours–2 days depending on your data's size\. 
 + **Snapshot and restore with classic resize** – To keep your cluster available during a classic resize, you can first make a copy of an existing cluster, then resize the new cluster\. 
+
+You can resize \(both elastic resize and classic resize\) your cluster on a schedule\. When you use the new Amazon Redshift console, you can set up a schedule to resize your cluster\. For more information, see [Resizing a Cluster](managing-clusters-console.md#resizing-cluster)\. You can also use the AWS CLI or Amazon Redshift API operations to schedule a resize\. For more information, see [create\-scheduled\-action](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-scheduled-action.html) in the *AWS CLI Command Reference* or [CreateScheduledAction](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateScheduledAction.html) in the *Amazon Redshift API Reference*\. 
 
 **Topics**
 + [Elastic Resize](#elastic-resize)
@@ -52,13 +54,15 @@ To monitor the progress of an elastic resize operation using the Amazon Redshift
 
 You can't use elastic resize on single\-node clusters\. 
 
+To run an elastic resize on a cluster that is transferring data from a shared snapshot, at least one backup must be available for the cluster\. You can view your backups on the Amazon Redshift console snapshots list, the `describe-cluster-snapshots` CLI command, or the `DescribeClusterSnapshots` API operation\.
+
 Elastic resize doesn't sort tables or reclaim disk space, so it isn't a substitute for a vacuum operation\. A classic resize copies tables to a new cluster, so it can reduce the need to vacuum\. For more information, see [Vacuuming Tables](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html)\.
 
 Elastic resize has the following constraints: 
 + Elastic resize is available only for clusters that use the EC2\-VPC platform\. For more information, see [Supported Platforms to Launch Your Cluster](working-with-clusters.md#cluster-platforms)
 + The new node configuration must have enough storage for existing data\. Even when you add nodes, your new configuration might not have enough storage because of the way that data is redistributed\. 
 + For dc2\.large or ds2\.xlarge node types, you can double the size or half the size of the number of nodes of the original cluster\. For example, a 4\-node cluster can increase to eight nodes or decrease to two nodes with elastic resize\. To resize to a different number of nodes, you must use [Classic Resize](#classic-resize)\.
-+ For dc2\.8xlarge, ds2\.8xlarge, or ra3\.16xlarge node types, you can change the number of nodes to half the current number to double the current number of nodes\. For example, a 4\-node cluster can be resized to 2, 3, 5, 6, 7, or 8 nodes\.
++ For dc2\.8xlarge, ds2\.8xlarge, ra3\.4xlarge, or ra3\.16xlarge node types, you can change the number of nodes to half the current number to double the current number of nodes\. For example, a 4\-node cluster can be resized to 2, 3, 5, 6, 7, or 8 nodes\.
 
 **Note**  
 Use [Classic Resize](#classic-resize) to reset the maximum node limit\. For example, to increase from 4 nodes to 10 nodes, first change to 5 nodes using classic resize\. 
@@ -145,6 +149,41 @@ dig mycluster.abcd1234.us-west-2.redshift.amazonaws.com
 The leader node IP address is at the end of the ANSWER SECTION in the results, as shown following:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/dig_IP_address.png)
+
+## Pausing and Resuming Clusters<a name="rs-mgmt-pause-resume-cluster"></a>
+
+If you have a cluster that only needs to be available at specific times, you can pause the cluster and later resume it\. While the cluster is paused, on\-demand billing is suspended\. Only the cluster's storage incurs charges\. For more information about pricing, see the [Amazon Redshift pricing page](https://aws.amazon.com/redshift/pricing/)\. 
+
+When you pause a cluster, Amazon Redshift creates a snapshot, begins terminating queries, and puts the cluster in a pausing state\. If you delete a paused cluster without requesting a final snapshot, then you can't restore the cluster\. You can't cancel or roll back a pause or resume operation after it's initiated\. 
+
+You can pause and resume a cluster on the new Amazon Redshift console \(not the original console\), with the AWS CLI, or with Amazon Redshift API operations\. 
+
+You can schedule actions to pause and resume a cluster\. When you use the new Amazon Redshift console to create a recurring schedule to pause and resume, then two scheduled actions are created for the date range that you choose\. The scheduled action names are suffixed with `-pause` and `-resume`\. The total length of the name must fit within the maximum size of a scheduled action name\. 
+
+You can't pause the following types of clusters: 
++ EC2\-Classic clusters\. 
++ Clusters that are not active, for example a cluster that is currently modifying\. 
++ Hardware security module \(HSM\) clusters\. 
++ Clusters that have automated snapshots disabled\. 
+
+When deciding to pause a cluster, consider the following: 
++ Connections or queries to the cluster aren't available\. 
++ You can't see query monitoring information of a paused cluster on the Amazon Redshift console\. 
++ You can't modify a paused cluster\. Any scheduled actions on the cluster aren't done\. These include creating snapshots, resizing clusters, and cluster maintenance operations\. 
++ Hardware metrics aren't created\. Update your CloudWatch alarms if you have alarms set on missing metrics\. 
++ You can't copy the latest automated snapshots of a paused cluster to manual snapshots\. 
++ While a cluster is pausing it can't be resumed until the pause operation is complete\. 
++ When you pause a cluster, billing is suspended\. However, the pause operation typically completes within 15 minutes, depending upon the size of the cluster\. 
++  Audit logs are archived and not restored on resume\. 
+
+When you resume a cluster, consider the following: 
++ The cluster version of the resumed cluster is updated to the maintenance version based on the maintenance window of the cluster\. 
++ If you delete the subnet associated with a paused cluster, you might have an incompatible network\. In this case, restore your cluster from the latest snapshot\. 
++ If you delete an Elastic IP address while the cluster is paused, then a new Elastic IP address is requested\. 
++ If Amazon Redshift can't resume the cluster with its previous elastic network interface, then Amazon Redshift tries to allocate a new one\. 
++ When you resume a cluster, your node IP addresses might change\. You might need to update your VPC settings to support these new IP addresses for features like COPY from Secure Shell \(SSH\) or COPY from Amazon EMR\.
++ If you try to resume a cluster that isn't paused, the resume operation returns an error\. If the resume operation is part of a scheduled action, modify or delete the scheduled action to prevent future errors\. 
++ Depending upon the size of the cluster, it can take several minutes to resume a cluster before queries can be processed\. In addition, query performance can be impacted for some period of time while the cluster is being re\-hydrated after resume completes\. 
 
 ## Renaming Clusters<a name="rs-mgmt-rename-cluster"></a>
 

@@ -1,6 +1,6 @@
 # Connect to Your Cluster by Using SQL Workbench/J<a name="connecting-using-workbench"></a>
 
- Amazon Redshift does not provide or install any SQL client tools or libraries, so you must install any that you want to use with your clusters\. If you already have a business intelligence application or any other application that can connect to your clusters using a standard PostgreSQL JDBC or ODBC driver, then you can skip this section\. If you don't already have an application that can connect to your cluster, this section presents one option for doing so using SQL Workbench/J, a free, DBMS\-independent, cross\-platform SQL query tool\. 
+ Amazon Redshift doesn't provide or install any SQL client tools or libraries, so you must install any that you want to use with your clusters\. If you already have a business intelligence application or any other application that can connect to your clusters using a standard PostgreSQL JDBC or ODBC driver, then you can skip this section\. If you don't already have an application that can connect to your cluster, this section presents one option for doing so using SQL Workbench/J, a free, DBMS\-independent, cross\-platform SQL query tool\. 
 
 ## Install SQL Workbench/J<a name="set-up-sqlworkbench"></a>
 
@@ -23,7 +23,7 @@ For information about installing and configuring the Java Runtime Environment, g
 ## Connect to Your Cluster over a JDBC Connection in SQL Workbench/J<a name="connect-to-workbench-via-jdbc"></a>
 
 **Important**  
-Before you perform the steps in this procedure, make sure that your client computer or Amazon EC2 instance has the recommended Amazon Redshift JDBC driver\. For links to download the latest drivers, see [Download the Amazon Redshift JDBC Driver](configure-jdbc-connection.md#download-jdbc-driver)\. Also, make sure you have configured firewall settings to allow access to your cluster\. For more information, see [Step 4: Authorize Access to the Cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html)\.
+Before you perform the steps in this procedure, make sure that your client computer or Amazon EC2 instance has the recommended Amazon Redshift JDBC driver\. For links to download the latest drivers, see [Download an Amazon Redshift JDBC Driver](configure-jdbc-connection.md#download-jdbc-driver)\. Also, make sure you have configured firewall settings to allow access to your cluster\. For more information, see [Step 4: Authorize Access to the Cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html)\.
 
 **To use a JDBC connection in SQL Workbench/J**
 
@@ -47,7 +47,7 @@ Before you perform the steps in this procedure, make sure that your client compu
 
 1. In **URL**, copy the JDBC URL from the Amazon Redshift console and paste it here\.
 
-   For more information about finding the JDBC URL, see [Configure a JDBC Connection](configure-jdbc-connection.md)\.
+   For more information about finding the JDBC URL, see [Configuring a JDBC Connection](configure-jdbc-connection.md)\.
 
 1. In **Username**, type the name of the master user\.
 

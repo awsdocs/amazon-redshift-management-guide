@@ -45,7 +45,7 @@ In this section, you can find steps to programmatically call the `GetClusterCred
    The following example uses the Amazon Redshift CLI with autocreate to generate temporary database credentials for a new user and add the user to the group `example_group`\.
 
    ```
-   aws redshift get-cluster-credentials --cluster-identifier examplecluster --db-user temp_creds_user -–auto-create true --db-name exampledb -–db-groups example_group --duration-seconds 3600
+   aws redshift get-cluster-credentials --cluster-identifier examplecluster --db-user temp_creds_user -–no-auto-create --db-name exampledb -–db-groups example_group --duration-seconds 3600
    ```
 
    The result is as follows\.
@@ -60,7 +60,7 @@ In this section, you can find steps to programmatically call the `GetClusterCred
 
 1. Establish a Secure Socket Layer \(SSL\) authentication connection with the Amazon Redshift cluster and send a logon request with the user name and password from the `GetClusterCredentials` response\. Include the IAM: or IAMA: prefix with the user name, for example, `IAM:temp_creds_user` or `IAMA:temp_creds_user`\.
 **Important**  
-Configure your SQL client to require SSL\. Otherwise, if your SQL client automatically tries to connect with SSL, it can fall back to non\-SSL if there is any kind of failure\. In that case, the first connection attempt might fail because the credentials are expired or invalid, then a second connection attempt fails because the connection is not SSL\. If that occurs, the first error message might be missed\. For more information about connecting to your cluster using SSL, see [Configure Security Options for Connections](connecting-ssl-support.md)\.
+Configure your SQL client to require SSL\. Otherwise, if your SQL client automatically tries to connect with SSL, it can fall back to non\-SSL if there is any kind of failure\. In that case, the first connection attempt might fail because the credentials are expired or invalid, then a second connection attempt fails because the connection is not SSL\. If that occurs, the first error message might be missed\. For more information about connecting to your cluster using SSL, see [Configuring Security Options for Connections](connecting-ssl-support.md)\.
 
 1. If the connection doesn't use SSL, the connection attempt fails\. 
 

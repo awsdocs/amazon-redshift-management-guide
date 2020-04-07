@@ -48,7 +48,7 @@ For more information about encryption, keys, and hardware security modules, see 
 
 ### SSL Connections<a name="rs-overview-ssl-connections"></a>
 
-You can use Secure Sockets Layer \(SSL\) encryption to encrypt the connection between your SQL client and your cluster\. For more information, see [Configure Security Options for Connections](connecting-ssl-support.md)\.
+You can use Secure Sockets Layer \(SSL\) encryption to encrypt the connection between your SQL client and your cluster\. For more information, see [Configuring Security Options for Connections](connecting-ssl-support.md)\.
 
 ## Monitoring Clusters<a name="rs-overview-monitoring-clusters"></a>
 

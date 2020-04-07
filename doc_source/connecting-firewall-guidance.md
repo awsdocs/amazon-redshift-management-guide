@@ -1,4 +1,4 @@
-# Connecting from Outside of Amazon EC2 —Firewall Timeout Issue<a name="connecting-firewall-guidance"></a>
+# Connecting from Outside of Amazon EC2—Firewall Timeout Issue<a name="connecting-firewall-guidance"></a>
 
 ## Example Issue<a name="connecting-firewall-guidance.Issue"></a>
 
@@ -6,11 +6,11 @@
 
 ## Possible Solutions<a name="connecting-firewall-guidance.Solutions"></a>
 
- This happens when you connect to Amazon Redshift from a computer other than an Amazon EC2 instance, and idle connections are terminated by an intermediate network component, such as a firewall, after a period of inactivity\. This behavior is typical when you log on from a Virtual Private Network \(VPN\) or your local network\. 
+This issue happens when you connect to Amazon Redshift from a machine other than an Amazon EC2 instance\. In this case, idle connections are terminated by an intermediate network component, such as a firewall, after a period of inactivity\. This behavior is typical when you log on from a virtual private network \(VPN\) or your local network\. 
 
 To avoid these timeouts, we recommend the following changes:
-+ Increase client system values that deal with TCP/IP timeouts\. You should make these changes on the computer you are using to connect to your cluster\. The timeout period should be adjusted for your client and network\. See [Change TCP/IP Timeout Settings](#connecting-firewall-guidance.change-tcpip-settings)\.
-+ Optionally, set keep\-alive behavior at the DSN level\. See [Change DSN Timeout Settings](#connecting-firewall-guidance.change-dsn-settings)\.
++ Increase client system values that deal with TCP/IP timeouts\. Make these changes on the computer you are using to connect to your cluster\. The timeout period should be adjusted for your client and network\. For more information, see [Change TCP/IP Timeout Settings](#connecting-firewall-guidance.change-tcpip-settings)\.
++ Optionally, set keepalive behavior at the DSN level\. For more information, see [Change DSN Timeout Settings](#connecting-firewall-guidance.change-dsn-settings)\.
 
 ## Change TCP/IP Timeout Settings<a name="connecting-firewall-guidance.change-tcpip-settings"></a>
 
@@ -65,17 +65,17 @@ To change TCP/IP timeout settings, configure the timeout settings according to t
 
 ## Change DSN Timeout Settings<a name="connecting-firewall-guidance.change-dsn-settings"></a>
 
-You can set keep\-alive behavior at the DSN level if you choose\. You do this by adding or modifying the following parameters in the odbc\.ini file: 
+You can set keepalive behavior at the DSN level if you choose\. You do this by adding or modifying the following parameters in the odbc\.ini file: 
 
 **KeepAlivesCount**  
-The number of TCP keep\-alive packets that can be lost before the connection is considered broken\.
+The number of TCP keepalive packets that can be lost before the connection is considered broken\.
 
 **KeepAlivesIdle**  
-The number of seconds of inactivity before the driver sends a TCP keep\-alive packet\.
+The number of seconds of inactivity before the driver sends a TCP keepalive packet\.
 
 **KeepAlivesInterval**  
-The number of seconds between each TCP keep\-alive retransmission\.
+The number of seconds between each TCP keepalive retransmission\.
 
-On Windows, you modify these parameters in the registry by adding or changing keys in HKEY\_LOCAL\_MACHINE\\SOFTWARE\\ODBC\\ODBC\.INI\\*your\_DSN*\. On Linux and Mac OS, you add or modify these parameters in the target DSN entry directly in the odbc\.ini file\. For more information on modifying the odbc\.ini file on Linux and Mac OS computers, see [Configure the ODBC Driver on Linux and Mac OS X Operating Systems](odbc-driver-configure-linux-mac.md)\. 
+On Windows, you modify these parameters in the registry by adding or changing keys in HKEY\_LOCAL\_MACHINE\\SOFTWARE\\ODBC\\ODBC\.INI\\*your\_DSN*\. On Linux and macOS, you add or modify these parameters in the target DSN entry directly in the odbc\.ini file\. For more information on modifying the odbc\.ini file on Linux and macOS computers, see [Configure the ODBC Driver on Linux and macOS X Operating Systems](configure-odbc-connection.md#odbc-driver-configure-linux-mac)\. 
 
-If these parameters don't exist, or if they have a value of 0, the system will use the keep\-alive parameters specified for TCP/IP to determine DSN keep\-alive behavior\. On Windows, the TCP/IP parameters can be found in the registry in HKEY\_LOCAL\_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\\. On Linux and Mac OS, the TCP/IP parameters can be found in the sysctl\.conf file\. 
+If these parameters don't exist, or if they have a value of 0, the system uses the keepalive parameters specified for TCP/IP to determine DSN keepalive behavior\. On Windows, you can find the TCP/IP parameters in the registry in `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\`\. On Linux and macOS, you can find the TCP/IP parameters can be found in the sysctl\.conf file\. 

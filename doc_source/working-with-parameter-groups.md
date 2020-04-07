@@ -33,7 +33,7 @@ The following table shows the default parameter values at a glance with links to
 |  extra\_float\_digits  |  0  |  [extra\_float\_digits](https://docs.aws.amazon.com/redshift/latest/dg/r_extra_float_digits.html) in the Amazon Redshift Database Developer Guide  | 
 |  max\_concurrency\_scaling\_clusters  |  1  |  [max\_concurrency\_scaling\_clusters](https://docs.aws.amazon.com/redshift/latest/dg/r_max_concurrency_scaling_clusters.html) in the Amazon Redshift Database Developer Guide  | 
 |  query\_group  |  default   |  [query\_group](https://docs.aws.amazon.com/redshift/latest/dg/r_query_group.html) in the Amazon Redshift Database Developer Guide  | 
-|  require\_ssl  |  false  |  [Configure Security Options for Connections](connecting-ssl-support.md) in this guide  | 
+|  require\_ssl  |  false  |  [Configuring Security Options for Connections](connecting-ssl-support.md) in this guide  | 
 |  search\_path  |   $user, public   |  [search\_path](https://docs.aws.amazon.com/redshift/latest/dg/r_search_path.html) in the Amazon Redshift Database Developer Guide  | 
 |  statement\_timeout  |  0  |  [statement\_timeout](https://docs.aws.amazon.com/redshift/latest/dg/r_statement_timeout.html) in the Amazon Redshift Database Developer Guide  | 
 |  wlm\_json\_configuration  |   \[\{"auto\_wlm":true\}\]   |  [Configuring Workload Management](workload-mgmt-config.md) in this guide | 

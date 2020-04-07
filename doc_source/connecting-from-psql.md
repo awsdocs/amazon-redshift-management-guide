@@ -51,7 +51,7 @@ By default, psql does not validate the Amazon Redshift service; it makes an encr
 
 ## Connect by Using a Certificate<a name="connecting-from-psql-ssl"></a>
 
-To control whether psql authenticates the service using a certificate, you must use a connection information string to specify connection information, and specify the `sslmode` keyword\. By default, psql operates with `sslmode=prefer`\. To specify that psql opens an encrypted connection and uses an Amazon Redshift certificate to verify the service, download an Amazon Redshift certificate to your computer\. Specify `verify-full` unless you use a DNS alias\. If you use a DNS alias, select v`erify-ca`\. Specify `sslrootcert` with the location of the certificate\. For more information about `sslmode`, see [Configure Security Options for Connections](connecting-ssl-support.md)\. 
+To control whether psql authenticates the service using a certificate, you must use a connection information string to specify connection information, and specify the `sslmode` keyword\. By default, psql operates with `sslmode=prefer`\. To specify that psql opens an encrypted connection and uses an Amazon Redshift certificate to verify the service, download an Amazon Redshift certificate to your computer\. Specify `verify-full` unless you use a DNS alias\. If you use a DNS alias, select v`erify-ca`\. Specify `sslrootcert` with the location of the certificate\. For more information about `sslmode`, see [Configuring Security Options for Connections](connecting-ssl-support.md)\. 
 
  For more information about connection information string parameters, see [https://www\.postgresql\.org/docs/8\.4/static/libpq\-connect\.html](https://www.postgresql.org/docs/8.4/static/libpq-connect.html)\.
 
@@ -81,7 +81,7 @@ To control whether psql authenticates the service using a certificate, you must 
    +  *<port>* is the **Port** you recorded in the previous step\.
    +  *<certificate>* is the full path to the certificate file\. On Windows systems, the certificate path must be specified using Linux\-style / separators instead of the Windows \\ separator\.
 
-     On Linux and Mac OS X operating systems, the path is 
+     On Linux and macOS X operating systems, the path is 
 
      ```
      ~/.postgresql/root.crt

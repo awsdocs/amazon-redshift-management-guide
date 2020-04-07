@@ -5,6 +5,8 @@ In the following sections, you can learn the basics of creating a data warehouse
 **Topics**
 + [Overview of Amazon Redshift Clusters](#working-with-clusters-overview)
 + [Supported Platforms to Launch Your Cluster](#cluster-platforms)
++ [Overview of RA3 Node Types](#rs-ra3-node-types)
++ [Migrating from DC1 Node Types to DC2 Node Types](#rs-migrating-from-dc1-to-dc2)
 + [Regions and Availability Zone Considerations](#az-considerations)
 + [Cluster Maintenance](#rs-cluster-maintenance)
 + [Default Disk Space Alarm](#rs-clusters-default-disk-usage-alarm)
@@ -29,11 +31,6 @@ An Amazon Redshift cluster consists of nodes\. Each cluster has a leader node an
 
 *Compute nodes* execute the query execution plans and transmit data among themselves to serve these queries\. The intermediate results are sent to the leader node for aggregation before being sent back to the client applications\. For more information about leader nodes and compute nodes, see [Data Warehouse System Architecture](https://docs.aws.amazon.com/redshift/latest/dg/c_high_level_system_architecture.html) in the *Amazon Redshift Database Developer Guide*\. 
 
-
-|  | 
-| --- |
-|  When you create a cluster on the Amazon Redshift console \([https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\), you can get a recommendation of your cluster configuration based on the size of your data and number of nodes\. To use this sizing calculator, look for **Calculate the best configuration for your needs** or **Find the best cluster configuration for your needs**\.   | 
-
 When you launch a cluster, one option you specify is the node type\. The node type determines the CPU, RAM, storage capacity, and storage drive type for each node\.  
 
 RA3 node types enable you to scale storage and compute independently to fit your needs\. You pay separately for the amount of compute and Amazon Redshift–managed storage that you use\. You launch clusters that use the RA3 node types in a virtual private cloud \(VPC\)\. You can't launch RA3 clusters in EC2\-Classic\. For more information, see [Creating a Cluster in a VPC](getting-started-cluster-in-vpc.md)\. 
@@ -43,9 +40,9 @@ DS2 node types are optimized for large data workloads and use hard disk drive \(
 DC2 node types, and the earlier generation DC1 node types, are optimized for performance\-intensive workloads\. Because they use solid state drive \(SSD\) storage, the DC node types deliver much faster I/O compared to DS node types, but provide less storage space\. You launch clusters that use the DC2 node types in a virtual private cloud \(VPC\)\. You can't launch DC2 clusters in EC2\-classic mode\. For more information, see [Creating a Cluster in a VPC](getting-started-cluster-in-vpc.md)\. 
 
 The node type that you choose depends heavily on three things:
-+ The amount of data you import into Amazon Redshift
-+ The complexity of the queries and operations that you run in the database
-+ The needs of downstream systems that depend on the results from those queries and operations
++ The amount of data you import into Amazon Redshift\.
++ The complexity of the queries and operations that you run in the database\.
++ The needs of downstream systems that depend on the results from those queries and operations\.
 
 Node types are available in different sizes\. Node size and the number of nodes determine the total storage for a cluster\. For more information, see [Node Type Details](#rs-node-type-info)
 
@@ -55,90 +52,14 @@ Some node types allow one node \(single\-node\) or two or more nodes \(multi\-no
 
 The cost of your cluster depends on the region, node type, number of nodes, and whether the nodes are reserved in advance\. For more information about the cost of nodes, see the [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/) page\. 
 
-#### Overview of RA3 Node Types<a name="rs-ra3-node-type"></a>
-
-**Important**  
-You can use RA3 node types only with cluster version 1\.0\.11420 or later\. You can view the version of an existing cluster with the Amazon Redshift console\. For more information, see [Determining the Cluster Maintenance Version](#cluster-maintenance-version)\.   
-To use RA3 node types, your AWS Region must support RA3\. For more information, see [RA3 Node Type Availability in AWS Regions](#ra3-regions)\.   
-Make sure that you use the new Amazon Redshift console when working with RA3 node types\. The new console provides a sizing calculator that supports RA3 configurations\. The original console doesn't support all RA3 operations\.   
-In addition, to use RA3 node types with Amazon Redshift operations that use the maintenance track, the maintenance track value must be set to a cluster version that supports RA3\. For more information on maintenance tracks, see [Choosing Cluster Maintenance Tracks](#rs-mgmt-maintenance-tracks)\. 
-
-Consider choosing RA3 node types in these cases: 
-+ If you need the flexibility to scale compute separate from storage\.
-+ If you use Amazon Redshift for your operational analytics uses, where you store all your data and frequently query only a portion of the complete dataset\. 
-+ If you want to keep your data volume capped to constrain costs\. Previously, if you wanted to keep your data volume capped to constrain costs, you had to unload data to Amazon S3\. 
-+ If you need to have transactional access to your complete data with familiar tooling\.
-
-#### Working with Amazon Redshift Managed Storage<a name="rs-managed-storage"></a>
-
-With Amazon Redshift managed storage, you can store and process all your data in Amazon Redshift while getting more flexibility to scale compute and storage capacity separately\. You continue to ingest data with the COPY or INSERT command\.   To optimize performance and manage automatic data placement across tiers of storage, Amazon Redshift takes advantage of optimizations such as data block temperature, data block age, and workload patterns\. When needed, Amazon Redshift scales storage automatically to Amazon S3 without requiring any manual action\.  
-
-For information about storage costs, see [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/)\. 
-
-#### Managing RA3 Node Types<a name="rs-managing-ra3"></a>
-
-To take advantage of separating compute from storage, you can migrate your cluster to the RA3 node type\. To use the RA3 node types, create your clusters in a virtual private cloud \(EC2\-VPC\)\. 
-
-To create or update an RA3 cluster, do one of the following:
-+ Create a cluster and choose RA3 as the node type\.  
-+ Create a cluster from an existing cluster\. You can restore directly to an RA3 cluster with the AWS CLI command `restore-from-cluster-snapshot`\. You can also restore directly to an RA3 cluster by using the Amazon Redshift console\. To migrate a cluster to RA3, we recommend that you restore your cluster instead of resizing it\. For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md)\. 
-+ Resize an existing cluster to RA3 directly\. To do this, use the classic resize operation and change the cluster to an RA3 cluster\. To migrate a cluster to RA3, we recommend that you restore your cluster instead of resizing it\. For more information, see [Resizing Clusters](managing-cluster-operations.md#rs-resize-tutorial)\. 
-
-To change an RA3 cluster size, do one of the following:
-+ To add more compute nodes to an RA3 cluster, you can use the elastic resize operation\. For more information, see [Resizing Clusters](managing-cluster-operations.md#rs-resize-tutorial)\.If elastic resize isn't available, use classic resize\. 
-+ To remove compute nodes from an RA3 cluster, use the classic resize operation\. For more information, see [Resizing Clusters](managing-cluster-operations.md#rs-resize-tutorial)\. 
-
-#### Migrating to RA3 Node Types<a name="rs-migrating-to-ra3"></a>
-
-You can take a snapshot of your DS2 or DC2 cluster and restore it to RA3 nodes to create a new RA3 cluster\. You also can use the resize cluster operation to migrate to RA3, however the restore operation is recommended as it is faster\. You can use the Amazon Redshift console sizing calculator to get a recommended configuration when you restore or resize\. You can also get recommendations from the [`DescribeNodeConfigurationOptions` API operation](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeNodeConfigurationOptions.html) in the *Amazon Redshift API Reference*\.
-
-To keep the same endpoint for your applications and users, you can rename the new RA3 cluster with the same name as the original DS2 or DC2 cluster\. To rename the cluster, modify the cluster in the Amazon Redshift console or `ModifyCluster` API operation\. For more information, see [Renaming Clusters](managing-cluster-operations.md#rs-mgmt-rename-cluster) or [`ModifyCluster` API operation](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ModifyCluster.html) in the *Amazon Redshift API Reference*\.
-
-#### RA3 Node Type Availability in AWS Regions<a name="ra3-regions"></a>
-
-The RA3 node types are available only in the following AWS Regions: 
-+ US East \(N\. Virginia\) Region \(us\-east\-1\)
-+ US East \(Ohio\) Region \(us\-east\-2\)
-+ US West \(N\. California\) Region \(us\-west\-1\)
-+ US West \(Oregon\) Region \(us\-west\-2\) 
-+ Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
-+ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
-+ Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
-+ Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
-+ Europe \(Frankfurt\) Region \(eu\-central\-1\)
-+ Europe \(Ireland\) Region \(eu\-west\-1\)
-+ Europe \(London\) Region \(eu\-west\-2\)
-
-#### Migrating from DC1 Node Types to DC2 Node Types<a name="rs-migrating-from-dc1-to-dc2"></a>
-
-To take advantage of performance improvements, you can migrate your DC1 cluster to the DC2 node types\. 
-
-Clusters that use the DC2 node types must be launched in a virtual private cloud \(EC2\-VPC\)\. If your cluster isn't in a VPC \(that is, it is using EC2\-Classic\), first create a snapshot of your cluster, and then choose one of the following options: 
-+ From a dc1\.large cluster, restore directly to a dc2\.large cluster in a VPC\.
-+  From a dc1\.8xlarge cluster in EC2\-Classic, first restore to a dc1\.8xlarge cluster in a VPC, and then resize your dc1\.8xlarge cluster to a dc2\.8xlarge cluster\. You can't restore directly to a dc2\.8xlarge cluster because the dc2\.8xlarge node type has a different number of slices than the dc1\.8xlarge node type\. 
-
-If your cluster is in a VPC, choose one of the following options:
-+ From a dc1\.large cluster, restore directly to a dc2\.large cluster in a VPC\.
-+ From a dc1\.8xlarge cluster, resize your dc1\.8xlarge cluster to a dc2\.8xlarge cluster\. You can't restore directly to a dc2\.8xlarge cluster because the dc2\.8xlarge node type has a different number of slices than the dc1\.8xlarge node type\. 
-
-Consider the following when migrating from DC1 to DC2 nodes\.
-+ DC1 clusters which are 100% full might not migrate to an equivalent number of DC2 nodes\. If more disk space is needed, you can:
-  + Resize to a configuration with more available disk space\. 
-  + Cleanup unneeded data by truncating tables\. 
-  + Delete rows and vacuum tables\. 
-+ DC2 clusters do not support EC2\-Classic networking\. If your DC1 cluster is not running in a VPC, create one for your DC2 migration\. For more information, see [Managing Clusters in a VPC ](managing-clusters-vpc.md)\.
-+ The cluster might be unavailable during the migration\. If you resize the cluster, it might be put into read\-only mode for the duration of the operation\. You can cancel a resize operation before it completes by choosing **cancel resize** from the cluster list in the Amazon Redshift console\. For more information, see [Resizing Clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\.
-
-For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md) \.
-
 #### Node Type Details<a name="rs-node-type-info"></a>
 
  The following tables summarize the node specifications for each node type and size\. The headings in the tables have these meanings: 
 + *vCPU* is the number of virtual CPUs for each node\.
 + *RAM* is the amount of memory in gibibytes \(GiB\) for each node\.
-+ *Slices per Node* is the number of slices into which a compute node is partitioned\.
++ *Slices per Node* is the default number of slices into which a compute node is partitioned when a cluster is created or resized with classic resize\. 
 
-  The number of slices per node might change if the cluster is resized using elastic resize\.
+  The number of slices per node might change if the cluster is resized using elastic resize\. However the total number of slices on all the compute nodes in the cluster remains the same after elastic resize\. 
 + *Storage* is the capacity and type of storage for each node\.
 +  *Node Range* is the minimum and maximum number of nodes that Amazon Redshift supports for the node type and size\. 
 **Note**  
@@ -150,11 +71,16 @@ For 16 TB or larger amounts of data, we recommend that you consider RA3 nodes as
 
 **RA3 Node Types**  
 
-| Node Size | vCPU | RAM \(GiB\) | Slices Per Node | Managed Storage Per Node | Node Range | Total Capacity | 
+| Node Size | vCPU | RAM \(GiB\) | Slices Per Node | Managed Storage Per Node | Node Range With Create Cluster  | Total Capacity | 
 | --- | --- | --- | --- | --- | --- | --- | 
-| ra3\.16xlarge | 48 | 384 | 16 | 64 TB\* | 2–128 | 8\.192 PB | 
+| ra3\.4xlarge | 12 | 96 | 4 | 64 TB1 | 2–322 | 4\.096 PB3 | 
+| ra3\.16xlarge | 48 | 384 | 16 | 64 TB1 | 2–128 | 8\.192 PB3 | 
 
-\* Indicates the amount of data stored in Amazon Redshift managed storage\. 
+1 Indicates the amount of data stored in Amazon Redshift managed storage\. 
+
+2 An ra3\.4xlarge node type can be created with 32 nodes but resized with elastic resize to a maximum of 64 nodes\. 
+
+3 Total capacity is the maximum number of nodes times 64 TB\.
 
 
 **Dense Storage Node Types**  
@@ -197,39 +123,6 @@ Regardless of the choice you make, you can monitor query performance in the Amaz
 
 If you intend to keep your cluster running continuously for a prolonged period, say, one year or more, you can pay considerably less by reserving the compute nodes for a one\-year or three\-year period\. To reserve compute nodes, you purchase what are called reserved node offerings\. You purchase one offering for each compute node that you want to reserve\. When you reserve a compute node, you pay a fixed up\-front charge and then an hourly recurring charge, whether your cluster is running or not\. The hourly charges, however, are significantly lower than those for on\-demand usage\. For more information, see [Purchasing Amazon Redshift Reserved Nodes](purchase-reserved-node-instance.md)\. 
 
-### Determining the Cluster Maintenance Version<a name="cluster-maintenance-version"></a>
-
-You can determine the Amazon Redshift engine and database version with the Amazon Redshift console\.
-
-**Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
-
-#### New Console<a name="cluster-engine-version-console"></a>
-
-**To find the version of a cluster**
-
-1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, **Properties**, and **Schedule** tabs\.
-
-1. Choose the **Maintenance and monitoring** tab for more details\. 
-
-1. In the **Maintenance** section, find **Current cluster version**\.
-
-**Note**  
-Although the console displays this information in one field, it's two parameters in the Amazon Redshift API, `ClusterVersion` and `ClusterRevisionNumber`\. For more information, see [Cluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_Cluster.html) in the *Amazon Redshift API Reference*\. 
-
-#### Original Console<a name="cluster-engine-version-console-originalconsole"></a>
-
-You can determine the Amazon Redshift engine and database versions for your cluster in the **Cluster Version** field in the console\. The first two sections of the number are the cluster version, and the last section is the specific revision number of the database in the cluster\. In the following example, the cluster version is 1\.0 and the database revision number is 884\. 
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-config-cluster-version.png)
-
-**Note**  
- Although the console displays this information in one field, it’s two parameters in the Amazon Redshift API, `ClusterVersion` and `ClusterRevisionNumber`\. For more information, see [Cluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_Cluster.html) in the *Amazon Redshift API Reference*\. 
-
-To specify whether to automatically upgrade the Amazon Redshift engine in your cluster if a new version of the engine becomes available, use the setting **Allow version upgrade**\. This setting doesn't affect the database version upgrades, which are applied during the maintenance window that you specify for your cluster\. Amazon Redshift engine upgrades are *major version upgrades*, and Amazon Redshift database upgrades are *minor version upgrades*\. You can disable automatic version upgrades for major versions only\. For more information about maintenance windows for minor version upgrades, see [Maintenance Windows](#rs-maintenance-windows)\. 
-
 ## Supported Platforms to Launch Your Cluster<a name="cluster-platforms"></a>
 
  Amazon Redshift clusters run in Amazon Elastic Compute Cloud \(Amazon EC2\) instances that are configured for the Amazon Redshift node type and size that you select\. You can launch an Amazon Redshift cluster in one of two platforms: EC2\-VPC or EC2\-Classic, which are the supported platforms for Amazon EC2 instances\. We recommend that you launch your cluster in an EC2\-VPC platform instead of an EC2\-Classic platform\. For more information about these platforms, see [Supported Platforms](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html) in the *Amazon EC2 User Guide for Linux Instances*\. The platform or platforms available to you depend on your AWS account settings\. 
@@ -261,9 +154,89 @@ To prevent connection issues between SQL client tools and the Amazon Redshift da
 
 1.  Deploy your Amazon Redshift cluster\. You can deploy a cluster by using the Amazon Redshift console, or programmatically by using the Amazon Redshift API, CLI, or SDK libraries\. For more information about these options and links to the related documentation, see [What Is Amazon Redshift?](welcome.md)\. 
 
+## Overview of RA3 Node Types<a name="rs-ra3-node-types"></a>
+
+Consider choosing RA3 node types in these cases: 
++ If you need the flexibility to scale compute separate from storage\.
++ If you use Amazon Redshift for your operational analytics uses, where you store all your data and frequently query only a portion of the complete dataset\. 
++ If you want to keep your data volume capped to constrain costs\. Previously, if you wanted to keep your data volume capped to constrain costs, you had to unload data to Amazon S3\. 
++ If you need to have transactional access to your complete data with familiar tooling\.
+
+To use RA3 node types, your AWS Region must support RA3\. For more information, see [RA3 Node Type Availability in AWS Regions](#ra3-regions)\. 
+
+**Important**  
+You can use ra3\.4xlarge node types only with cluster version 1\.0\.14104 or later\. You can view the version of an existing cluster with the Amazon Redshift console\. For more information, see [Determining the Cluster Maintenance Version](#cluster-maintenance-version)\.   
+Make sure that you use the new Amazon Redshift console when working with RA3 node types\. The original console doesn't support all RA3 operations\.   
+In addition, to use RA3 node types with Amazon Redshift operations that use the maintenance track, the maintenance track value must be set to a cluster version that supports RA3\. For more information on maintenance tracks, see [Choosing Cluster Maintenance Tracks](#rs-mgmt-maintenance-tracks)\. 
+
+### Working with Amazon Redshift Managed Storage<a name="rs-managed-storage"></a>
+
+With Amazon Redshift managed storage, you can store and process all your data in Amazon Redshift while getting more flexibility to scale compute and storage capacity separately\. You continue to ingest data with the COPY or INSERT command\.   To optimize performance and manage automatic data placement across tiers of storage, Amazon Redshift takes advantage of optimizations such as data block temperature, data block age, and workload patterns\. When needed, Amazon Redshift scales storage automatically to Amazon S3 without requiring any manual action\.  
+
+For information about storage costs, see [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/)\. 
+
+### Managing RA3 Node Types<a name="rs-managing-ra3"></a>
+
+To take advantage of separating compute from storage, you can migrate your cluster to the RA3 node type\. To use the RA3 node types, create your clusters in a virtual private cloud \(EC2\-VPC\)\. 
+
+To create or update an RA3 cluster, do one of the following:
++ Create a cluster and choose RA3 as the node type\.  
++ Create a cluster from an existing cluster\. You can restore directly to an RA3 cluster with the AWS CLI command `restore-from-cluster-snapshot`\. You can also restore directly to an RA3 cluster by using the Amazon Redshift console\. To migrate a cluster to RA3, we recommend that you restore your cluster instead of resizing it\. For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md)\. 
++ Resize an existing cluster to RA3 directly\. To do this, use the classic resize operation and change the cluster to an RA3 cluster\. To migrate a cluster to RA3, we recommend that you restore your cluster instead of resizing it\. For more information, see [Resizing Clusters](managing-cluster-operations.md#rs-resize-tutorial)\. 
+
+To change an RA3 cluster size, do one of the following:
++ To add more compute nodes to an RA3 cluster, you can use the elastic resize operation\. For more information, see [Resizing Clusters](managing-cluster-operations.md#rs-resize-tutorial)\. If elastic resize isn't available, use classic resize\. 
++ To remove compute nodes from an RA3 cluster, use the classic resize operation\. For more information, see [Resizing Clusters](managing-cluster-operations.md#rs-resize-tutorial)\. 
+
+### Migrating to RA3 Node Types<a name="rs-migrating-to-ra3"></a>
+
+You can take a snapshot of your DS2 or DC2 cluster and restore it to RA3 nodes to create a new RA3 cluster\. You also can use the resize cluster operation to migrate to RA3, however the restore operation is recommended as it is faster\. 
+
+To keep the same endpoint for your applications and users, you can rename the new RA3 cluster with the same name as the original DS2 or DC2 cluster\. To rename the cluster, modify the cluster in the Amazon Redshift console or `ModifyCluster` API operation\. For more information, see [Renaming Clusters](managing-cluster-operations.md#rs-mgmt-rename-cluster) or [`ModifyCluster` API operation](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ModifyCluster.html) in the *Amazon Redshift API Reference*\.
+
+### RA3 Node Type Availability in AWS Regions<a name="ra3-regions"></a>
+
+The RA3 node types are available only in the following AWS Regions: 
++ US East \(N\. Virginia\) Region \(us\-east\-1\)
++ US East \(Ohio\) Region \(us\-east\-2\)
++ US West \(N\. California\) Region \(us\-west\-1\)
++ US West \(Oregon\) Region \(us\-west\-2\) 
++ Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
++ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
++ Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
++ Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
++ Canada \(Central\) Region \(ca\-central\-1\)
++ Europe \(Frankfurt\) Region \(eu\-central\-1\)
++ Europe \(Ireland\) Region \(eu\-west\-1\)
++ Europe \(London\) Region \(eu\-west\-2\)
++ Europe \(Paris\) Region \(eu\-west\-3\)
++ South America \(São Paulo\) Region \(sa\-east\-1\)
+
+## Migrating from DC1 Node Types to DC2 Node Types<a name="rs-migrating-from-dc1-to-dc2"></a>
+
+To take advantage of performance improvements, you can migrate your DC1 cluster to the DC2 node types\. 
+
+Clusters that use the DC2 node types must be launched in a virtual private cloud \(EC2\-VPC\)\. If your cluster isn't in a VPC \(that is, it is using EC2\-Classic\), first create a snapshot of your cluster, and then choose one of the following options: 
++ From a dc1\.large cluster, restore directly to a dc2\.large cluster in a VPC\.
++  From a dc1\.8xlarge cluster in EC2\-Classic, first restore to a dc1\.8xlarge cluster in a VPC, and then resize your dc1\.8xlarge cluster to a dc2\.8xlarge cluster\. You can't restore directly to a dc2\.8xlarge cluster because the dc2\.8xlarge node type has a different number of slices than the dc1\.8xlarge node type\. 
+
+If your cluster is in a VPC, choose one of the following options:
++ From a dc1\.large cluster, restore directly to a dc2\.large cluster in a VPC\.
++ From a dc1\.8xlarge cluster, resize your dc1\.8xlarge cluster to a dc2\.8xlarge cluster\. You can't restore directly to a dc2\.8xlarge cluster because the dc2\.8xlarge node type has a different number of slices than the dc1\.8xlarge node type\. 
+
+Consider the following when migrating from DC1 to DC2 nodes\.
++ DC1 clusters which are 100% full might not migrate to an equivalent number of DC2 nodes\. If more disk space is needed, you can:
+  + Resize to a configuration with more available disk space\. 
+  + Cleanup unneeded data by truncating tables\. 
+  + Delete rows and vacuum tables\. 
++ DC2 clusters do not support EC2\-Classic networking\. If your DC1 cluster is not running in a VPC, create one for your DC2 migration\. For more information, see [Managing Clusters in a VPC ](managing-clusters-vpc.md)\.
++ The cluster might be unavailable during the migration\. If you resize the cluster, it might be put into read\-only mode for the duration of the operation\. You can cancel a resize operation before it completes by choosing **cancel resize** from the cluster list in the Amazon Redshift console\. For more information, see [Resizing Clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\.
+
+For more information, see [Amazon Redshift Snapshots](working-with-snapshots.md) \.
+
 ## Regions and Availability Zone Considerations<a name="az-considerations"></a>
 
- Amazon Redshift is available in several AWS regions\. By default, Amazon Redshift provisions your cluster in a randomly selected Availability Zone \(AZ\) within the AWS region that you select\. All the cluster nodes are provisioned in the same AZ\. 
+ Amazon Redshift is available in several AWS regions\. By default, Amazon Redshift provisions your cluster in a randomly selected Availability Zone \(AZ\) within the AWS region that you select\. All the cluster nodes are provisioned in the same zone\. 
 
  You can optionally request a specific AZ if Amazon Redshift is available in that AZ\. For example, if you already have an Amazon EC2 instance running in one AZ, you might want to create your Amazon Redshift cluster in the same AZ to reduce latency\. On the other hand, you might want to choose another AZ for higher availability\. Amazon Redshift might not be available in all AZs within an AWS Region\.
 
@@ -279,6 +252,7 @@ Amazon Redshift periodically performs maintenance to apply upgrades to your clus
 + [Choosing Cluster Maintenance Tracks](#rs-mgmt-maintenance-tracks)
 + [Managing Cluster Versions](#rs-mgmt-cluster-version)
 + [Rolling Back the Cluster Version](#rs-mgmt-rollback-version)
++ [Determining the Cluster Maintenance Version](#cluster-maintenance-version)
 
 ### Maintenance Windows<a name="rs-maintenance-windows"></a>
 
@@ -309,7 +283,7 @@ The following list shows the time blocks for each region from which the default 
 + Middle East \(Bahrain\) region: 13:00–21:00 UTC
 + South America \(São Paulo\) region: 19:00–03:00 UTC
 
-If a maintenance event is scheduled for a given week, it will start during the assigned 30 minute maintenance window\. While Amazon Redshift is performing maintenance, it terminates any queries or other operations that are in progress\. Most maintenance completes during the 30 minute maintenance window, but some maintenance tasks might continue running after the window closes\. If there are no maintenance tasks to perform during the scheduled maintenance window, your cluster continues to operate normally until the next scheduled maintenance window\. 
+If a maintenance event is scheduled for a given week, it starts during the assigned 30\-minute maintenance window\. While Amazon Redshift is performing maintenance, it terminates any queries or other operations that are in progress\. Most maintenance completes during the 30\-minute maintenance window, but some maintenance tasks might continue running after the window closes\. If there are no maintenance tasks to perform during the scheduled maintenance window, your cluster continues to operate normally until the next scheduled maintenance window\. 
 
 You can change the scheduled maintenance window by modifying the cluster, either programmatically or by using the Amazon Redshift console\. The window must be at least 30 minutes and not longer than 24 hours\. For more information, see [Managing Clusters Using the Console](managing-clusters-console.md)\.
 
@@ -402,6 +376,39 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 ![\[Roll-back version details screen\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/roll-back.png)
 
 1. Choose **Rollback to release \(release number\)**\.
+
+### Determining the Cluster Maintenance Version<a name="cluster-maintenance-version"></a>
+
+You can determine the Amazon Redshift engine and database version with the Amazon Redshift console\.
+
+**Note**  
+A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+
+#### New Console<a name="cluster-engine-version-console"></a>
+
+**To find the version of a cluster**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, **Properties**, and **Schedule** tabs\.
+
+1. Choose the **Maintenance and monitoring** tab for more details\. 
+
+1. In the **Maintenance** section, find **Current cluster version**\.
+
+**Note**  
+Although the console displays this information in one field, it's two parameters in the Amazon Redshift API, `ClusterVersion` and `ClusterRevisionNumber`\. For more information, see [Cluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_Cluster.html) in the *Amazon Redshift API Reference*\. 
+
+#### Original Console<a name="cluster-engine-version-console-originalconsole"></a>
+
+You can determine the Amazon Redshift engine and database versions for your cluster in the **Cluster Version** field in the console\. The first two sections of the number are the cluster version, and the last section is the specific revision number of the database in the cluster\. In the following example, the cluster version is 1\.0 and the database revision number is 884\. 
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-config-cluster-version.png)
+
+**Note**  
+ Although the console displays this information in one field, it’s two parameters in the Amazon Redshift API, `ClusterVersion` and `ClusterRevisionNumber`\. For more information, see [Cluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_Cluster.html) in the *Amazon Redshift API Reference*\. 
+
+To specify whether to automatically upgrade the Amazon Redshift engine in your cluster if a new version of the engine becomes available, use the setting **Allow version upgrade**\. This setting doesn't affect the database version upgrades, which are applied during the maintenance window that you specify for your cluster\. Amazon Redshift engine upgrades are *major version upgrades*, and Amazon Redshift database upgrades are *minor version upgrades*\. You can disable automatic version upgrades for major versions only\. For more information about maintenance windows for minor version upgrades, see [Maintenance Windows](#rs-maintenance-windows)\. 
 
 ## Default Disk Space Alarm<a name="rs-clusters-default-disk-usage-alarm"></a>
 
