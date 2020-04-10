@@ -184,6 +184,7 @@ A role that passes to another role must establish a trust relationship with the 
       "Principal": {
         "AWS": "arn:aws:iam::role/RoleA"
       }
+    }
   ]
 }
 ```
