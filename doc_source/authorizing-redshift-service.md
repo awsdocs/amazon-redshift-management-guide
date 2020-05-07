@@ -1,16 +1,16 @@
-# Authorizing Amazon Redshift to Access Other AWS Services on Your Behalf<a name="authorizing-redshift-service"></a>
+# Authorizing Amazon Redshift to access other AWS services on your behalf<a name="authorizing-redshift-service"></a>
 
 Some Amazon Redshift features require Amazon Redshift to access other AWS services on your behalf\. For example, the [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) and [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) commands can load or unload data into your Amazon Redshift cluster using an Amazon Simple Storage Service \(Amazon S3\) bucket\. Amazon Redshift Spectrum can use a data catalog in Amazon Athena or AWS Glue\. For your Amazon Redshift clusters to act on your behalf, you supply security credentials to your clusters\. The preferred method to supply security credentials is to specify an AWS Identity and Access Management \(IAM\) role\. For COPY and UNLOAD, you can provide AWS access keys\. 
 
-Following, find out how to create an IAM role with the appropriate permissions to access other AWS services\. You also need to associate the role with your cluster and specify the Amazon Resource Name \(ARN\) of the role when you execute the Amazon Redshift command\. For more information, see [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA Operations Using IAM Roles](copy-unload-iam-role.md)\.
+Following, find out how to create an IAM role with the appropriate permissions to access other AWS services\. You also need to associate the role with your cluster and specify the Amazon Resource Name \(ARN\) of the role when you execute the Amazon Redshift command\. For more information, see [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)\.
 
-## Creating an IAM Role to Allow Your Amazon Redshift Cluster to Access AWS Services<a name="authorizing-redshift-service-creating-an-iam-role"></a>
+## Creating an IAM role to allow your Amazon Redshift cluster to access AWS services<a name="authorizing-redshift-service-creating-an-iam-role"></a>
 
 To create an IAM role to permit your Amazon Redshift cluster to communicate with other AWS services on your behalf, take the following steps\.<a name="create-iam-role-for-aws-services"></a>
 
 **To create an IAM role to allow Amazon Redshift to access AWS services**
 
-1. Open the [IAM Console](https://console.aws.amazon.com/iam/home?#home)\.
+1. Open the [IAM console](https://console.aws.amazon.com/iam/home?#home)\.
 
 1. In the navigation pane, choose **Roles**\.
 
@@ -26,11 +26,11 @@ To create an IAM role to permit your Amazon Redshift cluster to communicate with
 
 1. For **Role name**, type a name for your role, for example **RedshiftCopyUnload**\. Choose ****Create role****\.
 
-1. The new role is available to all users on clusters that use the role\. To restrict access to only specific users on specific clusters, or to clusters in specific regions, edit the trust relationship for the role\. For more information, see [Restricting Access to IAM Roles](#authorizing-redshift-service-database-users)\.
+1. The new role is available to all users on clusters that use the role\. To restrict access to only specific users on specific clusters, or to clusters in specific regions, edit the trust relationship for the role\. For more information, see [Restricting access to IAM roles](#authorizing-redshift-service-database-users)\.
 
-1. Associate the role with your cluster\. You can associate an IAM role with a cluster when you create the cluster, or you add the role to an existing cluster\. For more information, see [Associating IAM Roles with Clusters](copy-unload-iam-role.md#copy-unload-iam-role-associating-with-clusters)\.
+1. Associate the role with your cluster\. You can associate an IAM role with a cluster when you create the cluster, or you add the role to an existing cluster\. For more information, see [Associating IAM roles with clusters](copy-unload-iam-role.md#copy-unload-iam-role-associating-with-clusters)\.
 
-## Restricting Access to IAM Roles<a name="authorizing-redshift-service-database-users"></a>
+## Restricting access to IAM roles<a name="authorizing-redshift-service-database-users"></a>
 
 By default, IAM roles that are available to an Amazon Redshift cluster are available to all users on that cluster\. You can choose to restrict IAM roles to specific Amazon Redshift database users on specific clusters or to specific regions\. 
 
@@ -40,7 +40,7 @@ To permit only specific database users to use an IAM role, take the following st
 
 1. Identify the Amazon Resource Name \(ARN\) for the database users in your Amazon Redshift cluster\. The ARN for a database user is in the format: `arn:aws:redshift:region:account-id:dbuser:cluster-name/user-name`\.
 
-1. Open the [IAM Console](https://console.aws.amazon.com/iam/home?#home) at [url="https://console\.aws\.amazon\.com/](https://console.aws.amazon.com/)\.
+1. Open the [IAM console](https://console.aws.amazon.com/iam/home?#home) at [url="https://console\.aws\.amazon\.com/](https://console.aws.amazon.com/)\.
 
 1. In the navigation pane, choose **Roles**\.
 
@@ -91,7 +91,7 @@ To permit only specific database users to use an IAM role, take the following st
 
 1. Choose **Update Trust Policy**\.
 
-## Restricting an IAM Role to an AWS Region<a name="authorizing-redshift-service-regions"></a>
+## Restricting an IAM role to an AWS Region<a name="authorizing-redshift-service-regions"></a>
 
 You can restrict an IAM role to only be accessible in a certain AWS Region\. By default, IAM roles for Amazon Redshift are not restricted to any single region\.
 
@@ -99,7 +99,7 @@ To restrict use of an IAM role by region, take the following steps\.<a name="ide
 
 **To identify permitted regions for an IAM role**
 
-1. Open the [IAM Console](https://console.aws.amazon.com/iam/home?#home) at [https://console\.aws\.amazon\.com](https://console.aws.amazon.com/)\.
+1. Open the [IAM console](https://console.aws.amazon.com/iam/home?#home) at [https://console\.aws\.amazon\.com](https://console.aws.amazon.com/)\.
 
 1. In the navigation pane, choose **Roles**\.
 
@@ -146,13 +146,13 @@ To restrict use of an IAM role by region, take the following steps\.<a name="ide
 
 1. Choose **Update Trust Policy**
 
-## Chaining IAM Roles in Amazon Redshift<a name="authorizing-redshift-service-chaining-roles"></a>
+## Chaining IAM roles in Amazon Redshift<a name="authorizing-redshift-service-chaining-roles"></a>
 
 When you attach a role to your cluster, your cluster can assume that role to access Amazon S3, Athena, and AWS Glue on your behalf\. If a role attached to your cluster doesn't have access to the necessary resources, you can chain another role, possibly belonging to another account\. Your cluster then temporarily assumes the chained role to access the data\. You can also grant cross\-account access by chaining roles\. Each role in the chain assumes the next role in the chain, until the cluster assumes the role at the end of chain\. You can chain a maximum of 10 roles\. 
 
 For example, suppose Company A wants to access data in an Amazon S3 bucket that belongs to Company B\. Company A creates an AWS service role for Amazon Redshift named `RoleA` and attaches it to their cluster\. Company B creates a role named `RoleB` that's authorized to access the data in the Company B bucket\. To access the data in the Company B bucket, Company A runs a COPY command using an `iam_role` parameter that chains `RoleA` and `RoleB`\. For the duration of the COPY operation, `RoleA` temporarily assumes `RoleB` to access the Amazon S3 bucket\. 
 
-To chain roles, you establish a trust relationship between the roles\. A role that assumes another role \(for example, `RoleA`\) must have a permissions policy that allows it to assume the next chained role \(for example, `RoleB`\)\. In turn, the role that passes permissions \(`RoleB`\) must have a trust policy that allows it to pass its permissions to the previous chained role \(`RoleA`\)\. For more information, see [Using IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) in the IAM User Guide\. 
+To chain roles, you establish a trust relationship between the roles\. A role that assumes another role \(for example, `RoleA`\) must have a permissions policy that allows it to assume the next chained role \(for example, `RoleB`\)\. In turn, the role that passes permissions \(`RoleB`\) must have a trust policy that allows it to pass its permissions to the previous chained role \(`RoleA`\)\. For more information, see [Using IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) in the IAM User Guide\. 
 
 The first role in the chain must be a role attached to the cluster\. The first role, and each subsequent role that assumes the next role in the chain, must have a policy that includes a specific statement\. This statement has the `Allow` effect on the `sts:AssumeRole `action and the Amazon Resource Name \(ARN\) of the next role in a `Resource` element\. In our example, `RoleA` has the following permission policy that allows it to assume `RoleB`, owned by AWS account `210987654321`\. 
 
@@ -240,5 +240,5 @@ database 'exampledb' region 'us-west-2'
 iam_role 'arn:aws:iam::123456789012:role/RoleA,arn:aws:iam::210987654321:role/RoleB';
 ```
 
-## Related Topics<a name="authorizing-redshift-related-topic"></a>
-+ [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA Operations Using IAM Roles](copy-unload-iam-role.md)
+## Related topics<a name="authorizing-redshift-related-topic"></a>
++ [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)

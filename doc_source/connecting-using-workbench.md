@@ -1,4 +1,4 @@
-# Connect to Your Cluster by Using SQL Workbench/J<a name="connecting-using-workbench"></a>
+# Connect to your cluster by using SQL Workbench/J<a name="connecting-using-workbench"></a>
 
  Amazon Redshift doesn't provide or install any SQL client tools or libraries, so you must install any that you want to use with your clusters\. If you already have a business intelligence application or any other application that can connect to your clusters using a standard PostgreSQL JDBC or ODBC driver, then you can skip this section\. If you don't already have an application that can connect to your cluster, this section presents one option for doing so using SQL Workbench/J, a free, DBMS\-independent, cross\-platform SQL query tool\. 
 
@@ -17,13 +17,13 @@
 SQL Workbench/J requires the Java Runtime Environment \(JRE\) be installed on your system\. Ensure you are using the correct version of the JRE required by the SQL Workbench/J client\. To determine which version of the Java Runtime Environment is running on your system, do one of the following:  
 Mac: In the **System Preferences**, choose the Java icon\.
 Windows: In the **Control Panel**, choose the Java icon\.
-Any system: In a command shell, type `java -version`\. You can also visit [https://www\.java\.com](https://www.java.com), choose the [Do I Have Java?](https://www.java.com/en/download/installed.jsp) link, and choose the **Verify Java** button\. 
+Any system: In a command shell, type `java -version`\. You can also visit [https://www\.java\.com](https://www.java.com), choose the [Do I have Java?](https://www.java.com/en/download/installed.jsp) link, and choose the **Verify Java** button\. 
 For information about installing and configuring the Java Runtime Environment, go to [https://www\.java\.com](https://www.java.com)\.
 
-## Connect to Your Cluster over a JDBC Connection in SQL Workbench/J<a name="connect-to-workbench-via-jdbc"></a>
+## Connect to your cluster over a JDBC connection in SQL Workbench/J<a name="connect-to-workbench-via-jdbc"></a>
 
 **Important**  
-Before you perform the steps in this procedure, make sure that your client computer or Amazon EC2 instance has the recommended Amazon Redshift JDBC driver\. For links to download the latest drivers, see [Download an Amazon Redshift JDBC Driver](configure-jdbc-connection.md#download-jdbc-driver)\. Also, make sure you have configured firewall settings to allow access to your cluster\. For more information, see [Step 4: Authorize Access to the Cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html)\.
+Before you perform the steps in this procedure, make sure that your client computer or Amazon EC2 instance has the recommended Amazon Redshift JDBC driver\. For links to download the latest drivers, see [Download an Amazon Redshift JDBC driver](configure-jdbc-connection.md#download-jdbc-driver)\. Also, make sure you have configured firewall settings to allow access to your cluster\. For more information, see [Step 4: Authorize access to the cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html)\.
 
 **To use a JDBC connection in SQL Workbench/J**
 
@@ -47,7 +47,7 @@ Before you perform the steps in this procedure, make sure that your client compu
 
 1. In **URL**, copy the JDBC URL from the Amazon Redshift console and paste it here\.
 
-   For more information about finding the JDBC URL, see [Configuring a JDBC Connection](configure-jdbc-connection.md)\.
+   For more information about finding the JDBC URL, see [Configuring a JDBC connection](configure-jdbc-connection.md)\.
 
 1. In **Username**, type the name of the master user\.
 
@@ -63,7 +63,7 @@ Before you perform the steps in this procedure, make sure that your client compu
 1. Choose **OK**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/redshift_driver_sql_workbench.png)
 
-## Test the SQL Workbench/J Connection<a name="test-workbench-connection"></a>
+## Test the SQL Workbench/J connection<a name="test-workbench-connection"></a>
 
  After you configure your JDBC or ODBC connection, you can test the connection by running an example query\. 
 

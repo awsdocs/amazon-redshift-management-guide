@@ -1,17 +1,17 @@
-# Managing Cluster Subnet Groups Using the Console<a name="managing-cluster-subnet-group-console"></a>
+# Managing cluster subnet groups using the console<a name="managing-cluster-subnet-group-console"></a>
 
 You can manage your cluster subnet groups using the Amazon Redshift console\. You can create a cluster subnet group, manage an existing one, or delete one\. All of these tasks start from the cluster subnet group list\. You must select a cluster subnet group to manage it\.
 
 You can provision a cluster on one of the subnets that you provide the subnet group\. A cluster subnet group enables you to specify a set of subnets in your virtual private cloud \(VPC\)\. 
 
-## Creating a Cluster Subnet Group<a name="create-cluster-subnet-group"></a>
+## Creating a cluster subnet group<a name="create-cluster-subnet-group"></a>
 
 You must have at least one cluster subnet group defined to provision a cluster in a VPC\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-### New Console<a name="cluster-subnet-create"></a>
+### New console<a name="cluster-subnet-create"></a>
 
 **To create a cluster subnet group**
 
@@ -25,7 +25,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Choose **Create cluster subnet group** to create the group with the subnets that you chose\. 
 
-### Original Console<a name="cluster-subnet-create-originalconsole"></a><a name="create-cluster-subnet-group-task"></a>
+### Original console<a name="cluster-subnet-create-originalconsole"></a><a name="create-cluster-subnet-group-task"></a>
 
 **To create a cluster subnet group**
 
@@ -52,12 +52,12 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
    The new group is displayed in the list of cluster subnet groups\.
 
-## Modifying a Cluster Subnet Group<a name="describe-cluster-subnet-group"></a>
+## Modifying a cluster subnet group<a name="describe-cluster-subnet-group"></a>
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-### New Console<a name="cluster-subnet-modify"></a>
+### New console<a name="cluster-subnet-modify"></a>
 
 **To modify a cluster subnet group**
 
@@ -73,7 +73,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Choose **Save** to modify the group\. 
 
-### Original Console<a name="cluster-subnet-modify-originalconsole"></a><a name="describe-cluster-subnet-group-task"></a>
+### Original console<a name="cluster-subnet-modify-originalconsole"></a><a name="describe-cluster-subnet-group-task"></a>
 
 **To modify a cluster subnet group**
 
@@ -89,14 +89,14 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 1. In the **Cluster Subnet Group Details**, take one of the following actions\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-subnet-group-console.html)
 
-## Deleting a Cluster Subnet Group<a name="modify-cluster-subnet-group"></a>
+## Deleting a cluster subnet group<a name="modify-cluster-subnet-group"></a>
 
 You can't delete a cluster subnet group that is used by a cluster\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-### New Console<a name="cluster-subnet-delete"></a>
+### New console<a name="cluster-subnet-delete"></a>
 
 **To delete a cluster subnet group**
 
@@ -106,7 +106,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Choose the subnet group to delete, then choose **Delete**\. 
 
-### Original Console<a name="cluster-subnet-delete-originalconsole"></a><a name="delete-cluster-subnet-group-task"></a>
+### Original console<a name="cluster-subnet-delete-originalconsole"></a><a name="delete-cluster-subnet-group-task"></a>
 
 **To delete a cluster subnet group**
 

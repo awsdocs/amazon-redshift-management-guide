@@ -1,11 +1,11 @@
-# Configuring Database Encryption Using the Console<a name="configuring-db-encryption-console"></a>
+# Configuring database encryption using the console<a name="configuring-db-encryption-console"></a>
 
-You can use the Amazon Redshift console to configure Amazon Redshift to use an HSM and to rotate encryption keys\. For information about how to create clusters using AWS KMS encryption keys, see [Creating a Cluster](managing-clusters-console.md#create-cluster) and [Managing Clusters Using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)\.
+You can use the Amazon Redshift console to configure Amazon Redshift to use an HSM and to rotate encryption keys\. For information about how to create clusters using AWS KMS encryption keys, see [Creating a cluster](managing-clusters-console.md#create-cluster) and [Managing clusters using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-## New Console<a name="cluster-encryption-manage"></a>
+## New console<a name="cluster-encryption-manage"></a>
 
 **To modify database encryption on a cluster**
 
@@ -17,13 +17,13 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. In the **Database configuration** section, choose a setting for **Encryption**, then choose **Modify cluster**\. 
 
-## Original Console<a name="cluster-encryption-manage-originalconsole"></a>
+## Original console<a name="cluster-encryption-manage-originalconsole"></a>
 
-### Configuring Amazon Redshift to Use an HSM Using the Amazon Redshift console<a name="manage-HSM-console"></a>
+### Configuring Amazon Redshift to use an HSM using the Amazon Redshift console<a name="manage-HSM-console"></a>
 
 You can use the following procedures to specify HSM connection and configuration information for Amazon Redshift by using the Amazon Redshift console\.<a name="create-hsm-connection-task"></a>
 
-**To create an HSM Connection**
+**To create an HSM connection**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
@@ -94,7 +94,7 @@ You can use the following procedures to specify HSM connection and configuration
 1. After the HSM client certificate is created and registered, choose one of the following buttons\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/hsm-client-cert-create-03.png)
 
-   1. **Launch a Cluster with HSM**\. This option starts the process of launching a new cluster\. During the process, you can select an HSM to store encryption keys\. For more information about the launch cluster process, see [Managing Clusters Using the Console](managing-clusters-console.md)\.
+   1. **Launch a Cluster with HSM**\. This option starts the process of launching a new cluster\. During the process, you can select an HSM to store encryption keys\. For more information about the launch cluster process, see [Managing clusters using the console](managing-clusters-console.md)\.
 
      **Create an HSM Connection**\. This option starts the **Create HSM Connection** process\.
 
@@ -133,14 +133,14 @@ You can use the following procedures to specify HSM connection and configuration
 
 1. In the **Delete HSM Client Certificate** dialog box, choose **Delete** to delete the certificate from Amazon Redshift, or choose **Cancel** to return to the **Certificates** tab without deleting the certificate\.
 
-## Rotating Encryption Keys Using the Amazon Redshift console<a name="manage-key-rotation-console"></a>
+## Rotating encryption keys using the Amazon Redshift console<a name="manage-key-rotation-console"></a>
 
 You can use the following procedure to rotate encryption keys by using the Amazon Redshift console\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-### New Console<a name="cluster-rotate-encryption"></a>
+### New console<a name="cluster-rotate-encryption"></a>
 
 **To rotate the encryption keys for a cluster**
 
@@ -152,7 +152,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. On the **Rotate encryption keys** page, choose **Rotate encryption keys**\. 
 
-### Original Console<a name="cluster-rotate-encryption-originalconsole"></a><a name="rotate-encryption-key-task"></a>
+### Original console<a name="cluster-rotate-encryption-originalconsole"></a><a name="rotate-encryption-key-task"></a>
 
 **To rotate an encryption key**
 

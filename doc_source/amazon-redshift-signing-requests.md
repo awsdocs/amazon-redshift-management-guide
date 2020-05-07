@@ -1,8 +1,8 @@
-# Signing an HTTP Request<a name="amazon-redshift-signing-requests"></a>
+# Signing an HTTP request<a name="amazon-redshift-signing-requests"></a>
 
 Amazon Redshift requires that every request you send to the management API be authenticated with a signature\. This topic explains how to sign your requests\. 
 
-If you are using one of the AWS Software Development Kits \(SDKs\) or the AWS Command Line Interface, request signing is handled automatically, and you can skip this section\. For more information about using AWS SDKs, see [Using the Amazon Redshift Management Interfaces](using-aws-sdk.md)\. For more information about using the Amazon Redshift Command Line Interface, go to [Amazon Redshift Command Line Reference](https://docs.aws.amazon.com/cli/latest/reference/redshift/index.html)\.
+If you are using one of the AWS Software Development Kits \(SDKs\) or the AWS Command Line Interface, request signing is handled automatically, and you can skip this section\. For more information about using AWS SDKs, see [Using the Amazon Redshift management interfaces](using-aws-sdk.md)\. For more information about using the Amazon Redshift Command Line Interface, go to [Amazon Redshift command line reference](https://docs.aws.amazon.com/cli/latest/reference/redshift/index.html)\.
 
 To sign a request, you calculate a digital signature by using a cryptographic hash function\. A cryptographic hash is a function that returns a unique hash value that is based on the input\. The input to the hash function includes the text of your request and your secret access key\. The hash function returns a hash value that you include in the request as your signature\. The signature is part of the `Authorization` header of your request\.
 
@@ -11,20 +11,20 @@ For API access, you need an access key ID and secret access key\. Use IAM user a
 
 After Amazon Redshift receives your request, it recalculates the signature by using the same hash function and input that you used to sign the request\. If the resulting signature matches the signature in the request, Amazon Redshift processes the request; otherwise, the request is rejected\. 
 
-Amazon Redshift supports authentication using [AWS Signature Version 4](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)\. The process for calculating a signature is composed of three tasks\. These tasks are illustrated in the example that follows\.
-+   [Task 1: Create a Canonical Request](https://docs.aws.amazon.com/general/latest/gr/sigv4-create-canonical-request.html)
+Amazon Redshift supports authentication using [AWS signature version 4](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)\. The process for calculating a signature is composed of three tasks\. These tasks are illustrated in the example that follows\.
++   [Task 1: Create a canonical request](https://docs.aws.amazon.com/general/latest/gr/sigv4-create-canonical-request.html)
 
   Rearrange your HTTP request into a canonical form\. Using a canonical form is necessary because Amazon Redshift uses the same canonical form to calculate the signature it compares with the one you sent\. 
-+   [Task 2: Create a String to Sign](https://docs.aws.amazon.com/general/latest/gr/sigv4-create-string-to-sign.html)
++   [Task 2: Create a string to sign](https://docs.aws.amazon.com/general/latest/gr/sigv4-create-string-to-sign.html)
 
   Create a string that you will use as one of the input values to your cryptographic hash function\. The string, called the *string to sign*, is a concatenation of the name of the hash algorithm, the request date, a *credential scope* string, and the canonicalized request from the previous task\. The *credential scope* string itself is a concatenation of date, region, and service information\.
-+   [Task 3: Create a Signature](https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html)
++   [Task 3: Create a signature](https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html)
 
   Create a signature for your request by using a cryptographic hash function that accepts two input strings, your string to sign and a *derived key*\. The derived key is calculated by starting with your secret access key and using the credential scope string to create a series of hash\-based message authentication codes \(HMAC\-SHA256\)\. 
 
-## Example Signature Calculation<a name="example-signature-calculation"></a>
+## Example signature calculation<a name="example-signature-calculation"></a>
 
-The following example walks you through the details of creating a signature for [CreateCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateCluster.html) request\. You can use this example as a reference to check your own signature calculation method\. Other reference calculations are included in the [Signature Version 4 Test Suite](https://docs.aws.amazon.com/general/latest/gr/signature-v4-test-suite.html) of the Amazon Web Services Glossary\. 
+The following example walks you through the details of creating a signature for [CreateCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateCluster.html) request\. You can use this example as a reference to check your own signature calculation method\. Other reference calculations are included in the [Signature Version 4 test suite](https://docs.aws.amazon.com/general/latest/gr/signature-v4-test-suite.html) of the Amazon Web Services Glossary\. 
 
 You can use a GET or POST request to send requests to Amazon Redshift\. The difference between the two is that for the GET request your parameters are sent as query string parameters\. For the POST request they are included in the body of the request\. The example below shows a POST request\.
 

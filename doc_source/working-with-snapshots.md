@@ -1,20 +1,20 @@
-# Amazon Redshift Snapshots<a name="working-with-snapshots"></a>
+# Amazon Redshift snapshots<a name="working-with-snapshots"></a>
 
 **Topics**
 + [Overview](#working-with-snapshots-overview)
-+ [Automated Snapshots](#about-automated-snapshots)
-+ [Automated Snapshot Schedules](#automated-snapshot-schedules)
-+ [Snapshot Schedule Format](#working-with-snapshot-scheduling)
-+ [Manual Snapshots](#about-manual-snapshots)
-+ [Managing Snapshot Storage](#managing-snapshot-storage)
-+ [Excluding Tables From Snapshots](#snapshots-no-backup-tables)
-+ [Copying Snapshots to Another AWS Region](#cross-region-snapshot-copy)
-+ [Restoring a Cluster from a Snapshot](#working-with-snapshot-restore-cluster-from-snapshot)
-+ [Restoring a Table from a Snapshot](#working-with-snapshot-restore-table-from-snapshot)
-+ [Sharing Snapshots](#working-with-snapshot-share-snapshot)
-+ [Managing Snapshots Using the Console](managing-snapshots-console.md)
-+ [Managing Snapshots Using the AWS SDK for Java](managing-snapshots-java.md)
-+ [Managing Snapshots Using the Amazon Redshift CLI and API](manage-snapshots-api-cli.md)
++ [Automated snapshots](#about-automated-snapshots)
++ [Automated snapshot schedules](#automated-snapshot-schedules)
++ [Snapshot schedule format](#working-with-snapshot-scheduling)
++ [Manual snapshots](#about-manual-snapshots)
++ [Managing snapshot storage](#managing-snapshot-storage)
++ [Excluding tables from snapshots](#snapshots-no-backup-tables)
++ [Copying snapshots to another AWS Region](#cross-region-snapshot-copy)
++ [Restoring a cluster from a snapshot](#working-with-snapshot-restore-cluster-from-snapshot)
++ [Restoring a table from a snapshot](#working-with-snapshot-restore-table-from-snapshot)
++ [Sharing snapshots](#working-with-snapshot-share-snapshot)
++ [Managing snapshots using the console](managing-snapshots-console.md)
++ [Managing snapshots using the AWS SDK for Java](managing-snapshots-java.md)
++ [Managing snapshots using the Amazon Redshift CLI and API](manage-snapshots-api-cli.md)
 
 ## Overview<a name="working-with-snapshots-overview"></a>
 
@@ -30,7 +30,7 @@ You can monitor the progress of snapshots by viewing the snapshot details in the
 
 To ensure that your backups are always available to your cluster, Amazon Redshift stores snapshots in an internally managed Amazon S3 bucket that is managed by Amazon Redshift\. Amazon Redshift provides free storage for snapshots that is equal to the storage capacity of your cluster until you delete the cluster\. After you reach the free snapshot storage limit, you are charged for any additional storage at the normal rate\. Because of this, you should evaluate how many days you need to keep snapshots and configure their retention period accordingly, and delete any manual snapshots that you no longer need\. For pricing information, see the Amazon Redshift [product detail page](https://aws.amazon.com/redshift/)\. 
 
-## Automated Snapshots<a name="about-automated-snapshots"></a>
+## Automated snapshots<a name="about-automated-snapshots"></a>
 
 When automated snapshots are enabled for a cluster, Amazon Redshift periodically takes snapshots of that cluster\. By default Amazon Redshift takes a snapshot about every eight hours or following every 5 GB per node of data changes, or whichever comes first\. Alternatively, you can create a snapshot schedule to control when automated snapshots are taken\. Automated snapshots are enabled by default when you create a cluster\. 
 
@@ -38,21 +38,21 @@ Automated snapshots are deleted at the end of a retention period\. The default r
 
 To disable automated snapshots, set the retention period to zero\. If you disable automated snapshots, Amazon Redshift stops taking snapshots and deletes any existing automated snapshots for the cluster\.
 
-Only Amazon Redshift can delete an automated snapshot; you cannot delete them manually\. Amazon Redshift deletes automated snapshots at the end of a snapshot’s retention period, when you disable automated snapshots for the cluster, or when you delete the cluster\. *Amazon Redshift retains the latest automated snapshot until you disable automated snapshots or delete the cluster\.*
+Only Amazon Redshift can delete an automated snapshot; you cannot delete them manually\. Amazon Redshift deletes automated snapshots at the end of a snapshot's retention period, when you disable automated snapshots for the cluster, or when you delete the cluster\. *Amazon Redshift retains the latest automated snapshot until you disable automated snapshots or delete the cluster\.*
 
 If you want to keep an automated snapshot for a longer period, you can create a copy of it as a manual snapshot\. The automated snapshot is retained until the end of the retention period, but the corresponding manual snapshot is retained until you manually delete it or until the end of the retention period\.
 
-## Automated Snapshot Schedules<a name="automated-snapshot-schedules"></a>
+## Automated snapshot schedules<a name="automated-snapshot-schedules"></a>
 
 To precisely control when snapshots are taken, you can create a snapshot schedule and attach it to one or more clusters\. When you modify a snapshot schedule, the schedule is modified for all associated clusters\. If a cluster doesn't have a snapshot schedule attached, the cluster uses the default automated snapshot schedule\. 
 
 A *snapshot schedule* is a set of schedule rules\. You can define a simple schedule rule based on a specified interval, such as every 8 hours or every 12 hours\. You can also add rules to take snapshots on certain days of the week, at specific times, or during specific periods\. Rules can also be defined using Unix\-like cron expressions\. 
 
-## Snapshot Schedule Format<a name="working-with-snapshot-scheduling"></a>
+## Snapshot schedule format<a name="working-with-snapshot-scheduling"></a>
 
 On the Amazon Redshift console, you can create a snapshot schedule\. Then, you can attach a schedule to a cluster to trigger the creation of a system snapshot\. A schedule can be attached to multiple clusters, and you can create multiple cron definitions in a schedule to trigger a snapshot\.
 
-You can define a schedule for your snapshots using a cron syntax\. The definition of these schedules uses a modified Unix\-like  [cron](http://en.wikipedia.org/wiki/Cron) syntax\. You specify time in [Coordinated Universal Time \(UTC\)](http://en.wikipedia.org/wiki/Coordinated_Universal_Time)\. You can create schedules with a maximum frequency of one hour and minimum precision of one minute\.
+You can define a schedule for your snapshots using a cron syntax\. The definition of these schedules uses a modified Unix\-like  [cron](http://en.wikipedia.org/wiki/Cron) syntax\. You specify time in [Coordinated universal time \(UTC\)](http://en.wikipedia.org/wiki/Coordinated_Universal_Time)\. You can create schedules with a maximum frequency of one hour and minimum precision of one minute\.
 
 Amazon Redshift modified cron expressions have 3 required fields, which are separated by white space\. 
 
@@ -100,29 +100,29 @@ You can create multiple cron schedule definitions within as schedule\. For examp
 create-snapshot-schedule --schedule-identifier "my-test" --schedule-definition "cron(0 17 SAT,SUN)" "cron(0 9,17 MON-FRI)"   
 ```
 
-## Manual Snapshots<a name="about-manual-snapshots"></a>
+## Manual snapshots<a name="about-manual-snapshots"></a>
 
 You can take a manual snapshot any time\. By default, manual snapshots are retained indefinitely, even after you delete your cluster\. You can specify the retention period when you create a manual snapshot, or you can change the retention period by modifying the snapshot\. 
 
 If a snapshot is deleted, you can't start any new operations that reference that snapshot\. However, if a restore operation is in progress, that restore operation will run to completion\. 
 
-Amazon Redshift has a quota that limits the total number of manual snapshots that you can create; this quota is per AWS account per AWS Region\. The default quota is listed at [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_redshift)\. 
+Amazon Redshift has a quota that limits the total number of manual snapshots that you can create; this quota is per AWS account per AWS Region\. The default quota is listed at [AWS service limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_redshift)\. 
 
-## Managing Snapshot Storage<a name="managing-snapshot-storage"></a>
+## Managing snapshot storage<a name="managing-snapshot-storage"></a>
 
-Because snapshots accrue storage charges, it’s important that you delete them when you no longer need them\. Amazon Redshift deletes automated and manual snapshots at the end of their respective snapshot retention periods\. You can also delete manual snapshots using the AWS Management Console or with the [batch\-delete\-cluster\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/redshift/batch-delete-cluster-snapshots.html) CLI command\. 
+Because snapshots accrue storage charges, it's important that you delete them when you no longer need them\. Amazon Redshift deletes automated and manual snapshots at the end of their respective snapshot retention periods\. You can also delete manual snapshots using the AWS Management Console or with the [batch\-delete\-cluster\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/redshift/batch-delete-cluster-snapshots.html) CLI command\. 
 
 You can change the retention period for a manual snapshot by modifying the manual snapshot settings\. 
 
 You can get information about how much storage your snapshots are consuming using the Amazon Redshift Console or using the [describe\-storage](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-storage.html) CLI command\. 
 
-## Excluding Tables From Snapshots<a name="snapshots-no-backup-tables"></a>
+## Excluding tables from snapshots<a name="snapshots-no-backup-tables"></a>
 
 By default, all user\-defined permanent tables are included in snapshots\. If a table, such as a staging table, doesn't need to be backed up, you can significantly reduce the time needed to create snapshots and restore from snapshots\. You also reduce storage space on Amazon S3 by using a no\-backup table\. To create a no\-backup table, include the BACKUP NO parameter when you create the table\. For more information, see [CREATE TABLE](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html) and [CREATE TABLE AS](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_AS.html) in the *Amazon Redshift Database Developer Guide*\.
 
-## Copying Snapshots to Another AWS Region<a name="cross-region-snapshot-copy"></a>
+## Copying snapshots to another AWS Region<a name="cross-region-snapshot-copy"></a>
 
-You can configure Amazon Redshift to automatically copy snapshots \(automated or manual\) for a cluster to another AWS Region\. When a snapshot is created in the cluster's primary AWS Region, it's copied to a secondary AWS Region\. The two AWS Regions are known respectively as the *source AWS Region* and *destination AWS Region*\. If you store a copy of your snapshots in another AWS Region, you can restore your cluster from recent data if anything affects the primary AWS Region\. You can configure your cluster to copy snapshots to only one destination AWS Region at a time\. For a list of Amazon Redshift Regions, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\.
+You can configure Amazon Redshift to automatically copy snapshots \(automated or manual\) for a cluster to another AWS Region\. When a snapshot is created in the cluster's primary AWS Region, it's copied to a secondary AWS Region\. The two AWS Regions are known respectively as the *source AWS Region* and *destination AWS Region*\. If you store a copy of your snapshots in another AWS Region, you can restore your cluster from recent data if anything affects the primary AWS Region\. You can configure your cluster to copy snapshots to only one destination AWS Region at a time\. For a list of Amazon Redshift Regions, see [Regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\.
 
 When you enable Amazon Redshift to automatically copy snapshots to another AWS Region, you specify the destination AWS Region to copy the snapshots to\. For automated snapshots, you can also specify the retention period to keep them in the destination AWS Region\. After an automated snapshot is copied to the destination AWS Region and it reaches the retention time period there, it's deleted from the destination AWS Region\. Doing this keeps your snapshot usage low\. To keep the automated snapshots for a shorter or longer time in the destination AWS Region, change this retention period\.
 
@@ -134,9 +134,9 @@ To change the destination AWS Region that you copy snapshots to, first disable t
 
 After a snapshot is copied to the destination AWS Region, it becomes active and available for restoration purposes\.
 
-To copy snapshots for AWS KMS–encrypted clusters to another AWS Region, create a grant for Amazon Redshift to use a KMS customer master key \(CMK\) in the destination AWS Region\. Then choose that grant when you enable copying of snapshots in the source AWS Region\. For more information about configuring snapshot copy grants, see [Copying AWS KMS\-Encrypted Snapshots to Another AWS Region](working-with-db-encryption.md#configure-snapshot-copy-grant)\.
+To copy snapshots for AWS KMS–encrypted clusters to another AWS Region, create a grant for Amazon Redshift to use a KMS customer master key \(CMK\) in the destination AWS Region\. Then choose that grant when you enable copying of snapshots in the source AWS Region\. For more information about configuring snapshot copy grants, see [Copying AWS KMS–encrypted snapshots to another AWS Region](working-with-db-encryption.md#configure-snapshot-copy-grant)\.
 
-## Restoring a Cluster from a Snapshot<a name="working-with-snapshot-restore-cluster-from-snapshot"></a>
+## Restoring a cluster from a snapshot<a name="working-with-snapshot-restore-cluster-from-snapshot"></a>
 
 A snapshot contains data from any databases that are running on your cluster\. It also contains information about your cluster, including the number of nodes, node type, and master user name\. If you restore your cluster from a snapshot, Amazon Redshift uses the cluster information to create a new cluster\. Then it restores all the databases from the snapshot data\. 
 
@@ -222,7 +222,7 @@ The following steps take a cluster with many nodes and consolidate it into a big
    aws redshift restore-from-cluster-snapshot --region eu-west-1 --snapshot-identifier mycluster-snapshot -—cluster-identifier mycluster-123456789012-x --node-type ds2.8xlarge --number-of-nodes 3
    ```
 
-## Restoring a Table from a Snapshot<a name="working-with-snapshot-restore-table-from-snapshot"></a>
+## Restoring a table from a snapshot<a name="working-with-snapshot-restore-table-from-snapshot"></a>
 
 You can restore a single table from a snapshot instead of restoring an entire cluster\. When you restore a single table from a snapshot, you specify the source snapshot, database, schema, and table name, and the target cluster, schema, and a new table name for the restored table\.
 
@@ -240,9 +240,9 @@ Restoring a table from a snapshot has the following limitations:
 + You cannot restore a table from a cluster snapshot that was taken prior to a cluster being resized\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-### New Console<a name="snapshot-table-restore"></a>
+### New console<a name="snapshot-table-restore"></a>
 
 **To restore a table from a snapshot**
 
@@ -254,7 +254,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Enter the information about which snapshot, source table, and target table to use, and then choose **Restore table**\. 
 
-### Original Console<a name="snapshot-table-restore-originalconsole"></a>
+### Original console<a name="snapshot-table-restore-originalconsole"></a>
 
 **To restore a table from a snapshot using the Amazon Redshift console**
 
@@ -292,7 +292,7 @@ If you have restored at least one table from a cluster snapshot, you can copy th
 
 1. Choose **Copy restore request**\.
 
-**Example Example: Restoring a Table from a Snapshot Using the AWS CLI**  
+**Example Example: Restoring a table from a snapshot using the AWS CLI**  
 The following example uses the `restore-table-from-cluster-snapshot` AWS CLI command to restore the `my-source-table` table from the `sample-database` schema in the `my-snapshot-id`\. The example restores the snapshot to the `mycluster-example` cluster with a new table name of `my-new-table`\.  
 
 ```
@@ -303,7 +303,7 @@ aws redshift restore-table-from-cluster-snapshot --cluster-identifier mycluster-
                                                  --source-table-name my-source-table
 ```
 
-## Sharing Snapshots<a name="working-with-snapshot-share-snapshot"></a>
+## Sharing snapshots<a name="working-with-snapshot-share-snapshot"></a>
 
 You can share an existing manual snapshot with other AWS customer accounts by authorizing access to the snapshot\. You can authorize up to 20 for each snapshot and 100 for each AWS Key Management Service \(AWS KMS\) key\. That is, if you have 10 snapshots that are encrypted with a single KMS key, then you can authorize 10 AWS accounts to restore each snapshot, or other combinations that add up to 100 accounts and do not exceed 20 accounts for each snapshot\. A person logged in as a user in one of the authorized accounts can then describe the snapshot or restore it to create a new Amazon Redshift cluster under their account\. For example, if you use separate AWS customer accounts for production and test, a user can log on using the production account and share a snapshot with users in the test account\. Someone logged on as a test account user can then restore the snapshot to create a new cluster that is owned by the test account for testing or diagnostic work\. 
 

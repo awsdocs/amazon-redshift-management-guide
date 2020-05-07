@@ -1,21 +1,21 @@
-# Database Audit Logging<a name="db-auditing"></a>
+# Database audit logging<a name="db-auditing"></a>
 
 **Topics**
 + [Overview](#db-auditing-overview)
-+ [Amazon Redshift Logs](#db-auditing-logs)
-+ [Enabling Logging](#db-auditing-enable-logging)
-+ [Managing Log Files](#db-auditing-manage-log-files)
-+ [Troubleshooting Amazon Redshift Audit Logging](#db-auditing-failures)
-+ [Logging Amazon Redshift API Calls with AWS CloudTrail](#rs-db-auditing-cloud-trail)
-+ [Amazon Redshift Account IDs in AWS CloudTrail Logs](#rs-db-auditing-cloud-trail-rs-acct-ids)
-+ [Configuring Auditing Using the Console](db-auditing-console.md)
-+ [Configuring Logging by Using the Amazon Redshift CLI and API](db-auditing-cli-api.md)
++ [Amazon Redshift logs](#db-auditing-logs)
++ [Enabling logging](#db-auditing-enable-logging)
++ [Managing log files](#db-auditing-manage-log-files)
++ [Troubleshooting Amazon Redshift audit logging](#db-auditing-failures)
++ [Logging Amazon Redshift API calls with AWS CloudTrail](#rs-db-auditing-cloud-trail)
++ [Amazon Redshift account IDs in AWS CloudTrail logs](#rs-db-auditing-cloud-trail-rs-acct-ids)
++ [Configuring auditing using the console](db-auditing-console.md)
++ [Configuring logging by using the Amazon Redshift CLI and API](db-auditing-cli-api.md)
 
 ## Overview<a name="db-auditing-overview"></a>
 
 Amazon Redshift logs information about connections and user activities in your database\. These logs help you to monitor the database for security and troubleshooting purposes, which is a process often referred to as database auditing\. The logs are stored in Amazon S3 buckets\. These provide convenient access with data security features for users who are responsible for monitoring activities in the database\.
 
-## Amazon Redshift Logs<a name="db-auditing-logs"></a>
+## Amazon Redshift logs<a name="db-auditing-logs"></a>
 
 Amazon Redshift logs information in the following log files:
 + *Connection log* — logs authentication attempts, and connections and disconnections\.
@@ -31,13 +31,13 @@ The connection log and user log both correspond to information that is stored in
 **Note**  
 Log files are not as current as the base system log tables, [STL\_USERLOG](https://docs.aws.amazon.com/redshift/latest/dg/r_STL_USERLOG.html) and [STL\_CONNECTION\_LOG](https://docs.aws.amazon.com/redshift/latest/dg/r_STL_CONNECTION_LOG.html)\. Records that are older than, but not including, the latest record are copied to log files\. 
 
-### Connection Log<a name="db-auditing-connection-log"></a>
+### Connection log<a name="db-auditing-connection-log"></a>
 
 Logs authentication attempts, and connections and disconnections\. The following table describes the information in the connection log\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html)
 
-### User Log<a name="db-auditing-user-log"></a>
+### User log<a name="db-auditing-user-log"></a>
 
  Records details for the following changes to a database user:
 + Create user
@@ -47,31 +47,31 @@ Logs authentication attempts, and connections and disconnections\. The following
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html)
 
-### User Activity Log<a name="db-auditing-user-activity-log"></a>
+### User activity log<a name="db-auditing-user-activity-log"></a>
 
 Logs each query before it is run on the database\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html)
 
-## Enabling Logging<a name="db-auditing-enable-logging"></a>
+## Enabling logging<a name="db-auditing-enable-logging"></a>
 
  Audit logging is not enabled by default in Amazon Redshift\. When you enable logging on your cluster, Amazon Redshift creates and uploads logs to Amazon S3 that capture data from the creation of the cluster to the present time\. Each logging update is a continuation of the information that was already logged\. 
 
 **Note**  
 Audit logging to Amazon S3 is an optional, manual process\. When you enable logging on your cluster, you are enabling logging to Amazon S3 only\. Logging to system tables is not optional and happens automatically for the cluster\. For more information about logging to system tables, see [System Tables Reference](https://docs.aws.amazon.com/redshift/latest/dg/cm_chap_system-tables.html) in the Amazon Redshift Database Developer Guide\. 
 
-The connection log, user log, and user activity log are enabled together by using the AWS Management Console, the Amazon Redshift API Reference, or the AWS Command Line Interface \(AWS CLI\)\. For the user activity log, you must also enable the `enable_user_activity_logging` database parameter\. If you enable only the audit logging feature, but not the associated parameter, the database audit logs log information for only the connection log and user log, but not for the user activity log\. The `enable_user_activity_logging` parameter is not enabled \(`false`\) by default\. You can set it to `true` to enable the user activity log\. For more information, see [Amazon Redshift Parameter Groups](working-with-parameter-groups.md)\. 
+The connection log, user log, and user activity log are enabled together by using the AWS Management Console, the Amazon Redshift API Reference, or the AWS Command Line Interface \(AWS CLI\)\. For the user activity log, you must also enable the `enable_user_activity_logging` database parameter\. If you enable only the audit logging feature, but not the associated parameter, the database audit logs log information for only the connection log and user log, but not for the user activity log\. The `enable_user_activity_logging` parameter is not enabled \(`false`\) by default\. You can set it to `true` to enable the user activity log\. For more information, see [Amazon Redshift parameter groups](working-with-parameter-groups.md)\. 
 
 **Note**  
 Currently, you can only use Amazon S3\-managed keys \(SSE\-S3\) encryption \(AES\-256\) for audit logging\.
 
-## Managing Log Files<a name="db-auditing-manage-log-files"></a>
+## Managing log files<a name="db-auditing-manage-log-files"></a>
 
 The number and size of Amazon Redshift log files in Amazon S3 will depend heavily on the activity in your cluster\. If you have an active cluster that is generating a large number of logs, Amazon Redshift might generate the log files more frequently\. You might have a series of log files for the same type of activity, such as having multiple connection logs within the same hour\.
 
 Because Amazon Redshift uses Amazon S3 to store logs, you will incur charges for the storage that you use in Amazon S3\. Before you configure logging, you should have a plan for how long you need to store the log files\. As part of this, determine when the log files can either be deleted or archived based on your auditing needs\. The plan that you create depends heavily on the type of data that you store, such as data subject to compliance or regulatory requirements\. For more information about Amazon S3 pricing, go to [Amazon Simple Storage Service \(S3\) Pricing](https://aws.amazon.com/s3/pricing/)\.
 
-### Bucket Permissions for Amazon Redshift Audit Logging<a name="db-auditing-bucket-permissions"></a>
+### Bucket permissions for Amazon Redshift audit logging<a name="db-auditing-bucket-permissions"></a>
 
 When you enable logging, Amazon Redshift collects logging information and uploads it to log files stored in Amazon S3\. You can use an existing bucket or a new bucket\. Amazon Redshift requires the following IAM permissions to the bucket: 
 + *s3:GetBucketAcl* The service requires read permissions to the Amazon S3 bucket so it can identify the bucket owner\. 
@@ -139,7 +139,7 @@ The following example is a bucket policy for the US East \(N\. Virginia\) Region
 
 For more information about creating Amazon S3 buckets and adding bucket policies, go to [Creating a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) and [Editing Bucket Permissions](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingBucketPermissions.html) in the Amazon Simple Storage Service Console User Guide\. 
 
-### Bucket Structure for Amazon Redshift Audit Logging<a name="db-auditing-bucket-structure"></a>
+### Bucket structure for Amazon Redshift audit logging<a name="db-auditing-bucket-structure"></a>
 
 By default, Amazon Redshift organizes the log files in the Amazon S3 bucket by using the following bucket and object structure: `AWSLogs/AccountID/ServiceName/Region/Year/Month/Day/AccountID_ServiceName_Region_ClusterName_LogType_Timestamp.gz` 
 
@@ -156,14 +156,14 @@ The Amazon S3 key prefix cannot exceed 512 characters\. It cannot contain spaces
 + x5c
 + x7f or larger
 
-## Troubleshooting Amazon Redshift Audit Logging<a name="db-auditing-failures"></a>
+## Troubleshooting Amazon Redshift audit logging<a name="db-auditing-failures"></a>
 
  Amazon Redshift audit logging can be interrupted for the following reasons: 
-+  Amazon Redshift does not have permission to upload logs to the Amazon S3 bucket\. Verify that the bucket is configured with the correct IAM policy\. For more information, see [Bucket Permissions for Amazon Redshift Audit Logging](#db-auditing-bucket-permissions)\. 
-+  The bucket owner changed\. When Amazon Redshift uploads logs, it verifies that the bucket owner is the same as when logging was enabled\. If the bucket owner has changed, Amazon Redshift cannot upload logs until you configure another bucket to use for audit logging\. For more information, see [Modifying the Bucket for Audit Logging](db-auditing-console.md#modify-auditing-logging-task)\. 
-+  The bucket cannot be found\. If the bucket is deleted in Amazon S3, Amazon Redshift cannot upload logs\. You either need to recreate the bucket or configure Amazon Redshift to upload logs to a different bucket\. For more information, see [Modifying the Bucket for Audit Logging](db-auditing-console.md#modify-auditing-logging-task)\. 
++  Amazon Redshift does not have permission to upload logs to the Amazon S3 bucket\. Verify that the bucket is configured with the correct IAM policy\. For more information, see [Bucket permissions for Amazon Redshift audit logging](#db-auditing-bucket-permissions)\. 
++  The bucket owner changed\. When Amazon Redshift uploads logs, it verifies that the bucket owner is the same as when logging was enabled\. If the bucket owner has changed, Amazon Redshift cannot upload logs until you configure another bucket to use for audit logging\. For more information, see [Modifying the bucket for audit logging](db-auditing-console.md#modify-auditing-logging-task)\. 
++  The bucket cannot be found\. If the bucket is deleted in Amazon S3, Amazon Redshift cannot upload logs\. You either need to recreate the bucket or configure Amazon Redshift to upload logs to a different bucket\. For more information, see [Modifying the bucket for audit logging](db-auditing-console.md#modify-auditing-logging-task)\. 
 
-## Logging Amazon Redshift API Calls with AWS CloudTrail<a name="rs-db-auditing-cloud-trail"></a>
+## Logging Amazon Redshift API calls with AWS CloudTrail<a name="rs-db-auditing-cloud-trail"></a>
 
 Amazon Redshift is integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, role, or an AWS service in Amazon Redshift\. CloudTrail captures all API calls for Amazon Redshift as events\. These include calls from the Amazon Redshift console and from code calls to the Amazon Redshift API operations\. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for Amazon Redshift\. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in **Event history**\. Using the information collected by CloudTrail, you can determine certain details\. These include the request that was made to Amazon Redshift, the IP address it was made from, who made it, when it was made, and other information\. 
 
@@ -171,7 +171,7 @@ You can use CloudTrail independently from or in addition to Amazon Redshift data
 
 To learn more about CloudTrail, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
 
-### Amazon Redshift Information in CloudTrail<a name="rs-db-auditing-cloud-trail-redshift-info"></a>
+### Amazon Redshift information in CloudTrail<a name="rs-db-auditing-cloud-trail-redshift-info"></a>
 
 CloudTrail is enabled on your AWS account when you create the account\. When activity occurs in Amazon Redshift, that activity is recorded in a CloudTrail event along with other AWS service events in **Event history**\. You can view, search, and download recent events in your AWS account\. For more information, see [Viewing Events with CloudTrail Event History](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events.html)\. 
 
@@ -190,7 +190,7 @@ Every event or log entry contains information about who generated the request\. 
 
 For more information, see the [CloudTrail userIdentity Element](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\.
 
-### Understanding Amazon Redshift Log File Entries<a name="rs-db-auditing-cloud-trail-log-file"></a>
+### Understanding Amazon Redshift log file entries<a name="rs-db-auditing-cloud-trail-log-file"></a>
 
 A trail is a configuration that enables delivery of events as log files to an Amazon S3 bucket that you specify\. CloudTrail log files contain one or more log entries\. An event represents a single request from any source and includes information about the requested action, the date and time of the action, request parameters, and so on\. CloudTrail log files are not an ordered stack trace of the public API calls, so they do not appear in any specific order\. 
 
@@ -318,7 +318,7 @@ The following example shows a CloudTrail log entry for a sample DeleteCluster ca
 }
 ```
 
-## Amazon Redshift Account IDs in AWS CloudTrail Logs<a name="rs-db-auditing-cloud-trail-rs-acct-ids"></a>
+## Amazon Redshift account IDs in AWS CloudTrail logs<a name="rs-db-auditing-cloud-trail-rs-acct-ids"></a>
 
 When Amazon Redshift calls another AWS service for you, the call is logged with an account ID that belongs to Amazon Redshift\. It isn't logged with your account ID\. For example, suppose that Amazon Redshift calls AWS Key Management Service \(AWS KMS\) actions such as CreateGrant, Decrypt, Encrypt, and RetireGrant to manage encryption on your cluster\. In this case, the calls are logged by AWS CloudTrail using an Amazon Redshift account ID\.
 

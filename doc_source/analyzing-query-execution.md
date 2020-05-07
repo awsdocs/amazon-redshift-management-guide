@@ -1,9 +1,9 @@
-# Analyzing Query Execution<a name="analyzing-query-execution"></a>
+# Analyzing query execution<a name="analyzing-query-execution"></a>
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-## New Console<a name="metric-queries-execution-details"></a>
+## New console<a name="metric-queries-execution-details"></a>
 
 **To analyze a query**
 
@@ -15,7 +15,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
    The **Query details** page includes **Query details** and **Query plan** tabs with metrics about the query\. 
 
-## Original Console<a name="metric-queries-execution-details-originalconsole"></a>
+## Original console<a name="metric-queries-execution-details-originalconsole"></a>
 
 The **Query Execution Details** section of the **Query** view provides information about the way the query was processed\. This section combines data from [SVL\_QUERY\_REPORT](https://docs.aws.amazon.com/redshift/latest/dg/r_SVL_QUERY_REPORT.html), [STL\_EXPLAIN](https://docs.aws.amazon.com/redshift/latest/dg/r_STL_EXPLAIN.html), and other system views and tables\.
 
@@ -23,7 +23,7 @@ The **Query Execution Details** section has three tabs:
 + **Plan**\. This tab shows the explain plan for the query that is displayed\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cm-metrics-query-exec-details-plan.png)
 
-  The information on the **Plan** tab is analogous to running the EXPLAIN command in the database\. The EXPLAIN command examines your query text, and returns the query plan\. You use this information to evaluate queries, and revise them for efficiency and performance if necessary\. The EXPLAIN command doesn’t actually run the query\.
+  The information on the **Plan** tab is analogous to running the EXPLAIN command in the database\. The EXPLAIN command examines your query text, and returns the query plan\. You use this information to evaluate queries, and revise them for efficiency and performance if necessary\. The EXPLAIN command doesn't actually run the query\.
 
   The following example shows a query that returns the top five sellers in San Diego, based on the number of tickets sold in 2008, and the query plan for that query\.
 
@@ -42,7 +42,7 @@ The **Query Execution Details** section has three tabs:
   ```  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cm-metrics-query-exec-details-query-plan.png)
 
-  For more information about understanding the explain plan, see [Analyzing the Explain Plan](https://docs.aws.amazon.com/redshift/latest/dg/c-query-planning.html) in the *Amazon Redshift Database Developer Guide*\.
+  For more information about understanding the explain plan, see [Analyzing the explain plan](https://docs.aws.amazon.com/redshift/latest/dg/c-query-planning.html) in the *Amazon Redshift Database Developer Guide*\.
 
   When you actually run the query \(omitting the EXPLAIN command\), the engine might find ways to optimize the query performance and change the way it processes the query\. The actual performance data for the query is stored in the system views, such as [SVL\_QUERY\_REPORT](https://docs.aws.amazon.com/redshift/latest/dg/r_SVL_QUERY_REPORT.html) and [SVL\_QUERY\_SUMMARY](https://docs.aws.amazon.com/redshift/latest/dg/r_SVL_QUERY_SUMMARY.html)\.
 
@@ -50,7 +50,7 @@ The **Query Execution Details** section has three tabs:
 
   Additionally, sometimes the query optimizer breaks complex SQL queries into parts and creates temporary tables with the naming convention volt\_tt\_*guid* to process the query more efficiently\. In this case, both the explain plan and the actual query execution summary apply to the last statement that was run\. You can review previous query IDs to see the explain plan and actual query execution summary for each of the corresponding parts of the query\.
 
-  For more information about the difference between the explain plan and system views and logs, see [Analyzing the Query Summary](https://docs.aws.amazon.com/redshift/latest/dg/c-analyzing-the-query-summary.html) in the *Amazon Redshift Database Developer Guide*\.
+  For more information about the difference between the explain plan and system views and logs, see [Analyzing the query summary](https://docs.aws.amazon.com/redshift/latest/dg/c-analyzing-the-query-summary.html) in the *Amazon Redshift Database Developer Guide*\.
 + **Actual**\. This tab shows the actual steps and statistics for the query that was executed\. This information displays in a textual hierarchy and visual charts for **Timeline** and **Execution time**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cm-metrics-query-exec-details-actual.png)
 
@@ -82,14 +82,14 @@ When possible, you should run a query twice to see what its execution details ty
 
   The **Row throughput** metric shows the number of rows returned divided by query execution time for each cluster node\.
 
-  If a query runs slower than expected, you can use the **Metrics** tab to troubleshoot the cause\. Look at the **Row throughput** metric\. If one of the cluster nodes appears to have a much higher row throughput than the other nodes, the workload is unevenly distributed among the cluster nodes\. One possible cause is that your data is unevenly distributed, or skewed, across node slices\. For more information, see [Identifying Tables with Data Skew or Unsorted Rows](https://docs.aws.amazon.com/redshift/latest/dg/diagnostic-queries-for-query-tuning.html#identify-tables-with-data-skew-or-unsorted-rows.html)\. 
+  If a query runs slower than expected, you can use the **Metrics** tab to troubleshoot the cause\. Look at the **Row throughput** metric\. If one of the cluster nodes appears to have a much higher row throughput than the other nodes, the workload is unevenly distributed among the cluster nodes\. One possible cause is that your data is unevenly distributed, or skewed, across node slices\. For more information, see [Identifying tables with data skew or unsorted rows](https://docs.aws.amazon.com/redshift/latest/dg/diagnostic-queries-for-query-tuning.html#identify-tables-with-data-skew-or-unsorted-rows.html)\. 
 
-  If your data is evenly distributed, your query might be filtering for rows that are located mainly on that node\. To fix this issue, look at the distribution styles for the tables in the query and see if any improvements can be made\. Remember to weigh the performance of this query against the performance of other important queries and the system overall before making any changes\. For more information, see [Choosing a Data Distribution Style](https://docs.aws.amazon.com/redshift/latest/dg/t_Distributing_data.html)\. 
+  If your data is evenly distributed, your query might be filtering for rows that are located mainly on that node\. To fix this issue, look at the distribution styles for the tables in the query and see if any improvements can be made\. Remember to weigh the performance of this query against the performance of other important queries and the system overall before making any changes\. For more information, see [Choosing a data distribution style](https://docs.aws.amazon.com/redshift/latest/dg/t_Distributing_data.html)\. 
 
 **Note**  
 The metrics tab is not available for a single\-node cluster\.
 
-## Viewing Query Execution Details Using the Console<a name="performance-metrics-viewing-query-execution-details"></a>
+## Viewing query execution details using the console<a name="performance-metrics-viewing-query-execution-details"></a>
 
 Use the following procedure to look at the details of query execution\.
 
@@ -105,7 +105,7 @@ Use the following procedure to look at the details of query execution\.
 
 1. Expand the **Query Execution Details** section and do the following:
 
-   1. On the **Plan** tab, review the explain plan for the query\. In some cases, you might find that your explain plan differs from the actual query execution on the **Actual** tab\. In these cases, you might need to run ANALYZE to update statistics or perform other maintenance on the database to optimize the queries that you run\. For more information about query optimization, see [Tuning Query Performance](https://docs.aws.amazon.com/redshift/latest/dg/c-optimizing-query-performance.html) in the *Amazon Redshift Database Developer Guide*\.
+   1. On the **Plan** tab, review the explain plan for the query\. In some cases, you might find that your explain plan differs from the actual query execution on the **Actual** tab\. In these cases, you might need to run ANALYZE to update statistics or perform other maintenance on the database to optimize the queries that you run\. For more information about query optimization, see [Tuning query performance](https://docs.aws.amazon.com/redshift/latest/dg/c-optimizing-query-performance.html) in the *Amazon Redshift Database Developer Guide*\.
 
    1. On the **Actual** tab, review the performance data associated with each of the plan nodes in the query execution\. You can choose an individual plan node in the hierarchy to view performance data associated with that specific plan node\. This data includes both the estimated and actual performance data\.
 

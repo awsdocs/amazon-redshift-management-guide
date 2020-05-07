@@ -1,8 +1,8 @@
-# Configuring Database Encryption Using the Amazon Redshift API and AWS CLI<a name="configuring-db-encryption-api"></a>
+# Configuring database encryption using the Amazon Redshift API and AWS CLI<a name="configuring-db-encryption-api"></a>
 
-Use the Amazon Redshift API and AWS Command Line Interface \(AWS CLI\) to configure encryption key options for Amazon Redshift databases\. For more information about database encryption, see [Amazon Redshift Database Encryption](working-with-db-encryption.md)\.
+Use the Amazon Redshift API and AWS Command Line Interface \(AWS CLI\) to configure encryption key options for Amazon Redshift databases\. For more information about database encryption, see [Amazon Redshift database encryption](working-with-db-encryption.md)\.
 
-## Configuring Amazon Redshift to Use AWS KMS Encryption Keys Using the Amazon Redshift API and AWS CLI<a name="manage-aws-kms-api-cli"></a>
+## Configuring Amazon Redshift to use AWS KMS encryption keys using the Amazon Redshift API and AWS CLI<a name="manage-aws-kms-api-cli"></a>
 
 You can use the following Amazon Redshift API actions to configure Amazon Redshift to use AWS KMS encryption keys\.
 +  [CreateCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateCluster.html) 
@@ -20,7 +20,7 @@ You can use the following Amazon Redshift CLI operations to configure Amazon Red
 +  [disable\-snapshot\-copy](https://docs.aws.amazon.com/cli/latest/reference/redshift/disable-snapshot-copy.html) 
 +  [enable\-snapshot\-copy](https://docs.aws.amazon.com/cli/latest/reference/redshift/enable-snapshot-copy.html) 
 
-## Configuring Amazon Redshift to Use an HSM Using the Amazon Redshift API and AWS CLI<a name="manage-HSM-api-cli"></a>
+## Configuring Amazon Redshift to use an HSM using the Amazon Redshift API and AWS CLI<a name="manage-HSM-api-cli"></a>
 
 You can use the following Amazon Redshift API actions to manage hardware security modules\.
 +  [CreateHsmClientCertificate](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateHsmClientCertificate.html) 
@@ -38,7 +38,7 @@ You can use the following AWS CLI operations to manage hardware security modules
 +  [describe\-hsm\-client\-certificates](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-hsm-client-certificates.html) 
 +  [describe\-hsm\-configurations](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-hsm-configurations.html) 
 
-## Rotating Encryption Keys Using the Amazon Redshift API and AWS CLI<a name="manage-key-rotation-api-cli"></a>
+## Rotating encryption keys using the Amazon Redshift API and AWS CLI<a name="manage-key-rotation-api-cli"></a>
 
 You can use the following Amazon Redshift API actions to rotate encryption keys\.
 +  [RotateEncryptionKey](https://docs.aws.amazon.com/redshift/latest/APIReference/API_RotateEncryptionKey.html) 

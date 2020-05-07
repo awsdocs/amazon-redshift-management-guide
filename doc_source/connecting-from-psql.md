@@ -1,4 +1,4 @@
-# Connect to Your Cluster by Using the psql Tool<a name="connecting-from-psql"></a>
+# Connect to your cluster by using the psql tool<a name="connecting-from-psql"></a>
 
 After you create an Amazon Redshift cluster, you can use psql, a terminal\-based front end from PostgreSQL, to query the data in your cluster\. You can type the queries interactively or read them from a file\. To connect from psql, you must specify the cluster endpoint, database, and port\.
 
@@ -10,7 +10,7 @@ If you have trouble connecting from a Microsoft Windows prompt due to an invalid
 set PGCLIENTENCODING=UTF8
 ```
 
-## Connect by Using the psql Defaults<a name="connecting-from-psql-default"></a>
+## Connect by using the psql defaults<a name="connecting-from-psql-default"></a>
 
 By default, psql does not validate the Amazon Redshift service; it makes an encrypted connection by using Secure Sockets Layer \(SSL\)\.
 
@@ -49,15 +49,15 @@ By default, psql does not validate the Amazon Redshift service; it makes an encr
 
  You are connected to the cluster, and you can interactively enter commands\.
 
-## Connect by Using a Certificate<a name="connecting-from-psql-ssl"></a>
+## Connect by using a certificate<a name="connecting-from-psql-ssl"></a>
 
-To control whether psql authenticates the service using a certificate, you must use a connection information string to specify connection information, and specify the `sslmode` keyword\. By default, psql operates with `sslmode=prefer`\. To specify that psql opens an encrypted connection and uses an Amazon Redshift certificate to verify the service, download an Amazon Redshift certificate to your computer\. Specify `verify-full` unless you use a DNS alias\. If you use a DNS alias, select v`erify-ca`\. Specify `sslrootcert` with the location of the certificate\. For more information about `sslmode`, see [Configuring Security Options for Connections](connecting-ssl-support.md)\. 
+To control whether psql authenticates the service using a certificate, you must use a connection information string to specify connection information, and specify the `sslmode` keyword\. By default, psql operates with `sslmode=prefer`\. To specify that psql opens an encrypted connection and uses an Amazon Redshift certificate to verify the service, download an Amazon Redshift certificate to your computer\. Specify `verify-full` unless you use a DNS alias\. If you use a DNS alias, select v`erify-ca`\. Specify `sslrootcert` with the location of the certificate\. For more information about `sslmode`, see [Configuring security options for connections](connecting-ssl-support.md)\. 
 
  For more information about connection information string parameters, see [https://www\.postgresql\.org/docs/8\.4/static/libpq\-connect\.html](https://www.postgresql.org/docs/8.4/static/libpq-connect.html)\.
 
 **To connect by using a certificate**
 
-1.  Save the download the [Redshift Certificate Authority Bundle](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt) a \.crt file to your computer\. If you do a **File\\Save as** using Internet Explorer, specify the file type as **Text file \(\*\.txt\)** and delete the \.txt extension\. For example, save it as the file `C:\MyDownloads\redshift-ca-bundle.crt`\.
+1.  Save the download the [Redshift certificate authority bundle](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt) a \.crt file to your computer\. If you do a **File\\Save as** using Internet Explorer, specify the file type as **Text file \(\*\.txt\)** and delete the \.txt extension\. For example, save it as the file `C:\MyDownloads\redshift-ca-bundle.crt`\.
 
 1. Choose one of the following steps depending on which Amazon Redshift console you are using:
    + \(New console\) In the navigation pane, choose **CLUSTERS**\. Then choose the cluster name from the list to open its details\. On the **Properties** tab, in the **Database configurations** section, record the **Database name** and **Port**\. View the **Connection details** section and record the **Endpoint** which is in the following form: 

@@ -1,4 +1,4 @@
-# Working with VPC Endpoints<a name="enhanced-vpc-working-with-endpoints"></a>
+# Working with VPC endpoints<a name="enhanced-vpc-working-with-endpoints"></a>
 
 You can use a VPC endpoint to create a managed connection between your Amazon Redshift cluster in a VPC and Amazon Simple Storage Service \(Amazon S3\)\. When you do, COPY and UNLOAD traffic between your cluster and your data on Amazon S3 stays in your Amazon VPC\. You can attach an endpoint policy to your endpoint to more closely manage access to your data\. For example, you can add a policy to your VPC endpoint that permits unloading data only to a specific Amazon S3 bucket in your account\.
 

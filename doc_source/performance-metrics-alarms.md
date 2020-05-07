@@ -1,13 +1,13 @@
-# Creating an Alarm<a name="performance-metrics-alarms"></a>
+# Creating an alarm<a name="performance-metrics-alarms"></a>
 
-Alarms you create in the Amazon Redshift console are CloudWatch alarms\. They are useful because they help you make proactive decisions about your cluster and its databases\. You can set one or more alarms on any of the metrics listed in [Amazon Redshift Performance Data](metrics-listing.md)\. For example, setting an alarm for high `CPUUtilization` on a cluster node helps indicate when the node is overutilized\. Likewise, setting an alarm for low `CPUUtilization` on a cluster node helps indicate when the node is underutilized\. 
+Alarms you create in the Amazon Redshift console are CloudWatch alarms\. They are useful because they help you make proactive decisions about your cluster and its databases\. You can set one or more alarms on any of the metrics listed in [Amazon Redshift performance data](metrics-listing.md)\. For example, setting an alarm for high `CPUUtilization` on a cluster node helps indicate when the node is overutilized\. Likewise, setting an alarm for low `CPUUtilization` on a cluster node helps indicate when the node is underutilized\. 
 
 In this section, you can find how to create an alarm using the Amazon Redshift console\. You can create an alarm using the CloudWatch console or any other way you work with metrics, such as with the AWS CLI or an AWS SDK\. To delete an alarm, you must use the CloudWatch console\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-## New Console<a name="alarm-create"></a>
+## New console<a name="alarm-create"></a>
 
 **To create a CloudWatch alarm with the Amazon Redshift console**
 
@@ -19,7 +19,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Choose **Create alarm**\. 
 
-## Original Console<a name="alarm-create-originalconsole"></a>
+## Original console<a name="alarm-create-originalconsole"></a>
 
 **To create an alarm on a cluster metric in the Amazon Redshift console**
 
@@ -38,7 +38,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. In the **Create Alarm** dialog box, configure an alarm, and choose **Create**\.
 **Note**  
-The notifications that are displayed the **Send a notification to** box are your Amazon Simple Notification Service \(Amazon SNS\) topics\. To learn more about Amazon SNS and creating topics, see [Create a Topic](https://docs.aws.amazon.com/sns/latest/gsg/CreateTopic.html) in the *Amazon Simple Notification Service Getting Started Guide*\. If you don't have any topics in Amazon SNS, you can create a topic in the Create Alarm dialog by choosing the **create topic** link\.
+The notifications that are displayed the **Send a notification to** box are your Amazon Simple Notification Service \(Amazon SNS\) topics\. To learn more about Amazon SNS and creating topics, see [Create a topic](https://docs.aws.amazon.com/sns/latest/gsg/CreateTopic.html) in the *Amazon Simple Notification Service Getting Started Guide*\. If you don't have any topics in Amazon SNS, you can create a topic in the Create Alarm dialog by choosing the **create topic** link\.
 
    The details of your alarm vary with your circumstance\. In the following example, the average CPU utilization of a node \(Compute\-0\) has an alarm set\. If the CPU goes above 80 percent for four consecutive five\-minute periods, this alarm sends a notification to the topic **redshift\-example\-cluster\-alarms**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cm-alarm-20.png)

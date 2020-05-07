@@ -1,4 +1,4 @@
-# Querying a Database Using the Query Editor<a name="query-editor"></a>
+# Querying a database using the query editor<a name="query-editor"></a>
 
 Using the query editor is the easiest way to run queries on databases hosted by your Amazon Redshift cluster\. After creating your cluster, you can immediately run queries by using the query editor on the Amazon Redshift console\.
 
@@ -16,19 +16,19 @@ Using the query editor, you can do the following:
 + Save queries for reuse\. You can't save queries in the Europe \(Paris\) Region, the Asia Pacific \(Osaka\-Local\) Region, the Asia Pacific \(Hong Kong\) Region, or the Middle East \(Bahrain\) Region\.
 + View query execution details for user\-defined tables\.
 
-## Query Editor Considerations<a name="query-editor-considerations"></a>
+## Query editor considerations<a name="query-editor-considerations"></a>
 
 Be aware of the following considerations when you use the query editor on the Amazon Redshift console:
 + Up to 50 users can connect to a cluster with the query editor at the same time\.
 + The maximum number of users connecting to a cluster includes those connecting through the query editor\.
-+ Up to 50 workload management \(WLM\) query slots can be active at the same time\. For more information about query slots, see [Implementing Workload Management](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html)\.
++ Up to 50 workload management \(WLM\) query slots can be active at the same time\. For more information about query slots, see [Implementing workload management](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html)\.
 + The query editor only runs short queries that can complete within 10 minutes\. 
 + Query result sets are paginated with 100 rows per page\.
-+ You can't use the query editor with Enhanced VPC Routing\. For more information, see [Amazon Redshift Enhanced VPC Routing](enhanced-vpc-routing.md)\. 
++ You can't use the query editor with enhanced VPC routing\. For more information, see [Amazon Redshift enhanced VPC routing](enhanced-vpc-routing.md)\. 
 + You can't use transactions in the query editor\. For more information about transactions, see [BEGIN](https://docs.aws.amazon.com/redshift/latest/dg/r_BEGIN.html) in the *Amazon Redshift Database Developer Guide\.*
 + You can save a query up to 3000 characters long\. 
 
-## Enabling Access to the Query Editor<a name="query-cluster-configure"></a>
+## Enabling access to the query editor<a name="query-cluster-configure"></a>
 
 To access the query editor, you need permission\. To enable access, attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` policies for AWS Identity and Access Management \(IAM\) to the IAM user that you use to access your cluster\.
 
@@ -49,7 +49,7 @@ Add a policy to the user that denies permission to `redshift:GetClusterCredentia
     }
   }
   ```
-For more information, see [Create an IAM Role or User With Permissions to Call GetClusterCredentials](generating-iam-credentials-role-permissions.md)\.
+For more information, see [Create an IAM role or user role or user with permissions to call GetClusterCredentials](generating-iam-credentials-role-permissions.md)\.
 
 **To attach the required IAM policies for the query editor**
 
@@ -69,7 +69,7 @@ For more information, see [Create an IAM Role or User With Permissions to Call G
 
 1. Choose **Add permissions**\.
 
-## Using the Query Editor<a name="using-query-editor"></a>
+## Using the query editor<a name="using-query-editor"></a>
 
  In the following example, you use the query editor to perform the following tasks:
 + Run SQL commands\.
@@ -77,12 +77,12 @@ For more information, see [Create an IAM Role or User With Permissions to Call G
 + Save a query\.
 + Download a query result set\.
 
-To complete the following example, you need an existing Amazon Redshift cluster\. If you don't have a cluster, create one by following the procedure described in [Creating a Cluster](managing-clusters-console.md#create-cluster)\.
+To complete the following example, you need an existing Amazon Redshift cluster\. If you don't have a cluster, create one by following the procedure described in [Creating a cluster](managing-clusters-console.md#create-cluster)\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-### New Console<a name="query-editor-use"></a>
+### New console<a name="query-editor-use"></a>
 
 **To use the query editor on the Amazon Redshift console**
 
@@ -125,7 +125,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Choose **Data**, then **Export** to download the query results as a file\.
 
-### Original Console<a name="query-editor-use-originalconsole"></a>
+### Original console<a name="query-editor-use-originalconsole"></a>
 
 **To use the query editor**
 

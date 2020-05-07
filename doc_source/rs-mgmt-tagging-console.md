@@ -1,9 +1,9 @@
-# Managing Resource Tags Using the Console<a name="rs-mgmt-tagging-console"></a>
+# Managing resource tags using the console<a name="rs-mgmt-tagging-console"></a>
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-## New Console<a name="tags-manage"></a>
+## New console<a name="tags-manage"></a>
 
 **To manage tags on your Amazon Redshift resources**
 
@@ -17,13 +17,13 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. On the **Manage tags**navigation page, choose **Review and apply tag changes**, then choose **Apply** to save your changes\. 
 
-## Original Console<a name="tags-manage-originalconsole"></a>
+## Original console<a name="tags-manage-originalconsole"></a>
 
  The following is an example of the **Manage Tags** window for an Amazon Redshift resource, such as a cluster or a parameter group\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-manage-tags-window.png)
 
- You use the **Add Tags** section to add key pairs to an Amazon Redshift resource\. When you begin entering a key pair in the **Add Tags** section, a new row will appear so that you can add another key pair, and so on\. For more information about allowed characters for keys and values, see [Tagging Requirements](amazon-redshift-tagging.md#rs-tagging-requirements)\.
+ You use the **Add Tags** section to add key pairs to an Amazon Redshift resource\. When you begin entering a key pair in the **Add Tags** section, a new row will appear so that you can add another key pair, and so on\. For more information about allowed characters for keys and values, see [Tagging requirements](amazon-redshift-tagging.md#rs-tagging-requirements)\.
 
  If you decide that you don't want to add a particular tag to the resource, you can remove it from the **Add Tags** section by choosing the **X** in the row\. Once you have specified the key pairs that you want to add, you apply the changes so that they are associated with the resource\. 
 
@@ -33,13 +33,13 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-cluster-tag-list.png)
 
-### How To Open the Manage Tags Window<a name="rs-mgmt-open-manage-tags-window"></a>
+### How to open the manage tags window<a name="rs-mgmt-open-manage-tags-window"></a>
 
  The following table describes how to open the **Manage Tags** window for each of the Amazon Redshift resources that support tags\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/rs-mgmt-tagging-console.html)
 
-### How to Manage Tags in the Amazon Redshift Console<a name="rs-mgmt-console-tags-how-to"></a>
+### How to manage tags in the Amazon Redshift console<a name="rs-mgmt-console-tags-how-to"></a>
 
 Use the table in the previous section to navigate to the resource that you want to work with\. Then use the procedures in this section to add, modify, delete, and view tags for the resource\. <a name="rs-mgmt-console-add-tags"></a>
 

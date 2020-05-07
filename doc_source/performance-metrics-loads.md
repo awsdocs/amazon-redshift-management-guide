@@ -1,14 +1,14 @@
-# Viewing Cluster Metrics During Load Operations<a name="performance-metrics-loads"></a>
+# Viewing cluster metrics during load operations<a name="performance-metrics-loads"></a>
 
 When you view cluster performance during load operations, you can identify queries that are consuming resources and take action to mitigate their effect\. You can terminate a load if you don't want it to run to completion\. 
 
 **Note**  
-The ability to terminate queries and loads in the Amazon Redshift console requires specific permission\. If you want users to be able to terminate queries and loads, make sure to add the `redshift:CancelQuerySession` action to your AWS Identity and Access Management \(IAM\) policy\. This requirement applies whether you select the **Amazon Redshift Read Only** AWS\-managed policy or create a custom policy in IAM\. Users who have the **Amazon Redshift Full Access** policy already have the necessary permission to terminate queries and loads\. For more information about actions in IAM policies for Amazon Redshift, see [Managing Access to Resources](redshift-iam-access-control-overview.md#redshift-iam-accesscontrol-managingaccess)\.
+The ability to terminate queries and loads in the Amazon Redshift console requires specific permission\. If you want users to be able to terminate queries and loads, make sure to add the `redshift:CancelQuerySession` action to your AWS Identity and Access Management \(IAM\) policy\. This requirement applies whether you select the **Amazon Redshift Read Only** AWS\-managed policy or create a custom policy in IAM\. Users who have the **Amazon Redshift Full Access** policy already have the necessary permission to terminate queries and loads\. For more information about actions in IAM policies for Amazon Redshift, see [Managing access to resources](redshift-iam-access-control-overview.md#redshift-iam-accesscontrol-managingaccess)\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-## New Console<a name="cluster-load-metrics"></a>
+## New console<a name="cluster-load-metrics"></a>
 
 **To display cluster performance during load operations**
 
@@ -20,7 +20,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. In the **Queries and loads** section, choose **Loads** to view the load operations of a cluster\. If a load is running, you can end it by choosing **Terminate query**\.
 
-## Original Console<a name="cluster-load-metrics-originalconsole"></a>
+## Original console<a name="cluster-load-metrics-originalconsole"></a>
 
 **To view cluster metrics during load operations**
 
@@ -39,7 +39,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. In the new **Query** tab that is opened, you can view the details of the load operation\.
 
-   At this point, you can work with the **Query** tab as shown in [Viewing Query Performance Data](performance-metrics-queries.md)\. You can review the details of the query and see the values of cluster metrics during the load operation\.
+   At this point, you can work with the **Query** tab as shown in [Viewing query performance data](performance-metrics-queries.md)\. You can review the details of the query and see the values of cluster metrics during the load operation\.
 
 **To terminate a running load**
 

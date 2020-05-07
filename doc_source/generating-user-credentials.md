@@ -1,12 +1,12 @@
-# Using IAM Authentication to Generate Database User Credentials<a name="generating-user-credentials"></a>
+# Using IAM authentication to generate database user credentials<a name="generating-user-credentials"></a>
 
 You can generate temporary database credentials based on permissions granted through an AWS Identity and Access Management \(IAM\) permissions policy to manage the access that your users have to your Amazon Redshift database\. 
 
-Commonly, Amazon Redshift database users log on to the database by providing a database user name and password\. As an alternative to maintaining user names and passwords in your Amazon Redshift database, you can configure your system to permit users to create user credentials and log on to the database based on their IAM credentials\. You can also configure your system to let users sign on using federated single sign\-on \(SSO\) through a SAML 2\.0\-compliant identity provider\. 
+Commonly, Amazon Redshift database users log in to the database by providing a database user name and password\. However, you don't have to maintain user names and passwords in your Amazon Redshift database\. As an alternative, you can configure your system to permit users to create user credentials and log in to the database based on their IAM credentials\.
+
+For more information, see [Identity Providers and Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html) in the *IAM User Guide*\.
 
 **Topics**
 + [Overview](generating-iam-credentials-overview.md)
-+ [Creating Temporary IAM User Credentials](generating-iam-credentials-steps.md)
-+ [Options for Providing IAM Credentials](options-for-providing-iam-credentials.md)
-+ [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)
-+ [Generating IAM Database Credentials Using the Amazon Redshift CLI or API](generating-iam-credentials-cli-api.md)
++ [Creating temporary IAM user credentials](generating-iam-credentials-steps.md)
++ [Options for providing IAM credentials](options-for-providing-iam-credentials.md)

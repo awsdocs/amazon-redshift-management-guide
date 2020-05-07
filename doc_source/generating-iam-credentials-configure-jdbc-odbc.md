@@ -1,34 +1,34 @@
-# Step 5: Configure a JDBC or ODBC Connection to Use IAM Credentials<a name="generating-iam-credentials-configure-jdbc-odbc"></a>
+# Step 5: Configure a JDBC or ODBC connection to use IAM credentials<a name="generating-iam-credentials-configure-jdbc-odbc"></a>
 
 You can configure your SQL client with an Amazon Redshift JDBC or ODBC driver\. This driver manages the process of creating database user credentials and establishing a connection between your SQL client and your Amazon Redshift database\. 
 
-If you use an identity provider for authentication, specify the name of an identity provider plugin\. The Amazon Redshift JDBC and ODBC drivers include plugins for the following SAML\-based credential providers: 
-+ AD FS
-+ PingFederate
+If you use an identity provider for authentication, specify the name of a credential provider plugin\. The Amazon Redshift JDBC and ODBC drivers include plugins for the following SAML\-based identity providers: 
++ Active Directory Federation Services \(AD FS\) 
++ PingOne
 + Okta
 + Microsoft Azure AD
 
-  For the steps to set up Microsoft Azure AD as an identity provider, see [Setting Up JDBC or ODBC Single Sign\-on Authentication with Microsoft Azure AD](options-for-providing-iam-credentials.md#setup-azure-ad-identity-provider)\. <a name="to-configure-a-jdbc-connection"></a>
+  For the steps to set up Microsoft Azure AD as an identity provider, see [Setting up JDBC or ODBC single sign\-on authentication with Microsoft Azure AD](options-for-providing-iam-credentials.md#setup-azure-ad-identity-provider)\. <a name="to-configure-a-jdbc-connection"></a>
 
 **To configure a JDBC connection to use IAM credentials**
 
-1. Download the latest Amazon Redshift JDBC driver from the [Configuring a JDBC Connection](configure-jdbc-connection.md) page\.
+1. Download the latest Amazon Redshift JDBC driver from the [Configuring a JDBC connection](configure-jdbc-connection.md) page\.
 **Important**  
 The Amazon Redshift JDBC driver must be version 1\.2\.7\.1003 or later\.
 
-1. Create a JDBC URL with the IAM credentials options in one of the following formats\. To use IAM authentication, add iam: to the Amazon Redshift JDBC URL following jdbc:redshift: as shown in the following example\.
+1. Create a JDBC URL with the IAM credentials options in one of the following formats\. To use IAM authentication, add `iam:` to the Amazon Redshift JDBC URL following `jdbc:redshift:` as shown in the following example\.
 
    ```
    jdbc:redshift:iam://
    ```
 
-   Replace *cluster\-name*, *region*, and *dbname* with values for your cluster name, region, and database name\. The JDBC driver uses your IAM account information and cluster name to retrieve the cluster ID, region, and port number\. To do so, your IAM user or role must have permission to call the `redshift:DescribeClusters` operation with the specified cluster\.
+   Replace *`region`*, *`account-id`*, and *`cluster-name`* with the values for your AWS Region, account, and cluster\. The JDBC driver uses your IAM account information and cluster name to retrieve the cluster ID, AWS Region, and port number\. To do so, your IAM user or role must have permission to call the `redshift:DescribeClusters` operation with the specified cluster\.
 
    ```
    jdbc:redshift:iam://cluster-name:region/dbname
    ```
 
-   If your IAM user or role doesn't have permission to call the `redshift:DescribeClusters` operation, include the cluster ID, region, and port as shown in the following example\. The port number is optional\. The default port is 5439\.
+   If your IAM user or role doesn't have permission to call the `redshift:DescribeClusters` operation, include the cluster ID, AWS Region, and port as shown in the following example\. The port number is optional\. The default port is 5439\.
 
    ```
    jdbc:redshift:iam://examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com:5439/dev
@@ -58,17 +58,17 @@ The Amazon Redshift JDBC driver must be version 1\.2\.7\.1003 or later\.
 
 **To configure an ODBC connection to use IAM credentials**
 
-In the following procedure, you can find steps only to configure IAM authentication\. For steps to use standard authentication, using a database user name and password, see [Configuring an ODBC Connection](configure-odbc-connection.md)\.
+In the following procedure, you can find steps only to configure IAM authentication\. For steps to use standard authentication, using a database user name and password, see [Configuring an ODBC connection](configure-odbc-connection.md)\.
 
-1. Install and configure the latest Amazon Redshift OBDC driver for your operating system\. For more information, see [Configuring an ODBC Connection](configure-odbc-connection.md) page\.
+1. Install and configure the latest Amazon Redshift OBDC driver for your operating system\. For more information, see [Configuring an ODBC connection](configure-odbc-connection.md) page\.
 **Important**  
 The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
 
 1. Follow the steps for your operating system to configure connection settings\.
 
    For more information, see one of the following:
-   + [Install and Configure the Amazon Redshift ODBC Driver on Microsoft Windows](configure-odbc-connection.md#install-odbc-driver-windows)
-   + [Configure the ODBC Driver on Linux and macOS X Operating Systems](configure-odbc-connection.md#odbc-driver-configure-linux-mac) 
+   + [Install and configure the Amazon Redshift ODBC driver on Microsoft Windows](configure-odbc-connection.md#install-odbc-driver-windows)
+   + [Configure the ODBC driver on Linux and macOS X operating systems](configure-odbc-connection.md#odbc-driver-configure-linux-mac) 
 
 1. On Microsoft Windows operating systems, access the Amazon Redshift ODBC Driver DSN Setup window\.
 
@@ -98,7 +98,7 @@ Enter the following information:
       + **DbGroups**
 
         For more information, see [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)\.  
-AWS IAM Credentials  
+IAM Credentials  
 Enter the following information:   
       + **ClusterID** 
       + **Region** 
@@ -125,7 +125,7 @@ Provide IdP details:
         The port used by identity provider\. The default is 443\. 
       + **Preferred Role** 
 
-        An Amazon Resource Name \(ARN\) for the IAM role from the AttributeValue elements for the Role attribute in the SAML assertion\. Work with your IdP administrator to find the appropriate value for the preferred role\. For more information, see [Configure SAML Assertions for Your IdP](configuring-saml-assertions.md)\.
+        An Amazon Resource Name \(ARN\) for the IAM role from the multi\-valued `AttributeValue` elements for the `Role` attribute in the SAML assertion\. To find the appropriate value for the preferred role, work with your IdP administrator\. For more information, see [Configure SAML assertions for your IdP](configuring-saml-assertions.md)\.
 \(Optional\) Provide details for options that the ODBC driver uses to call the `GetClusterCredentials` API operation:   
       + **DbUser** 
       + **User AutoCreate** 
@@ -142,7 +142,7 @@ Provide IdP details:
         The port used by identity provider\. The default is 443\. 
       + **Preferred Role** 
 
-        An Amazon Resource Name \(ARN\) for the IAM role from the AttributeValue elements for the Role attribute in the SAML assertion\. Work with your IdP administrator to find the appropriate value for the preferred role\. For more information, see [Configure SAML Assertions for Your IdP](configuring-saml-assertions.md)\.
+        An Amazon Resource Name \(ARN\) for the IAM role from the multi\-valued `AttributeValue` elements for the `Role` attribute in the SAML assertion\. To find the appropriate value for the preferred role, work with your IdP administrator\. For more information, see [Configure SAML assertions for your IdP](configuring-saml-assertions.md)\.
 \(Optional\) Provide details for options that the ODBC driver uses to call the `GetClusterCredentials` API operation:   
       + **DbUser** 
       + **User AutoCreate** 
@@ -159,7 +159,7 @@ Provide IdP details:
         This value is not used by Okta\. 
       + **Preferred Role** 
 
-        An Amazon Resource Name \(ARN\) for the IAM role from the AttributeValue elements for the Role attribute in the SAML assertion\. Work with your IdP administrator to find the appropriate value for the preferred role\. For more information, see [Configure SAML Assertions for Your IdP](configuring-saml-assertions.md)\.
+        An Amazon Resource Name \(ARN\) for the IAM role from the `AttributeValue` elements for the `Role` attribute in the SAML assertion\. To find the appropriate value for the preferred role, work with your IdP administrator\. For more information, see [Configure SAML assertions for your IdP](configuring-saml-assertions.md)\.
       + **Okta App ID** 
 
         An ID for an Okta application\. The value for App ID follows "amazon\_aws" in the Okta application embed link\. Work with your IdP administrator to get this value\. 
@@ -170,18 +170,18 @@ Provide IdP details:
 For more information, see [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)\.   
 Identity Provider: Azure AD  
 For **User** and **Password**, enter your IdP user name and password\.  
-For **Cluster ID** and ** Region**, enter the cluster ID and region of your Amazon Redshift cluster\.   
+For **Cluster ID** and ** Region**, enter the cluster ID and AWS Region of your Amazon Redshift cluster\.   
 For **Database**, enter the database that you created for your Amazon Redshift cluster\.  
 Provide IdP details:  
       + **IdP Tenant** 
 
-        The tenant used for Microsoft Azure AD\.
+        The tenant used for Azure AD\.
       + **Azure Client Secret**
 
-        The client secret of the Amazon Redshift enterprise app in Microsoft Azure\. 
+        The client secret of the Amazon Redshift enterprise app in Azure\. 
       + **Azure Client ID** 
 
-        The client ID \(application ID\) of the Amazon Redshift enterprise app in Microsoft Azure\.
+        The client ID \(application ID\) of the Amazon Redshift enterprise app in Azure\.
 \(Optional\) Provide details for options that the ODBC driver uses to call the `GetClusterCredentials` API operation:   
       + **DbUser** 
       + **User AutoCreate** 

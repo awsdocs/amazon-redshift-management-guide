@@ -1,11 +1,11 @@
-# Viewing Query Performance Data<a name="performance-metrics-queries"></a>
+# Viewing query performance data<a name="performance-metrics-queries"></a>
 
  The Amazon Redshift console provides information about performance of queries that run in the database\. You can use this information to identify and troubleshoot queries that take a long time to process and that create bottlenecks preventing other queries from processing efficiently\. You can use the queries information in the Amazon Redshift console to monitor query processing\. 
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-## New Console<a name="metric-queries-overview"></a>
+## New console<a name="metric-queries-overview"></a>
 
 **To display query performance data**
 
@@ -17,7 +17,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 **Important**  
 The **Queries and loads** list displays the longest running queries in the system, up to 100 queries\.
 
-## Original Console<a name="metric-queries-overview-originalconsole"></a>
+## Original console<a name="metric-queries-overview-originalconsole"></a>
 
 **To view query performance data**
 
@@ -33,17 +33,17 @@ The **Queries and loads** list displays the longest running queries in the syste
 **Important**  
 The **Queries** tab displays the longest running queries in the system; up to 100 queries\.
 
-## Ending a Running Query<a name="terminate-queries"></a>
+## Ending a running query<a name="terminate-queries"></a>
 
 You can also use the **Queries** page to end a query that is currently in progress\.
 
 **Note**  
-The ability to terminate queries and loads in the Amazon Redshift console requires specific permission\. If you want users to be able to terminate queries and loads, make sure to add the `redshift:CancelQuerySession` action to your AWS Identity and Access Management \(IAM\) policy\. This requirement applies whether you select the **Amazon Redshift Read Only** AWS\-managed policy or create a custom policy in IAM\. Users who have the **Amazon Redshift Full Access** policy already have the necessary permission to terminate queries and loads\. For more information about actions in IAM policies for Amazon Redshift, see [Managing Access to Resources](redshift-iam-access-control-overview.md#redshift-iam-accesscontrol-managingaccess)\.
+The ability to terminate queries and loads in the Amazon Redshift console requires specific permission\. If you want users to be able to terminate queries and loads, make sure to add the `redshift:CancelQuerySession` action to your AWS Identity and Access Management \(IAM\) policy\. This requirement applies whether you select the **Amazon Redshift Read Only** AWS\-managed policy or create a custom policy in IAM\. Users who have the **Amazon Redshift Full Access** policy already have the necessary permission to terminate queries and loads\. For more information about actions in IAM policies for Amazon Redshift, see [Managing access to resources](redshift-iam-access-control-overview.md#redshift-iam-accesscontrol-managingaccess)\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-### New Console<a name="metric-queries-terminate"></a>
+### New console<a name="metric-queries-terminate"></a>
 
 **To end a running query**
 
@@ -53,9 +53,9 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Choose the running query that you want to end in the list, and then choose **Terminate query**\. 
 
-### Original Console<a name="metric-queries-terminate-originalconsole"></a>
+### Original console<a name="metric-queries-terminate-originalconsole"></a>
 
-**To terminate a running query**
+**To end a running query**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 

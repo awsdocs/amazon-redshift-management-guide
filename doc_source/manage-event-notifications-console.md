@@ -1,18 +1,18 @@
-# Managing Event Notifications Using the Amazon Redshift Console<a name="manage-event-notifications-console"></a>
+# Managing event notifications using the Amazon Redshift console<a name="manage-event-notifications-console"></a>
 
 **Topics**
-+ [Creating an Event Notification Subscription](#event-subscribe)
++ [Creating an event notification subscription](#event-subscribe)
 
-You can create an Amazon Simple Notification Service \(Amazon SNS\) event notification subscription to send notifications when an event occurs for a given Amazon Redshift cluster, snapshot, security group, or parameter group\. These notifications are sent to an SNS topic, which in turn transmits messages to any SNS consumers subscribed to the topic\. The SNS messages to the consumers can be in any notification form supported by Amazon SNS for an AWS region, such as an email, a text message, or a call to an HTTP endpoint\. For example, all regions support email notifications, but SMS notifications can only be created in the US East \(N\. Virginia\) Region\. For more information, see [Amazon Redshift Event Notifications](working-with-event-notifications.md)\.
+You can create an Amazon Simple Notification Service \(Amazon SNS\) event notification subscription to send notifications when an event occurs for a given Amazon Redshift cluster, snapshot, security group, or parameter group\. These notifications are sent to an SNS topic, which in turn transmits messages to any SNS consumers subscribed to the topic\. The SNS messages to the consumers can be in any notification form supported by Amazon SNS for an AWS Region, such as an email, a text message, or a call to an HTTP endpoint\. For example, all regions support email notifications, but SMS notifications can only be created in the US East \(N\. Virginia\) Region\. For more information, see [Amazon Redshift event notifications](working-with-event-notifications.md)\.
 
 This section describes how to manage Amazon Redshift event notification subscriptions from the AWS Management Console\.
 
-## Creating an Event Notification Subscription<a name="event-subscribe"></a>
+## Creating an event notification subscription<a name="event-subscribe"></a>
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-### New Console<a name="event-subscription-create"></a>
+### New console<a name="event-subscription-create"></a>
 
 **To create an event subscription**
 
@@ -20,13 +20,13 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. On the navigation menu, choose **EVENTS**\. 
 
-1. Choose the **Event subsription** tab, then choose **Create event subscriptions**\. 
+1. Choose the **Event subscription** tab, then choose **Create event subscriptions**\. 
 
 1. Enter the properties of your event subscription, such as name, source type, category, and severity\. You can also enable Amazon SNS topics to get notified of events\. 
 
 1. Choose **Create event subscriptions** to create your subscription\. 
 
-### Original Console<a name="event-subscription-create-originalconsole"></a>
+### Original console<a name="event-subscription-create-originalconsole"></a>
 
 **To create an Amazon Redshift event notification subscription**
 
@@ -90,9 +90,9 @@ The name of the **Resource** box changes to match the value specified in **Sourc
 
 1. To create the subscription, choose **Create**\. To delete the definition without creating a subscription, choose **Cancel**\. To return to the subscription settings, choose **Previous**\.
 
-## \(Original console\) Managing Event Subscriptions<a name="event-subscription-manage-originalconsole"></a>
+## \(Original console\) Managing event subscriptions<a name="event-subscription-manage-originalconsole"></a>
 
-### Listing Your Amazon Redshift Event Notification Subscriptions<a name="list-event-notifications"></a>
+### Listing your Amazon Redshift event notification subscriptions<a name="list-event-notifications"></a>
 
 You can list your current Amazon Redshift event notification subscriptions\.
 
@@ -102,7 +102,7 @@ You can list your current Amazon Redshift event notification subscriptions\.
 
 1.  In the navigation pane, choose **Events**\. The **Subscriptions** tab shows all your event notification subscriptions\.
 
-### Modifying an Amazon Redshift Event Notification Subscription<a name="modify-event-notifications"></a>
+### Modifying an Amazon Redshift event notification subscription<a name="modify-event-notifications"></a>
 
 After you have created a subscription, you can change the subscription name, source identifier, categories, or topic ARN\.
 
@@ -146,24 +146,24 @@ After you have created a subscription, you can change the subscription name, sou
 
 1. To save your changes, choose **Modify**\. To delete your changes without modifying the subscription, choose **Cancel**\. To return to the subscription settings, choose **Previous**\.
 
-### Adding a Source Identifier to an Amazon Redshift Event Notification Subscription<a name="addsource-event-notifications"></a>
+### Adding a source identifier to an Amazon Redshift event notification subscription<a name="addsource-event-notifications"></a>
 
 You can add a source identifier \(the Amazon Redshift source generating the event\) to an existing subscription\.
 
 **To add a source identifier to an Amazon Redshift event notification subscription**
 
-1. You can easily add or remove source identifiers using the Amazon Redshift console by selecting or deselecting them when modifying a subscription\. For more information, see [Modifying an Amazon Redshift Event Notification Subscription](#modify-event-notifications)\.
+1. You can easily add or remove source identifiers using the Amazon Redshift console by selecting or deselecting them when modifying a subscription\. For more information, see [Modifying an Amazon Redshift event notification subscription](#modify-event-notifications)\.
 
 1. To save your changes, choose **Modify**\. To delete your changes without modifying the subscription, choose **Cancel**\. To return to the subscription settings, choose **Previous**\.
 
-### Removing a Source Identifier from an Amazon Redshift Event Notification Subscription<a name="removesource-event-notifications"></a>
+### Removing a source identifier from an Amazon Redshift event notification subscription<a name="removesource-event-notifications"></a>
 
 You can remove a source identifier \(the Amazon Redshift source generating the event\) from a subscription if you no longer want to be notified of events for that source\. 
 
 **To remove a source identifier from an Amazon Redshift event notification subscription**
-+ You can easily add or remove source identifiers using the Amazon Redshift console by selecting or deselecting them when modifying a subscription\. For more information, see [Modifying an Amazon Redshift Event Notification Subscription](#modify-event-notifications)\.
++ You can easily add or remove source identifiers using the Amazon Redshift console by selecting or deselecting them when modifying a subscription\. For more information, see [Modifying an Amazon Redshift event notification subscription](#modify-event-notifications)\.
 
-### Deleting an Amazon Redshift Event Notification Subscription<a name="delete-event-notifications"></a>
+### Deleting an Amazon Redshift event notification subscription<a name="delete-event-notifications"></a>
 
 You can delete a subscription when you no longer need it\. All subscribers to the topic will no longer receive event notifications specified by the subscription\.
 

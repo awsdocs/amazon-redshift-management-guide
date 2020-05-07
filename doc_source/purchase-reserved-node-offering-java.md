@@ -1,4 +1,4 @@
-# Purchasing a Reserved Node Offering Using the AWS SDK for Java<a name="purchase-reserved-node-offering-java"></a>
+# Purchasing a reserved node offering using the AWS SDK for Java<a name="purchase-reserved-node-offering-java"></a>
 
 The following example demonstrates how to use the AWS SDK for Java to do the following:
 + List existing reserved nodes\.
@@ -10,7 +10,7 @@ This example, first selects all the reserved node offerings that match a specifi
 **Important**  
 If you run this example and accept the offer to purchase a reserved node offering, you will be charged for the offering\.
 
-For step\-by\-step instructions to run this example, see [Running Java Examples for Amazon Redshift Using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. To get information about a node type and fixed price other than those listed, update the code and provide that node type and fixed price\.
+For step\-by\-step instructions to run this example, see [Running Java examples for Amazon Redshift using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. To get information about a node type and fixed price other than those listed, update the code and provide that node type and fixed price\.
 
 **Example**  
 

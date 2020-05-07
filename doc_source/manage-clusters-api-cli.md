@@ -1,4 +1,4 @@
-# Managing Clusters Using the Amazon Redshift CLI and API<a name="manage-clusters-api-cli"></a>
+# Managing clusters using the Amazon Redshift CLI and API<a name="manage-clusters-api-cli"></a>
 
 You can use the following Amazon Redshift CLI operations to manage clusters\.
 + [create\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-cluster.html)

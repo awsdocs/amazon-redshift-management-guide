@@ -1,8 +1,8 @@
-# Viewing Events Using the AWS SDK for Java<a name="managing-events-java"></a>
+# Viewing events using the AWS SDK for Java<a name="managing-events-java"></a>
 
 The following example lists the events for a specified cluster and specified event source type\. The example shows how to use pagination\. 
 
-For step\-by\-step instructions to run the following example, see [Running Java Examples for Amazon Redshift Using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and specify a cluster identifier and event source type\.
+For step\-by\-step instructions to run the following example, see [Running Java examples for Amazon Redshift using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and specify a cluster identifier and event source type\.
 
 **Example**  
 

@@ -1,4 +1,4 @@
-# Analyzing Workload Performance<a name="analyze-workload-performance"></a>
+# Analyzing workload performance<a name="analyze-workload-performance"></a>
 
 You can get a detailed view of your workload's performance by looking at the Workload Execution Breakdown chart in the console\. We build the chart with data provided by the CloudWatch QueryRuntimeBreakdown metric\. With this chart, you can see how much time your queries spend in the various processing stages, such as waiting and planning\. 
 
@@ -19,9 +19,9 @@ The following list of metrics describes the various processing stages:
 For example, the following graph in the Amazon Redshift console shows the amount of time that queries have spent in the plan, wait, read, and write stages\. You can combine the findings from this graph with other metrics for further analysis\. In some cases, your graph might show that queries with a short duration \(as measured by the `QueryDuration` metric\) are spending a long time in the wait stage\. In these cases, you can increase the WLM concurrency rate for a particular queue to increase throughput\. 
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-## New Console<a name="cluster-workload-breakdown-chart"></a>
+## New console<a name="cluster-workload-breakdown-chart"></a>
 
 Following, you can see a screenshot of the workload breakdown chart\.
 
@@ -31,7 +31,7 @@ The y\-axis in the diagram is cumulative for all sessions running during the sel
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/querybreakdownschematic.png)
 
-## Original Console<a name="cluster-workload-breakdown-chart-originalconsole"></a>
+## Original console<a name="cluster-workload-breakdown-chart-originalconsole"></a>
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/querybreakdownsummary.png)
 
@@ -39,7 +39,7 @@ The y\-axis in the diagram is cumulative for all sessions running during the sel
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/querybreakdownschematic.png)
 
-### Example Analysis with the Workload Execution Breakdown Chart<a name="workload-execution-breakdown-example"></a>
+### Example analysis with the Workload Execution Breakdown chart<a name="workload-execution-breakdown-example"></a>
 
 The following diagrams illustrate how you can use the Workload Execution Breakdown chart to optimize your cluster's performance\. In the first example chart, you can see that a majority of the query time was during the `QueryWaiting` stage\. This effect was due to a low WLM concurrency value\. 
 
@@ -52,9 +52,9 @@ The following chart illustrates the query runtime breakdown after adjusting the 
 These charts demonstrate how changing your cluster's settings affect the amount of time that queries spend in the various stages\. In the case preceding, queries initially spent a relatively long time waiting because the concurrency setting was low\. After increasing concurrency, more queries are processed in parallel, thus decreasing the wait time and increasing query throughput\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-## New Console<a name="cluster-workload-breakdown"></a>
+## New console<a name="cluster-workload-breakdown"></a>
 
 **To display the cluster workload breakdown chart**
 
@@ -72,13 +72,13 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
    + **Read** time 
    + **Write** time 
 
-## Original Console<a name="cluster-workload-breakdown-originalconsole"></a>
+## Original console<a name="cluster-workload-breakdown-originalconsole"></a>
 
-### Viewing the Workload Breakdown Chart<a name="access-workload-breakdown-chart"></a>
+### Viewing the workload breakdown chart<a name="access-workload-breakdown-chart"></a>
 
 You can view the workload breakdown chart in the console\.<a name="view-workload-breakdown-chart"></a>
 
-**To view the Workload Execution Breakdown Chart**
+**To view the workload execution breakdown chart**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 

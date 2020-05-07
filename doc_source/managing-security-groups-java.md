@@ -1,4 +1,4 @@
-# Managing Cluster Security Groups Using the AWS SDK for Java<a name="managing-security-groups-java"></a>
+# Managing cluster security groups using the AWS SDK for Java<a name="managing-security-groups-java"></a>
 
 The following example demonstrates common operations on cluster security groups, including:
 + Creating a new cluster security group\.
@@ -7,7 +7,7 @@ The following example demonstrates common operations on cluster security groups,
 
 By default, when a new cluster security group is created, it has no ingress rules\. This example modifies a new cluster security group by adding two ingress rules\. One ingress rule is added by specifying a CIDR/IP range; the other is added by specifying an owner ID and Amazon EC2 security group combination\.
 
-For step\-by\-step instructions to run the following example, see [Running Java Examples for Amazon Redshift Using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and provide a cluster identifier and AWS account number\.
+For step\-by\-step instructions to run the following example, see [Running Java examples for Amazon Redshift using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and provide a cluster identifier and AWS account number\.
 
 **Example**  
 

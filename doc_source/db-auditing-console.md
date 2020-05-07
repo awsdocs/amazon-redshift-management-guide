@@ -1,13 +1,13 @@
-# Configuring Auditing Using the Console<a name="db-auditing-console"></a>
+# Configuring auditing using the console<a name="db-auditing-console"></a>
 
 You can configure Amazon Redshift to create audit log files and store them in S3\.
 
-## Enabling Audit Logging Using the Console<a name="enable-auditing-logging-task"></a>
+## Enabling audit logging using the console<a name="enable-auditing-logging-task"></a>
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-### New Console<a name="cluster-audit-logging"></a>
+### New console<a name="cluster-audit-logging"></a>
 
 **To enable audit logging for a cluster**
 
@@ -23,7 +23,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Choose **Confirm** to save your choices\. 
 
-### Original Console<a name="cluster-audit-logging-originalconsole"></a>
+### Original console<a name="cluster-audit-logging-originalconsole"></a>
 
 **To enable audit logging for a cluster**
 
@@ -55,9 +55,9 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cluster-audit-logging-S3.png)
 
-## Modifying the Bucket for Audit Logging<a name="modify-auditing-logging-task"></a>
+## Modifying the bucket for audit logging<a name="modify-auditing-logging-task"></a>
 
-### \(Original Console\) Modifying the Amazon S3 Bucket for Audit Logging<a name="cluster-audit-logging-modify-originalconsole"></a>
+### \(Original console\) Modifying the Amazon S3 bucket for audit logging<a name="cluster-audit-logging-modify-originalconsole"></a>
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
@@ -73,9 +73,9 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Choose **Save**\.
 
-## Disabling Audit Logging Using the Console<a name="disable-auditing-logging-task"></a>
+## Disabling audit logging using the Console<a name="disable-auditing-logging-task"></a>
 
-### \(Original Console\) Disabling Audit Logging<a name="cluster-audit-logging-disable-originalconsole"></a>
+### \(Original console\) Disabling audit logging<a name="cluster-audit-logging-disable-originalconsole"></a>
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 

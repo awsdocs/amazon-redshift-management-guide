@@ -1,26 +1,26 @@
-# Configuring Connections in Amazon Redshift<a name="configuring-connections"></a>
+# Configuring connections in Amazon Redshift<a name="configuring-connections"></a>
 
 In the following section, you can find how to configure JDBC and ODBC connections to connect to your cluster from SQL client tools\. This section describes how to set up JDBC and ODBC connections\. It also describes how to use Secure Sockets Layer \(SSL\) and server certificates to encrypt communication between the client and server\. 
 
 **Topics**
-+ [JDBC and ODBC Drivers for Amazon Redshift](#connecting-drivers)
-+ [Configuring a JDBC Connection](configure-jdbc-connection.md)
-+ [Configuring an ODBC Connection](configure-odbc-connection.md)
++ [JDBC and ODBC drivers for Amazon Redshift](#connecting-drivers)
++ [Configuring a JDBC connection](configure-jdbc-connection.md)
++ [Configuring an ODBC connection](configure-odbc-connection.md)
 
-## JDBC and ODBC Drivers for Amazon Redshift<a name="connecting-drivers"></a>
+## JDBC and ODBC drivers for Amazon Redshift<a name="connecting-drivers"></a>
 
-To work with data in your cluster, you need JDBC or ODBC drivers for connectivity from your client computer or instance\. Code your applications to use JDBC or ODBC data access APIs, and use SQL client tools that support either JDBC or ODBC\.
+To work with data in your cluster, you need JDBC or ODBC drivers for connectivity from your client computer or instance\. Code your applications to use JDBC or ODBC data access API operations, and use SQL client tools that support either JDBC or ODBC\.
 
-Amazon Redshift offers JDBC and ODBC drivers for download\. Previously, Amazon Redshift recommended PostgreSQL drivers for JDBC and ODBC\. If you currently use those drivers, we recommend moving to the new Amazon Redshift–specific drivers\. For more information about how to download the JDBC and ODBC drivers and configure connections to your cluster, see [Configuring a JDBC Connection](configure-jdbc-connection.md) and [Configuring an ODBC Connection](configure-odbc-connection.md)\. 
+Amazon Redshift offers JDBC and ODBC drivers for download\. Previously, Amazon Redshift recommended PostgreSQL drivers for JDBC and ODBC\. If you currently use those drivers, we recommend moving to the new Amazon Redshift–specific drivers\. For more information about how to download the JDBC and ODBC drivers and configure connections to your cluster, see [Configuring a JDBC connection](configure-jdbc-connection.md) and [Configuring an ODBC connection](configure-odbc-connection.md)\. 
 
-### Finding Your Cluster Connection String<a name="connecting-connection-string"></a>
+### Finding your cluster connection string<a name="connecting-connection-string"></a>
 
 To connect to your cluster with your SQL client tool, you need the cluster connection string\. You can find the cluster connection string in the Amazon Redshift console, on a cluster's details page\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-#### New Console<a name="connect-drivers-url"></a>
+#### New console<a name="connect-drivers-url"></a>
 
 **To find the connection string for a cluster**
 
@@ -32,7 +32,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
 1. Choose **Copy** to copy the connection string needed for your driver\. 
 
-#### Original Console<a name="connect-drivers-url-originalconsole"></a>
+#### Original console<a name="connect-drivers-url-originalconsole"></a>
 
 **To get your cluster connection string**
 

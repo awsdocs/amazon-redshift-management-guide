@@ -1,4 +1,4 @@
-# Managing Snapshots Using the Amazon Redshift CLI and API<a name="manage-snapshots-api-cli"></a>
+# Managing snapshots using the Amazon Redshift CLI and API<a name="manage-snapshots-api-cli"></a>
 
 You can use the following Amazon Redshift CLI operations to manage snapshots\.
 + [authorize\-snapshot\-access](https://docs.aws.amazon.com/cli/latest/reference/redshift/authorize-snapshot-access.html)
@@ -24,4 +24,4 @@ You can use the following Amazon Redshift CLI operations to manage snapshots\.
 + [RestoreFromClusterSnapshot](https://docs.aws.amazon.com/redshift/latest/APIReference/API_RestoreFromClusterSnapshot.html)
 + [RevokeSnapshotAccess](https://docs.aws.amazon.com/redshift/latest/APIReference/API_RevokeSnapshotAccess.html)
 
-For more information about Amazon Redshift snapshots, see [Amazon Redshift Snapshots](working-with-snapshots.md)\.
+For more information about Amazon Redshift snapshots, see [Amazon Redshift snapshots](working-with-snapshots.md)\.

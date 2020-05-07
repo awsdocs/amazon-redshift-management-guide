@@ -1,4 +1,4 @@
-# Manage Cluster Security Groups Using the Amazon Redshift CLI and API<a name="manage-security-group-api-cli"></a>
+# Manage cluster security groups using the Amazon Redshift CLI and API<a name="manage-security-group-api-cli"></a>
 
 You can use the following Amazon Redshift CLI operations to manage cluster security groups\. 
 + [authorize\-cluster\-security\-group\-ingress](https://docs.aws.amazon.com/cli/latest/reference/redshift/authorize-cluster-security-group-ingress.html)

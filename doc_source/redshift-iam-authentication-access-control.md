@@ -1,8 +1,8 @@
-# Identity and Access Management in Amazon Redshift<a name="redshift-iam-authentication-access-control"></a>
+# Identity and access management in Amazon Redshift<a name="redshift-iam-authentication-access-control"></a>
 
 Access to Amazon Redshift requires credentials that AWS can use to authenticate your requests\. Those credentials must have permissions to access AWS resources, such as an Amazon Redshift cluster\. The following sections provide details on how you can use [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) and Amazon Redshift to help secure your resources by controlling who can access them:
 + [Authentication](#authentication)
-+ [Access Control](#redshift-iam-accesscontrol)
++ [Access control](#redshift-iam-accesscontrol)
 
 ## Authentication<a name="authentication"></a>
 
@@ -16,10 +16,10 @@ You can access AWS as any of the following types of identities:
   + **AWS service access** –  A service role is an IAM role that a service assumes to perform actions in your account on your behalf\. When you set up some AWS service environments, you must define a role for the service to assume\. This service role must include all the permissions that are required for the service to access the AWS resources that it needs\. Service roles vary from service to service, but many allow you to choose your permissions as long as you meet the documented requirements for that service\. Service roles provide access only within your account and cannot be used to grant access to services in other accounts\. You can create, modify, and delete a service role from within IAM\. For example, you can create a role that allows Amazon Redshift to access an Amazon S3 bucket on your behalf and then load data from that bucket into an Amazon Redshift cluster\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html) in the *IAM User Guide*\. 
   + **Applications running on Amazon EC2** –  You can use an IAM role to manage temporary credentials for applications that are running on an EC2 instance and making AWS CLI or AWS API requests\. This is preferable to storing access keys within the EC2 instance\. To assign an AWS role to an EC2 instance and make it available to all of its applications, you create an instance profile that is attached to the instance\. An instance profile contains the role and enables programs that are running on the EC2 instance to get temporary credentials\. For more information, see [Using an IAM Role to Grant Permissions to Applications Running on Amazon EC2 Instances](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html) in the *IAM User Guide*\. 
 
-## Access Control<a name="redshift-iam-accesscontrol"></a>
+## Access control<a name="redshift-iam-accesscontrol"></a>
 
 You can have valid credentials to authenticate your requests, but unless you have permissions you cannot create or access Amazon Redshift resources\. For example, you must have permissions to create an Amazon Redshift cluster, create a snapshot, add an event subscription, and so on\.
 
 The following sections describe how to manage permissions for Amazon Redshift\. We recommend that you read the overview first\.
-+ [Overview of Managing Access Permissions to Your Amazon Redshift Resources](redshift-iam-access-control-overview.md)
-+  [Using Identity\-Based Policies \(IAM Policies\) for Amazon Redshift](redshift-iam-access-control-identity-based.md) 
++ [Overview of managing access permissions to your Amazon Redshift resources](redshift-iam-access-control-overview.md)
++  [Using identity\-based policies \(IAM policies\) for Amazon Redshift](redshift-iam-access-control-identity-based.md) 

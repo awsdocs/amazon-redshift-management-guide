@@ -1,4 +1,4 @@
-# Managing Clusters Using the AWS SDK for Java<a name="managing-clusters-java"></a>
+# Managing clusters using the AWS SDK for Java<a name="managing-clusters-java"></a>
 
 The following Java code example demonstrates common cluster management operations including:
 + Creating a cluster\.
@@ -7,7 +7,7 @@ The following Java code example demonstrates common cluster management operation
 
 After you initiate the request for the cluster to be created, you must wait until the cluster is in the `available` state before you can modify it\. This example uses a loop to periodically check the status of the cluster using the `describeClusters` method\. When the cluster is available, the preferred maintenance window for the cluster is changed\.
 
-For step\-by\-step instructions to run the following example, see [Running Java Examples for Amazon Redshift Using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and specify a cluster identifier\.
+For step\-by\-step instructions to run the following example, see [Running Java examples for Amazon Redshift using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and specify a cluster identifier\.
 
 **Example**  
 

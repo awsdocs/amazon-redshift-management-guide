@@ -1,4 +1,4 @@
-# Cluster Version History<a name="rs-mgmt-cluster-version-notes"></a>
+# Cluster version history<a name="rs-mgmt-cluster-version-notes"></a>
 
 Amazon Redshift periodically releases new cluster versions that are used to update your cluster\. 
 

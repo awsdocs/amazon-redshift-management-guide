@@ -1,4 +1,4 @@
-# View Events Using the Amazon Redshift CLI and API<a name="view-events-api-cli"></a>
+# Viewing events using the Amazon Redshift CLI and API<a name="view-events-api-cli"></a>
 
 You can use the following Amazon Redshift CLI operation to manage events\.
 + [describe\-events](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-events.html)

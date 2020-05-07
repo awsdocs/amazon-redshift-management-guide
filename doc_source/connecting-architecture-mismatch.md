@@ -1,4 +1,4 @@
-# Client and Driver Are Incompatible<a name="connecting-architecture-mismatch"></a>
+# Client and driver are incompatible<a name="connecting-architecture-mismatch"></a>
 
  **Example error** 
 

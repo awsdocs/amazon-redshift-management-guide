@@ -1,18 +1,18 @@
-# Configuring Workload Management<a name="workload-mgmt-config"></a>
+# Configuring workload management<a name="workload-mgmt-config"></a>
 
 In Amazon Redshift, you use workload management \(WLM\) to define the number of query queues that are available, and how queries are routed to those queues for processing\. WLM is part of parameter group configuration\. A cluster uses the WLM configuration that is specified in its associated parameter group\. 
 
 When you create a parameter group, the default WLM configuration contains one queue that can run up to five queries concurrently\. You can add additional queues and configure WLM properties in each of them if you want more control over query processing\. Each queue that you add has the same default WLM configuration until you configure its properties\.
 
-When you add additional queues, the last queue in the configuration is the *default queue*\. Unless a query is routed to another queue based on criteria in the WLM configuration, it is processed by the default queue\. You can specify mode and concurrency level for the default queue, but you can't specify user groups or query groups for the default queue\.
+When you add additional queues, the last queue in the configuration is the *default queue*\. Unless a query is routed to another queue based on criteria in the WLM configuration, it is processed by the default queue\. You can specify mode and concurrency level \(query slots\) for the default queue, but you can't specify user groups or query groups for the default queue\.
 
  As with other parameters, you cannot modify the WLM configuration in the default parameter group\. Clusters associated with the default parameter group always use the default WLM configuration\. To modify the WLM configuration, create a new parameter group and then associate that parameter group with any clusters that require your custom WLM configuration\. 
 
-## WLM Dynamic and Static Properties<a name="wlm-dynamic-and-static-properties"></a>
+## WLM dynamic and static properties<a name="wlm-dynamic-and-static-properties"></a>
 
-The WLM configuration properties are either dynamic or static\. You can apply dynamic properties to the database without a cluster reboot, but static properties require a cluster reboot for changes to take effect\. For more information about static and dynamic properties, see [WLM Dynamic and Static Configuration Properties](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-dynamic-properties.html)\.
+The WLM configuration properties are either dynamic or static\. You can apply dynamic properties to the database without a cluster reboot, but static properties require a cluster reboot for changes to take effect\. For more information about static and dynamic properties, see [WLM dynamic and static configuration properties](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-dynamic-properties.html)\.
 
-## Properties for the wlm\_json\_configuration Parameter<a name="wlm-json-config-properties"></a>
+## Properties for the wlm\_json\_configuration parameter<a name="wlm-json-config-properties"></a>
 
 You can configure WLM by using the Amazon Redshift console, the AWS CLI, the Amazon Redshift API, or one of the AWS SDKs\. WLM configuration uses several properties to define queue behavior, such as memory allocation across queues, the number of queries that can run concurrently in a queue, and so on\.
 
@@ -24,7 +24,7 @@ The following table summarizes whether a property is applicable to automatic WLM
 
 ****  
 
-| WLM Property | Automatic WLM | Manual WLM | 
+| WLM property | Automatic WLM | Manual WLM | 
 | --- | --- | --- | 
 | Auto WLM | Yes | Yes | 
 | Enable short query acceleration | Yes | Yes | 
@@ -74,7 +74,7 @@ To enable concurrency scaling on a queue, set **Concurrency Scaling mode** to `a
 JSON property: `concurrency_scaling`
 
 **Concurrency**  
-The number of queries that can run concurrently in a queue\. This property only applies to manual WLM\. If concurrency scaling is enabled, eligible queries go to a scaling cluster when a queue reaches the concurrency level\. If concurrency scaling isn't enabled, queries wait in the queue until a slot becomes available\. The range is between 1 and 50\.  
+The number of queries that can run concurrently in a manual WLM queue\. This property only applies to manual WLM\. If concurrency scaling is enabled, eligible queries go to a scaling cluster when a queue reaches the concurrency level \(query slots\)\. If concurrency scaling isn't enabled, queries wait in the queue until a slot becomes available\. The range is between 1 and 50\.  
 JSON property: `query_concurrency`
 
 **User Groups**  
@@ -94,8 +94,8 @@ A Boolean value that indicates whether to enable wildcards for query groups\. If
 JSON property: `query_group_wild_card`
 
 **Timeout \(ms\)**  
-WLM timeout \(`max_execution_time`\) is deprecated\. It is not available when using automatic WLM\. Instead, create a query monitoring rule \(QMR\) using `query_execution_time` to limit the elapsed execution time for a query\. For more information, see [WLM Query Monitoring Rules](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)\.   
-The maximum time, in milliseconds, that queries can run before being canceled\. In some cases, a read\-only query, such as a SELECT statement, might be canceled due to a WLM timeout\. In these cases, WLM attempts to route the query to the next matching queue based on the WLM queue assignment rules\. If the query doesn't match any other queue definition, the query is canceled; it isn't assigned to the default queue\. For more information, see [WLM Query Queue Hopping](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-defining-query-queues.html#wlm-queue-hopping)\. WLM timeout doesn’t apply to a query that has reached the `returning` state\. To view the state of a query, see the [STV\_WLM\_QUERY\_STATE](https://docs.aws.amazon.com/redshift/latest/dg/r_STV_WLM_QUERY_STATE.html) system table\.  
+WLM timeout \(`max_execution_time`\) is deprecated\. It is not available when using automatic WLM\. Instead, create a query monitoring rule \(QMR\) using `query_execution_time` to limit the elapsed execution time for a query\. For more information, see [WLM query monitoring rules](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)\.   
+The maximum time, in milliseconds, that queries can run before being canceled\. In some cases, a read\-only query, such as a SELECT statement, might be canceled due to a WLM timeout\. In these cases, WLM attempts to route the query to the next matching queue based on the WLM queue assignment rules\. If the query doesn't match any other queue definition, the query is canceled; it isn't assigned to the default queue\. For more information, see [WLM query queue hopping](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-defining-query-queues.html#wlm-queue-hopping)\. WLM timeout doesn't apply to a query that has reached the `returning` state\. To view the state of a query, see the [STV\_WLM\_QUERY\_STATE](https://docs.aws.amazon.com/redshift/latest/dg/r_STV_WLM_QUERY_STATE.html) system table\.  
 JSON property: `max_execution_time`
 
 **Memory \(%\)**  
@@ -122,7 +122,7 @@ rules
 For each rule, you specify the following properties:  
 + `rule_name` – Rule names must be unique within WLM configuration\. Rule names can be up to 32 alphanumeric characters or underscores, and can't contain spaces or quotation marks\. You can have up to eight rules per queue, and the total limit for all queues is eight rules\.
   + `predicate` – You can have up to three predicates per rule\. For each predicate, specify the following properties\.
-    + `metric_name` – For a list of metrics, see [Query Monitoring Metrics](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics) in the *Amazon Redshift Database Developer Guide*\.
+    + `metric_name` – For a list of metrics, see [Query monitoring metrics](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics) in the *Amazon Redshift Database Developer Guide*\.
     + `operator` – Operations are `=`, `<`, and `>`\. 
     + `value` – The threshold value for the specified metric that triggers an action\. 
 + `action` – Each rule is associated with one action\. Valid actions are:
@@ -153,14 +153,14 @@ The following example shows the JSON for a WLM query monitoring rule named `rule
         ]
 ```
 
-For more information about each of these properties and strategies for configuring query queues, see  [Implementing Workload Management](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html) in the *Amazon Redshift Database Developer Guide*\. 
+For more information about each of these properties and strategies for configuring query queues, see  [Implementing workload management](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html) in the *Amazon Redshift Database Developer Guide*\. 
 
-## Configuring the wlm\_json\_configuration Parameter Using the AWS CLI<a name="Configuring-the-wlm-json-configuration-Parameter"></a>
+## Configuring the wlm\_json\_configuration parameter using the AWS CLI<a name="Configuring-the-wlm-json-configuration-Parameter"></a>
 
  To configure WLM, you modify the `wlm_json_configuration` parameter\. The value is formatted in JavaScript Object Notation \(JSON\)\. If you configure WLM by using the AWS CLI, Amazon Redshift API, or one of the AWS SDKs, use the rest of this section to learn how to construct the JSON structure for the `wlm_json_configuration` parameter\. 
 
 **Note**  
- If you configure WLM by using the Amazon Redshift console, you don't need to understand JSON formatting because the console provides an easy way to add queues and configure their properties\. For more information about configuring WLM by using the console, see [Modifying a Parameter Group](managing-parameter-groups-console.md#parameter-group-modify)\. 
+ If you configure WLM by using the Amazon Redshift console, you don't need to understand JSON formatting because the console provides an easy way to add queues and configure their properties\. For more information about configuring WLM by using the console, see [Modifying a parameter group](managing-parameter-groups-console.md#parameter-group-modify)\. 
 
 Example
 
@@ -174,7 +174,7 @@ The following example is the default WLM configuration, which defines one queue 
 
 Example
 
-The following example is a custom WLM configuration, which defines one queue with a concurrency level of five\. 
+The following example is a custom WLM configuration, which defines one manual WLM queue with a concurrency level \(query slots\) of five\. 
 
 ```
 {
@@ -212,9 +212,9 @@ In the preceding example, the representative properties that begin with **q1** a
 
  When you modify the WLM configuration, you must include in the entire structure for your queues, even if you only want to change one property within a queue\. This is because the entire JSON structure is passed in as a string as the value for the `wlm_json_configuration` parameter\. 
 
-### Formatting the AWS CLI Command<a name="construct-json-param-value"></a>
+### Formatting the AWS CLI command<a name="construct-json-param-value"></a>
 
-The `wlm_json_configuration` parameter requires a specific format when you use the AWS CLI\. The format that you use depends on your client operating system\. Operating systems have different ways to enclose the JSON structure so it's passed correctly from the command line\. For details on how to construct the appropriate command in the Linux, Mac OS X, and Windows operating systems, see the sections following\. For more information about the differences in enclosing JSON data structures in the AWS CLI in general, see [Quoting Strings](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#quoting-strings) in the *AWS Command Line Interface User Guide*\.
+The `wlm_json_configuration` parameter requires a specific format when you use the AWS CLI\. The format that you use depends on your client operating system\. Operating systems have different ways to enclose the JSON structure so it's passed correctly from the command line\. For details on how to construct the appropriate command in the Linux, Mac OS X, and Windows operating systems, see the sections following\. For more information about the differences in enclosing JSON data structures in the AWS CLI in general, see [Quoting strings](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#quoting-strings) in the *AWS Command Line Interface User Guide*\.
 
 Examples
 
@@ -333,7 +333,7 @@ aws redshift modify-cluster-parameter-group
 } ]'
 ```
 
-#### Configuring WLM by Using the AWS CLI in the Command Line with a JSON file<a name="wlm-cli-json-file"></a>
+#### Configuring WLM by using the AWS CLI in the command line with a JSON file<a name="wlm-cli-json-file"></a>
 
 You can modify the `wlm_json_configuration` parameter using the AWS CLI and pass in the value of the `parameters` argument as a JSON file\.
 
@@ -341,7 +341,7 @@ You can modify the `wlm_json_configuration` parameter using the AWS CLI and pass
 aws redshift modify-cluster-parameter-group --parameter-group-name myclusterparaametergroup --parameters file://modify_pg.json 
 ```
 
-The arguments for `--parameters` are stored in file `modify_pg.json`\. The file location is specified in the format for your operating system\. For more information, see [Loading Parameters from a File](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters.html#cli-usage-parameters-file)\. The following shows examples of the content of the `modify_pg.json` JSON file\.
+The arguments for `--parameters` are stored in file `modify_pg.json`\. The file location is specified in the format for your operating system\. For more information, see [Loading parameters from a file](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters.html#cli-usage-parameters-file)\. The following shows examples of the content of the `modify_pg.json` JSON file\.
 
 ```
 [
@@ -362,7 +362,7 @@ The arguments for `--parameters` are stored in file `modify_pg.json`\. The file 
 ]
 ```
 
-#### Rules for Configuring WLM by Using the AWS CLI in the Command Line on the Linux and Mac OS X Operating Systems<a name="wlm-cli-linux-and-mac"></a>
+#### Rules for configuring WLM by using the AWS CLI in the command line on the Linux and macOS X operating systems<a name="wlm-cli-linux-and-mac"></a>
 
 Follow these rules to run an AWS CLI command with parameters on one line:
 + The entire JSON structure must be enclosed in single quotation marks \('\) and brackets \(\[ \]\)\.
@@ -374,7 +374,7 @@ Follow these rules to run an AWS CLI command with parameters on one line:
 + Each name/value pair is separated from another by a comma \(,\)\.
 + Multiple queues are separated by a comma \(,\) between the end of one queue's curly brace \(\}\) and the beginning of the next queue's curly brace \(\{\)\.
 
-#### Rules for Configuring WLM by Using the AWS CLI in Windows PowerShell on Microsoft Windows Operating Systems<a name="wlm-cli-windows-powershell"></a>
+#### Rules for configuring WLM by using the AWS CLI in Windows PowerShell on Microsoft Windows operating systems<a name="wlm-cli-windows-powershell"></a>
 
 Follow these rules to run an AWS CLI command with parameters on one line:
 + The entire JSON structure must be enclosed in single quotation marks \('\) and brackets \(\[ \]\)\.
@@ -386,7 +386,7 @@ Follow these rules to run an AWS CLI command with parameters on one line:
 + Each name/value pair is separated from another by a comma \(,\)\.
 + Multiple queues are separated by a comma \(,\) between the end of one queue's curly brace \(\}\) and the beginning of the next queue's curly brace \(\{\)\.
 
-#### Rules for Configuring WLM by Using the Command Prompt on Windows Operating Systems<a name="wlm-cli-cmd-windows"></a>
+#### Rules for configuring WLM by using the command prompt on Windows operating systems<a name="wlm-cli-cmd-windows"></a>
 
 Follow these rules to run an AWS CLI command with parameters on one line:
 + The entire JSON structure must be enclosed in double\-quotation marks \("\) and brackets \(\[ \]\)\.

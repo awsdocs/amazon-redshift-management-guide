@@ -1,13 +1,13 @@
-# Viewing Concurrency Scaling Data<a name="performance-metrics-concurrency-scaling"></a>
+# Viewing concurrency scaling data<a name="performance-metrics-concurrency-scaling"></a>
 
 By using concurrency scaling metrics in Amazon Redshift, you can do the following:
 + View concurrency scaling activity in concurrency scaling clusters\. This can tell you if concurrency scaling is limited by the `max_concurrency_scaling_clusters`\. If so, you can choose to increase the `max_concurrency_scaling_clusters` in the DB parameter\.
 + View the total usage of concurrency scaling summed across all concurrency scaling clusters\.
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-## New Console<a name="metrics-concurrency-scaling"></a>
+## New console<a name="metrics-concurrency-scaling"></a>
 
 **To display concurrency scaling data**
 
@@ -23,7 +23,7 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
    + **Concurrency scaling minutes**
    + **Concurrency scaled** number of clusters 
 
-## Original Console<a name="metrics-concurrency-scaling-originalconsole"></a>
+## Original console<a name="metrics-concurrency-scaling-originalconsole"></a>
 
 **To view concurrency scaling data**
 
@@ -37,18 +37,18 @@ A new console is available for Amazon Redshift\. Choose either the **New Console
 
    By default, the performance view displays concurrency scaling data over the past hour\. If you need to fine\-tune the view, you have *filters* that you can use to change the scope of the data\.
 
-## Concurrency Scaling Graphs<a name="performance-metrics-concurrency-scaling-examples"></a>
+## Concurrency scaling graphs<a name="performance-metrics-concurrency-scaling-examples"></a>
 
 The following example graphs are displayed in the Amazon Redshift console\. 
 
 **Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
+A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
 
-### New Console<a name="performance-metrics-concurrency-scaling-graphs"></a>
+### New console<a name="performance-metrics-concurrency-scaling-graphs"></a>
 + **Concurrency scaling minutes** – Shows the total usage of concurrency scaling clusters for the chosen time range\. 
 + **Concurrency scaled** – Shows the number of concurrency scaling clusters for the chosen time range\.
 
-### Original Console<a name="performance-metrics-concurrency-scaling-graphs-originalconsole"></a>
+### Original console<a name="performance-metrics-concurrency-scaling-graphs-originalconsole"></a>
 + **Concurrency Scaling Activity** – Shows the number of active concurrency scaling clusters for the chosen time range\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/concurrency-scaling-activity-graph.png)
 + **Queued vs\. Running Queries** – Compares queued and running queries of concurrency scaling clusters configured during the chosen time range\.  
