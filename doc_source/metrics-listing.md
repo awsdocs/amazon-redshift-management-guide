@@ -79,5 +79,5 @@ The following table describes different aspects of query and load data you can a
 | --- | --- | 
 | Query summary |  A list of queries in a specified time period\. The list can be sorted on values such as query ID, query run time, and status\. Access this data in the **Queries** tab of the cluster detail page\.  | 
 | Query Detail |  Provides details on a particular query including: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/metrics-listing.html)  | 
-| Load Summary |  Lists all the loads in a specified time period\. The list can be sorted on values such as query ID, query run time, and status\. Access this data in the **Loads** tab of the cluster detail page\. Access this data in the **Queries** tab of the cluster detail page\.  | 
+| Load Summary |  Lists all the loads in a specified time period\. The list can be sorted on values such as query ID, query run time, and status\. Access this data in the **Loads** tab of the cluster detail page\. | 
 | Load Detail |  Provides details on a particular load operation including:  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/metrics-listing.html)  | 
