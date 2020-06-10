@@ -14,8 +14,44 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 1. Choose the **Query** identifier in the list to display **Query details**\. 
 
    The **Query details** page includes **Query details** and **Query plan** tabs with metrics about the query\. 
+**Note**  
+You can also navigate to the **Query details** page from a **Cluster details** page, **Query history** tab when you drill down into a query in a **Query runtime** graph\. 
+
+The **Query details** page contains the following sections:
++ A list of **Rewritten queries**, as shown in the following screenshot\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/query-details-rewritten-queries.png)
++ A **Query details** section, as shown in the following screenshot\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/query-details-query.png)
++ A **Query details** tab that contains the **SQL** that was run and **Execution details** about the run\. 
++ A **Query plan** tab that contains the **Query plan** steps and other information about the query plan\. This table also contains graphs about the cluster when the query ran\. 
+  + **Cluster health status**   
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/query-details-cluster-health-status.png)
+  + **CPU utilization**   
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/query-details-cpu-utilization.png)
+  + **Storage capacity used**   
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/query-details-storage-capacity-used.png)
+  + **Active database connections**   
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/query-details-active-database-connections.png)
 
 ## Original console<a name="metric-queries-execution-details-originalconsole"></a>
+
+**To view query execution details**
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. In the navigation pane, choose **Clusters**\.
+
+1. For **Cluster**, choose the cluster for which you want to view query execution details\.
+
+1. Choose the **Queries** tab, and open the query for which you want to view performance data\.
+
+1. Expand the **Query Execution Details** section and do the following:
+
+   1. On the **Plan** tab, review the explain plan for the query\. In some cases, you might find that your explain plan differs from the actual query execution on the **Actual** tab\. In these cases, you might need to run ANALYZE to update statistics or perform other maintenance on the database to optimize the queries that you run\. For more information about query optimization, see [Tuning query performance](https://docs.aws.amazon.com/redshift/latest/dg/c-optimizing-query-performance.html) in the *Amazon Redshift Database Developer Guide*\.
+
+   1. On the **Actual** tab, review the performance data associated with each of the plan nodes in the query execution\. You can choose an individual plan node in the hierarchy to view performance data associated with that specific plan node\. This data includes both the estimated and actual performance data\.
+
+   1. On the **Metrics** tab, review the metrics for each of the cluster nodes\.
 
 The **Query Execution Details** section of the **Query** view provides information about the way the query was processed\. This section combines data from [SVL\_QUERY\_REPORT](https://docs.aws.amazon.com/redshift/latest/dg/r_SVL_QUERY_REPORT.html), [STL\_EXPLAIN](https://docs.aws.amazon.com/redshift/latest/dg/r_STL_EXPLAIN.html), and other system views and tables\.
 
@@ -88,25 +124,3 @@ When possible, you should run a query twice to see what its execution details ty
 
 **Note**  
 The metrics tab is not available for a single\-node cluster\.
-
-## Viewing query execution details using the console<a name="performance-metrics-viewing-query-execution-details"></a>
-
-Use the following procedure to look at the details of query execution\.
-
-**To view query execution details**
-
-1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-
-1. In the navigation pane, choose **Clusters**\.
-
-1. For **Cluster**, choose the cluster for which you want to view query execution details\.
-
-1. Choose the **Queries** tab, and open the query for which you want to view performance data\.
-
-1. Expand the **Query Execution Details** section and do the following:
-
-   1. On the **Plan** tab, review the explain plan for the query\. In some cases, you might find that your explain plan differs from the actual query execution on the **Actual** tab\. In these cases, you might need to run ANALYZE to update statistics or perform other maintenance on the database to optimize the queries that you run\. For more information about query optimization, see [Tuning query performance](https://docs.aws.amazon.com/redshift/latest/dg/c-optimizing-query-performance.html) in the *Amazon Redshift Database Developer Guide*\.
-
-   1. On the **Actual** tab, review the performance data associated with each of the plan nodes in the query execution\. You can choose an individual plan node in the hierarchy to view performance data associated with that specific plan node\. This data includes both the estimated and actual performance data\.
-
-   1. On the **Metrics** tab, review the metrics for each of the cluster nodes\.

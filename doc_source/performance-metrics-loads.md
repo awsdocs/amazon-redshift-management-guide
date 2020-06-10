@@ -39,7 +39,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. In the new **Query** tab that is opened, you can view the details of the load operation\.
 
-   At this point, you can work with the **Query** tab as shown in [Viewing query performance data](performance-metrics-queries.md)\. You can review the details of the query and see the values of cluster metrics during the load operation\.
+   At this point, you can work with the **Query** tab as shown in [Viewing queries and loads](performance-metrics-queries.md)\. You can review the details of the query and see the values of cluster metrics during the load operation\.
 
 **To terminate a running load**
 

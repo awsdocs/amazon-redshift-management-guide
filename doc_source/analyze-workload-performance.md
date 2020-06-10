@@ -1,9 +1,9 @@
 # Analyzing workload performance<a name="analyze-workload-performance"></a>
 
-You can get a detailed view of your workload's performance by looking at the Workload Execution Breakdown chart in the console\. We build the chart with data provided by the CloudWatch QueryRuntimeBreakdown metric\. With this chart, you can see how much time your queries spend in the various processing stages, such as waiting and planning\. 
+You can get a detailed view of your workload's performance by looking at the Workload execution breakdown chart in the console\. We build the chart with data provided by the CloudWatch QueryRuntimeBreakdown metric\. With this chart, you can see how much time your queries spend in the various processing stages, such as waiting and planning\. 
 
 **Note**  
-The Workload Execution Breakdown chart isn't shown for single\-node clusters\.
+The Workload execution breakdown chart isn't shown for single\-node clusters\.
 
 The following list of metrics describes the various processing stages:
 + `QueryPlanning`: Time spent parsing and optimizing SQL statements\.
@@ -23,9 +23,9 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 ## New console<a name="cluster-workload-breakdown-chart"></a>
 
-Following, you can see a screenshot of the workload breakdown chart\.
+Following, you can see a screenshot of the workload execution breakdown chart\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/mgmt-workloadbreakdown-v1png.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/database-performance-workload-execution-breakdown.png)
 
 The y\-axis in the diagram is cumulative for all sessions running during the selected time period\. The following diagram illustrates how Amazon Redshift aggregates query processing for concurrent sessions\. 
 
@@ -64,13 +64,13 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. Choose the **Query monitoring** tab for metrics about your queries\.
 
-1. In the **Query monitoring** section, choose **WORKLOAD EXECUTION BREAKDOWN**\. 
+1. In the **Query monitoring** section, choose **Database performance**, and choose **Cluster metrics**\. 
 
    The following metrics are graphed for the chosen time range as a stacked bar chart: 
    + **Plan** time 
    + **Wait** time 
-   + **Read** time 
-   + **Write** time 
+   + **Commit** time 
+   + **Execution** time 
 
 ## Original console<a name="cluster-workload-breakdown-originalconsole"></a>
 

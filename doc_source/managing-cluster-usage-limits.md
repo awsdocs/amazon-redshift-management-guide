@@ -30,3 +30,7 @@ You can use the following Amazon Redshift API operations to manage usage limits\
 + [DescribeUsageLimits](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeUsageLimits.html)
 + [ModifyUsageLimit](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ModifyUsageLimit.html)
 + [DeleteUsageLimit](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DeleteUsageLimit.html)
+
+To learn how to create and monitor usage limits using the the Amazon Redshift console, watch the following video\. 
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/bXg4xLiDqcM/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/bXg4xLiDqcM)

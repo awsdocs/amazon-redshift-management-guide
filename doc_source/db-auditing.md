@@ -55,7 +55,7 @@ Logs each query before it is run on the database\.
 
 ## Enabling logging<a name="db-auditing-enable-logging"></a>
 
- Audit logging is not enabled by default in Amazon Redshift\. When you enable logging on your cluster, Amazon Redshift creates and uploads logs to Amazon S3 that capture data from the creation of the cluster to the present time\. Each logging update is a continuation of the information that was already logged\. 
+ Audit logging is not enabled by default in Amazon Redshift\. When you enable logging on your cluster, Amazon Redshift creates and uploads logs to Amazon S3 that capture data from the time audit logging is enabled to the present time\. Each logging update is a continuation of the information that was already logged\. 
 
 **Note**  
 Audit logging to Amazon S3 is an optional, manual process\. When you enable logging on your cluster, you are enabling logging to Amazon S3 only\. Logging to system tables is not optional and happens automatically for the cluster\. For more information about logging to system tables, see [System Tables Reference](https://docs.aws.amazon.com/redshift/latest/dg/cm_chap_system-tables.html) in the Amazon Redshift Database Developer Guide\. 
@@ -67,9 +67,9 @@ Currently, you can only use Amazon S3\-managed keys \(SSE\-S3\) encryption \(AES
 
 ## Managing log files<a name="db-auditing-manage-log-files"></a>
 
-The number and size of Amazon Redshift log files in Amazon S3 will depend heavily on the activity in your cluster\. If you have an active cluster that is generating a large number of logs, Amazon Redshift might generate the log files more frequently\. You might have a series of log files for the same type of activity, such as having multiple connection logs within the same hour\.
+The number and size of Amazon Redshift log files in Amazon S3 depends heavily on the activity in your cluster\. If you have an active cluster that is generating a large number of logs, Amazon Redshift might generate the log files more frequently\. You might have a series of log files for the same type of activity, such as having multiple connection logs within the same hour\.
 
-Because Amazon Redshift uses Amazon S3 to store logs, you will incur charges for the storage that you use in Amazon S3\. Before you configure logging, you should have a plan for how long you need to store the log files\. As part of this, determine when the log files can either be deleted or archived based on your auditing needs\. The plan that you create depends heavily on the type of data that you store, such as data subject to compliance or regulatory requirements\. For more information about Amazon S3 pricing, go to [Amazon Simple Storage Service \(S3\) Pricing](https://aws.amazon.com/s3/pricing/)\.
+Because Amazon Redshift uses Amazon S3 to store logs, you incur charges for the storage that you use in Amazon S3\. Before you configure logging, you should have a plan for how long you need to store the log files\. As part of this, determine when the log files can either be deleted or archived based on your auditing needs\. The plan that you create depends heavily on the type of data that you store, such as data subject to compliance or regulatory requirements\. For more information about Amazon S3 pricing, go to [Amazon Simple Storage Service \(S3\) Pricing](https://aws.amazon.com/s3/pricing/)\.
 
 ### Bucket permissions for Amazon Redshift audit logging<a name="db-auditing-bucket-permissions"></a>
 

@@ -1,6 +1,6 @@
-# Viewing query performance data<a name="performance-metrics-queries"></a>
+# Viewing queries and loads<a name="performance-metrics-queries"></a>
 
- The Amazon Redshift console provides information about performance of queries that run in the database\. You can use this information to identify and troubleshoot queries that take a long time to process and that create bottlenecks preventing other queries from processing efficiently\. You can use the queries information in the Amazon Redshift console to monitor query processing\. 
+ The Amazon Redshift console provides information about queries and loads that run in the database\. You can use this information to identify and troubleshoot queries that take a long time to process and that create bottlenecks preventing other queries from processing efficiently\. You can use the queries information in the Amazon Redshift console to monitor query processing\. 
 
 **Note**  
 A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
@@ -27,18 +27,14 @@ The **Queries and loads** list displays the longest running queries in the syste
 
 1. Choose the cluster for which you want to view performance data\.
 
-1. Choose the **Queries** tab\.
-
-   By default, the **Queries** tab displays query performance over the past 24 hours\. To change the data displayed, use the **Filter** list to select the time period for which you want to view queries\. You can also type a keyword in the **Search** box to search for queries that match your search criteria\.
-**Important**  
-The **Queries** tab displays the longest running queries in the system; up to 100 queries\.
+1. By default, the **Queries** list displays query performance over the past 24 hours\. To change the data displayed, use the **Filter** list to select the time period for which you want to view queries\. You can also enter a keyword in the **Search** box to search for queries that match your search criteria\.
 
 ## Ending a running query<a name="terminate-queries"></a>
 
 You can also use the **Queries** page to end a query that is currently in progress\.
 
 **Note**  
-The ability to terminate queries and loads in the Amazon Redshift console requires specific permission\. If you want users to be able to terminate queries and loads, make sure to add the `redshift:CancelQuerySession` action to your AWS Identity and Access Management \(IAM\) policy\. This requirement applies whether you select the **Amazon Redshift Read Only** AWS\-managed policy or create a custom policy in IAM\. Users who have the **Amazon Redshift Full Access** policy already have the necessary permission to terminate queries and loads\. For more information about actions in IAM policies for Amazon Redshift, see [Managing access to resources](redshift-iam-access-control-overview.md#redshift-iam-accesscontrol-managingaccess)\.
+The ability to terminate queries and loads in the Amazon Redshift console requires specific permission\. If you want users to be able to terminate queries and loads, make sure to add the `redshift:CancelQuerySession` action to your AWS Identity and Access Management \(IAM\) policy\. This requirement applies whether you select the **Amazon Redshift Read Only** AWS managed policy or create a custom policy in IAM\. Users who have the **Amazon Redshift Full Access** policy already have the necessary permission to terminate queries and loads\. For more information about actions in IAM policies for Amazon Redshift, see [Managing access to resources](redshift-iam-access-control-overview.md#redshift-iam-accesscontrol-managingaccess)\.
 
 **Note**  
 A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.

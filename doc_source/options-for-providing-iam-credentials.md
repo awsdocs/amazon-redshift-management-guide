@@ -25,9 +25,9 @@ For more information, see [Configure a JDBC or ODBC connection to use IAM creden
 
 You can supply the IAM credentials options and `GetClusterCredentials` options as settings in named profiles in your AWS configuration file\. To provide the profile name, use the Profile JDBC option\. The configuration is stored in a file named `config` in a folder named `.aws` in your home directory\. 
 
-For a SAML\-based credential provider plugin included with an Amazon Redshift JDBC or ODBC driver , you can use the settings described just preceding in [Using a credentials provider plugin](#using-credentials-provider-plugin)\. If `plugin_name` isn't used, the other options are ignored\.
+For a SAML\-based credential provider plugin included with an Amazon Redshift JDBC or ODBC driver, you can use the settings described just preceding in [Using a credentials provider plugin](#using-credentials-provider-plugin)\. If `plugin_name` isn't used, the other options are ignored\.
 
-The following example shows a configuration file with three profiles\. The `plugin-creds` example includes the optional `DbUser`, `AutoCreate`, and `DbGroups` options\.
+The following example shows a configuration file with two profiles\. 
 
 ```
 [default]
@@ -41,19 +41,15 @@ session_token=AQoDYXdzEPT//////////wEXAMPLEtc764bNrC9SAPBSM22wDOk4x4HIZ8j4FZTwdQ
 QrmGdeehM4IC1NtBmUpp2wUE8phUZampKsburEDy0KPkyQDYwT7WZ0wq5VSXDvp75YU
 9HFvlRd8Tx6q6fE8YQcHNVXAkiY9q6d+xo0rKwT38xVqr7ZD0u0iPPkUL64lIZbqBAz
 +scqKmlzm8FDrypNC9Yjc8fPOLn9FX9KSYvKTr4rvx3iSIlTJabIQwj2ICCR/oLxBA==
-
-[plugin-creds]
-plugin_name=com.amazon.redshift.plugin.AdfsCredentialsProvider
-idp_host=demo.example.com
-idp_port=443
-preferred_role=arn:aws:iam::1234567:role/ADFS-Dev
-user=example\user
-password=Password1234
 ```
 
-To use the credentials for the `user2` example, specify `Profile=user2` in the JDBC URL\. To use the credentials for the `plugin-creds` example, specify `Profile=plugin-creds` in the JDBC URL\. 
+To use the credentials for the `user2` example, specify `Profile=user2` in the JDBC URL\. 
 
 For more information on using profiles, see [Named Profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html) in the* AWS Command Line Interface User Guide\.* 
+
+For more information on using profiles for ODBC driver, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.41.1065/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
+
+For more information on using profiles for JDBC driver, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.10.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
 
 ## JDBC and ODBC options for providing IAM credentials<a name="jdbc-options-for-providing-iam-credentials"></a>
 
@@ -135,24 +131,16 @@ To use a SAML\-based credentials provider plugin, specify the following options 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/options-for-providing-iam-credentials.html)
 
-The following example shows credentials provider plugin parameters in a named profile\.
-
-```
-[plugin-creds]
-plugin_name=com.amazon.redshift.plugin.AdfsCredentialsProvider
-idp_host=demo.example.com
-idp_port=443  
-preferred_role=arn:aws:iam::123456789012:role/ADFS-Dev
-user=example\user
-password=Password1234
-```
-
 ## Setting up JDBC or ODBC single sign\-on authentication with Microsoft Azure AD<a name="setup-azure-ad-identity-provider"></a>
 
 You can use Microsoft Azure AD as an identity provider \(IdP\) to access your Amazon Redshift cluster\. Following, you can find a procedure that describes how to set up a trust relationship for this purpose\. For more information about configuring AWS as a service provider for the IdP, see [Configuring Your SAML 2\.0 IdP with Relying Party Trust and Adding Claims](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_relying-party.html#saml_relying-party) in the *IAM User Guide*\.
 
 **Note**  
 To use Azure AD with JDBC, the Amazon Redshift JDBC driver must be version 1\.2\.37\.1061 or later\. To use Azure AD with ODBC, the Amazon Redshift ODBC driver must be version 1\.4\.10\.1000 or later\. 
+
+To learn how to federate Amazon Redshift access with Microsoft Azure AD single sign\-on, watch the following video\. 
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/aXs9hEgJCss/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/aXs9hEgJCss)
 
 **To set up Azure AD and your AWS account to trust each other**
 
@@ -204,6 +192,8 @@ To use Azure AD with JDBC, the Amazon Redshift JDBC driver must be version 1\.2\
 
    Here, `123456789012` is your AWS account, *`AzureSSO`* is an IAM role you created, and *`AzureADProvider`* is the IAM provider\.     
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/options-for-providing-iam-credentials.html)
+
+1. Under **App Registration > ***your\-application\-name*** > Authentication**, add **Mobile And Desktop Application**\. Specify the URL as http://localhost:7890/redshift\.
 
 1. In the **SAML Signing Certificate** section, choose **Download** to download and save the federation metadata XML file for use when you create an IAM SAML identity provider\. This file is used to create the AWS SSO federated identity\.
 
@@ -311,7 +301,7 @@ To use Azure AD with JDBC, the Amazon Redshift JDBC driver must be version 1\.2\
      + For **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserAzureCredentialsProvider**\. This value specifies to the driver to use Azure AD SSO with MFA as the authentication method\. 
      + For **idp\_tenant**, enter ***your\-idp\-tenant***\. Used only for Microsoft Azure AD\. This is the tenant name of your company configured on Azure AD\. This value can either be the tenant name or the tenant unique ID with hyphens\.
      + For **client\_id**, enter ***your\-azure\-redshift\-application\-client\-id***\. Used only for Microsoft Azure AD\. This is the client ID \(with hyphens\) of the Amazon Redshift application that you created when setting up your Azure AD SSO with MFA configuration\. 
-     + For **listen\_port**, enter ***your\-plugin\-port***\. This is the port that the default port that the plugin uses\. The default is 7890\. 
+     + For **listen\_port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. 
      + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the number of seconds to wait before timing out when the IdP server sends back a response\. The minimum number of seconds must be 10\. If establishing the connection takes longer than this threshold, then the connection is aborted\.
 
 **To set up ODBC for authentication to Microsoft Azure AD**
@@ -336,7 +326,7 @@ To use Azure AD with JDBC, the Amazon Redshift JDBC driver must be version 1\.2\
   + For **IdP Tenant**, enter ***your\-idp\-tenant***\. This is the tenant name of your company configured on your IdP \(Azure\)\. This value can either be the tenant name or the tenant unique ID with hyphens\.
   + For **Azure Client Secret**, enter ***your\-azure\-redshift\-application\-client\-secret***\. This is the client secret of the Amazon Redshift application that you created when setting up your Azure single sign\-on configuration\. 
   + For **Azure Client ID**, enter ***your\-azure\-redshift\-application\-client\-id***\. This is the client ID \(with hyphens\) of the Amazon Redshift application that you created when setting up your Azure single sign\-on configuration\. 
-  + For **Listen Port**, enter ***your\-plugin\-port***\. This is the default port that the plugin uses\. The default is 7890\. This applies only to the Browser Azure AD plugin\. 
+  + For **Listen Port**, enter ***your\-listen\-port***\. This is the default listen port that local server is listening to\. The default is 7890\. This applies only to the Browser Azure AD plugin\. 
   + For **Response Timeout**, enter ***the\-number\-of\-seconds***\. This is the number of seconds to wait before timing out when the IdP server sends back a response\. The minimum number of seconds must be 10\. If establishing the connection takes longer than this threshold, then the connection is aborted\. This applies only to the Browser Azure AD plugin\.
 
   On macOS and Linux, edit the `odbc.ini` file as follows: 
@@ -354,7 +344,7 @@ All entries are case\-insensitive\.
   + For **idp\_tenant**, enter ***your\-idp\-tenant***\. This is the tenant name of your company configured on your IdP \(Azure\)\. This value can either be the tenant name or the tenant unique ID with hyphens\.
   + For **client\_secret**, enter ***your\-azure\-redshift\-application\-client\-secret***\. This is the client secret of the Amazon Redshift application that you created when setting up your Azure single sign\-on configuration\. 
   + For **client\_id**, enter ***your\-azure\-redshift\-application\-client\-id***\. This is the client ID \(with hyphens\) of the Amazon Redshift application that you created when setting up your Azure single sign\-on configuration\. 
-  + For **listen\_port**, enter ***your\-plugin\-port***\. This is the default port that the plugin uses\. The default is 7890\. This applies to the Browser Azure AD plugin\.
+  + For **listen\_port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies to the Browser Azure AD plugin\.
   + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the specified period of time in seconds to wait for response from Azure\. This applies to the Browser Azure AD plugin\.
 
   On macOS and Linux, also edit the profile settings to add the following exports\.
@@ -494,7 +484,7 @@ You can use AD FS as an identity provider \(IdP\) to access your Amazon Redshift
   + For **Database**, enter ***your\-database\-name***\.
   + For **User**, enter ***your\-adfs\-username***\. This is the user name for the AD FS account that you are using for SSO that has permission to the cluster that you're trying to authenticate using\. Use this only for **Auth type** is **Identity Provider: SAML**\.
   + For **Password**, enter ***your\-adfs\-password***\. Use this only for **Auth type** is **Identity Provider: SAML**\. 
-  + For **Listen Port**, enter ***your\-plugin\-port***\. This is the port that the default port that the plugin uses\. The default is 7890\. This applies only to the Browser SAML plugin\.
+  + For **Listen Port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies only to the Browser SAML plugin\.
   + For **Response Timeout**, enter ***the\-number\-of\-seconds***\. This is the number of seconds to wait before timing out when the IdP server sends back a response\. The minimum number of seconds must be 10\. If establishing the connection takes longer than this threshold, then the connection is aborted\. This applies only to the Browser SAML plugin\.
   + For **Login URL**, enter ***your\-login\-url\.*** This applies only to the Browser SAML plugin\.
 
@@ -513,7 +503,7 @@ All entries are case\-insensitive\.
   + For **pwd**, enter ***your\-adfs\-password***\. Use this only for **plugin\_name** is **ADFS**\. 
   + For **login\_url**, enter ***your\-login\-url***\. This is the initiate SSO URL that returns the SAML response\. This applies only to the Browser SAML plugin\.
   + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the specified period of time in seconds to wait for response from AD FS\. This applies only to the Browser SAML plugin\.
-  + For **listen\_port**, enter ***your\-plugin\-port***\. This is the port that the default port that the plugin uses\. The default is 7890\. This applies only to the Browser SAML plugin\.
+  + For **listen\_port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies only to the Browser SAML plugin\.
 
   On macOS and Linux, also edit the profile settings to add the following exports\.
 
@@ -620,7 +610,7 @@ You can use Ping Identity as an identity provider \(IdP\) to access your Amazon 
   + For **Database**, enter ***your\-database\-name***\.
   + For **User**, enter ***your\-ping\-username***\. This is the user name for the PingOne account that you are using for SSO that has permission to the cluster that you're trying to authenticate using\. Use this only for **Auth type** is **Identity Provider: PingFederate**\.
   + For **Password**, enter ***your\-ping\-password***\. Use this only for **Auth type** is **Identity Provider: PingFederate**\. 
-  + For **Listen Port**, enter ***your\-plugin\-port***\. This is the port that the default port that the plugin uses\. The default is 7890\. This applies only to the Browser SAML plugin\. 
+  + For **Listen Port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies only to the Browser SAML plugin\. 
   +  For **Response Timeout**, enter ***the\-number\-of\-seconds***\. This is the number of seconds to wait before timing out when the IdP server sends back a response\. The minimum number of seconds must be 10\. If establishing the connection takes longer than this threshold, then the connection is aborted\. This applies only to the Browser SAML plugin\.
   + For **Login URL**, enter ***your\-login\-url***\. This applies only to the Browser SAML plugin\.
 
@@ -639,7 +629,7 @@ All entries are case\-insensitive\.
   + For **pwd**, enter ***your\-ping\-password***\. Use this only for **plugin\_name** is **Ping**\. 
   + For **login\_url**, enter ***your\-login\-url***\. This is the Initiate SSO URL that returns the SAML Response\. This applies only to the Browser SAML plugin\.
   + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the specified period of time in seconds to wait for response from PingOne Identity\. This applies only to the Browser SAML plugin\.
-  + For **listen\_port**, enter ***your\-plugin\-port***\. This is the port that the default port that the plugin uses\. The default is 7890\. This applies only to the Browser SAML plugin\.
+  + For **listen\_port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies only to the Browser SAML plugin\.
 
   On macOS and Linux, also edit the profile settings to add the following exports\.
 
@@ -665,7 +655,7 @@ You can use Okta as an identity provider \(IdP\) to access your Amazon Redshift 
    + On the **Create a New Add Application Integration** page, for **Platform**, choose **Web**\.
    + For **Sign on method**, choose **SAML v2\.0**\.
    + On the **General Settings** page, for **App name**, enter ***your\-redshift\-saml\-sso\-name***\. This is the name of your application\.
-   + On the **SAML Settings** page, for **Single sing on URL**, enter ***your\-redshift\-local\-host\-url***\. This is the local host and port that the SAML assertion redirects to\. For example, http://localhost:7890/redshift\.
+   + On the **SAML Settings** page, for **Single sign on URL**, enter ***your\-redshift\-local\-host\-url***\. This is the local host and port that the SAML assertion redirects to\. For example, http://localhost:7890/redshift\.
    + Use the **Single sign on URL** as the **Recipient URL** and **Destination URL**\.
    + For **Signing**, choose **Sign Assertion**\.
    + For **Audience URI \(SP Entity ID\)**, enter **urn:amazon:webservices** for the claims, as shown in the following table\. 
@@ -747,7 +737,7 @@ All entries are case\-insensitive\.
   + For **pwd**, enter ***your\-okta\-password***\. Use this only for **plugin\_name** is **Okta**\. 
   + For **login\_url**, enter ***your\-login\-url***\. This is the Initiate SSO URL that returns the SAML Response\. This applies only to the Browser SAML plugin\.
   + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the specified period of time in seconds to wait for response from PingOne\. This applies only to the Browser SAML plugin\.
-  + For **listen\_port**, enter ***your\-plugin\-port***\. This is the port that the default port that the plugin uses\. The default is 7890\. This applies only to the Browser SAML plugin\.
+  + For **listen\_port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies only to the Browser SAML plugin\.
 
   On macOS and Linux, also edit the profile settings to add the following exports\.
 

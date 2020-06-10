@@ -238,25 +238,29 @@ The RA3 node types are available only in the following AWS Regions:
 
 ## Upgrading from DC1 node types to DC2 node types<a name="rs-migrating-from-dc1-to-dc2"></a>
 
-To take advantage of performance improvements, you can upgrade your DC1 cluster to the DC2 node types\. 
+To take advantage of performance improvements, you can upgrade your DC1 clusters to DC2 node types\. 
 
-Clusters that use the DC2 node types must be launched in a virtual private cloud \(EC2\-VPC\)\. If your cluster isn't in a VPC \(that is, it is using EC2\-Classic\), first create a snapshot of your cluster, and then choose one of the following options: 
-+ From a dc1\.large cluster, restore directly to a dc2\.large cluster in a VPC\.
-+  From a dc1\.8xlarge cluster in EC2\-Classic, first restore to a dc1\.8xlarge cluster in a VPC, and then resize your dc1\.8xlarge cluster to a dc2\.8xlarge cluster\. You can't restore directly to a dc2\.8xlarge cluster because the dc2\.8xlarge node type has a different number of slices than the dc1\.8xlarge node type\. 
+Clusters that use the DC2 node type must be launched in a virtual private cloud \(EC2\-VPC\)\.  
 
-If your cluster is in a VPC, choose one of the following options:
-+ From a dc1\.large cluster, restore directly to a dc2\.large cluster in a VPC\.
-+ From a dc1\.8xlarge cluster, resize your dc1\.8xlarge cluster to a dc2\.8xlarge cluster\. You can't restore directly to a dc2\.8xlarge cluster because the dc2\.8xlarge node type has a different number of slices than the dc1\.8xlarge node type\. 
+If your DC1 cluster is not in a VPC: 
 
-Consider the following when upgrading from DC1 to DC2 nodes\.
+1. Create a snapshot of your DC1 cluster\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.
+
+1. Create a VPC, then create a DC2 cluster in the VPC\. For more information, see [Managing clusters in a VPC ](managing-clusters-vpc.md)\. 
+
+1. Restore your snapshot to the new DC2 cluster in the VPC\. For more information, see [Restoring a cluster from a snapshot](working-with-snapshots.md#working-with-snapshot-restore-cluster-from-snapshot)\. 
+
+If your DC1 cluster is already in a VPC, choose one of the following methods: 
++ Resize your DC1 cluster and change the node type to DC2 as part of the operation\. Your cluster is not available for a period of time during the resize operation\. For more information, see [Resizing clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\. 
++ Create a snapshot of your DC1 cluster, then restore your snapshot to a DC2 cluster in the VPC\. For more information, see [Restoring a cluster from a snapshot](working-with-snapshots.md#working-with-snapshot-restore-cluster-from-snapshot)\. 
+
+Consider the following when upgrading from DC1 to DC2 node types\.
 + DC1 clusters that are 100% full might not upgrade to an equivalent number of DC2 nodes\. If more disk space is needed, you can:
   + Resize to a configuration with more available disk space\. 
-  + Clean up unneeded data by truncating tables\. 
-  + Delete rows and vacuum tables\. 
-+ DC2 clusters do not support EC2\-Classic networking\. If your DC1 cluster is not running in a VPC, create one for your DC2 migration\. For more information, see [Managing clusters in a VPC ](managing-clusters-vpc.md)\.
-+ The cluster might be unavailable during the migration\. If you resize the cluster, it might be put into read\-only mode for the duration of the operation\. You can cancel a resize operation before it completes by choosing **cancel resize** from the cluster list in the Amazon Redshift console\. For more information, see [Resizing clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\.
-
-For more information, see [Amazon Redshift snapshots](working-with-snapshots.md) \.
+  + Clean up unneeded data by truncating tables or deleting rows\. 
++ DC2 clusters don't support EC2\-Classic networking\. If your DC1 cluster is not running in a VPC, create one for your DC2 migration\. For more information, see [Managing clusters in a VPC ](managing-clusters-vpc.md)\. 
++ If you resize the cluster, it might be put into read\-only mode for the duration of the operation\.  For more information, see [Resizing clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\. 
++ If you have purchased DC1 reserved nodes, you can upgrade your DC1 reserved nodes to DC2 nodes for the remainder of your term\. For more information about how to change your reservation with the AWS CLI, see [Upgrading reserved nodes with the AWS CLI](purchase-reserved-node-offering-console.md#reserved-node-upgrade-cli)\. 
 
 ## Regions and Availability Zone considerations<a name="az-considerations"></a>
 
