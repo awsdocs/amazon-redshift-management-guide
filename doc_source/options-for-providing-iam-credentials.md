@@ -47,9 +47,9 @@ To use the credentials for the `user2` example, specify `Profile=user2` in the J
 
 For more information on using profiles, see [Named Profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html) in the* AWS Command Line Interface User Guide\.* 
 
-For more information on using profiles for ODBC driver, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.41.1065/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
+For more information on using profiles for ODBC driver, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.10.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
 
-For more information on using profiles for JDBC driver, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.10.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+For more information on using profiles for JDBC driver, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.41.1065/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
 
 ## JDBC and ODBC options for providing IAM credentials<a name="jdbc-options-for-providing-iam-credentials"></a>
 
