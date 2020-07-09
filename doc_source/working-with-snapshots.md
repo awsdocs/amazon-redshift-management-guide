@@ -145,6 +145,16 @@ For the new cluster created from the original snapshot, you can choose the confi
 **Note**  
 When you restore a snapshot to a cluster with a different configuration, the snapshot must have been taken on a cluster with cluster version 1\.0\.10013, or later\. 
 
+When a restore is in progress, events are typically emitted in the following order:
+
+1. RESTORE\_STARTED – REDSHIFT\-EVENT\-2008 sent when the restore process begins\. 
+
+1. RESTORE\_SUCCEEDED – REDSHIFT\-EVENT\-3003 sent when the new cluster has been created\. 
+
+   The cluster is available for queries\. 
+
+1. DATA\_TRANSFER\_COMPLETED – REDSHIFT\-EVENT\-3537 sent when data transfer complete\.  
+
 You can monitor the progress of a restore by either calling the [DescribeClusters](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusters.html) API operation, or viewing the cluster details in the AWS Management Console\. For an in\-progress restore, these display information such as the size of the snapshot data, the transfer rate, the elapsed time, and the estimated time remaining\. For a description of these metrics, see [RestoreStatus](https://docs.aws.amazon.com/redshift/latest/APIReference/API_RestoreStatus.html)\.
 
 You can't use a snapshot to revert an active cluster to a previous state\.
@@ -156,6 +166,11 @@ You might want to restore a snapshot to a cluster with a different configuration
 + When a cluster is made up of smaller node types and you want to consolidate it into a larger node type with fewer nodes\. 
 + When you have monitored your workload and determined the need to move to a node type with more CPU and storage\. 
 + When you want to measure performance of test workloads with different node types\. 
+
+Restore has the following constraints: 
++ The new node configuration must have enough storage for existing data\. Even when you add nodes, your new configuration might not have enough storage because of the way that data is redistributed\. 
++ The restore operation checks if the snapshot was created on a cluster version that is compatible with the cluster version of the new cluster\. If the new cluster has a version level that is too early, then the restore operation fails and reports more information in an error message\.
++ The possible configurations \(number of nodes and node type\) you can restore to is determined by the number of nodes in the original cluster and the target node type of the new cluster\. To determine the possible configurations available, you can use the Amazon Redshift console or the `describe-node-configuration-options` AWS CLI command with `action-type restore-cluster`\. For more information about the restoring using the Amazon Redshift console, see [Restoring a cluster from a snapshot](managing-snapshots-console.md#snapshot-restore)\. 
 
 The following steps take a cluster with many nodes and consolidate it into a bigger node type with a smaller number of nodes using the AWS CLI\. For this example, we start with a source cluster of 24 `ds2.xlarge` nodes\. In this case, suppose that we already created a snapshot of this cluster and want to restore it into a bigger node type\.
 

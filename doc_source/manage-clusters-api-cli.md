@@ -1,21 +1,31 @@
 # Managing clusters using the Amazon Redshift CLI and API<a name="manage-clusters-api-cli"></a>
 
 You can use the following Amazon Redshift CLI operations to manage clusters\.
++ [cancel\-resize](https://docs.aws.amazon.com/cli/latest/reference/redshift/cancel-resize.html)
 + [create\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-cluster.html)
 + [delete\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/delete-cluster.html)
 + [describe\-clusters](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-clusters.html)
 + [describe\-cluster\-versions](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-cluster-versions.html)
++ [describe\-node\-configuration\-options](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-node-configuration-options.html)
 + [describe\-orderable\-cluster\-options](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-orderable-cluster-options.html)
++ [describe\-resize](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-resize.html)
 + [modify\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/modify-cluster.html)
++ [pause\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/pause-cluster.html)
 + [reboot\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/reboot-cluster.html)
 + [resize\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/resize-cluster.html)
++ [resume\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/resume-cluster.html)
 
  You can use the following Amazon Redshift API operations to manage clusters\.
++ [CancelResize](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CancelResize.html)
 + [CreateCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateCluster.html)
 + [DeleteCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DeleteCluster.html)
 + [DescribeClusters](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusters.html)
 + [DescribeClusterVersions](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusterVersions.html)
++ [DescribeNodeConfigurationOptions](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeNodeConfigurationOptions.html)
++ [DescribeResize](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeResize.html)
 + [DescribeOrderableClusterOptions](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeOrderableClusterOptions.html)
 + [ModifyCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ModifyCluster.html)
++ [PauseCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_PauseCluster.html)
 + [RebootCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_RebootCluster.html)
 + [ResizeCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ResizeCluster.html)
++ [ResumeCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ResumeCluster.html)

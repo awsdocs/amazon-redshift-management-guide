@@ -1,6 +1,6 @@
 # Viewing cluster metrics during load operations<a name="performance-metrics-loads"></a>
 
-When you view cluster performance during load operations, you can identify queries that are consuming resources and take action to mitigate their effect\. You can terminate a load if you don't want it to run to completion\. 
+When you view cluster performance during load operations, you can identify queries that are consuming resources and act to mitigate their effect\. You can terminate a load if you don't want it to run to completion\. 
 
 **Note**  
 The ability to terminate queries and loads in the Amazon Redshift console requires specific permission\. If you want users to be able to terminate queries and loads, make sure to add the `redshift:CancelQuerySession` action to your AWS Identity and Access Management \(IAM\) policy\. This requirement applies whether you select the **Amazon Redshift Read Only** AWS\-managed policy or create a custom policy in IAM\. Users who have the **Amazon Redshift Full Access** policy already have the necessary permission to terminate queries and loads\. For more information about actions in IAM policies for Amazon Redshift, see [Managing access to resources](redshift-iam-access-control-overview.md#redshift-iam-accesscontrol-managingaccess)\.

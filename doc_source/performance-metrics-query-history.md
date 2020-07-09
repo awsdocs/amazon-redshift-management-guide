@@ -3,7 +3,7 @@
 You can use query history metrics in Amazon Redshift to do the following:
 + Isolate and diagnose query performance problems\. 
 + Compare query runtime metrics and cluster performance metrics on the same timeline to see how the two might be related\. Doing so helps identify poorly performing queries, look for bottleneck queries, and determine if you need to resize your cluster for your workload\.
-+ Drill down to the details of a specific query by choosing it in the timeline\. When the **Query ID** and other properties are displayed in a row below the graph, then you can choose the query to see query details such as its SQL statement, execution details, and query plan\. For more information, see [Viewing query details](performance-metrics-query-execution-details.md)\.
++ Drill down to the details of a specific query by choosing it in the timeline\. When **Query ID** and other properties are displayed in a row below the graph, then you can choose the query to see query details\. Details include, for example, the query's SQL statement, execution details, and query plan\. For more information, see [Viewing query details](performance-metrics-query-execution-details.md)\.
 + Determine if your load jobs complete successfully and meet your service level agreements \(SLAs\)\. 
 
 **To display query history data**

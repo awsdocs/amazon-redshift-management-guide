@@ -61,7 +61,7 @@ The **Query Execution Details** section has three tabs:
 
   The information on the **Plan** tab is analogous to running the EXPLAIN command in the database\. The EXPLAIN command examines your query text, and returns the query plan\. You use this information to evaluate queries, and revise them for efficiency and performance if necessary\. The EXPLAIN command doesn't actually run the query\.
 
-  The following example shows a query that returns the top five sellers in San Diego, based on the number of tickets sold in 2008, and the query plan for that query\.
+  The following example shows a query that returns the top five sellers in San Diego\. The result is based on the number of tickets sold in 2008 and the query plan for that query\.
 
   ```
   explain 
@@ -98,7 +98,7 @@ The **Query Execution Details** section has three tabs:
 
   The **Avg** statistic shows the average execution time for the step across data slices, and the percentage of the total query runtime that represents\. The **Max** statistic shows the longest execution time for the step on any of the data slices, and the skew\. The *skew *is the difference between the average and maximum execution times for the step\. 
 
-  You might want to investigate a step if two conditions are both true\. One condition is that the maximum execution time is consistently more than twice the average execution time over multiple runs of the query\. The other condition is that the step also takes a significant amount of time \(for example, being one of the top three steps in execution time in a large query\)\.
+  You might want to investigate a step if two conditions are both true\. One condition is that the maximum execution time is consistently more than twice the average execution time over multiple runs of the query\. The other condition is that the step also takes a significant amount of time\. An example is its being one of the top three steps in execution time in a large query\.
 **Note**  
 When possible, you should run a query twice to see what its execution details typically are\. Compilation adds overhead to the first run of the query that is not present in subsequent runs\. 
 

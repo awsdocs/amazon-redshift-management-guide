@@ -6,6 +6,7 @@ In the following sections, you can learn the basics of creating a data warehouse
 + [Overview of Amazon Redshift clusters](#working-with-clusters-overview)
 + [Use EC2\-VPC when you create your cluster](#cluster-platforms)
 + [Overview of RA3 node types](#rs-ra3-node-types)
++ [Upgrading to RA3 node types](#rs-upgrading-to-ra3)
 + [Upgrading from DC1 node types to DC2 node types](#rs-migrating-from-dc1-to-dc2)
 + [Regions and Availability Zone considerations](#az-considerations)
 + [Cluster maintenance](#rs-cluster-maintenance)
@@ -190,7 +191,26 @@ To change the number of nodes of Amazon Redshift cluster with an RA3 node type, 
 + Add or remove nodes with the elastic resize operation\. In some situations, removing nodes from a RA3 cluster isn't allowed with elastic resize\. For example, when a 2:1 node count upgrade puts the number of slices per node at 32\. For more information, see [Resizing clusters](managing-cluster-operations.md#rs-resize-tutorial)\. If elastic resize isn't available, use classic resize\. 
 + Add or remove nodes with the classic resize operation\. Choose this option when you are resizing to a configuration that isn't available through elastic resize\. Elastic resize is quicker than classic resize\. For more information, see [Resizing clusters](managing-cluster-operations.md#rs-resize-tutorial)\. 
 
-### Upgrading to RA3 node types<a name="rs-upgrading-to-ra3"></a>
+### RA3 node type availability in AWS Regions<a name="ra3-regions"></a>
+
+The RA3 node types are available only in the following AWS Regions: 
++ US East \(N\. Virginia\) Region \(us\-east\-1\)
++ US East \(Ohio\) Region \(us\-east\-2\)
++ US West \(N\. California\) Region \(us\-west\-1\)
++ US West \(Oregon\) Region \(us\-west\-2\) 
++ Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
++ Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
++ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
++ Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
++ Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
++ Canada \(Central\) Region \(ca\-central\-1\)
++ Europe \(Frankfurt\) Region \(eu\-central\-1\)
++ Europe \(Ireland\) Region \(eu\-west\-1\)
++ Europe \(London\) Region \(eu\-west\-2\)
++ Europe \(Paris\) Region \(eu\-west\-3\)
++ South America \(São Paulo\) Region \(sa\-east\-1\)
+
+## Upgrading to RA3 node types<a name="rs-upgrading-to-ra3"></a>
 
 To upgrade your existing node type to RA3, you have the following options to change the node type: 
 + Restore from a snapshot – Amazon Redshift uses the most recent snapshot of your DS2 or DC2 cluster and restores it to create a new RA3 cluster\. As soon as the cluster creation is complete \(usually within minutes\), RA3 nodes are ready to run your full production workload\. As compute is separate from storage, hot data is brought in to the local cache at fast speeds thanks to a large networking bandwidth\. If you restore from the latest DS2 or DC2 snapshot, RA3 preserves hot block information of the DS2 or DC2 workload and populates its local cache with the hottest blocks\.   For more information, see [Restoring a cluster from a snapshot](working-with-snapshots.md#working-with-snapshot-restore-cluster-from-snapshot)\. 
@@ -218,24 +238,6 @@ The minimum number of nodes for RA3 clusters is 2 nodes\. Take this into conside
 
 If you have already purchased DS2 reserved nodes, contact AWS for help with converting DS2 reserved nodes to RA3 reserved nodes\. To contact AWS for more information, see [Amazon Redshift RA3 instances with managed storage](https://pages.awscloud.com/Redshift_RA3instances.html)\. 
 
-### RA3 node type availability in AWS Regions<a name="ra3-regions"></a>
-
-The RA3 node types are available only in the following AWS Regions: 
-+ US East \(N\. Virginia\) Region \(us\-east\-1\)
-+ US East \(Ohio\) Region \(us\-east\-2\)
-+ US West \(N\. California\) Region \(us\-west\-1\)
-+ US West \(Oregon\) Region \(us\-west\-2\) 
-+ Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
-+ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
-+ Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
-+ Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
-+ Canada \(Central\) Region \(ca\-central\-1\)
-+ Europe \(Frankfurt\) Region \(eu\-central\-1\)
-+ Europe \(Ireland\) Region \(eu\-west\-1\)
-+ Europe \(London\) Region \(eu\-west\-2\)
-+ Europe \(Paris\) Region \(eu\-west\-3\)
-+ South America \(São Paulo\) Region \(sa\-east\-1\)
-
 ## Upgrading from DC1 node types to DC2 node types<a name="rs-migrating-from-dc1-to-dc2"></a>
 
 To take advantage of performance improvements, you can upgrade your DC1 clusters to DC2 node types\. 
@@ -261,6 +263,12 @@ Consider the following when upgrading from DC1 to DC2 node types\.
 + DC2 clusters don't support EC2\-Classic networking\. If your DC1 cluster is not running in a VPC, create one for your DC2 migration\. For more information, see [Managing clusters in a VPC ](managing-clusters-vpc.md)\. 
 + If you resize the cluster, it might be put into read\-only mode for the duration of the operation\.  For more information, see [Resizing clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\. 
 + If you have purchased DC1 reserved nodes, you can upgrade your DC1 reserved nodes to DC2 nodes for the remainder of your term\. For more information about how to change your reservation with the AWS CLI, see [Upgrading reserved nodes with the AWS CLI](purchase-reserved-node-offering-console.md#reserved-node-upgrade-cli)\. 
++ If you use restore to upgrade from dc1\.large to dc2\.large, and change the number of nodes, then the snapshot must have been created at cluster version 1\.0\.10013 or later\. 
++ If you use restore to upgrade from dc1\.8xlarge to dc2\.8xlarge, then the snapshot must have been created at cluster version 1\.0\.10013 or later\. 
++ If you use elastic resize to upgrade from DC1 to DC2, and change the number of nodes, then the cluster must be at cluster version 1\.0\.10013 or later\. 
++ If a snapshot of dc1\.8xlarge cluster to upgrade is from a cluster earlier than version 1\.0\.10013, then first restore the snapshot from the dc1\.8xlarge cluster into a new dc1\.8xlarge cluster with the same number of nodes\. Then use one of the following methods to upgrade the new dc1\.8xlarge: 
+  + Use a snapshot from the new restored cluster to upgrade to dc2\.8xlarge\. 
+  + Use elastic resize to upgrade the new restored cluster to dc2\.8xlarge\. 
 
 ## Regions and Availability Zone considerations<a name="az-considerations"></a>
 
@@ -328,7 +336,7 @@ If you defer your cluster's maintenance, the maintenance window following your p
 **Note**  
 You can't defer maintenance after it has started\.
 
-For more information, see [Deferring maintenance](managing-clusters-console.md#defer-maintenance-window)\.
+For more information, see [Modifying a cluster](managing-clusters-console.md#modify-cluster)\.
 
 ### Choosing cluster maintenance tracks<a name="rs-mgmt-maintenance-tracks"></a><a name="rs-maintenance-tracks"></a>
 

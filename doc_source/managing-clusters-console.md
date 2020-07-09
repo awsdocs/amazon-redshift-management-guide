@@ -318,7 +318,16 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. For **Actions**, choose **Modify**\. The **Modify cluster** page appears\.
 
-1. Update the cluster properties\. 
+1. Update the cluster properties\. Some of the properties you can modify are: 
+   + Cluster identifier
+   + VPC security groups
+   + Enhanced VPC routing
+   + Parameter groups
+   + Encryption
+   + Maintenance window
+   + Maintenance track
+   + Defer maintenance window
+   + Snapshot retention
 
 1. Choose **Modify cluster**\.
 

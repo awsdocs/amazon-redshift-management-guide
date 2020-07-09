@@ -96,13 +96,14 @@ To identify conditions where a permissions policy applies, include a `Condition`
 
 ### Using IAM policy conditions for fine\-grained access control<a name="redshift-policy-resources.conditions"></a>
 
-In Amazon Redshift, you can use two condition keys to restrict access to resources based on the tags for those resources\. The following are common Amazon Redshift condition keys\.
+In Amazon Redshift, you can use condition keys to restrict access to resources based on the tags for those resources\. The following are common Amazon Redshift condition keys\.
 
 
 | Condition key | Description | 
 | --- | --- | 
-| `redshift:RequestTag` | Requires users to include a tag key \(name\) and value whenever they create a resource\. The `redshift:RequestTag` condition key only applies to Amazon Redshift API actions that create a resource\. | 
-| `redshift:ResourceTag` | Restricts user access to resources based on specific tag keys and values\. | 
+| `aws:RequestTag` | Requires users to include a tag key \(name\) and value whenever they create a resource\.  For more information, see [aws:RequestTag](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-requesttag) in the *IAM User Guide*\.  | 
+| `aws:ResourceTag` | Restricts user access to resources based on specific tag keys and values\. For more information, see [aws:ResourceTag](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-resourcetag) in the *IAM User Guide*\.  | 
+| `aws:TagKeys` | Use this key to compare the tag keys in a request with the keys that you specify in the policy\. For more information, see [aws:TagKeys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-tagkeys) in the *IAM User Guide*\.  | 
 
 For information on tags, see [Tagging overview](amazon-redshift-tagging.md#amazon-redshift-tagging-overview)\.
 
@@ -117,36 +118,53 @@ The following condition keys can be used with the Amazon Redshift GetClusterCred
 | `redshift:DbName` | Restricts database names that can be specified\. | 
 | `redshift:DbUser` | Restricts database user names that can be specified\. | 
 
-#### Example 1: Restricting access by using the redshift:ResourceTag condition key<a name="redshift-policy-resources.resource-permissions-example1"></a>
+#### Example 1: Restricting access by using the aws:ResourceTag condition key<a name="redshift-policy-resources.resource-permissions-example1"></a>
 
 Use the following IAM policy to let a user modify an Amazon Redshift cluster only for a specific AWS account in the `us-west-2` region with a tag named `environment` with a tag value of `test`\.
 
 ```
 {
-  "Version": "2012-10-17",
-  "Statement": {
-    "Sid":"AllowModifyTestCluster",
-    "Effect": "Allow",
-    "Action": "redshift:ModifyCluster",
-    "Resource": "arn:aws:redshift:us-west-2:123456789012:cluster:*"
-    "Condition":{"StringEquals":{"redshift:ResourceTag/environment":"test"}
-  }
+    "Version": "2012-10-17",
+    "Statement": {
+        "Sid": "AllowModifyTestCluster",
+        "Effect": "Allow",
+        "Action": "redshift:ModifyCluster",
+        "Resource": "arn:aws:redshift:us-west-2:123456789012:cluster:*",
+        "Condition": {
+            "StringEquals": {
+                "aws:ResourceTag/environment": "test"
+            }
+        }
+    }
 }
 ```
 
-#### Example 2: Restricting access by using the redshift:RequestTag condition key<a name="redshift-policy-resources.resource-permissions-example2"></a>
+#### Example 2: Restricting access by using the aws:RequestTag condition key<a name="redshift-policy-resources.resource-permissions-example2"></a>
 
-Use the following IAM policy to let a user create an Amazon Redshift cluster only if the command to create the cluster includes a tag named `usage` and a tag value of `production`\.
+Use the following IAM policy to let a user create an Amazon Redshift cluster only if the command to create the cluster includes a tag named `usage` and a tag value of `production`\. The condition with `aws:TagKeys` and the `ForAllValues` modifier specifies that only the keys `costcenter` and `usage` can be specified in the request\.
 
 ```
 {
-  "Version": "2012-10-17",
-  "Statement": {
-    "Sid":"AllowCreateProductionCluster",
-    "Effect": "Allow",
-    "Action": "redshift:CreateCluster",
-    "Resource": "*"
-    "Condition":{"StringEquals":{"redshift:RequestTag/usage":"production"}
-  }
+    "Version": "2012-10-17",
+    "Statement": {
+        "Sid": "AllowCreateProductionCluster",
+        "Effect": "Allow",
+        "Action": [
+            "redshift:CreateCluster",
+            "redshift:CreateTags"
+        ],
+        "Resource": "*",
+        "Condition": {
+            "StringEquals": {
+                "aws:RequestTag/usage": "production"
+            },
+            "ForAllValues:StringEquals": {
+                "aws:TagKeys": [
+                    "costcenter",
+                    "usage"
+                ]
+            }
+        }
+    }
 }
 ```

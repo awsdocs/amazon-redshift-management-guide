@@ -37,6 +37,7 @@ The `AWS/Redshift` namespace includes the following metrics\. Unless stated othe
 | PercentageDiskSpaceUsed |  The percent of disk space used\. Units: Percent Dimensions: `ClusterIdentifier`  | 
 | QueriesCompletedPerSecond | The average number of queries completed per second\. Reported in 5\-minute intervals\. Units: Count/Second   Dimensions: `ClusterIdentifier`, `latency` Dimensions: `ClusterIdentifier`, `wlmid` | 
 | QueryDuration | The average amount of time to complete a query\. Reported in 5\-minute intervals\. Units: Microseconds Dimensions: `ClusterIdentifier`, `NodeID`, `latency` Dimensions: `ClusterIdentifier`, `latency` Dimensions: `ClusterIdentifier`, `NodeID`, `wlmid` | 
+| QueryRuntimeBreakdown | The total time queries spent running by query stage\. Reported in 5\-minute intervals\.  Units: Milliseconds Dimensions: ClusterIdentifier, NodeID, stage Dimensions: ClusterIdentifier, stage  | 
 | ReadIOPS |  The average number of disk read operations per second\. Units: Count/Second Dimensions: `ClusterIdentifier`, `NodeID` Dimensions: `ClusterIdentifier`  | 
 | ReadLatency |  The average amount of time taken for disk read I/O operations\. Units: Seconds Dimensions: `ClusterIdentifier`, `NodeID` Dimensions: `ClusterIdentifier`  | 
 | ReadThroughput |  The average number of bytes read from disk per second\. Units: Bytes \(GB/s in the Amazon Redshift console\) Dimensions: `ClusterIdentifier`, `NodeID` Dimensions: `ClusterIdentifier`  | 

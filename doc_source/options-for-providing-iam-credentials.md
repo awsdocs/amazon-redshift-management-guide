@@ -47,9 +47,9 @@ To use the credentials for the `user2` example, specify `Profile=user2` in the J
 
 For more information on using profiles, see [Named Profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html) in the* AWS Command Line Interface User Guide\.* 
 
-For more information on using profiles for ODBC driver, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.41.1065/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
+For more information on using profiles for JDBC driver, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.41.1065/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
 
-For more information on using profiles for JDBC driver, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.10.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+For more information on using profiles for ODBC driver, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.10.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
 
 ## JDBC and ODBC options for providing IAM credentials<a name="jdbc-options-for-providing-iam-credentials"></a>
 
@@ -193,7 +193,7 @@ To learn how to federate Amazon Redshift access with Microsoft Azure AD single s
    Here, `123456789012` is your AWS account, *`AzureSSO`* is an IAM role you created, and *`AzureADProvider`* is the IAM provider\.     
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/options-for-providing-iam-credentials.html)
 
-1. Under **App Registration > ***your\-application\-name*** > Authentication**, add **Mobile And Desktop Application**\. Specify the URL as http://localhost:7890/redshift\.
+1. Under **App Registration > ***your\-application\-name*** > Authentication**, add **Mobile And Desktop Application**\. Specify the URL as http://localhost/redshift/\.
 
 1. In the **SAML Signing Certificate** section, choose **Download** to download and save the federation metadata XML file for use when you create an IAM SAML identity provider\. This file is used to create the AWS SSO federated identity\.
 
@@ -357,6 +357,26 @@ All entries are case\-insensitive\.
   export ODBCINSTINI=/opt/amazon/redshift/Setup/odbcinst.ini
   ```
 
+**To troubleshoot issues with the Browser Azure AD plugin**
+
+1. To use the Browser Azure AD plugin, you must set the reply URL specified in the request to match the reply URL configured for your application\.
+
+   Navigate to the **Set up Single Sign\-On with SAML** page on the Microsoft Azure portal\. Then check the **Reply URL** is set to http://localhost/redshift/\.
+
+1. If you get an IdP tenant error, verify that the **IdP Tenant** name matches the domain name you initially used to set up the Active Directory in Microsoft Azure\.
+
+   On Windows, navigate to the **Connection Settings** section of the **Amazon Redshift ODBC DSN Setup** page\. Then check the tenant name of your company configured on your IdP \(Azure\) matches the domain name you initially used to set up the Active Directory in Microsoft Azure\.
+
+   On macOS and Linux, find the *odbc\.ini* file\. Then check the tenant name of your company configured on your IdP \(Azure\) matches the domain name you initially used to set up the Active Directory in Microsoft Azure\.
+
+1. If you get an error that the reply URL specified in the request does not match the reply URLs configured for your application, verify that the **Redirect URIs** is the same as the reply URL\.
+
+   Navigate to the **App registration** page of your application on the Microsoft Azure portal\. Then check the Redirect URIs matches the reply URL\.
+
+1. If you get the unexpected response: unauthorized error, verify that you completed the **Mobile and desktop applications** configuration\.
+
+   Navigate to the ** App registration** page of your application on the Microsoft Azure portal\. Then navigate to **Authentication** and check that you configured **Mobile and desktop applications** to use http://localhost/redshift/ as the redirect URIs\.
+
 ## Setting up JDBC or ODBC Single Sign\-on authentication with AD FS<a name="setup-adfs-identity-provider"></a>
 
 You can use AD FS as an identity provider \(IdP\) to access your Amazon Redshift cluster\. Following, you can find a procedure that describes how to set up a trust relationship for this purpose\. For more information about configuring AWS as a service provider for AD FS, see [Configuring Your SAML 2\.0 IdP with Relying Party Trust and Adding Claims](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_relying-party.html#saml_relying-party) in the *IAM User Guide*\.
@@ -462,7 +482,7 @@ You can use AD FS as an identity provider \(IdP\) to access your Amazon Redshift
   1. Choose **Extended Properties** and do one of the following:
      + For **login\_url**, enter ***your\-adfs\-sso\-login\-url***\. This value specifies to the URL to use SSO as the authentication to log in to AD FS\. 
      + For AD FS SSO, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.AdfsCredentialsProvider**\. This value specifies to the driver to use AD FS SSO as the authentication method\. 
-     + For AD FS SSO with MFA, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.SamlCredentialsProvider**\. This value specifies to the driver to use AD FS SSO with MFA as the authentication method\. 
+     + For AD FS SSO with MFA, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserSamlCredentialsProvider**\. This value specifies to the driver to use AD FS SSO with MFA as the authentication method\. 
 
 **To set up ODBC for authentication to AD FS**
 + Configure your database client to connect to your cluster through ODBC using AD FS SSO\. 
@@ -587,8 +607,8 @@ You can use Ping Identity as an identity provider \(IdP\) to access your Amazon 
 
   1. Choose **Extended Properties** and do one of the following:
      + For **login\_url**, enter ***your\-ping\-sso\-login\-url***\. This value specifies to the URL to use SSO as the authentication to log in\. 
-     + For Ping Identity SSO, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.PingCredentialsProvider**\. This value specifies to the driver to use Ping Identity SSO as the authentication method\. 
-     + For Ping Identity PingOneSSO with MFA, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.SamlCredentialsProvider**\. This value specifies to the driver to use Ping Identity PingOne SSO with MFA as the authentication method\. 
+     + For Ping Identity, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.PingCredentialsProvider**\. This value specifies to the driver to use Ping Identity SSO as the authentication method\. 
+     + For Ping Identity with SSO, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserSamlCredentialsProvider**\. This value specifies to the driver to use Ping Identity PingOne with SSO as the authentication method\. 
 
 **To set up ODBC for authentication to Ping Identity**
 + Configure your database client to connect to your cluster through ODBC using Ping Identity PingOne SSO\. 
@@ -603,8 +623,8 @@ You can use Ping Identity as an identity provider \(IdP\) to access your Amazon 
   On Windows, in the **Amazon Redshift ODBC Driver DSN Setup** page, under **Connection Settings**, enter the following information: 
   + For **Data Source Name**, enter ***your\-DSN***\. This specifies the data source name used as the ODBC profile name\. 
   + For **Auth type**, do one of the following:
-    + For Ping Identity SSO configuration, choose **Identity Provider: Ping Federate**\. This is the authentication method that the ODBC driver uses to authenticate using Ping Identity SSO\.
-    + For Ping Identity PingOne SSO with MFA configuration, choose **Identity Provider: Browser SAML**\. This is the authentication method that the ODBC driver uses to authenticate using Ping Identity PingOne SSO with MFA\.
+    + For Ping Identity configuration, choose **Identity Provider: Ping Federate**\. This is the authentication method that the ODBC driver uses to authenticate using Ping Identity SSO\.
+    + For Ping Identity with SSO configuration, choose **Identity Provider: Browser SAML**\. This is the authentication method that the ODBC driver uses to authenticate using Ping Identity with SSO\.
   + For **Cluster ID**, enter ***your\-cluster\-identifier***\. 
   + For **Region**, enter ***your\-cluster\-region***\.
   + For **Database**, enter ***your\-database\-name***\.
@@ -623,8 +643,8 @@ All entries are case\-insensitive\.
   + For **locale**, enter **en\-us**\. This is the language that error messages display in\.
   + For **iam**, enter **1**\. This value specifies to the driver to authenticate using IAM credentials\.
   + For **plugin\_name**, do one of the following:
-    + For PingOne SSO with MFA configuration, enter **BrowserSAML**\. This is the authentication method that the ODBC driver uses to authenticate to PingOne SSO with MFA\. 
-    + For PingOne SSO configuration, enter **Ping**\. This is the authentication method that the ODBC driver uses to authenticate using PingOne SSO\. 
+    + For Ping Identity configuration, enter **BrowserSAML**\. This is the authentication method that the ODBC driver uses to authenticate to Ping Identity\. 
+    + For Ping Identity with SSO configuration, enter **Ping**\. This is the authentication method that the ODBC driver uses to authenticate using Ping Identity with SSO\. 
   + For **uid**, enter ***your\-ping\-username***\. This is the user name of the Microsoft Azure account you are using for SSO that has permission to the cluster you are trying to authenticate against\. Use this only for **plugin\_name** is **Ping**\.
   + For **pwd**, enter ***your\-ping\-password***\. Use this only for **plugin\_name** is **Ping**\. 
   + For **login\_url**, enter ***your\-login\-url***\. This is the Initiate SSO URL that returns the SAML Response\. This applies only to the Browser SAML plugin\.
@@ -699,7 +719,7 @@ You can use Okta as an identity provider \(IdP\) to access your Amazon Redshift 
   1. Choose **Extended Properties** and do one of the following:
      + For **login\_url**, enter ***your\-okta\-sso\-login\-url***\. This value specifies to the URL to use SSO as the authentication to log in to Okta\. 
      + For Okta SSO, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.OktaCredentialsProvider**\. This value specifies to the driver to use Okta SSO as the authentication method\. 
-     + For Okta SSO with MFA, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.SamlCredentialsProvider**\. This value specifies to the driver to use Okta SSO with MFA as the authentication method\. 
+     + For Okta SSO with MFA, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserSamlCredentialsProvider**\. This value specifies to the driver to use Okta SSO with MFA as the authentication method\. 
 
 **To set up ODBC for authentication to Okta**
 + Configure your database client to connect to your cluster through ODBC using Okta SSO\. 

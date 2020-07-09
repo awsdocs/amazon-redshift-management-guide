@@ -8,7 +8,7 @@ As your data warehousing capacity and performance needs change or grow, you can 
 
 To resize your cluster, use one of the following approaches: 
 + **Elastic resize** – Use elastic resize to change the node type, number of nodes, or both\. If you only change the number of nodes, then queries are temporarily paused and connections are held open if possible\. During the resize operation, the cluster is read\-only\. Typically, elastic resize takes 10–15 minutes\. We recommend using elastic resize when possible\. 
-+ **Classic resize** – Use classic resize to change the node type, number of nodes, or both\. Choose this option when you are resizing to a configuration that isn't available through elastic resize\. An example is to or from a single\-node cluster\. During the resize operation, the cluster is read\-only\. Typically, classic resize takes 2 hours–2 days depending on your data's size\. 
++ **Classic resize** – Use classic resize to change the node type, number of nodes, or both\. Choose this option when you are resizing to a configuration that isn't available through elastic resize\. An example is to or from a single\-node cluster\. During the resize operation, the cluster is read\-only\. Typically, classic resize takes 2 hours–2 days or longer, depending on your data's size\. 
 + **Snapshot and restore with classic resize** – To keep your cluster available during a classic resize, you can first make a copy of an existing cluster, then resize the new cluster\. 
 
 You can resize \(both elastic resize and classic resize\) your cluster on a schedule\. When you use the new Amazon Redshift console, you can set up a schedule to resize your cluster\. For more information, see [Resizing a cluster](managing-clusters-console.md#resizing-cluster)\. You can also use the AWS CLI or Amazon Redshift API operations to schedule a resize\. For more information, see [create\-scheduled\-action](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-scheduled-action.html) in the *AWS CLI Command Reference* or [CreateScheduledAction](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateScheduledAction.html) in the *Amazon Redshift API Reference*\. 
@@ -27,7 +27,7 @@ When a cluster is resized using elastic resize with the same node type, it autom
 
 1. Elastic resize takes a cluster snapshot\. 
 
-   The snapshot that elastic resize creates includes [no\-backup tables](working-with-snapshots.md#snapshots-no-backup-tables)\. If your cluster doesn't have a recent snapshot because you disabled automated snapshots, the backup operation takes longer\. To minimize the time before the resize operation begins, we recommend that you enable automated snapshots or create a manual snapshot before starting an elastic resize\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\. 
+   The snapshot that elastic resize creates includes [no\-backup tables](working-with-snapshots.md#snapshots-no-backup-tables)\. If your cluster doesn't have a recent snapshot because you disabled automated snapshots, the backup operation takes longer\. To minimize the time before the resize operation begins, we recommend that you enable automated snapshots or create a manual snapshot before starting an elastic resize\.  When you start an elastic resize and a snapshot operation is currently in progress, then elastic resize might fail if the snapshot operation doesn't complete within a few minutes\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\. 
 
 1. The cluster is temporarily unavailable while elastic resize migrates cluster metadata\. 
 
@@ -63,17 +63,177 @@ To run an elastic resize on a cluster that is transferring data from a shared sn
 Elastic resize doesn't sort tables or reclaim disk space, so it isn't a substitute for a vacuum operation\. A classic resize copies tables to a new cluster, so it can reduce the need to vacuum\. For more information, see [Vacuuming tables](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html)\.
 
 Elastic resize has the following constraints: 
-+ Elastic resize is available only for clusters that use the EC2\-VPC platform\. For more information, see [Use EC2\-VPC when you create your cluster](working-with-clusters.md#cluster-platforms)
++ Elastic resize is available only for clusters that use the EC2\-VPC platform\. For more information, see [Use EC2\-VPC when you create your cluster](working-with-clusters.md#cluster-platforms)\. 
 + The new node configuration must have enough storage for existing data\. Even when you add nodes, your new configuration might not have enough storage because of the way that data is redistributed\. 
-+ For dc2\.large or ds2\.xlarge node types, you can double the size or half the size of the number of nodes of the original cluster\. For example, a 4\-node cluster can increase to eight nodes or decrease to two nodes with elastic resize\. To resize to a different number of nodes, you must use [Classic resize](#classic-resize)\.
-+ For dc2\.8xlarge, ds2\.8xlarge, ra3\.4xlarge, or ra3\.16xlarge node types, you can change the number of nodes to half the current number to double the current number of nodes\. For example, a 4\-node cluster can be resized to 2, 3, 5, 6, 7, or 8 nodes\.
++ The possible configurations \(number of nodes and node type\) you can resize to is determined by the number of nodes in the original cluster and the target node type of the resized cluster\. To determine the possible configurations available, you can use the Amazon Redshift console or the `describe-node-configuration-options` AWS CLI command with `action-type resize-cluster`\. For more information about the resizing using the Amazon Redshift console, see [Resizing a cluster](managing-clusters-console.md#resizing-cluster)\. 
+
+  With the AWS CLI, run the following command to describe the configuration options available\. In this example, the cluster named `mycluster` is a `dc2.large` 8\-node cluster\.
+
+  ```
+  aws redshift describe-node-configuration-options --cluster-identifier mycluster --region eu-west-1 -—action-type resize-cluster
+  ```
+
+  This command returns an option list with recommended node types, number of nodes, and disk utilization for each option\. You can choose one of these configurations when you specify the options of the `resize-cluster` AWS CLI command\. 
+
+  ```
+  {
+      "NodeConfigurationOptionList": [
+          {
+              "NodeType": "dc2.8xlarge",
+              "NumberOfNodes": 2,
+              "EstimatedDiskUtilizationPercent": 21.57
+          },
+          {
+              "NodeType": "dc2.8xlarge",
+              "NumberOfNodes": 3,
+              "EstimatedDiskUtilizationPercent": 14.71
+          },
+          {
+              "NodeType": "dc2.8xlarge",
+              "NumberOfNodes": 4,
+              "EstimatedDiskUtilizationPercent": 11.29
+          },
+          {
+              "NodeType": "dc2.large",
+              "NumberOfNodes": 16,
+              "EstimatedDiskUtilizationPercent": 58.53
+          },
+          {
+              "NodeType": "dc2.large",
+              "NumberOfNodes": 32,
+              "EstimatedDiskUtilizationPercent": 37.46
+          },
+          {
+              "NodeType": "ds2.8xlarge",
+              "NumberOfNodes": 2,
+              "EstimatedDiskUtilizationPercent": 3.45
+          },
+          {
+              "NodeType": "ds2.8xlarge",
+              "NumberOfNodes": 3,
+              "EstimatedDiskUtilizationPercent": 2.35
+          },
+          {
+              "NodeType": "ds2.8xlarge",
+              "NumberOfNodes": 4,
+              "EstimatedDiskUtilizationPercent": 1.81
+          },
+          {
+              "NodeType": "ds2.xlarge",
+              "NumberOfNodes": 8,
+              "EstimatedDiskUtilizationPercent": 7.86
+          },
+          {
+              "NodeType": "ds2.xlarge",
+              "NumberOfNodes": 16,
+              "EstimatedDiskUtilizationPercent": 4.57
+          },
+          {
+              "NodeType": "ds2.xlarge",
+              "NumberOfNodes": 32,
+              "EstimatedDiskUtilizationPercent": 2.93
+          },
+          {
+              "NodeType": "ra3.16xlarge",
+              "NumberOfNodes": 2,
+              "EstimatedDiskUtilizationPercent": 0.9
+          },
+          {
+              "NodeType": "ra3.16xlarge",
+              "NumberOfNodes": 3,
+              "EstimatedDiskUtilizationPercent": 0.62
+          },
+          {
+              "NodeType": "ra3.16xlarge",
+              "NumberOfNodes": 4,
+              "EstimatedDiskUtilizationPercent": 0.47
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 3,
+              "EstimatedDiskUtilizationPercent": 0.62
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 4,
+              "EstimatedDiskUtilizationPercent": 0.47
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 5,
+              "EstimatedDiskUtilizationPercent": 0.39
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 6,
+              "EstimatedDiskUtilizationPercent": 0.33
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 7,
+              "EstimatedDiskUtilizationPercent": 0.29
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 8,
+              "EstimatedDiskUtilizationPercent": 0.26
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 9,
+              "EstimatedDiskUtilizationPercent": 0.23
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 10,
+              "EstimatedDiskUtilizationPercent": 0.21
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 11,
+              "EstimatedDiskUtilizationPercent": 0.2
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 12,
+              "EstimatedDiskUtilizationPercent": 0.19
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 13,
+              "EstimatedDiskUtilizationPercent": 0.17
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 14,
+              "EstimatedDiskUtilizationPercent": 0.17
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 15,
+              "EstimatedDiskUtilizationPercent": 0.16
+          },
+          {
+              "NodeType": "ra3.4xlarge",
+              "NumberOfNodes": 16,
+              "EstimatedDiskUtilizationPercent": 0.15
+          }
+      ]
+  }
+  ```
 
 **Note**  
-Use [Classic resize](#classic-resize) to reset the maximum node limit\. For example, to increase from 4 nodes to 10 nodes, first change to 5 nodes using classic resize\. 
+There are scenarios when you can't use elastic resize to change the number of nodes to a specific value\. For example, if you use elastic resize to change a 4\-node `dc2.8xlarge` cluster to a 6\-node cluster, and then to an 8\-node cluster, the maximum number of nodes for this `dc2.8xlarge` cluster has been reached at 8 nodes\. To go beyond the 8 node limit, for example to 10 nodes, you can use [Classic resize](#classic-resize) to increase the number of nodes to a 10\-node `dc2.8xlarge` cluster\. Using classic resize in this scenario also raises the maximum number of nodes to 20 for future elastic resize operations on this cluster\. 
 
 ### Classic resize<a name="classic-resize"></a>
 
-With the classic resize operation, your data is copied in parallel from the compute node or nodes in your source cluster to the compute node or nodes in the target cluster\. The time that it takes to resize depends on the amount of data and the number of nodes in the smaller cluster\. It can take anywhere from a couple of hours to a couple of days\. 
+With the classic resize operation, your data is copied in parallel from the compute node or nodes in your source cluster to the compute node or nodes in the target cluster\. The time that it takes to resize depends on the amount of data and the number of nodes in the smaller cluster\. It can take anywhere from a couple of hours to a couple of days or longer\. 
+
+The duration of a classic resize varies based several factors, including: 
++ The workload on the source cluster\.
++ The number and size of the tables being transferred\.
++ How evenly data is distributed across the compute nodes and slices\.
++ The node configuration in the source and target clusters\.
 
 When you start the resize operation, Amazon Redshift puts the existing cluster into read\-only mode until the resize finishes\. During this time, you can only run queries that read from the database\. You can't run any queries that write to the database, including read\-write queries\. For more information, see [Write and read\-write operations](https://docs.aws.amazon.com/redshift/latest/dg/c_write_readwrite.html) in the *Amazon Redshift Database Developer Guide\. *
 

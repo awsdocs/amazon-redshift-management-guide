@@ -1,6 +1,6 @@
 # Analyzing workload performance<a name="analyze-workload-performance"></a>
 
-You can get a detailed view of your workload's performance by looking at the Workload execution breakdown chart in the console\. We build the chart with data provided by the CloudWatch QueryRuntimeBreakdown metric\. With this chart, you can see how much time your queries spend in the various processing stages, such as waiting and planning\. 
+You can get a detailed view of your workload's performance by looking at the Workload execution breakdown chart in the console\. We build the chart with data provided by the QueryRuntimeBreakdown metric\. With this chart, you can see how much time your queries spend in the various processing stages, such as waiting and planning\. 
 
 **Note**  
 The Workload execution breakdown chart isn't shown for single\-node clusters\.
@@ -23,11 +23,11 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 ## New console<a name="cluster-workload-breakdown-chart"></a>
 
-Following, you can see a screenshot of the workload execution breakdown chart\.
+Following, is an example of the workload execution breakdown chart\. In the chart, the y\-axis value is the average duration of each stage at the specified time shown as a stacked bar graph\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/database-performance-workload-execution-breakdown.png)
 
-The y\-axis in the diagram is cumulative for all sessions running during the selected time period\. The following diagram illustrates how Amazon Redshift aggregates query processing for concurrent sessions\. 
+The following diagram illustrates how Amazon Redshift aggregates query processing for concurrent sessions\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/querybreakdownschematic.png)
 
