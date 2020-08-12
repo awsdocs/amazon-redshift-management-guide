@@ -65,7 +65,7 @@ To support SSO authentication, Amazon Redshift provides the Azure AD plugin for 
 
 ### Setting up multi\-factor authentication<a name="setting_mfa"></a>
 
-To support multi\-factor authentication \(MFA\), Amazon Redshift provides browser\-based plugins\. Use the browser SAML plugin for Okta, PingOne, and Active Directory Federation Services, and the browser Azure AD plugin for Microsoft Azure Active Directory\.
+To support multi\-factor authentication \(MFA\), Amazon Redshift provides browser\-based plugins\. Use the browser SAML plugin for Okta, PingOne, and the browser Azure AD plugin for Microsoft Azure Active Directory\.
 
 With the browser SAML plugin, SAML authentication flows like this:
 
@@ -107,7 +107,7 @@ With the browser Azure AD plugin, SAML authentication flows like this:
 
 1. The plugin retrieves the SAML response and passes it to Amazon Redshift\.
 
-Amazon Redshift provides the following credentials provider plugins:
+See the following sections:
 + Active Directory Federation Services \(AD FS\)
 
   For more information, see [Setting up JDBC or ODBC Single Sign\-on authentication with AD FS](#setup-adfs-identity-provider)\.
@@ -300,7 +300,7 @@ To learn how to federate Amazon Redshift access with Microsoft Azure AD single s
      For Azure AD SSO with MFA configuration, add additional information to the connection properties as follows:
      + For **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserAzureCredentialsProvider**\. This value specifies to the driver to use Azure AD SSO with MFA as the authentication method\. 
      + For **idp\_tenant**, enter ***your\-idp\-tenant***\. Used only for Microsoft Azure AD\. This is the tenant name of your company configured on Azure AD\. This value can either be the tenant name or the tenant unique ID with hyphens\.
-     + For **client\_id**, enter ***your\-azure\-redshift\-application\-client\-id***\. Used only for Microsoft Azure AD\. This is the client ID \(with hyphens\) of the Amazon Redshift application that you created when setting up your Azure AD SSO with MFA configuration\. 
+     + For **client\_id**, enter ***your\-azure\-redshift\-application\-client\-id***\. This option is used only for Microsoft Azure AD\. This is the client ID \(with hyphens\) of the Amazon Redshift application that you created when setting up your Azure AD SSO with MFA configuration\. 
      + For **listen\_port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. 
      + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the number of seconds to wait before timing out when the IdP server sends back a response\. The minimum number of seconds must be 10\. If establishing the connection takes longer than this threshold, then the connection is aborted\.
 
@@ -327,7 +327,7 @@ To learn how to federate Amazon Redshift access with Microsoft Azure AD single s
   + For **Azure Client Secret**, enter ***your\-azure\-redshift\-application\-client\-secret***\. This is the client secret of the Amazon Redshift application that you created when setting up your Azure single sign\-on configuration\. 
   + For **Azure Client ID**, enter ***your\-azure\-redshift\-application\-client\-id***\. This is the client ID \(with hyphens\) of the Amazon Redshift application that you created when setting up your Azure single sign\-on configuration\. 
   + For **Listen Port**, enter ***your\-listen\-port***\. This is the default listen port that local server is listening to\. The default is 7890\. This applies only to the Browser Azure AD plugin\. 
-  + For **Response Timeout**, enter ***the\-number\-of\-seconds***\. This is the number of seconds to wait before timing out when the IdP server sends back a response\. The minimum number of seconds must be 10\. If establishing the connection takes longer than this threshold, then the connection is aborted\. This applies only to the Browser Azure AD plugin\.
+  + For **Response Timeout**, enter ***the\-number\-of\-seconds***\. This is the number of seconds to wait before timing out when the IdP server sends back a response\. The minimum number of seconds must be 10\. If establishing the connection takes longer than this threshold, then the connection is aborted\. This option applies only to the Browser Azure AD plugin\.
 
   On macOS and Linux, edit the `odbc.ini` file as follows: 
 **Note**  
@@ -345,7 +345,7 @@ All entries are case\-insensitive\.
   + For **client\_secret**, enter ***your\-azure\-redshift\-application\-client\-secret***\. This is the client secret of the Amazon Redshift application that you created when setting up your Azure single sign\-on configuration\. 
   + For **client\_id**, enter ***your\-azure\-redshift\-application\-client\-id***\. This is the client ID \(with hyphens\) of the Amazon Redshift application that you created when setting up your Azure single sign\-on configuration\. 
   + For **listen\_port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies to the Browser Azure AD plugin\.
-  + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the specified period of time in seconds to wait for response from Azure\. This applies to the Browser Azure AD plugin\.
+  + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the specified period of time in seconds to wait for response from Azure\. This option applies to the Browser Azure AD plugin\.
 
   On macOS and Linux, also edit the profile settings to add the following exports\.
 
@@ -479,10 +479,7 @@ You can use AD FS as an identity provider \(IdP\) to access your Amazon Redshift
      + For **Drivers**, choose **Amazon Redshift \(com\.amazon\.redshift\.jdbc\.Driver\)**\.
      + For **URL**, enter **jdbc:redshift:iam//*your\-cluster\-identifier*:*your\-cluster\-region*/*your\-database\-name***\.
 
-  1. Choose **Extended Properties** and do one of the following:
-     + For **login\_url**, enter ***your\-adfs\-sso\-login\-url***\. This value specifies to the URL to use SSO as the authentication to log in to AD FS\. 
-     + For AD FS SSO, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.AdfsCredentialsProvider**\. This value specifies to the driver to use AD FS SSO as the authentication method\. 
-     + For AD FS SSO with MFA, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserSamlCredentialsProvider**\. This value specifies to the driver to use AD FS SSO with MFA as the authentication method\. 
+  1. Choose **Extended Properties**\. For **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.AdfsCredentialsProvider**\. This value specifies to the driver to use AD FS SSO as the authentication method\. 
 
 **To set up ODBC for authentication to AD FS**
 + Configure your database client to connect to your cluster through ODBC using AD FS SSO\. 
@@ -496,17 +493,12 @@ You can use AD FS as an identity provider \(IdP\) to access your Amazon Redshift
 
   On Windows, in the **Amazon Redshift ODBC Driver DSN Setup** page, under **Connection Settings**, enter the following information: 
   + For **Data Source Name**, enter ***your\-DSN***\. This specifies the data source name used as the ODBC profile name\. 
-  + For **Auth type**, do one of the following:
-    + For AD FS SSO configuration, choose **Identity Provider: SAML**\. This is the authentication method that the ODBC driver uses to authenticate using AD FS SSO\. 
-    + For AD FS SSO with MFA configuration, choose **Identity Provider: Browser SAML**\. This is the authentication method that the ODBC driver uses to authenticate using AD FS SSO with MFA\.
+  + For **Auth type**, choose **Identity Provider: SAML**\. This is the authentication method that the ODBC driver uses to authenticate using AD FS SSO\.
   + For **Cluster ID**, enter ***your\-cluster\-identifier***\. 
   + For **Region**, enter ***your\-cluster\-region***\.
   + For **Database**, enter ***your\-database\-name***\.
   + For **User**, enter ***your\-adfs\-username***\. This is the user name for the AD FS account that you are using for SSO that has permission to the cluster that you're trying to authenticate using\. Use this only for **Auth type** is **Identity Provider: SAML**\.
   + For **Password**, enter ***your\-adfs\-password***\. Use this only for **Auth type** is **Identity Provider: SAML**\. 
-  + For **Listen Port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies only to the Browser SAML plugin\.
-  + For **Response Timeout**, enter ***the\-number\-of\-seconds***\. This is the number of seconds to wait before timing out when the IdP server sends back a response\. The minimum number of seconds must be 10\. If establishing the connection takes longer than this threshold, then the connection is aborted\. This applies only to the Browser SAML plugin\.
-  + For **Login URL**, enter ***your\-login\-url\.*** This applies only to the Browser SAML plugin\.
 
   On macOS and Linux, edit the `odbc.ini` file as follows: 
 **Note**  
@@ -521,9 +513,6 @@ All entries are case\-insensitive\.
     + For AD FS SSO configuration, enter **ADFS**\. This is the authentication method that the ODBC driver uses to authenticate using Azure AD SSO\. 
   + For **uid**, enter ***your\-adfs\-username***\. This is the user name of the Microsoft Azure account that you are using for SSO that has permission to the cluster you are trying to authenticate against\. Use this only for **plugin\_name** is **ADFS**\.
   + For **pwd**, enter ***your\-adfs\-password***\. Use this only for **plugin\_name** is **ADFS**\. 
-  + For **login\_url**, enter ***your\-login\-url***\. This is the initiate SSO URL that returns the SAML response\. This applies only to the Browser SAML plugin\.
-  + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the specified period of time in seconds to wait for response from AD FS\. This applies only to the Browser SAML plugin\.
-  + For **listen\_port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies only to the Browser SAML plugin\.
 
   On macOS and Linux, also edit the profile settings to add the following exports\.
 
@@ -675,12 +664,17 @@ You can use Okta as an identity provider \(IdP\) to access your Amazon Redshift 
    + On the **Create a New Add Application Integration** page, for **Platform**, choose **Web**\.
    + For **Sign on method**, choose **SAML v2\.0**\.
    + On the **General Settings** page, for **App name**, enter ***your\-redshift\-saml\-sso\-name***\. This is the name of your application\.
-   + On the **SAML Settings** page, for **Single sign on URL**, enter ***your\-redshift\-local\-host\-url***\. This is the local host and port that the SAML assertion redirects to\. For example, http://localhost:7890/redshift\.
-   + Use the **Single sign on URL** as the **Recipient URL** and **Destination URL**\.
-   + For **Signing**, choose **Sign Assertion**\.
-   + For **Audience URI \(SP Entity ID\)**, enter **urn:amazon:webservices** for the claims, as shown in the following table\. 
-   + In the **Advanced Settings** section, for **SAML Issuer ID**, enter ***your\-Identity\-Provider\-Issuer\-ID*** that you can find in the **View Setup Instructions** section\.
-   + In the **Attribute Statements** section, create the claims as shown in the following table\.    
+   + On the **SAML Settings** page, for **Single sign on URL**, enter ***your\-redshift\-local\-host\-url***\. This is the local host and port that the SAML assertion redirects to, for example `http://localhost:7890/redshift`\.
+
+1. Use the **Single sign on URL** value as the **Recipient URL** and **Destination URL**\.
+
+1. For **Signing**, choose **Sign Assertion**\.
+
+1. For **Audience URI \(SP Entity ID\)**, enter **urn:amazon:webservices** for the claims, as shown in the following table\. 
+
+1. In the **Advanced Settings** section, for **SAML Issuer ID**, enter ***your\-Identity\-Provider\-Issuer\-ID***, which you can find in the **View Setup Instructions** section\.
+
+1. In the **Attribute Statements** section, create the claims as shown in the following table\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/options-for-providing-iam-credentials.html)
 
 1. In the **App Embed Link** section, find the URL that you can use as the login URL for the Browser SAML plugin\.

@@ -31,7 +31,7 @@ The Amazon Redshift JDBC driver must be version 1\.2\.7\.1003 or later\.
    If your IAM user or role doesn't have permission to call the `redshift:DescribeClusters` operation, include the cluster ID, AWS Region, and port as shown in the following example\. The port number is optional\. The default port is 5439\.
 
    ```
-   jdbc:redshift:iam://examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com:5439/dev
+   jdbc:redshift:iam://cluster-name:port/dbname
    ```
 
 1. Add JDBC options to provide IAM credentials\. You use different combinations of JDBC options to provide IAM credentials\. For details, see [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)\.

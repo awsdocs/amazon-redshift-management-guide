@@ -6,7 +6,7 @@ Following, find out how to create an IAM role with the appropriate permissions t
 
 ## Creating an IAM role to allow your Amazon Redshift cluster to access AWS services<a name="authorizing-redshift-service-creating-an-iam-role"></a>
 
-To create an IAM role to permit your Amazon Redshift cluster to communicate with other AWS services on your behalf, take the following steps\.<a name="create-iam-role-for-aws-services"></a>
+To create an IAM role to permit your Amazon Redshift cluster to communicate with other AWS services on your behalf, take the following steps\. The values used in this section are examples, you can choose values based on your needs\.<a name="create-iam-role-for-aws-services"></a>
 
 **To create an IAM role to allow Amazon Redshift to access AWS services**
 
@@ -18,9 +18,13 @@ To create an IAM role to permit your Amazon Redshift cluster to communicate with
 
 1. Choose **AWS service**, and then choose **Redshift**\.
 
-1. Under **Select your use case**, choose **Redshift \- Customizable** and then choose **Next: Permissions**\.
+1. Under **Select your use case**, choose **Redshift \- Customizable** and then choose **Next: Permissions**\. The **Attach permissions policy** page appears\.
 
-1. The **Attach permissions policy** page appears\. For access to Amazon S3 using COPY and UNLOAD, choose **AmazonS3ReadOnlyAccess**\. For Redshift Spectrum, in addition to Amazon S3 access, add **AWSGlueConsoleFullAccess** or **AmazonAthenaFullAccess**\. Choose **Next: Tags**\.
+1. For access to Amazon S3 using COPY, as an example, you can use **AmazonS3ReadOnlyAccess** and append\. For access to Amazon S3 using COPY or UNLOAD, we suggest that you can create managed policies that restrict access to the desired bucket and prefix accordingly\. For both read and write operations, we recommend enforcing the least privileges and restricting to only the Amazon S3 buckets and key prefixes that Amazon Redshift requires\.
+
+   For Redshift Spectrum, in addition to Amazon S3 access, add **AWSGlueConsoleFullAccess** or **AmazonAthenaFullAccess**\.
+
+   Choose **Next: Tags**\.
 
 1. The **Add tags** page appears\. You can optionally add tags\. Choose **Next: Review**\.
 
@@ -29,6 +33,8 @@ To create an IAM role to permit your Amazon Redshift cluster to communicate with
 1. The new role is available to all users on clusters that use the role\. To restrict access to only specific users on specific clusters, or to clusters in specific regions, edit the trust relationship for the role\. For more information, see [Restricting access to IAM roles](#authorizing-redshift-service-database-users)\.
 
 1. Associate the role with your cluster\. You can associate an IAM role with a cluster when you create the cluster, or you add the role to an existing cluster\. For more information, see [Associating IAM roles with clusters](copy-unload-iam-role.md#copy-unload-iam-role-associating-with-clusters)\.
+**Note**  
+To restrict access to specific data, use an IAM role that grants the least privileges required\.
 
 ## Restricting access to IAM roles<a name="authorizing-redshift-service-database-users"></a>
 

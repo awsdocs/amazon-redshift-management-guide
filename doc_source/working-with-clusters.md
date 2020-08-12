@@ -33,6 +33,11 @@ An Amazon Redshift cluster consists of nodes\. Each cluster has a leader node an
 
 *Compute nodes* execute the query execution plans and transmit data among themselves to serve these queries\. The intermediate results are sent to the leader node for aggregation before being sent back to the client applications\. For more information about leader nodes and compute nodes, see [Data warehouse system architecture](https://docs.aws.amazon.com/redshift/latest/dg/c_high_level_system_architecture.html) in the *Amazon Redshift Database Developer Guide*\. 
 
+
+|  | 
+| --- |
+|  When you create a cluster on the Amazon Redshift console \([https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\), you can get a recommendation of your cluster configuration based on the size of your data and query characteristics\. To use this sizing calculator, look for **Help me choose** on the console in AWS Regions which support RA3 node types\. For more information, see [Creating a cluster](managing-clusters-console.md#create-cluster)\.   | 
+
 When you launch a cluster, one option you specify is the node type\. The node type determines the CPU, RAM, storage capacity, and storage drive type for each node\.  
 
 Amazon Redshift offers different node types to accommodate your workloads, and we recommend choosing RA3 or DC2 depending on the required performance, data size, and expected data growth\. 
@@ -149,7 +154,7 @@ In EC2\-Classic, your cluster runs in a single, flat network that you share with
 
 Your AWS account can either launch instances of both EC2\-VPC and EC2\-Classic, or only EC2\-VPC, on a region\-by\-region basis\. To determine which networking platform your account supports, and then launch a cluster, do the following: 
 
-1. Decide which AWS Region you want to deploy a cluster\. For a list of AWS Regions in which Amazon Redshift is available, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\.
+1. Decide which AWS Region you want to deploy a cluster\. For a list of AWS Regions in which Amazon Redshift is available, see [Amazon Redshift endpoints](https://docs.aws.amazon.com/general/latest/gr/redshift-service.html) in the *Amazon Web Services General Reference*\.
 
 1. Find out which Amazon EC2 platforms your account supports in the chosen AWS Region\. You can find this information in the Amazon EC2 console\. For step\-by\-step instructions, see [Supported Platforms](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
@@ -276,7 +281,7 @@ Consider the following when upgrading from DC1 to DC2 node types\.
 
  You can optionally request a specific Availability Zone if Amazon Redshift is available in that zone\. For example, if you already have an Amazon EC2 instance running in one Availability Zone, you might want to create your Amazon Redshift cluster in the same zone to reduce latency\. On the other hand, you might want to choose another Availability Zone for higher availability\. Amazon Redshift might not be available in all Availability Zones within an AWS Region\.
 
- For a list of supported AWS Regions where you can provision an Amazon Redshift cluster, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region) in the *Amazon Web Services General Reference*\.
+ For a list of supported AWS Regions where you can provision an Amazon Redshift cluster, see [Amazon Redshift endpoints](https://docs.aws.amazon.com/general/latest/gr/redshift-service.html) in the *Amazon Web Services General Reference*\.
 
 ## Cluster maintenance<a name="rs-cluster-maintenance"></a>
 

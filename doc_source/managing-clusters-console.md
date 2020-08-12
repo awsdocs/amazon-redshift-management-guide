@@ -61,7 +61,17 @@ One way to learn about creating a cluster is to create a cluster using the conso
 
 1. Choose **Create cluster** to create a cluster\. 
 
-1. Follow the instructions on the console page to enter the properties for **Cluster configuration**\. You can get a recommendation of your cluster configuration based on the size of your data and number of nodes\. To use this tool, look for **Calculate the best configuration for your needs**\. 
+1. Follow the instructions on the console page to enter the properties for **Cluster configuration**\. 
+
+   Choose one of the following methods to size your cluster:
+**Note**  
+The following step describes an Amazon Redshift console that is running in an AWS Region that supports RA3 node types\. For a list of AWS Regions that support RA3 node types, see [Overview of RA3 node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-ra3-node-types) in the *Amazon Redshift Cluster Management Guide*\. 
+   + If your AWS Region supports RA3 node types, choose either **Production** or **Free trial** to answer the question **What are you planning to use this cluster for?** 
+
+     If your organization is eligible, you might be able to create a cluster under the Amazon Redshift free trial program\. To do this, choose **Free trial** to create a configuration with the dc2\.large node type\. For more information about choosing a free trial, see [Amazon Redshift free trial](http://aws.amazon.com/redshift/free-trial/)\. 
+   + If you don't know how large to size your cluster, choose **Help me choose**\. Doing this starts a sizing calculator that asks you questions about the size and query characteristics of the data that you plan to store in your data warehouse\. 
+
+     If you know the required size of your cluster \(that is, the node type and number of nodes\), choose **I'll choose**\. Then choose the **Node type** and number of **Nodes** to size your cluster for the proof of concept\.
 
 1. Follow the instructions on the console page to enter the properties for **Cluster details**\. 
 **Note**  
@@ -75,14 +85,11 @@ If you are behind a firewall, the database port must be an open port that accept
 
 When you create a cluster, you can specify additional properties to customize it\. You can find more details about some of these properties in the following list\. 
 
-**Enhanced VPC routing**  
-
-**VPC security group**  
-
-**Publicly accessible**  
+**Virtual private cloud \(VPC\)**  
+Choose a VPC that has a subnet group\. After the cluster is created, the subnet group can't be changed\. 
 
 **Parameter groups**  
- Choose a cluster parameter group to associate with the cluster\. If you don't choose one, the cluster uses the default parameter group\. 
+Choose a cluster parameter group to associate with the cluster\. If you don't choose one, the cluster uses the default parameter group\. 
 
 **Encryption**  
 Choose whether you want to encrypt all data within the cluster and its snapshots\. If you leave the default setting, **None**, encryption is not enabled\. If you want to enable encryption, choose whether you want to use AWS Key Management Service \(AWS KMS\) or a hardware security module \(HSM\), and then configure the related settings\. For more information about encryption in Amazon Redshift, see [Amazon Redshift database encryption](working-with-db-encryption.md)\.  

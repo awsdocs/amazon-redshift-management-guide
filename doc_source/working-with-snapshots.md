@@ -155,6 +155,9 @@ When a restore is in progress, events are typically emitted in the following ord
 
 1. DATA\_TRANSFER\_COMPLETED – REDSHIFT\-EVENT\-3537 sent when data transfer complete\.  
 
+**Note**  
+RA3 clusters only emit RESTORE\_STARTED and RESTORE\_SUCCEEDED events\. There is no explicit data transfer to be done after a RESTORE succeeds because RA3 node types store data in Amazon Redshift managed storage\. With RA3 nodes, data is continuously transferred between RA3 nodes and Amazon Redshift managed storage as part of normal query processing\. RA3 nodes cache hot data locally and keep less frequently queried blocks in Amazon Redshift managed storage automatically\. 
+
 You can monitor the progress of a restore by either calling the [DescribeClusters](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusters.html) API operation, or viewing the cluster details in the AWS Management Console\. For an in\-progress restore, these display information such as the size of the snapshot data, the transfer rate, the elapsed time, and the estimated time remaining\. For a description of these metrics, see [RestoreStatus](https://docs.aws.amazon.com/redshift/latest/APIReference/API_RestoreStatus.html)\.
 
 You can't use a snapshot to revert an active cluster to a previous state\.
