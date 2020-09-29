@@ -8,7 +8,8 @@ In the following sections, you can learn the basics of creating a data warehouse
 + [Overview of RA3 node types](#rs-ra3-node-types)
 + [Upgrading to RA3 node types](#rs-upgrading-to-ra3)
 + [Upgrading from DC1 node types to DC2 node types](#rs-migrating-from-dc1-to-dc2)
-+ [Regions and Availability Zone considerations](#az-considerations)
++ [Upgrading a DS2 cluster on EC2\-Classic to EC2\-VPC](#rs-upgrading-ds2-cluster-ec2-classic-to-ec2-vpc)
++ [Region and Availability Zone considerations](#az-considerations)
 + [Cluster maintenance](#rs-cluster-maintenance)
 + [Default disk space alarm](#rs-clusters-default-disk-usage-alarm)
 + [Cluster status](#rs-mgmt-cluster-status)
@@ -46,13 +47,13 @@ RA3 nodes with managed storage enable you to optimize your data warehouse by sca
 
 Amazon Redshift managed storage uses large, high\-performance SSDs in each RA3 node for fast local storage and Amazon S3 for longer\-term durable storage\. If the data in a node grows beyond the size of the large local SSDs, Amazon Redshift managed storage automatically offloads that data to Amazon S3\. You pay the same low rate for Amazon Redshift managed storage regardless of whether the data sits in high\-performance SSDs or Amazon S3\. For workloads that require ever\-growing storage, managed storage lets you automatically scale your data warehouse storage capacity without adding and paying for additional nodes\.
 
-DC2 nodes enable you to have compute\-intensive data warehouses with local SSD storage included\. You choose the number of nodes you need based on data size and performance requirements\. DC2 nodes store your data locally for high performance, and as the data size grows, you can add more compute nodes to increase the storage capacity of the cluster\. For datasets under 1 TB \(compressed\), we recommend DC2 node types for the best performance at the lowest price\. If you expect your data to grow, we recommend using RA3 nodes so you can size compute and storage independently to achieve improved price and performance\. You launch clusters that use the DC2 node types in a virtual private cloud \(VPC\)\. You can't launch DC2 clusters in EC2\-classic\. For more information, see [Creating a cluster in a VPC](getting-started-cluster-in-vpc.md)\.
+DC2 nodes enable you to have compute\-intensive data warehouses with local SSD storage included\. You choose the number of nodes you need based on data size and performance requirements\. DC2 nodes store your data locally for high performance, and as the data size grows, you can add more compute nodes to increase the storage capacity of the cluster\. For datasets under 1 TB \(compressed\), we recommend DC2 node types for the best performance at the lowest price\. If you expect your data to grow, we recommend using RA3 nodes so you can size compute and storage independently to achieve improved price and performance\. You launch clusters that use the DC2 node types in a virtual private cloud \(VPC\)\. You can't launch DC2 clusters in EC2\-Classic\. For more information, see [Creating a cluster in a VPC](getting-started-cluster-in-vpc.md)\.
 
 DS2 nodes enable you to create large data warehouses using hard disk drives \(HDDs\), and we recommend using RA3 nodes instead\. If you are using DS2 nodes, see [Upgrading to RA3 node types](#rs-upgrading-to-ra3) for upgrade guidelines\. If you are using eight or more nodes of ds2\.xlarge, or any number of ds2\.8xlarge nodes, you can now upgrade to RA3 to get 2x more storage and improved performance for the same on\-demand cost\.
 
 Node types are available in different sizes\. Node size and the number of nodes determine the total storage for a cluster\. For more information, see [Node type details](#rs-node-type-info)\. 
 
-Some node types allow one node \(single\-node\) or two or more nodes \(multi\-node\)\. The  minimum number of nodes for clusters of some node types is two nodes\. On a single\-node cluster, the node is shared for leader and compute functionality\. Single\-node clusters are not recommended for running production workloads\. On a multi\-node cluster, the leader node is separate from the compute nodes\. The leader node is the same node type as the compute nodes\. You only pay for compute nodes\. 
+Some node types allow one node \(single\-node\) or two or more nodes \(multi\-node\)\. The minimum number of nodes for clusters of some node types is two nodes\. On a single\-node cluster, the node is shared for leader and compute functionality\. Single\-node clusters are not recommended for running production workloads\. On a multi\-node cluster, the leader node is separate from the compute nodes\. The leader node is the same node type as the compute nodes\. You only pay for compute nodes\. 
 
  Amazon Redshift applies quotas to resources for each AWS account in each AWS Region\. A *quota* restricts the number of resources that your account can create for a given resource type, such as nodes or snapshots, within an AWS Region\. For more information about the default quotas that apply to Amazon Redshift resources, see [Amazon Redshift Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_redshift) in the *Amazon Web Services General Reference*\. To request an increase, submit an [Amazon Redshift Limit Increase Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-redshift)\. 
 
@@ -93,7 +94,7 @@ You might be restricted to fewer nodes depending on the quota that is applied to
 
 | Node size | vCPU | RAM \(GiB\) | Default slices per node | Storage per node | Node range | Total capacity | 
 | --- | --- | --- | --- | --- | --- | --- | 
-| ds2\.xlarge | 4 | 13 | 2 | 2 TB HDD | 1–32 | 64 TB | 
+| ds2\.xlarge | 4 | 31 | 2 | 2 TB HDD | 1–32 | 64 TB | 
 | ds2\.8xlarge | 36 | 244 | 16 | 16 TB HDD | 2–128 | 2 PB | 
 
 
@@ -133,7 +134,7 @@ For information about pricing of on\-demand and reserved nodes, see [Amazon Reds
 
 ## Use EC2\-VPC when you create your cluster<a name="cluster-platforms"></a>
 
- Amazon Redshift clusters run in Amazon Elastic Compute Cloud \(Amazon EC2\) instances that are configured for the Amazon Redshift node type and size that you select\. Create your cluster using EC2\-VPC\. If you are still using EC2\-Classic, we recommend you use EC2\-VPC to get improved performance and security\. For more information about these networking platforms, see [Supported Platforms](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html) in the *Amazon EC2 User Guide for Linux Instances*\. Your AWS account settings determine whether EC2\-VPC or EC2\-Classic are available to you\. 
+ Amazon Redshift clusters run in Amazon EC2 instances that are configured for the Amazon Redshift node type and size that you select\. Create your cluster using EC2\-VPC\. If you are still using EC2\-Classic, we recommend you use EC2\-VPC to get improved performance and security\. For more information about these networking platforms, see [Supported Platforms](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html) in the *Amazon EC2 User Guide for Linux Instances*\. Your AWS account settings determine whether EC2\-VPC or EC2\-Classic are available to you\. 
 
 **Note**  
 To prevent connection issues between SQL client tools and the Amazon Redshift database, we recommend doing one of two things\. You can configure an inbound rule that enables the hosts to negotiate packet size\. Alternatively, you can disable TCP/IP jumbo frames by setting the maximum transmission unit \(MTU\) to 1500 on the network interface \(NIC\) of your Amazon EC2 instances\. For more information about these approaches, see [Queries appear to hang and sometimes fail to reach the cluster](connecting-drop-issues.md)\. 
@@ -253,7 +254,7 @@ If your DC1 cluster is not in a VPC:
 
 1. Create a snapshot of your DC1 cluster\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.
 
-1. Create a VPC, then create a DC2 cluster in the VPC\. For more information, see [Managing clusters in a VPC ](managing-clusters-vpc.md)\. 
+1. Create a VPC, then create a DC2 cluster in the VPC\. For more information, see [Managing clusters in a VPC](managing-clusters-vpc.md)\. 
 
 1. Restore your snapshot to the new DC2 cluster in the VPC\. For more information, see [Restoring a cluster from a snapshot](working-with-snapshots.md#working-with-snapshot-restore-cluster-from-snapshot)\. 
 
@@ -265,7 +266,7 @@ Consider the following when upgrading from DC1 to DC2 node types\.
 + DC1 clusters that are 100% full might not upgrade to an equivalent number of DC2 nodes\. If more disk space is needed, you can:
   + Resize to a configuration with more available disk space\. 
   + Clean up unneeded data by truncating tables or deleting rows\. 
-+ DC2 clusters don't support EC2\-Classic networking\. If your DC1 cluster is not running in a VPC, create one for your DC2 migration\. For more information, see [Managing clusters in a VPC ](managing-clusters-vpc.md)\. 
++ DC2 clusters don't support EC2\-Classic networking\. If your DC1 cluster is not running in a VPC, create one for your DC2 migration\. For more information, see [Managing clusters in a VPC](managing-clusters-vpc.md)\. 
 + If you resize the cluster, it might be put into read\-only mode for the duration of the operation\.  For more information, see [Resizing clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\. 
 + If you have purchased DC1 reserved nodes, you can upgrade your DC1 reserved nodes to DC2 nodes for the remainder of your term\. For more information about how to change your reservation with the AWS CLI, see [Upgrading reserved nodes with the AWS CLI](purchase-reserved-node-offering-console.md#reserved-node-upgrade-cli)\. 
 + If you use restore to upgrade from dc1\.large to dc2\.large, and change the number of nodes, then the snapshot must have been created at cluster version 1\.0\.10013 or later\. 
@@ -275,7 +276,19 @@ Consider the following when upgrading from DC1 to DC2 node types\.
   + Use a snapshot from the new restored cluster to upgrade to dc2\.8xlarge\. 
   + Use elastic resize to upgrade the new restored cluster to dc2\.8xlarge\. 
 
-## Regions and Availability Zone considerations<a name="az-considerations"></a>
+## Upgrading a DS2 cluster on EC2\-Classic to EC2\-VPC<a name="rs-upgrading-ds2-cluster-ec2-classic-to-ec2-vpc"></a>
+
+Amazon Redshift clusters run in Amazon EC2 instances that are configured for the Amazon Redshift node type and size that you choose\. We recommend that you upgrade your cluster on EC2\-Classic to launch in a VPC using EC2\-VPC for improved performance and security\.
+
+**To upgrade your DS2 cluster on EC2\-Classic to EC2\-VPC**
+
+1. Create a snapshot of your DS2 cluster\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.
+
+1. Create a VPC, then create a DS2 cluster in the VPC\. For more information, see [Managing clusters in a VPC](managing-clusters-vpc.md)\. 
+
+1. Restore your snapshot to the new DS2 cluster in the VPC\. For more information, see [Restoring a cluster from a snapshot](working-with-snapshots.md#working-with-snapshot-restore-cluster-from-snapshot)\. 
+
+## Region and Availability Zone considerations<a name="az-considerations"></a>
 
  Amazon Redshift is available in several AWS Regions\. By default, Amazon Redshift provisions your cluster in a randomly selected Availability Zone \(AZ\) within the AWS Region that you choose\. All the cluster nodes are provisioned in the same Availability Zone\. 
 
@@ -488,7 +501,7 @@ The cluster status displays the current state of the cluster\. The following tab
 | final\-snapshot | Amazon Redshift is taking a final snapshot of the cluster before deleting it\. For more information, see [Deleting a cluster](managing-clusters-console.md#delete-cluster)\. | 
 | hardware\-failure |  The cluster suffered a hardware failure\. If you have a single\-node cluster, the node cannot be replaced\. To recover your cluster, restore a snapshot\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.  | 
 | incompatible\-hsm |  Amazon Redshift cannot connect to the hardware security module \(HSM\)\. Check the HSM configuration between the cluster and HSM\. For more information, see [Encryption for Amazon Redshift using hardware security modules](working-with-db-encryption.md#working-with-HSM)\.  | 
-| incompatible\-network |  There is an issue with the underlying network configuration\. Make sure that the VPC in which you launched the cluster exists and its settings are correct\. For more information, see [Managing clusters in a VPC ](managing-clusters-vpc.md)\.  | 
+| incompatible\-network |  There is an issue with the underlying network configuration\. Make sure that the VPC in which you launched the cluster exists and its settings are correct\. For more information, see [Managing clusters in a VPC](managing-clusters-vpc.md)\.  | 
 | incompatible\-parameters | There is an issue with one or more parameter values in the associated parameter group, and the parameter value or values cannot be applied\. Modify the parameter group and update any invalid values\. For more information, see [Amazon Redshift parameter groups](working-with-parameter-groups.md)\.  | 
 | incompatible\-restore |  There was an issue restoring the cluster from the snapshot\. Try restoring the cluster again with a different snapshot\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.  | 
 | modifying |  Amazon Redshift is applying changes to the cluster\. For more information, see [Modifying a cluster](managing-clusters-console.md#modify-cluster)\.  | 

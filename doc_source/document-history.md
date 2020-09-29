@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: July 6, 2020** 
+ **Latest documentation update: September 18, 2020** 
 
 For a list of the changes to the *Amazon Redshift Database Developer Guide*, see [Amazon Redshift Database Developer Guide document history](https://docs.aws.amazon.com/redshift/latest/dg/doc-history.html)\.
 
@@ -12,6 +12,8 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Support for the Data API for Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html) | Amazon Redshift can now be accessed using the built\-in Data API\. Documentation updates include an *Amazon Redshift Data API Reference*\.  | September 10, 2020 | 
+| [Support for Amazon Redshift console query monitoring](https://docs.aws.amazon.com/redshift/latest/mgmt/performance-metrics-console.html) | Updated the guide to describe new query monitoring graphs\.  | May 7, 2020 | 
 | [Support for usage limits](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-usage-limits.html) | Updated the guide to describe usage limits\.  | April 23, 2020 | 
 | [Multi\-factor authentication](https://docs.aws.amazon.com/redshift/latest/mgmt/options-for-providing-iam-credentials.html) | Updated the guide to describe multi\-factor authenication support\.  | April 20, 2020 | 
 | [Elastic resize now supports node type changes](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-operations.html#rs-resize-tutorial) | Updated elastic resize description\.  | April 6, 2020 | 
@@ -42,7 +44,7 @@ The following table describes the important changes to the *Amazon Redshift Clus
 
 | Change | Description | Release date | 
 | --- | --- | --- | 
-| New CloudWatch metrics | New CloudWatch metrics added for monitoring query performance\. For more information, see [Amazon Redshift performance data](metrics-listing.md) | May 17, 2018 | 
+| New CloudWatch metrics | New CloudWatch metrics added for monitoring query performance\. For more information, see [Monitoring Amazon Redshift using CloudWatch metrics](metrics-listing.md) | May 17, 2018 | 
 |  New JDBC and ODBC drivers   |   Amazon Redshift JDBC drivers have been updated to version 1\.2\.12\.1017\. For more information, see [Configuring a JDBC connection](configure-jdbc-connection.md)\. Amazon Redshift ODBC drivers have been updated to version 1\.4\.1\.1001\. For more information, see [Configuring an ODBC connection](configure-odbc-connection.md)\.   |   March 7, 2018   | 
 |  HSM encryption  | Amazon Redshift supports only AWS CloudHSM for hardware security module \(HSM\) key management\. For more information, see [Amazon Redshift database encryption](working-with-db-encryption.md)\.  |  March 6, 2018  | 
 | IAM Role Chaining | If an IAM role attached to your cluster doesn't have access to the necessary resources, you can chain another role, possibly belonging to another account\. Your cluster then temporarily assumes the chained role to access the data\. You can also grant cross\-account access by chaining roles\. Each role in the chain assumes the next role in the chain, until the cluster assumes the role at the end of chain\. You can chain a maximum of 10 roles\. For more information, see [Chaining IAM roles in Amazon Redshift](authorizing-redshift-service.md#authorizing-redshift-service-chaining-roles)\. | February 23, 2018 | 
@@ -110,7 +112,7 @@ The following table describes the important changes to the *Amazon Redshift Clus
 |  New feature  |  Updated the resize procedure to show the new resize progress information on the cluster's **Status** tab\. For more information, see [Resizing a cluster](managing-clusters-console.md#resizing-cluster)\.  |  March 21, 2014  | 
 |  Documentation update  | Reorganized and updated [What is Amazon Redshift?](welcome.md) and revised [Amazon Redshift management overview](overview.md)\. Published various documentation fixes\. | February 21, 2014 | 
 |  New feature  |  Added new node types and sizes for Amazon Redshift clusters, and rewrote the related cluster overview topic for better organization and clarity based on feedback\. For more information, see [Amazon Redshift clusters](working-with-clusters.md)\.  |  January 23, 2014  | 
-|  New feature  |  Added information about using elastic IP \(EIP\) addresses for publicly\-accessible Amazon Redshift clusters in virtual private clouds\. For more information about EIP in Amazon Redshift, see [Managing clusters in a VPC ](managing-clusters-vpc.md) and [Creating a cluster in a VPC](getting-started-cluster-in-vpc.md)\.  |  December 20, 2013  | 
+|  New feature  |  Added information about using elastic IP \(EIP\) addresses for publicly\-accessible Amazon Redshift clusters in virtual private clouds\. For more information about EIP in Amazon Redshift, see [Managing clusters in a VPC](managing-clusters-vpc.md) and [Creating a cluster in a VPC](getting-started-cluster-in-vpc.md)\.  |  December 20, 2013  | 
 |  New feature  |  Added information about the AWS CloudTrail logs for Amazon Redshift\. For more information about Amazon Redshift support for CloudTrail, see [Logging Amazon Redshift API calls with AWS CloudTrail](db-auditing.md#rs-db-auditing-cloud-trail)\.  |  December 13, 2013  | 
 |  New feature  |  Added information about the new user activity log and the `enable_user_activity_logging` database parameter for the database audit logging feature in Amazon Redshift\. For more information about database audit logging, see [Database audit logging](db-auditing.md)\. For more information about database parameters, see [Amazon Redshift parameter groups](working-with-parameter-groups.md)\.   |  December 6, 2013  | 
 |  New feature  |  Updated to describe configuring Amazon Redshift to automatically copy automated and manual snapshots to a secondary AWS Region\. For more information about configuring cross\-Region snapshot copy, see [Copying snapshots to another AWS Region](working-with-snapshots.md#cross-region-snapshot-copy)\.  |  November 14, 2013  | 

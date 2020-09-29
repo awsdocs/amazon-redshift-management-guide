@@ -23,11 +23,11 @@ For more information, see [Configure a JDBC or ODBC connection to use IAM creden
 
 ## Using a Configuration Profile<a name="using-configuration-profile"></a>
 
-You can supply the IAM credentials options and `GetClusterCredentials` options as settings in named profiles in your AWS configuration file\. To provide the profile name, use the Profile JDBC option\. The configuration is stored in a file named `config` in a folder named `.aws` in your home directory\. 
+You can supply the IAM credentials options and `GetClusterCredentials` options as settings in named profiles in your AWS configuration file\. To provide the profile name, use the Profile JDBC option\. The configuration is stored in a file named `config` or a file named `credentials` in a folder named \.aws in your home directory\. 
 
 For a SAML\-based credential provider plugin included with an Amazon Redshift JDBC or ODBC driver, you can use the settings described just preceding in [Using a credentials provider plugin](#using-credentials-provider-plugin)\. If `plugin_name` isn't used, the other options are ignored\.
 
-The following example shows a configuration file with two profiles\. 
+The following example shows the \~/\.aws/credentials file with two profiles\.
 
 ```
 [default]
@@ -526,7 +526,7 @@ All entries are case\-insensitive\.
 
 ## Setting up JDBC or ODBC Single Sign\-on authentication with Ping Identity<a name="setup-pingfederate-identity-provider"></a>
 
-You can use Ping Identity as an identity provider \(IdP\) to access your Amazon Redshift cluster\. Following, you can find a procedure that describes how to set up a trust relationship for this purpose\. For more information about configuring AWS as a service provider for Ping Identity, see [Configuring Your SAML 2\.0 IdP with Relying Party Trust and Adding Claims](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_relying-party.html#saml_relying-party) in the *IAM User Guide*\.
+You can use Ping Identity as an identity provider \(IdP\) to access your Amazon Redshift cluster\. Following, you can find a procedure that describes how to set up a trust relationship for this purpose using the PingOne portal\. For more information about configuring AWS as a service provider for Ping Identity, see [Configuring Your SAML 2\.0 IdP with Relying Party Trust and Adding Claims](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_relying-party.html#saml_relying-party) in the *IAM User Guide*\.
 
 **To set up Ping Identity and your AWS account to trust each other**
 
@@ -664,7 +664,7 @@ You can use Okta as an identity provider \(IdP\) to access your Amazon Redshift 
    + On the **Create a New Add Application Integration** page, for **Platform**, choose **Web**\.
    + For **Sign on method**, choose **SAML v2\.0**\.
    + On the **General Settings** page, for **App name**, enter ***your\-redshift\-saml\-sso\-name***\. This is the name of your application\.
-   + On the **SAML Settings** page, for **Single sign on URL**, enter ***your\-redshift\-local\-host\-url***\. This is the local host and port that the SAML assertion redirects to, for example `http://localhost:7890/redshift`\.
+   + On the **SAML Settings** page, for **Single sign on URL**, enter ***your\-redshift\-local\-host\-url***\. This is the local host and port that the SAML assertion redirects to, for example `http://localhost:7890/redshift/`\.
 
 1. Use the **Single sign on URL** value as the **Recipient URL** and **Destination URL**\.
 

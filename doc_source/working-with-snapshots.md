@@ -24,7 +24,7 @@ Amazon Redshift automatically takes incremental snapshots that track changes to 
 
 When you restore from a snapshot, Amazon Redshift creates a new cluster and makes the new cluster available before all of the data is loaded, so you can begin querying the new cluster immediately\. The cluster streams data on demand from the snapshot in response to active queries, then loads the remaining data in the background\. 
 
-When you launch a cluster, you can set the retention period for automated and manual snapshots\. You can change the retention period for automated and manual snapshots by modifying the cluster\. You can change the retention period for a manual snapshot when you create the snapshot or by modifying the snapshot\. 
+When you launch a cluster, you can set the retention period for automated and manual snapshots\. You can change the default retention period for automated and manual snapshots by modifying the cluster\. You can change the retention period for a manual snapshot when you create the snapshot or by modifying the snapshot\. 
 
 You can monitor the progress of snapshots by viewing the snapshot details in the AWS Management Console, or by calling [describe\-cluster\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-cluster-snapshots.html) in the CLI or the [DescribeClusterSnapshots](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusterSnapshots.html) API action\. For an in\-progress snapshot, these display information such as the size of the incremental snapshot, the transfer rate, the elapsed time, and the estimated time remaining\. 
 
@@ -102,11 +102,11 @@ create-snapshot-schedule --schedule-identifier "my-test" --schedule-definition "
 
 ## Manual snapshots<a name="about-manual-snapshots"></a>
 
-You can take a manual snapshot any time\. By default, manual snapshots are retained indefinitely, even after you delete your cluster\. You can specify the retention period when you create a manual snapshot, or you can change the retention period by modifying the snapshot\. 
+You can take a manual snapshot any time\. By default, manual snapshots are retained indefinitely, even after you delete your cluster\. You can specify the retention period when you create a manual snapshot, or you can change the retention period by modifying the snapshot\. For more information about changing the retention period, see [Changing the manual snapshot retention period](managing-snapshots-console.md#snapshot-manual-retention-period)\.
 
 If a snapshot is deleted, you can't start any new operations that reference that snapshot\. However, if a restore operation is in progress, that restore operation will run to completion\. 
 
-Amazon Redshift has a quota that limits the total number of manual snapshots that you can create; this quota is per AWS account per AWS Region\. The default quota is listed at [AWS service limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_redshift)\. 
+Amazon Redshift has a quota that limits the total number of manual snapshots that you can create; this quota is per AWS account per AWS Region\. The default quota is listed at [Quotas and limits in Amazon Redshift](amazon-redshift-limits.md)\. 
 
 ## Managing snapshot storage<a name="managing-snapshot-storage"></a>
 
@@ -310,7 +310,7 @@ If you have restored at least one table from a cluster snapshot, you can copy th
 
 1. Choose **Copy restore request**\.
 
-**Example Example: Restoring a table from a snapshot using the AWS CLI**  
+**Example: Restoring a table from a snapshot using the AWS CLI**  
 The following example uses the `restore-table-from-cluster-snapshot` AWS CLI command to restore the `my-source-table` table from the `sample-database` schema in the `my-snapshot-id`\. The example restores the snapshot to the `mycluster-example` cluster with a new table name of `my-new-table`\.  
 
 ```

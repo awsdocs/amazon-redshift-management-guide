@@ -11,3 +11,4 @@ To query databases hosted by your Amazon Redshift cluster, you have two options:
 **Topics**
 + [Querying a database using the query editor](query-editor.md)
 + [Connecting to an Amazon Redshift cluster using SQL client tools](connecting-to-cluster.md)
++ [Using the Amazon Redshift Data API](data-api.md)

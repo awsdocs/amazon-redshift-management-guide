@@ -108,6 +108,42 @@ For the steps to create a role for the Amazon Redshift scheduler, see [Creating 
 
 The IAM role you create has trusted entities of `scheduler.redshift.amazonaws.com` and `redshift.amazonaws.com`\. It also has an attached policy that allows a supported Amazon Redshift API action, such as, `"redshift:ResizeCluster"`\. 
 
+## Permissions required to use the Amazon EventBridge scheduler<a name="iam-permission-eventbridge-scheduler"></a>
+
+When you use the Amazon EventBridge scheduler, you set up an IAM role with a trust relationship to the EventBridge scheduler \(events\.amazonaws\.com\) to allow the scheduler to assume permissions on your behalf\. You also attach a policy \(permissions\) to the role for the Amazon Redshift Data API operations that you want to schedule and a policy for Amazon EventBridge operations\.
+
+You use the EventBridge scheduler when you create scheduled queries with the Amazon Redshift query editor on the console\. 
+
+You can create an IAM role to run scheduled queries on the IAM console\. In this IAM role, attach `AmazonEventBridgeFullAccess` and `AmazonRedshiftDataFullAccess`\. 
+
+The following example shows the policy document in JSON format to set up a trust relationship with the EventBridge scheduler\. 
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": [
+                    "events.amazonaws.com",
+                ]
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+```
+
+For more information about trust entities, see [Creating a role to delegate permissions to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html) in the *IAM User Guide*\.
+
+For the steps to create a role for the EventBridge scheduler, see [Creating a role for an AWS service \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html#roles-creatingrole-service-console) in the *IAM User Guide*\. Make these choices when you create a role in the IAM console: 
++ For **Choose the service that will use this role**: Choose **CloudWatch Events**\.
++ For **Select your use case**: Choose **CloudWatch Events**\.
++ Attach the following permission policies: `AmazonEventBridgeFullAccess` and `AmazonRedshiftDataFullAccess`\. 
+
+The IAM role that you create has a trusted entity of `events.amazonaws.com`\. It also has an attached policy that allows supported Amazon Redshift Data API actions, such as, `"redshift-data:*"`\. 
+
 ## Resource policies for GetClusterCredentials<a name="redshift-policy-resources.getclustercredentials-resources"></a>
 
 To connect to a cluster database using a JDBC or ODBC connection with IAM database credentials, or to programmatically call the `GetClusterCredentials` action, you need a minimum set of permissions\. At a minimum, you need permission to call the `redshift:GetClusterCredentials` action with access to a `dbuser` resource\.
@@ -135,6 +171,7 @@ The following AWS managed policies, which you can attach to users in your accoun
 + **AmazonRedshiftReadOnlyAccess** – Grants read\-only access to all Amazon Redshift resources for the AWS account\.
 + **AmazonRedshiftFullAccess** – Grants full access to all Amazon Redshift resources for the AWS account\.
 + **AmazonRedshiftQueryEditor** – Grants full access to the Query Editor on the Amazon Redshift console\.
++ **AmazonRedshiftDataFullAccess** – Grants full access to the Amazon Redshift Data API operations and resources for the AWS account\. 
 
 You can also create your own custom IAM policies to allow permissions for Amazon Redshift API actions and resources\. You can attach these custom policies to the IAM users or groups that require those permissions\. 
 

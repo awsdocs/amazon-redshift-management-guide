@@ -365,7 +365,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 ## Configuring cross\-Region snapshot copy for a nonencrypted cluster<a name="snapshot-crossregioncopy-configure"></a>
 
-You can configure Amazon Redshift to copy snapshots for a cluster to another AWS Region\. To configure cross\-Region snapshot copy, you need to enable this copy feature for each cluster and configure where to copy snapshots and how long to keep copied automated snapshots in the destination AWS Region\. When cross\-Region copy is enabled for a cluster, all new manual and automated snapshots are copied to the specified AWS Region\. Copied snapshot names are prefixed with **copy:**\.
+You can configure Amazon Redshift to copy snapshots for a cluster to another AWS Region\. To configure cross\-Region snapshot copy, you need to enable this copy feature for each cluster and configure where to copy snapshots and how long to keep copied automated or manual snapshots in the destination AWS Region\. When cross\-Region copy is enabled for a cluster, all new manual and automated snapshots are copied to the specified AWS Region\. Copied snapshot names are prefixed with **copy:**\.
 
 **Note**  
 A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
@@ -378,9 +378,19 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. On the navigation menu, choose **CLUSTERS**, then choose the cluster that you want to move snapshots for\.
 
-1. For **Actions**, choose **Configure cross\-region snapshot** to display the configuration page\. 
+1. For **Actions**, choose **Configure cross\-region snapshot**\.
 
-1. Enter the properties of the new configuration, then **Save**\. 
+   The Configure cross\-Region dialog box appears\.
+
+1. For **Copy snapshots**, choose **Yes**\.
+
+1. In **Destination AWS Region**, choose the AWS Region to which to copy snapshots\.
+
+1. In **Automated snapshot retention period \(days\)**, choose the number of days for which you want automated snapshots to be retained in the destination AWS Region before they are deleted\.
+
+1. In **Manual snapshot retention period**, choose the value that represents the number of days for which you want automated snapshots to be retained in the destination AWS Region before they are deleted\. If you choose **Custom value**, the retention period must be between 1 to 3653 days\.
+
+1. Choose **Save**\.
 
 ### Original console<a name="snapshot-crossregion-configure-originalconsole"></a><a name="snapshot-crossregioncopy-configure-task"></a>
 
@@ -417,9 +427,19 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. On the navigation menu, choose **CLUSTERS**, then choose the cluster that you want to move snapshots for\.
 
-1. For **Actions**, choose **Configure cross\-region snapshot** to display the configuration page\. 
+1. For **Actions**, choose **Configure cross\-region snapshot**\.
 
-1. Enter the properties of the new configuration, then **Save**\. 
+   The Configure cross\-Region dialog box appears\.
+
+1. For **Copy snapshots**, choose **Yes**\.
+
+1. In **Destination AWS Region**, choose the AWS Region to which to copy snapshots\.
+
+1. In **Automated snapshot retention period \(days\)**, choose the number of days for which you want automated snapshots to be retained in the destination AWS Region before they are deleted\.
+
+1. In **Manual snapshot retention period**, choose the value that represents the number of days for which you want automated snapshots to be retained in the destination AWS Region before they are deleted\. If you choose **Custom value**, the retention period must be between 1 to 3653 days\.
+
+1. Choose **Save**\.
 
 ### Original console<a name="snapshot-crossregion-encrypt-configure-originalconsole"></a><a name="xregioncopy-kms-encrypted-snapshot-task"></a>
 

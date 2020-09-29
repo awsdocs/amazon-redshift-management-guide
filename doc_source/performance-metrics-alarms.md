@@ -1,6 +1,6 @@
 # Creating an alarm<a name="performance-metrics-alarms"></a>
 
-Alarms you create in the Amazon Redshift console are CloudWatch alarms\. They are useful because they help you make proactive decisions about your cluster and its databases\. You can set one or more alarms on any of the metrics listed in [Amazon Redshift performance data](metrics-listing.md)\. For example, setting an alarm for high `CPUUtilization` on a cluster node helps indicate when the node is overutilized\. Likewise, setting an alarm for low `CPUUtilization` on a cluster node helps indicate when the node is underutilized\. 
+Alarms you create in the Amazon Redshift console are CloudWatch alarms\. They are useful because they help you make proactive decisions about your cluster and its databases\. You can set one or more alarms on any of the metrics listed in [Monitoring Amazon Redshift using CloudWatch metrics](metrics-listing.md)\. For example, setting an alarm for high `CPUUtilization` on a cluster node helps indicate when the node is overutilized\. Likewise, setting an alarm for low `CPUUtilization` on a cluster node helps indicate when the node is underutilized\. 
 
 In this section, you can find how to create an alarm using the Amazon Redshift console\. You can create an alarm using the CloudWatch console or any other way you work with metrics, such as with the AWS CLI or an AWS SDK\. To delete an alarm, you must use the CloudWatch console\.
 

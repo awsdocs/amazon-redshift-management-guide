@@ -2,7 +2,7 @@
 
 In this section, you can find how to view performance data in the Amazon Redshift console, which includes information about cluster and query performance\. Additionally, you can create alarms on cluster metrics directly from the Amazon Redshift console\.
 
-When you view performance data in the Amazon Redshift console, you view it by cluster\. The performance data graphs for a cluster are designed to give you access to data to answer your most common performance questions\. For some performance data \(see [Amazon Redshift performance data](metrics-listing.md)\), you can also use CloudWatch to further customize your metrics graphs\. For example, you can choose longer times or combine metrics across clusters\. For more information about working with the CloudWatch console, see [Working with performance metrics in the CloudWatch console](using-cloudwatch-console.md)\. 
+When you view performance data in the Amazon Redshift console, you view it by cluster\. The performance data graphs for a cluster are designed to give you access to data to answer your most common performance questions\. For some performance data \(see [Monitoring Amazon Redshift using CloudWatch metrics](metrics-listing.md)\), you can also use CloudWatch to further customize your metrics graphs\. For example, you can choose longer times or combine metrics across clusters\. For more information about working with the CloudWatch console, see [Working with performance metrics in the CloudWatch console](using-cloudwatch-console.md)\. 
 
 To learn how to monitor, isolate, and optimize your queries using the query monitoring features on the Amazon Redshift console, watch the following video\. 
 

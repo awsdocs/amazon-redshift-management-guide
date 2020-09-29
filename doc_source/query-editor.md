@@ -30,14 +30,14 @@ Be aware of the following considerations when you use the query editor on the Am
 
 ## Enabling access to the query editor<a name="query-cluster-configure"></a>
 
-To access the query editor, you need permission\. To enable access, attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` policies for AWS Identity and Access Management \(IAM\) to the IAM user that you use to access your cluster\.
+To access the query editor, you need permission\. To enable access, attach the AWS\-managed policies `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess`  for AWS Identity and Access Management \(IAM\) permissions to the IAM user that you use to access your cluster\.
 
 If you have already created an IAM user to access Amazon Redshift, you can attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` policies to that user\. If you haven't created an IAM user yet, create one and attach the policies to the IAM user\.
 
 **Note**  
-The AWS managed policy `AmazonRedshiftQueryEditor`, allows the action `redshift:GetClusterCredentials`, which by default gives a database user superuser access to the database\. To restrict access, you can do one of the following items:  
-Create a custom policy that allows calling `redshift:GetClusterCredentials` and restricts the resource to a `DbUser`\.
-Add a policy to the user that denies permission to `redshift:GetClusterCredentials` and then require users of the query editor to sign in with temporary credentials\. For example, the denial policy is similar to this policy:  
+The AWS managed policy `AmazonRedshiftQueryEditor`  allows the action `redshift:GetClusterCredentials`, which by default gives a database user superuser access to the database\. To restrict access, you can do one of the following:  
+Create a custom policy that allows calling `redshift:GetClusterCredentials` and restricts the resource to a given value for `DbUser`\.
+Add a policy to the user that denies permission to `redshift:GetClusterCredentials` and then requires users of the query editor to sign in with temporary credentials\. For example, a denial policy might be similar to the following policy\.  
 
   ```
   {
@@ -63,7 +63,7 @@ For more information, see [Create an IAM role or user role or user with permissi
 
 1. Choose **Attach existing policies directly**\.
 
-1. For **Policy names**, choose **AmazonRedshiftQueryEditor** and **AmazonRedshiftReadOnlyAccess**\.
+1. For **Policy names**, choose **AmazonRedshiftQueryEditor** and **AmazonRedshiftReadOnlyAccess**\.  
 
 1. Choose **Next: Review**\.
 
@@ -71,7 +71,7 @@ For more information, see [Create an IAM role or user role or user with permissi
 
 ## Using the query editor<a name="using-query-editor"></a>
 
- In the following example, you use the query editor to perform the following tasks:
+In the following example, you use the query editor to perform the following tasks:
 + Run SQL commands\.
 + View query execution details\.
 + Save a query\.
@@ -102,7 +102,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. Choose **Clear**\.
 
-1. Enter the following command in the query editor window and choose **Run** to add rows to the table\.
+1. Enter the following command in the query editor window, and choose **Run** to add rows to the table\.
 
    ```
    insert into shoes values 

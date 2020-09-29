@@ -4,7 +4,7 @@ Amazon Redshift provides performance metrics and data so that you can track the 
 
 **Topics**
 + [Overview](#metrics-overview)
-+ [Amazon Redshift performance data](metrics-listing.md)
++ [Monitoring Amazon Redshift using CloudWatch metrics](metrics-listing.md)
 + [Working with performance data in the Amazon Redshift console](performance-metrics-console.md)
 
 ## Overview<a name="metrics-overview"></a>

@@ -13,8 +13,6 @@ If you use an identity provider for authentication, specify the name of a creden
 **To configure a JDBC connection to use IAM credentials**
 
 1. Download the latest Amazon Redshift JDBC driver from the [Configuring a JDBC connection](configure-jdbc-connection.md) page\.
-**Important**  
-The Amazon Redshift JDBC driver must be version 1\.2\.7\.1003 or later\.
 
 1. Create a JDBC URL with the IAM credentials options in one of the following formats\. To use IAM authentication, add `iam:` to the Amazon Redshift JDBC URL following `jdbc:redshift:` as shown in the following example\.
 
@@ -22,16 +20,10 @@ The Amazon Redshift JDBC driver must be version 1\.2\.7\.1003 or later\.
    jdbc:redshift:iam://
    ```
 
-   Replace *`region`*, *`account-id`*, and *`cluster-name`* with the values for your AWS Region, account, and cluster\. The JDBC driver uses your IAM account information and cluster name to retrieve the cluster ID, AWS Region, and port number\. To do so, your IAM user or role must have permission to call the `redshift:DescribeClusters` operation with the specified cluster\.
+   Add `cluster-name`, `region`, and `account-id`\. The JDBC driver uses your IAM account information and cluster name to retrieve the cluster ID and AWS Region\. To do so, your IAM user or role must have permission to call the `redshift:DescribeClusters` operation with the specified cluster\. If your IAM user or role doesn't have permission to call the `redshift:DescribeClusters` operation, include the cluster ID, AWS Region, and port as shown in the following example\. The port number is optional\. The default port is 5439\.
 
    ```
-   jdbc:redshift:iam://cluster-name:region/dbname
-   ```
-
-   If your IAM user or role doesn't have permission to call the `redshift:DescribeClusters` operation, include the cluster ID, AWS Region, and port as shown in the following example\. The port number is optional\. The default port is 5439\.
-
-   ```
-   jdbc:redshift:iam://cluster-name:port/dbname
+   jdbc:redshift:iam://examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com:5439/dev
    ```
 
 1. Add JDBC options to provide IAM credentials\. You use different combinations of JDBC options to provide IAM credentials\. For details, see [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)\.

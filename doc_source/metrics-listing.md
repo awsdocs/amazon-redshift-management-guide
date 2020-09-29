@@ -1,4 +1,4 @@
-# Amazon Redshift performance data<a name="metrics-listing"></a>
+# Monitoring Amazon Redshift using CloudWatch metrics<a name="metrics-listing"></a>
 
 Using CloudWatch metrics for Amazon Redshift, you can get information about your cluster's health and performance and see information at the node level\. When working with these metrics, keep in mind that each metric has one or more dimensions associated with it\. These dimensions tell you what the metric is applicable to, that is the scope of the metric\. Amazon Redshift has the following two dimensions:
 + Metrics that have a `NodeID` dimension are metrics that provide performance data for nodes of a cluster\. This set of metrics includes leader and compute nodes\. Examples of these metrics include `CPUUtilization`, `ReadIOPS`, `WriteIOPS`\. 
@@ -50,6 +50,10 @@ The `AWS/Redshift` namespace includes the following metrics\. Unless stated othe
 | WriteIOPS |  The average number of write operations per second\. Units: Count/Second Dimensions: `ClusterIdentifier`, `NodeID` Dimensions: `ClusterIdentifier`  | 
 | WriteLatency |  The average amount of time taken for disk write I/O operations\. Units: Seconds Dimensions: `ClusterIdentifier`, `NodeID` Dimensions: `ClusterIdentifier`  | 
 | WriteThroughput |  The average number of bytes written to disk per second\. Units: Bytes \(GB/s in the Amazon Redshift console\) Dimensions: `ClusterIdentifier`, `NodeID` Dimensions: `ClusterIdentifier`  | 
+| SchemaQuota |  The configured quota for a schema\. Units: Megabytes Dimensions: `ClusterIdentifier`, `DatabaseName`, `SchemaName` Periodic/Push: `Periodic` Frequency: `5 minutes` Stop criteria: Schema dropped or quota removed  | 
+| NumExceededSchemaQuotas |  The number of schemas with exceeded quotas\. Units: Count Dimensions: `ClusterIdentifier` Periodic/Push: `Periodic` Frequency: `5 minutes` Stop criteria: N/A  | 
+| StorageUsed |  The disk or storage space used by a schema\. Units: Megabytes Dimensions: `ClusterIdentifier`, `DatabaseName`, `SchemaName` Periodic/Push: `Periodic` Frequency: `5 minutes` Stop criteria: Schema dropped or quota removed  | 
+| PercentageQuotaUsed |  The percentage of disk or storage space used relative to the configured schema quota\. Units: Percent Dimensions: `ClusterIdentifier`, `DatabaseName`, `SchemaName` Periodic/Push: `Periodic` Frequency: `5 minutes` Stop criteria: Schema dropped or quota removed  | 
 
 ## Dimensions for Amazon Redshift metrics<a name="metrics-filterable-dimensions"></a>
 
