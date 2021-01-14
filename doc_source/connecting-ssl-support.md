@@ -4,10 +4,12 @@ Amazon Redshift supports Secure Sockets Layer \(SSL\) connections to encrypt dat
 
 ## Connect using SSL<a name="connect-using-ssl"></a>
 
-To support SSL connections, Amazon Redshift creates and installs an [AWS Certificate Manager \(ACM\)](https://aws.amazon.com/certificate-manager/) issued SSL certificate on each cluster\. You can find the set of Certificate Authorities that you must trust to properly support SSL at [https://s3\.amazonaws\.com/redshift\-downloads/redshift\-ca\-bundle\.crt](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt)\.  \. If the certificate bundle doesn't download, right\-choose the previous link and choose **Save link as\.\.\.**\.
+To support SSL connections, Amazon Redshift creates and installs an [AWS Certificate Manager \(ACM\)](https://aws.amazon.com/certificate-manager/) issued SSL certificate on each cluster\. You can find the set of Certificate Authorities that you must trust to properly support SSL at [https://s3\.amazonaws\.com/redshift\-downloads/redshift\-ca\-bundle\.crt](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt)\. If the certificate bundle doesn't download, open the context \(right\-click\) menu for the link, and then choose **Save link as\.\.\.**\. 
 
 **Important**  
-Amazon Redshift has changed the way that SSL certificates are managed\. You might need to update your current trust root CA certificates to continue to connect to your clusters using SSL\. For more information, see [Transitioning to ACM certificates for SSL connections](connecting-transitioning-to-acm-certs.md)\.
+Amazon Redshift has changed the way that SSL certificates are managed\. You might need to update your current trust root CA certificates to continue to connect to your clusters using SSL\. For more information, see [Transitioning to ACM certificates for SSL connections](connecting-transitioning-to-acm-certs.md)\.  
+In the China Regions on January 5, 2021, Amazon Redshift is replacing the SSL certificates on your clusters with AWS Certificate Manager \(ACM\) issued certificates\. This change affects you if your SQL clients or applications connect to Amazon Redshift using SSL with the `sslMode` connection option set to `require`, `verify-ca`, or `verify-full`\. The previous certificate bundle \([https://s3\.cn\-north\-1\.amazonaws\.com\.cn/redshift\-downloads\-cn/redshift\-ssl\-ca\-cert\.pem](https://s3.cn-north-1.amazonaws.com.cn/redshift-downloads-cn/redshift-ssl-ca-cert.pem)\) will not work after the migration\.   
+Use the updated bundle from [https://s3\.amazonaws\.com/redshift\-downloads/redshift\-ca\-bundle\.crt](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt)\. The expected MD5 checksum number is 7cc6cb8d994c8f5fa1a1f71c246afec5\. The sha256 checksum is efdd9975373ea496bf85d919b74c55cddae6a172cfdffed724d89fef3e867b9f\. 
 
 By default, cluster databases accept a connection whether it uses SSL or not\. To configure your cluster to require an SSL connection, set the `require_SSL` parameter to `true` in the parameter group that is associated with the cluster\. 
 
@@ -26,9 +28,9 @@ If you connect using the latest Amazon Redshift ODBC drivers \(version 1\.3\.7\.
 
 You might need to update your current trust root CA certificates to continue to connect to your clusters using SSL\. For more information, see [Transitioning to ACM certificates for SSL connections](connecting-transitioning-to-acm-certs.md)\.
 
-The Amazon Redshift certificate authority bundle is stored at [https://s3\.amazonaws\.com/redshift\-downloads/redshift\-ca\-bundle\.crt](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt)  \. If the certificate bundle doesn't download, right\-choose the previous link and choose **Save link as\.\.\.**\. The expected MD5 checksum number is e7a76d62fc7775ac54cfc4d21e89d36b\. The sha256 checksum is e77daa6243a940eb2d144d26757135195b4bdefd345c32a064d4ebea02b9f8a1\. 
+The Amazon Redshift certificate authority bundle is stored at [https://s3\.amazonaws\.com/redshift\-downloads/redshift\-ca\-bundle\.crt](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt)
 
-You can verify that the certificate that you downloaded matches this expected MD5 checksum number\. To do this, you can use the Md5sum program on Linux operating systems, or another tool on Windows and macOS X operating systems\.
+You can verify that the certificate that you downloaded matches the expected MD5 checksum number\. To do this, you can use the Md5sum program on Linux operating systems, or another tool on Windows and macOS X operating systems\.
 
  ODBC DSNs contain an `sslmode` setting that determines how to handle encryption for client connections and server certificate verification\. Amazon Redshift supports the following `sslmode` values from the client connection: 
 + `disable`

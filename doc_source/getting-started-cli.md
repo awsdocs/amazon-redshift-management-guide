@@ -8,6 +8,8 @@ This section walks you through the process of creating a cluster, creating datab
 
 If you don't already have an AWS account, you must sign up for one\. Then you'll need to set up the Amazon Redshift command line tools\. Finally, you'll need to download client tools and drivers in order to connect to your cluster\.
 
+
+
 ### Step 1\.1: Sign up for an AWS account<a name="getting-started-cli.before-you-begin.sign-up"></a>
 
 For information about signing up for an AWS user account, see the [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/)\.

@@ -47,7 +47,7 @@ Before you perform the steps in this procedure, make sure that your client compu
 
 1. In **URL**, copy the JDBC URL from the Amazon Redshift console and paste it here\.
 
-   For more information about finding the JDBC URL, see [Configuring a JDBC connection](configure-jdbc-connection.md)\.
+   For more information about finding the JDBC URL, see [Configuring a JDBC driver version 1\.0 connection](configure-jdbc-connection.md)\.
 
 1. In **Username**, type the name of the master user\.
 

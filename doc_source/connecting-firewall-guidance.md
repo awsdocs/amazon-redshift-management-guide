@@ -36,6 +36,8 @@ To change TCP/IP timeout settings, configure the timeout settings according to t
   These settings use the DWORD data type\. If they do not exist under the registry path, you can create the settings and specify these recommended values\. For more information about editing the Windows registry, refer to Windows documentation\. 
 
   After you set these values, restart your computer for the changes to take effect\. 
+
+ 
 + Mac — If your client is running on a Mac, run the following commands to change the timeout settings for the current session: 
 
   ```

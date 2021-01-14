@@ -1,8 +1,10 @@
 # Authorizing Amazon Redshift to access other AWS services on your behalf<a name="authorizing-redshift-service"></a>
 
-Some Amazon Redshift features require Amazon Redshift to access other AWS services on your behalf\. For example, the [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) and [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) commands can load or unload data into your Amazon Redshift cluster using an Amazon Simple Storage Service \(Amazon S3\) bucket\. Amazon Redshift Spectrum can use a data catalog in Amazon Athena or AWS Glue\. For your Amazon Redshift clusters to act on your behalf, you supply security credentials to your clusters\. The preferred method to supply security credentials is to specify an AWS Identity and Access Management \(IAM\) role\. For COPY and UNLOAD, you can provide AWS access keys\. 
+Some Amazon Redshift features require Amazon Redshift to access other AWS services on your behalf\. For example, the [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) and [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) commands can load or unload data into your Amazon Redshift cluster using an Amazon S3 bucket\. The [CREATE EXTERNAL FUNCTION](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_EXTERNAL_FUNCTION.html) command can invoke an AWS Lambda function using a scalar Lambda user\-defined function \(UDF\)\. Amazon Redshift Spectrum can use a data catalog in Amazon Athena or AWS Glue\. For your Amazon Redshift clusters to act on your behalf, you supply security credentials to your clusters\. The preferred method to supply security credentials is to specify an AWS Identity and Access Management \(IAM\) role\. For COPY and UNLOAD, you can provide AWS access keys\. 
 
-Following, find out how to create an IAM role with the appropriate permissions to access other AWS services\. You also need to associate the role with your cluster and specify the Amazon Resource Name \(ARN\) of the role when you execute the Amazon Redshift command\. For more information, see [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)\.
+Following, find out how to create an IAM role with the appropriate permissions to access other AWS services\. You also need to associate the role with your cluster and specify the Amazon Resource Name \(ARN\) of the role when you run the Amazon Redshift command\. For more information, see [Authorizing COPY, UNLOAD, CREATE EXTERNAL FUNCTION, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)\.
+
+In addition, a superuser can grant the ASSUMEROLE privilege to specific users and groups to provide access to a role for COPY and UNLOAD operations\. For information, see [GRANT](https://docs.aws.amazon.com/redshift/latest/dg/r_GRANT.html) in the *Amazon Redshift Database Developer Guide*\.
 
 ## Creating an IAM role to allow your Amazon Redshift cluster to access AWS services<a name="authorizing-redshift-service-creating-an-iam-role"></a>
 
@@ -21,6 +23,8 @@ To create an IAM role to permit your Amazon Redshift cluster to communicate with
 1. Under **Select your use case**, choose **Redshift \- Customizable** and then choose **Next: Permissions**\. The **Attach permissions policy** page appears\.
 
 1. For access to Amazon S3 using COPY, as an example, you can use **AmazonS3ReadOnlyAccess** and append\. For access to Amazon S3 using COPY or UNLOAD, we suggest that you can create managed policies that restrict access to the desired bucket and prefix accordingly\. For both read and write operations, we recommend enforcing the least privileges and restricting to only the Amazon S3 buckets and key prefixes that Amazon Redshift requires\.
+
+   For access to invoke Lambda functions for the CREATE EXTERNAL FUNCTION command, add **AWSLambdaRole**\.
 
    For Redshift Spectrum, in addition to Amazon S3 access, add **AWSGlueConsoleFullAccess** or **AmazonAthenaFullAccess**\.
 
@@ -154,7 +158,7 @@ To restrict use of an IAM role by region, take the following steps\.<a name="ide
 
 ## Chaining IAM roles in Amazon Redshift<a name="authorizing-redshift-service-chaining-roles"></a>
 
-When you attach a role to your cluster, your cluster can assume that role to access Amazon S3, Athena, and AWS Glue on your behalf\. If a role attached to your cluster doesn't have access to the necessary resources, you can chain another role, possibly belonging to another account\. Your cluster then temporarily assumes the chained role to access the data\. You can also grant cross\-account access by chaining roles\. Each role in the chain assumes the next role in the chain, until the cluster assumes the role at the end of chain\. You can chain a maximum of 10 roles\. 
+When you attach a role to your cluster, your cluster can assume that role to access Amazon S3, Amazon Athena, AWS Glue, and AWS Lambda on your behalf\. If a role attached to your cluster doesn't have access to the necessary resources, you can chain another role, possibly belonging to another account\. Your cluster then temporarily assumes the chained role to access the data\. You can also grant cross\-account access by chaining roles\. Each role in the chain assumes the next role in the chain, until the cluster assumes the role at the end of chain\. You can chain a maximum of 10 roles\. 
 
 For example, suppose Company A wants to access data in an Amazon S3 bucket that belongs to Company B\. Company A creates an AWS service role for Amazon Redshift named `RoleA` and attaches it to their cluster\. Company B creates a role named `RoleB` that's authorized to access the data in the Company B bucket\. To access the data in the Company B bucket, Company A runs a COPY command using an `iam_role` parameter that chains `RoleA` and `RoleB`\. For the duration of the COPY operation, `RoleA` temporarily assumes `RoleB` to access the Amazon S3 bucket\. 
 
@@ -211,7 +215,7 @@ The following trust policy establishes a trust relationship with the owner of `R
 }
 ```
 
-When you run an UNLOAD, COPY, or CREATE EXTERNAL SCHEMA command, you chain roles by including a comma\-separated list of role ARNs in the `iam_role` parameter\. The following shows the syntax for chaining roles in the `iam_role` parameter\. 
+When you run an UNLOAD, COPY, CREATE EXTERNAL FUNCTION, or CREATE EXTERNAL SCHEMA command, you chain roles by including a comma\-separated list of role ARNs in the `iam_role` parameter\. The following shows the syntax for chaining roles in the `iam_role` parameter\. 
 
 ```
 unload ('select * from venue limit 10') 
@@ -246,5 +250,15 @@ database 'exampledb' region 'us-west-2'
 iam_role 'arn:aws:iam::123456789012:role/RoleA,arn:aws:iam::210987654321:role/RoleB';
 ```
 
+In the following example, CREATE EXTERNAL FUNCTION uses chained roles to assume the role `RoleB`\.
+
+```
+create external function lambda_example(varchar)
+returns varchar
+volatile
+lambda 'exampleLambdaFunction'
+iam_role 'arn:aws:iam::123456789012:role/RoleA,arn:aws:iam::210987654321:role/RoleB';
+```
+
 ## Related topics<a name="authorizing-redshift-related-topic"></a>
-+ [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)
++ [Authorizing COPY, UNLOAD, CREATE EXTERNAL FUNCTION, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)

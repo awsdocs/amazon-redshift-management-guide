@@ -1,7 +1,7 @@
 # Amazon Redshift Cluster Management Guide
 
 -----
-*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -19,6 +19,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Amazon Redshift clusters](working-with-clusters.md)
    + [Overview of managing clusters in Amazon Redshift](managing-cluster-operations.md)
    + [Managing usage limits in Amazon Redshift](managing-cluster-usage-limits.md)
+   + [Managing cluster relocation in Amazon Redshift](managing-cluster-recovery.md)
    + [Managing clusters using the console](managing-clusters-console.md)
    + [Managing clusters using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)
    + [Managing clusters using the AWS SDK for Java](managing-clusters-java.md)
@@ -32,9 +33,22 @@ Amazon's trademarks and trade dress may not be used in
    + [Cluster version history](rs-mgmt-cluster-version-notes.md)
 + [Querying a database](query-databases.md)
    + [Querying a database using the query editor](query-editor.md)
+   + [Scheduling a query on the Amazon Redshift console](query-editor-schedule-query.md)
    + [Connecting to an Amazon Redshift cluster using SQL client tools](connecting-to-cluster.md)
       + [Configuring connections in Amazon Redshift](configuring-connections.md)
-         + [Configuring a JDBC connection](configure-jdbc-connection.md)
+         + [Configuring a JDBC driver version 2.0 connection](jdbc20-install.md)
+            + [Download the Amazon Redshift JDBC driver version 2.0 driver](jdbc20-download-driver.md)
+            + [Install the Amazon Redshift JDBC driver version 2.0](jdbc20-install-driver.md)
+               + [Referencing the JDBC driver libraries](jdbc20-driver-libraries.md)
+               + [Registering the driver class](jdbc20-register-driver-class.md)
+               + [Getting the JDBC URL](jdbc20-obtain-url.md)
+            + [Configure authentication and SSL](jdbc20-configure-authentication-ssl.md)
+            + [Configure logging](jdbc20-configuring-logging.md)
+            + [Convert data types](jdbc20-data-type-mapping.md)
+            + [Use prepared statement support](jdbc20-prepared-statement-support.md)
+            + [Differences between the 2.x and 1.x versions of the JDBC driver](jdbc20-jdbc10-driver-differences.md)
+            + [JDBC driver version 2.0 configuration options](jdbc20-configuration-options.md)
+         + [Configuring a JDBC driver version 1.0 connection](configure-jdbc-connection.md)
          + [Configuring an ODBC connection](configure-odbc-connection.md)
       + [Configuring security options for connections](connecting-ssl-support.md)
          + [Transitioning to ACM certificates for SSL connections](connecting-transitioning-to-acm-certs.md)
@@ -48,7 +62,9 @@ Amazon's trademarks and trade dress may not be used in
          + [Client and driver are incompatible](connecting-architecture-mismatch.md)
          + [Queries appear to hang and sometimes fail to reach the cluster](connecting-drop-issues.md)
    + [Using the Amazon Redshift Data API](data-api.md)
-      + [Logging Amazon Redshift Data API calls with AWS CloudTrail](logging-using-cloudtrail.md)
+      + [Monitoring the Data API](data-api-monitoring.md)
+         + [Monitoring events for the Amazon Redshift Data API in Amazon EventBridge](data-api-monitoring-events.md)
+         + [Logging Amazon Redshift Data API calls with AWS CloudTrail](logging-using-cloudtrail.md)
 + [Amazon Redshift enhanced VPC routing](enhanced-vpc-routing.md)
    + [Working with VPC endpoints](enhanced-vpc-working-with-endpoints.md)
    + [Enabling enhanced VPC routing](enhanced-vpc-enabling-cluster.md)
@@ -62,6 +78,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Managing snapshots using the console](managing-snapshots-console.md)
    + [Managing snapshots using the AWS SDK for Java](managing-snapshots-java.md)
    + [Managing snapshots using the Amazon Redshift CLI and API](manage-snapshots-api-cli.md)
++ [Integrating Amazon Redshift with an AWS Partner (preview)](partner-integration.md)
 + [Purchasing Amazon Redshift reserved nodes](purchase-reserved-node-instance.md)
    + [Purchasing a reserved node offering with the Amazon Redshift console](purchase-reserved-node-offering-console.md)
    + [Purchasing a reserved node offering using the AWS SDK for Java](purchase-reserved-node-offering-java.md)
@@ -76,6 +93,7 @@ Amazon's trademarks and trade dress may not be used in
                + [Configuring database encryption using the Amazon Redshift API and AWS CLI](configuring-db-encryption-api.md)
          + [Encryption in transit](security-encryption-in-transit.md)
          + [Key management](security-key-management.md)
+      + [Data tokenization](data-tokenization.md)
       + [Internetwork traffic privacy](network-isolation.md)
    + [Identity and access management in Amazon Redshift](redshift-iam-authentication-access-control.md)
       + [Overview of managing access permissions to your Amazon Redshift resources](redshift-iam-access-control-overview.md)
@@ -94,7 +112,7 @@ Amazon's trademarks and trade dress may not be used in
             + [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)
             + [Generating IAM database credentials using the Amazon Redshift CLI or API](generating-iam-credentials-cli-api.md)
       + [Authorizing Amazon Redshift to access other AWS services on your behalf](authorizing-redshift-service.md)
-         + [Authorizing COPY, UNLOAD, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)
+         + [Authorizing COPY, UNLOAD, CREATE EXTERNAL FUNCTION, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)
    + [Logging and monitoring in Amazon Redshift](security-incident-response.md)
       + [Database audit logging](db-auditing.md)
          + [Configuring auditing using the console](db-auditing-console.md)

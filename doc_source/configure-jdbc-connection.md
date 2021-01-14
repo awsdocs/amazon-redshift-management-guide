@@ -1,6 +1,6 @@
-# Configuring a JDBC connection<a name="configure-jdbc-connection"></a>
+# Configuring a JDBC driver version 1\.0 connection<a name="configure-jdbc-connection"></a>
 
-You can use a JDBC connection to connect to your Amazon Redshift cluster from many third\-party SQL client tools\. To do this, you download a JDBC driver\. 
+You can use a JDBC driver version 1\.0 connection to connect to your Amazon Redshift cluster from many third\-party SQL client tools\. To do this, you download a JDBC driver\. 
 
 If you want to use a JDBC connection, perform the following steps\.
 
@@ -16,23 +16,23 @@ If you want to use a JDBC connection, perform the following steps\.
 
 ## Download an Amazon Redshift JDBC driver<a name="download-jdbc-driver"></a>
 
-Amazon Redshift offers drivers for tools that are compatible with the JDBC 4\.2 API\.   For information about the functionality supported by these drivers, see the [Amazon Redshift JDBC driver release notes](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.50.1077/Amazon+Redshift+JDBC+Release+Notes.pdf)\. 
+Amazon Redshift offers drivers for tools that are compatible with the JDBC 4\.2 API\.    For information about the functionality supported by these drivers, see the [Amazon Redshift JDBC driver release notes](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/Amazon+Redshift+JDBC+Release+Notes.pdf)\. 
 
-For detailed information about how to install the JDBC driver, reference the JDBC driver libraries, and register the driver class, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.50.1077/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
+For detailed information about how to install the JDBC driver version 1\.0, reference the JDBC driver libraries, and register the driver class, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
 
 JDBC drivers version 1\.2\.27\.1051 and later support Amazon Redshift stored procedures\. For more information, see [Creating stored procedures in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/dg/stored-procedure-overview.html) in the *Amazon Redshift Database Developer Guide*\.
 
 For each computer where you use the Amazon Redshift JDBC driver, make sure that Java Runtime Environment \(JRE\) 8\.0 is installed\.  
 
 If you use the Amazon Redshift JDBC driver for database authentication, make sure that you have AWS SDK for Java 1\.11\.118 or later in your Java class path\. If you don't have AWS SDK for Java installed, you can use a driver that includes the AWS SDK\.
-+ [JDBC4\.2–compatible driver \(without the AWS SDK\) and driver dependent libraries for AWS SDK files version 1\.2\.50](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.50.1077/RedshiftJDBC42-1.2.50.1077.zip)\. 
++ [JDBC4\.2–compatible driver \(without the AWS SDK\) and driver dependent libraries for AWS SDK files version 1\.2\.51](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/RedshiftJDBC42-1.2.51.1078.zip)\. 
 
   The class name for this driver is `com.amazon.redshift.jdbc42.Driver`\.
 
-  This ZIP file contains the JDBC4\.2–compatible driver \(without the AWS SDK\) and its dependent library files\. Unzip the dependent jar files to the same location as the JDBC driver\. Only the JDBC driver needs to be in the CLASSPATH because the driver manifest file contains all dependent library file names which are located in the same directory as the JDBC driver\. For more information about how to install the JDBC driver, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.50.1077/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
+  This ZIP file contains the JDBC4\.2–compatible driver \(without the AWS SDK\) and its dependent library files\. Unzip the dependent jar files to the same location as the JDBC driver\. Only the JDBC driver needs to be in the CLASSPATH because the driver manifest file contains all dependent library file names which are located in the same directory as the JDBC driver\. For more information about how to install the JDBC driver, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
 
   Use this Amazon Redshift JDBC driver with the AWS SDK that is required for IAM database authentication\.
-+ [JDBC 4\.2–compatible driver \(without the AWS SDK\) version 1\.2\.50](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.50.1077/RedshiftJDBC42-no-awssdk-1.2.50.1077.jar)\. 
++ [JDBC 4\.2–compatible driver \(without the AWS SDK\) version 1\.2\.51](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/RedshiftJDBC42-no-awssdk-1.2.51.1078.jar)\. 
 
   The class name for this driver is `com.amazon.redshift.jdbc42.Driver`\.
 
@@ -65,19 +65,19 @@ Configure the Amazon Redshift JDBC driver to authenticate your connection accord
 
 To authenticate the connection, always provide your Amazon Redshift user name and password\. The password is transmitted using a salted MD5 hash of the password\. Depending on whether SSL is enabled and required on the server, you might also need to configure the driver to connect through SSL\. You might need to use one\-way SSL authentication so that the client \(the driver itself\) verifies the identity of the server\. 
 
-For information about configuring the JDBC driver to authenticate the connection, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.50.1077/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
+For information about configuring the JDBC driver to authenticate the connection, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
 
 ## Configure TCP keepalives for JDBC connection<a name="configure-tcp-keepalives-jdbc"></a>
 
 By default, the Amazon Redshift JDBC driver is configured to use TCP keepalives to prevent connections from timing out\. You can specify when the driver starts sending keepalive packets or disable the feature by setting the relevant properties in the connection URL\.
 
-For information about configuring TCP keepalives for the JDBC driver, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.50.1077/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
+For information about configuring TCP keepalives for the JDBC driver, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
 
 ## Configure logging for JDBC connection<a name="configure-logging-jdbc"></a>
 
 To help troubleshoot issues, you can enable logging in the JDBC driver\.
 
-For information about configuring logging for JDBC connection, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.50.1077/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
+For information about configuring logging for JDBC connection, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
 
 ## Configure JDBC connection with Apache Maven<a name="configure-jdbc-connection-with-maven"></a>
 
@@ -151,6 +151,18 @@ Replace the *driver\-version* in the following example with your driver version\
 
   The class name for this driver is `com.amazon.redshift.jdbc42.Driver`\.
 
+The Amazon Redshift Maven drivers with no SDKs include the following required dependency that you must include in your project\. 
+
+```
+<dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr4</artifactId>
+      <version>4.5.3</version>
+      <scope>runtime</scope>
+      <optional>false</optional>
+</dependency>
+```
+
 The Amazon Redshift Maven drivers with no SDKs include the following optional dependencies that you can include in your project as needed\. 
 
 ```
@@ -197,11 +209,13 @@ jdbc:redshift://examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com:543
 
 For more information about SSL options, see [Connect using SSL](connecting-ssl-support.md#connect-using-ssl)\.
 
-For information about how to set up JDBC driver configuration options, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.50.1077/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
+For information about how to set up JDBC driver configuration options, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. \. 
 
 ## Use previous JDBC driver versions in certain cases<a name="jdbc-previous-versions"></a>
 
 Download a previous version of the Amazon Redshift JDBC driver only if your tool requires a specific version of the driver\. For information about the functionality supported in these versions of the drivers, see [Download an Amazon Redshift JDBC driver](#download-jdbc-driver)\. 
+
+Then download and review the [Amazon Redshift ODBC and JDBC driver license agreement](https://s3.amazonaws.com/redshift-downloads/drivers/Amazon+Redshift+ODBC+and+JDBC+Driver+License+Agreement.pdf)\. 
 
 For authentication using AWS Identity and Access Management \(IAM\) credentials or identity provider \(IdP\) credentials, use Amazon Redshift JDBC driver version 1\.2\.8\.1005 or later\.
 
@@ -211,6 +225,7 @@ Amazon Redshift has changed the way that SSL certificates are managed\. If you m
 If you use the Amazon Redshift JDBC driver for database authentication, make sure that you have AWS SDK for Java 1\.11\.118 or later in your Java class path\. If you don't have AWS SDK for Java installed, you can use a driver that includes the AWS SDK\. For more information, see [Use previous JDBC driver versions with the AWS SDK for Java](#jdbc-previous-versions-with-sdk)\.
 
  These are JDBC 4\.2–compatible drivers: 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.51\.1078/RedshiftJDBC42\-no\-awssdk\-1\.2\.51\.1078\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/RedshiftJDBC42-no-awssdk-1.2.51.1078.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.50\.1077/RedshiftJDBC42\-no\-awssdk\-1\.2\.50\.1077\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.50.1077/RedshiftJDBC42-no-awssdk-1.2.50.1077.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.47\.1071/RedshiftJDBC42\-no\-awssdk\-1\.2\.47\.1071\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.47.1071/RedshiftJDBC42-no-awssdk-1.2.47.1071.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.45\.1069/RedshiftJDBC42\-no\-awssdk\-1\.2\.45\.1069\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.45.1069/RedshiftJDBC42-no-awssdk-1.2.45.1069.jar)\. 
@@ -225,6 +240,12 @@ If you use the Amazon Redshift JDBC driver for database authentication, make sur
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.16\.1027/RedshiftJDBC42\-no\-awssdk\-1\.2\.16\.1027\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.16.1027/RedshiftJDBC42-no-awssdk-1.2.16.1027.jar)\.  
 +  [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.15\.1025/RedshiftJDBC42\-no\-awssdk\-1\.2\.15\.1025\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.15.1025/RedshiftJDBC42-no-awssdk-1.2.15.1025.jar)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.12\.1017/RedshiftJDBC42\-no\-awssdk\-1\.2\.12\.1017\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.12.1017/RedshiftJDBC42-no-awssdk-1.2.12.1017.jar)\.
+
+These ZIP files contain JDBC4\.2–compatible drivers \(without the AWS SDK\) and its dependent library files\. Unzip the dependent jar files to the same location as the JDBC driver\. Only the JDBC driver needs to be in the CLASSPATH because the driver manifest file contains all dependent library file names which are located in the same directory as the JDBC driver\. For more information about how to install the JDBC driver, see [Amazon Redshift JDBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/Amazon+Redshift+JDBC+Driver+Install+Guide.pdf)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.51\.1078/RedshiftJDBC42\-1\.2\.51\.1078\.zip](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.51.1078/RedshiftJDBC42-1.2.51.1078.zip)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.50\.1077/RedshiftJDBC42\-1\.2\.50\.1077\.zip](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.50.1077/RedshiftJDBC42-1.2.50.1077.zip)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.47\.1071/RedshiftJDBC42\-1\.2\.47\.1071\.zip](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.47.1071/RedshiftJDBC42-1.2.47.1071.zip)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.45\.1069/RedshiftJDBC42\-1\.2\.45\.1069\.zip](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.45.1069/RedshiftJDBC42-1.2.45.1069.zip)\. 
 
  These are previous JDBC 4\.1–compatible drivers: 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/jdbc/1\.2\.43\.1065/RedshiftJDBC41\-no\-awssdk\-1\.2\.43\.1067\.jar](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/1.2.43.1067/RedshiftJDBC41-no-awssdk-1.2.43.1067.jar)\. 

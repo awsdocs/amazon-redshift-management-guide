@@ -1,5 +1,7 @@
 # Managing clusters using the AWS SDK for Java<a name="managing-clusters-java"></a>
 
+
+
 The following Java code example demonstrates common cluster management operations including:
 + Creating a cluster\.
 + Listing metadata about a cluster\.

@@ -63,4 +63,4 @@ If your client runs in a Microsoft Windows operating system, you can review and 
    ```<a name="set-mtu-mac-os"></a>
 
 **To set MTU on a Mac operating system**
-+ To set the MTU on a Mac operating system, follow the instructions in [macOS X 10\.4 or later: How to change the MTU for troubleshooting purposes](https://support.apple.com/kb/ht2532)\.
++ Follow instructions on the MacOS support site about `How to change the MTU for troubleshooting purposes`\. For more information, search the [support site\. ](https://support.apple.com)  

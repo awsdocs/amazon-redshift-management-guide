@@ -88,6 +88,8 @@ To learn more about IAM policy syntax and descriptions, see [AWS IAM policy refe
 
 For a table showing all of the Amazon Redshift API actions and the resources that they apply to, see [Amazon Redshift API permissions reference](redshift-policy-resources.resource-permissions.md)\. 
 
+
+
 ## Specifying conditions in a policy<a name="redshift-policy-resources.specifying-conditions"></a>
 
 When you grant permissions, you can use the access policy language to specify the conditions when a policy should take effect\. For example, you might want a policy to be applied only after a specific date\. For more information about specifying conditions in an access policy language, see [IAM JSON policy elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.

@@ -15,6 +15,7 @@ In the following sections, you can learn the basics of creating a data warehouse
 + [Cluster status](#rs-mgmt-cluster-status)
 + [Overview of managing clusters in Amazon Redshift](managing-cluster-operations.md)
 + [Managing usage limits in Amazon Redshift](managing-cluster-usage-limits.md)
++ [Managing cluster relocation in Amazon Redshift](managing-cluster-recovery.md)
 + [Managing clusters using the console](managing-clusters-console.md)
 + [Managing clusters using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)
 + [Managing clusters using the AWS SDK for Java](managing-clusters-java.md)
@@ -78,16 +79,19 @@ You might be restricted to fewer nodes depending on the quota that is applied to
 
 **RA3 node types**  
 
-| Node size | vCPU | RAM \(GiB\) | Default slices per node | Managed storage quota per node | Node range with create cluster  | Total capacity | 
+| Node size | vCPU | RAM \(GiB\) | Default slices per node | Managed storage quota per node | Node range with create cluster  | Total managed storage capacity | 
 | --- | --- | --- | --- | --- | --- | --- | 
-| ra3\.4xlarge | 12 | 96 | 4 | 64 TB1 | 2–322 | 4096 TB2,3 | 
-| ra3\.16xlarge | 48 | 384 | 16 | 64 TB1 | 2–128 | 8192 TB3 | 
+| ra3\.xlplus | 4 | 32 | 2 | 32 TB1 | 2–162 | 1024 TB2,4 | 
+| ra3\.4xlarge | 12 | 96 | 4 | 128 TB1 | 2–323 | 8192 TB3,4 | 
+| ra3\.16xlarge | 48 | 384 | 16 | 128 TB1 | 2–128 | 16,384 TB4 | 
 
 1 Indicates the storage quota of Amazon Redshift managed storage\. 
 
-2 An ra3\.4xlarge node type can be created with 32 nodes but resized with elastic resize to a maximum of 64 nodes\. 
+2 An ra3\.xlplus node type can be created with 16 nodes but resized with elastic resize to a maximum of 32 nodes\. 
 
-3 Total Managed Storage Quota is the maximum number of nodes times 64 TB\.
+3 An ra3\.4xlarge node type can be created with 32 nodes but resized with elastic resize to a maximum of 64 nodes\. 
+
+4 Total managed storage quota is the maximum number of nodes times the managed storage quota per node\.
 
 
 **Dense storage node types**  
@@ -179,7 +183,7 @@ Consider choosing RA3 node types in these cases:
 To use RA3 node types, your AWS Region must support RA3\. For more information, see [RA3 node type availability in AWS Regions](#ra3-regions)\. 
 
 **Important**  
-You can use ra3\.4xlarge node types only with cluster version 1\.0\.14104 or later\. You can view the version of an existing cluster with the Amazon Redshift console\. For more information, see [Determining the cluster maintenance version](#cluster-maintenance-version)\.   
+You can use ra3\.xlplus node types only with cluster version 1\.0\.21262 or later\. You can view the version of an existing cluster with the Amazon Redshift console\. For more information, see [Determining the cluster maintenance version](#cluster-maintenance-version)\.   
 Make sure that you use the new Amazon Redshift console when working with RA3 node types\. The original console doesn't support all RA3 operations\.   
 In addition, to use RA3 node types with Amazon Redshift operations that use the maintenance track, the maintenance track value must be set to a cluster version that supports RA3\. For more information about maintenance tracks, see [Choosing cluster maintenance tracks](#rs-mgmt-maintenance-tracks)\. 
 
@@ -204,16 +208,17 @@ The RA3 node types are available only in the following AWS Regions:
 + US East \(Ohio\) Region \(us\-east\-2\)
 + US West \(N\. California\) Region \(us\-west\-1\)
 + US West \(Oregon\) Region \(us\-west\-2\) 
-+ Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
++ Asia Pacific \(Mumbai\) Region \(ap\-south\-1\) – Currently doesn't support ra3\.xlplus
 + Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
-+ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
++ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\) – Currently doesn't support ra3\.xlplus
 + Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
 + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
 + Canada \(Central\) Region \(ca\-central\-1\)
-+ Europe \(Frankfurt\) Region \(eu\-central\-1\)
++ Europe \(Frankfurt\) Region \(eu\-central\-1\) – Currently doesn't support ra3\.xlplus
 + Europe \(Ireland\) Region \(eu\-west\-1\)
 + Europe \(London\) Region \(eu\-west\-2\)
 + Europe \(Paris\) Region \(eu\-west\-3\)
++ Europe \(Stockholm\) Region \(eu\-north\-1\) – Currently doesn't support ra3\.xlplus
 + South America \(São Paulo\) Region \(sa\-east\-1\)
 
 ## Upgrading to RA3 node types<a name="rs-upgrading-to-ra3"></a>
@@ -229,13 +234,14 @@ The following table shows recommendations when upgrading to RA3 node types\.
 
 | Existing node type | Range of existing number of nodes | Recommended new node type | Upgrade action | 
 | --- | --- | --- | --- | 
-| ds2\.xlarge | 1–7 | none | Keep existing ds2\.xlarge cluster or upgrade to a dc2\.large cluster\. If you do not have enough data to fill the local disk, upgrading to a dc2\.large can improve performance and reduce cost\.  | 
+| ds2\.xlarge | 1–7 | ra3\.xlplus | Create 2 nodes of ra3\.xlplus for every 3 nodes of ds2\.xlarge\.  | 
 | ds2\.xlarge | 8–128 | ra3\.4xlarge | Create 1 node of ra3\.4xlarge for every 4 nodes of ds2\.xlarge\. | 
 | ds2\.8xlarge | 2–15 | ra3\.4xlarge | Create 2 nodes of ra3\.4xlarge for every 1 node of ds2\.8xlarge\. | 
 | ds2\.8xlarge | 16–128 | ra3\.16xlarge | Create 1 node of ra3\.16xlarge for every 2 nodes of ds2\.8xlarge\. | 
 | dc2\.8xlarge | 2–15 | ra3\.4xlarge | Create 2 nodes of ra3\.4xlarge for every 1 node of dc2\.8xlarge1\.  | 
 | dc2\.8xlarge | 16–128 | ra3\.16xlarge | Create 1 node of ra3\.16xlarge for every 2 nodes of dc2\.8xlarge1\. | 
-| dc2\.large | 1–15 | none | Keep existing dc2\.large cluster\.  | 
+| dc2\.large | 1–4 | none | Keep existing dc2\.large cluster\.  | 
+| dc2\.large | 4–15 | ra3\.xlplus | Create 3 nodes of ra3\.xlplus for every 8 nodes of dc2\.large1\.  | 
 | dc2\.large | 16–128 | ra3\.4xlarge | Create 1 node of ra3\.4xlarge for every 8 nodes of dc2\.large1\. | 
 
 1Extra nodes might be needed depending on workload requirements\. Add or remove nodes based on the compute requirements of your required query performance\. 
@@ -446,7 +452,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Query monitoring**, **Cluster performance**, **Maintenance and monitoring**, **Backup**, **Properties**, and **Schedule** tabs\.
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Cluster performance**, **Query monitoring**, **Maintenance and monitoring**, **Backup**, **Properties**, and **Schedules** tabs\.
 
 1. Choose the **Maintenance and monitoring** tab for more details\. 
 

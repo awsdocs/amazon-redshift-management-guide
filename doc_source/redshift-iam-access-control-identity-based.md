@@ -43,6 +43,18 @@ The policy has two statements:
 + The first statement grants permissions for a user to a user to create, delete, modify, and reboot clusters\. The statement specifies a wildcard character \(\*\) as the `Resource` value so that the policy applies to all Amazon Redshift resources owned by the root AWS account\. 
 + The second statement denies permission to delete or modify a cluster\. The statement specifies a cluster Amazon Resource Name \(ARN\) for the `Resource` value that includes a wildcard character \(\*\)\. As a result, this statement applies to all Amazon Redshift clusters owned by the root AWS account where the cluster identifier begins with `production`\.
 
+## AWS\-managed \(predefined\) policies for Amazon Redshift<a name="redshift-policy-resources.managed-policies"></a>
+
+AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. Managed policies grant necessary permissions for common use cases so you can avoid having to investigate what permissions are needed\. For more information, see [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\.
+
+The following AWS managed policies, which you can attach to users in your account, are specific to Amazon Redshift:
++ **AmazonRedshiftReadOnlyAccess** – Grants read\-only access to all Amazon Redshift resources for the AWS account\.
++ **AmazonRedshiftFullAccess** – Grants full access to all Amazon Redshift resources for the AWS account\.
++ **AmazonRedshiftQueryEditor** – Grants full access to the Query Editor on the Amazon Redshift console\.
++ **AmazonRedshiftDataFullAccess** – Grants full access to the Amazon Redshift Data API operations and resources for the AWS account\. 
+
+You can also create your own custom IAM policies to allow permissions for Amazon Redshift API actions and resources\. You can attach these custom policies to the IAM users or groups that require those permissions\. 
+
 ## Permissions required to use Redshift Spectrum<a name="redshift-spectrum-policy-resources"></a>
 
 Amazon Redshift Spectrum requires permissions to other AWS services to access resources\. For details about permissions in IAM policies for Redshift Spectrum, see [IAM policies for Amazon Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-iam-policies.html) in the *Amazon Redshift Database Developer Guide\.*
@@ -162,18 +174,6 @@ You can also include the following conditions in your policy:
 + `redshift:DbUser`
 
 For more information about conditions, see [Specifying conditions in a policy](redshift-iam-access-control-overview.md#redshift-policy-resources.specifying-conditions)
-
-## AWS\-managed \(predefined\) policies for Amazon Redshift<a name="redshift-policy-resources.managed-policies"></a>
-
-AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. Managed policies grant necessary permissions for common use cases so you can avoid having to investigate what permissions are needed\. For more information, see [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\.
-
-The following AWS managed policies, which you can attach to users in your account, are specific to Amazon Redshift:
-+ **AmazonRedshiftReadOnlyAccess** – Grants read\-only access to all Amazon Redshift resources for the AWS account\.
-+ **AmazonRedshiftFullAccess** – Grants full access to all Amazon Redshift resources for the AWS account\.
-+ **AmazonRedshiftQueryEditor** – Grants full access to the Query Editor on the Amazon Redshift console\.
-+ **AmazonRedshiftDataFullAccess** – Grants full access to the Amazon Redshift Data API operations and resources for the AWS account\. 
-
-You can also create your own custom IAM policies to allow permissions for Amazon Redshift API actions and resources\. You can attach these custom policies to the IAM users or groups that require those permissions\. 
 
 ## Customer managed policy examples<a name="redshift-iam-accesscontrol.examples"></a>
 
@@ -426,6 +426,30 @@ The following policy allows a user to copy any snapshot created from the cluster
       ]
     }
   ]
+}
+```
+
+### Example 7: Allow a user to tag resources with the Amazon Redshift console<a name="redshift-policy-example-allow-tagging-with-console"></a>
+
+The following example policy allows a user to tag resources with the Amazon Redshift console using the AWS Resource Groups\. This policy can be attached to a user role that invokes the new or original Amazon Redshift console\. For more information about tagging, see [Tagging resources in Amazon Redshift](amazon-redshift-tagging.md)\. 
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Tagging permissions",
+            "Effect": "Allow",
+            "Action": [
+                "redshift:DeleteTags",
+                "redshift:CreateTags",
+                "redshift:DescribeTags",
+                "tag:UntagResources",
+                "tag:TagResources"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 ```
 

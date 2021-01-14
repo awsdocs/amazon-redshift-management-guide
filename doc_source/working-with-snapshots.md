@@ -28,7 +28,7 @@ When you launch a cluster, you can set the retention period for automated and ma
 
 You can monitor the progress of snapshots by viewing the snapshot details in the AWS Management Console, or by calling [describe\-cluster\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-cluster-snapshots.html) in the CLI or the [DescribeClusterSnapshots](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusterSnapshots.html) API action\. For an in\-progress snapshot, these display information such as the size of the incremental snapshot, the transfer rate, the elapsed time, and the estimated time remaining\. 
 
-To ensure that your backups are always available to your cluster, Amazon Redshift stores snapshots in an internally managed Amazon S3 bucket that is managed by Amazon Redshift\. Amazon Redshift provides free storage for snapshots that is equal to the storage capacity of your cluster until you delete the cluster\. After you reach the free snapshot storage limit, you are charged for any additional storage at the normal rate\. Because of this, you should evaluate how many days you need to keep snapshots and configure their retention period accordingly, and delete any manual snapshots that you no longer need\. For pricing information, see the Amazon Redshift [product detail page](https://aws.amazon.com/redshift/)\. 
+To ensure that your backups are always available to your cluster, Amazon Redshift stores snapshots in an internally managed Amazon S3 bucket that is managed by Amazon Redshift\. To manage storage charges, evaluate how many days you need to keep automated snapshots and configure their retention period accordingly\. Delete any manual snapshots that you no longer need\. For more information about the cost of backup storage, see the [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/) page\. 
 
 ## Automated snapshots<a name="about-automated-snapshots"></a>
 
@@ -36,7 +36,7 @@ When automated snapshots are enabled for a cluster, Amazon Redshift periodically
 
 Automated snapshots are deleted at the end of a retention period\. The default retention period is one day, but you can modify it by using the Amazon Redshift console or programmatically by using the Amazon Redshift API or CLI\.
 
-To disable automated snapshots, set the retention period to zero\. If you disable automated snapshots, Amazon Redshift stops taking snapshots and deletes any existing automated snapshots for the cluster\.
+To disable automated snapshots, set the retention period to zero\. If you disable automated snapshots, Amazon Redshift stops taking snapshots and deletes any existing automated snapshots for the cluster\.  You can't disable automated snapshots for RA3 node types\. You can set an RA3 node type automated retention period from 1–35 days\. 
 
 Only Amazon Redshift can delete an automated snapshot; you cannot delete them manually\. Amazon Redshift deletes automated snapshots at the end of a snapshot's retention period, when you disable automated snapshots for the cluster, or when you delete the cluster\. *Amazon Redshift retains the latest automated snapshot until you disable automated snapshots or delete the cluster\.*
 
@@ -65,7 +65,7 @@ cron(Minutes Hours Day-of-week)
 
 | **Fields** | **Values** | **Wildcards** | 
 | --- | --- | --- | 
-|  Minutes  |  0–59  |   | 
+|  Minutes  |  0–59  |     | 
 |  Hours  |  0–23  |  , \- \* /   | 
 |  Day\-of\-week  |  1–7 or SUN\-SAT  |  , \- \* /   | 
 

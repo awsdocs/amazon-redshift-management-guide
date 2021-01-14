@@ -90,6 +90,8 @@ The **Query Execution Details** section has three tabs:
 + **Actual**\. This tab shows the actual steps and statistics for the query that was executed\. This information displays in a textual hierarchy and visual charts for **Timeline** and **Execution time**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cm-metrics-query-exec-details-actual.png)
 
+  
+
   The **Timeline** view shows the sequence in which the actual steps of the query are executed\. 
 
   The **Execution time** view shows the time taken for every step of the query\. It can be used to understand what steps are taking longer to complete\. 

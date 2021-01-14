@@ -7,6 +7,7 @@ The following cluster node types support the query editor:
 + DC2\.large
 + DC2\.8xlarge
 + DS2\.8xlarge
++ RA3\.xlplus
 + RA3\.4xlarge
 + RA3\.16xlarge
 
@@ -15,6 +16,7 @@ Using the query editor, you can do the following:
 + Download result sets as large as 100 MB to a comma\-separated value \(CSV\) file\.
 + Save queries for reuse\. You can't save queries in the Europe \(Paris\) Region, the Asia Pacific \(Osaka\-Local\) Region, the Asia Pacific \(Hong Kong\) Region, or the Middle East \(Bahrain\) Region\.
 + View query execution details for user\-defined tables\.
++ Schedule queries to run at a future time\. 
 
 ## Query editor considerations<a name="query-editor-considerations"></a>
 

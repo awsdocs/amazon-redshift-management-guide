@@ -388,7 +388,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. In **Automated snapshot retention period \(days\)**, choose the number of days for which you want automated snapshots to be retained in the destination AWS Region before they are deleted\.
 
-1. In **Manual snapshot retention period**, choose the value that represents the number of days for which you want automated snapshots to be retained in the destination AWS Region before they are deleted\. If you choose **Custom value**, the retention period must be between 1 to 3653 days\.
+1. In **Manual snapshot retention period**, choose the value that represents the number of days for which you want manual snapshots to be retained in the destination AWS Region before they are deleted\. If you choose **Custom value**, the retention period must be between 1 to 3653 days\.
 
 1. Choose **Save**\.
 
@@ -437,7 +437,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. In **Automated snapshot retention period \(days\)**, choose the number of days for which you want automated snapshots to be retained in the destination AWS Region before they are deleted\.
 
-1. In **Manual snapshot retention period**, choose the value that represents the number of days for which you want automated snapshots to be retained in the destination AWS Region before they are deleted\. If you choose **Custom value**, the retention period must be between 1 to 3653 days\.
+1. In **Manual snapshot retention period**, choose the value that represents the number of days for which you want manual snapshots to be retained in the destination AWS Region before they are deleted\. If you choose **Custom value**, the retention period must be between 1 to 3653 days\.
 
 1. Choose **Save**\.
 

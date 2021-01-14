@@ -267,7 +267,7 @@ To learn how to federate Amazon Redshift access with Microsoft Azure AD single s
 **To set up JDBC for authentication to Microsoft Azure AD**
 + Configure your database client to connect to your cluster through JDBC using your Azure AD single sign\-on\. 
 
-  You can use any client that uses a JDBC driver to connect using Azure AD single sign\-on or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a JDBC connection](configure-jdbc-connection.md)\.
+  You can use any client that uses a JDBC driver to connect using Azure AD single sign\-on or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a JDBC driver version 1\.0 connection](configure-jdbc-connection.md)\.
 
   For example, you can use SQLWorkbench/J as the client\. When you configure SQLWorkbench/J, the URL of your database uses the following format\.
 
@@ -457,7 +457,7 @@ You can use AD FS as an identity provider \(IdP\) to access your Amazon Redshift
 **To set up JDBC for authentication to AD FS**
 + Configure your database client to connect to your cluster through JDBC using AD FS SSO\. 
 
-  You can use any client that uses a JDBC driver to connect using AD FS SSO or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a JDBC connection](configure-jdbc-connection.md)\.
+  You can use any client that uses a JDBC driver to connect using AD FS SSO or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a JDBC driver version 1\.0 connection](configure-jdbc-connection.md)\.
 
   For example, you can use SQLWorkbench/J as the client\. When you configure SQLWorkbench/J, the URL of your database uses the following format\.
 
@@ -572,7 +572,7 @@ You can use Ping Identity as an identity provider \(IdP\) to access your Amazon 
 **To set up JDBC for authentication to Ping Identity**
 + Configure your database client to connect to your cluster through JDBC using Ping Identity SSO\. 
 
-  You can use any client that uses a JDBC driver to connect using Ping Identity SSO or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a JDBC connection](configure-jdbc-connection.md)\.
+  You can use any client that uses a JDBC driver to connect using Ping Identity SSO or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a JDBC driver version 1\.0 connection](configure-jdbc-connection.md)\.
 
   For example, you can use SQLWorkbench/J as the client\. When you configure SQLWorkbench/J, the URL of your database uses the following format\.
 
@@ -688,7 +688,7 @@ You can use Okta as an identity provider \(IdP\) to access your Amazon Redshift 
 **To set up JDBC for authentication to Okta**
 + Configure your database client to connect to your cluster through JDBC using Okta SSO\. 
 
-  You can use any client that uses a JDBC driver to connect using Okta SSO or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a JDBC connection](configure-jdbc-connection.md)\.
+  You can use any client that uses a JDBC driver to connect using Okta SSO or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a JDBC driver version 1\.0 connection](configure-jdbc-connection.md)\.
 
   For example, you can use SQLWorkbench/J as the client\. When you configure SQLWorkbench/J, the URL of your database uses the following format\.
 

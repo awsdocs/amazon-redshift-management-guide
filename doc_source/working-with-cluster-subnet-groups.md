@@ -9,3 +9,4 @@ Your VPC can have one or more subnets, a subset of IP addresses within your VPC,
 For more information about creating a VPC, go to [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/) Documentation\.
 
 After creating a subnet group, you can remove subnets you previously added or add more subnets\. Amazon Redshift provides API operations for you to create, modify or delete a cluster subnet group\. You can also perform these operations in the console\.
+

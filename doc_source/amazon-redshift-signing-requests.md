@@ -7,7 +7,7 @@ If you are using one of the AWS Software Development Kits \(SDKs\) or the AWS Co
 To sign a request, you calculate a digital signature by using a cryptographic hash function\. A cryptographic hash is a function that returns a unique hash value that is based on the input\. The input to the hash function includes the text of your request and your secret access key\. The hash function returns a hash value that you include in the request as your signature\. The signature is part of the `Authorization` header of your request\.
 
 **Note**  
-For API access, you need an access key ID and secret access key\. Use IAM user access keys instead of AWS account root user access keys\. For more information about creating access keys, see [Managing Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) in the *IAM User Guide*\. 
+For API access, you need an access key ID and secret access key\. Use IAM user access keys instead of AWS account root user access keys\. For more information about creating access keys, see [Managing access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) in the *IAM User Guide*\. 
 
 After Amazon Redshift receives your request, it recalculates the signature by using the same hash function and input that you used to sign the request\. If the resulting signature matches the signature in the request, Amazon Redshift processes the request; otherwise, the request is rejected\. 
 

@@ -164,6 +164,8 @@ You can't modify the default parameter group\.
 
 1. Choose **Edit** 
 
+    
+
 1. \(Optional\) Select **Enable short query acceleration** to enable short query acceleration \(SQA\)\.
 
    When you enable SQA, ** Maximum run time for short queries \(1 to 20 seconds\)** is set to **Dynamic** by default\. To set the maximum runtime to a fixed value, choose a value of 1–20\.
@@ -197,6 +199,8 @@ You can use the Amazon Redshift console to create and modify WLM query monitorin
 When you create a rule, you define the rule name, one or more predicates, and an action\. 
 
 When you save WLM configuration that includes a rule, you can view the JSON code for the rule definition as part of the JSON for the WLM configuration parameter\. 
+
+
 
 **Note**  
 A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.

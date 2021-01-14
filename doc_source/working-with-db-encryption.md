@@ -68,7 +68,8 @@ HSM encryption is not supported for DC2 and RA3 node types\.
 HSMs are devices that provide direct control of key generation and management\. They provide greater security by separating key management from the application and database layers\. Amazon Redshift supports AWS CloudHSM Classic for key management\. The encryption process is different when you use HSM to manage your encryption keys instead of AWS KMS\.
 
 **Important**  
-Amazon Redshift supports only AWS CloudHSM Classic\. We don't support the newer AWS CloudHSM service\. AWS CloudHSM Classic isn't available in all AWS Regions\. For more information about available AWS Regions, see [AWS Region Table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)\. 
+Amazon Redshift supports only AWS CloudHSM Classic\. We don't support the newer AWS CloudHSM service\.   
+AWS CloudHSM Classic is closed to new customers\. For more information, see [CloudHSM Classic Pricing](https://aws.amazon.com/cloudhsm/pricing-classic/)\. AWS CloudHSM Classic isn't available in all AWS Regions\. For more information about available AWS Regions, see [AWS Region Table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)\. 
 
 When you configure your cluster to use an HSM, Amazon Redshift sends a request to the HSM to generate and store a key to be used as the CEK\. However, unlike AWS KMS, the HSM doesn’t export the CEK to Amazon Redshift\. Instead, Amazon Redshift randomly generates the DEK in the cluster and passes it to the HSM to be encrypted by the CEK\. The HSM returns the encrypted DEK to Amazon Redshift, where it is further encrypted using a randomly\-generated, internal master key and stored internally on disk in a separate network from the cluster\. Amazon Redshift also loads the decrypted version of the DEK in memory in the cluster so that the DEK can be used to encrypt and decrypt the individual keys for the data blocks\.
 

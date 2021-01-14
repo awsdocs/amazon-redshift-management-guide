@@ -75,7 +75,7 @@ Because Amazon Redshift uses Amazon S3 to store logs, you incur charges for the 
 
 When you enable logging, Amazon Redshift collects logging information and uploads it to log files stored in Amazon S3\. You can use an existing bucket or a new bucket\. Amazon Redshift requires the following IAM permissions to the bucket: 
 + *s3:GetBucketAcl* The service requires read permissions to the Amazon S3 bucket so it can identify the bucket owner\. 
-+ *s3:PutObject* The service requires put object permissions to upload the logs\. Each time logs are uploaded, the service determines whether the current bucket owner matches the bucket owner at the time logging was enabled\. If these owners do not match, logging is still enabled but no log files can be uploaded until you select a different bucket\.
++ *s3:PutObject* The service requires put object permissions to upload the logs\.  Also, the IAM user or IAM role that enables logging must have `s3:PutObject` permission to the Amazon S3 bucket\. Each time logs are uploaded, the service determines whether the current bucket owner matches the bucket owner at the time logging was enabled\. If these owners do not match, you receive an error\. 
 
 If you have Amazon Redshift create a new bucket for you as part of configuration, correct permissions are applied to the bucket\. However, if you create your own bucket in Amazon S3 or use an existing bucket, you need to add a bucket policy that includes the bucket name\. You also need the Amazon Redshift account ID that corresponds to your AWS Region from the following table\.
 
