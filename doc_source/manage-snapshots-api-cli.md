@@ -1,4 +1,4 @@
-# Managing snapshots using the Amazon Redshift CLI and API<a name="manage-snapshots-api-cli"></a>
+# Managing snapshots using the AWS CLI and Amazon Redshift API<a name="manage-snapshots-api-cli"></a>
 
 You can use the following Amazon Redshift CLI operations to manage snapshots\.
 + [authorize\-snapshot\-access](https://docs.aws.amazon.com/cli/latest/reference/redshift/authorize-snapshot-access.html)

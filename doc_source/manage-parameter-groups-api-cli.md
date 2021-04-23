@@ -1,6 +1,6 @@
-# Managing parameter groups using the Amazon Redshift CLI and API<a name="manage-parameter-groups-api-cli"></a>
+# Managing parameter groups using the AWS CLI and Amazon Redshift API<a name="manage-parameter-groups-api-cli"></a>
 
-You can use the following Amazon Redshift CLI operations to manage parameter groups\.
+You can use the following Amazon Redshift operations in the AWS CLI to manage parameter groups\.
 + [create\-cluster\-parameter\-group](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-cluster-parameter-group.html)
 + [delete\-cluster\-parameter\-group](https://docs.aws.amazon.com/cli/latest/reference/redshift/delete-cluster-parameter-group.html)
 + [describe\-cluster\-parameters](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-cluster-parameters.html)

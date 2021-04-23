@@ -10,7 +10,7 @@ You can use database performance metrics in Amazon Redshift to do the following:
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation pane, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Cluster performance**, **Query monitoring**, **Maintenance and monitoring**, **Backup**, **Properties**, and **Schedules** tabs\. 
+1. On the navigation pane, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Cluster performance**, **Query monitoring**, **Databases**, **Datashares**, **Schedules**, **Maintenance**, and **Properties** tabs\. 
 
 1. Choose the **Query monitoring** tab for metrics about your queries\.
 

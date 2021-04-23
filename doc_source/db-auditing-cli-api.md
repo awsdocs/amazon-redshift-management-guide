@@ -1,4 +1,4 @@
-# Configuring logging by using the Amazon Redshift CLI and API<a name="db-auditing-cli-api"></a>
+# Configuring logging by using the AWS CLI and Amazon Redshift API<a name="db-auditing-cli-api"></a>
 
 You can use the following Amazon Redshift CLI operations to configure audit logging:
 +  [describe\-logging\-status](https://docs.aws.amazon.com/cli/latest/reference/redshift/describe-logging-status.html) 

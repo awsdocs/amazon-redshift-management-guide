@@ -65,6 +65,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 1. Choose **Edit parameters** to enable changing settings for these parameters: 
    + `auto_analyze`
    + `datestyle`
+   + `enable_case_sensitive_identifier`
    + `enable_user_activity_logging`
    + `extra_float_digits`
    + `max_concurrency_scaling_clusters`

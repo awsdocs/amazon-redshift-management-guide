@@ -8,7 +8,7 @@ If you are on the EC2\-Classic platform, you define a cluster security group and
 + [Overview](#working-with-security-groups-overview)
 + [Managing cluster security groups using the console](managing-security-groups-console.md)
 + [Managing cluster security groups using the AWS SDK for Java](managing-security-groups-java.md)
-+ [Manage cluster security groups using the Amazon Redshift CLI and API](manage-security-group-api-cli.md)
++ [Manage cluster security groups using the AWS CLI and Amazon Redshift API](manage-security-group-api-cli.md)
 
 ## Overview<a name="working-with-security-groups-overview"></a>
 

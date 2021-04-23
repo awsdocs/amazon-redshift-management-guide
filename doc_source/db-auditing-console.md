@@ -15,13 +15,13 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. On the navigation menu, choose **CLUSTERS**, then choose the cluster that you want to update\. 
 
-1. Choose the **Maintenance and monitoring** tab\. Then view the **Audit logging** section\. 
+1. Choose the **Properties** tab\. Then view the **Audit logging** in the **Database configurations** section\. 
 
-1. Choose **Edit** tab\.
+1. Choose **Edit**, then **Edit audit logging**\.
 
-1. On the **Configure audit logging** page, choose to **Enable audit logging** and enter your choices regarding where the logs are stored\. 
+1. On the **Edit audit logging** page, choose to **Enable audit logging** and enter your choices regarding where the logs are stored\. 
 
-1. Choose **Confirm** to save your choices\. 
+1. Choose **Save changes** to save your choices\. 
 
 ### Original console<a name="cluster-audit-logging-originalconsole"></a>
 

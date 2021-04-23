@@ -70,7 +70,7 @@ Elastic resize has the following constraints:
   With the AWS CLI, following example command describes the configuration options available\. In this example, the cluster named `mycluster` is a `dc2.large` 8\-node cluster\.
 
   ```
-  aws redshift describe-node-configuration-options --cluster-identifier mycluster --region eu-west-1 -—action-type resize-cluster
+  aws redshift describe-node-configuration-options --cluster-identifier mycluster --region eu-west-1 --action-type resize-cluster
   ```
 
   This command returns an option list with recommended node types, number of nodes, and disk utilization for each option\. The configurations returned can vary based on the specific input cluster\. You can choose one of the returned configurations when you specify the options of the `resize-cluster` AWS CLI command\. 

@@ -15,7 +15,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
    Resources that you can tag include clusters, parameter groups, subnet groups, HSM client certificates, HSM connections, and snapshots\.
 
-1. On the **Manage tags**navigation page, choose **Review and apply tag changes**, then choose **Apply** to save your changes\. 
+1. On the **Manage tags** navigation page, choose **Review and apply tag changes**, then choose **Apply** to save your changes\. 
 
 ## Original console<a name="tags-manage-originalconsole"></a>
 

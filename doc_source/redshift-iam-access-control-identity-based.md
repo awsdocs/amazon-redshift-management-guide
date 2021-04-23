@@ -63,11 +63,38 @@ Amazon Redshift Spectrum requires permissions to other AWS services to access re
 
 For a user to work with the Amazon Redshift console, that user must have a minimum set of permissions that allows the user to describe the Amazon Redshift resources for their AWS account\. These permissions must also allow the user to describe other related information, including Amazon EC2 security and network information\.
 
-If you create an IAM policy that is more restrictive than the minimum required permissions, the console doesn't function as intended for users with that IAM policy\. To ensure that those users can still use the Amazon Redshift console, also attach the `AmazonRedshiftReadOnlyAccess` managed policy to the user, as described in [AWS\-managed \(predefined\) policies for Amazon Redshift](#redshift-policy-resources.managed-policies)\.
+If you create an IAM policy that is more restrictive than the minimum required permissions, the console doesn't function as intended for users with that IAM policy\. To ensure that those users can still use the Amazon Redshift console, also attach the `AmazonRedshiftReadOnlyAccess` managed policy to the user\. How to do this is described in [AWS\-managed \(predefined\) policies for Amazon Redshift](#redshift-policy-resources.managed-policies)\.
 
-To give a user access to the Query Editor on the Amazon Redshift console, attach the `AmazonRedshiftQueryEditor` managed policy\.
+For information to give a user access to the query editor on the Amazon Redshift console, see [Permissions required to use the Amazon Redshift console query editor](#redshift-policy-resources.required-permissions.query-editor)\. 
 
 You don't need to allow minimum console permissions for users that are making calls only to the AWS CLI or the Amazon Redshift API\. 
+
+## Permissions required to use the Amazon Redshift console query editor<a name="redshift-policy-resources.required-permissions.query-editor"></a>
+
+For a user to work with the Amazon Redshift query editor, that user must have a minimum set of permissions to Amazon Redshift and Amazon Redshift Data API operations\. To connect to a database using a secret, you must also have Secrets Manager permissions\.
+
+To give a user access to the query editor on the Amazon Redshift console, attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` AWS\-managed policies\. The `AmazonRedshiftQueryEditor` policy allows the user permission to retrieve the results of only their own SQL statements\. That is, statements submitted by the same `aws:userid` as shown in this section of the `AmazonRedshiftQueryEditor` AWS\-managed policy\.
+
+```
+{
+    "Sid": "DataAPIIAMSessionPermissionsRestriction",
+    "Action": [
+        "redshift-data:GetStatementResult",
+        "redshift-data:CancelStatement",
+        "redshift-data:DescribeStatement",
+        "redshift-data:ListStatements"
+    ],
+    "Effect": "Allow",
+    "Resource": "*",
+    "Condition": {
+        "StringEquals": {
+            "redshift-data:statement-owner-iam-userid": "${aws:userid}"
+        }
+    }
+}
+```
+
+To allow a user to retrieve the results of SQL statements of others in the same IAM role, create your own policy without the condition to limit access to the current user\. Also limit access to change a policy to an administrator\.
 
 ## Permissions required to use the Amazon Redshift scheduler<a name="iam-permission-scheduler"></a>
 
@@ -173,7 +200,7 @@ You can also include the following conditions in your policy:
 + `redshift:DbName`
 + `redshift:DbUser`
 
-For more information about conditions, see [Specifying conditions in a policy](redshift-iam-access-control-overview.md#redshift-policy-resources.specifying-conditions)
+For more information about conditions, see [Specifying conditions in a policy](redshift-iam-access-control-overview.md#redshift-policy-resources.specifying-conditions)\. 
 
 ## Customer managed policy examples<a name="redshift-iam-accesscontrol.examples"></a>
 

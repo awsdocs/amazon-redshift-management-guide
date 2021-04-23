@@ -22,6 +22,7 @@ You can set configuration properties using the connection URL\. For more informa
 + [enableMultiSqlSupport](#jdbc20-enablemultisqlsupport-option)
 + [fetchRingBufferSize](#jdbc20-fetchringbuffersize-option)
 + [ForceLowercase](#jdbc20-forcelowercase-option)
++ [IAMDisableCache](#jdbc20-iamdisablecache-option)
 + [IAMDuration](#jdbc20-iamduration-option)
 + [IdP\_Host](#jdbc20-idp_host-option)
 + [IdP\_Port](#jdbc20-idp_port-option)
@@ -40,7 +41,10 @@ You can set configuration properties using the connection URL\. For more informa
 + [PWD](#jdbc20-pwd-option)
 + [queryGroup](#jdbc20-querygroup-option)
 + [ReadOnly](#jdbc20-readonly-option)
++ [Region](#jdbc20-region-option)
 + [reWriteBatchedInsertsSize](#jdbc20-rewritebatchedinsertssize-option)
++ [roleArn](#jdbc20-rolearn-option)
++ [roleSessionName](#jdbc20-roleaessionname-option)
 + [SecretAccessKey](#jdbc20-secretaccesskey-option)
 + [SessionToken](#jdbc20-sessiontoken-option)
 + [SocketTimeout](#jdbc20-sockettimeout-option)
@@ -52,9 +56,11 @@ You can set configuration properties using the connection URL\. For more informa
 + [SSLMode](#jdbc20-sslmode-option)
 + [SSLPassword](#jdbc20-sslpassword-option)
 + [SSLRootCert](#jdbc20-sslrootcert-option)
++ [StsEndpointUrl](#jdbc20-stsendpointurl-option)
 + [TCPKeepAlive](#jdbc20-tcpkeepalive-option)
 + [UID](#jdbc20-uid-option)
 + [User](#jdbc20-user-option)
++ [webIdentityToken](#jdbc20-webidentitytoken-option)
 
 ## AccessKeyID<a name="jdbc20-accesskeyid-option"></a>
 + **Default Value** – None
@@ -232,15 +238,29 @@ This parameter is optional\.
 + **Default Value** – false
 + **Data Type** – Boolean
 
-This option specifies whether the driver lowercases all DbGroups sent from the identity provider to Amazon Redshift when using SSO authentication\. 
+This option specifies whether the driver lowercases all database groups \(DbGroups\) sent from the identity provider to Amazon Redshift when using SSO authentication\. 
 
 This parameter is optional\.
 
 **true**  
-The driver lowercases all DbGroups that are sent from the identity provider\.
+The driver lowercases all database groups that are sent from the identity provider\.
 
 **false**  
-The driver does not alter DbGroups\.
+The driver does not alter database groups\.
+
+## IAMDisableCache<a name="jdbc20-iamdisablecache-option"></a>
++ **Default Value** – false
++ **Data Type** – Boolean
+
+This option specifies whether the IAM credentials are cached\.
+
+This parameter is optional\.
+
+**true**  
+The IAM credentials are not cached\.
+
+**false**  
+The IAM credentials are cached\. This improves performance when requests to the API gateway are throttled, for instance\.
 
 ## IAMDuration<a name="jdbc20-iamduration-option"></a>
 + **Default Value** – 900
@@ -248,7 +268,7 @@ The driver does not alter DbGroups\.
 
 The length of time, in seconds, until the temporary IAM credentials expire\. 
 + **Minimum value** – 900
-+ **Maximum value ** – 3600
++ **Maximum value ** – 3,600
 
 This parameter is optional\.
 
@@ -306,7 +326,7 @@ This parameter is optional\.
 + **Default Value** – `urn:amazon:webservices`
 + **Data Type** – String
 
-The relying party trust you want to use for the AD FS authentication type\. 
+The relying party trust that you want to use for the AD FS authentication type\. 
 
 This parameter is optional\.
 
@@ -316,7 +336,7 @@ This parameter is optional\.
 
 Use this property to enable or disable logging in the driver and to specify the amount of detail included in log files\. 
 
-Only enable logging long enough to capture an issue\. Logging decreases performance and can consume a large quantity of disk space\.
+Enable logging only long enough to capture an issue\. Logging decreases performance and can consume a large quantity of disk space\.
 
 This parameter is optional\.
 
@@ -379,13 +399,14 @@ This parameter is optional\.
 + **Default Value** – None
 + **Data Type** – String
 
-The fully\-qualified class name to implement a specific credentials provider plugin\. 
+The fully qualified class name to implement a specific credentials provider plugin\. 
 
 This parameter is optional\.
 
 The following provider options are supported:
 + **`AdfsCredentialsProvider`** – Active Directory Federation Service
 + **`AzureCredentialsProvider`** – Microsoft Azure Active Directory \(AD\) Service
++ **`BasicJwtCredentialsProvider`** – JSON Web Tokens \(JWT\) Service
 + **`BrowserAzureCredentialsProvider`** – Browser Microsoft Azure Active Directory \(AD\) Service
 + **`BrowserSamlCredentialsProvider`** – Browser SAML for SAML services such as Okta, Ping, or ADFS
 + **`OktaCredentialsProvider`** – Okta Service
@@ -437,11 +458,37 @@ The connection is in read\-only mode and cannot write to the data store\.
 **false**  
 The connection is not in read\-only mode and can write to the data store\.
 
+## Region<a name="jdbc20-region-option"></a>
++ **Default Value** – null
++ **Data Type** – String
+
+This option specifies the AWS Region where the cluster is located\. If you specify the StsEndPoint option, the Region option is ignored\. The Redshift `GetClusterCredentials` API operation also uses the Region option\. 
+
+This parameter is optional\.
+
 ## reWriteBatchedInsertsSize<a name="jdbc20-rewritebatchedinsertssize-option"></a>
 + **Default Value** – 128
 + **Data Type** – Integer
 
 This option enables optimization to rewrite and combine compatible INSERT statements that are batched\. This value must increase exponentially by the power of 2\. 
+
+This parameter is optional\.
+
+## roleArn<a name="jdbc20-rolearn-option"></a>
++ **Default Value** – None
++ **Data Type** – String
+
+The Amazon Resource Name \(ARN\) of role\. Make sure to specify this parameter when you specify BasicJwtCredentialsProvider for the Plugin\_Name option\. You specify the ARN in the following format: 
+
+`arn:partition:service:region:account-id:resource-id`
+
+This parameter is required if you specify BasicJwtCredentialsProvider for the Plugin\_Name option\.
+
+## roleSessionName<a name="jdbc20-roleaessionname-option"></a>
++ **Default Value** – jwt\_redshift\_session
++ **Data Type** – String
+
+An identifier for the assumed role session\. Typically, you pass the name or identifier that is associated with the user of your application\. The temporary security credentials that your application uses are associated with that user\. You can specify this parameter when you specify BasicJwtCredentialsProvider for the Plugin\_Name option\. 
 
 This parameter is optional\.
 
@@ -555,6 +602,12 @@ This parameter is required if SSLKey is specified and the key file is encrypted\
 
 The full path of a \.pem or \.crt file containing the root CA certificate for verifying the Amazon Redshift Server instance when using SSL\. 
 
+## StsEndpointUrl<a name="jdbc20-stsendpointurl-option"></a>
++ **Default Value** – Null
++ **Data Type** – String
+
+You can specify an AWS Security Token Service \(AWS STS\) endpoint\. If you specify this option, the Region option is ignored\. You can only specify a secure protocol \(HTTPS\) for this endpoint\. 
+
 ## TCPKeepAlive<a name="jdbc20-tcpkeepalive-option"></a>
 + **Default Value** – TRUE
 + **Data Type** – String
@@ -586,3 +639,11 @@ This parameter is required\.
 When connecting using IAM authentication through an IDP, this is the user name for the idp\_host server\. When using standard authentication this can be used for the Amazon Redshift database user name\. 
 
 This parameter is optional\.
+
+## webIdentityToken<a name="jdbc20-webidentitytoken-option"></a>
++ **Default Value** – None
++ **Data Type** – String
+
+The OAuth 2\.0 access token or OpenID Connect ID token that is provided by the identity provider\. Your application must get this token by authenticating the user of your application with a web identity provider\. Make sure to specify this parameter when you specify BasicJwtCredentialsProvider for the Plugin\_Name option\. 
+
+This parameter is required if you specify BasicJwtCredentialsProvider for the Plugin\_Name option\.

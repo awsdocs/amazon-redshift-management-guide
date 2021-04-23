@@ -3,12 +3,12 @@
 You can enable logging in the driver to assist in diagnosing issues\.
 
 You can log driver information by using the following methods:
-+ To save logged information in \.log files, see [Using Log Files](#jdbc20-using-log-files)\.
++ To save logged information in \.log files, see [Using log files](#jdbc20-using-log-files)\.
 + To send logged information to the LogStream or LogWriter specified in the DriverManager, see [Using LogStream or LogWriter](#jdbc20-logstream-option)\. 
 
 You provide the configuration information to the driver in the connection URL\. For more information about the syntax of the connection URL, see [Building the connection URL](jdbc20-obtain-url.md#jdbc20-build-connection-url)\.
 
-## Using Log Files<a name="jdbc20-using-log-files"></a>
+## Using log files<a name="jdbc20-using-log-files"></a>
 
 You should only enable logging long enough to capture an issue\. Logging decreases performance and can consume a large quantity of disk space\. 
 

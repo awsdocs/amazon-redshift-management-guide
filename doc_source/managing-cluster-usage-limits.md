@@ -17,7 +17,7 @@ You can define multiple usage limits for each feature\. Each limit can have a di
 
 Usage limits persist until the usage limit definition itself or the cluster is deleted\.  
 
-You can define and manage usage limits with the new Amazon Redshift console, the AWS CLI, or with Amazon Redshift API operations\. To define a limit on the Amazon Redshift console, navigate to your cluster and choose **Configure usage limit** for **Actions**\. To view previously defined usage limits for your cluster, navigate to your cluster, and choose the **Maintenance and monitoring** tab, **Usage limits** section\. To view the amount of usage available and consumed for your cluster, navigate to your cluster\. Choose the **Cluster performance** tab, then view the graphs for the usage consumed for a feature\. 
+You can define and manage usage limits with the new Amazon Redshift console, the AWS CLI, or with Amazon Redshift API operations\. To define a limit on the Amazon Redshift console, navigate to your cluster and choose **Configure usage limit** for **Actions**\. To view previously defined usage limits for your cluster, navigate to your cluster, and choose the **Maintenance** tab, **Usage limits** section\. To view the amount of usage available and consumed for your cluster, navigate to your cluster\. Choose the **Cluster performance** tab, then view the graphs for the usage consumed for a feature\. 
 
 You can use the following Amazon Redshift CLI operations to manage usage limits\. For more information, see the *AWS CLI Command Reference*\.
 + [create\-usage\-limit](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-usage-limit.html)
@@ -31,6 +31,6 @@ You can use the following Amazon Redshift API operations to manage usage limits\
 + [ModifyUsageLimit](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ModifyUsageLimit.html)
 + [DeleteUsageLimit](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DeleteUsageLimit.html)
 
-To learn how to create and monitor usage limits using the the Amazon Redshift console, watch the following video\. 
+To learn how to create and monitor usage limits using the Amazon Redshift console, watch the following video\. 
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/bXg4xLiDqcM/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/bXg4xLiDqcM)

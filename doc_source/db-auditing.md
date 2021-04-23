@@ -9,7 +9,7 @@
 + [Logging Amazon Redshift API calls with AWS CloudTrail](#rs-db-auditing-cloud-trail)
 + [Amazon Redshift account IDs in AWS CloudTrail logs](#rs-db-auditing-cloud-trail-rs-acct-ids)
 + [Configuring auditing using the console](db-auditing-console.md)
-+ [Configuring logging by using the Amazon Redshift CLI and API](db-auditing-cli-api.md)
++ [Configuring logging by using the AWS CLI and Amazon Redshift API](db-auditing-cli-api.md)
 
 ## Overview<a name="db-auditing-overview"></a>
 

@@ -18,6 +18,9 @@ Amazon Redshift has quotas that limit the use of several resources in your AWS a
 | Nodes | 200 | Yes | The maximum number of nodes across all database instances for this account in the current AWS Region\.  | 
 | Parameter groups | 20 | No | The maximum number of parameter groups for this account in the current AWS Region\.  | 
 | RA3 nodes in a cluster | 128 | Yes | The maximum number of RA3 nodes that you can allocate to a cluster\. For more information about node limits for each node type, see [Clusters and nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes)\. | 
+| Redshift\-managed VPC endpoints connected to a cluster | 30 | Yes | The maximum number of Redshift\-managed VPC endpoints that you can connect to a cluster\. For more information about Redshift\-managed VPC endpoints, see [Working with Redshift\-managed VPC endpoints in Amazon Redshift ](managing-cluster-cross-vpc.md)\. | 
+| Grantees to cluster accessed through a Redshift\-managed VPC endpoint | 5 | Yes | The maximum number of grantees that a cluster owner can authorize to create a Redshift\-managed VPC endpoint for a cluster\. For more information about Redshift\-managed VPC endpoints, see [Working with Redshift\-managed VPC endpoints in Amazon Redshift ](managing-cluster-cross-vpc.md)\. | 
+| Redshift\-managed VPC endpoints per authorization | 5 | Yes | The maximum number of Redshift\-managed VPC endpoints that you can create per authorization\. For more information about Redshift\-managed VPC endpoints, see [Working with Redshift\-managed VPC endpoints in Amazon Redshift ](managing-cluster-cross-vpc.md)\. | 
 | Reserved nodes | 200 | Yes | The maximum number of reserved nodes for this account in the current AWS Region\.  | 
 | Schemas in each database per cluster | 9,900 | No | The maximum number of schemas that you can create in each database, per cluster\. However, `pg_temp_*` schemas do not count towards this quota\. | 
 | Security groups | 20 | Yes | The maximum number of security groups for this account in the current AWS Region\.  | 
@@ -53,7 +56,7 @@ Amazon Redshift Spectrum has the following quotas and limits:
 
   `WHERE ship_dtm > '2018-04-01'`\.
 
-  To skip unneeded partitions you need to add a predicate `WHERE ship_yymmm = '201804'`\. This predicate limits read operations to the partition `\ship_yyyymm=201804\`\.
+  To skip unneeded partitions you need to add a predicate `WHERE ship_yyyymm = '201804'`\. This predicate limits read operations to the partition `\ship_yyyymm=201804\`\.
 
 These limits don't apply to an Apache Hive metastore\.
 
@@ -66,6 +69,7 @@ These limits don't apply to an Apache Hive metastore\.
 | --- |--- |
 | Cluster identifier |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html)  | 
 |  Database name  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html)  | 
+|  Endpoint name of a Redshift\-managed VPC endpoint  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html)  | 
 |  Master user name  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html)  | 
 |  Master password  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html)  | 
 |  Parameter group name  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html)  | 

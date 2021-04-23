@@ -2,7 +2,7 @@
 
 ## Overview<a name="working-with-parameter-groups-overview"></a>
 
- In Amazon Redshift, you associate a *parameter group* with each cluster that you create\. The parameter group is a group of parameters that apply to all of the databases that you create in the cluster\. These parameters configure database settings such as query timeout and datestyle\. 
+ In Amazon Redshift, you associate a parameter group with each cluster that you create\. A *parameter group* is a group of parameters that apply to all of the databases that you create in the cluster\. These parameters configure database settings such as query timeout and date style\. 
 
 ## About parameter groups<a name="about-parameter-groups"></a>
 
@@ -29,6 +29,7 @@ The following table shows the default parameter values at a glance with links to
 | --- | --- | --- | 
 |  auto\_analyze  |  true  |  [auto\_analyze](https://docs.aws.amazon.com/redshift/latest/dg/r_auto_analyze.html) in the Amazon Redshift Database Developer Guide  | 
 |  datestyle  |   ISO, MDY   |  [datestyle](https://docs.aws.amazon.com/redshift/latest/dg/r_datestyle.html) in the Amazon Redshift Database Developer Guide  | 
+|  enable\_case\_sensitive\_identifier  |   false   |  [enable\_case\_sensitive\_identifier](https://docs.aws.amazon.com/redshift/latest/dg/r_enable_case_sensitive_identifier.html) in the Amazon Redshift Database Developer Guide  | 
 |  enable\_user\_activity\_logging  |   false   |  [Database audit logging](db-auditing.md) in this guide  | 
 |  extra\_float\_digits  |  0  |  [extra\_float\_digits](https://docs.aws.amazon.com/redshift/latest/dg/r_extra_float_digits.html) in the Amazon Redshift Database Developer Guide  | 
 |  max\_concurrency\_scaling\_clusters  |  1  |  [max\_concurrency\_scaling\_clusters](https://docs.aws.amazon.com/redshift/latest/dg/r_max_concurrency_scaling_clusters.html) in the Amazon Redshift Database Developer Guide  | 
@@ -76,3 +77,5 @@ aws redshift modify-cluster-parameter-group
 --parameter-group-name myclusterparametergroup 
 --parameters ParameterName=statement_timeout,ParameterValue=20000 ParameterName=enable_user_activity_logging,ParameterValue=true
 ```
+
+You can manage parameter groups using the console\. For more information, see [Managing parameter groups using the console](managing-parameter-groups-console.md)\. 

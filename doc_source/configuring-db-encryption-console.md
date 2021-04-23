@@ -1,6 +1,6 @@
 # Configuring database encryption using the console<a name="configuring-db-encryption-console"></a>
 
-You can use the Amazon Redshift console to configure Amazon Redshift to use an HSM and to rotate encryption keys\. For information about how to create clusters using AWS KMS encryption keys, see [Creating a cluster](managing-clusters-console.md#create-cluster) and [Managing clusters using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)\.
+You can use the Amazon Redshift console to configure Amazon Redshift to use an HSM and to rotate encryption keys\. For information about how to create clusters using AWS KMS encryption keys, see [Creating a cluster](managing-clusters-console.md#create-cluster) and [Managing clusters using the AWS CLI and Amazon Redshift API](manage-clusters-api-cli.md)\.
 
 **Note**  
 A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.

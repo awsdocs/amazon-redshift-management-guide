@@ -50,7 +50,7 @@ Use the following procedure to enable relocation when creating a new cluster\.
 
 1. Under **Backup**, for **Cluster relocation**, choose **Enable**\. Relocation is disabled by default\.
 
-1. Under **Network and security**, for **Publicly accessible**, accept the default **No**\. If you choose **Yes**, Amazon Redshift returns an error\.
+1. Under **Network and security**, for **Publicly accessible**, accept the default **Disable**\. If you choose **Enable**, Amazon Redshift returns an error\.
 
 1. Choose **Create cluster**\.
 
@@ -66,11 +66,13 @@ Use the following procedure to change the relocation setting for an existing clu
 
 1. Choose the name of the cluster that you want to modify from the list\. The cluster details page appears\.
 
-1. Choose **Backup**, then choose **Edit**\.
+1. Choose the **Maintenance** tab, then in the **Backup details** section choose **Edit**\.
 
 1. Under **Backup**, choose **Enable**\. Relocation is disabled by default\. 
 
-1. In the **Network and security** section, make sure to choose **No** for the **Publicly accessible** option\.
+1. Choose the **Properties** tab, then in the **Network and security** section make sure to choose **Disable** for the **Publicly accessible** option\.
+
+1. In the **Network and security** section, make sure to choose **Disable** for the **Publicly accessible** option\.
 
 1. Choose **Modify cluster**\.
 

@@ -4,7 +4,7 @@ To protect data from unauthorized access, Amazon Redshift data stores require al
 
 The Amazon Redshift JDBC driver version 2\.0 provides full support for these authentication protocols\. 
 
-The SSL version that the driver supports depends on the JVM version that you are using\. For information about the SSL versions that are supported by each version of Java, see "Diagnosing TLS, SSL, and HTTPS" on the Java Platform Group Product Management Blog: [https://blogs\.oracle\.com/java\-platform\-group/diagnosing\-tls,\-ssl,\-and\-https](https://blogs.oracle.com/java-platform-group/diagnosing-tls,-ssl,-and-https)\. 
+The SSL version that the driver supports depends on the JVM version that you are using\. For information about the SSL versions that are supported by each version of Java, see [Diagnosing TLS, SSL, and HTTPS](https://blogs.oracle.com/java-platform-group/diagnosing-tls,-ssl,-and-https) on the Java Platform Group Product Management Blog\. 
 
 The SSL version used for the connection is the highest version that is supported by both the driver and the server, which is determined at connection time\.
 
@@ -114,8 +114,6 @@ The driver also supports credential provider plugins from the following services
 + PingFederate
 
 If you use one of these services, the connection URL needs to specify the following properties: 
-
- 
 + **Plugin\_Name** – The fully\-qualified class path for your credentials provider plugin class\.
 + **IdP\_Host:** – The host for the service you are using to authenticate into Amazon Redshift\.
 + **IdP\_Port** – The port that the host for the authentication service listens at\. Not required for Okta\.

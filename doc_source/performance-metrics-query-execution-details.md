@@ -25,7 +25,7 @@ You can view details for a particular query by choosing an individual query in t
 + **Query Properties**\. Displays a summary of information about the query such as the query ID, the database user who ran the query, the duration, and its status\. The **Executed on** property indicates whether the query ran on a main cluster or a concurrency scaling cluster\.
 + **SQL**\. Displays the query text in a friendly, human\-readable format\.
 + **Query Execution Details**\. Displays information about how the query was processed\. This section includes both planned and actual execution data for the query\. Query execution details aren't available for queries that ran on a concurrency scaling cluster\. For information on using the **Query Execution Details** section, see [Analyzing query execution](analyzing-query-execution.md)\.
-+ **Cluster Performance During Query Execution**\. Displays performance metrics from CloudWatch\. For information on using the **Cluster Performance During Query Execution** section, see [Viewing cluster performance during query execution](performance-metrics-query-cluster.md)\.
++ **Cluster Performance During Query Execution**\. Displays performance metrics from CloudWatch\. For information on using the **Cluster Performance During Query Execution** section, see [Viewing cluster performance as queries run](performance-metrics-query-cluster.md)\.
 
 The **Query** view looks similar to the following when you open it\.
 

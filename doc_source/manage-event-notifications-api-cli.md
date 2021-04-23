@@ -1,4 +1,4 @@
-# Managing event notifications using the Amazon Redshift CLI and API<a name="manage-event-notifications-api-cli"></a>
+# Managing event notifications using the AWS CLI and Amazon Redshift API<a name="manage-event-notifications-api-cli"></a>
 
 You can use the following Amazon Redshift CLI operations to manage event notifications\.
 + [create\-event\-subscription](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-event-subscription.html)

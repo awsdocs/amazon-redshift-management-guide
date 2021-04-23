@@ -47,11 +47,11 @@ You must have at least one subnet defined in your VPC so you can add it to the c
    You can use the procedure described in the Getting Started to launch the cluster in your VPC\. For more information, see [Step 2: Launch a cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-launch-sample-cluster.html)\. As you follow the wizard, in the **Configure Network Options** of the **ADDITIONAL CONFIGURATION** page, specify the following information:
    + **Choose a VPC** – Select the VPC from the drop\-down list\.
    + **Cluster Subnet Group** – Select the cluster subnet group you created in step 2\.
-   + **Publicly Accessible** – Select **Yes** if you want the cluster to have a public IP address that can be accessed from the public internet\. 
+   + **Publicly accessible** – Select **Enable** if you want the cluster to have a public IP address that can be accessed from the public internet\. 
 **Note**  
-When choosing **Yes**, your cluster is publicly accessible outside the VPC and subject to security threats\. 
+When choosing **Enable**, your cluster is publicly accessible outside the VPC and subject to security threats\. 
 
-     Select **No** if you want the cluster to have a private IP addressed that can only be accessed from within the VPC\.  
+     Select **Disable** if you want the cluster to have a private IP addressed that can only be accessed from within the VPC\.  
    +  **Choose a Public IP Address** – Select **Yes** if you want to select an elastic IP address that you already have configured\. Otherwise, select **No** to have Amazon Redshift create an elastic IP address for your instance\. 
    +  **Elastic IP** – Select an elastic IP address to use to connect to the cluster from outside of the VPC\. 
    +  **Availability Zone** – Select **No Preference** to have Amazon Redshift select the Availability Zone that the cluster will be created in\. Otherwise, select a specific Availability Zone\. 

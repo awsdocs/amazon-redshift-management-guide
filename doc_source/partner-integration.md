@@ -1,14 +1,18 @@
-# Integrating Amazon Redshift with an AWS Partner \(preview\)<a name="partner-integration"></a>
-
-
-|  | 
-| --- |
-| This is prerelease documentation for the partner integration feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+# Integrating Amazon Redshift with an AWS Partner<a name="partner-integration"></a>
 
 By working with Amazon Redshift, you can integrate with AWS Partners from the **Cluster details** page on the Amazon Redshift console\. From the **Cluster details** page, you can speed up your data onboarding into your Amazon Redshift data warehouse with AWS Partner applications\. You can also join and analyze data from different sources together with existing data in your cluster\. The following AWS Partners can integrate with Amazon Redshift: 
-+ [Etleap](https://etleap.com/)
-+ [Fivetran](https://fivetran.com/)
-+ [Segment](https://segment.com/)
++ [Datacoral](https://www.datacoral.com/aws-partnership/)
++ [Etleap](https://etleap.com/partners/aws-amazon-web-services/)
++ [Fivetran](https://fivetran.com/partners/aws)
++ [Informatica](https://www.informatica.com/solutions/explore-ecosystems/aws.html)
++ [SnapLogic](https://www.snaplogic.com/partners/amazon-web-services)
++ [Matillion \(preview\)](https://www.matillion.com/technology/cloud-data-warehouse/amazon-redshift/)
++ [Sisense \(preview\)](https://www.sisense.com/)
++ [Stitch \(preview\)](https://www.stitchdata.com/data-warehouses/amazon-redshift/)
+
+AWS Partners can integrate with Amazon Redshift using the AWS CLI or Amazon Redshift API operations\. For more information, see the *AWS CLI Command Reference* or the *Amazon Redshift API Reference*\. 
+
+## Integrating with an AWS Partner using the Amazon Redshift console<a name="partner-integration-console"></a>
 
 Use the following procedure to integrate a cluster with an AWS Partner\. 
 
@@ -29,3 +33,13 @@ Use the following procedure to integrate a cluster with an AWS Partner\.
 1. Choose **Add partner** to open the AWS Partner's website\.
 
 1. Configure the integration with your Amazon Redshift cluster on the partner's website\. On the partner's website, you can select and configure the data sources that are loaded to your Amazon Redshift cluster\. You can also define additional extract, load, and transform \(ELT\) transformations to process your business data, join it with other datasets, and build consolidated views for analysis and reporting\.  
+
+You can view and manage AWS Partner integrations from the cluster details **Properties** tab\. The **Integrations** section lists the **Partner** name that you can use to link to the AWS Partner website, the **Status** of the integration, the **Database** that receives the data, and the **Last successful connection** that might have updated the cluster\. 
+
+The possible status values are as follows: 
++ Active – The AWS Partner can connect to the cluster and complete configured tasks\.
++ Inactive – The AWS Partner integration doesn't exist\.
++ Runtime failure – The AWS Partner can connect to the cluster but can't complete configured tasks\.
++ Connection failure – The AWS Partner can't connect to the cluster\. 
+
+After you delete an AWS Partner integration from Amazon Redshift, data continues to flow into your cluster\. Complete the delete on the partner's website\.

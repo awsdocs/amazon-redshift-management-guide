@@ -14,7 +14,7 @@
 + [Sharing snapshots](#working-with-snapshot-share-snapshot)
 + [Managing snapshots using the console](managing-snapshots-console.md)
 + [Managing snapshots using the AWS SDK for Java](managing-snapshots-java.md)
-+ [Managing snapshots using the Amazon Redshift CLI and API](manage-snapshots-api-cli.md)
++ [Managing snapshots using the AWS CLI and Amazon Redshift API](manage-snapshots-api-cli.md)
 
 ## Overview<a name="working-with-snapshots-overview"></a>
 

@@ -14,10 +14,12 @@ In the following sections, you can learn the basics of creating a data warehouse
 + [Default disk space alarm](#rs-clusters-default-disk-usage-alarm)
 + [Cluster status](#rs-mgmt-cluster-status)
 + [Overview of managing clusters in Amazon Redshift](managing-cluster-operations.md)
++ [Working with AQUA \(Advanced Query Accelerator\)](managing-cluster-aqua.md)
 + [Managing usage limits in Amazon Redshift](managing-cluster-usage-limits.md)
 + [Managing cluster relocation in Amazon Redshift](managing-cluster-recovery.md)
++ [Working with Redshift\-managed VPC endpoints in Amazon Redshift](managing-cluster-cross-vpc.md)
 + [Managing clusters using the console](managing-clusters-console.md)
-+ [Managing clusters using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)
++ [Managing clusters using the AWS CLI and Amazon Redshift API](manage-clusters-api-cli.md)
 + [Managing clusters using the AWS SDK for Java](managing-clusters-java.md)
 + [Managing clusters in a VPC](managing-clusters-vpc.md)
 + [Cluster version history](rs-mgmt-cluster-version-notes.md)
@@ -208,18 +210,20 @@ The RA3 node types are available only in the following AWS Regions:
 + US East \(Ohio\) Region \(us\-east\-2\)
 + US West \(N\. California\) Region \(us\-west\-1\)
 + US West \(Oregon\) Region \(us\-west\-2\) 
-+ Asia Pacific \(Mumbai\) Region \(ap\-south\-1\) – Currently doesn't support ra3\.xlplus
++ Asia Pacific \(Mumbai\) Region \(ap\-south\-1\) 
 + Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
-+ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\) – Currently doesn't support ra3\.xlplus
++ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\) 
 + Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
 + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
 + Canada \(Central\) Region \(ca\-central\-1\)
-+ Europe \(Frankfurt\) Region \(eu\-central\-1\) – Currently doesn't support ra3\.xlplus
++ Europe \(Frankfurt\) Region \(eu\-central\-1\) 
 + Europe \(Ireland\) Region \(eu\-west\-1\)
 + Europe \(London\) Region \(eu\-west\-2\)
 + Europe \(Paris\) Region \(eu\-west\-3\)
-+ Europe \(Stockholm\) Region \(eu\-north\-1\) – Currently doesn't support ra3\.xlplus
++ Europe \(Stockholm\) Region \(eu\-north\-1\) 
 + South America \(São Paulo\) Region \(sa\-east\-1\)
++ AWS GovCloud \(US\-East\) \(us\-gov\-east\-1\) – Only ra3\.4xlarge and ra3\.16xlarge node types are available\.
++ AWS GovCloud \(US\-West\) \(us\-gov\-west\-1\) – Only ra3\.4xlarge and ra3\.16xlarge node types are available\.
 
 ## Upgrading to RA3 node types<a name="rs-upgrading-to-ra3"></a>
 
@@ -328,7 +332,7 @@ The following list shows the time blocks for each AWS Region from which the defa
 + Africa \(Cape Town\) Region: 20:00–04:00 UTC
 + Asia Pacific \(Hong Kong\) Region: 13:00–21:00 UTC
 + Asia Pacific \(Mumbai\) Region: 16:30–00:30 UTC
-+ Asia Pacific \(Osaka\-Local\) Region: 13:00–21:00 UTC
++ Asia Pacific \(Osaka\) Region: 13:00–21:00 UTC
 + Asia Pacific \(Seoul\) Region: 13:00–21:00 UTC
 + Asia Pacific \(Singapore\) Region: 14:00–22:00 UTC
 + Asia Pacific \(Sydney\) Region: 12:00–20:00 UTC
@@ -452,9 +456,9 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Cluster performance**, **Query monitoring**, **Maintenance and monitoring**, **Backup**, **Properties**, and **Schedules** tabs\.
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, which can include **Cluster performance**, **Query monitoring**, **Databases**, **Datashares**, **Schedules**, **Maintenance**, and **Properties** tabs\. 
 
-1. Choose the **Maintenance and monitoring** tab for more details\. 
+1. Choose the **Maintenance** tab for more details\. 
 
 1. In the **Maintenance** section, find **Current cluster version**\.
 

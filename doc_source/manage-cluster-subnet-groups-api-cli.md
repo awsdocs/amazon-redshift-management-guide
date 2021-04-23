@@ -1,4 +1,4 @@
-# Manage cluster subnet groups using the Amazon Redshift CLI and API<a name="manage-cluster-subnet-groups-api-cli"></a>
+# Manage cluster subnet groups using the AWS CLI and Amazon Redshift API<a name="manage-cluster-subnet-groups-api-cli"></a>
 
 You can use the following Amazon Redshift CLI operations to manage cluster subnet groups\.
 + [create\-cluster\-subnet\-group](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-cluster-subnet-group.html)

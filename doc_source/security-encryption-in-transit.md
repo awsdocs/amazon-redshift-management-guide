@@ -15,5 +15,8 @@ Encryption of data in transit between an Amazon Redshift cluster and Amazon S3 o
 
 Encryption and signing of data in transit between AWS CLI, SDK, or API clients and Amazon Redshift endpoints:
 + Amazon Redshift provides HTTPS endpoints for encrypting data in transit\. 
-+ To protect the integrity of API requests to Amazon Redshift, API calls must be signed by the caller \(by an X\.509 certificate or the customer's AWS Secret Access Key\) according to the Signature Version 4 Signing Process \(Sigv4\)\. For more information, see [Signature Version 4 Signing Process](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)\. 
++ To protect the integrity of API requests to Amazon Redshift, API calls must be signed by the caller\. Calls are signed by an X\.509 certificate or the customer's AWS secret access key according to the Signature Version 4 Signing Process \(Sigv4\)\. For more information, see [Signature Version 4 Signing Process](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html) in the *AWS General Reference*\.
 +  Use the AWS CLI or one of the AWS SDKs to make requests to AWS\. These tools automatically sign the requests for you with the access key that you specify when you configure the tools\. 
+
+Encryption of data in transit between Amazon Redshift clusters and AQUA:
++ Data is transmitted between AQUA and Amazon Redshift clusters over a TLS\-encrypted channel\. This channel is signed according to the Signature Version 4 Signing Process \(Sigv4\)\. For more information, see [Signature Version 4 Signing Process](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html) in the *AWS General Reference*\.

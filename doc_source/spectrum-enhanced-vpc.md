@@ -20,6 +20,8 @@ Redshift Spectrum can't access data stored in Amazon S3 buckets that use a bucke
 
 For the IAM role that is granted access to the bucket, use a trust relationship that allows the role to be assumed only by the Amazon Redshift service principal\. When attached to your cluster, the role can be used only in the context of Amazon Redshift and can't be shared outside of the cluster\. For more information, see [Restricting access to IAM roles](authorizing-redshift-service.md#authorizing-redshift-service-database-users)\.
 
+To use Redshift Spectrum, no IAM policies blocking the use of presigned URLs can be in place\.
+
 The following example bucket policy permits access to the specified bucket only from traffic originated by Redshift Spectrum owned by AWS account `123456789012`\. 
 
 ```
@@ -101,4 +103,4 @@ You can configure the following pathways in your VPC:
 + **Internet gateway** –To connect to AWS services outside your VPC, you can attach an [internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) to your VPC subnet, as described in the *Amazon VPC User Guide\.* To use an internet gateway, your cluster must have a public IP address to allow other services to communicate with your cluster\. 
 + **NAT gateway **–To connect to an Amazon S3 bucket in another AWS Region or to another service within the AWS network, configure a [network address translation \(NAT\) gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html), as described in the *Amazon VPC User Guide\.* Use this configuration also to access a host instance outside the AWS network\.
 
-For more information, see [Amazon Redshift enhanced VPC routing](enhanced-vpc-routing.md)\.
+For more information, see [Enhanced VPC routing in Amazon Redshift ](enhanced-vpc-routing.md)\.

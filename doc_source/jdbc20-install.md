@@ -16,6 +16,7 @@ To use a JDBC connection, perform the following steps and use the following opti
 + [Use prepared statement support](jdbc20-prepared-statement-support.md)
 + [Differences between the 2\.x and 1\.x versions of the JDBC driver](jdbc20-jdbc10-driver-differences.md)
 + [JDBC driver version 2\.0 configuration options](jdbc20-configuration-options.md)
++ [Previous versions of JDBC driver version 2\.0](jdbc20-previous-driver-version-20.md)
 
 ## Configure authentication and SSL for your JDBC connection<a name="configure-authentication-ssl-jdbc20"></a>
 
@@ -43,9 +44,11 @@ If you use Apache Maven, you can configure and build your projects to use an Ama
 
 **To configure the JDBC driver as a Maven dependency**
 
-1. Add the following repository to the repositories section of your `pom.xml` file\.
+1. Add either the Amazon repository or the Maven Central repository to the repositories section of your `pom.xml` file\.
 **Note**  
 The URL in the following code example returns an error if used in a browser\. Use this URL only in the context of a Maven project\.
+
+   A\. Amazon Maven Repository\.
 
    ```
    <repositories>
@@ -63,6 +66,17 @@ The URL in the following code example returns an error if used in a browser\. Us
        <repository>
          <id>redshift</id>
          <url>https://s3.amazonaws.com/redshift-maven-repository/release</url>
+       </repository>
+   </repositories>
+   ```
+
+   B\. Maven Central Repository\. Add the following to your `pom.xml` file\.
+
+   ```
+   <repositories>
+       <repository>
+         <id>redshift</id>
+         <url>https://repo1.maven.org/maven2</url>
        </repository>
    </repositories>
    ```

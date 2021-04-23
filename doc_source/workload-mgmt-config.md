@@ -157,7 +157,7 @@ For more information about each of these properties and strategies for configuri
 
 ## Configuring the wlm\_json\_configuration parameter using the AWS CLI<a name="Configuring-the-wlm-json-configuration-Parameter"></a>
 
- To configure WLM, you modify the `wlm_json_configuration` parameter\. The value is formatted in JavaScript Object Notation \(JSON\)\. If you configure WLM by using the AWS CLI, Amazon Redshift API, or one of the AWS SDKs, use the rest of this section to learn how to construct the JSON structure for the `wlm_json_configuration` parameter\. 
+ To configure WLM, you modify the `wlm_json_configuration` parameter\. The maximum size of the `wlm_json_configuration` property value is 8000 characters\. The value is formatted in JavaScript Object Notation \(JSON\)\. If you configure WLM by using the AWS CLI, Amazon Redshift API, or one of the AWS SDKs, use the rest of this section to learn how to construct the JSON structure for the `wlm_json_configuration` parameter\. 
 
 **Note**  
  If you configure WLM by using the Amazon Redshift console, you don't need to understand JSON formatting because the console provides an easy way to add queues and configure their properties\. For more information about configuring WLM by using the console, see [Modifying a parameter group](managing-parameter-groups-console.md#parameter-group-modify)\. 

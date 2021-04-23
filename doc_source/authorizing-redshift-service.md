@@ -73,7 +73,7 @@ To permit only specific database users to use an IAM role, take the following st
    }
    ```
 
-1. Add a condition to the `sts:AssumeRole` action section of the trust relationship that limits the `sts:ExternalId` field to values that you specify\. Include an ARN for each database user that you want to grant access to the role\.
+1. Add a condition to the `sts:AssumeRole` action section of the trust relationship that limits the `sts:ExternalId` field to values that you specify\. Include an ARN for each database user that you want to grant access to the role\. The external ID can be any unique string\.
 
    For example, the following trust relationship specifies that only database users `user1` and `user2` on cluster `my-cluster` in region `us-west-2` have permission to use this IAM role\.
 
@@ -214,6 +214,9 @@ The following trust policy establishes a trust relationship with the owner of `R
   ]
 }
 ```
+
+**Note**  
+To restrict role chaining authorization to specific users, define a condition\. For more information, see [Restricting access to IAM roles](#authorizing-redshift-service-database-users)\.
 
 When you run an UNLOAD, COPY, CREATE EXTERNAL FUNCTION, or CREATE EXTERNAL SCHEMA command, you chain roles by including a comma\-separated list of role ARNs in the `iam_role` parameter\. The following shows the syntax for chaining roles in the `iam_role` parameter\. 
 

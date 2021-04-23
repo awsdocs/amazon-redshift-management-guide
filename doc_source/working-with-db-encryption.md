@@ -34,7 +34,7 @@ Next, Amazon Redshift randomly generates a key to use as the DEK and loads it in
 
 When the cluster reboots, Amazon Redshift starts with the internally stored, encrypted versions of the CEK and DEK, reloads them into memory, and then calls AWS KMS to decrypt the CEK with the CMK again so it can be loaded into memory\. The decrypted CEK is then used to decrypt the DEK again, and the decrypted DEK is loaded into memory and used to encrypt and decrypt the data block keys as needed\.
 
-For more information about creating Amazon Redshift clusters that are encrypted with AWS KMS keys, see [Creating a cluster](managing-clusters-console.md#create-cluster) and [Managing clusters using the Amazon Redshift CLI and API](manage-clusters-api-cli.md)\.
+For more information about creating Amazon Redshift clusters that are encrypted with AWS KMS keys, see [Creating a cluster](managing-clusters-console.md#create-cluster) and [Managing clusters using the AWS CLI and Amazon Redshift API](manage-clusters-api-cli.md)\.
 
 ### Copying AWS KMS–encrypted snapshots to another AWS Region<a name="configure-snapshot-copy-grant"></a>
 

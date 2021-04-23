@@ -237,14 +237,14 @@ This option is available only for clusters in a VPC\.
 This option is available only for clusters in a VPC\.  
 **Choose a Public IP Address**  
 If you set **Publicly Accessible** to **Yes**, choose **No** here to have Amazon Redshift to provide an Elastic IP \(EIP\) for the cluster\. Alternatively, choose **Yes** if you want to use an EIP that you have created and manage\. If you have Amazon Redshift create the EIP, it is managed by Amazon Redshift\.   
-This option is available only for clusters in a VPC where **Publicly Accessible** is **Yes**\.  
+This option is available only for clusters in a VPC where **Publicly accessible** is **Enabled**\.  
 **Elastic IP**  
  Select the EIP that you want to use to connect to the cluster from outside of the VPC\.   
 This option is available only for clusters in a VPC where **Publicly Accessible** and **Choose a Public IP Address** are **Yes**\.  
 **Availability Zone**  
  Choose **No Preference** to have Amazon Redshift choose the Availability Zone that the cluster is created in\. Otherwise, choose a specific Availability Zone\.   
 **Enhanced VPC Routing**  
-Choose **Yes** to enable enhanced VPC routing\. Enhanced VPC routing might require some additional configuration\. For more information, see [Amazon Redshift enhanced VPC routing](enhanced-vpc-routing.md)\. 
+Choose **Yes** to enable enhanced VPC routing\. Enhanced VPC routing might require some additional configuration\. For more information, see [Enhanced VPC routing in Amazon Redshift ](enhanced-vpc-routing.md)\. 
 
    1. For **Optionally, associate your cluster with one or more security groups**, specify values for the following options:  
 **VPC Security Groups**  
@@ -291,22 +291,22 @@ Choose **No** if you want to create a new Amazon Simple Notification Service \(A
 ## Modifying a cluster<a name="modify-cluster"></a>
 
 When you modify a cluster, changes to the following options are applied immediately:
-+ **VPC Security Groups** 
-+ **Publicly Accessible** 
-+ **Master User Password** 
++ **VPC security groups** 
++ **Publicly accessible** 
++ **Master user password** 
 + **HSM Connection** 
 + **HSM Client Certificate** 
-+ **Maintenance settings** 
++ **Maintenance detail** 
 + **Snapshot preferences** 
 
  Changes to the following options take effect only after the cluster is restarted:
-+ **Cluster Identifier**
++ **Cluster identifier**
 
-  Amazon Redshift restarts the cluster automatically when you change **Cluster Identifier**\.
-+ **Enhanced VPC Routing**
+  Amazon Redshift restarts the cluster automatically when you change **Cluster identifier**\.
++ **Enhanced VPC routing**
 
-  Amazon Redshift restarts the cluster automatically when you change **Enhanced VPC Routing**\.
-+ **Cluster Parameter Group** 
+  Amazon Redshift restarts the cluster automatically when you change **Enhanced VPC routing**\.
++ **Cluster parameter group** 
 
 If you decrease the automated snapshot retention period, existing automated snapshots whose settings fall outside of the new retention period are deleted\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\. 
 
@@ -323,20 +323,16 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. Choose the cluster to modify\. 
 
-1. For **Actions**, choose **Modify**\. The **Modify cluster** page appears\.
+1. Choose **Edit**\. The **Edit cluster** page appears\.
 
 1. Update the cluster properties\. Some of the properties you can modify are: 
    + Cluster identifier
-   + VPC security groups
-   + Enhanced VPC routing
-   + Parameter groups
-   + Encryption
-   + Maintenance window
-   + Maintenance track
-   + Defer maintenance window
    + Snapshot retention
+   + Cluster relocation
 
-1. Choose **Modify cluster**\.
+   To edit settings for **Network and security**, **Maintenance**, and **Database configurations**, the console provides links to the the appropriate cluster details tab\.
+
+1. Choose **Save changes**\.
 
 ### Original console<a name="modify-cluster-task-originalconsole"></a><a name="modify-cluster-task"></a>
 
@@ -565,7 +561,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, including **Cluster performance**, **Query monitoring**, **Maintenance and monitoring**, **Backup**, **Properties**, and **Schedules** tabs\.
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. The details of the cluster are displayed, which can include **Cluster performance**, **Query monitoring**, **Databases**, **Datashares**, **Schedules**, **Maintenance**, and **Properties** tabs\.
 
 1. Choose each tab to view more details\. 
 
