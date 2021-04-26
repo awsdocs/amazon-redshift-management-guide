@@ -58,6 +58,7 @@ The statement in the following example specifies a wildcard character \(\*\) as 
 The following example shows a policy that allows the IAM role to call the `GetClusterCredentials` operation with the option to automatically create a new user and specify groups the user joins at login\. The `"Resource": "*" `clause grants the role access to any resource, including clusters, database users, or user groups\.
 
 ```
+{
   "Version": "2012-10-17",
   "Statement": {
     "Effect": "Allow",
