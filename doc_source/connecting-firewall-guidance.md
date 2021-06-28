@@ -78,6 +78,6 @@ The number of seconds of inactivity before the driver sends a TCP keepalive pack
 **KeepAlivesInterval**  
 The number of seconds between each TCP keepalive retransmission\.
 
-On Windows, you modify these parameters in the registry by adding or changing keys in HKEY\_LOCAL\_MACHINE\\SOFTWARE\\ODBC\\ODBC\.INI\\*your\_DSN*\. On Linux and macOS, you add or modify these parameters in the target DSN entry directly in the odbc\.ini file\. For more information on modifying the odbc\.ini file on Linux and macOS computers, see [Configure the ODBC driver on Linux and macOS X operating systems](configure-odbc-connection.md#odbc-driver-configure-linux-mac)\. 
+On Windows, you modify these parameters in the registry by adding or changing keys in HKEY\_LOCAL\_MACHINE\\SOFTWARE\\ODBC\\ODBC\.INI\\*your\_DSN*\. On Linux and macOS, you add or modify these parameters in the target DSN entry directly in the odbc\.ini file\. For more information on modifying the odbc\.ini file on Linux and macOS computers, see [Use an ODBC driver manager to configure the driver on Linux and macOS X operating systems](configure-odbc-connection.md#odbc-driver-configure-linux-mac)\. 
 
 If these parameters don't exist, or if they have a value of 0, the system uses the keepalive parameters specified for TCP/IP to determine DSN keepalive behavior\. On Windows, you can find the TCP/IP parameters in the registry in `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\`\. On Linux and macOS, you can find the TCP/IP parameters can be found in the sysctl\.conf file\. 

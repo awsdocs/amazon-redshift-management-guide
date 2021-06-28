@@ -23,7 +23,7 @@ For more information, see [Configure a JDBC or ODBC connection to use IAM creden
 
 ## Using a Configuration Profile<a name="using-configuration-profile"></a>
 
-You can supply the IAM credentials options and `GetClusterCredentials` options as settings in named profiles in your AWS configuration file\. To provide the profile name, use the Profile JDBC option\. The configuration is stored in a file named `config` or a file named `credentials` in a folder named \.aws in your home directory\. 
+You can supply the IAM credentials options and `GetClusterCredentials` options as settings in named profiles in your AWS configuration file\. To provide the profile name, use the Profile JDBC option\. The configuration is stored in a file named `config` or a file named `credentials` in a folder named `.aws` in your home directory\. 
 
 For a SAML\-based credential provider plugin included with an Amazon Redshift JDBC or ODBC driver, you can use the settings described just preceding in [Using a credentials provider plugin](#using-credentials-provider-plugin)\. If `plugin_name` isn't used, the other options are ignored\.
 
@@ -391,7 +391,7 @@ You can use AD FS as an identity provider \(IdP\) to access your Amazon Redshift
 
    1. On the **Select Data Source** page, choose **Import data about the relying party published online or on a local network**\.
 
-   1. For **Federation metadata address \(host name or URL\)**, enter `https://signin.aws.amazon.com/saml-metadata.xml`\. The metadata XML file is a standard SAML metadata document that describes AWS as a relying party\.
+   1. For **Federation metadata address \(host name or URL\)**, enter **https://signin\.aws\.amazon\.com/saml\-metadata\.xml**\. The metadata XML file is a standard SAML metadata document that describes AWS as a relying party\.
 
    1. On the **Specify Display Name** page, enter a value for **Display name**\. 
 
@@ -418,7 +418,7 @@ You can use AD FS as an identity provider \(IdP\) to access your Amazon Redshift
       + For **Claim rule name**, enter **RoleSessionName**\.
       + For **Attribute store**, choose **Active Directory**\.
       + For **LDAP Attribute**, choose **Email Addresses**\.
-      + For **Outgoing Claim Type**, choose **https://aws\.amazon\.com/SAML/Attributes/RoleSessionName**\.
+      + For **Outgoing Claim Type**, choose https://aws\.amazon\.com/SAML/Attributes/RoleSessionName\.
 
    1. On the **Edit Claim Rules** page, choose **Add Rule**\. On the **Select Rule Template** page, for **Claim rule template**, choose **Send Claims Using a Custom Rule**\.
 
@@ -554,10 +554,10 @@ You can use Ping Identity as an identity provider \(IdP\) to access your Amazon 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/options-for-providing-iam-credentials.html)
 
 1. For **Group Access**, set up the following group access, if needed:
-   + `https://aws.amazon.com/SAML/Attributes/Role`
-   + `https://aws.amazon.com/SAML/Attributes/RoleSessionName`
-   + `https://redshift.amazon.com/SAML/Attributes/AutoCreate`
-   + `https://redshift.amazon.com/SAML/Attributes/DbUser`
+   + https://aws\.amazon\.com/SAML/Attributes/Role
+   + https://aws\.amazon\.com/SAML/Attributes/RoleSessionName
+   + https://redshift\.amazon\.com/SAML/Attributes/AutoCreate
+   + https://redshift\.amazon\.com/SAML/Attributes/DbUser
 
 1. Review your setup and make changes, if necessary\. 
 

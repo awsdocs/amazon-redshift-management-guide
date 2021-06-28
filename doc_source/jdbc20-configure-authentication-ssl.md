@@ -12,7 +12,7 @@ Configure the Amazon Redshift JDBC driver version 2\.0 to authenticate your conn
 
 You must always provide your Amazon Redshift user name and password to authenticate the connection\. Depending on whether SSL is enabled and required on the server, you might also need to configure the driver to connect through SSL\. Or you might use one\-way SSL authentication so that the client \(the driver itself\) verifies the identity of the server\. 
 
-You provide the configuration information to the driver in the connection URL\. For more information about the syntax of the connection URL, see [Building the connection URL](jdbc20-obtain-url.md#jdbc20-build-connection-url)\. 
+You provide the configuration information to the driver in the connection URL\. For more information about the syntax of the connection URL, see [Building the connection URL](jdbc20-build-connection-url.md)\. 
 
 *SSL* indicates TLS/SSL, both Transport Layer Security and Secure Sockets Layer\. The driver supports industry\-standard versions of TLS/SSL\.  
 

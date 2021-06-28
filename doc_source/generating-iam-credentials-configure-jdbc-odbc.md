@@ -60,7 +60,7 @@ The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
 
    For more information, see one of the following:
    + [Install and configure the Amazon Redshift ODBC driver on Microsoft Windows](configure-odbc-connection.md#install-odbc-driver-windows)
-   + [Configure the ODBC driver on Linux and macOS X operating systems](configure-odbc-connection.md#odbc-driver-configure-linux-mac) 
+   + [Use an ODBC driver manager to configure the driver on Linux and macOS X operating systems](configure-odbc-connection.md#odbc-driver-configure-linux-mac) 
 
 1. On Microsoft Windows operating systems, access the Amazon Redshift ODBC Driver DSN Setup window\.
 

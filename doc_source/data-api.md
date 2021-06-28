@@ -30,7 +30,42 @@ Amazon Redshift provides the `AmazonRedshiftDataFullAccess` managed policy\. Thi
 
 You can also create your own IAM policy that allows access to specific resources\. To create your policy, use the `AmazonRedshiftDataFullAccess` policy as your starting template\. After you create your policy, add it to each user that requires access to the Data API\.
 
-For information about creating an IAM policy, see [Creating IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the *IAM User Guide*\. For information about adding an IAM policy to a user, see [Adding and Removing IAM Identity Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) in the *IAM User Guide*\.
+To run a query on a cluster that is owned by another account, the owning account must provide an IAM role that the Data API can assume in the calling account\. For example, suppose Account B owns a cluster that Account A needs to access\. Account B can attach the AWS\-managed policy `AmazonRedshiftDataFullAccess` to Account B's IAM role\. Then Account B trusts Account A using a trust policy such as the following:``
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+            "arn:aws:iam::accountID-of-account-A:role/someRoleA"
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+Finally, the Account A IAM role needs to be able to assume the Account B IAM role\.
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Allow",
+    "Action": "sts:AssumeRole",
+    "Resource": "arn:aws:iam::accountID-of-account-B:role/someRoleB"
+  }
+}
+```
+
+The following links provide more information about AWS Identity and Access Management in the *IAM User Guide*\.
++ For information about creating an IAM roles, see [Creating IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html)\. 
++ For information about creating an IAM policy, see [Creating IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html)\.
++ For information about adding an IAM policy to a user, see [Adding and removing IAM identity permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\. 
 
 ## Storing database credentials in AWS Secrets Manager<a name="data-api-secrets"></a>
 
@@ -142,14 +177,40 @@ With either method, you can also supply a `region` value that specifies the AWS 
 |  `CLOB`  |  `STRING`  | 
 |  Other types \(including types related to date and time\)  |  `STRING`  | 
 
-For some specific types, such as `DECIMAL` or `TIME`, a hint might be required\. This hint instructs the Data API that the `String` value should be passed to the database as a different type\. You can do this by including values in `typeHint` in the `SqlParameter` data type\. The possible values for `typeHint` are the following:
-+ `DECIMAL` – The corresponding `String` parameter value is sent as an object of `DECIMAL` type to the database\.
-+ `TIMESTAMP` – The corresponding `String` parameter value is sent as an object of `TIMESTAMP` type to the database\. The accepted format is `YYYY-MM-DD HH:MM:SS[.FFF]`\.
-+ `TIME` – The corresponding `String` parameter value is sent as an object of `TIME` type to the database\. The accepted format is `HH:MM:SS[.FFF]`\.
-+ `DATE` – The corresponding `String` parameter value is sent as an object of `DATE` type to the database\. The accepted format is `YYYY-MM-DD`\.
+String values are passed to the Amazon Redshift database and implicitly converted into a database data type\.
 
 **Note**  
 Currently, the Data API doesn't support arrays of universal unique identifiers \(UUIDs\)\.
+
+### Running SQL statements with parameters when calling the Amazon Redshift Data API<a name="data-api-calling-considerations-parameters"></a>
+
+You can control the SQL text submitted to the database engine by calling the Data API operation using parameters for parts of he SQL statement\. Named parameters provide a flexible way to pass in parameters without hardcoding them in the SQL text\. They help you reuse SQL text and avoid SQL injection problems\.
+
+The following example shows the named parameters of a `parameters` field of an `execute statement` operation\.
+
+```
+--parameters "[{\"name\": \"id\", \"value\": \"1\"},{\"name\": \"address\", \"value\": \"Seattle\"}]"
+```
+
+Consider the following when using named parameters:
++ The named parameters can be in any order and parameters can be used more than one time in the SQL text\. The parameters option shown in the previous example, the values `1` and `Seattle` are inserted into the table columns `id` and `address`\. In the SQL text, you specify the named parameters as follows:
+
+  ```
+  --sql "insert into mytable values (:id, :address)"
+  ```
++ When the SQL runs, data is implicitly cast to a data type\. For more information about data type casting, see [Data types](https://docs.aws.amazon.com/redshift/latest/dg/c_Supported_data_types.html) in the *Amazon Redshift Database Developer Guide*\. 
++ You can't set a value to NULL\. The Data API interprets it as the literal string `NULL`\. The following example replaces `id` with the literal string `null`\. Not the SQL NULL value\. 
+
+  ```
+  --parameters "[{\"name\": \"id\", \"value\": \"null\"}]"
+  ```
++ You can't set a zero length value\. The Data API SQL statement fails\. The following example trys to set `id` with a zero length value and results in a failure of the SQL statement\. 
+
+  ```
+  --parameters "[{\"name\": \"id\", \"value\": \"\"}]"
+  ```
++ You can't set a table name in the SQL statement with a parameter\. The Data API follows the rule of the JDBC `PreparedStatement`\. 
++ The output of the `describe statement` operation returns the query parameters of an SQL statement\.
 
 ## Calling the Data API<a name="data-api-calling"></a>
 
@@ -161,7 +222,9 @@ You can call the Data API using the AWS CLI\.
 
 The following examples use the AWS CLI to call the Data API\. To run the examples, edit the parameter values to match your environment\. These examples demonstrate a few of the Data API operations\. For more information, see the *AWS CLI Command Reference*\.   
 
-#### To run an SQL statement<a name="data-api-calling-cli-execute-statment"></a>
+Commands in the following examples have been split and formatted for readability\.
+
+#### To run an SQL statement<a name="data-api-calling-cli-execute-statement"></a>
 
 To run an SQL statement, use the `aws redshift-data execute-statement` AWS CLI command\.
 
@@ -211,7 +274,227 @@ The following is an example of the response\.
 }
 ```
 
-#### To list metadata about SQL statements<a name="data-api-calling-cli-list-statments"></a>
+#### To run an SQL statement with parameters<a name="data-api-calling-cli-execute-statement-parameters"></a>
+
+To run an SQL statement, use the `aws redshift-data execute-statement` AWS CLI command\.
+
+The following AWS CLI command runs an SQL statement and returns an identifier to fetch the results\. This example uses the AWS Secrets Manager authentication method\. The SQL text has named parameters `colname` and `distance`\. In this case, the column name in the table is `ratecode` and the distance used in the predicate is `5`\. Values for named parameters for the SQL statement are specified in the `parameters` option\.
+
+```
+aws redshift-data execute-statement 
+    --region us-west-2 
+    --secret arn:aws:secretsmanager:us-west-2:123456789012:secret:myuser-secret-hKgPWn 
+    --cluster-identifier mycluster-test 
+    --sql "SELECT :colname, COUNT(*) FROM demo_table WHERE trip_distance > :distance" 
+    --parameters "[{\"name\": \"colname\", \"value\": \"ratecode\"}, \ {\"name\": \"distance\", \"value\": \"5\"}]"
+    --database dev
+```
+
+The following is an example of the response\.
+
+```
+{
+    "ClusterIdentifier": "mycluster-test",
+    "CreatedAt": 1598323175.823,
+    "Database": "dev",
+    "Id": "c016234e-5c6c-4bc5-bb16-2c5b8ff61814",
+    "SecretArn": "arn:aws:secretsmanager:us-west-2:123456789012:secret:yanruiz-secret-hKgPWn"
+}
+```
+
+The following example uses the `EVENT` table from the sample database\. For more information, see [EVENT table](https://docs.aws.amazon.com/redshift/latest/dg/r_eventtable.html) in the *Amazon Redshift Database Developer Guide*\. 
+
+If you don't already have the `EVENT` table in your database, you can create one using the Data API as follows:
+
+```
+aws redshift-data execute-statement 
+--database dev
+--cluster-id my-test-cluster
+--db-user awsuser
+--sql "create table event( eventid integer not null distkey, 
+                           venueid smallint not null, 
+                           catid smallint not null, 
+                           dateid smallint not null sortkey, 
+                           eventname varchar(200), 
+                           starttime timestamp)"
+```
+
+The following command inserts one row into the `EVENT` table\. 
+
+```
+aws redshift-data execute-statement 
+--database dev
+--cluster-id my-test-cluster
+--db-user awsuser 
+--sql "insert into event values(:eventid, :venueid::smallint, :catid, :dateid, :eventname, :starttime)" 
+--parameters "[{\"name\": \"eventid\", \"value\": \"1\"}, {\"name\": \"venueid\", \"value\": \"1\"}, 
+               {\"name\": \"catid\", \"value\": \"1\"}, 
+               {\"name\": \"dateid\", \"value\": \"1\"}, 
+               {\"name\": \"eventname\", \"value\": \"event 1\"}, 
+               {\"name\": \"starttime\", \"value\": \"2022-02-22\"}]"
+```
+
+The following command inserts a second row into the `EVENT` table\. This example demonstrates the following: 
++ The parameter named `id` is used four times in the SQL text\.
++ Implicit type conversion is applied automatically when inserting parameter `starttime`\.
++ The `venueid` column is type cast to SMALLINT data type\.
++ Character strings that represent the DATE data type are implicitly converted into the TIMESTAMP data type\.
++ Comments can be used within SQL text\.
+
+```
+aws redshift-data execute-statement 
+--database dev
+--cluster-id my-test-cluster
+--db-user awsuser 
+--sql "insert into event values(:id, :id::smallint, :id, :id, :eventname, :starttime) /*this is comment, and it won't apply parameterization for :id, :eventname or :starttime here*/" 
+--parameters "[{\"name\": \"eventname\", \"value\": \"event 2\"}, 
+               {\"name\": \"starttime\", \"value\": \"2022-02-22\"}, 
+               {\"name\": \"id\", \"value\": \"2\"}]"
+```
+
+The following shows the two inserted rows:
+
+```
+ eventid | venueid | catid | dateid | eventname |      starttime
+---------+---------+-------+--------+-----------+---------------------
+       1 |       1 |     1 |      1 | event 1   | 2022-02-22 00:00:00
+       2 |       2 |     2 |      2 | event 2   | 2022-02-22 00:00:00
+```
+
+The following command uses a named parameter in a WHERE clause to retrieve the row where `eventid` is `1`\. 
+
+```
+aws redshift-data execute-statement 
+--database dev
+--cluster-id my-test-cluster
+--db-user awsuser 
+--sql "select * from event where eventid=:id"
+--parameters "[{\"name\": \"id\", \"value\": \"1\"}]"
+```
+
+Run the following command to get the SQL results of the previous SQL statement:
+
+```
+aws redshift-data get-statement-result --id 7529ad05-b905-4d71-9ec6-8b333836eb5a        
+```
+
+Provides the following results:
+
+```
+{
+    "Records": [
+        [
+            {
+                "longValue": 1
+            },
+            {
+                "longValue": 1
+            },
+            {
+                "longValue": 1
+            },
+            {
+                "longValue": 1
+            },
+            {
+                "stringValue": "event 1"
+            },
+            {
+                "stringValue": "2022-02-22 00:00:00.0"
+            }
+        ]
+    ],
+    "ColumnMetadata": [
+        {
+            "isCaseSensitive": false,
+            "isCurrency": false,
+            "isSigned": true,
+            "label": "eventid",
+            "length": 0,
+            "name": "eventid",
+            "nullable": 0,
+            "precision": 10,
+            "scale": 0,
+            "schemaName": "public",
+            "tableName": "event",
+            "typeName": "int4"
+        },
+        {
+            "isCaseSensitive": false,
+            "isCurrency": false,
+            "isSigned": true,
+            "label": "venueid",
+            "length": 0,
+            "name": "venueid",
+            "nullable": 0,
+            "precision": 5,
+            "scale": 0,
+            "schemaName": "public",
+            "tableName": "event",
+            "typeName": "int2"
+        },
+        {
+            "isCaseSensitive": false,
+            "isCurrency": false,
+            "isSigned": true,
+            "label": "catid",
+            "length": 0,
+            "name": "catid",
+            "nullable": 0,
+            "precision": 5,
+            "scale": 0,
+            "schemaName": "public",
+            "tableName": "event",
+            "typeName": "int2"
+        },
+        {
+            "isCaseSensitive": false,
+            "isCurrency": false,
+            "isSigned": true,
+            "label": "dateid",
+            "length": 0,
+            "name": "dateid",
+            "nullable": 0,
+            "precision": 5,
+            "scale": 0,
+            "schemaName": "public",
+            "tableName": "event",
+            "typeName": "int2"
+        },
+        {
+            "isCaseSensitive": true,
+            "isCurrency": false,
+            "isSigned": false,
+            "label": "eventname",
+            "length": 0,
+            "name": "eventname",
+            "nullable": 1,
+            "precision": 200,
+            "scale": 0,
+            "schemaName": "public",
+            "tableName": "event",
+            "typeName": "varchar"
+        },
+        {
+            "isCaseSensitive": false,
+            "isCurrency": false,
+            "isSigned": false,
+            "label": "starttime",
+            "length": 0,
+            "name": "starttime",
+            "nullable": 1,
+            "precision": 29,
+            "scale": 6,
+            "schemaName": "public",
+            "tableName": "event",
+            "typeName": "timestamp"
+        }
+    ],
+    "TotalNumRows": 1
+}
+```
+
+#### To list metadata about SQL statements<a name="data-api-calling-cli-list-statements"></a>
 
 To list metadata about SQL statements, use the `aws redshift-data list-statements` AWS CLI command\. Authorization to run this command is based on the caller's IAM permissions\.
 

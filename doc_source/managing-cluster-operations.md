@@ -4,12 +4,17 @@ After your cluster is created, there are several operations you can perform on i
 
 ## Resizing clusters in Amazon Redshift<a name="rs-resize-tutorial"></a>
 
-As your data warehousing capacity and performance needs change or grow, you can resize your cluster to make the best use of the computing and storage options that Amazon Redshift provides\. You can use elastic resize to scale your cluster by changing the node type and number of nodes\. Or, if your new node configuration is not available through elastic resize, you can use classic resize\. 
+As your data warehousing capacity and performance needs change or grow, you can resize your cluster to make the best use of the computing and storage options that Amazon Redshift provides\. 
+
+ You can use elastic resize to scale your cluster by changing the node type and number of nodes\. We recommend using elastic resize, which typically completes in minutes\. If your new node configuration isn't available through elastic resize, you can use classic resize\. Classic resize takes more time to complete, because it involves provisioning a new cluster and copying data blocks to it\. In contrast, elastic resize redistributes data slices, which requires fewer resources\. 
 
 To resize your cluster, use one of the following approaches: 
-+ **Elastic resize** – Use elastic resize to change the node type, number of nodes, or both\. If you only change the number of nodes, then queries are temporarily paused and connections are held open if possible\. During the resize operation, the cluster is read\-only\. Typically, elastic resize takes 10–15 minutes\. We recommend using elastic resize when possible\. 
-+ **Classic resize** – Use classic resize to change the node type, number of nodes, or both\. Choose this option when you are resizing to a configuration that isn't available through elastic resize\. An example is to or from a single\-node cluster\. During the resize operation, the cluster is read\-only\. Typically, classic resize takes 2 hours–2 days or longer, depending on your data's size\. 
-+ **Snapshot and restore with classic resize** – To keep your cluster available during a classic resize, you can first make a copy of an existing cluster, then resize the new cluster\. 
++ **Elastic resize** – Use it to change the node type, number of nodes, or both\. Elastic resize works quickly by changing or adding nodes to your existing cluster\. If you change only the number of nodes, queries are temporarily paused and connections are held open, if possible\. Typically, elastic resize takes 10–15 minutes\. During the resize operation, the cluster is read\-only\. 
+
+  We recommend using elastic resize whenever possible, because it completes much more quickly than classic resize\.
++ **Classic resize** – Use it to change the node type, number of nodes, or both\. Classic resize provisions a new cluster and copies the data from the source cluster to the new cluster\. Choose this option only when you are resizing to a configuration that isn't available through elastic resize, because it takes considerably more time to complete\. An example of when to use it is when resizing to or from a single\-node cluster\. During the resize operation, the cluster is read\-only\. Classic resize can take several hours to several days, or longer, depending on the amount of data to transfer and the difference in cluster size and computing resources\.
+
+  If your configuration warrants performing a classic resize, you can minimize production impact by making a copy of your existing cluster and subsequently resizing the copy\. [Snapshot, restore, and resize](#rs-tutorial-snapshot-restore-resize-overview) describes the steps\.
 
 You can resize \(both elastic resize and classic resize\) your cluster on a schedule\. When you use the new Amazon Redshift console, you can set up a schedule to resize your cluster\. For more information, see [Resizing a cluster](managing-clusters-console.md#resizing-cluster)\. You can also use the AWS CLI or Amazon Redshift API operations to schedule a resize\. For more information, see [create\-scheduled\-action](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-scheduled-action.html) in the *AWS CLI Command Reference* or [CreateScheduledAction](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateScheduledAction.html) in the *Amazon Redshift API Reference*\. 
 
@@ -62,21 +67,26 @@ To run an elastic resize on a cluster that is transferring data from a shared sn
 
 Elastic resize doesn't sort tables or reclaim disk space, so it isn't a substitute for a vacuum operation\. A classic resize copies tables to a new cluster, so it can reduce the need to vacuum\. For more information, see [Vacuuming tables](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html)\.
 
-Elastic resize has the following constraints: 
+ Elastic resize has the following constraints:
 + Elastic resize is available only for clusters that use the EC2\-VPC platform\. For more information, see [Use EC2\-VPC when you create your cluster](working-with-clusters.md#cluster-platforms)\. 
-+ The new node configuration must have enough storage for existing data\. Even when you add nodes, your new configuration might not have enough storage because of the way that data is redistributed\. 
-+ The possible configurations \(number of nodes and node type\) you can resize to is determined by the number of nodes in the original cluster and the target node type of the resized cluster\. To determine the possible configurations available, you can use the Amazon Redshift console or the `describe-node-configuration-options` AWS CLI command with `action-type resize-cluster`\. For more information about the resizing using the Amazon Redshift console, see [Resizing a cluster](managing-clusters-console.md#resizing-cluster)\. 
++ Make sure that your new node configuration has enough storage for existing data\. Even when you add nodes, your new configuration might not have enough storage because of the way that data is redistributed\. 
++ The possible configurations of node number and type that you can resize to is determined by the number of nodes in the original cluster and the target node type of the resized cluster\. To determine the possible configurations available, you can use the console\. Or you can use the `describe-node-configuration-options` AWS CLI command with the `action-type resize-cluster` option\. For more information about the resizing using the Amazon Redshift console, see [Resizing a cluster](managing-clusters-console.md#resizing-cluster)\. 
 
-  With the AWS CLI, following example command describes the configuration options available\. In this example, the cluster named `mycluster` is a `dc2.large` 8\-node cluster\.
+  The following example CLI command describes the configuration options available\. In this example, the cluster named `mycluster` is a `dc2.large` 8\-node cluster\.
 
   ```
   aws redshift describe-node-configuration-options --cluster-identifier mycluster --region eu-west-1 --action-type resize-cluster
   ```
 
-  This command returns an option list with recommended node types, number of nodes, and disk utilization for each option\. The configurations returned can vary based on the specific input cluster\. You can choose one of the returned configurations when you specify the options of the `resize-cluster` AWS CLI command\. 
+  This command returns an option list with recommended node types, number of nodes, and disk utilization for each option\. The configurations returned can vary based on the specific input cluster\. You can choose one of the returned configurations when you specify the options of the `resize-cluster` CLI command\. 
++ Elastic resize has limits on the nodes that you can add to a cluster\. For example, a dc2 cluster supports elastic resize up to double the number of nodes\. To illustrate, you can add a node to a 4\-node dc2\.8xlarge cluster to make it a 5\-node cluster, or add more nodes until you reach 8\.
 
-**Note**  
-There are scenarios when you can't use elastic resize to change the number of nodes to a specific value\. For example, if you use elastic resize to change a 4\-node `dc2.8xlarge` cluster to a 6\-node cluster, and then to an 8\-node cluster, the maximum number of nodes for this `dc2.8xlarge` cluster has been reached at 8 nodes\. To go beyond the 8 node limit, for example to 10 nodes, you can use [Classic resize](#classic-resize) to increase the number of nodes to a 10\-node `dc2.8xlarge` cluster\. Using classic resize in this scenario also raises the maximum number of nodes to 20 for future elastic resize operations on this cluster\. 
+  With some ra3 node types, you can increase the number of nodes up to four times the existing count\. Specifically, suppose that your cluster consists of ra3\.4xlarge or ra3\.16xlarge nodes\. You can then use elastic resize to increase the number of nodes in an 8\-node cluster to 32\. Or you can pick a value below the limit\. If your cluster has ra3\.xlplus nodes, the limit is double\.
+
+  All ra3 node types support a decrease in the number of nodes to a quarter of the existing count\. For example, you can decrease the size of a cluster with ra3\.4xlarge nodes from 12 nodes to 3, or to a number above the minimum\.
+
+  The following table lists growth and reduction limits for each node type that supports elastic resize\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-operations.html)
 
 ### Classic resize<a name="classic-resize"></a>
 

@@ -19,7 +19,10 @@ AQUA is available with release version 1\.0\.24421 or later in the following AWS
 + US East \(N\. Virginia\) Region \(us\-east\-1\)
 + US East \(Ohio\) Region \(us\-east\-2\)
 + US West \(Oregon\) Region \(us\-west\-2\) 
++ Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
++ Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
 + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
++ Europe \(Frankfurt\) Region \(eu\-central\-1\)
 + Europe \(Ireland\) Region \(eu\-west\-1\)
 
 You can activate and manage AQUA for Amazon Redshift clusters on the Amazon Redshift console, with the AWS CLI, or with Amazon Redshift API operations\. You can do so when you create a cluster,  restore a cluster from a snapshot, or modify an existing cluster\. When you activate an existing cluster, make sure to reboot your cluster for the change to take effect\. 
@@ -30,6 +33,8 @@ You have the following choices when you configure AQUA:
 + **Turn on** – You choose to activate AQUA\. AQUA can only be activated in certain AWS Regions and for ra3\.4xlarge and ra3\.16xlarge node types\. 
 + **Turn off** – You choose not to activate AQUA\. 
 + **Automatic** – Amazon Redshift determines whether to use AQUA\. This is the default\. Currently, AQUA isn't activated with this option, but this behavior is subject to change\. 
+
+You can also activate AQUA for the duration of a session\. For more information, see [activate\_aqua](https://docs.aws.amazon.com/redshift/latest/dg/r_activate_aqua.html) in the *Amazon Redshift Database Developer Guide*\.
 
 ## Managing AQUA using the AWS CLI<a name="managing-cluster-aqua-cli"></a>
 

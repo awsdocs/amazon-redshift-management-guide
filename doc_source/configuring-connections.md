@@ -29,11 +29,9 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\. 
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster name from the list to open its details\.
 
-1. Choose the **Properties** tab for the cluster\. Then view **Connection details** and choose **View all connection details** to see the **JDDBC URL** and **ODBC URL** values\. The connection string is based on the AWS Region where the cluster runs\. 
-
-1. Choose **Copy** to copy the connection string needed for your driver\. 
+1. The **JDBC URL** and **ODBC URL** connection strings are available, along with additional details, in the **General information** section\. Each string is based on the AWS Region where the cluster runs\. Click the icon next to the appropriate connection string to copy it\.
 
 #### Original console<a name="connect-drivers-url-originalconsole"></a>
 

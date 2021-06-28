@@ -9,7 +9,7 @@ When you run the CREATE EXTERNAL FUNCTION, you provide security credentials usin
 The steps for using an IAM role are as follows:
 + Create an IAM role for use with your Amazon Redshift cluster\.
 + Associate the IAM role with the cluster\.
-+ Include the IAM role's ARN when you call the COPY, UNLOAD, or CREATE EXTERNAL SCHEMA command\.
++ Include the IAM role's ARN when you call the COPY, UNLOAD, CREATE EXTERNAL SCHEMA, or CREATE EXTERNAL FUNCTION command\.
 
 In this topic, you learn how to associate an IAM role with an Amazon Redshift cluster\. 
 
@@ -114,11 +114,11 @@ The **Manage IAM Roles** panel shows you the status of your cluster IAM role ass
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cluster-iam-roles.png)
 
-#### Using the AWS CLI to manage IAM role associations<a name="w59aac27c24c28c19c15b7c11"></a>
+#### Using the AWS CLI to manage IAM role associations<a name="w69aac27c24c28c19c15b7c11"></a>
 
 You can manage IAM role associations for a cluster with the AWS CLI by using the following approaches\.
 
-##### Associating an IAM role with a cluster using the AWS CLI<a name="w59aac27c24c28c19c15b7c11b5"></a>
+##### Associating an IAM role with a cluster using the AWS CLI<a name="w69aac27c24c28c19c15b7c11b5"></a>
 
 To associate an IAM role with a cluster when the cluster is created, specify the Amazon Resource Name \(ARN\) of the IAM role for the `--iam-role-arns` parameter of the `create-cluster` command\. You can specify up to 10 IAM roles to add when calling the `create-cluster` command\.
 
@@ -145,7 +145,7 @@ aws redshift modify-cluster-iam-roles \
     --add-iam-roles "arn:aws:iam::123456789012:role/RedshiftCopyUnload"
 ```
 
-##### Disassociating an IAM role from a cluster using the AWS CLI<a name="w59aac27c24c28c19c15b7c11b7"></a>
+##### Disassociating an IAM role from a cluster using the AWS CLI<a name="w69aac27c24c28c19c15b7c11b7"></a>
 
 To disassociate an IAM role from a cluster, specify the ARN of the IAM role for the `--remove-iam-roles` parameter of the `modify-cluster-iam-roles` command\. You can specify up to 10 IAM roles to remove when calling the `modify-cluster-iam-roles` command\.
 
@@ -157,7 +157,7 @@ aws redshift modify-cluster-iam-roles \
     --remove-iam-roles "arn:aws:iam::123456789012:role/RedshiftCopyUnload"
 ```
 
-##### Listing IAM role associations for a cluster using the AWS CLI<a name="w59aac27c24c28c19c15b7c11b9"></a>
+##### Listing IAM role associations for a cluster using the AWS CLI<a name="w69aac27c24c28c19c15b7c11b9"></a>
 
 To list all of the IAM roles that are associated with an Amazon Redshift cluster, and the status of the IAM role association, call the `describe-clusters` command\. The ARN for each IAM role associated with the cluster is returned in the `IamRoles` list as shown in the following example output\.
 
@@ -206,4 +206,4 @@ Roles that have been associated with the cluster show a status of `in-sync`\. Ro
 }
 ```
 
-For more information on using the AWS CLI, see *[AWS command line interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)*\.
+For more information on using the AWS CLI, see *[AWS CLI User Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)*\.

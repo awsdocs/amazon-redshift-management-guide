@@ -11,7 +11,7 @@ Encryption of data in transit between an Amazon Redshift cluster and SQL clients
 Encryption of data in transit between an Amazon Redshift cluster and Amazon S3 or DynamoDB:
 + Amazon Redshift uses hardware accelerated SSL to communicate with Amazon S3 or DynamoDB for COPY, UNLOAD, backup, and restore operations\. 
 + Redshift Spectrum supports the Amazon S3 server\-side encryption \(SSE\) using your account's default key managed by the AWS Key Management Service \(KMS\)\. 
-+ Encrypt Amazon Redshift loads with Amazon S3 and AWS KMS\. For more information, see https://aws\.amazon\.com/blogs/big\-data/encrypt\-your\-amazon\-redshift\-loads\-with\-amazon\-s3\-and\-aws\-kms/\.
++ Encrypt Amazon Redshift loads with Amazon S3 and AWS KMS\. For more information, see [Encrypt Your Amazon Redshift Loads with Amazon S3 and AWS KMS](http://aws.amazon.com/blogs/big-data/encrypt-your-amazon-redshift-loads-with-amazon-s3-and-aws-kms/)\.
 
 Encryption and signing of data in transit between AWS CLI, SDK, or API clients and Amazon Redshift endpoints:
 + Amazon Redshift provides HTTPS endpoints for encrypting data in transit\. 

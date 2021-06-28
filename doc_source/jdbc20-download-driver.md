@@ -8,7 +8,7 @@ JDBC drivers version 1\.2\.27\.1051 and later support Amazon Redshift stored pro
 
 For each computer where you use the Amazon Redshift JDBC driver version 2\.0, make sure that Java Runtime Environment \(JRE\) 8\.0 is installed\. 
 
-If you use the Amazon Redshift JDBC driver for database authentication, make sure that you have AWS SDK for Java 1\.11\.118 or later in your Java class path\. If you don't have AWS SDK for Java installed, you can use a driver that includes the AWS SDK:
+If you use the Amazon Redshift JDBC driver for database authentication, make sure that you have AWS SDK for Java 1\.11\.118 or later in your Java class path\. If you don't have AWS SDK for Java installed, download the ZIP file with JDBC 4\.2–compatible driver \(without the AWS SDK\) and driver dependent libraries for the AWS SDK:
 + [JDBC 4\.2–compatible driver \(without the AWS SDK\) and driver dependent libraries for AWS SDK files version 2\.0](https://s3.amazonaws.com/redshift-downloads/drivers/jdbc/2.0.0.4/redshift-jdbc42-2.0.0.4.zip)\. 
 
   The class name for this driver is `com.amazon.redshift.jdbc42.Driver`\.

@@ -8,7 +8,6 @@ JDBC applications usually provide a set of configuration options for adding a li
 
 ## Using the driver in Java code<a name="jdbc20-use-driver-java-code"></a>
 
-You must include all the driver library files in the class path\. This is the path that the Java Runtime Environment searches for classes and other resource files\. For more information, see "Setting the Class Path" in the appropriate Java SE documentation\.  
+You must include all the driver library files in the class path\. This is the path that the Java Runtime Environment searches for classes and other resource files\. For more information, see the appropriate Java SE documentation to set the class path for your operating system\. 
 + Windows: [https://docs\.oracle\.com/javase/7/docs/technotes/tools/windows/classpath\.html](https://docs.oracle.com/javase/7/docs/technotes/tools/windows/classpath.html)
 + Linux and Solaris: [https://docs\.oracle\.com/javase/7/docs/technotes/tools/solaris/classpath\.html](https://docs.oracle.com/javase/7/docs/technotes/tools/solaris/classpath.html)
-+ Text

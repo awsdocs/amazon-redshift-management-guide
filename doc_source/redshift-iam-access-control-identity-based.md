@@ -61,7 +61,7 @@ Amazon Redshift Spectrum requires permissions to other AWS services to access re
 
 ## Permissions required to use the Amazon Redshift console<a name="redshift-policy-resources.required-permissions.console"></a>
 
-For a user to work with the Amazon Redshift console, that user must have a minimum set of permissions that allows the user to describe the Amazon Redshift resources for their AWS account\. These permissions must also allow the user to describe other related information, including Amazon EC2 security and network information\.
+For a user to work with the Amazon Redshift console, that user must have a minimum set of permissions that allows the user to describe the Amazon Redshift resources for their AWS account\. These permissions must also allow the user to describe other related information, including Amazon EC2 security, Amazon CloudWatch, Amazon SNS, and network information\.
 
 If you create an IAM policy that is more restrictive than the minimum required permissions, the console doesn't function as intended for users with that IAM policy\. To ensure that those users can still use the Amazon Redshift console, also attach the `AmazonRedshiftReadOnlyAccess` managed policy to the user\. How to do this is described in [AWS\-managed \(predefined\) policies for Amazon Redshift](#redshift-policy-resources.managed-policies)\.
 
@@ -98,7 +98,7 @@ To allow a user to retrieve the results of SQL statements of others in the same 
 
 ## Permissions required to use the Amazon Redshift scheduler<a name="iam-permission-scheduler"></a>
 
-When you use the Amazon Redshift scheduler, you set up an IAM role with a trust relationship to the Amazon Redshift scheduler \(scheduler\.redshift\.amazonaws\.com\) to allow the scheduler to assume permissions on your behalf\. You also attach a policy \(permissions\) to the role for the Amazon Redshift API operations that you want to schedule\.
+When you use the Amazon Redshift scheduler, you set up an IAM role with a trust relationship to the Amazon Redshift scheduler \(**scheduler\.redshift\.amazonaws\.com**\) to allow the scheduler to assume permissions on your behalf\. You also attach a policy \(permissions\) to the role for the Amazon Redshift API operations that you want to schedule\.
 
 The following example shows the policy document in JSON format to set up a trust relationship with the Amazon Redshift scheduler and Amazon Redshift\. 
 
@@ -149,7 +149,7 @@ The IAM role you create has trusted entities of `scheduler.redshift.amazonaws.co
 
 ## Permissions required to use the Amazon EventBridge scheduler<a name="iam-permission-eventbridge-scheduler"></a>
 
-When you use the Amazon EventBridge scheduler, you set up an IAM role with a trust relationship to the EventBridge scheduler \(events\.amazonaws\.com\) to allow the scheduler to assume permissions on your behalf\. You also attach a policy \(permissions\) to the role for the Amazon Redshift Data API operations that you want to schedule and a policy for Amazon EventBridge operations\.
+When you use the Amazon EventBridge scheduler, you set up an IAM role with a trust relationship to the EventBridge scheduler \(**events\.amazonaws\.com**\) to allow the scheduler to assume permissions on your behalf\. You also attach a policy \(permissions\) to the role for the Amazon Redshift Data API operations that you want to schedule and a policy for Amazon EventBridge operations\.
 
 You use the EventBridge scheduler when you create scheduled queries with the Amazon Redshift query editor on the console\. 
 

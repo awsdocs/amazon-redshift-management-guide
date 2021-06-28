@@ -6,7 +6,7 @@ You can log driver information by using the following methods:
 + To save logged information in \.log files, see [Using log files](#jdbc20-using-log-files)\.
 + To send logged information to the LogStream or LogWriter specified in the DriverManager, see [Using LogStream or LogWriter](#jdbc20-logstream-option)\. 
 
-You provide the configuration information to the driver in the connection URL\. For more information about the syntax of the connection URL, see [Building the connection URL](jdbc20-obtain-url.md#jdbc20-build-connection-url)\.
+You provide the configuration information to the driver in the connection URL\. For more information about the syntax of the connection URL, see [Building the connection URL](jdbc20-build-connection-url.md)\.
 
 ## Using log files<a name="jdbc20-using-log-files"></a>
 

@@ -2,7 +2,7 @@
 
 This section describes the options that you can specify for the Amazon Redshift JDBC driver version 2\.0 driver\. 
 
-You can set configuration properties using the connection URL\. For more information, see Building the Connection URL\.
+You can set configuration properties using the connection URL\. For more information, see [Building the connection URL](jdbc20-build-connection-url.md)\.
 
 **Topics**
 + [AccessKeyID](#jdbc20-accesskeyid-option)

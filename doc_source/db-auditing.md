@@ -81,7 +81,7 @@ If you have Amazon Redshift create a new bucket for you as part of configuration
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html)
 
-The bucket policy uses the following format, where *BucketName* and *AccountId* are placeholders for your own values: 
+The bucket policy uses the following format, where *BucketName* is a placeholder for your own value\. The *AccountId* is from the table of Amazon Redshift account IDs that corresponds to your AWS Region\. 
 
 ```
 {
@@ -137,7 +137,7 @@ The following example is a bucket policy for the US East \(N\. Virginia\) Region
 }
 ```
 
-For more information about creating Amazon S3 buckets and adding bucket policies, go to [Creating a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) and [Editing Bucket Permissions](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingBucketPermissions.html) in the Amazon Simple Storage Service Console User Guide\. 
+For more information about creating Amazon S3 buckets and adding bucket policies, see [Creating a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) and [Editing Bucket Permissions](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingBucketPermissions.html) in the Amazon Simple Storage Service Console User Guide\. 
 
 ### Bucket structure for Amazon Redshift audit logging<a name="db-auditing-bucket-structure"></a>
 

@@ -7,34 +7,35 @@ Amazon Redshift has quotas that limit the use of several resources in your AWS a
 
 | Quota name | AWS default value | Adjustable | Description | 
 | --- | --- | --- | --- | 
-| AWS accounts you can authorize to restore a snapshot per snapshot | 20 | No | The maximum number of AWS accounts that you can authorize to restore a snapshot, per snapshot\.  | 
+| AWS accounts you can authorize to restore a snapshot per snapshot  | 20 | No | The maximum number of AWS accounts that you can authorize to restore a snapshot, per snapshot\.  | 
 | AWS accounts you can authorize to restore a snapshot per AWS KMS key | 100 | No | The maximum number of AWS accounts that you can authorize to restore a snapshot, per AWS KMS key\. That is, if you have 10 snapshots that are encrypted with a single KMS key, then you can authorize 10 AWS accounts to restore each snapshot, or other combinations that add up to 100 accounts and do not exceed 20 accounts for each snapshot\.  | 
-| Cluster IAM roles for Amazon Redshift to access other AWS services | 10 | No | The maximum number of IAM roles that you can associate with a cluster to authorize Amazon Redshift to access other AWS services for the user that owns the cluster and IAM roles\.  | 
+| Cluster IAM roles for Amazon Redshift to access other AWS services | 10 | No | The maximum number of IAM roles that you can associate with a cluster to authorize Amazon Redshift to access other AWS services for the user that owns the cluster and IAM roles\. | 
 | Concurrency level \(query slots\) for all user\-defined manual WLM queues | 50 | No | The maximum query slots for all user\-defined queues defined by manual workload management\.  | 
 | Concurrency scaling clusters | 10 | Yes | The maximum number of concurrency scaling clusters\.  | 
 | DC2 nodes in a cluster | 128 | Yes | The maximum number of DC2 nodes that you can allocate to a cluster\. For more information about node limits for each node type, see [Clusters and nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes)\.  | 
 | DS2 nodes in a cluster | 128 | Yes | The maximum number of DS2 nodes that you can allocate to a cluster\. For more information about node limits for each node type, see [Clusters and nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes)\.  | 
 | Event subscriptions | 20 | Yes | The maximum number of event subscriptions for this account in the current AWS Region\.  | 
 | Nodes | 200 | Yes | The maximum number of nodes across all database instances for this account in the current AWS Region\.  | 
-| Parameter groups | 20 | No | The maximum number of parameter groups for this account in the current AWS Region\.  | 
+| Parameter groups | 20 | No | The maximum number of parameter groups for this account in the current AWS Region\. | 
 | RA3 nodes in a cluster | 128 | Yes | The maximum number of RA3 nodes that you can allocate to a cluster\. For more information about node limits for each node type, see [Clusters and nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes)\. | 
 | Redshift\-managed VPC endpoints connected to a cluster | 30 | Yes | The maximum number of Redshift\-managed VPC endpoints that you can connect to a cluster\. For more information about Redshift\-managed VPC endpoints, see [Working with Redshift\-managed VPC endpoints in Amazon Redshift ](managing-cluster-cross-vpc.md)\. | 
 | Grantees to cluster accessed through a Redshift\-managed VPC endpoint | 5 | Yes | The maximum number of grantees that a cluster owner can authorize to create a Redshift\-managed VPC endpoint for a cluster\. For more information about Redshift\-managed VPC endpoints, see [Working with Redshift\-managed VPC endpoints in Amazon Redshift ](managing-cluster-cross-vpc.md)\. | 
 | Redshift\-managed VPC endpoints per authorization | 5 | Yes | The maximum number of Redshift\-managed VPC endpoints that you can create per authorization\. For more information about Redshift\-managed VPC endpoints, see [Working with Redshift\-managed VPC endpoints in Amazon Redshift ](managing-cluster-cross-vpc.md)\. | 
-| Reserved nodes | 200 | Yes | The maximum number of reserved nodes for this account in the current AWS Region\.  | 
+| Reserved nodes | 200 | Yes | The maximum number of reserved nodes for this account in the current AWS Region\. | 
 | Schemas in each database per cluster | 9,900 | No | The maximum number of schemas that you can create in each database, per cluster\. However, `pg_temp_*` schemas do not count towards this quota\. | 
-| Security groups | 20 | Yes | The maximum number of security groups for this account in the current AWS Region\.  | 
-| Single row size when loading by COPY | 4 | No | The maximum size \(in MB\) of a single row when loading by using the COPY command\.  | 
-| Snapshots | 20 | Yes | The maximum number of user snapshots for this account in the current AWS Region\.  | 
-| Subnet groups | 20 | Yes | The maximum number of subnet groups for this account in the current AWS Region\.  | 
+| Security groups | 20 | Yes | The maximum number of security groups for this account in the current AWS Region\. | 
+| Single row size when loading by COPY | 4 | No | The maximum size \(in MB\) of a single row when loading by using the COPY command\. | 
+| Snapshots | 20 | Yes | The maximum number of user snapshots for this account in the current AWS Region\. | 
+| Subnet groups | 20 | Yes | The maximum number of subnet groups for this account in the current AWS Region\. | 
 | Subnets in a subnet group | 20 | Yes | The maximum number of subnets for a subnet group\.  | 
 | Tables for `large` cluster node type | 9,900 | No | The maximum number of tables for the large cluster node type\. This limit includes temporary tables\. Temporary tables include user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Views aren't included in this limit\.  | 
 | Tables for `xlarge` cluster node type | 9,900 | No | The maximum number of tables for the `xlarge` cluster node type\. This limit includes temporary tables\. Temporary tables include user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Views aren't included in this limit\.  | 
-| Tables for `xlplus` cluster node type | 20,000 | No | The maximum number of tables for the xlplus cluster node type\.  | 
-| Tables for `4xlarge` cluster node type | 100,000 | No | The maximum number of tables for the 4xlarge cluster node type\.  | 
-| Tables for `8xlarge` cluster node type | 100,000 | No | The maximum number of tables for the 8xlarge cluster node type\. This limit includes temporary tables\. Temporary tables include user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Views aren't included in this limit\.  | 
-| Tables for `16xlarge` cluster node type | 100,000 | No | The maximum number of tables for the 16xlarge cluster node type\. This limit includes temporary tables\. Temporary tables include user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Views aren't included in this limit\.  | 
-| User\-defined databases in a cluster | 60 | No | The maximum number of user\-defined databases that you can create per cluster\.  | 
+| Tables for `xlplus` cluster node type | 20,000 | No | The maximum number of tables for the `xlplus` cluster node type\.  | 
+| Tables for `4xlarge` cluster node type | 100,000 | No | The maximum number of tables for the `4xlarge` cluster node type\.  | 
+| Tables for `8xlarge` cluster node type | 100,000 | No | The maximum number of tables for the `8xlarge` cluster node type\. This limit includes temporary tables\. Temporary tables can be user\-defined or created by Amazon Redshift during query processing or system maintenance\. Views aren't included in this limit\.  | 
+| Tables for `16xlarge` cluster node type | 100,000 | No | The maximum number of tables for the `16xlarge` cluster node type\. This limit includes temporary tables\. Temporary tables can be user\-defined or created by Amazon Redshift during query processing or system maintenance\. Views aren't included in this limit\.  | 
+| User\-defined databases in a cluster | 60 | No | The maximum number of user\-defined databases that you can create per cluster\. | 
+| Timeout for idle or inactive sessions | 4 hours | No | This setting applies to the cluster\. For information about setting the idle\-session timeout value for a user, see [ ALTER USER](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_USER.html) in the *Amazon Redshift Database Developer Guide*\. The user setting takes precedence over the cluster setting\. | 
 
 ## Amazon Redshift Spectrum quotas and limits<a name="amazon-redshift-limits-spectrum"></a>
 

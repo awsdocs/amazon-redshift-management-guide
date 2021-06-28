@@ -109,7 +109,7 @@ To restrict use of an IAM role by region, take the following steps\.<a name="ide
 
 **To identify permitted regions for an IAM role**
 
-1. Open the [IAM console](https://console.aws.amazon.com/iam/home?#home) at [https://console\.aws\.amazon\.com](https://console.aws.amazon.com/)\.
+1. Open the [IAM console](https://console.aws.amazon.com/iam/home?#home) at [https://console\.aws\.amazon\.com/](https://console.aws.amazon.com/)\.
 
 1. In the navigation pane, choose **Roles**\.
 

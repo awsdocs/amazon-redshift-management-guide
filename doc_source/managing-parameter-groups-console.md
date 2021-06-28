@@ -195,7 +195,7 @@ Some changes require a cluster reboot regardless of this setting\. For more info
 
 ## Creating or modifying a query monitoring rule using the console<a name="parameter-group-modify-qmr-console"></a>
 
-You can use the Amazon Redshift console to create and modify WLM query monitoring rules\. Query monitoring rules are part of the WLM configuration parameter for a parameter group\. For more information, see [WLM query monitoring rules](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)\. 
+You can use the Amazon Redshift console to create and modify WLM query monitoring rules\. Query monitoring rules are part of the WLM configuration parameter for a parameter group\. If you modify a query monitoring rule \(QMR\), the change happens automatically without the need to modify the cluster\. For more information, see [WLM query monitoring rules](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)\. 
 
 When you create a rule, you define the rule name, one or more predicates, and an action\. 
 

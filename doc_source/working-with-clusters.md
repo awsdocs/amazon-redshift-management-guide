@@ -37,12 +37,10 @@ An Amazon Redshift cluster consists of nodes\. Each cluster has a leader node an
 
 *Compute nodes* execute the query execution plans and transmit data among themselves to serve these queries\. The intermediate results are sent to the leader node for aggregation before being sent back to the client applications\. For more information about leader nodes and compute nodes, see [Data warehouse system architecture](https://docs.aws.amazon.com/redshift/latest/dg/c_high_level_system_architecture.html) in the *Amazon Redshift Database Developer Guide*\. 
 
+**Note**  
+When you create a cluster on the Amazon Redshift console \([https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\), you can get a recommendation of your cluster configuration based on the size of your data and query characteristics\. To use this sizing calculator, look for **Help me choose** on the console in AWS Regions that support RA3 node types\. For more information, see [Creating a cluster](managing-clusters-console.md#create-cluster)\. 
 
-|  | 
-| --- |
-|  When you create a cluster on the Amazon Redshift console \([https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\), you can get a recommendation of your cluster configuration based on the size of your data and query characteristics\. To use this sizing calculator, look for **Help me choose** on the console in AWS Regions which support RA3 node types\. For more information, see [Creating a cluster](managing-clusters-console.md#create-cluster)\.   | 
-
-When you launch a cluster, one option you specify is the node type\. The node type determines the CPU, RAM, storage capacity, and storage drive type for each node\.  
+When you launch a cluster, one option that you specify is the node type\. The node type determines the CPU, RAM, storage capacity, and storage drive type for each node\.  
 
 Amazon Redshift offers different node types to accommodate your workloads, and we recommend choosing RA3 or DC2 depending on the required performance, data size, and expected data growth\. 
 
@@ -73,10 +71,10 @@ The cost of your cluster depends on the AWS Region, node type, number of nodes, 
 
   When you create a cluster with the restore from snapshot operation, the number of slices of the resulting cluster might change from the original cluster if you change the node type\. 
 + *Storage* is the capacity and type of storage for each node\.
-+  *Node Range* is the minimum and maximum number of nodes that Amazon Redshift supports for the node type and size\. 
++ *Node range* is the minimum and maximum number of nodes that Amazon Redshift supports for the node type and size\. 
 **Note**  
 You might be restricted to fewer nodes depending on the quota that is applied to your AWS account in the selected AWS Region\. To request an increase, submit an [Amazon Redshift Limit Increase Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-redshift)\. 
-+ *Total Capacity* is the total storage capacity for the cluster if you deploy the maximum number of nodes that is specified in the node range\.
++ *Total capacity* is the total storage capacity for the cluster if you deploy the maximum number of nodes that is specified in the node range\.
 
 
 **RA3 node types**  
@@ -87,11 +85,11 @@ You might be restricted to fewer nodes depending on the quota that is applied to
 | ra3\.4xlarge | 12 | 96 | 4 | 128 TB1 | 2–323 | 8192 TB3,4 | 
 | ra3\.16xlarge | 48 | 384 | 16 | 128 TB1 | 2–128 | 16,384 TB4 | 
 
-1 Indicates the storage quota of Amazon Redshift managed storage\. 
+1 The storage quota for Amazon Redshift managed storage\. 
 
-2 An ra3\.xlplus node type can be created with 16 nodes but resized with elastic resize to a maximum of 32 nodes\. 
+2 You can create a cluster with the ra3\.xlplus node type that has up to 16 nodes\. You can resize it with elastic resize to a maximum of 32 nodes\. 
 
-3 An ra3\.4xlarge node type can be created with 32 nodes but resized with elastic resize to a maximum of 64 nodes\. 
+3 You can create cluster with the ra3\.4xlarge or ra3\.16xlarge node type with up to 16 nodes\. You can resize it with elastic resize to a maximum of 64 nodes\. 
 
 4 Total managed storage quota is the maximum number of nodes times the managed storage quota per node\.
 
@@ -210,6 +208,7 @@ The RA3 node types are available only in the following AWS Regions:
 + US East \(Ohio\) Region \(us\-east\-2\)
 + US West \(N\. California\) Region \(us\-west\-1\)
 + US West \(Oregon\) Region \(us\-west\-2\) 
++ Asia Pacific \(Hong Kong\) Region \(ap\-east\-1\) 
 + Asia Pacific \(Mumbai\) Region \(ap\-south\-1\) 
 + Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
 + Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\) 
@@ -217,6 +216,8 @@ The RA3 node types are available only in the following AWS Regions:
 + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
 + Canada \(Central\) Region \(ca\-central\-1\)
 + Europe \(Frankfurt\) Region \(eu\-central\-1\) 
++ China \(Beijing\) Region \(cn\-north\-1\) 
++ China \(Ningxia\) Region \(cn\-northwest\-1\) 
 + Europe \(Ireland\) Region \(eu\-west\-1\)
 + Europe \(London\) Region \(eu\-west\-2\)
 + Europe \(Paris\) Region \(eu\-west\-3\)

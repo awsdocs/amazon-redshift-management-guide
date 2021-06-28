@@ -1,7 +1,7 @@
 # Amazon Redshift Cluster Management Guide
 
 -----
-*****Copyright &copy;  Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -42,9 +42,11 @@ Amazon's trademarks and trade dress may not be used in
          + [Configuring a JDBC driver version 2.0 connection](jdbc20-install.md)
             + [Download the Amazon Redshift JDBC driver version 2.0 driver](jdbc20-download-driver.md)
             + [Install the Amazon Redshift JDBC driver version 2.0](jdbc20-install-driver.md)
-               + [Referencing the JDBC driver libraries](jdbc20-driver-libraries.md)
-               + [Registering the driver class](jdbc20-register-driver-class.md)
-               + [Getting the JDBC URL](jdbc20-obtain-url.md)
+            + [Referencing the JDBC driver libraries](jdbc20-driver-libraries.md)
+            + [Registering the driver class](jdbc20-register-driver-class.md)
+            + [Getting the JDBC URL](jdbc20-obtain-url.md)
+            + [Building the connection URL](jdbc20-build-connection-url.md)
+            + [Configure your JDBC connection with Apache Maven](configure-jdbc20-connection-with-maven.md)
             + [Configure authentication and SSL](jdbc20-configure-authentication-ssl.md)
             + [Configure logging](jdbc20-configuring-logging.md)
             + [Convert data types](jdbc20-data-type-mapping.md)

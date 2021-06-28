@@ -15,11 +15,13 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster that you want to move snapshots for\.
+1. On the navigation menu, choose **CLUSTERS**, then choose the cluster that you want to modify encryption\.
 
-1. For **Actions**, choose **Modify** to display the configuration page\. 
+1. Choose **Properties**\.
 
-1. In the **Database configuration** section, choose the setting for **Encryption**, then choose **Modify cluster**\. 
+1. In the **Database configurations** section, choose **Edit**, then choose **Edit encryption**\. 
+
+1. Choose one of the encryption options and choose **Save changes**\.
 
 ## Original console<a name="cluster-database-encryption-modify-originalconsole"></a><a name="changing-cluster-encryption-console"></a>
 

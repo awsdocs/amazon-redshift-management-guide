@@ -82,7 +82,7 @@ For [Task 3: Create a Signature](#SignatureCalculationTask3), the derived key ca
 derived key = HMAC(HMAC(HMAC(HMAC("AWS4" + YourSecretAccessKey,"20121207"),"us-east-1"),"redshift"),"aws4_request")
 ```
 
-The derived key is calculated as series of hash functions\. Starting from the inner HMAC statement in the formula above, you concatenate the phrase "AWS4" with your secret access key and use this as the key to hash the data "us\-east\-1"\. The result of this hash becomes the key for the next hash function\. 
+The derived key is calculated as series of hash functions\. Starting from the inner HMAC statement in the formula above, you concatenate the phrase **AWS4** with your secret access key and use this as the key to hash the data "us\-east\-1"\. The result of this hash becomes the key for the next hash function\. 
 
 After you calculate the derived key, you use it in a hash function that accepts two input strings, your string to sign and the derived key\. For example, if you use the secret access key `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY` and the string to sign given earlier, then the calculated signature is as follows:
 

@@ -12,7 +12,7 @@ For information about other services that support service\-linked roles, see [AW
 
 Amazon Redshift uses the service\-linked role named **AWSServiceRoleForRedshift** – Allows Amazon Redshift to call AWS services on your behalf\.
 
-The AWSServiceRoleForRedshift service\-linked role trusts only redshift\.amazonaws\.com to assume the role\.
+The AWSServiceRoleForRedshift service\-linked role trusts only **redshift\.amazonaws\.com** to assume the role\.
 
 The AWSServiceRoleForRedshift service\-linked role permissions policy allows Amazon Redshift to complete the following on all related resources:
 + `ec2:DescribeVpcs `

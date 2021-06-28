@@ -15,7 +15,7 @@ If you want to use an ODBC connection, take the following steps\.
 + [Install and configure the Amazon Redshift ODBC driver on Microsoft Windows](#install-odbc-driver-windows)
 + [Install the Amazon Redshift ODBC driver on Linux](#install-odbc-driver-linux)
 + [Install the Amazon Redshift ODBC driver on macOS X](#install-odbc-driver-mac)
-+ [Configure the ODBC driver on Linux and macOS X operating systems](#odbc-driver-configure-linux-mac)
++ [Use an ODBC driver manager to configure the driver on Linux and macOS X operating systems](#odbc-driver-configure-linux-mac)
 + [Configure ODBC driver options](#configure-odbc-options)
 + [Use previous ODBC driver versions in certain cases](#odbc-previous-versions)
 
@@ -191,7 +191,7 @@ Download the package that corresponds to the system architecture of your SQL cli
      ```
 
 **Important**  
-When you have finished installing the drivers, configure them for use on your system\. For more information on driver configuration, see [Configure the ODBC driver on Linux and macOS X operating systems](#odbc-driver-configure-linux-mac)\.
+When you have finished installing the drivers, configure them for use on your system\. For more information on driver configuration, see [Use an ODBC driver manager to configure the driver on Linux and macOS X operating systems](#odbc-driver-configure-linux-mac)\.
 
 ## Install the Amazon Redshift ODBC driver on macOS X<a name="install-odbc-driver-mac"></a>
 
@@ -223,11 +223,15 @@ After certificate rotation on September 4, 2020, ODBC Driver version 1\.4\.8\.10
 1. Follow the steps in the installer to complete the driver installation process\. To perform the installation, agree to the terms of the license agreement\.
 
 **Important**  
-When you have finished installing the driver, configure it for use on your system\. For more information on driver configuration, see [Configure the ODBC driver on Linux and macOS X operating systems](#odbc-driver-configure-linux-mac)\.
+When you have finished installing the driver, configure it for use on your system\. For more information on driver configuration, see [Use an ODBC driver manager to configure the driver on Linux and macOS X operating systems](#odbc-driver-configure-linux-mac)\.
 
-## Configure the ODBC driver on Linux and macOS X operating systems<a name="odbc-driver-configure-linux-mac"></a>
+## Use an ODBC driver manager to configure the driver on Linux and macOS X operating systems<a name="odbc-driver-configure-linux-mac"></a>
 
-On Linux and macOS X operating systems, you use an ODBC driver manager to configure the ODBC connection settings\. ODBC driver managers use configuration files to define and configure ODBC data sources and drivers\. The ODBC driver manager that you use depends on the operating system that you use\. For more information about the supported ODBC driver managers to configure the Amazon Redshift ODBC drivers, see [System requirements](#odbc-driver-sysreq-linux) for Linux operating systems and [System requirements](#odbc-driver-sysreq-mac) for macOS X operating systems\.
+On Linux and macOS X operating systems, you use an ODBC driver manager to configure the ODBC connection settings\. ODBC driver managers use configuration files to define and configure ODBC data sources and drivers\. The ODBC driver manager that you use depends on the operating system that you use: 
++ unixODBC driver manager \(for Linux operating systems\)
++ iODBC driver manager \(for macOS X operating system\)
+
+For more information about the supported ODBC driver managers to configure the Amazon Redshift ODBC drivers, see [System requirements](#odbc-driver-sysreq-linux) for Linux operating systems and [System requirements](#odbc-driver-sysreq-mac) for macOS X operating systems\. Also, see "Specifying ODBC Driver Managers on Non\- Windows Machines" in [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
 
 Three files are required for configuring the Amazon Redshift ODBC driver: `amazon.redshiftodbc.ini`, `odbc.ini`, and `odbcinst.ini`\.
 
@@ -405,7 +409,7 @@ You can use configuration options to control the behavior of the Amazon Redshift
 
 In Microsoft Windows, you typically set driver options when you configure a data source name \(DSN\)\. You can also set driver options in the connection string when you connect programmatically, or by adding or changing registry keys in `HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\your_DSN`\. For more information about configuring a DSN, see [Install and configure the Amazon Redshift ODBC driver on Microsoft Windows](#install-odbc-driver-windows)\. For an example of setting driver options in a connection string, see [Connect to your cluster programmatically](connecting-in-code.md)\.
 
-In Linux and macOS X, you set driver configuration options in your `odbc.ini` and `amazon.redshiftodbc.ini` files, as described in [Configure the ODBC driver on Linux and macOS X operating systems](#odbc-driver-configure-linux-mac)\. Configuration options set in an `amazon.redshiftodbc.ini` file apply to all connections\. In contrast, configuration options set in an `odbc.ini` file are specific to a connection\. Configuration options set in `odbc.ini` take precedence over configuration options set in `amazon.redshiftodbc.ini`\.
+In Linux and macOS X, you set driver configuration options in your `odbc.ini` and `amazon.redshiftodbc.ini` files, as described in [Use an ODBC driver manager to configure the driver on Linux and macOS X operating systems](#odbc-driver-configure-linux-mac)\. Configuration options set in an `amazon.redshiftodbc.ini` file apply to all connections\. In contrast, configuration options set in an `odbc.ini` file are specific to a connection\. Configuration options set in `odbc.ini` take precedence over configuration options set in `amazon.redshiftodbc.ini`\.
 
 For information about how to set up ODBC driver configuration options, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
 
