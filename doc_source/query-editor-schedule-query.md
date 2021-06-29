@@ -68,7 +68,7 @@ For the IAM role that you specify to enable the scheduler to run a query, do the
 
   For more information about how to create an IAM role for EventBridge events, see [Permissions required to use the Amazon EventBridge scheduler](redshift-iam-access-control-identity-based.md#iam-permission-eventbridge-scheduler)\. 
 + Attach the `AmazonRedshiftDataFullAccess` AWS\-managed policy to the IAM role\. 
-+ To allow IAM users to view schedule history, edit the IAM role to add the `sts:AssumRole` permission\. 
++ To allow IAM users to view schedule history, edit the IAM role to add the `sts:AssumeRole` permission\. 
 
 The following is an example of the definition of an IAM role\.
 
