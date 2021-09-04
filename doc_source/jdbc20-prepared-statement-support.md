@@ -1,4 +1,4 @@
-# Use prepared statement support<a name="jdbc20-prepared-statement-support"></a>
+# Using prepared statement support<a name="jdbc20-prepared-statement-support"></a>
 
 The Amazon Redshift JDBC driver supports prepared statements\. You can use prepared statements to improve the performance of parameterized queries that need to be run multiple times during the same connection\.
 
@@ -24,4 +24,4 @@ TABLE MyTable(col1 int, col2 varchar); INSERT INTO myTable
 VALUES (1, 'abc');");
 ```
 
-If you try to prepare this statement, the server returns an error stating that the destination table \(myTable\) does not exist yet\. The CREATE query must be executed before the INSERT query can be prepared\.
+If you try to prepare this statement, the server returns an error stating that the destination table \(myTable\) doesn't exist yet\. The CREATE query must be executed before the INSERT query can be prepared\.

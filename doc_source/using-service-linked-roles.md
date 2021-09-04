@@ -24,6 +24,10 @@ The AWSServiceRoleForRedshift service\-linked role permissions policy allows Ama
 + `ec2:CreateNetworkInterface `
 + `ec2:DeleteNetworkInterface `
 + `ec2:ModifyNetworkInterfaceAttribute`
++ `ec2:CreateVpcEndpoint`
++ `ec2:DeleteVpcEndpoints`
++ `ec2:DescribeVpcEndpoints`
++ `ec2:ModifyVpcEndpoint`
 
 **To allow an IAM entity to create AWSServiceRoleForRedshift service\-linked roles**
 

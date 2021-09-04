@@ -1,6 +1,6 @@
-# Configure logging<a name="jdbc20-configuring-logging"></a>
+# Configuring logging<a name="jdbc20-configuring-logging"></a>
 
-You can enable logging in the driver to assist in diagnosing issues\.
+You can turn on logging in the driver to assist in diagnosing issues\.
 
 You can log driver information by using the following methods:
 + To save logged information in \.log files, see [Using log files](#jdbc20-using-log-files)\.
@@ -10,9 +10,9 @@ You provide the configuration information to the driver in the connection URL\. 
 
 ## Using log files<a name="jdbc20-using-log-files"></a>
 
-You should only enable logging long enough to capture an issue\. Logging decreases performance and can consume a large quantity of disk space\. 
+Only turn on logging long enough to capture an issue\. Logging decreases performance and can consume a large quantity of disk space\. 
 
-Set the LogLevel key in your connection URL to enable logging and specify the amount of detail included in log files\. The following table lists the logging levels provided by the Amazon Redshift JDBC driver version 2\.0, in order from least verbose to most verbose\. 
+Set the LogLevel key in your connection URL to turn on logging and specify the amount of detail included in log files\. The following table lists the logging levels provided by the Amazon Redshift JDBC driver version 2\.0, in order from least verbose to most verbose\. 
 
 
 | LogLevel value | Description | 
@@ -24,7 +24,7 @@ Set the LogLevel key in your connection URL to enable logging and specify the am
 |  5  |  Log detailed information that is useful for debugging the driver\.  | 
 |  6  |  Log all driver activity\.  | 
 
-**To enable logging that uses log files**
+**To set up logging that uses log files**
 
 1. Set the LogLevel property to the desired level of information to include in log files\.
 
@@ -42,17 +42,17 @@ If the LogPath value is invalid, then the driver sends the logged information to
 
 ## Using LogStream or LogWriter<a name="jdbc20-logstream-option"></a>
 
-Only enable logging long enough to capture an issue\. Logging decreases performance and can consume a large quantity of disk space\. 
+Only turn on logging long enough to capture an issue\. Logging decreases performance and can consume a large quantity of disk space\. 
 
-Set the LogLevel key in your connection URL to enable logging and specify the amount of detail sent to the LogStream or LogWriter specified in the DriverManager\. 
+Set the LogLevel key in your connection URL to turn on logging and specify the amount of detail sent to the LogStream or LogWriter specified in the DriverManager\. 
 
-**To enable logging that uses the LogStream or LogWriter:**
+**To turn on logging that uses the LogStream or LogWriter:**
 
 1. To configure the driver to log general information that describes the progress of the driver, set the LogLevel property to 1 or INFO\.
 
 1. To make sure that the new settings take effect, restart your JDBC application and reconnect to the server\.
 
-**To disable logging that uses the LogStream or LogWriter:**
+**To turn off logging that uses the LogStream or LogWriter:**
 
 1. Remove the LogLevel property from the connection URL\.
 

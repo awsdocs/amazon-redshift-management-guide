@@ -48,12 +48,39 @@ The policy has two statements:
 AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. Managed policies grant necessary permissions for common use cases so you can avoid having to investigate what permissions are needed\. For more information, see [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\.
 
 The following AWS managed policies, which you can attach to users in your account, are specific to Amazon Redshift:
-+ **AmazonRedshiftReadOnlyAccess** – Grants read\-only access to all Amazon Redshift resources for the AWS account\.
-+ **AmazonRedshiftFullAccess** – Grants full access to all Amazon Redshift resources for the AWS account\.
-+ **AmazonRedshiftQueryEditor** – Grants full access to the Query Editor on the Amazon Redshift console\.
-+ **AmazonRedshiftDataFullAccess** – Grants full access to the Amazon Redshift Data API operations and resources for the AWS account\. 
++ **AmazonRedshiftReadOnlyAccess** – Grants read\-only access to all Amazon Redshift resources for an AWS account\.
+
+  You can find the [AmazonRedshiftReadOnlyAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftReadOnlyAccess) policy on the IAM console\.
++ **AmazonRedshiftFullAccess** – Grants full access to all Amazon Redshift resources for an AWS account\.
+
+  You can find the [AmazonRedshiftFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftFullAccess) policy on the IAM console\.
++ **AmazonRedshiftQueryEditor** – Grants full access to the query editor on the Amazon Redshift console\.
+
+  You can find the [AmazonRedshiftQueryEditor](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditor) policy on the IAM console\.
++ **AmazonRedshiftDataFullAccess** – Grants full access to the Amazon Redshift Data API operations and resources for an AWS account\. 
+
+  You can find the [AmazonRedshiftDataFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftDataFullAccess) policy on the IAM console\.
 
 You can also create your own custom IAM policies to allow permissions for Amazon Redshift API actions and resources\. You can attach these custom policies to the IAM users or groups that require those permissions\. 
+
+
+
+
+
+### Amazon Redshift updates to AWS\-managed policies<a name="security-iam-awsmanpol-updates"></a>
+
+
+
+View details about updates to AWS managed policies for Amazon Redshift since this service began tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the Amazon Redshift Document history page\.
+
+
+
+
+| Change | Description | Date | 
+| --- | --- | --- | 
+|  AmazonRedshiftDataFullAccess – Update to an existing policy  |  Amazon Redshift added new permissions to allow `AuthorizeDataShare`\.  | August 12, 2021 | 
+|  AmazonRedshiftDataFullAccess – Update to an existing policy  |  Amazon Redshift added new permissions to allow `BatchExecuteStatement`\.  | July 27, 2021 | 
+|  Amazon Redshift started tracking changes  |  Amazon Redshift started tracking changes for its AWS\-managed policies\.  | July 27, 2021 | 
 
 ## Permissions required to use Redshift Spectrum<a name="redshift-spectrum-policy-resources"></a>
 
@@ -183,13 +210,70 @@ For the steps to create a role for the EventBridge scheduler, see [Creating a ro
 
 The IAM role that you create has a trusted entity of `events.amazonaws.com`\. It also has an attached policy that allows supported Amazon Redshift Data API actions, such as, `"redshift-data:*"`\. 
 
+## Permissions required to use the data sharing API operations<a name="iam-permission-datasharing"></a>
+
+To control access to the data sharing API operations, use IAM action\-based policies\. For information about how to manage IAM policies, see [Managing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html) in the *IAM User Guide*\.
+
+In particular, suppose that a producer cluster administrator needs to use the `AuthorizeDataShare` call to authorize egress for a datashare outside of an AWS account\. In this case, you set up an IAM action\-based policy to grant this permission\. Use the `DeauthorizeDataShare` call to revoke egress\.
+
+When using IAM action\-based policies, you can also specify an IAM resource in the policy, such as `DataShareARN`\. The following shows the format and an example for `DataShareARN`\.
+
+```
+arn:aws:redshift:region:account-id:datashare:namespace-guid/datashare-name
+arn:aws:redshift:us-east-1:555555555555:datashare:86b5169f-01dc-4a6f-9fbb-e2e24359e9a8/SalesShare
+```
+
+You can restrict `AuthorizeDataShare` access to a specific datashare by specifying the datashare name in the IAM policy\.
+
+```
+{
+  "Statement": [
+    {
+      "Action": [
+        "redshift:AuthorizeDataShare",
+      ],
+      "Resource": [
+        "arn:aws:redshift:us-east-1:555555555555:datashare:86b5169f-01dc-4a6f-9fbb-e2e24359e9a8/SalesShare"
+      ],
+      "Effect": "Deny"
+    }
+  ]
+}
+```
+
+You can also restrict the IAM policy to all datashares owned by a specific producer cluster\. To do this, replace the **datashare\-name** value in the policy with a wildcard or an asterisk\. Keep the cluster's `namespace-guid` value\.
+
+```
+arn:aws:redshift:us-east-1:555555555555:datashare:86b5169f-01dc-4a6f-9fbb-e2e24359e9a8/*
+```
+
+Following is an IAM policy that prevents an entity from calling `AuthorizeDataShare` on the datashares owned by a specific producer cluster\. 
+
+```
+{
+  "Statement": [
+    {
+      "Action": [
+        "redshift:AuthorizeDataShare",
+      ],
+      "Resource": [
+        "arn:aws:redshift:us-east-1:555555555555:datashare:86b5169f-01dc-4a6f-9fbb-e2e24359e9a8/*"
+      ],
+      "Effect": "Deny"
+    }
+  ]
+}
+```
+
+`DataShareARN` restricts the access based on both the datashare name and the globally unique ID \(GUID\) for the owning cluster's namespace\. It does this by specifying the name as an asterisk\.
+
 ## Resource policies for GetClusterCredentials<a name="redshift-policy-resources.getclustercredentials-resources"></a>
 
 To connect to a cluster database using a JDBC or ODBC connection with IAM database credentials, or to programmatically call the `GetClusterCredentials` action, you need a minimum set of permissions\. At a minimum, you need permission to call the `redshift:GetClusterCredentials` action with access to a `dbuser` resource\.
 
 If you use a JDBC or ODBC connection, instead of `server` and `port` you can specify `cluster_id` and `region`, but to do so your policy must permit the `redshift:DescribeClusters` action with access to the `cluster` resource\. 
 
-If you call `GetClusterCredentials` with the optional parameters `Autocreate`, `DbGroups`, and `DbName`, you need to also allow the actions and permit access to the resources listed in the following table\.
+If you call `GetClusterCredentials` with the optional parameters `Autocreate`, `DbGroups`, and `DbName`, make sure to also allow the actions and permit access to the resources listed in the following table\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html)
 

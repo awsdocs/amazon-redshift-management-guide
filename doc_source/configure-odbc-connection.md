@@ -4,9 +4,9 @@ You can use an ODBC connection to connect to your Amazon Redshift cluster from m
 
 Amazon Redshift provides ODBC drivers for Linux, Windows, and macOS X operating systems\. Before you install an ODBC driver, determine whether your SQL client tool is 32\-bit or 64\-bit\. Install the ODBC driver that matches the requirements of your SQL client tool\. Otherwise, the connection doesn't work\. If you use more than one SQL client tool on the same computer or instance, make sure that you download the appropriate drivers\. You might need to install both the 32\-bit and the 64\-bit drivers if the tools differ in their system architecture\. 
 
-For the latest information about ODBC driver functionality and prerequisites, see [Amazon Redshift ODBC driver release notes](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Release+Notes.pdf)\. 
+For the latest information about ODBC driver functionality and prerequisites, see [Amazon Redshift ODBC driver release notes](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Release+Notes.pdf)\. 
 
-For installation and configuration information for Amazon Redshift ODBC drivers, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+For installation and configuration information for Amazon Redshift ODBC drivers, see [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
 If you want to use an ODBC connection, take the following steps\.
 
@@ -39,7 +39,7 @@ For information about how to get your ODBC connection, see [Finding your cluster
 
 ### System requirements<a name="odbc-driver-sysreq-windows"></a>
 
-You install the Amazon Redshift ODBC driver on client computers accessing an Amazon Redshift data warehouse\. Each computer where you install the driver must meet a list of minimum system requirements\. For information about minimum system requirements, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+You install the Amazon Redshift ODBC driver on client computers accessing an Amazon Redshift data warehouse\. Each computer where you install the driver must meet a list of minimum system requirements\. For information about minimum system requirements, see [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
 ### Installing the Amazon Redshift driver on Windows operating systems<a name="odbc-driver-windows-how-to-install"></a>
 
@@ -48,10 +48,10 @@ Use the following procedure to download the Amazon Redshift ODBC drivers for Win
 **To install the ODBC driver**
 
 1. Download one of the following, depending on the system architecture of your SQL client tool or application:
-   + [32\-bit ODBC driver version 1\.4\.27](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC32-1.4.27.1000.msi) 
+   + [32\-bit ODBC driver version 1\.4\.34](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC32-1.4.34.1000.msi) 
 
      The name for this driver is Amazon Redshift \(x86\)\.
-   + [64\-bit ODBC driver version 1\.4\.27](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC64-1.4.27.1000.msi) 
+   + [64\-bit ODBC driver version 1\.4\.34](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC64-1.4.34.1000.msi) 
 
      The name for this driver is Amazon Redshift \(x64\)\.
 **Note**  
@@ -70,7 +70,7 @@ We recommend that you create a system DSN instead of a user DSN\. Some applicati
 **Note**  
 For authentication using AWS Identity and Access Management \(IAM\) credentials or identity provider \(IdP\) credentials, additional steps are required\. For more information, see [Configure a JDBC or ODBC connection to use IAM credentials](generating-iam-credentials-configure-jdbc-odbc.md)\.
 
-For information about how to create a system DSN entry, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+For information about how to create a system DSN entry, see [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
 **To create a system DSN entry for an ODBC connection on Windows**
 
@@ -91,7 +91,7 @@ If you installed the 32\-bit driver, the folder is named **Amazon Redshift ODBC 
 1. Under **Connection Settings**, enter the following information:
 <a name="rs-mgmt-dsn"></a>
 **Data source name**  
-Enter a name for the data source\. You can use any name that you want to identify the data source later when you create the connection to the cluster\. For example, if you followed the *Amazon Redshift Getting Started*, you might type `exampleclusterdsn` to make it easy to remember the cluster that you associate with this DSN\.
+Enter a name for the data source\. You can use any name that you want to identify the data source later when you create the connection to the cluster\. For example, if you followed the *Amazon Redshift Getting Started Guide*, you might type `exampleclusterdsn` to make it easy to remember the cluster that you associate with this DSN\.
 <a name="rs-mgmt-server"></a>
 **Server**  
 Specify the endpoint for your Amazon Redshift cluster\. You can find this information in the Amazon Redshift console on the cluster's details page\. For more information, see [Configuring connections in Amazon Redshift](configuring-connections.md)\.
@@ -100,22 +100,22 @@ Specify the endpoint for your Amazon Redshift cluster\. You can find this inform
 Enter the port number that the database uses\. By default, Amazon Redshift uses 5439, but use the port that the cluster was configured to use when it was launched\.
 <a name="rs-mgmt-database"></a>
 **Database**  
-Enter the name of the Amazon Redshift database\. If you launched your cluster without specifying a database name, enter `dev`\. Otherwise, use the name that you chose during the launch process\. If you followed the *Amazon Redshift Getting Started*, enter `dev`\.
+Enter the name of the Amazon Redshift database\. If you launched your cluster without specifying a database name, enter `dev`\. Otherwise, use the name that you chose during the launch process\. If you followed the *Amazon Redshift Getting Started Guide*, enter `dev`\.
 
-1. Under **Authentication**, specify the configuration options to configure standard or IAM authentication\. For information about different authentication options, see "Configuring Authentication on Windows" in *Amazon Redshift ODBC Driver Installation and Configuration Guide*\. 
+1. Under **Authentication**, specify the configuration options to configure standard or IAM authentication\. For information about different authentication options, see "Configuring Authentication on Windows" in *Amazon Redshift ODBC Connector Installation and Configuration Guide*\. 
 
 1. Under **SSL Settings**, specify a value for the following:
 <a name="rs-mgmt-ssl-authentication"></a>
 **SSL authentication**  
-Choose a mode for handling Secure Sockets Layer \(SSL\)\. In a test environment, you might use `prefer`\. However, for production environments and when secure data exchange is required, use `verify-ca` or `verify-full`\. For more information about using SSL on Windows, see "Configuring SSL Verification on Windows" in *Amazon Redshift ODBC Driver Installation and Configuration Guide*\. 
+Choose a mode for handling Secure Sockets Layer \(SSL\)\. In a test environment, you might use `prefer`\. However, for production environments and when secure data exchange is required, use `verify-ca` or `verify-full`\. For more information about using SSL on Windows, see "Configuring SSL Verification on Windows" in *Amazon Redshift ODBC Connector Installation and Configuration Guide*\. 
 
-1. Under **Additional Options**, specify options on how to return query results to your SQL client tool or application\. For more information, see "Configuring Additional Options on Windows" in *Amazon Redshift ODBC Driver Installation and Configuration Guide*\. 
+1. Under **Additional Options**, specify options on how to return query results to your SQL client tool or application\. For more information, see "Configuring Additional Options on Windows" in *Amazon Redshift ODBC Connector Installation and Configuration Guide*\. 
 
-1. In **Logging Options**, specify values for the logging option\. For more information, see "Configuring Logging Options on Windows" in *Amazon Redshift ODBC Driver Installation and Configuration Guide*\. 
+1. In **Logging Options**, specify values for the logging option\. For more information, see "Configuring Logging Options on Windows" in *Amazon Redshift ODBC Connector Installation and Configuration Guide*\. 
 
    Then choose **OK**\.
 
-1. Under **Data Type Options**, specify values for data types\. For more information, see "Configuring Data Type Options on Windows" in *Amazon Redshift ODBC Driver Installation and Configuration Guide*\. 
+1. Under **Data Type Options**, specify values for data types\. For more information, see "Configuring Data Type Options on Windows" in *Amazon Redshift ODBC Connector Installation and Configuration Guide*\. 
 
    Then choose **OK**\.
 
@@ -123,15 +123,15 @@ Choose a mode for handling Secure Sockets Layer \(SSL\)\. In a test environment,
 
     If the client computer fails to connect to the database, you can troubleshoot possible issues\. For more information, see [Troubleshooting connection issues in Amazon Redshift](troubleshooting-connections.md)\. 
 
-1. Configure TCP keepalives on Windows to prevent connections from timing out\. For information about how to configure TCP keepalives on Windows, see *Amazon Redshift ODBC Driver Installation and Configuration Guide*\.
+1. Configure TCP keepalives on Windows to prevent connections from timing out\. For information about how to configure TCP keepalives on Windows, see *Amazon Redshift ODBC Connector Installation and Configuration Guide*\.
 
-1. To help troubleshooting, configure logging\. For information about how to configure logging on Windows, see *Amazon Redshift ODBC Driver Installation and Configuration Guide*\. 
+1. To help troubleshooting, configure logging\. For information about how to configure logging on Windows, see *Amazon Redshift ODBC Connector Installation and Configuration Guide*\. 
 
 ## Install the Amazon Redshift ODBC driver on Linux<a name="install-odbc-driver-linux"></a>
 
 ### System requirements<a name="odbc-driver-sysreq-linux"></a>
 
-You install the Amazon Redshift ODBC driver on client computers accessing an Amazon Redshift data warehouse\. Each computer where you install the driver must meet a list of minimum system requirements\. For information about minimum system requirements, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+You install the Amazon Redshift ODBC driver on client computers accessing an Amazon Redshift data warehouse\. Each computer where you install the driver must meet a list of minimum system requirements\. For information about minimum system requirements, see [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
 ### Installing the Amazon Redshift driver on Linux operating systems<a name="odbc-driver-linux-how-to-install"></a>
 
@@ -144,10 +144,10 @@ Use the steps in this section to download and install the Amazon Redshift ODBC d
 **To install the Amazon Redshift ODBC driver**
 
 1. Download one of the following, depending on the system architecture of your SQL client tool or application: 
-   + [32\-bit RPM driver version 1\.4\.27](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC-32-bit-1.4.27.1000-1.i686.rpm) 
-   + [64\-bit RPM driver version 1\.4\.27](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC-64-bit-1.4.27.1000-1.x86_64.rpm) 
-   + [32\-bit Debian driver version 1\.4\.27](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC-32-bit-1.4.27.1000-1.i686.deb) 
-   + [64\-bit Debian driver version 1\.4\.27](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC-64-bit-1.4.27.1000-1.x86_64.deb) 
+   + [32\-bit RPM driver version 1\.4\.34](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC-32-bit-1.4.34.1000-1.i686.rpm) 
+   + [64\-bit RPM driver version 1\.4\.34](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC-64-bit-1.4.34.1000-1.x86_64.rpm) 
+   + [32\-bit Debian driver version 1\.4\.34](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC-32-bit-1.4.34.1000-1.i686.deb) 
+   + [64\-bit Debian driver version 1\.4\.34](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC-64-bit-1.4.34.1000-1.x86_64.deb) 
 
    The name for each of these drivers is Amazon Redshift ODBC driver\.
 **Note**  
@@ -199,7 +199,7 @@ When you have finished installing the drivers, configure them for use on your sy
 
 ### System requirements<a name="odbc-driver-sysreq-mac"></a>
 
-You install the driver on client computers accessing an Amazon Redshift data warehouse\. Each computer where you install the driver must meet a list of minimum system requirements\. For information about minimum system requirements, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+You install the driver on client computers accessing an Amazon Redshift data warehouse\. Each computer where you install the driver must meet a list of minimum system requirements\. For information about minimum system requirements, see [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
 ### Installing the Amazon Redshift ODBC driver on macOS X<a name="odbc-driver-mac-how-to-install"></a>
 
@@ -210,7 +210,7 @@ Use the steps in this section to download and install the Amazon Redshift ODBC d
 
 **To install the Amazon Redshift ODBC driver on macOS X**
 
-1. Download the [macOS X driver version 1\.4\.27](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC-1.4.27.1000.dmg)\. The name for this driver is Amazon Redshift ODBC driver\. 
+1. Download the [macOS X driver version 1\.4\.34](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC-1.4.34.1000.dmg)\. The name for this driver is Amazon Redshift ODBC driver\. 
 **Important**  
 After certificate rotation on September 4, 2020, ODBC Driver version 1\.4\.8\.1000 or earlier on macOS will not be able to establish connections to Amazon Redshift clusters\. For more information, see [Driver update required for Amazon Redshift ODBC Driver earlier than 1\.4\.10 on Apple macOS](https://forums.aws.amazon.com/ann.jspa?annID=7735)\. 
 
@@ -231,7 +231,7 @@ On Linux and macOS X operating systems, you use an ODBC driver manager to config
 + unixODBC driver manager \(for Linux operating systems\)
 + iODBC driver manager \(for macOS X operating system\)
 
-For more information about the supported ODBC driver managers to configure the Amazon Redshift ODBC drivers, see [System requirements](#odbc-driver-sysreq-linux) for Linux operating systems and [System requirements](#odbc-driver-sysreq-mac) for macOS X operating systems\. Also, see "Specifying ODBC Driver Managers on Non\- Windows Machines" in [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+For more information about the supported ODBC driver managers to configure the Amazon Redshift ODBC drivers, see [System requirements](#odbc-driver-sysreq-linux) for Linux operating systems and [System requirements](#odbc-driver-sysreq-mac) for macOS X operating systems\. Also, see "Specifying ODBC Driver Managers on Non\- Windows Machines" in [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
 Three files are required for configuring the Amazon Redshift ODBC driver: `amazon.redshiftodbc.ini`, `odbc.ini`, and `odbcinst.ini`\.
 
@@ -250,13 +250,13 @@ For the `odbc.ini` and `odbcinst.ini` files, either use the configuration files 
 
 Whichever option you choose for the `odbc.ini` and `odbcinst.ini` files, modify the files to add driver and DSN configuration information\. If you create new files, you also need to set environment variables to specify where these configuration files are located\. 
 
-By default, ODBC driver managers are configured to use hidden versions of the `odbc.ini` and `odbcinst.ini` configuration files \(named \.`odbc.ini` and \.`odbcinst.ini`\) located in the home directory\. They also are configured to use the `amazon.redshiftodbc.ini` file in the `/lib` subfolder of the driver installation directory\. If you store these configuration files elsewhere, set the environment variables described following so that the driver manager can locate the files\. For more information, see "Specifying the Locations of the Driver Configuration Files" in [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+By default, ODBC driver managers are configured to use hidden versions of the `odbc.ini` and `odbcinst.ini` configuration files \(named \.`odbc.ini` and \.`odbcinst.ini`\) located in the home directory\. They also are configured to use the `amazon.redshiftodbc.ini` file in the `/lib` subfolder of the driver installation directory\. If you store these configuration files elsewhere, set the environment variables described following so that the driver manager can locate the files\. For more information, see "Specifying the Locations of the Driver Configuration Files" in [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
 ### Creating a data source name on Linux and macOS X operating systems<a name="configure-odbc-ini-file"></a>
 
  When connecting to your data store using a data source name \(DSN\), configure the `odbc.ini` file to define DSNs\. Set the properties in the `odbc.ini` file to create a DSN that specifies the connection information for your data store\.
 
-For information about how to configure the `odbcini` file, see "Creating a Data Source Name on a Non\-Windows Machine" in [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+For information about how to configure the `odbcini` file, see "Creating a Data Source Name on a Non\-Windows Machine" in [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
  Use the following format on Linux operating systems\.
 
@@ -328,7 +328,7 @@ locale=en-US
 
 To connect to your data store through a connection that doesn't have a DSN, define the driver in the `odbcinst.ini` file\. Then provide a DSN\-less connection string in your application\.
 
-For information about how to configure the `odbcinst.ini` file in this case, see "Configuring a DSN\-less Connection on a Non\-Windows Machine" in [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+For information about how to configure the `odbcinst.ini` file in this case, see "Configuring a DSN\-less Connection on a Non\-Windows Machine" in [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
 Use the following format on Linux operating systems\.
 
@@ -387,9 +387,9 @@ Driver=/opt/amazon/redshift/lib/amazonredshiftodbc.dylib
 
 ### Configuring environment variables<a name="rs-mgmt-config-global-env-variables"></a>
 
-Use the correct ODBC driver manager to load the correct driver\. To do this, set the library path environment variable\. For more information, see "Specifying ODBC Driver Managers on Non\-Windows Machines" in [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+Use the correct ODBC driver manager to load the correct driver\. To do this, set the library path environment variable\. For more information, see "Specifying ODBC Driver Managers on Non\-Windows Machines" in [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
-By default, ODBC driver managers are configured to use hidden versions of the `odbc.ini` and `odbcinst.ini` configuration files \(named \.`odbc.ini` and \.`odbcinst.ini`\) located in the home directory\. They also are configured to use the `amazon.redshiftodbc.ini` file in the `/lib` subfolder of the driver installation directory\. If you store these configuration files elsewhere, the environment variables so that the driver manager can locate the files\. For more information, see "Specifying the Locations of the Driver Configuration Files" in *Amazon Redshift ODBC Driver Installation and Configuration Guide*\. 
+By default, ODBC driver managers are configured to use hidden versions of the `odbc.ini` and `odbcinst.ini` configuration files \(named \.`odbc.ini` and \.`odbcinst.ini`\) located in the home directory\. They also are configured to use the `amazon.redshiftodbc.ini` file in the `/lib` subfolder of the driver installation directory\. If you store these configuration files elsewhere, the environment variables so that the driver manager can locate the files\. For more information, see "Specifying the Locations of the Driver Configuration Files" in *Amazon Redshift ODBC Connector Installation and Configuration Guide*\. 
 
 ### Configuring connection features<a name="connection-config-features"></a>
 
@@ -401,7 +401,7 @@ You can configure the following connection features for your ODBC setting:
 + Configure the ODBC driver to pass IAM authentication processes through a proxy server\.
 + Configure the ODBC driver to use TCP keepalives to prevent connections from timing out\.
 
-For information about these connection features, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+For information about these connection features, see [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
 ## Configure ODBC driver options<a name="configure-odbc-options"></a>
 
@@ -411,7 +411,7 @@ In Microsoft Windows, you typically set driver options when you configure a data
 
 In Linux and macOS X, you set driver configuration options in your `odbc.ini` and `amazon.redshiftodbc.ini` files, as described in [Use an ODBC driver manager to configure the driver on Linux and macOS X operating systems](#odbc-driver-configure-linux-mac)\. Configuration options set in an `amazon.redshiftodbc.ini` file apply to all connections\. In contrast, configuration options set in an `odbc.ini` file are specific to a connection\. Configuration options set in `odbc.ini` take precedence over configuration options set in `amazon.redshiftodbc.ini`\.
 
-For information about how to set up ODBC driver configuration options, see [Amazon Redshift ODBC driver installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/Amazon+Redshift+ODBC+Driver+Install+Guide.pdf)\. 
+For information about how to set up ODBC driver configuration options, see [Amazon Redshift ODBC connector installation and configuration guide](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/Amazon+Redshift+ODBC+Connector+Install+Guide.pdf)\. 
 
 ## Use previous ODBC driver versions in certain cases<a name="odbc-previous-versions"></a>
 
@@ -425,6 +425,8 @@ Amazon Redshift has changed the way that SSL certificates are managed\. If you m
 ### Use previous ODBC driver versions for Windows<a name="odbc-previous-versions-windows"></a>
 
 The following are the 32\-bit drivers: 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.34\.1000/AmazonRedshiftODBC32\-1\.4\.34\.1000\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC32-1.4.34.1000.msi)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.30\.1000/AmazonRedshiftODBC32\-1\.4\.30\.1000\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.30.1000/AmazonRedshiftODBC32-1.4.30.1000.msi)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.27\.1000/AmazonRedshiftODBC32\-1\.4\.27\.1000\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC32-1.4.27.1000.msi)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.20\.1001/AmazonRedshiftODBC32\-1\.4\.20\.1001\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.20.1001/AmazonRedshiftODBC32-1.4.20.1001.msi)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.18\.1001/AmazonRedshiftODBC32\-1\.4\.18\.1001\.msi ](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.18.1001/AmazonRedshiftODBC32-1.4.18.1001.msi)\. 
@@ -437,6 +439,8 @@ The following are the 32\-bit drivers:
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.8\.1000/AmazonRedshiftODBC32\-1\.4\.8\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.8.1000/AmazonRedshiftODBC32-1.4.8.1000.msi)\. 
 
 The following are the 64\-bit drivers: 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.34\.1000/AmazonRedshiftODBC64\-1\.4\.34\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC64-1.4.34.1000.msi)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.30\.1000/AmazonRedshiftODBC64\-1\.4\.30\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.30.1000/AmazonRedshiftODBC64-1.4.30.1000.msi)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.27\.1000/AmazonRedshiftODBC64\-1\.4\.27\.1000\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC64-1.4.27.1000.msi)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.20\.1001/AmazonRedshiftODBC64\-1\.4\.20\.1001\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.20.1001/AmazonRedshiftODBC64-1.4.20.1001.msi)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.18\.1001/AmazonRedshiftODBC64\-1\.4\.18\.1001\.msi](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.18.1001/AmazonRedshiftODBC64-1.4.18.1001.msi)\. 
@@ -451,7 +455,12 @@ The following are the 64\-bit drivers:
 ### Use previous ODBC driver versions for Linux<a name="odbc-previous-versions-linux"></a>
 
 The following are the versions of the 32\-bit driver: 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.34\.1000/AmazonRedshiftODBC\-32\-bit\-1\.4\.34\.1000\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC-32-bit-1.4.34.1000-1.i686.rpm)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.34\.1000/AmazonRedshiftODBC\-32\-bit\-1\.4\.34\.1000\-1\.i686\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC-32-bit-1.4.34.1000-1.i686.deb)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.30\.1000/AmazonRedshiftODBC\-32\-bit\-1\.4\.30\.1000\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.30.1000/AmazonRedshiftODBC-32-bit-1.4.30.1000-1.i686.rpm)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.30\.1000/AmazonRedshiftODBC\-32\-bit\-1\.4\.30\.1000\-1\.i686\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.30.1000/AmazonRedshiftODBC-32-bit-1.4.30.1000-1.i686.deb)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.27\.1000/AmazonRedshiftODBC\-32\-bit\-1\.4\.27\.1000\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC-32-bit-1.4.27.1000-1.i686.rpm)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.27\.1000/AmazonRedshiftODBC\-32\-bit\-1\.4\.27\.1000\-1\.i686\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC-32-bit-1.4.27.1000-1.i686.deb)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.20\.1001/AmazonRedshiftODBC\-32\-bit\-1\.4\.20\.1001\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.20.1001/AmazonRedshiftODBC-32-bit-1.4.20.1001-1.i686.rpm)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.20\.1001/AmazonRedshiftODBC\-32\-bit\-1\.4\.20\.1001\-1\.i686\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.20.1001/AmazonRedshiftODBC-32-bit-1.4.20.1001-1.i686.deb)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.18\.1001/AmazonRedshiftODBC\-32\-bit\-1\.4\.18\.1001\-1\.i686\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.18.1001/AmazonRedshiftODBC-32-bit-1.4.18.1001-1.i686.rpm)\. 
@@ -472,6 +481,10 @@ The following are the versions of the 32\-bit driver:
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.8\.1000/AmazonRedshiftODBC\-32\-bit\-1\.4\.8\.1000\-1\.i686\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.8.1000/AmazonRedshiftODBC-32-bit-1.4.8.1000-1.i686.deb)\. 
 
 The following are the versions of the 64\-bit driver: 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.34\.1000/AmazonRedshiftODBC\-64\-bit\-1\.4\.34\.1000\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC-64-bit-1.4.34.1000-1.x86_64.rpm)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.34\.1000/AmazonRedshiftODBC\-64\-bit\-1\.4\.34\.1000\-1\.x86\_64\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC-64-bit-1.4.34.1000-1.x86_64.deb)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.30\.1000/AmazonRedshiftODBC\-64\-bit\-1\.4\.30\.1000\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.30.1000/AmazonRedshiftODBC-64-bit-1.4.30.1000-1.x86_64.rpm)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.30\.1000/AmazonRedshiftODBC\-64\-bit\-1\.4\.30\.1000\-1\.x86\_64\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.30.1000/AmazonRedshiftODBC-64-bit-1.4.30.1000-1.x86_64.deb)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.27\.1000/AmazonRedshiftODBC\-64\-bit\-1\.4\.27\.1000\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC-64-bit-1.4.27.1000-1.x86_64.rpm)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.27\.1000/AmazonRedshiftODBC\-64\-bit\-1\.4\.27\.1000\-1\.x86\_64\.deb](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC-64-bit-1.4.27.1000-1.x86_64.deb)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.20\.1001/AmazonRedshiftODBC\-64\-bit\-1\.4\.20\.1001\-1\.x86\_64\.rpm](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.20.1001/AmazonRedshiftODBC-64-bit-1.4.20.1001-1.x86_64.rpm)\. 
@@ -496,6 +509,8 @@ The following are the versions of the 64\-bit driver:
 ### Use previous ODBC driver versions for macOS X<a name="odbc-previous-versions-mac"></a>
 
 The following are the versions of the Amazon Redshift ODBC driver for macOS X: 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.34\.1000/AmazonRedshiftODBC\-1\.4\.34\.1000\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.34.1000/AmazonRedshiftODBC-1.4.34.1000.dmg)\. 
++ [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.30\.1000/AmazonRedshiftODBC\-1\.4\.30\.1000\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.30.1000/AmazonRedshiftODBC-1.4.30.1000.dmg)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.27\.1000/AmazonRedshiftODBC\-1\.4\.27\.1000\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.27.1000/AmazonRedshiftODBC-1.4.27.1000.dmg)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.20\.1001/AmazonRedshiftODBC\-1\.4\.20\.1001\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.20.1001/AmazonRedshiftODBC-1.4.20.1001.dmg)\. 
 + [https://s3\.amazonaws\.com/redshift\-downloads/drivers/odbc/1\.4\.18\.1001/AmazonRedshiftODBC\-1\.4\.18\.1001\.dmg](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/1.4.18.1001/AmazonRedshiftODBC-1.4.18.1001.dmg)\. 

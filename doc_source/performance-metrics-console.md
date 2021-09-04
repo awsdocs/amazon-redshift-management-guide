@@ -16,5 +16,5 @@ To learn how to monitor, isolate, and optimize your queries using the query moni
 + [Viewing queries and loads](performance-metrics-queries.md)
 + [Viewing cluster metrics during load operations](performance-metrics-loads.md)
 + [Analyzing workload performance](analyze-workload-performance.md)
-+ [Creating an alarm](performance-metrics-alarms.md)
++ [Managing alarms](performance-metrics-alarms.md)
 + [Working with performance metrics in the CloudWatch console](using-cloudwatch-console.md)

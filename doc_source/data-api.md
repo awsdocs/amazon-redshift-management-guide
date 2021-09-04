@@ -88,7 +88,7 @@ To store credentials with Secrets Manager, you need `SecretManagerReadWrite` man
 
 ## Creating an Amazon VPC endpoint \(AWS PrivateLink\) for the Data API<a name="data-api-vpc-endpoint"></a>
 
-Amazon Virtual Private Cloud \(Amazon VPC\) enables you to launch AWS resources, such as Amazon Redshift clusters and applications, into a virtual private cloud \(VPC\)\. AWS PrivateLink provides private connectivity between Amazon VPCs and AWS services securely on the Amazon network\. Using AWS PrivateLink, you can create Amazon VPC endpoints, which enable you to connect to services across different accounts and VPCs based on Amazon VPC\. For more information about AWS PrivateLink, see [VPC Endpoint Services \(AWS PrivateLink\)](https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html) in the *Amazon Virtual Private Cloud User Guide*\.
+Amazon Virtual Private Cloud \(Amazon VPC\) enables you to launch AWS resources, such as Amazon Redshift clusters and applications, into a virtual private cloud \(VPC\)\. AWS PrivateLink provides private connectivity between virtual private clouds \(VPCs\) and AWS services securely on the Amazon network\. Using AWS PrivateLink, you can create VPC endpoints, which you can use connect to services across different accounts and VPCs based on Amazon VPC\. For more information about AWS PrivateLink, see [VPC Endpoint Services \(AWS PrivateLink\)](https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html) in the *Amazon Virtual Private Cloud User Guide*\.
 
 You can call the Data API with Amazon VPC endpoints\. Using an Amazon VPC endpoint keeps traffic between applications in your Amazon VPC and the Data API in the AWS network, without using public IP addresses\. Amazon VPC endpoints can help you meet compliance and regulatory requirements related to limiting public internet connectivity\. For example, if you use an Amazon VPC endpoint, you can keep traffic between an application running on an Amazon EC2 instance and the Data API in the VPCs that contain them\.
 
@@ -145,7 +145,7 @@ Consider the following when calling the Data API:
   + ra3\.4xlarge
   + ra3\.16xlarge
 + The cluster must be in a virtual private cloud \(VPC\) based on the Amazon VPC service\. 
-+ By default, users with the same IAM role or IAM user as the runner of an `ExecuteStatement` API operation can act on the same statement with `CancelStatement`, `DescribeStatement`, `GetStatementResult`, and `ListStatements` API operations\.
++ By default, users with the same IAM role or IAM user as the runner of an `ExecuteStatement` or `BatchExecuteStatement` API operation can act on the same statement with `CancelStatement`, `DescribeStatement`, `GetStatementResult`, and `ListStatements` API operations\.
 + For a list of AWS Regions where the Data API is available, see [Redshift Data API Endpoints](https://docs.aws.amazon.com/general/latest/gr/redshift-service.html) in the *Amazon Web Services General Reference*\. 
 
 ### Choosing authentication credentials when calling the Amazon Redshift Data API<a name="data-api-calling-considerations-authentication"></a>
@@ -184,9 +184,9 @@ Currently, the Data API doesn't support arrays of universal unique identifiers \
 
 ### Running SQL statements with parameters when calling the Amazon Redshift Data API<a name="data-api-calling-considerations-parameters"></a>
 
-You can control the SQL text submitted to the database engine by calling the Data API operation using parameters for parts of he SQL statement\. Named parameters provide a flexible way to pass in parameters without hardcoding them in the SQL text\. They help you reuse SQL text and avoid SQL injection problems\.
+You can control the SQL text submitted to the database engine by calling the Data API operation using parameters for parts of the SQL statement\. Named parameters provide a flexible way to pass in parameters without hardcoding them in the SQL text\. They help you reuse SQL text and avoid SQL injection problems\.
 
-The following example shows the named parameters of a `parameters` field of an `execute statement` operation\.
+The following example shows the named parameters of a `parameters` field of an `execute statement` AWS CLI command\.
 
 ```
 --parameters "[{\"name\": \"id\", \"value\": \"1\"},{\"name\": \"address\", \"value\": \"Seattle\"}]"
@@ -211,10 +211,13 @@ Consider the following when using named parameters:
   ```
 + You can't set a table name in the SQL statement with a parameter\. The Data API follows the rule of the JDBC `PreparedStatement`\. 
 + The output of the `describe statement` operation returns the query parameters of an SQL statement\.
++ Only the `execute-statement` operation supports SQL statements with parameters\.
 
 ## Calling the Data API<a name="data-api-calling"></a>
 
 You can call the Data API or the AWS CLI to run SQL statements on your cluster\. The primary operation to run an SQL statement is [https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_ExecuteStatement.html](https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_ExecuteStatement.html)\. The Data API supports the programming languages that are supported by the AWS SDK\. For more information on these, see [Tools to Build on AWS](https://aws.amazon.com/tools/)\.
+
+To see code examples of calling the Data API, see [Getting Started with Redshift Data API](https://github.com/aws-samples/getting-started-with-amazon-redshift-data-api#getting-started-with-redshift-data-api) in *GitHub*\. This repository has examples of using AWS Lambda to access Amazon Redshift data from Amazon EC2, AWS Glue Data Catalog, and Amazon SageMaker\. Example programing languages include Python, Go, Java, and Javascript\.
 
 ### Calling the Data API with the AWS CLI<a name="data-api-calling-cli"></a>
 
@@ -494,6 +497,33 @@ Provides the following results:
 }
 ```
 
+#### To run multiple SQL statements<a name="data-api-calling-cli-batch-execute-statement"></a>
+
+To run multiple SQL statements with one command, use the `aws redshift-data batch-execute-statement` AWS CLI command\.
+
+The following AWS CLI command runs three SQL statements and returns an identifier to fetch the results\. This example uses the temporary credentials authentication method\.
+
+```
+aws redshift-data batch-execute-statement 
+    --region us-west-2 
+    --db-user myuser 
+    --cluster-identifier mycluster-test 
+    --database dev 
+    --sqls "set timezone to BST" "select * from mytable" "select * from another_table"
+```
+
+The following is an example of the response\.
+
+```
+{
+    "ClusterIdentifier": "mycluster-test",
+    "CreatedAt": 1598306924.632,
+    "Database": "dev",
+    "DbUser": "myuser",
+    "Id": "d9b6c0c9-0747-4bf4-b142-e8883122f766"
+}
+```
+
 #### To list metadata about SQL statements<a name="data-api-calling-cli-list-statements"></a>
 
 To list metadata about SQL statements, use the `aws redshift-data list-statements` AWS CLI command\. Authorization to run this command is based on the caller's IAM permissions\.
@@ -573,9 +603,55 @@ The following is an example of the response\.
 }
 ```
 
+The following is an example of a `describe-statement` response after running a `batch-execute-statement` command with multiple SQL statements\.
+
+```
+{
+    "ClusterIdentifier": "mayo",
+    "CreatedAt": 1623979777.126,
+    "Duration": 6591877,
+    "HasResultSet": true,
+    "Id": "b2906c76-fa6e-4cdf-8c5f-4de1ff9b7652",
+    "RedshiftPid": 31459,
+    "RedshiftQueryId": 0,
+    "ResultRows": 2,
+    "ResultSize": 22,
+    "Status": "FINISHED",
+    "SubStatements": [
+        {
+            "CreatedAt": 1623979777.274,
+            "Duration": 3396637,
+            "HasResultSet": true,
+            "Id": "b2906c76-fa6e-4cdf-8c5f-4de1ff9b7652:1",
+            "QueryString": "select 1;",
+            "RedshiftQueryId": -1,
+            "ResultRows": 1,
+            "ResultSize": 11,
+            "Status": "FINISHED",
+            "UpdatedAt": 1623979777.903
+        },
+        {
+            "CreatedAt": 1623979777.274,
+            "Duration": 3195240,
+            "HasResultSet": true,
+            "Id": "b2906c76-fa6e-4cdf-8c5f-4de1ff9b7652:2",
+            "QueryString": "select 2;",
+            "RedshiftQueryId": -1,
+            "ResultRows": 1,
+            "ResultSize": 11,
+            "Status": "FINISHED",
+            "UpdatedAt": 1623979778.076
+        }
+    ],
+    "UpdatedAt": 1623979778.183
+}
+```
+
 #### To fetch the results of an SQL statement<a name="data-api-calling-cli-get-statement-result"></a>
 
-To fetch the result from an SQL statement that ran, use the `redshift-data get-statement-result` AWS CLI command\. Authorization to run this command is based on the caller's IAM permissions\. 
+To fetch the result from an SQL statement that ran, use the `redshift-data get-statement-result` AWS CLI command\. You can provide an `Id` that you receive in response to `execute-statement` or `batch-execute-statement`\. The `Id` value for an SQL statement run by `batch-execute-statement` can be retrieved in the result of `describe-statement` and is suffixed by a colon and sequence number such as `b2906c76-fa6e-4cdf-8c5f-4de1ff9b7652:2`\. If you run multiple SQL statements with `batch-execute-statement`, each SQL statement has an `Id` value as shown in `describe-statement`\.  Authorization to run this command is based on the caller's IAM permissions\. 
+
+The following statement returns the result of an SQL statement run by `execute-statement`\.
 
 ```
 aws redshift-data get-statement-result 
@@ -583,7 +659,15 @@ aws redshift-data get-statement-result
     --region us-west-2
 ```
 
-The following is an example of the response\.
+The following statement returns the result of the second SQL statement run by `batch-execute-statement`\.
+
+```
+aws redshift-data get-statement-result 
+    --id b2906c76-fa6e-4cdf-8c5f-4de1ff9b7652:2 
+    --region us-west-2
+```
+
+The following is an example of the response to a call to `get-statement-result`\.
 
 ```
 {
@@ -767,7 +851,7 @@ The following is an example of the response\.
                 "longValue": 3
             },
             {
-                "stringValue": "health                                                                                                                                                                                                                                                                                                                          "
+                "stringValue": "health"
             },
             {
                 "longValue": 1023
@@ -776,10 +860,10 @@ The following is an example of the response\.
                 "longValue": 15279
             },
             {
-                "stringValue": "dev                             "
+                "stringValue": "dev"
             },
             {
-                "stringValue": "select system_status from stv_gui_status;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       "
+                "stringValue": "select system_status from stv_gui_status;"
             },
             {
                 "stringValue": "2020-08-21 17:33:51.88712"

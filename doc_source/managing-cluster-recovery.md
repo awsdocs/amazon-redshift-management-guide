@@ -46,7 +46,7 @@ Use the following procedure to enable relocation when creating a new cluster\.
 
 1. On the navigation pane, choose **CLUSTERS**\. 
 
-1. Choose **Create cluster** to create a new cluster\. For more information on how to create a cluster, see [Create a sample Amazon Redshift cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-launch-sample-cluster.html) in *Amazon Redshift Getting Started*\.
+1. Choose **Create cluster** to create a new cluster\. For more information on how to create a cluster, see [Create a sample Amazon Redshift cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-launch-sample-cluster.html) in *Amazon Redshift Getting Started Guide*\.
 
 1. Under **Backup**, for **Cluster relocation**, choose **Enable**\. Relocation is disabled by default\.
 

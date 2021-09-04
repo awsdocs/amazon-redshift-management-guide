@@ -20,7 +20,7 @@ You must have at least one subnet defined in your VPC so you can add it to the c
 
    You can enable a client outside the VPC \(on the public internet\) to connect to the cluster\. To do this, you associate the cluster with a VPC security group that grants inbound access to the port that you used when you launched the cluster\. For examples of security group rules, see [Security group rules](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html#SecurityGroupRules) in the *Amazon VPC User Guide*\. 
 
-1. Follow the steps in [Getting started with Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html) in the *Amazon Redshift Getting Started* to create a cluster\. Make the following modifications when creating your cluster:
+1. Follow the steps in [Getting started with Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html) in the *Amazon Redshift Getting Started Guide* to create a cluster\. Make the following modifications when creating your cluster:
    + To display the **Additional configurations** section, switch off **Use defaults**\. 
    + In the **Network and security** section, specify the **Virtual private cloud \(VPC\)**, **Cluster subnet group**, and **VPC security group** that you set up\.
 

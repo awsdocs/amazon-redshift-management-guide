@@ -29,7 +29,7 @@ The following example bucket policy permits access to the specified bucket only 
   "Version":"2012-10-17",
   "Statement":[
   {
-     "Sid”:”BucketPolicyForSpectrum",
+     "Sid":"BucketPolicyForSpectrum",
      "Effect":"Allow",
      "Principal": {"AWS": ["arn:aws:iam::123456789012:root"]},
      "Action":[“s3:GetObject",”s3:List*"],

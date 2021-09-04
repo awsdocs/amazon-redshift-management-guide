@@ -1,6 +1,6 @@
 # Getting started with the AWS Command Line Interface<a name="getting-started-cli"></a>
 
-To help you get started using the AWS Command Line Interface \(AWS CLI\), this section shows how to perform basic administrative tasks for an Amazon Redshift cluster\. These tasks are very similar to those in the [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/), but they are focused on the AWS CLI rather than the Amazon Redshift console\.
+To help you get started using the AWS Command Line Interface \(AWS CLI\), this section shows how to perform basic administrative tasks for an Amazon Redshift cluster\. These tasks are very similar to those in the [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/), but they are focused on the AWS CLI rather than the Amazon Redshift console\.
 
 This section walks you through the process of creating a cluster, creating database tables, uploading data, and testing queries\. You use the AWS CLI to provision a cluster and to authorize necessary access permissions\. You will then use the SQL Workbench client to connect to the cluster and create sample tables, upload sample data, and execute test queries\.
 
@@ -120,7 +120,7 @@ For information about connecting to your cluster, go to the [Amazon Redshift get
 
 ## Step 5: Create tables, upload data, and try example queries<a name="getting-started-create-sample-db-cli"></a>
 
-For information about creating tables, uploading data, and issuing queries, go to the [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/)\.
+For information about creating tables, uploading data, and issuing queries, go to the [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/)\.
 
 ## Step 6: Delete your sample cluster<a name="getting-started-terminate-cluster-cli"></a>
 

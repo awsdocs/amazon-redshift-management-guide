@@ -4,7 +4,7 @@ In the following section, you can find how to configure JDBC and ODBC connection
 
 **Topics**
 + [JDBC and ODBC drivers for Amazon Redshift](#connecting-drivers)
-+ [Configuring a JDBC driver version 2\.0 connection](jdbc20-install.md)
++ [Configuring a connection for JDBC driver version 2\.0 for Amazon Redshift](jdbc20-install.md)
 + [Configuring a JDBC driver version 1\.0 connection](configure-jdbc-connection.md)
 + [Configuring an ODBC connection](configure-odbc-connection.md)
 
@@ -12,7 +12,13 @@ In the following section, you can find how to configure JDBC and ODBC connection
 
 To work with data in your cluster, you need JDBC or ODBC drivers for connectivity from your client computer or instance\. Code your applications to use JDBC or ODBC data access API operations, and use SQL client tools that support either JDBC or ODBC\.
 
-Amazon Redshift offers JDBC and ODBC drivers for download\. Previously, Amazon Redshift recommended PostgreSQL drivers for JDBC and ODBC\. If you currently use those drivers, we recommend moving to the new Amazon Redshift–specific drivers\. For more information about how to download the JDBC and ODBC drivers and configure connections to your cluster, see [Configuring a JDBC driver version 2\.0 connection](jdbc20-install.md), [Configuring a JDBC driver version 1\.0 connection](configure-jdbc-connection.md), and [Configuring an ODBC connection](configure-odbc-connection.md)\. 
+Amazon Redshift offers JDBC and ODBC drivers for download\. These drivers are supported by AWS Support\.  PostgreSQL drivers are not tested and not supported by the Amazon Redshift team\. Use the Amazon Redshift–specific drivers when connecting to an Amazon Redshift cluster\. The Amazon Redshift drivers have the following advantages:
++ Support for IAM, SSO, and federated authentication\.
++ Support for new Amazon Redshift data types\.
++ Support for authentication profiles\.
++ Improved performance in conjunction with Amazon Redshift enhancements\.
+
+ For more information about how to download the JDBC and ODBC drivers and configure connections to your cluster, see [Configuring a connection for JDBC driver version 2\.0 for Amazon Redshift](jdbc20-install.md), [Configuring a JDBC driver version 1\.0 connection](configure-jdbc-connection.md), and [Configuring an ODBC connection](configure-odbc-connection.md)\. 
 
 For JDBC driver version 1\.2\.47\.1071 or later and ODBC driver version 1\.4\.16\.1000 or later, Amazon Redshift must be version 1\.0\.17708 or later\. To verify the Amazon Redshift version, see [VERSION](https://docs.aws.amazon.com/redshift/latest/dg/r_VERSION.html) in the *Amazon Redshift Database Developer Guide*\.
 

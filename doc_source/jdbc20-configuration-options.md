@@ -1,6 +1,6 @@
-# JDBC driver version 2\.0 configuration options<a name="jdbc20-configuration-options"></a>
+# Options for JDBC driver version 2\.0 configuration<a name="jdbc20-configuration-options"></a>
 
-This section describes the options that you can specify for the Amazon Redshift JDBC driver version 2\.0 driver\. 
+Following, you can find descriptions for the options that you can specify for version 2\.0 of the Amazon Redshift JDBC driver\. 
 
 You can set configuration properties using the connection URL\. For more information, see [Building the connection URL](jdbc20-build-connection-url.md)\.
 
@@ -9,6 +9,7 @@ You can set configuration properties using the connection URL\. For more informa
 + [AllowDBUserOverride](#jdbc20-allowdbuseroverride-option)
 + [App\_ID](#jdbc20-app-id-option)
 + [App\_Name](#jdbc20-app-name-option)
++ [AuthProfile](#jdbc20-authprofile-option)
 + [AutoCreate](#jdbc20-autocreate-option)
 + [Client\_ID](#jdbc20-client_id-option)
 + [Client\_Secret](#jdbc20-client_secret-option)
@@ -28,6 +29,8 @@ You can set configuration properties using the connection URL\. For more informa
 + [IdP\_Port](#jdbc20-idp_port-option)
 + [IdP\_Tenant](#jdbc20-idp_tenant-option)
 + [IdP\_Response\_Timeout](#jdbc20-idp_response_timeout-option)
++ [IniFile](#jdbc20-inifile-option)
++ [IniSection](#jdbc20-inisection-option)
 + [Login\_URL](#jdbc20-login_url-option)
 + [LoginTimeout](#jdbc20-logintimeout-option)
 + [loginToRp](#jdbc20-logintorp-option)
@@ -66,7 +69,7 @@ You can set configuration properties using the connection URL\. For more informa
 + **Default Value** – None
 + **Data Type** – String
 
-You can specify this parameter to enter the IAM access key for the IAM user or role\. You can usually locate the key by looking at and existing string or user profile\. If you specify this parameter, you must also specify the SecretAccessKey parameter\. 
+You can specify this parameter to enter the IAM access key for the IAM user or role\. You can usually locate the key by looking at and existing string or user profile\. If you specify this parameter, you must also specify the `SecretAccessKey` parameter\. 
 
 This parameter is optional\.
 
@@ -74,17 +77,17 @@ This parameter is optional\.
 + **Default Value** – 0
 + **Data Type** – String
 
-This option specifies whether the driver uses the DbUser value from the SAML assertion or the value that is specified in the DbUser connection property in the connection URL\. 
+This option specifies whether the driver uses the `DbUser` value from the SAML assertion or the value that is specified in the `DbUser` connection property in the connection URL\. 
 
 This parameter is optional\.
 
 **1**  
-The driver uses the DbUser value from the SAML assertion\.  
-If the SAML assertion does not specify a DbUser, the driver uses the value specified in the DbUser connection property\. If the connection property also does not specify a value, the driver uses the value specified in the connection profile\.
+The driver uses the `DbUser` value from the SAML assertion\.  
+If the SAML assertion doesn't specify a value for `DBUser`, the driver uses the value specified in the `DBUser` connection property\. If the connection property also doesn't specify a value, the driver uses the value specified in the connection profile\.
 
 **0**  
-The driver uses the DbUser value specified in the DbUser connection property\.  
-If the DbUser connection property does not specify a value, the driver uses the value specified in the connection profile\. If the connection profile also does not specify a value, the driver uses the value from the SAML assertion\.
+The driver uses the `DBUser` value specified in the `DBUser` connection property\.  
+If the `DBUser` connection property doesn't specify a value, the driver uses the value specified in the connection profile\. If the connection profile also doesn't specify a value, the driver uses the value from the SAML assertion\.
 
 ## App\_ID<a name="jdbc20-app-id-option"></a>
 + **Default Value** – None
@@ -102,25 +105,33 @@ The name of the Okta application that you use to authenticate the connection to 
 
 This parameter is optional\.
 
+## AuthProfile<a name="jdbc20-authprofile-option"></a>
++ **Default Value** – None
++ **Data Type** – String
+
+The name of the authentication profile to use for connecting to Amazon Redshift\. 
+
+This parameter is optional\.
+
 ## AutoCreate<a name="jdbc20-autocreate-option"></a>
 + **Default Value** – false
 + **Data Type** – Boolean
 
-This option specifies whether the driver causes a new user to be created when the specified user does not exist\. 
+This option specifies whether the driver causes a new user to be created when the specified user doesn't exist\. 
 
 This parameter is optional\.
 
 **true**  
-If the user specified by either DbUser or UID does not exist, a new user with that name is created\.
+If the user specified by either `DBUser` or unique ID \(UID\) doesn't exist, a new user with that name is created\.
 
 **false**  
-The driver does not cause new users to be created\. If the specified user does not exist, the authentication fails\.
+The driver doesn't cause new users to be created\. If the specified user doesn't exist, the authentication fails\.
 
 ## Client\_ID<a name="jdbc20-client_id-option"></a>
 + **Default Value** – None
 + **Data Type** – String
 
-The Client ID to use when authenticating the connection using the Azure AD service\. 
+The client ID to use when authenticating the connection using the Azure AD service\. 
 
 This parameter is required if authenticating through the Azure AD service\.
 
@@ -160,7 +171,7 @@ The application retrieves metadata from all accessible databases\.
 + **Default Value** – None
 + **Data Type** – String
 
-The user ID to use with your Amazon Redshift account\. You can use an ID that does not currently exist if you have enabled the AutoCreate property\. 
+The user ID to use with your Amazon Redshift account\. You can use an ID that doesn't currently exist if you have enabled the AutoCreate property\. 
 
 This parameter is optional\.
 
@@ -168,7 +179,7 @@ This parameter is optional\.
 + **Default Value** – PUBLIC
 + **Data Type** – String
 
-A comma\-separated list of existing database group names that the DbUser joins for the current session\. 
+A comma\-separated list of existing database group names that `DBUser` joins for the current session\. 
 
 This parameter is optional\.
 
@@ -197,7 +208,7 @@ This option specifies whether the driver submits a new database query when using
 This parameter is optional\.
 
 **true**  
-The driver does not submit a query when using Connection\.isValid\(\) to determine whether the database connection is active\. This may cause the driver to incorrectly identify the database connection as active if the database server has shut down unexpectedly\.
+The driver doesn't submit a query when using Connection\.isValid\(\) to determine whether the database connection is active\. This may cause the driver to incorrectly identify the database connection as active if the database server has shut down unexpectedly\.
 
 **false**  
 The driver submits a query when using Connection\.isValid\(\) to determine whether the database connection is active\.
@@ -246,7 +257,7 @@ This parameter is optional\.
 The driver lowercases all database groups that are sent from the identity provider\.
 
 **false**  
-The driver does not alter database groups\.
+The driver doesn't alter database groups\.
 
 ## IAMDisableCache<a name="jdbc20-iamdisablecache-option"></a>
 + **Default Value** – false
@@ -257,7 +268,7 @@ This option specifies whether the IAM credentials are cached\.
 This parameter is optional\.
 
 **true**  
-The IAM credentials are not cached\.
+The IAM credentials aren't cached\.
 
 **false**  
 The IAM credentials are cached\. This improves performance when requests to the API gateway are throttled, for instance\.
@@ -304,6 +315,34 @@ The amount of time, in seconds, that the driver waits for the SAML response from
 
 This parameter is optional\.
 
+## IniFile<a name="jdbc20-inifile-option"></a>
++ **Default Value** – None
++ **Data Type** – String
+
+The full path of the \.ini file, including file name\. For example:
+
+```
+IniFile="C:\tools\rsjdbc.ini"
+```
+
+For information about the \.ini file, see [Creating initialization \(\.ini\) files for JDBC driver version 2\.0](jdbc20-ini-file.md)\.
+
+This parameter is optional\.
+
+## IniSection<a name="jdbc20-inisection-option"></a>
++ **Default Value** – None
++ **Data Type** – String
+
+The name of a section in the \.ini file containing the configuration options\. For information about the \.ini file, see [Creating initialization \(\.ini\) files for JDBC driver version 2\.0](jdbc20-ini-file.md)\. 
+
+The following example specifies the \[Prod\] section of the \.ini file:
+
+```
+IniSection="Prod"
+```
+
+This parameter is optional\.
+
 ## Login\_URL<a name="jdbc20-login_url-option"></a>
 + **Default Value** – None
 + **Data Type** – String
@@ -318,7 +357,7 @@ This parameter is required if authenticating with the SAML or Azure AD services 
 
 The number of seconds to wait before timing out when connecting and authenticating to the server\. If establishing the connection takes longer than this threshold, then the connection is aborted\. 
 
-When this property is set to 0, connections do not time out\.
+When this property is set to 0, connections don't time out\.
 
 This parameter is optional\.
 
@@ -334,7 +373,7 @@ This parameter is optional\.
 + **Default Value** – 0
 + **Data Type** – Integer
 
-Use this property to enable or disable logging in the driver and to specify the amount of detail included in log files\. 
+Use this property to turn on or turn off logging in the driver and to specify the amount of detail included in log files\. 
 
 Enable logging only long enough to capture an issue\. Logging decreases performance and can consume a large quantity of disk space\.
 
@@ -407,6 +446,7 @@ The following provider options are supported:
 + **`AdfsCredentialsProvider`** – Active Directory Federation Service
 + **`AzureCredentialsProvider`** – Microsoft Azure Active Directory \(AD\) Service
 + **`BasicJwtCredentialsProvider`** – JSON Web Tokens \(JWT\) Service
++ **`BasicSamlCredentialsProvider`** – Security Assertion Markup Language \(SAML\) credentials which you can use with many SAML service providers\.
 + **`BrowserAzureCredentialsProvider`** – Browser Microsoft Azure Active Directory \(AD\) Service
 + **`BrowserSamlCredentialsProvider`** – Browser SAML for SAML services such as Okta, Ping, or ADFS
 + **`OktaCredentialsProvider`** – Okta Service
@@ -416,7 +456,7 @@ The following provider options are supported:
 + **Default Value** – None
 + **Data Type** – String
 
-The IAM role you want to assume during the connection to Amazon Redshift\. 
+The IAM role that you want to assume during the connection to Amazon Redshift\. 
 
 This parameter is optional\.
 
@@ -512,7 +552,7 @@ This parameter is optional\.
 + **Default Value** – 0
 + **Data Type** – Integer
 
-The number of seconds to wait during socket read operations before timing out\. If the operation takes longer than this threshold, then the connection is closed\. When this property is set to 0, the connection does not time out\. 
+The number of seconds to wait during socket read operations before timing out\. If the operation takes longer than this threshold, then the connection is closed\. When this property is set to 0, the connection doesn't time out\. 
 
 This parameter is optional\.
 
@@ -520,7 +560,7 @@ This parameter is optional\.
 + **Default Value** – TRUE
 + **Data Type** – String
 
-Use this property to enable or disable SSL for the connection\. 
+Use this property to turn on or turn off SSL for the connection\. 
 
 This parameter is optional\.
 
@@ -545,7 +585,7 @@ This parameter is optional\.
 You can specify the following values:
 
 **true**  
-The driver does not check the authenticity of the IDP server certificate\.
+The driver doesn't check the authenticity of the IDP server certificate\.
 
 **false**  
 The driver checks the authenticity of the IDP server certificate\.
@@ -612,7 +652,7 @@ You can specify an AWS Security Token Service \(AWS STS\) endpoint\. If you spec
 + **Default Value** – TRUE
 + **Data Type** – String
 
-Use this property to enable or disable TCP keepalives\. 
+Use this property to turn on or turn off TCP keepalives\. 
 
 This parameter is optional\.
 
@@ -622,7 +662,7 @@ You can specify the following values:
 The driver uses TCP keepalives to prevent connections from timing out\.
 
 **FALSE**  
-The driver does not use TCP keepalives\.
+The driver doesn't use TCP keepalives\.
 
 ## UID<a name="jdbc20-uid-option"></a>
 + **Default Value** – None

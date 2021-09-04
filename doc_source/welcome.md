@@ -9,7 +9,7 @@ The first step to create a data warehouse is to launch a set of nodes, called an
  If you are a first\-time user of Amazon Redshift, we recommend that you begin by reading the following sections: 
 + [Amazon Redshift management overview](overview.md) – This topic provides an overview of Amazon Redshift\.
 + [Service Highlights and Pricing](https://aws.amazon.com/redshift/) – This product detail page provides the Amazon Redshift value proposition, service highlights, and pricing\.
-+ [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/) – This guide walks you through the process of creating a cluster, creating database tables, uploading data, and testing queries\.
++ [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/) – This guide walks you through the process of creating a cluster, creating database tables, uploading data, and testing queries\.
 + [Amazon Redshift Cluster Management Guide](https://docs.aws.amazon.com/redshift/latest/mgmt/) \(*this guide*\) – This guide shows you how to create and manage Amazon Redshift clusters\.
 + [Amazon Redshift Database Developer Guide](https://docs.aws.amazon.com/redshift/latest/dg/) – If you are a database developer, this guide explains how to design, build, query, and maintain the databases that make up your data warehouse\.
 

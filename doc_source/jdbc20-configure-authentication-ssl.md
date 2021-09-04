@@ -1,4 +1,4 @@
-# Configure authentication and SSL<a name="jdbc20-configure-authentication-ssl"></a>
+# Configuring authentication and SSL<a name="jdbc20-configure-authentication-ssl"></a>
 
 To protect data from unauthorized access, Amazon Redshift data stores require all connections to be authenticated using user credentials\. Some data stores also require connections to be made over the Secure Sockets Layer \(SSL\) protocol, either with or without one\-way authentication\.
 
@@ -18,7 +18,7 @@ You provide the configuration information to the driver in the connection URL\. 
 
 ## Using user name and password only<a name="jdbc20-authentication-username-password"></a>
 
-If the server you are connecting to does not use SSL, then you only need to provide your user name and password to authenticate the connection\. 
+If the server you are connecting to doesn't use SSL, then you only need to provide your user name and password to authenticate the connection\. 
 
 **To configure authentication using your user name and password only**
 
@@ -28,7 +28,7 @@ If the server you are connecting to does not use SSL, then you only need to prov
 
 ## Using SSL without identity verification<a name="jdbc20-use-ssl-without-identity-verification"></a>
 
-If the server you are connecting to uses SSL but does not require identity verification, then you can configure the driver to use a non\-validating SSL factory\. 
+If the server you are connecting to uses SSL but doesn't require identity verification, then you can configure the driver to use a non\-validating SSL factory\. 
 
 **To configure an SSL connection without identity verification**
 
@@ -42,7 +42,7 @@ If the server you are connecting to uses SSL but does not require identity verif
 
 If the server you are connecting to uses SSL and has a certificate, then you can configure the driver to verify the identity of the server using one\-way authentication\. 
 
-One\-way authentication requires a signed, trusted SSL certificate for verifying the identity of the server\. You can configure the driver to use a specific certificate or access a TrustStore that contains the appropriate certificate\. If you do not specify a certificate or TrustStore, then the driver uses the default Java TrustStore \(typically either `jssecacerts` or `cacerts`\)\. 
+One\-way authentication requires a signed, trusted SSL certificate for verifying the identity of the server\. You can configure the driver to use a specific certificate or access a TrustStore that contains the appropriate certificate\. If you don't specify a certificate or TrustStore, then the driver uses the default Java TrustStore \(typically either `jssecacerts` or `cacerts`\)\. 
 
 **To configure one\-way SSL authentication**
 
@@ -54,9 +54,9 @@ One\-way authentication requires a signed, trusted SSL certificate for verifying
 
 1. Set the SSLRootCert property to the location of your root CA certificate\.
 
-1. If you are not using one of the default Java TrustStores, then do one of the following:
+1. If you aren't using one of the default Java TrustStores, then do one of the following:
    + To specify a server certificate, set the SSLRootCert property to the full path of the certificate\.
-   + Or, to specify a TrustStore, do the following:
+   + To specify a TrustStore, do the following:
 
      1. Use the keytool program to add the server certificate to the TrustStore that you want to use\.
 
@@ -70,18 +70,18 @@ One\-way authentication requires a signed, trusted SSL certificate for verifying
 
 1. Choose one:
    + To validate the certificate, set the SSLMode property to verify\-ca\.
-   + Or, to validate the certificate and verify the host name in the certificate, set the SSLMode property to verify\-full\.
+   + To validate the certificate and verify the host name in the certificate, set the SSLMode property to verify\-full\.
 
 ## Configuring IAM authentication<a name="jdbc20-configure-iam-authentication"></a>
 
 If you are connecting to a Amazon Redshift server using IAM authentication, set the following properties as part of your data source connection string\. 
 
-  For more information on IAM Authentication, see [Identity and access management in Amazon Redshift](redshift-iam-authentication-access-control.md)\.
+  For more information on IAM authentication, see [Identity and access management in Amazon Redshift](redshift-iam-authentication-access-control.md)\.
 
-To use IAM Authentication, use one of the following connection string formats:
+To use IAM authentication, use one of the following connection string formats:
 
 
-| Connection String | Description | 
+| Connection string | Description | 
 | --- | --- | 
 |  `jdbc:redshift:iam:// [host]:[port]/[db]`  |  A regular connection string\. The driver infers the ClusterID and Region from the host\.  | 
 |  `jdbc:redshift:iam:// [cluster-id]: [region]/[db]`  |  The driver retrieves host information, given the ClusterID and Region\.  | 
@@ -89,33 +89,35 @@ To use IAM Authentication, use one of the following connection string formats:
 
 ## Specifying profiles<a name="jdbc20-aws-credentials-profiles"></a>
 
-If you are using IAM authentication, you have the option to specify any additional required or optional connection properties under a profile name\. This enables you to avoid putting certain information directly in the connection string\. You specify the profile name in your connection string using the Profile property\. 
+If you are using IAM authentication, you can specify any additional required or optional connection properties under a profile name\. By doing this, you can avoid putting certain information directly in the connection string\. You specify the profile name in your connection string using the Profile property\. 
 
-Profiles can be added to the AWS Credentials file\. The default location for this file is: `~/.aws/credentials` 
+Profiles can be added to the AWS credentials file\. The default location for this file is: `~/.aws/credentials` 
 
 You can change the default value by setting the path in the following environment variable: `AWS_CREDENTIAL_PROFILES_FILE` 
 
- For more information about profiles see [Working with AWS Credentials](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html) in the *AWS SDK for Java*\. 
+ For more information about profiles, see [Working with AWS Credentials](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html) in the *AWS SDK for Java*\. 
 
 ## Using instance profile credentials<a name="jdbc20-instance-profile-credentials"></a>
 
-If you are running an application on an EC2 instance that is associated with an IAM role, you can connect using the instance profile credentials\. 
+If you are running an application on an Amazon EC2 instance that is associated with an IAM role, you can connect using the instance profile credentials\. 
 
 To do this, use one of the IAM connection string formats in the preceding table, and set the dbuser connection property to the Amazon Redshift user name that you are connecting as\. 
 
-For more information about instance profiles see [Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\. 
+For more information about instance profiles, see [Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\. 
 
 ## Using credential providers<a name="jdbc20-aws-credentials-provider"></a>
 
 The driver also supports credential provider plugins from the following services: 
-+ AD FS
-+ Azure AD
-+ Okta
-+ PingFederate
++ Active Directory Federation Service \(ADFS\)
++ JSON Web Tokens \(JWT\) Service
++ Microsoft Azure Active Directory \(AD\) Service and Browser Microsoft Azure Active Directory \(AD\) Service
++ Okta Service
++ PingFederate Service 
++ Browser SAML for SAML services such as Okta, Ping, or ADFS
 
 If you use one of these services, the connection URL needs to specify the following properties: 
 + **Plugin\_Name** – The fully\-qualified class path for your credentials provider plugin class\.
-+ **IdP\_Host:** – The host for the service you are using to authenticate into Amazon Redshift\.
++ **IdP\_Host:** – The host for the service that you are using to authenticate into Amazon Redshift\.
 + **IdP\_Port** – The port that the host for the authentication service listens at\. Not required for Okta\.
 + **User** – The user name for the idp\_host server\.
 + **Password** – The password associated with the idp\_host user name\.
@@ -129,8 +131,8 @@ If you use one of these services, the connection URL needs to specify the follow
 + **Partner\_SPID** – The optional partner SPID \(service provider ID\) value\. Only used for PingFederate\.
 
 If you are using a browser plugin for one of these services, the connection URL can also include: 
-+ **Login\_URL** –The URL for the resource on the identity provider's website when using the SAML or Azure AD services through a browser plugin\. This parameter is required if you are using a browser plugin\.
++ **Login\_URL** –The URL for the resource on the identity provider's website when using the Security Assertion Markup Language \(SAML\) or Azure AD services through a browser plugin\. This parameter is required if you are using a browser plugin\.
 + **Listen\_Port** – The port that the driver uses to get the SAML response from the identity provider when using the SAML or Azure AD services through a browser plugin \.
 + **IdP\_Response\_Timeout** – The amount of time, in seconds, that the driver waits for the SAML response from the identity provider when using the SAML or Azure AD services through a browser plugin\.
 
-For information on additional connection string properties, see [JDBC driver version 2\.0 configuration options](jdbc20-configuration-options.md)\. 
+For information on additional connection string properties, see [Options for JDBC driver version 2\.0 configuration](jdbc20-configuration-options.md)\. 

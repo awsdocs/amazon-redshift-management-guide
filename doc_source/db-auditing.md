@@ -1,7 +1,8 @@
 # Database audit logging<a name="db-auditing"></a>
 
+Amazon Redshift logs information about connections and user activities in your database\. These logs help you to monitor the database for security and troubleshooting purposes, a process called *database auditing*\. The logs are stored in Amazon S3 buckets\. These provide convenient access with data security features for users who are responsible for monitoring activities in the database\.
+
 **Topics**
-+ [Overview](#db-auditing-overview)
 + [Amazon Redshift logs](#db-auditing-logs)
 + [Enabling logging](#db-auditing-enable-logging)
 + [Managing log files](#db-auditing-manage-log-files)
@@ -11,16 +12,12 @@
 + [Configuring auditing using the console](db-auditing-console.md)
 + [Configuring logging by using the AWS CLI and Amazon Redshift API](db-auditing-cli-api.md)
 
-## Overview<a name="db-auditing-overview"></a>
-
-Amazon Redshift logs information about connections and user activities in your database\. These logs help you to monitor the database for security and troubleshooting purposes, which is a process often referred to as database auditing\. The logs are stored in Amazon S3 buckets\. These provide convenient access with data security features for users who are responsible for monitoring activities in the database\.
-
 ## Amazon Redshift logs<a name="db-auditing-logs"></a>
 
 Amazon Redshift logs information in the following log files:
-+ *Connection log* — logs authentication attempts, and connections and disconnections\.
-+ *User log* — logs information about changes to database user definitions\.
-+ *User activity log* — logs each query before it is run on the database\.
++ *Connection log* – Logs authentication attempts, connections, and disconnections\.
++ *User log* – Logs information about changes to database user definitions\.
++ *User activity log* – Logs each query before it's run on the database\.
 
 The connection and user logs are useful primarily for security purposes\. You can use the connection log to monitor information about the users who are connecting to the database and the related connection information\. This information might be their IP address, when they made the request, what type of authentication they used, and so on\. You can use the user log to monitor changes to the definitions of database users\. 
 
@@ -33,7 +30,7 @@ Log files are not as current as the base system log tables, [STL\_USERLOG](https
 
 ### Connection log<a name="db-auditing-connection-log"></a>
 
-Logs authentication attempts, and connections and disconnections\. The following table describes the information in the connection log\.
+Logs authentication attempts, and connections and disconnections\. The following table describes the information in the connection log\. For more information about these fields, see [STL\_CONNECTION\_LOG](https://docs.aws.amazon.com/redshift/latest/dg/r_STL_CONNECTION_LOG.html) in the *Amazon Redshift Database Developer Guide*\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html)
 
@@ -318,9 +315,85 @@ The following example shows a CloudTrail log entry for a sample DeleteCluster ca
 }
 ```
 
+### Working with data sharing information in CloudTrail<a name="cloudtrail-datashare"></a>
+
+All Amazon Redshift data sharing API operations are logged by CloudTrail\. For example, calls to the `AuthorizeDataShare`, `DeauthorizeDataShare`, and `DescribeDataShares` operations generate entries in the CloudTrail log files\. For information about the data sharing API operations, see the [Amazon Redshift API Reference](https://docs.aws.amazon.com/redshift/latest/APIReference/API_Operations.html)\.  
+
+Every event or log entry contains information about who generated the request\. The identity information helps you determine the following:
++ Whether the request was made with root or IAM user credentials\.
++ Whether the request was made with temporary security credentials for an IAM role or federated user\.
++ Whether the request was made by another AWS service\.
+
+For more information about CloudTrail `userIdentity` element, see [CloudTrail userIdentity Element](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\.
+
+#### Understanding log file entries for data sharing<a name="cloudtrail-log-datashare"></a>
+
+A *trail* in CloudTrail is a configuration that enables delivery of events as log files to an Amazon S3 bucket that you specify\. CloudTrail log files contain one or more log entries\. An *event* represents a single request from any source\. An event includes information about the requested action, the date and time of the action, or request parameters\. CloudTrail log files aren't an ordered stack trace of the public API calls; they don't appear in any specific order\.
+
+The following example shows a CloudTrail log entry that illustrates the `AuthorizeDataShare` operation\. 
+
+```
+{
+    "eventVersion": "1.08",
+    "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AKIAIOSFODNN7EXAMPLE:janedoe",
+        "arn": "arn:aws:sts::111122223333:user/janedoe",
+        "accountId": "111122223333",
+        "accessKeyId": "AKIAI44QH8DHBEXAMPLE",
+        "sessionContext": {
+            "sessionIssuer": {
+                "type": "Role",
+                "principalId": "AKIAIOSFODNN7EXAMPLE:janedoe",
+                "arn": "arn:aws:sts::111122223333:user/janedoe",
+                "accountId": "111122223333",
+                "userName": "janedoe"
+            },
+            "attributes": {
+                "creationDate": "2021-08-02T23:40:45Z",
+                "mfaAuthenticated": "false"
+            }
+        }
+    },
+    "eventTime": "2021-08-02T23:40:58Z",
+    "eventSource": "redshift.amazonaws.com",
+    "eventName": "AuthorizeDataShare",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "3.227.36.75",
+    "userAgent":"aws-cli/1.18.118 Python/3.6.10 Linux/4.9.217-0.1.ac.205.84.332.metal1.x86_64 botocore/1.17.41", 
+    "requestParameters": {
+        "dataShareArn": "arn:aws:redshift:us-east-1:111122223333:datashare:4c64c6ec-73d5-42be-869b-b7f7c43c7a53/testshare",
+        "consumerIdentifier": "555555555555"
+    },
+    "responseElements": {
+        "dataShareArn": "arn:aws:redshift:us-east-1:111122223333:datashare:4c64c6ec-73d5-42be-869b-b7f7c43c7a53/testshare",
+        "producerNamespaceArn": "arn:aws:redshift:us-east-1:123456789012:namespace:4c64c6ec-73d5-42be-869b-b7f7c43c7a53",
+        "producerArn": "arn:aws:redshift:us-east-1:111122223333:namespace:4c64c6ec-73d5-42be-869b-b7f7c43c7a53",
+        "allowPubliclyAccessibleConsumers": true,
+        "dataShareAssociations": [
+            {
+                "consumerIdentifier": "555555555555",
+                "status": "AUTHORIZED",
+                "createdDate": "Aug 2, 2021 11:40:56 PM",
+                "statusChangeDate": "Aug 2, 2021 11:40:57 PM"
+            }
+        ]
+    },
+    "requestID": "87ee1c99-9e41-42be-a5c4-00495f928422",
+    "eventID": "03a3d818-37c8-46a6-aad5-0151803bdb09",
+    "readOnly": false,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "111122223333",
+    "eventCategory": "Management"
+}
+```
+
+You can use Amazon S3 bucket notification and direct Amazon S3 to publish object\-created events to AWS Lambda\. When CloudTrail writes logs to your S3 bucket, Amazon S3 can then invoke your Lambda function by passing the Amazon S3 object\-created event as a parameter\. Your Lambda function can read this log object and process the access records logged by CloudTrail\. For more information, see [Using AWS Lambda with AWS CloudTrail](https://docs.aws.amazon.com/lambda/latest/dg/with-cloudtrail.html)\.
+
 ## Amazon Redshift account IDs in AWS CloudTrail logs<a name="rs-db-auditing-cloud-trail-rs-acct-ids"></a>
 
-When Amazon Redshift calls another AWS service for you, the call is logged with an account ID that belongs to Amazon Redshift\. It isn't logged with your account ID\. For example, suppose that Amazon Redshift calls AWS Key Management Service \(AWS KMS\) actions such as CreateGrant, Decrypt, Encrypt, and RetireGrant to manage encryption on your cluster\. In this case, the calls are logged by AWS CloudTrail using an Amazon Redshift account ID\.
+When Amazon Redshift calls another AWS service for you, the call is logged with an account ID that belongs to Amazon Redshift\. It isn't logged with your account ID\. For example, suppose that Amazon Redshift calls AWS Key Management Service \(AWS KMS\) operations such as `CreateGrant`, `Decrypt`, `Encrypt`, and `RetireGrant` to manage encryption on your cluster\. In this case, the calls are logged by AWS CloudTrail using an Amazon Redshift account ID\.
 
 Amazon Redshift uses the account IDs in the following table when calling other AWS services\.
 

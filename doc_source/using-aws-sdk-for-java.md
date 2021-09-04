@@ -50,7 +50,7 @@ System.out.println("Created cluster " + createResponse.getClusterIdentifier());
 
    1. Download the AWS SDK for Java and unzip it to the `sdk` subfolder you created\. After you unzip the SDK, you should have four subdirectories in the `sdk` folder, including a `lib` and `third-party` folder\.
 
-   1.  Supply your AWS credentials to the SDK for Java\. For more information, go to [Providing AWS credentials in the AWS SDK for Java](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html) in the *AWS SDK for Java Developer Guide*\. 
+   1.  Supply your AWS credentials to the SDK for Java\. For more information, go to [Providing AWS credentials in the AWS SDK for Java](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/credentials.html) in the *AWS SDK for Java Developer Guide*\. 
 
    1. Ensure that you can run the Java program compiler \(`javac`\) and the Java application launcher \(`java`\) from your working directory\. You can test by running the following commands:
 

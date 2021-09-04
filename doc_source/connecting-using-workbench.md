@@ -4,7 +4,7 @@
 
 ## Install SQL Workbench/J<a name="set-up-sqlworkbench"></a>
 
- The *Amazon Redshift Getting Started* uses SQL Workbench/J\. In this section, we explain in detail how to connect to your cluster by using SQL Workbench/J\. <a name="how-to-set-up-sqlworkbench"></a>
+ The *Amazon Redshift Getting Started Guide* uses SQL Workbench/J\. In this section, we explain in detail how to connect to your cluster by using SQL Workbench/J\. <a name="how-to-set-up-sqlworkbench"></a>
 
 **To install SQL Workbench/J**
 
@@ -51,7 +51,7 @@ Before you perform the steps in this procedure, make sure that your client compu
 
 1. In **Username**, type the name of the master user\.
 
-   If you are following the *Amazon Redshift Getting Started*, type *masteruser*\.
+   If you are following the *Amazon Redshift Getting Started Guide*, type *masteruser*\.
 
 1. In **Password**, type the password associated with the master user account\.
 
@@ -76,7 +76,7 @@ Before you perform the steps in this procedure, make sure that your client compu
    If your connection is successful, a listing of records appears in the **Results** tab\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/connect-cluster-query-result-50.png)
 
-1. Alternatively, if you loaded the sample tables and data from the [Amazon Redshift Getting Started](https://docs.aws.amazon.com/redshift/latest/gsg/), you can test your connection by typing the following query into the **Statement** window:
+1. Alternatively, if you loaded the sample tables and data from the [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/), you can test your connection by typing the following query into the **Statement** window:
 
    ```
    select * from users order by userid limit 100;

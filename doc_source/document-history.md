@@ -4,7 +4,7 @@ The following table describes the important changes in each release of the *Amaz
 
  **API version: 2012\-12\-01** 
 
- **Latest documentation update: December 11, 2020** 
+ **Latest documentation update: August 27, 2021** 
 
 For a list of the changes to the *Amazon Redshift Database Developer Guide*, see [Amazon Redshift Database Developer Guide document history](https://docs.aws.amazon.com/redshift/latest/dg/doc-history.html)\.
 
@@ -14,6 +14,10 @@ For more information about new features, including a list of fixes and the assoc
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Support for authentication profiles with Amazon Redshift drivers](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-with-authentication-profiles.html) | You can now connect to Amazon Redshift with an authentication profile\.  | August 2, 2021 | 
+| [Support for AQUA](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-aqua.html) | AQUA \(Advanced Query Accelerator\) is an analytics query accelerator for Amazon Redshift that uses custom\-designed hardware to speed up queries that scan large datasets\.  | April 14, 2021 | 
+| [Support for cross\-VPC endpoints for Amazon Redshift powered by AWS PrivateLink](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-cross-vpc.html) | You can now use Redshift\-managed VPC endpoints with Amazon Redshift\.  | April 1, 2021 | 
+| [Support for Amazon Redshift query editor enhancements](https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor.html) | You can now use the query editor with enhanced VPC routing, longer query run times, and more cluster node types\.  | February 17, 2021 | 
 | [Support for the console integration with partners](https://docs.aws.amazon.com/redshift/latest/mgmt/partner-integration.html) | You can integrate with partners using the Amazon Redshift console\.  | December 9, 2020 | 
 | [Support for the ability to move clusters between Availability Zones](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-recovery.html) | You can now move RA3 clusters between Availability Zones\.  | December 9, 2020 | 
 | [Support for ra3\.xlplus node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html) | You can now create ra3\.xlplus node types\.  | December 9, 2020 | 

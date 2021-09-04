@@ -265,9 +265,9 @@ If your DC1 cluster is not in a VPC:
 
 1. Create a snapshot of your DC1 cluster\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.
 
-1. Create a VPC, then create a DC2 cluster in the VPC\. For more information, see [Managing clusters in a VPC](managing-clusters-vpc.md)\. 
+1. Create a VPC, or choose an existing VPC in your account\. For more information, see [Managing clusters in a VPC](managing-clusters-vpc.md)\. 
 
-1. Restore your snapshot to the new DC2 cluster in the VPC\. For more information, see [Restoring a cluster from a snapshot](working-with-snapshots.md#working-with-snapshot-restore-cluster-from-snapshot)\. 
+1. Restore your snapshot to a new DC2 cluster in the VPC\. For more information, see [Restoring a cluster from a snapshot](working-with-snapshots.md#working-with-snapshot-restore-cluster-from-snapshot)\. 
 
 If your DC1 cluster is already in a VPC, choose one of the following methods: 
 + Resize your DC1 cluster and change the node type to DC2 as part of the operation\. Your cluster is not available for a period of time during the resize operation\. For more information, see [Resizing clusters in Amazon Redshift](managing-cluster-operations.md#rs-resize-tutorial)\. 
@@ -295,9 +295,9 @@ Amazon Redshift clusters run in Amazon EC2 instances that are configured for the
 
 1. Create a snapshot of your DS2 cluster\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.
 
-1. Create a VPC, then create a DS2 cluster in the VPC\. For more information, see [Managing clusters in a VPC](managing-clusters-vpc.md)\. 
+1. Create a VPC, or choose an existing VPC in your account\. For more information, see [Managing clusters in a VPC](managing-clusters-vpc.md)\. 
 
-1. Restore your snapshot to the new DS2 cluster in the VPC\. For more information, see [Restoring a cluster from a snapshot](working-with-snapshots.md#working-with-snapshot-restore-cluster-from-snapshot)\. 
+1. Restore your snapshot to a new DS2 cluster in the VPC\. For more information, see [Restoring a cluster from a snapshot](working-with-snapshots.md#working-with-snapshot-restore-cluster-from-snapshot)\. 
 
 ## Region and Availability Zone considerations<a name="az-considerations"></a>
 

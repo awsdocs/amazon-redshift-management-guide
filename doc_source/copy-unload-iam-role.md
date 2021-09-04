@@ -1,6 +1,6 @@
 # Authorizing COPY, UNLOAD, CREATE EXTERNAL FUNCTION, and CREATE EXTERNAL SCHEMA operations using IAM roles<a name="copy-unload-iam-role"></a>
 
-You can use the [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) command to load \(or import\) data into Amazon Redshift and the [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) command to unload \(or export\) data from Amazon Redshift\. You can use the CREATE EXTERAL FUNCTION command to create user\-defined functions that invoke functions from AWS Lambda\. 
+You can use the [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) command to load \(or import\) data into Amazon Redshift and the [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) command to unload \(or export\) data from Amazon Redshift\. You can use the CREATE EXTERNAL FUNCTION command to create user\-defined functions that invoke functions from AWS Lambda\. 
 
 When you use Amazon Redshift Spectrum, you use the [CREATE EXTERNAL SCHEMA](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_EXTERNAL_SCHEMA.html) command to specify the location of an Amazon S3 bucket that contains your data\. When you run the COPY, UNLOAD, or CREATE EXTERNAL SCHEMA commands, you provide security credentials\. These credentials authorize your Amazon Redshift cluster to read or write data to and from your target destination, such as an Amazon S3 bucket\. 
 
@@ -114,11 +114,11 @@ The **Manage IAM Roles** panel shows you the status of your cluster IAM role ass
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cluster-iam-roles.png)
 
-#### Using the AWS CLI to manage IAM role associations<a name="w69aac27c24c28c19c15b7c11"></a>
+#### Using the AWS CLI to manage IAM role associations<a name="w90aac27c24c28c19c15b7c11"></a>
 
 You can manage IAM role associations for a cluster with the AWS CLI by using the following approaches\.
 
-##### Associating an IAM role with a cluster using the AWS CLI<a name="w69aac27c24c28c19c15b7c11b5"></a>
+##### Associating an IAM role with a cluster using the AWS CLI<a name="w90aac27c24c28c19c15b7c11b5"></a>
 
 To associate an IAM role with a cluster when the cluster is created, specify the Amazon Resource Name \(ARN\) of the IAM role for the `--iam-role-arns` parameter of the `create-cluster` command\. You can specify up to 10 IAM roles to add when calling the `create-cluster` command\.
 
@@ -145,7 +145,7 @@ aws redshift modify-cluster-iam-roles \
     --add-iam-roles "arn:aws:iam::123456789012:role/RedshiftCopyUnload"
 ```
 
-##### Disassociating an IAM role from a cluster using the AWS CLI<a name="w69aac27c24c28c19c15b7c11b7"></a>
+##### Disassociating an IAM role from a cluster using the AWS CLI<a name="w90aac27c24c28c19c15b7c11b7"></a>
 
 To disassociate an IAM role from a cluster, specify the ARN of the IAM role for the `--remove-iam-roles` parameter of the `modify-cluster-iam-roles` command\. You can specify up to 10 IAM roles to remove when calling the `modify-cluster-iam-roles` command\.
 
@@ -157,7 +157,7 @@ aws redshift modify-cluster-iam-roles \
     --remove-iam-roles "arn:aws:iam::123456789012:role/RedshiftCopyUnload"
 ```
 
-##### Listing IAM role associations for a cluster using the AWS CLI<a name="w69aac27c24c28c19c15b7c11b9"></a>
+##### Listing IAM role associations for a cluster using the AWS CLI<a name="w90aac27c24c28c19c15b7c11b9"></a>
 
 To list all of the IAM roles that are associated with an Amazon Redshift cluster, and the status of the IAM role association, call the `describe-clusters` command\. The ARN for each IAM role associated with the cluster is returned in the `IamRoles` list as shown in the following example output\.
 

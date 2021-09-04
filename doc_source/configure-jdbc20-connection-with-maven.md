@@ -1,4 +1,4 @@
-# Configure your JDBC connection with Apache Maven<a name="configure-jdbc20-connection-with-maven"></a>
+# Configuring your JDBC connection with Apache Maven<a name="configure-jdbc20-connection-with-maven"></a>
 
 Apache Maven is a software project management and comprehension tool\. The AWS SDK for Java supports Apache Maven projects\. For more information, see [Using the SDK with Apache Maven](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-project-maven.html) in the *AWS SDK for Java Developer Guide\.* 
 
@@ -12,7 +12,7 @@ If you use Apache Maven, you can configure and build your projects to use an Ama
 **Note**  
 The URL in the following code example returns an error if used in a browser\. Use this URL only in the context of a Maven project\.
 
-   A\. Amazon Maven Repository\.
+   For an Amazon Maven repository, use the following\.
 
    ```
    <repositories>
@@ -23,7 +23,7 @@ The URL in the following code example returns an error if used in a browser\. Us
    </repositories>
    ```
 
-   To connect using SSL, add the following repository to your `pom.xml` file\.
+   To connect using Secure Sockets Layer \(SSL\), add the following repository to your `pom.xml` file\.
 
    ```
    <repositories>
@@ -34,7 +34,7 @@ The URL in the following code example returns an error if used in a browser\. Us
    </repositories>
    ```
 
-   B\. Maven Central Repository\. Add the following to your `pom.xml` file\.
+   For a Maven Central repository, add the following to your `pom.xml` file\.
 
    ```
    <repositories>
@@ -49,20 +49,21 @@ The URL in the following code example returns an error if used in a browser\. Us
 
    Amazon Redshift offers drivers for tools that are compatible with the JDBC 4\.2 API\.  For information about the functionality supported by these drivers, see [Download an Amazon Redshift JDBC driver](configure-jdbc-connection.md#download-jdbc-driver)\. 
 
-   Add a dependency for the driver from the following list\.
+   Add a dependency for the driver as shown following\. 
 
-   Replace `driver-version` in the following example with your driver version\. For example, `2.0.0.0`\. 
-   + JDBC 4\.2–compatible driver: 
+   Replace `driver-version` in the following example with your driver version, for example `2.0.0.7`\. 
 
-     ```
-     <dependency>
-        <groupId>com.amazon.redshift</groupId>
-        <artifactId>redshift-jdbc42</artifactId>
-        <version>driver-version</version>
-     </dependency>
-     ```
+   For a JDBC 4\.2–compatible driver, use the following\. 
 
-     The class name for this driver is `com.amazon.redshift.jdbc42.Driver`\.
+   ```
+   <dependency>
+      <groupId>com.amazon.redshift</groupId>
+      <artifactId>redshift-jdbc42</artifactId>
+      <version>driver-version</version>
+   </dependency>
+   ```
+
+   The class name for this driver is `com.amazon.redshift.jdbc42.Driver`\.
 
 The Amazon Redshift Maven drivers need the following optional dependencies when you use IAM database authentication\. 
 
@@ -70,21 +71,21 @@ The Amazon Redshift Maven drivers need the following optional dependencies when 
 <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-core</artifactId>
-      <version>1.11.118</version>
+      <version>1.12.23</version>
       <scope>runtime</scope>
       <optional>true</optional>
 </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-redshift</artifactId>
-      <version>1.11.118</version>
+      <version>1.12.23</version>
       <scope>runtime</scope>
       <optional>true</optional>
 </dependency>
 <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-sts</artifactId>
-      <version>1.11.118</version>
+      <version>1.12.23</version>
       <scope>runtime</scope>
       <optional>true</optional>
 </dependency>
