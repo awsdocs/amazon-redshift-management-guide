@@ -43,7 +43,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
    + If you need a new S3 bucket, select **Create New**, and in the **New Bucket Name** box, type a name\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/cluster-audit-logging-new.png)
 
-1. \(Optional\) For **S3 Key Prefix**, enter a prefix to add to the S3 bucket\.
+1. For **S3 Key Prefix**, enter a prefix to add to the S3 bucket\.
 
 1. Choose **Save**\.
 
@@ -69,7 +69,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. For **S3 Bucket**, select an existing bucket or create a new bucket\.
 
-1. \(Optional\) For **S3 Key Prefix**, enter a prefix to add to the S3 bucket\.
+1. For **S3 Key Prefix**, enter a prefix to add to the S3 bucket\.
 
 1. Choose **Save**\.
 
