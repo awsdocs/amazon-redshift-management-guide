@@ -20,3 +20,6 @@ Encryption and signing of data in transit between AWS CLI, SDK, or API clients a
 
 Encryption of data in transit between Amazon Redshift clusters and AQUA:
 + Data is transmitted between AQUA and Amazon Redshift clusters over a TLS\-encrypted channel\. This channel is signed according to the Signature Version 4 Signing Process \(Sigv4\)\. For more information, see [Signature Version 4 Signing Process](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html) in the *AWS General Reference*\.
+
+Encryption of data in transit between Amazon Redshift clusters and Amazon Redshift query editor v2
++ Data is transmitted between query editor v2 and Amazon Redshift clusters over a TLS\-encrypted channel\. 

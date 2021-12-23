@@ -23,7 +23,7 @@ For information about installing and configuring the Java Runtime Environment, g
 ## Connect to your cluster over a JDBC connection in SQL Workbench/J<a name="connect-to-workbench-via-jdbc"></a>
 
 **Important**  
-Before you perform the steps in this procedure, make sure that your client computer or Amazon EC2 instance has the recommended Amazon Redshift JDBC driver\. For links to download the latest drivers, see [Download an Amazon Redshift JDBC driver](configure-jdbc-connection.md#download-jdbc-driver)\. Also, make sure you have configured firewall settings to allow access to your cluster\. For more information, see [Step 4: Authorize access to the cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html)\.
+Before you perform the steps in this procedure, make sure that your client computer or Amazon EC2 instance has the recommended Amazon Redshift JDBC driver\. For links to download the latest drivers, see [Download the Amazon Redshift JDBC driver](configure-jdbc-connection.md#download-jdbc-driver)\. Also, make sure you have configured firewall settings to allow access to your cluster\. For more information, see [Step 4: Authorize access to the cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html)\.
 
 **To use a JDBC connection in SQL Workbench/J**
 
@@ -47,13 +47,13 @@ Before you perform the steps in this procedure, make sure that your client compu
 
 1. In **URL**, copy the JDBC URL from the Amazon Redshift console and paste it here\.
 
-   For more information about finding the JDBC URL, see [Configuring a JDBC driver version 1\.0 connection](configure-jdbc-connection.md)\.
+   For more information about finding the JDBC URL, see [Configuring a JDBC driver version 1\.x connection](configure-jdbc-connection.md)\.
 
-1. In **Username**, type the name of the master user\.
+1. In **Username**, type the name of the admin user\.
 
-   If you are following the *Amazon Redshift Getting Started Guide*, type *masteruser*\.
+   If you are following the *Amazon Redshift Getting Started Guide*, type *adminuser*\.
 
-1. In **Password**, type the password associated with the master user account\.
+1. In **Password**, type the password associated with the admin user account\.
 
 1. Select the **Autocommit** box\. 
 

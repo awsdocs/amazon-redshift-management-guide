@@ -134,11 +134,11 @@ To change the destination AWS Region that you copy snapshots to, first disable t
 
 After a snapshot is copied to the destination AWS Region, it becomes active and available for restoration purposes\.
 
-To copy snapshots for AWS KMS–encrypted clusters to another AWS Region, create a grant for Amazon Redshift to use a KMS customer master key \(CMK\) in the destination AWS Region\. Then choose that grant when you enable copying of snapshots in the source AWS Region\. For more information about configuring snapshot copy grants, see [Copying AWS KMS–encrypted snapshots to another AWS Region](working-with-db-encryption.md#configure-snapshot-copy-grant)\.
+To copy snapshots for AWS KMS–encrypted clusters to another AWS Region, create a grant for Amazon Redshift to use a customer managed key in the destination AWS Region\. Then choose that grant when you enable copying of snapshots in the source AWS Region\. For more information about configuring snapshot copy grants, see [Copying AWS KMS–encrypted snapshots to another AWS Region](working-with-db-encryption.md#configure-snapshot-copy-grant)\.
 
 ## Restoring a cluster from a snapshot<a name="working-with-snapshot-restore-cluster-from-snapshot"></a>
 
-A snapshot contains data from any databases that are running on your cluster\. It also contains information about your cluster, including the number of nodes, node type, and master user name\. If you restore your cluster from a snapshot, Amazon Redshift uses the cluster information to create a new cluster\. Then it restores all the databases from the snapshot data\. 
+A snapshot contains data from any databases that are running on your cluster\. It also contains information about your cluster, including the number of nodes, node type, and admin user name\. If you restore your cluster from a snapshot, Amazon Redshift uses the cluster information to create a new cluster\. Then it restores all the databases from the snapshot data\. 
 
 For the new cluster created from the original snapshot, you can choose the configuration, such as node type and number of nodes\. The cluster is restored in the same AWS Region and a random, system\-chosen Availability Zone, unless you specify another Availability Zone in your request\. When you restore a cluster from a snapshot, you can optionally choose a compatible maintenance track for the new cluster\.
 
@@ -180,19 +180,19 @@ The following steps take a cluster with many nodes and consolidate it into a big
 1.  Run the following command to get the details of our 24\-node `ds2.xlarge` cluster\. 
 
    ```
-   aws redshift describe-clusters --region eu-west-1 -—cluster-identifier mycluster-123456789012
+   aws redshift describe-clusters --region eu-west-1 --cluster-identifier mycluster-123456789012
    ```
 
 1. Run the following command to get the details of the snapshot\. 
 
    ```
-   aws redshift describe-cluster-snapshots --region eu-west-1 -—snapshot-identifier mycluster-snapshot
+   aws redshift describe-cluster-snapshots --region eu-west-1 --snapshot-identifier mycluster-snapshot
    ```
 
 1. Run the following command to describe the options available for this snapshot\. 
 
    ```
-   aws redshift describe-node-configuration-options --snapshot-identifier mycluster-snapshot --region eu-west-1 -—action-type restore-cluster
+   aws redshift describe-node-configuration-options --snapshot-identifier mycluster-snapshot --region eu-west-1 --action-type restore-cluster
    ```
 
    This command returns an option list with recommended node types, number of nodes, and disk utilization for each option\. For this example, the preceding command lists the following possible node configurations\. We choose to restore into a three\-node `ds2.8xlarge` cluster\.
@@ -237,8 +237,10 @@ The following steps take a cluster with many nodes and consolidate it into a big
 1. Run the following command to restore the snapshot into the cluster configuration that we chose\. After this cluster is restored, we have the same content as the source cluster, but the data has been consolidated into three `ds2.8xlarge` nodes\. 
 
    ```
-   aws redshift restore-from-cluster-snapshot --region eu-west-1 --snapshot-identifier mycluster-snapshot -—cluster-identifier mycluster-123456789012-x --node-type ds2.8xlarge --number-of-nodes 3
+   aws redshift restore-from-cluster-snapshot --region eu-west-1 --snapshot-identifier mycluster-snapshot --cluster-identifier mycluster-123456789012-x --node-type ds2.8xlarge --number-of-nodes 3
    ```
+
+If you have reserved nodes, for example DS2 or DC2 reserved nodes, you can upgrade to RA3 reserved nodes\. You can do this when you restore from a snapshot or perform an elastic resize\. You can use the console to guide you through this process\. For more information about upgrading to RA3 nodes, see [Upgrading to RA3 node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-upgrading-to-ra3)\. 
 
 ## Restoring a table from a snapshot<a name="working-with-snapshot-restore-table-from-snapshot"></a>
 
@@ -248,7 +250,7 @@ The new table name cannot be the name of an existing table\. To replace an exist
 
 The target table is created using the source table's column definitions, table attributes, and column attributes except for foreign keys\. To prevent conflicts due to dependencies, the target table doesn't inherit foreign keys from the source table\. Any dependencies, such as views or permissions granted on the source table, are not applied to the target table\. 
 
-If the owner of the source table exists, then that user is the owner of the restored table, provided that the user has sufficient permissions to become the owner of a relation in the specified database and schema\. Otherwise, the restored table is owned by the master user that was created when the cluster was launched\.
+If the owner of the source table exists, then that user is the owner of the restored table, provided that the user has sufficient permissions to become the owner of a relation in the specified database and schema\. Otherwise, the restored table is owned by the admin user that was created when the cluster was launched\.
 
 The restored table returns to the state it was in at the time the backup was taken\. This includes transaction visibility rules defined by the Amazon Redshift adherence to [serializable isolation](https://docs.aws.amazon.com/redshift/latest/dg/c_serial_isolation.html), meaning that data will be immediately visible to in flight transactions started after the backup\.
 

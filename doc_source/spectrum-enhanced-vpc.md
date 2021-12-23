@@ -89,7 +89,7 @@ By default, CloudTrail tracks only bucket\-level actions\. To track object\-leve
 
 **Amazon S3 Server Access Logging** 
 
-Server access logging provides detailed records for the requests that are made to a bucket\. Access log information can be useful in security and access audits\. For more information, see [How to Enable Server Access Logging](https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerLogs.html#server-access-logging-overview) in the *Amazon Simple Storage Service Developer Guide\.*
+Server access logging provides detailed records for the requests that are made to a bucket\. Access log information can be useful in security and access audits\. For more information, see [How to Enable Server Access Logging](https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerLogs.html#server-access-logging-overview) in the *Amazon Simple Storage Service User Guide\.*
 
 For more information, see the AWS Security blog post [How to Use Bucket Policies and Apply Defense\-in\-Depth to Help Secure Your Amazon S3 Data](https://aws.amazon.com/blogs/security/how-to-use-bucket-policies-and-apply-defense-in-depth-to-help-secure-your-amazon-s3-data/)\. 
 

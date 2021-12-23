@@ -81,13 +81,13 @@ You might be restricted to fewer nodes depending on the quota that is applied to
 
 | Node size | vCPU | RAM \(GiB\) | Default slices per node | Managed storage quota per node | Node range with create cluster  | Total managed storage capacity | 
 | --- | --- | --- | --- | --- | --- | --- | 
-| ra3\.xlplus | 4 | 32 | 2 | 32 TB1 | 2–162 | 1024 TB2,4 | 
+| ra3\.xlplus | 4 | 32 | 2 | 32 TB1 | 1–162 | 1024 TB2,4 | 
 | ra3\.4xlarge | 12 | 96 | 4 | 128 TB1 | 2–323 | 8192 TB3,4 | 
 | ra3\.16xlarge | 48 | 384 | 16 | 128 TB1 | 2–128 | 16,384 TB4 | 
 
 1 The storage quota for Amazon Redshift managed storage\. 
 
-2 You can create a cluster with the ra3\.xlplus node type that has up to 16 nodes\. You can resize it with elastic resize to a maximum of 32 nodes\. 
+2 You can create a cluster with the ra3\.xlplus node type that has up to 16 nodes\. For single\-node clusters, only classic resize is supported\. For multiple\-node clusters, you can resize with elastic resize to a maximum of 32 nodes\. 
 
 3 You can create cluster with the ra3\.4xlarge or ra3\.16xlarge node type with up to 16 nodes\. You can resize it with elastic resize to a maximum of 64 nodes\. 
 
@@ -187,6 +187,17 @@ You can use ra3\.xlplus node types only with cluster version 1\.0\.21262 or late
 Make sure that you use the new Amazon Redshift console when working with RA3 node types\. The original console doesn't support all RA3 operations\.   
 In addition, to use RA3 node types with Amazon Redshift operations that use the maintenance track, the maintenance track value must be set to a cluster version that supports RA3\. For more information about maintenance tracks, see [Choosing cluster maintenance tracks](#rs-mgmt-maintenance-tracks)\. 
 
+Consider the following when using single\-node RA3 node types\.
++ AQUA is supported\.
++ Datasharing producers and consumers are supported\.
++ To change node types, only classic resize is supported\. Changing the node type with elastic resize or snapshot restore is not supported\. The following scenarios are supported: 
+  + Classic resize of a 1\-node ds2\.xlarge to a 1\-node ra3\.xlplus, and vice versa\.
+  + Classic resize of a 1\-node ds2\.xlarge to a multiple\-node ra3\.xlplus, and vice versa\.
+  + Classic resize of a multiple\-node ds2\.xlarge to a 1\-node ra3\.xlplus, and vice versa\.
+  + Classic resize of a 1\-node dc2\.xlarge to a 1\-node ra3\.xlplus, and vice versa\.
+  + Classic resize of a 1\-node dc2\.xlarge to a multiple\-node ra3\.xlplus, and vice versa\.
+  + Classic resize of a multiple\-node dc2\.xlarge to a 1\-node ra3\.xlplus, and vice versa\.
+
 ### Working with Amazon Redshift managed storage<a name="rs-managed-storage"></a>
 
 With Amazon Redshift managed storage, you can store and process all your data in Amazon Redshift while getting more flexibility to scale compute and storage capacity separately\. You continue to ingest data with the COPY or INSERT command\.   To optimize performance and manage automatic data placement across tiers of storage, Amazon Redshift takes advantage of optimizations such as data block temperature, data block age, and workload patterns\. When needed, Amazon Redshift scales storage automatically to Amazon S3 without requiring any manual action\.  
@@ -223,8 +234,8 @@ The RA3 node types are available only in the following AWS Regions:
 + Europe \(Paris\) Region \(eu\-west\-3\)
 + Europe \(Stockholm\) Region \(eu\-north\-1\) 
 + South America \(São Paulo\) Region \(sa\-east\-1\)
-+ AWS GovCloud \(US\-East\) \(us\-gov\-east\-1\) – Only ra3\.4xlarge and ra3\.16xlarge node types are available\.
-+ AWS GovCloud \(US\-West\) \(us\-gov\-west\-1\) – Only ra3\.4xlarge and ra3\.16xlarge node types are available\.
++ AWS GovCloud \(US\-East\) \(us\-gov\-east\-1\)
++ AWS GovCloud \(US\-West\) \(us\-gov\-west\-1\)
 
 ## Upgrading to RA3 node types<a name="rs-upgrading-to-ra3"></a>
 
@@ -234,24 +245,51 @@ To upgrade your existing node type to RA3, you have the following options to cha
   To keep the same endpoint for your applications and users, you can rename the new RA3 cluster with the same name as the original DS2 or DC2 cluster\. To rename the cluster, modify the cluster in the Amazon Redshift console or `ModifyCluster` API operation\. For more information, see [Renaming clusters](managing-cluster-operations.md#rs-mgmt-rename-cluster) or [`ModifyCluster` API operation](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ModifyCluster.html) in the *Amazon Redshift API Reference*\.
 + Elastic resize – resize the cluster using elastic resize\. When you use elastic resize to change node type, Amazon Redshift automatically creates a snapshot, creates a new cluster, deletes the old cluster, and renames the new cluster\. The elastic resize operation can be run on\-demand or can be scheduled to run at a future time\. You can quickly upgrade your existing DS2 or DC2 node type clusters to RA3 with elastic resize\. For more information, see [Elastic resize](managing-cluster-operations.md#elastic-resize)\. 
 
-The following table shows recommendations when upgrading to RA3 node types\. 
+The following table shows recommendations when upgrading to RA3 node types\. \(These recommendations also apply to reserved nodes\.\)
 
 
-| Existing node type | Range of existing number of nodes | Recommended new node type | Upgrade action | 
+| Existing node type | Existing number of nodes | Recommended new node type | Upgrade action | 
 | --- | --- | --- | --- | 
-| ds2\.xlarge | 1–7 | ra3\.xlplus | Create 2 nodes of ra3\.xlplus for every 3 nodes of ds2\.xlarge\.  | 
-| ds2\.xlarge | 8–128 | ra3\.4xlarge | Create 1 node of ra3\.4xlarge for every 4 nodes of ds2\.xlarge\. | 
-| ds2\.8xlarge | 2–15 | ra3\.4xlarge | Create 2 nodes of ra3\.4xlarge for every 1 node of ds2\.8xlarge\. | 
-| ds2\.8xlarge | 16–128 | ra3\.16xlarge | Create 1 node of ra3\.16xlarge for every 2 nodes of ds2\.8xlarge\. | 
+| ds2\.xlarge | 1 | ra3\.xlplus | Create a 1\-node ra3\.xlplus cluster1\. | 
+| ds2\.xlarge | 2 | ra3\.xlplus | Create a 2\-node ra3\.xlplus cluster1\. | 
+| ds2\.xlarge | 3 | ra3\.xlplus | Create a 2\-node ra3\.xlplus cluster1\. | 
+| ds2\.xlarge | 4 | ra3\.xlplus | Create a 3\-node ra3\.xlplus cluster1\. | 
+| ds2\.xlarge | 5 | ra3\.xlplus | Create a 4\-node ra3\.xlplus cluster1\. | 
+| ds2\.xlarge | 6 | ra3\.xlplus | Create a 4\-node ra3\.xlplus cluster1\. | 
+| ds2\.xlarge | 7 | ra3\.xlplus | Create a 5\-node ra3\.xlplus cluster1\. | 
+| ds2\.xlarge | 8 | ra3\.4xlarge | Create a 2\-node ra3\.4xlarge cluster1\. | 
+| ds2\.xlarge | 9 | ra3\.4xlarge | Create a 3\-node ra3\.4xlarge cluster1\. | 
+| ds2\.xlarge | 10 | ra3\.4xlarge | Create a 3\-node ra3\.4xlarge cluster1\. | 
+| ds2\.xlarge | 11\-128 | ra3\.4xlarge | Create 1 node of ra3\.4xlarge for every 4 nodes of ds2\.xlarge1\. | 
+| ds2\.8xlarge | 2–15 | ra3\.4xlarge | Create 2 nodes of ra3\.4xlarge for every 1 node of ds2\.8xlarge1\. | 
+| ds2\.8xlarge | 16–128 | ra3\.16xlarge | Create 1 node of ra3\.16xlarge for every 2 nodes of ds2\.8xlarge1\. | 
 | dc2\.8xlarge | 2–15 | ra3\.4xlarge | Create 2 nodes of ra3\.4xlarge for every 1 node of dc2\.8xlarge1\.  | 
 | dc2\.8xlarge | 16–128 | ra3\.16xlarge | Create 1 node of ra3\.16xlarge for every 2 nodes of dc2\.8xlarge1\. | 
 | dc2\.large | 1–4 | none | Keep existing dc2\.large cluster\.  | 
 | dc2\.large | 4–15 | ra3\.xlplus | Create 3 nodes of ra3\.xlplus for every 8 nodes of dc2\.large1\.  | 
-| dc2\.large | 16–128 | ra3\.4xlarge | Create 1 node of ra3\.4xlarge for every 8 nodes of dc2\.large1\. | 
+| dc2\.large | 16–32 | ra3\.4xlarge | Create 1 node of ra3\.4xlarge for every 8 nodes of dc2\.large1,2\. | 
 
 1Extra nodes might be needed depending on workload requirements\. Add or remove nodes based on the compute requirements of your required query performance\. 
 
-The minimum number of nodes for RA3 clusters is 2 nodes\. Take this into consideration when creating an RA3 cluster\.
+2Clusters with the dc2\.large node type are limited to 32 nodes\.
+
+The minimum number of nodes for some RA3 node types is 2 nodes\. Take this into consideration when creating an RA3 cluster\.
+
+### Upgrade DS2 reserved nodes to RA3 reserved nodes during elastic resize or snapshot restore<a name="rs-upgrading-to-ra3-reserved-nodes"></a>
+
+If you have DS2 reserved nodes, you can upgrade with the RA3 reserved\-node upgrade feature, using the Amazon Redshift console or the AWS CLI\. On the console, there are a couple ways you can do this\.
+
+One way that you can upgrade DS2 reserved nodes to RA3 is when you perform an elastic resize\. If you have reserved nodes and select RA3 nodes, the console walks you through the reserved\-node upgrade process\. From a technical standpoint, elastic resize works the same for both reserved nodes and nodes that aren't reserved\. While you configure the elastic resize, note that if you change the cluster size from the size recommended, you can't select RA3 reserved\-node upgrade\. You can still upgrade DS2 reserved nodes to RA3, but the upgrade selection isn't available on the console, and the resize doesn't include reserved\-node upgrade as part of the process\.
+
+After the resize completes, the source DS2 reserved\-node cluster may still appear on the console for about a day\. You aren't billed for it\.
+
+ After you perform an elastic resize with the RA3 reserved\-node upgrade feature, follow the progress by viewing the pertinent messages in **Events**, available on the **Amazon Redshift dashboard**\. You receive an event notification for the resize, and another for the reserved\-node upgrade\. For information about working with events, see [Amazon Redshift events](working-with-events.md)\. 
+
+The other way that you can use the RA3 reserved\-node upgrade feature is when you restore from a snapshot\. If you select the RA3 node type, and you have DS2 reserved nodes, you can select the RA3 reserved\-node upgrade feature at that point\. When you restore from a snapshot, it's restored to an RA3 reserved\-node cluster\. As mentioned previously, if you choose a cluster size other than the recommended size, the RA3 reserved\-node upgrade selection isn't available on the console\.
+
+For more information about resizing your cluster and upgrading nodes, see [Details of resizing a cluster](managing-cluster-operations.md#cluster-resize-intro)\. There, you can find a detailed description of the process and also answers about what happens to the cluster and to the data when you resize\. For more detail about the steps in the elastic\-resize process, see [Elastic resize](managing-cluster-operations.md#elastic-resize)\. For more information about restoring from a snapshot, see [Restoring a cluster from a snapshot](working-with-snapshots.md#working-with-snapshot-restore-cluster-from-snapshot)\.
+
+If you have more questions about upgrading reserved nodes to RA3, for instance about upgrading DC2 reserved nodes to RA3, contact AWS Support\. For information about pricing of on\-demand and reserved nodes, see [Amazon Redshift pricing](https://aws.amazon.com/redshift/pricing/)\.
 
 If you have already purchased DS2 reserved nodes, contact AWS for help with converting DS2 reserved nodes to RA3 reserved nodes\. To contact AWS for more information, see [Amazon Redshift RA3 instances with managed storage](https://pages.awscloud.com/Redshift_RA3instances.html)\. 
 
@@ -468,12 +506,12 @@ Although the console displays this information in one field, it's two parameters
 
 #### Original console<a name="cluster-engine-version-console-originalconsole"></a>
 
-You can determine the Amazon Redshift engine and database versions for your cluster in the **Cluster Version** field in the console\. The first two sections of the number are the cluster version, and the last section is the specific revision number of the database in the cluster\. In the following example, the cluster version is 1\.0 and the database revision number is 884\. 
+You can determine the Amazon Redshift engine and database versions for your cluster in **Cluster Version** on the console\. The first two sections of the number are the cluster version, and the last section is the specific revision number of the database in the cluster\. In the following example, the cluster version is 1\.0 and the database revision number is 884\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-config-cluster-version.png)
 
 **Note**  
- Although the console displays this information in one field, it’s two parameters in the Amazon Redshift API, `ClusterVersion` and `ClusterRevisionNumber`\. For more information, see [Cluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_Cluster.html) in the *Amazon Redshift API Reference*\. 
+Although the console displays this information in one field, it's two parameters in the Amazon Redshift API, `ClusterVersion` and `ClusterRevisionNumber`\. For more information, see [Cluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_Cluster.html) in the *Amazon Redshift API Reference*\. 
 
 To specify whether to automatically upgrade the Amazon Redshift engine in your cluster if a new version of the engine becomes available, use the setting **Allow version upgrade**\. This setting doesn't affect the database version upgrades, which are applied during the maintenance window that you specify for your cluster\. Amazon Redshift engine upgrades are *major version upgrades*, and Amazon Redshift database upgrades are *minor version upgrades*\. You can disable automatic version upgrades for major versions only\. For more information about maintenance windows for minor version upgrades, see [Maintenance windows](#rs-maintenance-windows)\. 
 

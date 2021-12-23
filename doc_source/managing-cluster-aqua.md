@@ -13,24 +13,29 @@ AQUA supports authentication, encryption, isolation, and compliance to keep your
 
 For more information about AQUA, see [When does Amazon Redshift use AQUA to run queries?](managing-cluster-aqua-understanding.md)
 
-AQUA is available on clusters with ra3\.16xlarge and ra3\.4xlarge node types\. 
+AQUA is available on clusters with ra3\.xlplus, ra3\.4xlarge, and ra3\.16xlarge node types\. 
 
 AQUA is available with release version 1\.0\.24421 or later in the following AWS Regions: 
 + US East \(N\. Virginia\) Region \(us\-east\-1\)
 + US East \(Ohio\) Region \(us\-east\-2\)
++ US West \(N\. California\) Region \(us\-west\-1\)
 + US West \(Oregon\) Region \(us\-west\-2\) 
++ Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
++ Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
 + Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
 + Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
 + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
 + Europe \(Frankfurt\) Region \(eu\-central\-1\)
 + Europe \(Ireland\) Region \(eu\-west\-1\)
++ Europe \(London\) Region \(eu\-west\-2\)
++ Europe \(Stockholm\) Region \(eu\-north\-1\)
 
 You can activate and manage AQUA for Amazon Redshift clusters on the Amazon Redshift console, with the AWS CLI, or with Amazon Redshift API operations\. You can do so when you create a cluster,  restore a cluster from a snapshot, or modify an existing cluster\. When you activate an existing cluster, make sure to reboot your cluster for the change to take effect\. 
 
 To activate AQUA on the Amazon Redshift console, navigate to your cluster and choose **Configure AQUA** for **Actions**\. To view a previously defined AQUA configuration for your cluster, navigate to your cluster, and view the **General information** section, **AQUA** information\. 
 
 You have the following choices when you configure AQUA:
-+ **Turn on** – You choose to activate AQUA\. AQUA can only be activated in certain AWS Regions and for ra3\.4xlarge and ra3\.16xlarge node types\. 
++ **Turn on** – You choose to activate AQUA\. AQUA can only be activated in certain AWS Regions and for ra3\.xlplus, ra3\.4xlarge, and ra3\.16xlarge node types\. 
 + **Turn off** – You choose not to activate AQUA\. 
 + **Automatic** – Amazon Redshift determines whether to use AQUA\. This is the default\. Currently, AQUA isn't activated with this option, but this behavior is subject to change\. 
 

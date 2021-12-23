@@ -1,6 +1,6 @@
 # Building the connection URL<a name="jdbc20-build-connection-url"></a>
 
-Use the connection URL to supply connection information to the data store that you are accessing\. The following is the format of the connection URL for the Amazon Redshift JDBC driver version 2\.0\. Here, \[Host\] the endpoint of the Amazon Redshift server and \[Port\] is the number of the Transmission Control Protocol \(TCP\) port that the server uses to listen for client requests\.
+Use the connection URL to supply connection information to the data store that you are accessing\. The following is the format of the connection URL for the Amazon Redshift JDBC driver version 2\.1\. Here, \[Host\] the endpoint of the Amazon Redshift server and \[Port\] is the number of the Transmission Control Protocol \(TCP\) port that the server uses to listen for client requests\.
 
 ```
 jdbc:redshift://[Host]:[Port]
@@ -45,4 +45,4 @@ jdbc:redshift://redshift.amazonaws.com:5439/dev;DSILogLevel=6;LogPath=/home/user
 
 Don't duplicate properties in the connection URL\.
 
-For a complete list of the configuration options that you can specify, see [Options for JDBC driver version 2\.0 configuration](jdbc20-configuration-options.md)\. 
+For a complete list of the configuration options that you can specify, see [Options for JDBC driver version 2\.1 configuration](jdbc20-configuration-options.md)\. 

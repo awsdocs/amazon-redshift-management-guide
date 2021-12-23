@@ -4,12 +4,20 @@ Amazon Redshift supports Secure Sockets Layer \(SSL\) connections to encrypt dat
 
 ## Connect using SSL<a name="connect-using-ssl"></a>
 
-To support SSL connections, Amazon Redshift creates and installs an [AWS Certificate Manager \(ACM\)](https://aws.amazon.com/certificate-manager/) issued SSL certificate on each cluster\. You can find the set of Certificate Authorities that you must trust to properly support SSL at [https://s3\.amazonaws\.com/redshift\-downloads/redshift\-ca\-bundle\.crt](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt)\. If the certificate bundle doesn't download, open the context \(right\-click\) menu for the link, and then choose **Save link as\.\.\.**\. 
+To support SSL connections, Amazon Redshift creates and installs an [AWS Certificate Manager \(ACM\)](https://aws.amazon.com/certificate-manager/) issued SSL certificate on each cluster\. ACM certificates are publicly trusted by most operating systems, web browsers, and clients\. You might need to download a certificate bundle if your SQL clients or applications connect to Amazon Redshift using SSL with the `sslMode` connection option set to `require`, `verify-ca`, or `verify-full`\. If your client needs a certificate, Amazon Redshift provides a bundle certificate as follows:
++ Download the bundle from [https://s3\.amazonaws\.com/redshift\-downloads/amazon\-trust\-ca\-bundle\.crt](https://s3.amazonaws.com/redshift-downloads/amazon-trust-ca-bundle.crt)\. 
+  + The expected MD5 checksum number is 418dea9b6d5d5de7a8f1ac42e164cdcf\.
+  + The sha256 checksum number is 36dba8e4b8041cd14b9d60158893963301bcbb92e1c456847784de2acb5bd550\.
+
+  Don't use the previous certificate bundle that was located at `https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt`\.  
++  In the China AWS Region, download the bundle from [https://s3\.cn\-north\-1\.amazonaws\.com\.cn/redshift\-downloads\-cn/amazon\-trust\-ca\-bundle\.crt](https://s3.cn-north-1.amazonaws.com.cn/redshift-downloads-cn/amazon-trust-ca-bundle.crt)\. 
+  + The expected MD5 checksum number is 418dea9b6d5d5de7a8f1ac42e164cdcf\.
+  + The sha256 checksum number is 36dba8e4b8041cd14b9d60158893963301bcbb92e1c456847784de2acb5bd550\.
+
+  Don't use the previous certificate bundles that were located at `https://s3.cn-north-1.amazonaws.com.cn/redshift-downloads-cn/redshift-ca-bundle.crt`  and `https://s3.cn-north-1.amazonaws.com.cn/redshift-downloads-cn/redshift-ssl-ca-cert.pem`
 
 **Important**  
-Amazon Redshift has changed the way that SSL certificates are managed\. You might need to update your current trust root CA certificates to continue to connect to your clusters using SSL\. For more information, see [Transitioning to ACM certificates for SSL connections](connecting-transitioning-to-acm-certs.md)\.  
-In the China Regions on January 5, 2021, Amazon Redshift is replacing the SSL certificates on your clusters with AWS Certificate Manager \(ACM\) issued certificates\. This change affects you if your SQL clients or applications connect to Amazon Redshift using SSL with the `sslMode` connection option set to `require`, `verify-ca`, or `verify-full`\. The previous certificate bundle \([https://s3\.cn\-north\-1\.amazonaws\.com\.cn/redshift\-downloads\-cn/redshift\-ssl\-ca\-cert\.pem](https://s3.cn-north-1.amazonaws.com.cn/redshift-downloads-cn/redshift-ssl-ca-cert.pem)\) will not work after the migration\.   
-Use the updated bundle from [https://s3\.amazonaws\.com/redshift\-downloads/redshift\-ca\-bundle\.crt](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt)\.  The expected MD5 checksum number is a3081eb4a7448982df1c23cd6aec9a87\. The sha256 checksum is df6aeb84a2e65feb00bffb72a786d69000916c90218005cc3d92800226c06da8\. 
+Amazon Redshift has changed the way that SSL certificates are managed\. You might need to update your current trust root CA certificates to continue to connect to your clusters using SSL\. For more information, see [Transitioning to ACM certificates for SSL connections](connecting-transitioning-to-acm-certs.md)\.
 
 By default, cluster databases accept a connection whether it uses SSL or not\. To configure your cluster to require an SSL connection, set the `require_SSL` parameter to `true` in the parameter group that is associated with the cluster\. 
 
@@ -26,9 +34,7 @@ To enable FIPS\-compliant SSL mode, set both the `use_fips_ssl` parameter and th
 
 If you connect using the latest Amazon Redshift ODBC drivers \(version 1\.3\.7\.1000 or later\), you can skip this section\. To download the latest drivers, see [Configuring an ODBC connection](configure-odbc-connection.md)\. 
 
-You might need to update your current trust root CA certificates to continue to connect to your clusters using SSL\. For more information, see [Transitioning to ACM certificates for SSL connections](connecting-transitioning-to-acm-certs.md)\.
-
-The Amazon Redshift certificate authority bundle is stored at [https://s3\.amazonaws\.com/redshift\-downloads/redshift\-ca\-bundle\.crt](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt)
+You might need to update your current trust root CA certificates to continue to connect to your clusters using SSL\. For more information, see [Connect using SSL](#connect-using-ssl)\.
 
 You can verify that the certificate that you downloaded matches the expected MD5 checksum number\. To do this, you can use the Md5sum program on Linux operating systems, or another tool on Windows and macOS X operating systems\.
 
@@ -60,7 +66,7 @@ You can determine whether SSL is used and server certificates are verified in a 
 
  If you want to connect to your cluster using SSL and the server certificate, first download the certificate to your client computer or Amazon EC2 instance\. Then configure the ODBC DSN\. 
 
-1.  Download the [Amazon Redshift certificate authority bundle](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt) to your client computer at the `lib` folder in your driver installation directory, and save the file as `root.crt`\. 
+1.  Download the Amazon Redshift certificate authority bundle to your client computer at the `lib` folder in your driver installation directory, and save the file as `root.crt`\. For download information, see [Connect using SSL](#connect-using-ssl)\.
 
 1.  Open **ODBC Data Source Administrator**, and add or edit the system DSN entry for your ODBC connection\. For **SSL Mode**, select `verify-full` unless you use a DNS alias\. If you use a DNS alias, select `verify-ca`\. Then choose **Save**\. 
 
@@ -75,7 +81,7 @@ SSL provides one layer of security by encrypting data that moves between your cl
 If you connect using the latest Amazon Redshift JDBC drivers \(version 1\.2\.8\.1005 or later\), you can skip this section\. To download the latest drivers, see [Configure a JDBC connection](https://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html)\. 
 
 **Important**  
-Amazon Redshift has changed the way that SSL certificates are managed\. You might need to update your current trust root CA certificates to continue to connect to your clusters using SSL\. For more information, see [Transitioning to ACM certificates for SSL connections](connecting-transitioning-to-acm-certs.md)\.
+Amazon Redshift has changed the way that SSL certificates are managed\. You might need to update your current trust root CA certificates to continue to connect to your clusters using SSL\. For more information, see [Connect using SSL](#connect-using-ssl)\.
 
 **To connect using trust CA certificates**
 

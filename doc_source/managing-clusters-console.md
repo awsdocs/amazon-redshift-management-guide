@@ -95,7 +95,7 @@ Choose a cluster parameter group to associate with the cluster\. If you don't ch
 Choose whether you want to encrypt all data within the cluster and its snapshots\. If you leave the default setting, **None**, encryption is not enabled\. If you want to enable encryption, choose whether you want to use AWS Key Management Service \(AWS KMS\) or a hardware security module \(HSM\), and then configure the related settings\. For more information about encryption in Amazon Redshift, see [Amazon Redshift database encryption](working-with-db-encryption.md)\.  
 + **KMS**
 
-  Choose **KMS** if you want to enable encryption and use AWS KMS to manage your encryption key\. In **Master Key**, choose **\(default\) aws/redshift** to use a default customer master key \(CMK\) or choose another key from your AWS account\.
+  Choose **KMS** if you want to enable encryption and use AWS KMS to manage your encryption key\. In **Master Key**, choose **\(default\) aws/redshift** to use a default customer managed key or choose another key from your AWS account\.
 **Note**  
 If you want to use a key from another AWS account, choose **Enter a key ARN** from **Master Key**\. Then type the Amazon Resource Name \(ARN\) for the key to use\. You must have permission to use the key\. For more information about access to keys in AWS KMS, see [Controlling access to your keys](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) in the *AWS Key Management Service Developer Guide*\.
 
@@ -212,7 +212,7 @@ Choose a cluster type\. When you do, the maximum number of compute nodes for the
 Choose whether you want to encrypt all data within the cluster and its snapshots\. If you leave the default setting, **None**, encryption is not enabled\.  If you want to enable encryption, choose whether you want to use AWS Key Management Service \(AWS KMS\) or a hardware security module \(HSM\), and then configure the related settings\. For more information about encryption in Amazon Redshift, see [Amazon Redshift database encryption](working-with-db-encryption.md)\.  
       + **KMS**
 
-        Choose **KMS** if you want to enable encryption and use AWS KMS to manage your encryption key\. In **Master Key**, choose **\(default\) aws/redshift** to use a default customer master key \(CMK\) or choose another key from your AWS account\.
+        Choose **KMS** if you want to enable encryption and use AWS KMS to manage your encryption key\. In **Master Key**, choose **\(default\) aws/redshift** to use a default customer managed key or choose another key from your AWS account\.
 **Note**  
 If you want to use a key from another AWS account, choose **Enter a key ARN** from **Master Key**\. Then type the Amazon Resource Name \(ARN\) for the key to use\. You must have permission to use the key\. For more information about access to keys in AWS KMS, see [Controlling access to your keys](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) in the *AWS Key Management Service Developer Guide*\.
 
@@ -509,6 +509,8 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
    You can cancel a classic resize before it's complete by choosing **cancel resize** on the cluster list\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-cancel-resize.png)
+
+If you have reserved nodes, for example DS2 reserved nodes, you can upgrade to RA3 reserved nodes\. You can do this when you use the console to restore from a snapshot or to perform an elastic resize\. You can use the console to guide you through this process\. For more information about upgrading to RA3 nodes, see [Upgrading to RA3 node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-upgrading-to-ra3)\. 
 
 ## Upgrading the release version of a cluster<a name="upgrade-release-version-cluster"></a>
 

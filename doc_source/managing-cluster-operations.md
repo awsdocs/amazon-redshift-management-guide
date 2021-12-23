@@ -26,7 +26,7 @@ You can resize \(both elastic resize and classic resize\) your cluster on a sche
 
 ### Elastic resize<a name="elastic-resize"></a>
 
-Elastic resize is the fastest method to resize a cluster\. You can use elastic resize to add or remove nodes and change node types for an existing cluster\. 
+Elastic resize is the fastest method to resize a cluster\. You can use elastic resize to add or remove nodes and change node types\.
 
 When a cluster is resized using elastic resize with the same node type, it automatically redistributes the data to the new nodes\. Because it doesn't create a new cluster in this scenario, the elastic resize operation completes quickly, usually in a few minutes\. You might notice a slight increase in execution time for some queries while the data is redistributed in the background\. An elastic resize operation occurs in the following stages: 
 
@@ -47,6 +47,8 @@ When a cluster is resized using elastic resize with the same node type, it autom
 When a cluster is resized using elastic resize to change the node type, a snapshot is created\. A new cluster is provisioned for you with the latest data from the snapshot\. The cluster is temporarily unavailable for writes when the data is transferred to the new cluster\. It is available for reads\. The new cluster is populated in the background\. After the new cluster is fully populated, queries should reach optimal performance\. When the resize process nears completion, Amazon Redshift updates the endpoint of the new cluster, and all connections to the original cluster are terminated\.
 
 After the resize completes, Amazon Redshift sends an event notification\. You can connect to the new cluster and resume running read and write queries\.
+
+If you have reserved nodes, for example DS2 reserved nodes, you can upgrade to RA3 reserved nodes\. You can do this when you use the console to restore from a snapshot or to perform an elastic resize\. You can use the console to guide you through this process\. For more information about upgrading to RA3 nodes, see [Upgrading to RA3 node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-upgrading-to-ra3)\. 
 
 **Note**  
 A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.

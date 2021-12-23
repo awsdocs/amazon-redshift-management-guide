@@ -12,7 +12,7 @@ You provide the configuration information to the driver in the connection URL\. 
 
 Only turn on logging long enough to capture an issue\. Logging decreases performance and can consume a large quantity of disk space\. 
 
-Set the LogLevel key in your connection URL to turn on logging and specify the amount of detail included in log files\. The following table lists the logging levels provided by the Amazon Redshift JDBC driver version 2\.0, in order from least verbose to most verbose\. 
+Set the LogLevel key in your connection URL to turn on logging and specify the amount of detail included in log files\. The following table lists the logging levels provided by the Amazon Redshift JDBC driver version 2\.1, in order from least verbose to most verbose\. 
 
 
 | LogLevel value | Description | 

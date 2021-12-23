@@ -1,6 +1,6 @@
-# Options for JDBC driver version 2\.0 configuration<a name="jdbc20-configuration-options"></a>
+# Options for JDBC driver version 2\.1 configuration<a name="jdbc20-configuration-options"></a>
 
-Following, you can find descriptions for the options that you can specify for version 2\.0 of the Amazon Redshift JDBC driver\. 
+Following, you can find descriptions for the options that you can specify for version 2\.1 of the Amazon Redshift JDBC driver\. 
 
 You can set configuration properties using the connection URL\. For more information, see [Building the connection URL](jdbc20-build-connection-url.md)\.
 
@@ -9,20 +9,26 @@ You can set configuration properties using the connection URL\. For more informa
 + [AllowDBUserOverride](#jdbc20-allowdbuseroverride-option)
 + [App\_ID](#jdbc20-app-id-option)
 + [App\_Name](#jdbc20-app-name-option)
++ [ApplicationName](#jdbc20-applicationname-option)
 + [AuthProfile](#jdbc20-authprofile-option)
 + [AutoCreate](#jdbc20-autocreate-option)
 + [Client\_ID](#jdbc20-client_id-option)
 + [Client\_Secret](#jdbc20-client_secret-option)
 + [ClusterID](#jdbc20-clusterid-option)
++ [connectTimeout](#jdbc20-connecttimeout-option)
 + [databaseMetadataCurrentDbOnly](#jdbc20-databasemetadatacurrentdbonly-option)
 + [DbUser](#jdbc20-dbuser-option)
 + [DbGroups](#jdbc20-dbgroups-option)
++ [DBNAME](#jdbc20-dbname-option)
 + [defaultRowFetchSize](#jdbc20-defaultrowfetchsize-option)
 + [DisableIsValidQuery](#jdbc20-disableisvalidquery-option)
++ [enableFetchReadAndProcessBuffers](#jdbc20-enablefetchreadandprocessbuffers-option)
 + [enableFetchRingBuffer](#jdbc20-enablefetchringbuffer-option)
 + [enableMultiSqlSupport](#jdbc20-enablemultisqlsupport-option)
 + [fetchRingBufferSize](#jdbc20-fetchringbuffersize-option)
 + [ForceLowercase](#jdbc20-forcelowercase-option)
++ [groupFederation](#jdbc20-groupFederation-option)
++ [HOST](#jdbc20-host-option)
 + [IAMDisableCache](#jdbc20-iamdisablecache-option)
 + [IAMDuration](#jdbc20-iamduration-option)
 + [IdP\_Host](#jdbc20-idp_host-option)
@@ -32,25 +38,28 @@ You can set configuration properties using the connection URL\. For more informa
 + [IniFile](#jdbc20-inifile-option)
 + [IniSection](#jdbc20-inisection-option)
 + [Login\_URL](#jdbc20-login_url-option)
-+ [LoginTimeout](#jdbc20-logintimeout-option)
++ [loginTimeout](#jdbc20-logintimeout-option)
 + [loginToRp](#jdbc20-logintorp-option)
 + [LogLevel](#jdbc20-loglevel-option)
 + [LogPath](#jdbc20-logpath-option)
 + [Partner\_SPID](#jdbc20-partner_spid-option)
 + [Password](#jdbc20-password-option)
 + [Plugin\_Name](#jdbc20-plugin_name-option)
++ [PORT](#jdbc20-port-option)
 + [Preferred\_Role](#jdbc20-preferred_role-option)
 + [Profile](#jdbc20-profile-option)
 + [PWD](#jdbc20-pwd-option)
 + [queryGroup](#jdbc20-querygroup-option)
-+ [ReadOnly](#jdbc20-readonly-option)
++ [readOnly](#jdbc20-readonly-option)
 + [Region](#jdbc20-region-option)
++ [reWriteBatchedInserts](#jdbc20-rewritebatchedinserts-option)
 + [reWriteBatchedInsertsSize](#jdbc20-rewritebatchedinsertssize-option)
 + [roleArn](#jdbc20-rolearn-option)
 + [roleSessionName](#jdbc20-roleaessionname-option)
 + [SecretAccessKey](#jdbc20-secretaccesskey-option)
 + [SessionToken](#jdbc20-sessiontoken-option)
-+ [SocketTimeout](#jdbc20-sockettimeout-option)
++ [socketFactory](#jdbc20-socketfactory-option)
++ [socketTimeout](#jdbc20-sockettimeout-option)
 + [SSL](#jdbc20-ssl-option)
 + [SSL\_Insecure](#jdbc20-ssl_insecure-option)
 + [SSLCert](#jdbc20-sslcert-option)
@@ -60,7 +69,7 @@ You can set configuration properties using the connection URL\. For more informa
 + [SSLPassword](#jdbc20-sslpassword-option)
 + [SSLRootCert](#jdbc20-sslrootcert-option)
 + [StsEndpointUrl](#jdbc20-stsendpointurl-option)
-+ [TCPKeepAlive](#jdbc20-tcpkeepalive-option)
++ [tcpKeepAlive](#jdbc20-tcpkeepalive-option)
 + [UID](#jdbc20-uid-option)
 + [User](#jdbc20-user-option)
 + [webIdentityToken](#jdbc20-webidentitytoken-option)
@@ -102,6 +111,14 @@ This parameter is required if authenticating through the Okta service\.
 + **Data Type** – String
 
 The name of the Okta application that you use to authenticate the connection to Amazon Redshift\. 
+
+This parameter is optional\.
+
+## ApplicationName<a name="jdbc20-applicationname-option"></a>
++ **Default Value** – null
++ **Data Type** – String
+
+The name of the application to pass to Amazon Redshift for audit purposes\. 
 
 This parameter is optional\.
 
@@ -151,6 +168,14 @@ The name of the Amazon Redshift cluster that you want to connect to\.
 
 This parameter is optional\.
 
+## connectTimeout<a name="jdbc20-connecttimeout-option"></a>
++ **Default Value** – 10
++ **Data Type** – Integer
+
+The timeout value to use for socket connect operations\. If the time required to establish an Amazon Redshift connection exceeds this value, the connection is considered unavailable\. The timeout is specified in seconds\. A value of 0 means that no timeout is specified\.
+
+This parameter is optional\.
+
 ## databaseMetadataCurrentDbOnly<a name="jdbc20-databasemetadatacurrentdbonly-option"></a>
 + **Default Value** – true
 + **Data Type** – Boolean
@@ -183,6 +208,14 @@ A comma\-separated list of existing database group names that `DBUser` joins for
 
 This parameter is optional\.
 
+## DBNAME<a name="jdbc20-dbname-option"></a>
++ **Default Value** – null
++ **Data Type** – String
+
+The name of the database to connect to\. You can use this option to specify the database name in the JDBC connection URL\. 
+
+This parameter is required\. You must specify the database name, either in the connection URL or in the connection properties of the client application\.
+
 ## defaultRowFetchSize<a name="jdbc20-defaultrowfetchsize-option"></a>
 + **Default Value** – 0
 + **Data Type** – Integer
@@ -212,6 +245,14 @@ The driver doesn't submit a query when using Connection\.isValid\(\) to determin
 
 **false**  
 The driver submits a query when using Connection\.isValid\(\) to determine whether the database connection is active\.
+
+## enableFetchReadAndProcessBuffers<a name="jdbc20-enablefetchreadandprocessbuffers-option"></a>
++ **Default Value** – true
++ **Data Type** – Boolean
+
+This option enables Amazon Redshift to fetch rows using a ring buffer and a processing buffer on separate threads to improve performance\. 
+
+This parameter is optional\.
 
 ## enableFetchRingBuffer<a name="jdbc20-enablefetchringbuffer-option"></a>
 + **Default Value** – true
@@ -259,6 +300,28 @@ The driver lowercases all database groups that are sent from the identity provid
 **false**  
 The driver doesn't alter database groups\.
 
+## groupFederation<a name="jdbc20-groupFederation-option"></a>
++ **Default Value** – false
++ **Data Type** – Boolean
+
+This option specifies whether to use Amazon Redshift IDP groups\. This is supported by the GetClusterCredentialsV2 API\. 
+
+This parameter is optional\.
+
+**true**  
+Use Amazon Redshift Identity Provider \(IDP\) groups\.
+
+**false**  
+Use STS API and GetClusterCredentials for user federation and explicitly specify DbGroups for the connection\.
+
+## HOST<a name="jdbc20-host-option"></a>
++ **Default Value** – null
++ **Data Type** – String
+
+The host name of the Amazon Redshift server to connect to\. You can use this option to specify the host name in the JDBC connection URL\. 
+
+This parameter is required\. You must specify the host name, either in the connection URL or in the connection properties of the client application\.
+
 ## IAMDisableCache<a name="jdbc20-iamdisablecache-option"></a>
 + **Default Value** – false
 + **Data Type** – Boolean
@@ -295,7 +358,7 @@ This parameter is optional\.
 + **Default Value** – None
 + **Data Type** – String
 
-The port used by an IdP \(identity provider\)\. This can be specified in either the connection string or in a profile\. 
+The port used by an IdP \(identity provider\)\. You can specify the port in either the connection string or in a profile\. The default port is 5439\. 
 
 This parameter is optional\.
 
@@ -325,7 +388,7 @@ The full path of the \.ini file, including file name\. For example:
 IniFile="C:\tools\rsjdbc.ini"
 ```
 
-For information about the \.ini file, see [Creating initialization \(\.ini\) files for JDBC driver version 2\.0](jdbc20-ini-file.md)\.
+For information about the \.ini file, see [Creating initialization \(\.ini\) files for JDBC driver version 2\.1](jdbc20-ini-file.md)\.
 
 This parameter is optional\.
 
@@ -333,7 +396,7 @@ This parameter is optional\.
 + **Default Value** – None
 + **Data Type** – String
 
-The name of a section in the \.ini file containing the configuration options\. For information about the \.ini file, see [Creating initialization \(\.ini\) files for JDBC driver version 2\.0](jdbc20-ini-file.md)\. 
+The name of a section in the \.ini file containing the configuration options\. For information about the \.ini file, see [Creating initialization \(\.ini\) files for JDBC driver version 2\.1](jdbc20-ini-file.md)\. 
 
 The following example specifies the \[Prod\] section of the \.ini file:
 
@@ -351,7 +414,7 @@ The URL for the resource on the identity provider's website when using the SAML 
 
 This parameter is required if authenticating with the SAML or Azure AD services through a browser plugin\.
 
-## LoginTimeout<a name="jdbc20-logintimeout-option"></a>
+## loginTimeout<a name="jdbc20-logintimeout-option"></a>
 + **Default Value** – 0
 + **Data Type** – Integer
 
@@ -452,6 +515,14 @@ The following provider options are supported:
 + **`OktaCredentialsProvider`** – Okta Service
 + **`PingCredentialsProvider`** – PingFederate Service
 
+## PORT<a name="jdbc20-port-option"></a>
++ **Default Value** – null
++ **Data Type** – Integer
+
+The port of the Amazon Redshift server to connect to\. You can use this option to specify the port in the JDBC connection URL\. 
+
+This parameter is optional\.
+
 ## Preferred\_Role<a name="jdbc20-preferred_role-option"></a>
 + **Default Value** – None
 + **Data Type** – String
@@ -484,7 +555,7 @@ This option assigns a query to a queue at runtime by assigning your query to the
 
 This parameter is optional\.
 
-## ReadOnly<a name="jdbc20-readonly-option"></a>
+## readOnly<a name="jdbc20-readonly-option"></a>
 + **Default Value** – false
 + **Data Type** – Boolean
 
@@ -506,11 +577,19 @@ This option specifies the AWS Region where the cluster is located\. If you speci
 
 This parameter is optional\.
 
+## reWriteBatchedInserts<a name="jdbc20-rewritebatchedinserts-option"></a>
++ **Default Value** – false
++ **Data Type** – Boolean
+
+This option enables optimization to rewrite and combine compatible INSERT statements into batches\. 
+
+This parameter is optional\.
+
 ## reWriteBatchedInsertsSize<a name="jdbc20-rewritebatchedinsertssize-option"></a>
 + **Default Value** – 128
 + **Data Type** – Integer
 
-This option enables optimization to rewrite and combine compatible INSERT statements that are batched\. This value must increase exponentially by the power of 2\. 
+This option enables optimization to rewrite and combine compatible INSERT statements into batches\. This value must increase exponentially by the power of 2\. 
 
 This parameter is optional\.
 
@@ -548,7 +627,15 @@ The temporary IAM session token associated with the IAM role you are using to au
 
 This parameter is optional\.
 
-## SocketTimeout<a name="jdbc20-sockettimeout-option"></a>
+## socketFactory<a name="jdbc20-socketfactory-option"></a>
++ **Default Value** – null
++ **Data Type** – String
+
+This option specifies a socket factory for socket creation\. 
+
+This parameter is optional\.
+
+## socketTimeout<a name="jdbc20-sockettimeout-option"></a>
 + **Default Value** – 0
 + **Data Type** – Integer
 
@@ -648,7 +735,7 @@ The full path of a \.pem or \.crt file containing the root CA certificate for ve
 
 You can specify an AWS Security Token Service \(AWS STS\) endpoint\. If you specify this option, the Region option is ignored\. You can only specify a secure protocol \(HTTPS\) for this endpoint\. 
 
-## TCPKeepAlive<a name="jdbc20-tcpkeepalive-option"></a>
+## tcpKeepAlive<a name="jdbc20-tcpkeepalive-option"></a>
 + **Default Value** – TRUE
 + **Data Type** – String
 
@@ -684,6 +771,6 @@ This parameter is optional\.
 + **Default Value** – None
 + **Data Type** – String
 
-The OAuth 2\.0 access token or OpenID Connect ID token that is provided by the identity provider\. Your application must get this token by authenticating the user of your application with a web identity provider\. Make sure to specify this parameter when you specify BasicJwtCredentialsProvider for the Plugin\_Name option\. 
+The OAuth 2\.1 access token or OpenID Connect ID token that is provided by the identity provider\. Your application must get this token by authenticating the user of your application with a web identity provider\. Make sure to specify this parameter when you specify BasicJwtCredentialsProvider for the Plugin\_Name option\. 
 
 This parameter is required if you specify BasicJwtCredentialsProvider for the Plugin\_Name option\.

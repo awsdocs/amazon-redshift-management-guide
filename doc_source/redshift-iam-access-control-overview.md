@@ -17,6 +17,12 @@ These resources and subresources have unique Amazon Resource Names \(ARNs\) asso
 
 Amazon Redshift provides a set of operations to work with the Amazon Redshift resources\. For a list of available operations, see [Amazon Redshift API permissions reference](redshift-policy-resources.resource-permissions.md)\.
 
+## Amazon Redshift query editor v2 resources<a name="redshift-iam-accesscontrol.actions-and-resources-qe2"></a>
+
+These query editor v2 resources have unique Amazon Resource Names \(ARNs\) associated with them as shown in the following table\.
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html)
+
 ## Understanding resource ownership<a name="redshift-iam-access-control-resource-ownership"></a>
 
 A *resource owner* is the AWS account that created a resource\. That is, the resource owner is the AWS account of the *principal entity* \(the root account, an IAM user, or an IAM role\) that authenticates the request that creates the resource\. The following examples illustrate how this works:

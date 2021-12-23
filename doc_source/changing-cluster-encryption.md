@@ -1,6 +1,6 @@
 # Changing cluster encryption<a name="changing-cluster-encryption"></a>
 
-You can modify an unencrypted cluster to use AWS Key Management Service \(AWS KMS\) encryption, using either an AWS\-managed key or a customer\-managed key \(CMK\)\. When you modify your cluster to enable KMS encryption, Amazon Redshift automatically migrates your data to a new encrypted cluster\. You can also migrate an unencrypted cluster to an encrypted cluster by modifying the cluster\. 
+You can modify an unencrypted cluster to use AWS Key Management Service \(AWS KMS\) encryption, using either an AWS\-managed key or a customer managed key\. When you modify your cluster to enable AWS KMS encryption, Amazon Redshift automatically migrates your data to a new encrypted cluster\. You can also migrate an unencrypted cluster to an encrypted cluster by modifying the cluster\. 
 
 During the migration operation, your cluster is available in read\-only mode, and the cluster status appears as **resizing**\. 
 
@@ -35,14 +35,14 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. For **Encrypt database**, choose **KMS** to enable encryption, or choose **None** to disable encryption\.
 
-1. To use a customer\-managed key, for **Master Key** choose **Enter a key ARN** and enter the ARN in the **ARN** field\.  
+1. To use a customer managed key, for **Master Key** choose **Enter a key ARN** and enter the ARN in the **ARN** field\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/modify-encryption.png)
 
 1. Choose **Modify**\.
 
 <a name="changing-cluster-encryption-cli"></a>**To change cluster encryption using the CLI** 
 
-To modify your unencrypted cluster to use KMS, run the `modify-cluster` CLI command and specify `–-encrypted`, as shown following\. By default, your default KMS key is used\. To specify a customer\-managed key, include the `--kms-key-id` option\.
+To modify your unencrypted cluster to use AWS KMS, run the `modify-cluster` CLI command and specify `–-encrypted`, as shown following\. By default, your default KMS key is used\. To specify a customer managed key, include the `--kms-key-id` option\.
 
 ```
 aws redshift modify-cluster --cluster-identifier <value> --encrypted --kms-key-id <value>

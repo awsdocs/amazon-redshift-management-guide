@@ -8,7 +8,14 @@ To manage the keys used for encrypting and decrypting your Amazon Redshift resou
 
 AQUA \(Advanced Query Accelerator\) receives and uses the same database encryption keys \(DEKs\) used by Amazon Redshift to store the data snapshots in Amazon S3\. Amazon Redshift uses envelope encryption, which means that you can rotate keys without having to re\-encrypt data blocks\. If the Amazon Redshift cluster isn't encrypted, then AQUA uses its own managed keys to encrypt the data\. For more information, see [Amazon Redshift database encryption](working-with-db-encryption.md)\. 
 
-In some cases, you might revoke AWS KMS access to an IAM role associated with a cluster\. If so, after the in\-flight queries are complete, no further access to the data cached in AQUA is possible\. This is because AQUA doesn't persist keys beyond a single pushed\-down scan or aggregate operation\. This lack of persistence also means that you can't access any metadata about those blocks\.  
+In some cases, you might revoke AWS KMS access to an IAM role associated with a cluster\. If so, after the in\-flight queries are complete, no further access to the data cached in AQUA is possible\. This is because AQUA doesn't persist keys beyond a single pushed\-down scan or aggregate operation\. This lack of persistence also means that you can't access any metadata about those blocks\. 
+
+Amazon Redshift query editor v2 securely stores information entered into the query editor as follows:
++ The Amazon Resource Name \(ARN\) of the KMS key used to encrypt query editor v2 data\.
++ Database connection information\.
++ Names and content of files and folders\.
+
+Amazon Redshift query editor v2 encrypts information using block\-level encryption with either your KMS key or the service account KMS key\. The encryption of your Amazon Redshift data is controlled by your Amazon Redshift cluster properties\.
 
 **Topics**
 + [Amazon Redshift database encryption](working-with-db-encryption.md)

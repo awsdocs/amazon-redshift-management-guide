@@ -18,19 +18,17 @@ In the China Regions on January 5, 2021, Amazon Redshift is replacing the SSL ce
 
 ## Using the latest Amazon Redshift ODBC or JDBC drivers<a name="connecting-transitioning-to-acm-latest-odbc-jdbc"></a>
 
-The preferred method is to use the latest Amazon Redshift ODBC or JDBC drivers\. Amazon Redshift drivers beginning with ODBC version 1\.3\.7\.1000 and JDBC version 1\.2\.8\.1005 automatically manage the transition from an Amazon Redshift self\-signed certificate to an ACM certificate\. To download the latest drivers, see [Configuring an ODBC connection](configure-odbc-connection.md) or [Configuring a JDBC driver version 1\.0 connection](configure-jdbc-connection.md)\. 
+The preferred method is to use the latest Amazon Redshift ODBC or JDBC drivers\. Amazon Redshift drivers beginning with ODBC version 1\.3\.7\.1000 and JDBC version 1\.2\.8\.1005 automatically manage the transition from an Amazon Redshift self\-signed certificate to an ACM certificate\. To download the latest drivers, see [Configuring an ODBC connection](configure-odbc-connection.md) or [Configuring a JDBC driver version 1\.x connection](configure-jdbc-connection.md)\. 
 
-If you use the latest Amazon Redshift JDBC driver, it's best not to use `-Djavax.net.ssl.trustStore` in JVM options\. If you must use `-Djavax.net.ssl.trustStore`, import the [Redshift certificate authority bundle](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt) into the truststore it points to\. For more information, see [Importing the Amazon Redshift certificate authority bundle into a TrustStore](#importing-the-acm-bundle-to-truststore)\.
+If you use the latest Amazon Redshift JDBC driver, it's best not to use `-Djavax.net.ssl.trustStore` in JVM options\. If you must use `-Djavax.net.ssl.trustStore`, import the Redshift certificate authority bundle into the truststore it points to\. For download information, see [Connect using SSL](connecting-ssl-support.md#connect-using-ssl)\. For more information, see [Importing the Amazon Redshift certificate authority bundle into a TrustStore](#importing-the-acm-bundle-to-truststore)\.
 
 ## Using earlier Amazon Redshift ODBC or JDBC drivers<a name="connecting-transitioning-to-acm-earlier-odbc-jdbc"></a>
-
-If you must use an Amazon Redshift ODBC driver before version 1\.3\.7\.1000, then download the [Redshift certificate authority bundle](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt) and overwrite the old certificate file\. 
 + If your ODBC DSN is configured with `SSLCertPath`, overwrite the certificate file in the specified path\.
 + If `SSLCertPath` is not set, then overwrite the certificate file named `root.crt` in the driver DLL location\. 
 
 If you must use an Amazon Redshift JDBC driver before version 1\.2\.8\.1005, then do one of the following:
-+ If your JDBC connection string uses the `sslCert` option, remove the `sslCert` option\. Then import the [Redshift certificate authority bundle](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt) to your Java TrustStore\. For more information, see [Importing the Amazon Redshift certificate authority bundle into a TrustStore](#importing-the-acm-bundle-to-truststore)\. 
-+ If you use the Java command line `-Djavax.net.ssl.trustStore` option, remove it from command line, if possible\. Then import the [Redshift certificate authority bundle](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt) to your Java TrustStore\. For more information, see [Importing the Amazon Redshift certificate authority bundle into a TrustStore](#importing-the-acm-bundle-to-truststore)\.
++ If your JDBC connection string uses the `sslCert` option, remove the `sslCert` option\. Then import the Redshift certificate authority bundle to your Java TrustStore\. For download information, see [Connect using SSL](connecting-ssl-support.md#connect-using-ssl)\. For more information, see [Importing the Amazon Redshift certificate authority bundle into a TrustStore](#importing-the-acm-bundle-to-truststore)\. 
++ If you use the Java command line `-Djavax.net.ssl.trustStore` option, remove it from command line, if possible\. Then import the Redshift certificate authority bundle to your Java TrustStore\. For download information, see [Connect using SSL](connecting-ssl-support.md#connect-using-ssl)\. For more information, see [Importing the Amazon Redshift certificate authority bundle into a TrustStore](#importing-the-acm-bundle-to-truststore)\.
 
 ### Importing the Amazon Redshift certificate authority bundle into a TrustStore<a name="importing-the-acm-bundle-to-truststore"></a>
 
@@ -62,7 +60,7 @@ Follow the steps in this section if you connect using any of the following:
 
 **To use ACM certificates with other SSL connection types:**
 
-1.  Download the [Amazon Redshift certificate authority bundle](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt)\. 
+1.  Download the Amazon Redshift certificate authority bundle\. For download information, see [Connect using SSL](connecting-ssl-support.md#connect-using-ssl)\.
 
 1. Place the certificates from the bundle in your `root.crt` file\. 
    + On Linux and macOS X operating systems, the file is `~/.postgresql/root.crt`\.

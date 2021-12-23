@@ -29,7 +29,7 @@ To download SQL Workbench and the PostgreSQL drivers, see the [Amazon Redshift G
 Now you're ready to launch a cluster by using the AWS CLI\.
 
 **Important**  
-The cluster that you're about to launch will be live \(and not running in a sandbox\)\. You will incur the standard usage fees for the cluster until you terminate it\. For pricing information, go to [the Amazon Redshift pricing page](https://aws.amazon.com/redshift/pricing/)\.  
+The cluster that you're about to launch will be live, and not running in a sandbox\. You will incur the standard usage fees for the cluster until you terminate it\. For pricing information, see [the Amazon Redshift pricing page](https://aws.amazon.com/redshift/pricing/)\.  
 If you complete the exercise described here in one sitting and terminate your cluster when you are finished, the total charges will be minimal\. 
 
 The `create-cluster` command has a large number of parameters\. For this exercise, you will use the parameter values that are described in the following table\. Before you create a cluster in a production environment, we recommend that you review all the required and optional parameters so that your cluster configuration matches your requirements\. For more information, see [create\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-cluster.html)

@@ -1,6 +1,6 @@
 # Database audit logging<a name="db-auditing"></a>
 
-Amazon Redshift logs information about connections and user activities in your database\. These logs help you to monitor the database for security and troubleshooting purposes, a process called *database auditing*\. The logs are stored in Amazon S3 buckets\. These provide convenient access with data security features for users who are responsible for monitoring activities in the database\.
+Amazon Redshift logs information about connections and user activities in your database\. These logs help you to monitor the database for security and troubleshooting purposes, a process called *database auditing*\. The logs are stored in Amazon S3 buckets\. These provide convenient access with data\-security features for users who are responsible for monitoring activities in the database\.
 
 **Topics**
 + [Amazon Redshift logs](#db-auditing-logs)
@@ -19,7 +19,7 @@ Amazon Redshift logs information in the following log files:
 + *User log* – Logs information about changes to database user definitions\.
 + *User activity log* – Logs each query before it's run on the database\.
 
-The connection and user logs are useful primarily for security purposes\. You can use the connection log to monitor information about the users who are connecting to the database and the related connection information\. This information might be their IP address, when they made the request, what type of authentication they used, and so on\. You can use the user log to monitor changes to the definitions of database users\. 
+The connection and user logs are useful primarily for security purposes\. You can use the connection log to monitor information about users connecting to the database and related connection information\. This information might be their IP address, when they made the request, what type of authentication they used, and so on\. You can use the user log to monitor changes to the definitions of database users\. 
 
 The user activity log is useful primarily for troubleshooting purposes\. It tracks information about the types of queries that both the users and the system perform in the database\. 
 
@@ -52,7 +52,7 @@ Logs each query before it is run on the database\.
 
 ## Enabling logging<a name="db-auditing-enable-logging"></a>
 
- Audit logging is not enabled by default in Amazon Redshift\. When you enable logging on your cluster, Amazon Redshift creates and uploads logs to Amazon S3 that capture data from the time audit logging is enabled to the present time\. Each logging update is a continuation of the information that was already logged\. 
+ Audit logging is not turned on by default in Amazon Redshift\. When you turn on logging on your cluster, Amazon Redshift creates and uploads logs to Amazon S3 that capture data from the time audit logging is enabled to the present time\. Each logging update is a continuation of the information that was already logged\.
 
 **Note**  
 Audit logging to Amazon S3 is an optional, manual process\. When you enable logging on your cluster, you are enabling logging to Amazon S3 only\. Logging to system tables is not optional and happens automatically for the cluster\. For more information about logging to system tables, see [System Tables Reference](https://docs.aws.amazon.com/redshift/latest/dg/cm_chap_system-tables.html) in the Amazon Redshift Database Developer Guide\. 
@@ -70,83 +70,118 @@ Because Amazon Redshift uses Amazon S3 to store logs, you incur charges for the 
 
 ### Bucket permissions for Amazon Redshift audit logging<a name="db-auditing-bucket-permissions"></a>
 
-When you enable logging, Amazon Redshift collects logging information and uploads it to log files stored in Amazon S3\. You can use an existing bucket or a new bucket\. Amazon Redshift requires the following IAM permissions to the bucket: 
-+ *s3:GetBucketAcl* The service requires read permissions to the Amazon S3 bucket so it can identify the bucket owner\. 
-+ *s3:PutObject* The service requires put object permissions to upload the logs\.  Also, the IAM user or IAM role that enables logging must have `s3:PutObject` permission to the Amazon S3 bucket\. Each time logs are uploaded, the service determines whether the current bucket owner matches the bucket owner at the time logging was enabled\. If these owners do not match, you receive an error\. 
+When you turn on logging, Amazon Redshift collects logging information and uploads it to log files stored in Amazon S3\. You can use an existing bucket or a new bucket\. Amazon Redshift requires the following IAM permissions to the bucket: 
++ `s3:GetBucketAcl` The service requires read permissions to the Amazon S3 bucket so it can identify the bucket owner\. 
++ `s3:PutObject` The service requires put object permissions to upload the logs\. Also, the IAM user or IAM role that enables logging must have `s3:PutObject` permission to the Amazon S3 bucket\. Each time logs are uploaded, the service determines whether the current bucket owner matches the bucket owner at the time logging was enabled\. If these owners don't match, you receive an error\. 
 
-If you have Amazon Redshift create a new bucket for you as part of configuration, correct permissions are applied to the bucket\. However, if you create your own bucket in Amazon S3 or use an existing bucket, you need to add a bucket policy that includes the bucket name\. You also need the Amazon Redshift account ID that corresponds to your AWS Region from the following table\.
+If, when you enable audit logging, you select the option to create a new bucket, correct permissions are applied to it\. However, if you create your own bucket in Amazon S3, or use an existing bucket, make sure to add a bucket policy that includes the bucket name\. Logs are delivered using service\-principal credentials\. For most AWS Regions, you add the Redshift service\-principal name, *redshift\.amazonaws\.com*\. 
 
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html)
-
-The bucket policy uses the following format, where *BucketName* is a placeholder for your own value\. The *AccountId* is from the table of Amazon Redshift account IDs that corresponds to your AWS Region\. 
+The bucket policy uses the following format\. *ServiceName* and *BucketName* are placeholders for your own values\.  Also specify the associated actions and resources in the bucket policy\.
 
 ```
 {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "Put bucket policy needed for audit logging",
-			"Effect": "Allow",
-			"Principal": {
-				"AWS": "arn:aws:iam::AccountId:user/logs"
-			},
-			"Action": "s3:PutObject",
-			"Resource": "arn:aws:s3:::BucketName/*"
-		},
-		{
-			"Sid": "Get bucket policy needed for audit logging ",
-			"Effect": "Allow",
-			"Principal": {
-				"AWS": "arn:aws:iam::AccountID:user/logs"
-			},
-			"Action": "s3:GetBucketAcl",
-			"Resource": "arn:aws:s3:::BucketName"
-		}
-	]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Put bucket policy needed for audit logging",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ServiceName"
+            },
+            "Action": [
+                "s3:PutObject",
+                "s3:GetBucketAcl"
+            ],
+            "Resource": [
+                "arn:aws:s3:::BucketName",
+                "arn:aws:s3:::BucketName/*"
+            ]
+        }
+    ]
 }
 ```
 
-The following example is a bucket policy for the US East \(N\. Virginia\) Region and bucket named AuditLogs\.
+The following example is a bucket policy for the US East \(N\. Virginia\) Region and a bucket named `AuditLogs`\.
 
 ```
 {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "Put bucket policy needed for audit logging",
-			"Effect": "Allow",
-			"Principal": {
-				"AWS": "arn:aws:iam::193672423079:user/logs"
-			},
-			"Action": "s3:PutObject",
-			"Resource": "arn:aws:s3:::AuditLogs/*"
-		},
-		{
-			"Sid": "Get bucket policy needed for audit logging ",
-			"Effect": "Allow",
-			"Principal": {
-				"AWS": "arn:aws:iam::193672423079:user/logs"
-			},
-			"Action": "s3:GetBucketAcl",
-			"Resource": "arn:aws:s3:::AuditLogs"
-		}
-	]
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "Put bucket policy needed for audit logging",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "redshift.amazonaws.com"
+            },
+            "Action": [
+                "s3:PutObject",
+                "s3:GetBucketAcl"
+            ],
+            "Resource": [
+                "arn:aws:s3:::AuditLogs",
+                "arn:aws:s3:::AuditLogs/*"
+            ]
+        }
+    ]
 }
 ```
 
-For more information about creating Amazon S3 buckets and adding bucket policies, see [Creating a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) and [Editing Bucket Permissions](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingBucketPermissions.html) in the Amazon Simple Storage Service Console User Guide\. 
+Regions that aren't enabled by default, also known as "opt\-in" regions, require a region\-specific service principal name\. For these, the service\-principal name includes the region, in the format `redshift.region.amazonaws.com`\. For example, *redshift\.ap\-east\-1\.amazonaws\.com* for the Asia Pacific \(Hong Kong\) Region\. For a list of the regions that aren't enabled by default, see [Managing AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html) in the *AWS General Reference*\.
+
+**Note**  
+The region\-specific service\-principal name corresponds with the region where the cluster is located\.
+
+#### Best practices for S3 bucket permissions<a name="db-auditing-bucket-permissions-confused-deputy"></a>
+
+When you give a third party access to your Amazon S3 buckets, make sure to consider security best practices\. You can provide optional information in the bucket policy to designate the bucket owner\. This way, the account owner can permit the role to be assumed only under specific circumstances, and avoid the *confused\-deputy* problem\. For more information, see [The confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) in the *IAM User Guide*\.
+
+ We recommend that you configure your bucket policy in a way to specify access granted to a service principal specifically on behalf of the bucket owner's \(or their partner's\) resources\. The following example illustrates how you can configure your bucket to grant Amazon Redshift permission to upload logs into the bucket, by specifying the SourceArn, while blocking any other account from uploading log files\. You can use either the [SourceArn](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourcearn) or [SourceAccount](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount) to specify access\.
+
+```
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "Put bucket policy needed for audit logging",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "redshift.amazonaws.com"
+            },
+            "Action": [
+                "s3:PutObject",
+                "s3:GetBucketAcl"
+            ],
+            "Resource": [
+                "arn:aws:s3:::AuditLogs",
+                "arn:aws:s3:::AuditLogs/*"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "aws:SourceArn": "arn:aws:redshift:us-east-1:123456789012:cluster:my-cluster"
+                }
+            }
+        }
+    ]
+}
+```
+
+ When Redshift uploads log files to Amazon S3, large files can be uploaded in parts\. If a multipart upload isn't successful, it's possible for parts of a file to remain in the Amazon S3 bucket\. This can result in additional storage costs, so it's important to understand what occurs when a multipart upload fails\. For a detailed explanation about multipart upload for audit logs, see [Uploading and copying objects using multipart upload](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html) and [Aborting a multipart upload](https://docs.aws.amazon.com/AmazonS3/latest/userguide/abort-mpu.html)\.
+
+For more information about creating S3 buckets and adding bucket policies, see [Creating a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) and [Editing Bucket Permissions](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingBucketPermissions.html) in the *Amazon Simple Storage Service User Guide*\. 
 
 ### Bucket structure for Amazon Redshift audit logging<a name="db-auditing-bucket-structure"></a>
 
-By default, Amazon Redshift organizes the log files in the Amazon S3 bucket by using the following bucket and object structure: `AWSLogs/AccountID/ServiceName/Region/Year/Month/Day/AccountID_ServiceName_Region_ClusterName_LogType_Timestamp.gz` 
+By default, Amazon Redshift organizes the log files in the Amazon S3 bucket by using the following bucket and object structure: ``
 
-For example: `AWSLogs/123456789012/redshift/us-east-1/2013/10/29/123456789012_redshift_us-east-1_mycluster_userlog_2013-10-29T18:01.gz`
+`AWSLogs/AccountID/ServiceName/Region/Year/Month/Day/AccountID_ServiceName_Region_ClusterName_LogType_Timestamp.gz` 
 
-If you provide an Amazon S3 key prefix, the prefix is placed at the start of the key\.
+An example is: `AWSLogs/123456789012/redshift/us-east-1/2013/10/29/123456789012_redshift_us-east-1_mycluster_userlog_2013-10-29T18:01.gz`
+
+If you provide an Amazon S3 key prefix, put the prefix at the start of the key\.
 
 For example, if you specify a prefix of myprefix: `myprefix/AWSLogs/123456789012/redshift/us-east-1/2013/10/29/123456789012_redshift_us-east-1_mycluster_userlog_2013-10-29T18:01.gz`
 
-The Amazon S3 key prefix cannot exceed 512 characters\. It cannot contain spaces \( \), double quotation marks \(“\), single quotation marks \(‘\), a backslash \(\\\)\. There are also a number of special characters and control characters that are not allowed\. The hexadecimal codes for these characters are:
+The Amazon S3 key prefix can't exceed 512 characters\. It can't contain spaces \( \), double quotation marks \(“\), single quotation marks \(‘\), a backslash \(\\\)\. There is also a number of special characters and control characters that aren't allowed\. The hexadecimal codes for these characters are as follows:
 + x00 to x20
 + x22
 + x27

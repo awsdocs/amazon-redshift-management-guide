@@ -1,6 +1,6 @@
 # Converting data types<a name="jdbc20-data-type-mapping"></a>
 
-The Amazon Redshift JDBC driver version 2\.0 supports many common data formats, converting between Amazon Redshift, SQL, and Java data types\.
+The Amazon Redshift JDBC driver version 2\.1 supports many common data formats, converting between Amazon Redshift, SQL, and Java data types\.
 
 The following table lists the supported data type mappings\.
 

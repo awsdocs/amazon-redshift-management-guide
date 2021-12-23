@@ -5,10 +5,13 @@ You can define limits to monitor and control your usage and associated cost of s
 You can define usage limits for each cluster\. After your cluster is created, you can define usage limits for the following features: 
 + Amazon Redshift Spectrum
 + Amazon Redshift Concurrency Scaling
++ Amazon Redshift cross\-Region datasharing
 
 Usage limits are available with release version 1\.0\.14677 or later in the AWS Regions where Amazon Redshift Spectrum and Amazon Redshift Concurrency Scaling are available\. 
 
-A Redshift Spectrum limit specifies the threshold of the total amount of data scanned in 1\-TB increments\. A concurrency scaling limit specifies the threshold of the total amount of time used by concurrency scaling in 1\-minute increments\. A limit can be specified for a daily, weekly, or monthly period \(using UTC to determine the start and end of the period\)\. If you create a limit in the middle of a period, then the limit is measured from that point to the end of the period\. For example, if you create a monthly limit on March 15, then the first monthly period is measured from March 15 through March 31\. 
+A Redshift Spectrum limit specifies the threshold of the total amount of data scanned in 1\-TB increments\. A concurrency scaling limit specifies the threshold of the total amount of time used by concurrency scaling in 1\-minute increments\. 
+
+A limit can be specified for a daily, weekly, or monthly period \(using UTC to determine the start and end of the period\)\. If you create a limit in the middle of a period, then the limit is measured from that point to the end of the period\. For example, if you create a monthly limit on March 15, then the first monthly period is measured from March 15 through March 31\. 
 
 You can define multiple usage limits for each feature\. Each limit can have a different action\. Possible actions include the following:
 + **Log to system table** – This is the default action\. Information is logged to the STL\_USAGE\_CONTROL table\. Logging is helpful when evaluating past usage and in deciding on future usage limits\. For more information about what is logged, see [STL\_USAGE\_CONTROL](https://docs.aws.amazon.com/redshift/latest/dg/r_STL_USAGE_CONTROL.html) in the *Amazon Redshift Database Developer Guide*\. 

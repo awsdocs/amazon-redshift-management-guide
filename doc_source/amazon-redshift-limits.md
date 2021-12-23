@@ -7,8 +7,8 @@ Amazon Redshift has quotas that limit the use of several resources in your AWS a
 
 | Quota name | AWS default value | Adjustable | Description | 
 | --- | --- | --- | --- | 
-| AWS accounts you can authorize to restore a snapshot per snapshot  | 20 | No | The maximum number of AWS accounts that you can authorize to restore a snapshot, per snapshot\.  | 
-| AWS accounts you can authorize to restore a snapshot per AWS KMS key | 100 | No | The maximum number of AWS accounts that you can authorize to restore a snapshot, per AWS KMS key\. That is, if you have 10 snapshots that are encrypted with a single KMS key, then you can authorize 10 AWS accounts to restore each snapshot, or other combinations that add up to 100 accounts and do not exceed 20 accounts for each snapshot\.  | 
+| AWS accounts that you can authorize to restore a snapshot per snapshot  | 20 | No | The maximum number of AWS accounts that you can authorize to restore a snapshot, per snapshot\.  | 
+| AWS accounts that you can authorize to restore a snapshot per AWS KMS key | 100 | No | The maximum number of AWS accounts that you can authorize to restore a snapshot, per KMS key\. That is, if you have 10 snapshots that are encrypted with a single KMS key, then you can authorize 10 AWS accounts to restore each snapshot, or other combinations that add up to 100 accounts and do not exceed 20 accounts for each snapshot\.  | 
 | Cluster IAM roles for Amazon Redshift to access other AWS services | 10 | No | The maximum number of IAM roles that you can associate with a cluster to authorize Amazon Redshift to access other AWS services for the user that owns the cluster and IAM roles\. | 
 | Concurrency level \(query slots\) for all user\-defined manual WLM queues | 50 | No | The maximum query slots for all user\-defined queues defined by manual workload management\.  | 
 | Concurrency scaling clusters | 10 | Yes | The maximum number of concurrency scaling clusters\.  | 
@@ -37,6 +37,18 @@ Amazon Redshift has quotas that limit the use of several resources in your AWS a
 | User\-defined databases in a cluster | 60 | No | The maximum number of user\-defined databases that you can create per cluster\. | 
 | Timeout for idle or inactive sessions | 4 hours | No | This setting applies to the cluster\. For information about setting the idle\-session timeout value for a user, see [ ALTER USER](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_USER.html) in the *Amazon Redshift Database Developer Guide*\. The user setting takes precedence over the cluster setting\. | 
 | Stored procedures in a database | 10,000 | No | The maximum number of stored procedures\. See [Limits and differences for stored procedure support](https://docs.aws.amazon.com/redshift/latest/dg/stored-procedure-constraints.html) for more limits\. | 
+
+The query editor v2 also has quotas as follows\.
+
+
+| Quota name | AWS default value | Adjustable | Description | 
+| --- | --- | --- | --- | 
+| Connections | 500 | Yes | Maximum number of connections that you can create using the query editor v2 in this account in the current Region\.  | 
+| Saved queries | 2,500 | Yes | Maximum number of saved queries that you can create using the query editor v2 in this account in the current Region\.  | 
+| Query versions | 20 | Yes | Maximum number of versions per query that you can create using the query editor v2 in this account in the current Region\.  | 
+| Saved charts | 500 | Yes | Maximum number of saved charts that you can create using the query editor v2 in this account in the current Region\.  | 
+| Rows fetched per query | 100,000 | Yes | Maximum number of rows fetched per query by the query editor v2 in this account in the current Region\.  | 
+| Data fetched size per query | 5 | Yes | Maximum size, in megabytes, of the data fetched per query by the query editor v2 in this account in the current Region\.  | 
 
 ## Amazon Redshift Spectrum quotas and limits<a name="amazon-redshift-limits-spectrum"></a>
 

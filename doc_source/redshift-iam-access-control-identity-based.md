@@ -47,27 +47,75 @@ The policy has two statements:
 
 AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. Managed policies grant necessary permissions for common use cases so you can avoid having to investigate what permissions are needed\. For more information, see [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\.
 
-The following AWS managed policies, which you can attach to users in your account, are specific to Amazon Redshift:
-+ **AmazonRedshiftReadOnlyAccess** – Grants read\-only access to all Amazon Redshift resources for an AWS account\.
+You can also create your own custom IAM policies to allow permissions for Amazon Redshift API operations and resources\. You can attach these custom policies to the IAM users or groups that require those permissions\. 
 
-  You can find the [AmazonRedshiftReadOnlyAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftReadOnlyAccess) policy on the IAM console\.
-+ **AmazonRedshiftFullAccess** – Grants full access to all Amazon Redshift resources for an AWS account\.
+The following sections describe AWS managed policies, which you can attach to users in your account, and are specific to Amazon Redshift\.
 
-  You can find the [AmazonRedshiftFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftFullAccess) policy on the IAM console\.
-+ **AmazonRedshiftQueryEditor** – Grants full access to the query editor on the Amazon Redshift console\.
+## AmazonRedshiftReadOnlyAccess<a name="redshift-policy-managed-policies-read-only"></a>
 
-  You can find the [AmazonRedshiftQueryEditor](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditor) policy on the IAM console\.
-+ **AmazonRedshiftDataFullAccess** – Grants full access to the Amazon Redshift Data API operations and resources for an AWS account\. 
+Grants read\-only access to all Amazon Redshift resources for an AWS account\.
 
-  You can find the [AmazonRedshiftDataFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftDataFullAccess) policy on the IAM console\.
+You can find the [AmazonRedshiftReadOnlyAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftReadOnlyAccess) policy on the IAM console\.
 
-You can also create your own custom IAM policies to allow permissions for Amazon Redshift API actions and resources\. You can attach these custom policies to the IAM users or groups that require those permissions\. 
+## AmazonRedshiftFullAccess<a name="redshift-policy-managed-policies-full-access"></a>
+
+Grants full access to all Amazon Redshift resources for an AWS account\.
+
+You can find the [AmazonRedshiftFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftFullAccess) policy on the IAM console\.
+
+## AmazonRedshiftQueryEditor<a name="redshift-policy-managed-policies-query-editor"></a>
+
+Grants full access to the query editor on the Amazon Redshift console\.
+
+You can find the [AmazonRedshiftQueryEditor](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditor) policy on the IAM console\.
+
+## AmazonRedshiftDataFullAccess<a name="redshift-policy-managed-policies-data-full-access"></a>
+
+Grants full access to the Amazon Redshift Data API operations and resources for an AWS account\. 
+
+You can find the [AmazonRedshiftDataFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftDataFullAccess) policy on the IAM console\.
+
+## AmazonRedshiftQueryEditorV2FullAccess<a name="redshift-policy-managed-policies-query-editor-V2"></a>
+
+Grants full access to the Amazon Redshift query editor v2 operations and resources\. This policy also grants access to other required services\.
+
+You can find the [AmazonRedshiftQueryEditorV2FullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2FullAccess) policy on the IAM console\.
+
+## AmazonRedshiftQueryEditorV2NoSharing<a name="redshift-policy-managed-policies-query-editor-V2-no-sharing"></a>
+
+Grants the ability to work with Amazon Redshift query editor v2 without sharing resources\. This policy also grants access to other required services\. The principal using this policy can't tag its resources \(such as queries\) to share them with other principals in the same AWS account\. 
+
+You can find the [AmazonRedshiftQueryEditorV2NoSharing](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2NoSharing) policy on the IAM console\.
+
+## AmazonRedshiftQueryEditorV2ReadSharing<a name="redshift-policy-managed-policies-query-editor-V2-read-sharing"></a>
+
+Grants the ability to work with Amazon Redshift query editor v2 with limited sharing of resources\. This policy also grants access to other required services\. The principal using this policy can tag its resources \(such as queries\) to share them with other principals in the same AWS account\. The granted principal can read the resources shared with its team but can't update them\. 
+
+You can find the [AmazonRedshiftQueryEditorV2ReadSharing](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2ReadSharing) policy on the IAM console\.
+
+## AmazonRedshiftQueryEditorV2ReadWriteSharing<a name="redshift-policy-managed-policies-query-editor-V2-write-sharing"></a>
+
+Grants the ability to work with Amazon Redshift query editor v2 with sharing of resources\. This policy also grants access to other required services\. The principal using this policy can tag its resources \(such as queries\) to share them with other principals in the same AWS account\. The granted principal can read and update the resources shared with its team\. 
+
+You can find the [AmazonRedshiftQueryEditorV2ReadWriteSharing](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2ReadWriteSharing) policy on the IAM console\.
+
+## AmazonRedshiftServiceLinkedRolePolicy<a name="redshift-policy-managed-policies-service-linked-role-policy"></a>
+
+You can't attach AmazonRedshiftServiceLinkedRolePolicy to your IAM entities\. This policy is attached to a service\-linked role that allows Amazon Redshift to access account resources\. For more information, see [Using service\-linked roles for Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/using-service-linked-roles.html)\. 
+
+## AmazonRedshiftAllCommandsFullAccess<a name="redshift-policy-managed-policies-service-linked-role-commands"></a>
+
+Grants the ability to use the IAM role created from the Amazon Redshift console and set it as default for the cluster to run the COPY from Amazon S3, UNLOAD, CREATE EXTERNAL SCHEMA, CREATE EXTERNAL FUNCTION, and CREATE MODEL commands\. The policy also grants permissions to run SELECT statements for related services, such as Amazon S3, CloudWatch Logs, Amazon SageMaker, or AWS Glue\.
+
+You can find the [AmazonRedshiftAllCommandsFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftAllCommandsFullAccess) policy on the IAM console\.
+
+You can also create your own custom IAM policies to allow permissions for Amazon Redshift API operations and resources\. You can attach these custom policies to the IAM users or groups that require those permissions\. 
 
 
 
 
 
-### Amazon Redshift updates to AWS\-managed policies<a name="security-iam-awsmanpol-updates"></a>
+## Amazon Redshift updates to AWS\-managed policies<a name="security-iam-awsmanpol-updates"></a>
 
 
 
@@ -78,8 +126,17 @@ View details about updates to AWS managed policies for Amazon Redshift since thi
 
 | Change | Description | Date | 
 | --- | --- | --- | 
-|  AmazonRedshiftDataFullAccess – Update to an existing policy  |  Amazon Redshift added new permissions to allow `AuthorizeDataShare`\.  | August 12, 2021 | 
-|  AmazonRedshiftDataFullAccess – Update to an existing policy  |  Amazon Redshift added new permissions to allow `BatchExecuteStatement`\.  | July 27, 2021 | 
+|  [AmazonRedshiftServiceLinkedRolePolicy](#redshift-policy-managed-policies-service-linked-role-policy) – Update to an existing policy  |  Amazon Redshift added permissions for new actions to allow management of Amazon Redshift network and VPC resources\.  | November 22, 2021 | 
+|  [AmazonRedshiftAllCommandsFullAccess](#redshift-policy-managed-policies-service-linked-role-commands) – New policy  |  Amazon Redshift added a new policy to allow using the IAM role created from the Amazon Redshift console and set it as default for the cluster to run the COPY from Amazon S3, UNLOAD, CREATE EXTERNAL SCHEMA, CREATE EXTERNAL FUNCTION, CREATE MODEL, or CREATE LIBRARY commands\.  | November 18, 2021 | 
+|  [AmazonRedshiftServiceLinkedRolePolicy](#redshift-policy-managed-policies-service-linked-role-policy) – Update to an existing policy  |  Amazon Redshift added permissions for new actions to allow management of Amazon Redshift CloudWatch log groups and log streams, including audit\-log export\.  | November 15, 2021 | 
+|  [AmazonRedshiftFullAccess](#redshift-policy-managed-policies-full-access) – Update to an existing policy  |  Amazon Redshift added new permissions to allow model explainability, DynamoDB, Redshift Spectrum, and Amazon RDS federation\.  | October 07, 2021 | 
+|  [AmazonRedshiftFullAccess](#redshift-policy-managed-policies-full-access) – New policy  |  Amazon Redshift added a new policy to allow full access to Amazon Redshift query editor v2\.  | September 24, 2021 | 
+|  [AmazonRedshiftQueryEditorV2NoSharing](#redshift-policy-managed-policies-query-editor-V2-no-sharing) – New policy  |  Amazon Redshift added a new policy to allow using Amazon Redshift query editor v2 without sharing resources\.  | September 24, 2021 | 
+|  [AmazonRedshiftQueryEditorV2ReadSharing](#redshift-policy-managed-policies-query-editor-V2-read-sharing) – New policy  |  Amazon Redshift added a new policy to allow read sharing within Amazon Redshift query editor v2\.  | September 24, 2021 | 
+|  [AmazonRedshiftQueryEditorV2ReadWriteSharing](#redshift-policy-managed-policies-query-editor-V2-write-sharing) – New policy  |  Amazon Redshift added a new policy to allow read and update sharing within Amazon Redshift query editor v2\.  | September 24, 2021 | 
+|  [AmazonRedshiftFullAccess](#redshift-policy-managed-policies-full-access) – Update to an existing policy  |  Amazon Redshift added new permissions to allow `sagemaker:*Job*`\.  | August 18, 2021 | 
+|  [AmazonRedshiftDataFullAccess](#redshift-policy-managed-policies-data-full-access) – Update to an existing policy  |  Amazon Redshift added new permissions to allow `AuthorizeDataShare`\.  | August 12, 2021 | 
+|  [AmazonRedshiftDataFullAccess](#redshift-policy-managed-policies-data-full-access) – Update to an existing policy  |  Amazon Redshift added new permissions to allow `BatchExecuteStatement`\.  | July 27, 2021 | 
 |  Amazon Redshift started tracking changes  |  Amazon Redshift started tracking changes for its AWS\-managed policies\.  | July 27, 2021 | 
 
 ## Permissions required to use Redshift Spectrum<a name="redshift-spectrum-policy-resources"></a>
@@ -122,6 +179,40 @@ To give a user access to the query editor on the Amazon Redshift console, attach
 ```
 
 To allow a user to retrieve the results of SQL statements of others in the same IAM role, create your own policy without the condition to limit access to the current user\. Also limit access to change a policy to an administrator\.
+
+## Permissions required to use the query editor v2<a name="redshift-policy-resources.required-permissions.query-editor-v2"></a>
+
+For a user to work with the Amazon Redshift query editor v2, that user must have a minimum set of permissions to Amazon Redshift, the query editor v2 operations, and other AWS services such as AWS Key Management Service, AWS Secrets Manager, and tagging service\. 
+
+To give a user full access to the query editor v2, attach the `AmazonRedshiftQueryEditorV2FullAccess` AWS\-managed policy\. The `AmazonRedshiftQueryEditorV2FullAccess` policy allows the user permission to share query editor v2 resources, such as queries, with others in the same team\. For details about how access to query editor v2 resources are controlled, see the definition of the specific managed policy for query editor v2 in the IAM console\. 
+
+Some Amazon Redshift query editor v2 AWS\-managed policies use AWS tags within conditions to scope access to resources\. Within query editor v2, sharing queries is based on the tag key and value `"aws:ResourceTag/sqlworkbench-team": "${aws:PrincipalTag/sqlworkbench-team}"` in the IAM policy attached to principal \(either the IAM user or IAM role\)\. Principals in the same AWS account with the same tag value \(for example, `accounting-team`\), are on the same team in query editor v2\. You can only be associated with one team at a time\. A user with administrative permissions can set up teams in the IAM console by giving all team members the same value for the `sqlworkbench-team` tag\. If the tag value of the `sqlworkbench-team` is changed for an IAM user or an IAM role, there might be a delay until the change is reflected in shared resources\. If the tag value of a resource \(such as a query\) is changed, again there might be a delay until the change is reflected\. Team members must also have the `tag:GetResources` permission to share\.
+
+**Example: To add the `accounting-team` tag for an IAM role**
+
+1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. In the navigation pane of the console, choose **Roles** and then choose the name of the role that you want to edit\.
+
+1. Choose the **Tags** tab and then choose **Add tags**\.
+
+1. Add the tag key **sqlworkbench\-team** and the value `accounting-team`\.
+
+1. Choose **Save changes**\.
+
+   Now when an IAM principal \(with this IAM role attached\) shares a query with the team, other principals with the same `accounting-team` tag value can view the query\.
+
+For more information on how to attach a tag to a principal, including IAM roles and IAM users, see [Tagging IAM resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html) in the *IAM User Guide*\. 
+
+You can also set up teams at the session level using an Identity Provider \(IdP\)\. This allows multiple users using the same IAM role to have different team\. The IAM role trust policy must allow the `sts:TagSession` operation\. For more information, see [Permissions required to add session tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_permissions-required) in the *IAM User Guide*\. Add the principal tag attribute to the SAML assertion provided by your IdP\.
+
+```
+<Attribute Name="https://aws.amazon.com/SAML/Attributes/PrincipalTag:sqlworkbench-team">
+    <AttributeValue>accounting-team</AttributeValue>
+</Attribute>
+```
+
+Follow the instructions for your Identity provider \(IdP\) to populate the SAML attribute with the content coming from your directory\. For more information about Identity providers \(IdPs\) and Amazon Redshift, see [Using IAM authentication to generate database user credentials](generating-user-credentials.md) and [Identity providers and federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html) in the *IAM User Guide*\. 
 
 ## Permissions required to use the Amazon Redshift scheduler<a name="iam-permission-scheduler"></a>
 
@@ -209,6 +300,504 @@ For the steps to create a role for the EventBridge scheduler, see [Creating a ro
 + Attach the following permission policies: `AmazonEventBridgeFullAccess` and `AmazonRedshiftDataFullAccess`\. 
 
 The IAM role that you create has a trusted entity of `events.amazonaws.com`\. It also has an attached policy that allows supported Amazon Redshift Data API actions, such as, `"redshift-data:*"`\. 
+
+## Permissions required to use Amazon Redshift machine learning \(ML\) with Amazon SageMaker<a name="iam-permission-ml"></a>
+
+Following, you can find a description of the permissions required to use Amazon Redshift machine learning \(ML\) with Amazon SageMaker for different use cases\.
+
+For your users to use Amazon Redshift ML with Amazon SageMaker, create an IAM role with a more restrictive policy than the default\. You can use the policy following\. You can also modify this policy to meet your needs\.
+
+The following policy shows the permissions required to run SageMaker Autopilot with model explainability from Amazon Redshift\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateTrainingJob",
+                "sagemaker:CreateAutoMLJob",
+                "sagemaker:CreateCompilationJob",
+                "sagemaker:CreateEndpoint",
+                "sagemaker:DescribeAutoMLJob",
+                "sagemaker:DescribeTrainingJob",
+                "sagemaker:DescribeCompilationJob",
+                "sagemaker:DescribeProcessingJob",
+                "sagemaker:DescribeTransformJob",
+                "sagemaker:ListCandidatesForAutoMLJob",
+                "sagemaker:StopAutoMLJob",
+                "sagemaker:StopCompilationJob",
+                "sagemaker:StopTrainingJob",
+                "sagemaker:DescribeEndpoint",
+                "sagemaker:InvokeEndpoint",
+                "sagemaker:StopProcessingJob",
+                "sagemaker:CreateModel",
+                "sagemaker:CreateProcessingJob"
+            ],
+            "Resource": [
+                "arn:aws:sagemaker:*:*:model/*redshift*",
+                "arn:aws:sagemaker:*:*:training-job/*redshift*",
+                "arn:aws:sagemaker:*:*:automl-job/*redshift*",
+                "arn:aws:sagemaker:*:*:compilation-job/*redshift*",
+                "arn:aws:sagemaker:*:*:processing-job/*redshift*",
+                "arn:aws:sagemaker:*:*:transform-job/*redshift*",
+                "arn:aws:sagemaker:*:*:endpoint/*redshift*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:*:*:log-group:/aws/sagemaker/Endpoints/*redshift*",
+                "arn:aws:logs:*:*:log-group:/aws/sagemaker/ProcessingJobs/*redshift*",
+                "arn:aws:logs:*:*:log-group:/aws/sagemaker/TrainingJobs/*redshift*",
+                "arn:aws:logs:*:*:log-group:/aws/sagemaker/TransformJobs/*redshift*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "cloudwatch:namespace": [
+                        "SageMaker",
+                        "/aws/sagemaker/Endpoints",
+                        "/aws/sagemaker/ProcessingJobs",
+                        "/aws/sagemaker/TrainingJobs",
+                        "/aws/sagemaker/TransformJobs"
+                    ]
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:BatchGetImage",
+                "ecr:GetAuthorizationToken",
+                "ecr:GetDownloadUrlForLayer"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetBucketAcl",
+                "s3:GetBucketCors",
+                "s3:GetEncryptionConfiguration",
+                "s3:GetBucketLocation",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:ListMultipartUploadParts",
+                "s3:ListBucketMultipartUploads",
+                "s3:PutObject",
+                "s3:PutBucketAcl",
+                "s3:PutBucketCors",
+                "s3:DeleteObject",
+                "s3:AbortMultipartUpload",
+                "s3:CreateBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::redshift-downloads",
+                "arn:aws:s3:::redshift-downloads/*",
+                "arn:aws:s3:::*redshift*",
+                "arn:aws:s3:::*redshift*/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetBucketAcl",
+                "s3:GetBucketCors",
+                "s3:GetEncryptionConfiguration",
+                "s3:GetBucketLocation",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:ListMultipartUploadParts",
+                "s3:ListBucketMultipartUploads",
+                "s3:PutObject",
+                "s3:PutBucketAcl",
+                "s3:PutBucketCors",
+                "s3:DeleteObject",
+                "s3:AbortMultipartUpload",
+                "s3:CreateBucket"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEqualsIgnoreCase": {
+                    "s3:ExistingObjectTag/Redshift": "true"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "arn:aws:iam::*:role/*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": [
+                        "redshift.amazonaws.com",
+                        "sagemaker.amazonaws.com",
+                    ]
+                }
+            }
+        }
+    ]
+}
+```
+
+The following policy shows the full minimal permissions to allow access to Amazon DynamoDB, Redshift Spectrum and Amazon RDS federation\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateTrainingJob",
+                "sagemaker:CreateAutoMLJob",
+                "sagemaker:CreateCompilationJob",
+                "sagemaker:CreateEndpoint",
+                "sagemaker:DescribeAutoMLJob",
+                "sagemaker:DescribeTrainingJob",
+                "sagemaker:DescribeCompilationJob",
+                "sagemaker:DescribeProcessingJob",
+                "sagemaker:DescribeTransformJob",
+                "sagemaker:ListCandidatesForAutoMLJob",
+                "sagemaker:StopAutoMLJob",
+                "sagemaker:StopCompilationJob",
+                "sagemaker:StopTrainingJob",
+                "sagemaker:DescribeEndpoint",
+                "sagemaker:InvokeEndpoint",
+                "sagemaker:StopProcessingJob",
+                "sagemaker:CreateModel",
+                "sagemaker:CreateProcessingJob"
+            ],
+            "Resource": [
+                "arn:aws:sagemaker:*:*:model/*redshift*",
+                "arn:aws:sagemaker:*:*:training-job/*redshift*",
+                "arn:aws:sagemaker:*:*:automl-job/*redshift*",
+                "arn:aws:sagemaker:*:*:compilation-job/*redshift*",
+                "arn:aws:sagemaker:*:*:processing-job/*redshift*",
+                "arn:aws:sagemaker:*:*:transform-job/*redshift*",
+                "arn:aws:sagemaker:*:*:endpoint/*redshift*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:*:*:log-group:/aws/sagemaker/Endpoints/*redshift*",
+                "arn:aws:logs:*:*:log-group:/aws/sagemaker/ProcessingJobs/*redshift*",
+                "arn:aws:logs:*:*:log-group:/aws/sagemaker/TrainingJobs/*redshift*",
+                "arn:aws:logs:*:*:log-group:/aws/sagemaker/TransformJobs/*redshift*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "cloudwatch:namespace": [
+                        "SageMaker",
+                        "/aws/sagemaker/Endpoints",
+                        "/aws/sagemaker/ProcessingJobs",
+                        "/aws/sagemaker/TrainingJobs",
+                        "/aws/sagemaker/TransformJobs"
+                    ]
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:BatchGetImage",
+                "ecr:GetAuthorizationToken",
+                "ecr:GetDownloadUrlForLayer"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetBucketAcl",
+                "s3:GetBucketCors",
+                "s3:GetEncryptionConfiguration",
+                "s3:GetBucketLocation",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:ListMultipartUploadParts",
+                "s3:ListBucketMultipartUploads",
+                "s3:PutObject",
+                "s3:PutBucketAcl",
+                "s3:PutBucketCors",
+                "s3:DeleteObject",
+                "s3:AbortMultipartUpload",
+                "s3:CreateBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::redshift-downloads",
+                "arn:aws:s3:::redshift-downloads/*",
+                "arn:aws:s3:::*redshift*",
+                "arn:aws:s3:::*redshift*/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetBucketAcl",
+                "s3:GetBucketCors",
+                "s3:GetEncryptionConfiguration",
+                "s3:GetBucketLocation",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:ListMultipartUploadParts",
+                "s3:ListBucketMultipartUploads",
+                "s3:PutObject",
+                "s3:PutBucketAcl",
+                "s3:PutBucketCors",
+                "s3:DeleteObject",
+                "s3:AbortMultipartUpload",
+                "s3:CreateBucket"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEqualsIgnoreCase": {
+                    "s3:ExistingObjectTag/Redshift": "true"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:Scan",
+                "dynamodb:DescribeTable",
+                "dynamodb:Getitem"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:*:*:table/*redshift*",
+                "arn:aws:dynamodb:*:*:table/*redshift*/index/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:ListInstances"
+            ],
+            "Resource": [
+                "arn:aws:elasticmapreduce:*:*:cluster/*redshift*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "elasticmapreduce:ListInstances"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEqualsIgnoreCase": {
+                    "elasticmapreduce:ResourceTag/Redshift": "true"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction"
+            ],
+            "Resource": "arn:aws:lambda:*:*:function:*redshift*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "glue:CreateDatabase",
+                "glue:DeleteDatabase",
+                "glue:GetDatabase",
+                "glue:GetDatabases",
+                "glue:UpdateDatabase",
+                "glue:CreateTable",
+                "glue:DeleteTable",
+                "glue:BatchDeleteTable",
+                "glue:UpdateTable",
+                "glue:GetTable",
+                "glue:GetTables",
+                "glue:BatchCreatePartition",
+                "glue:CreatePartition",
+                "glue:DeletePartition",
+                "glue:BatchDeletePartition",
+                "glue:UpdatePartition",
+                "glue:GetPartition",
+                "glue:GetPartitions",
+                "glue:BatchGetPartition"
+            ],
+            "Resource": [
+                "arn:aws:glue:*:*:table/*redshift*/*",
+                "arn:aws:glue:*:*:catalog",
+                "arn:aws:glue:*:*:database/*redshift*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetResourcePolicy",
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:ListSecretVersionIds"
+            ],
+            "Resource": [
+                "arn:aws:secretsmanager:*:*:secret:*redshift*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetRandomPassword",
+                "secretsmanager:ListSecrets"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "secretsmanager:ResourceTag/Redshift": "true"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "arn:aws:iam::*:role/*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": [
+                        "redshift.amazonaws.com",
+                        "glue.amazonaws.com",
+                        "sagemaker.amazonaws.com",
+                        "athena.amazonaws.com"
+                    ]
+                }
+            }
+        }
+    ]
+}
+```
+
+Optionally, to use a AWS KMS key for encryption, add the following permissions to the policy\.
+
+```
+{
+    "Effect": "Allow",
+    "Action": [
+        "kms:CreateGrant",
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:Encrypt",
+        "kms:GenerateDataKey*"
+    ],
+    "Resource": [
+        "arn:aws:kms:<your-region>:<your-account-id>:key/<your-kms-key>"
+    ]
+}
+```
+
+To allow Amazon Redshift and SageMaker to assume the preceding IAM role to interact with other services, add the following trust policy to the role\.
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": [
+          "redshift.amazonaws.com",
+          "sagemaker.amazonaws.com"
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+In the preceding, the Amazon S3 bucket `redshift-downloads/redshift-ml/` is the location where the sample data used for other steps and examples is stored\. You can remove this bucket if you don't need to load data from Amazon S3\. Or replace it with other Amazon S3 buckets that you use to load data into Amazon Redshift\. 
+
+The **your\-account\-id**, **your\-role**, and **your\-s3\-bucket** values are the account ID, role, and bucket that you specify in your CREATE MODEL command\.
+
+Optionally, you can use the AWS KMS keys section of the sample policy if you specify an AWS KMS key for use with Amazon Redshift ML\. The **your\-kms\-key** value is the key that you use as part of your CREATE MODEL command\.
+
+When you specify a private virtual private cloud \(VPC\) for a hyperparameter tuning job, add the following permissions\.
+
+```
+{
+            "Effect": "Allow",
+            "Action": [
+            "ec2:CreateNetworkInterface",
+            "ec2:CreateNetworkInterfacePermission",
+            "ec2:DeleteNetworkInterface",
+            "ec2:DeleteNetworkInterfacePermission",
+            "ec2:DescribeNetworkInterfaces",
+            "ec2:DescribeVpcs",
+            "ec2:DescribeDhcpOptions",
+            "ec2:DescribeSubnets",
+            "ec2:DescribeSecurityGroups"
+            ]
+}
+```
+
+To work with model explanation, make sure that you have the permissions to call SageMaker API operations\. We recommend that you use the `AmazonSageMakerFullAccess` managed policy\. If you want to create an IAM role with a more restrictive policy, use the policy following\.
+
+```
+{
+          "Version": "2012-10-17",
+          "Statement": [
+          {
+          "Effect": "Allow",
+          "Action": [
+          "sagemaker::CreateEndpoint",
+          "sagemaker::CreateEndpointConfig",
+          "sagemaker::DeleteEndpoint",
+          "sagemaker::DeleteEndpointConfig",
+          "sagemaker::DescribeEndpoint",
+          "sagemaker::DescribeEndpointConfig",
+          "sagemaker::DescribeModel",
+          "sagemaker::InvokeEndpoint",
+          "sagemaker::ListTags"
+          ],
+          "Resource": "*"
+          }
+          ]
+}
+```
+
+For more information about the `AmazonSageMakerFullAccess` managed policy, see [AmazonSageMakerFullAccess](https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam-awsmanpol.html#security-iam-awsmanpol-AmazonSageMakerFullAccess) in the *Amazon SageMaker Developer Guide*\.
+
+For more information about Amazon Redshift ML, see [Using machine learning in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/dg/machine_learning.html) or [CREATE MODEL](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_MODEL.html)\.
 
 ## Permissions required to use the data sharing API operations<a name="iam-permission-datasharing"></a>
 

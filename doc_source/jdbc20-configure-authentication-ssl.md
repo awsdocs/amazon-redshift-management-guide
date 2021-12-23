@@ -2,13 +2,13 @@
 
 To protect data from unauthorized access, Amazon Redshift data stores require all connections to be authenticated using user credentials\. Some data stores also require connections to be made over the Secure Sockets Layer \(SSL\) protocol, either with or without one\-way authentication\.
 
-The Amazon Redshift JDBC driver version 2\.0 provides full support for these authentication protocols\. 
+The Amazon Redshift JDBC driver version 2\.1 provides full support for these authentication protocols\. 
 
 The SSL version that the driver supports depends on the JVM version that you are using\. For information about the SSL versions that are supported by each version of Java, see [Diagnosing TLS, SSL, and HTTPS](https://blogs.oracle.com/java-platform-group/diagnosing-tls,-ssl,-and-https) on the Java Platform Group Product Management Blog\. 
 
 The SSL version used for the connection is the highest version that is supported by both the driver and the server, which is determined at connection time\.
 
-Configure the Amazon Redshift JDBC driver version 2\.0 to authenticate your connection according to the security requirements of the Amazon Redshift server that you are connecting to\. 
+Configure the Amazon Redshift JDBC driver version 2\.1 to authenticate your connection according to the security requirements of the Amazon Redshift server that you are connecting to\. 
 
 You must always provide your Amazon Redshift user name and password to authenticate the connection\. Depending on whether SSL is enabled and required on the server, you might also need to configure the driver to connect through SSL\. Or you might use one\-way SSL authentication so that the client \(the driver itself\) verifies the identity of the server\. 
 
@@ -135,4 +135,4 @@ If you are using a browser plugin for one of these services, the connection URL 
 + **Listen\_Port** – The port that the driver uses to get the SAML response from the identity provider when using the SAML or Azure AD services through a browser plugin \.
 + **IdP\_Response\_Timeout** – The amount of time, in seconds, that the driver waits for the SAML response from the identity provider when using the SAML or Azure AD services through a browser plugin\.
 
-For information on additional connection string properties, see [Options for JDBC driver version 2\.0 configuration](jdbc20-configuration-options.md)\. 
+For information on additional connection string properties, see [Options for JDBC driver version 2\.1 configuration](jdbc20-configuration-options.md)\. 

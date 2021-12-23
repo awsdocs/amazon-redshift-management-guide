@@ -144,7 +144,7 @@ For more information, see [Create an IAM role or user role or user with permissi
 When you connect to a cluster with the old query editor, you use one of the following authentication methods\. Each method requires a different combination of input from the Amazon Redshift console\. 
 
 **Connect with database password**  
-With this method, provide the master user password for the default database\. You provided this password when you created your cluster\. 
+With this method, provide the admin user password for the default database\. You provided this password when you created your cluster\. 
 
 **Temporary credentials**  
 With this method, provide your **database** and **db\-user** values\. 

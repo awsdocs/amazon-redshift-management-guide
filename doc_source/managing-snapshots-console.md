@@ -249,9 +249,10 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 1. Update the properties of the new cluster, then choose **Restore cluster from snapshot**\. 
 
+If you have reserved nodes, for example DS2 or DC2 reserved nodes, you can upgrade to RA3 reserved nodes\. You can do this when you restore from a snapshot or perform an elastic resize\. You can use the console to guide you through this process\. For more information about upgrading to RA3 nodes, see [Upgrading to RA3 node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-upgrading-to-ra3)\. 
+
 ### Original console<a name="snapshot-cluster-restore-originalconsole"></a>
 
-**Note**  
 You can use these steps to change a cluster platform from EC2\-Classic to EC2\-VPC and vice versa\.<a name="snapshot-restore-task"></a>
 
 **To restore a cluster from a snapshot**
@@ -412,7 +413,7 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 
 ## Configure cross\-Region snapshot copy for an AWS KMS–encrypted cluster<a name="xregioncopy-kms-encrypted-snapshot"></a>
 
- When you launch an Amazon Redshift cluster, you can choose to encrypt it with a master key from the AWS Key Management Service \(AWS KMS\)\. AWS KMS keys are specific to an AWS Region\. If you want to enable cross\-Region snapshot copy for an AWS KMS–encrypted cluster, you must configure a *snapshot copy grant* for a master key in the destination AWS Region\. By doing this, you enable Amazon Redshift to perform encryption operations in the destination AWS Region\.
+ When you launch an Amazon Redshift cluster, you can choose to encrypt it with a root key from the AWS Key Management Service \(AWS KMS\)\. AWS KMS keys are specific to an AWS Region\. If you want to enable cross\-Region snapshot copy for an AWS KMS–encrypted cluster, you must configure a *snapshot copy grant* for a root key in the destination AWS Region\. By doing this, you enable Amazon Redshift to perform encryption operations in the destination AWS Region\.
 
 The following procedure describes the process of enabling cross\-Region snapshot copy for an AWS KMS\-encrypted cluster\. For more information about encryption in Amazon Redshift and snapshot copy grants, see [Copying AWS KMS–encrypted snapshots to another AWS Region](working-with-db-encryption.md#configure-snapshot-copy-grant)\. 
 

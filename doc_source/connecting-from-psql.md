@@ -42,7 +42,7 @@ By default, psql does not validate the Amazon Redshift service; it makes an encr
    For example:
 
    ```
-   psql -h examplecluster.<XXXXXXXXXXXX>.us-west-2.redshift.amazonaws.com -U masteruser -d dev -p 5439
+   psql -h examplecluster.<XXXXXXXXXXXX>.us-west-2.redshift.amazonaws.com -U adminuser -d dev -p 5439
    ```
 
 1.  At the psql password prompt, enter the password for the *<userid>* user\.
@@ -57,7 +57,7 @@ To control whether psql authenticates the service using a certificate, you must 
 
 **To connect by using a certificate**
 
-1.  Save the download the [Redshift certificate authority bundle](https://s3.amazonaws.com/redshift-downloads/redshift-ca-bundle.crt) a \.crt file to your computer\. If you do a **File\\Save as** using Internet Explorer, specify the file type as **Text file \(\*\.txt\)** and delete the \.txt extension\. For example, save it as the file `C:\MyDownloads\redshift-ca-bundle.crt`\.
+1.  Save the download of the Amazon trust certificate authority bundle, a \.crt file, to your computer\. For download information, see [Connect using SSL](connecting-ssl-support.md#connect-using-ssl)\. If you do a **File\\Save as** using Internet Explorer, specify the file type as **Text file \(\*\.txt\)** and delete the \.txt extension\. For example, save it as the file `C:\MyDownloads\amazon-trust-ca-bundle.crt`\.
 
 1. Choose one of the following steps depending on which Amazon Redshift console you are using:
    + \(New console\) In the navigation pane, choose **CLUSTERS**\. Then choose the cluster name from the list to open its details\. On the **Properties** tab, in the **Database configurations** section, record the **Database name** and **Port**\. View the **Connection details** section and record the **Endpoint** which is in the following form: 
@@ -96,7 +96,7 @@ To control whether psql authenticates the service using a certificate, you must 
    For example:
 
    ```
-   psql "host=examplecluster.<XXXXXXXXXXXX>.us-west-2.redshift.amazonaws.com user=masteruser dbname=dev port=5439 sslmode=verify-ca sslrootcert=C:/MyDownloads/redshift-ca-bundle.crt"
+   psql "host=examplecluster.<XXXXXXXXXXXX>.us-west-2.redshift.amazonaws.com user=adminuser dbname=dev port=5439 sslmode=verify-ca sslrootcert=C:/MyDownloads/amazon-trust-ca-bundle.crt"
    ```
 
 1.  At the psql password prompt, enter the password for the *<userid>* user\.

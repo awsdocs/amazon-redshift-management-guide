@@ -263,5 +263,6 @@ lambda 'exampleLambdaFunction'
 iam_role 'arn:aws:iam::123456789012:role/RoleA,arn:aws:iam::210987654321:role/RoleB';
 ```
 
-## Related topics<a name="authorizing-redshift-related-topic"></a>
-+ [Authorizing COPY, UNLOAD, CREATE EXTERNAL FUNCTION, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)
+## Additional information<a name="authorizing-redshift-related-topic"></a>
+
+For more information, see also [Authorizing COPY, UNLOAD, CREATE EXTERNAL FUNCTION, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)\.
