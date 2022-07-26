@@ -1,46 +1,26 @@
-# Changing Cluster Encryption<a name="changing-cluster-encryption"></a>
+# Changing cluster encryption<a name="changing-cluster-encryption"></a>
 
-You can modify an unencrypted cluster to use AWS Key Management Service \(AWS KMS\) encryption, using either an AWS\-managed key or a customer\-managed key \(CMK\)\. When you modify your cluster to enable KMS encryption, Amazon Redshift automatically migrates your data to a new encrypted cluster\. You can also migrate an unencrypted cluster to an encrypted cluster by modifying the cluster\. 
+You can modify an unencrypted cluster to use AWS Key Management Service \(AWS KMS\) encryption, using either an AWS\-managed key or a customer managed key\. When you modify your cluster to enable AWS KMS encryption, Amazon Redshift automatically migrates your data to a new encrypted cluster\. You can also migrate an unencrypted cluster to an encrypted cluster by modifying the cluster\. 
 
 During the migration operation, your cluster is available in read\-only mode, and the cluster status appears as **resizing**\. 
 
-If your cluster is configured to enable cross\-AWS Region snapshot copy, you must disable it before changing encryption\. For more information, see [Copying Snapshots to Another AWS Region](working-with-snapshots.md#cross-region-snapshot-copy) and [Configure Cross\-Region Snapshot Copy for an AWS KMS–Encrypted Cluster](managing-snapshots-console.md#xregioncopy-kms-encrypted-snapshot)\. You can't enable hardware security module \(HSM\) encryption by modifying the cluster\. Instead, create a new, HSM\-encrypted cluster and migrate your data to the new cluster\. For more information, see [Migrating to an HSM\-Encrypted Cluster](#migrating-to-an-encrypted-cluster)\. 
-
-**Note**  
-A new console is available for Amazon Redshift\. Choose either the **New Console** or the **Original Console** instructions based on the console that you are using\. The **New Console** instructions are open by default\.
-
-## New Console<a name="cluster-database-encryption-modify"></a>
+If your cluster is configured to enable cross\-AWS Region snapshot copy, you must disable it before changing encryption\. For more information, see [Copying snapshots to another AWS Region](working-with-snapshots.md#cross-region-snapshot-copy) and [Configure cross\-Region snapshot copy for an AWS KMS–encrypted cluster](managing-snapshots-console.md#xregioncopy-kms-encrypted-snapshot)\. You can't enable hardware security module \(HSM\) encryption by modifying the cluster\. Instead, create a new, HSM\-encrypted cluster and migrate your data to the new cluster\. For more information, see [Migrating to an HSM\-encrypted cluster](#migrating-to-an-encrypted-cluster)\. 
 
 **To modify database encryption on a cluster**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster that you want to move snapshots for\.
+1. On the navigation menu, choose **Clusters**, then choose the cluster that you want to modify encryption\.
 
-1. For **Actions**, choose **Modify** to display the configuration page\. 
+1. Choose **Properties**\.
 
-1. In the **Database configuration** section, choose the setting for **Encryption**, then choose **Modify cluster**\. 
+1. In the **Database configurations** section, choose **Edit**, then choose **Edit encryption**\. 
 
-## Original Console<a name="cluster-database-encryption-modify-originalconsole"></a><a name="changing-cluster-encryption-console"></a>
-
-**To change cluster encryption using the console**
-
-1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-
-1.  In the navigation pane, choose **Clusters**, and then choose the cluster that you want to modify\. 
-
-1. Choose **Cluster**, and then choose **Modify**\.
-
-1. For **Encrypt database**, choose **KMS** to enable encryption, or choose **None** to disable encryption\.
-
-1. To use a customer\-managed key, for **Master Key** choose **Enter a key ARN** and enter the ARN in the **ARN** field\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/modify-encryption.png)
-
-1. Choose **Modify**\.
+1. Choose one of the encryption options and choose **Save changes**\.
 
 <a name="changing-cluster-encryption-cli"></a>**To change cluster encryption using the CLI** 
 
-To modify your unencrypted cluster to use KMS, run the `modify-cluster` CLI command and specify `–-encrypted`, as shown following\. By default, your default KMS key is used\. To specify a customer\-managed key, include the `--kms-key-id` option\.
+To modify your unencrypted cluster to use AWS KMS, run the `modify-cluster` CLI command and specify `–-encrypted`, as shown following\. By default, your default KMS key is used\. To specify a customer managed key, include the `--kms-key-id` option\.
 
 ```
 aws redshift modify-cluster --cluster-identifier <value> --encrypted --kms-key-id <value>
@@ -52,11 +32,11 @@ To remove encryption from your cluster, run the following CLI command\.
 aws redshift modify-cluster --cluster-identifier <value> --no-encrypted
 ```
 
-## Migrating to an HSM\-Encrypted Cluster<a name="migrating-to-an-encrypted-cluster"></a>
+## Migrating to an HSM\-encrypted cluster<a name="migrating-to-an-encrypted-cluster"></a>
 
 To migrate an unencrypted cluster to a cluster encrypted using a hardware security module \(HSM\), you create a new encrypted cluster and move your data to the new cluster\. You can't migrate to an HSM\-encrypted cluster by modifying the cluster\.
 
-To migrate from an unencrypted cluster to an HSM\-encrypted cluster, you first unload your data from the existing, source cluster\. Then you reload the data in a new, target cluster with the chosen encryption setting\. For more information about launching an encrypted cluster, see [Amazon Redshift Database Encryption](working-with-db-encryption.md)\. 
+To migrate from an unencrypted cluster to an HSM\-encrypted cluster, you first unload your data from the existing, source cluster\. Then you reload the data in a new, target cluster with the chosen encryption setting\. For more information about launching an encrypted cluster, see [Amazon Redshift database encryption](working-with-db-encryption.md)\. 
 
 During the migration process, your source cluster is available for read\-only queries until the last step\. The last step is to rename the target and source clusters, which switches endpoints so all traffic is routed to the new, target cluster\. The target cluster is unavailable until you reboot following the rename\. Suspend all data loads and other write operations on the source cluster while data is being transferred\. <a name="prepare-for-migration"></a>
 
@@ -81,7 +61,7 @@ During the migration process, your source cluster is available for read\-only qu
    from svv_table_info;
    ```
 
-1. Choose a good time for your migration\. To find a time when cluster usage is lowest, monitor cluster metrics such as CPU utilization and number of database connections\. For more information, see [Viewing Cluster Performance Data](performance-metrics-perf.md)\.
+1. Choose a good time for your migration\. To find a time when cluster usage is lowest, monitor cluster metrics such as CPU utilization and number of database connections\. For more information, see [Viewing cluster performance data](performance-metrics-perf.md)\.
 
 1. Drop unused tables\. 
 
@@ -109,7 +89,7 @@ During the migration process, your source cluster is available for read\-only qu
 
 1. Launch a new, encrypted cluster\. 
 
-   Use the same port number for the target cluster as for the source cluster\. For more information about launching an encrypted cluster, see [Amazon Redshift Database Encryption](working-with-db-encryption.md)\. 
+   Use the same port number for the target cluster as for the source cluster\. For more information about launching an encrypted cluster, see [Amazon Redshift database encryption](working-with-db-encryption.md)\. 
 
 1. Set up the unload and load process\. 
 
@@ -125,7 +105,7 @@ During the migration process, your source cluster is available for read\-only qu
 
 1. Stop all ETL processes on the source cluster\. 
 
-   To confirm that there are no write operations in process, use the Amazon Redshift Management Console to monitor write IOPS\. For more information, see [Viewing Cluster Performance Data](performance-metrics-perf.md)\. 
+   To confirm that there are no write operations in process, use the Amazon Redshift Management Console to monitor write IOPS\. For more information, see [Viewing cluster performance data](performance-metrics-perf.md)\. 
 
 1. Run the validation queries you identified earlier to collect information about the unencrypted source cluster before migration\.
 

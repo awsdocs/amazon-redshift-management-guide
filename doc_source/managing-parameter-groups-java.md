@@ -1,4 +1,4 @@
-# Managing Parameter Groups Using the AWS SDK for Java<a name="managing-parameter-groups-java"></a>
+# Managing parameter groups using the AWS SDK for Java<a name="managing-parameter-groups-java"></a>
 
 This example demonstrates the following tasks related to parameter groups:
 + Creating a parameter group
@@ -51,7 +51,7 @@ Because this example replaces the WLM configuration, this JSON configuration als
 
 For more information about Workload Management \(WML\) configuration, go to [Implementing workload management](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html)\. 
 
-For step\-by\-step instructions to run the following example, see [Running Java Examples for Amazon Redshift Using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and provide a cluster identifier\.
+For step\-by\-step instructions to run the following example, see [Running Java examples for Amazon Redshift using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and provide a cluster identifier\.
 
 **Example**  
 

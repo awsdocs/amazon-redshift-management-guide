@@ -4,4 +4,4 @@ The AWS global infrastructure is built around AWS Regions and Availability Zones
 
 Almost all AWS Regions have multiple Availability Zones and data centers\. You can deploy your applications across multiple Availability Zones in the same Region for fault tolerance and low latency\. 
 
-For more information on AWS Regions and Availability Zones, see [AWS Global Infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)\.
+For more information on AWS Regions and Availability Zones, see [AWS global infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)\.

@@ -1,13 +1,13 @@
-# Tagging Resources in Amazon Redshift<a name="amazon-redshift-tagging"></a>
+# Tagging resources in Amazon Redshift<a name="amazon-redshift-tagging"></a>
 
 **Topics**
-+ [Tagging Overview](#amazon-redshift-tagging-overview)
-+ [Managing Resource Tags Using the Console](rs-mgmt-tagging-console.md)
-+ [Managing Tags Using the Amazon Redshift API](rs-mgmt-tagging-cli-api.md)
++ [Tagging overview](#amazon-redshift-tagging-overview)
++ [Managing resource tags using the console](rs-mgmt-tagging-console.md)
++ [Managing tags using the Amazon Redshift API](rs-mgmt-tagging-cli-api.md)
 
-## Tagging Overview<a name="amazon-redshift-tagging-overview"></a>
+## Tagging overview<a name="amazon-redshift-tagging-overview"></a>
 
-In AWS, tags are user\-defined labels that consist of key\-value pairs\. Amazon Redshift supports tagging to provide metadata about resources at a glance, and to categorize your billing reports based on cost allocation\. To use tags for cost allocation, you must first activate those tags in the AWS Billing and Cost Management service\. For more information about setting up and using tags for billing purposes, see [Use Cost Allocation Tags for Custom Billing Reports](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) and [Setting Up Your Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html)\.
+In AWS, tags are user\-defined labels that consist of key\-value pairs\. Amazon Redshift supports tagging to provide metadata about resources at a glance, and to categorize your billing reports based on cost allocation\. To use tags for cost allocation, you must first activate those tags in the AWS Billing and Cost Management service\. For more information about setting up and using tags for billing purposes, see [Use cost allocation tags for custom billing reports](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) and [Setting up your monthly cost allocation report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html)\.
 
 Tags are not required for resources in Amazon Redshift, but they help provide context\. You might want to tag resources with metadata about cost centers, project names, and other pertinent information related to the resource\. For example, suppose you want to track which resources belong to a test environment and a production environment\. You could create a key named `environment` and provide the value `test` or `production` to identify the resources used in each environment\. If you use tagging in other AWS services or have standard categories for your business, we recommend that you create the same key\-value pairs for resources in Amazon Redshift for consistency\. 
 
@@ -25,7 +25,9 @@ Each resource has one *tag set*, which is a collection of one or more tags assig
 + Snapshot
 + Subnet group
 
-### Tagging Requirements<a name="rs-tagging-requirements"></a>
+To use tagging from the Amazon Redshift console, your IAM user can attach the AWS\-managed policy `AmazonRedshiftFullAccess`\. For an example IAM policy with limited tagging permissions that you can attach to an Amazon Redshift console user, see [Example 7: Allow a user to tag resources with the Amazon Redshift console](redshift-iam-access-control-identity-based.md#redshift-policy-example-allow-tagging-with-console)\. For more information about tagging, see [What is AWS Resource Groups?](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html)\.
+
+### Tagging requirements<a name="rs-tagging-requirements"></a>
 
 Tags have the following requirements: 
 + Keys can't be prefixed with `aws:`\.

@@ -1,11 +1,13 @@
-# Managing Cluster Subnet Groups Using the AWS SDK for Java<a name="managing-cluster-subnet-groups-java"></a>
+# Managing cluster subnet groups using the AWS SDK for Java<a name="managing-cluster-subnet-groups-java"></a>
+
+
 
 The following Java code example demonstrates common cluster subnet operations including:
 + Creating a cluster subnet group\.
 + Listing metadata about a cluster subnet group\.
 + Modifying a cluster subnet group\.
 
-For step\-by\-step instructions to run the following example, see [Running Java Examples for Amazon Redshift Using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and provide a cluster subnet group name and two subnet identifiers\. 
+For step\-by\-step instructions to run the following example, see [Running Java examples for Amazon Redshift using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and provide a cluster subnet group name and two subnet identifiers\. 
 
 **Example**  
 

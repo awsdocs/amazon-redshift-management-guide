@@ -1,4 +1,4 @@
-# Managing Tags Using the Amazon Redshift API<a name="rs-mgmt-tagging-cli-api"></a>
+# Managing tags using the Amazon Redshift API<a name="rs-mgmt-tagging-cli-api"></a>
 
 You can use the following AWS CLI operations to manage tags in Amazon Redshift\. 
 + [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-tags.html)

@@ -1,4 +1,4 @@
-# Working with Performance Metrics in the CloudWatch Console<a name="using-cloudwatch-console"></a>
+# Working with performance metrics in the CloudWatch console<a name="using-cloudwatch-console"></a>
 
 When working with Amazon Redshift metrics in the CloudWatch console, keep a couple of things in mind:
 + Query and load performance data is only available in the Amazon Redshift console\.
@@ -10,11 +10,11 @@ When working with Amazon Redshift metrics in the CloudWatch console, command lin
 
 1. Then, specify the metric name, such as `ReadIOPS`\.
 
-The following table summarizes the types of Amazon Redshift metric dimensions that are available to you\. All data is available in 1\-minute periods at no charge\. 
+The following table summarizes the types of Amazon Redshift metric dimensions that are available to you\. Depending on the metric, data is available in either 1\-minute or 5\-minute intervals at no charge\. For more information, see [Amazon Redshift metrics](metrics-listing.md#redshift-metrics)\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/using-cloudwatch-console.html)
 
 Working with gateway and volume metrics is similar to working with other service metrics\. Many of the common tasks are outlined in the CloudWatch documentation, including the following: 
-+ [View Available Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/viewing_metrics_with_cloudwatch.html)
-+ [Get Statistics for a Metric](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/getting-metric-statistics.html)
-+ [Creating CloudWatch Alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html)
++ [View available metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/viewing_metrics_with_cloudwatch.html)
++ [Get statistics for a metric](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/getting-metric-statistics.html)
++ [Creating CloudWatch alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html)

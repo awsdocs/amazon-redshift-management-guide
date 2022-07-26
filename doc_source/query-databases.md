@@ -1,4 +1,4 @@
-# Querying a Database<a name="query-databases"></a>
+# Querying a database<a name="query-databases"></a>
 
 To query databases hosted by your Amazon Redshift cluster, you have two options:
 + Connect to your cluster and run queries on the AWS Management Console with the query editor\. 
@@ -9,5 +9,8 @@ To query databases hosted by your Amazon Redshift cluster, you have two options:
   Amazon Redshift supports SQL client tools connecting through Java Database Connectivity \(JDBC\) and Open Database Connectivity \(ODBC\)\. Amazon Redshift doesn't provide or install any SQL client tools or libraries, so you must install them on your client computer or Amazon EC2 instance to use them\. You can use most SQL client tools that support JDBC or ODBC drivers\.
 
 **Topics**
-+ [Querying a Database Using the Query Editor](query-editor.md)
-+ [Connecting to an Amazon Redshift Cluster Using SQL Client Tools](connecting-to-cluster.md)
++ [Querying a database using the Amazon Redshift query editor v2](query-editor-v2.md)
++ [Querying a database using the query editor](query-editor.md)
++ [Scheduling a query on the Amazon Redshift console](query-editor-schedule-query.md)
++ [Connecting to an Amazon Redshift cluster using SQL client tools](connecting-to-cluster.md)
++ [Using the Amazon Redshift Data API](data-api.md)
