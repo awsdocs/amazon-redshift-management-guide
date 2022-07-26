@@ -1,45 +1,65 @@
-# Managing Cluster Subnet Groups Using the AWS SDK for Java<a name="managing-cluster-subnet-groups-java"></a>
+# Managing cluster subnet groups using the AWS SDK for Java<a name="managing-cluster-subnet-groups-java"></a>
+
+
 
 The following Java code example demonstrates common cluster subnet operations including:
-
 + Creating a cluster subnet group\.
-
 + Listing metadata about a cluster subnet group\.
-
 + Modifying a cluster subnet group\.
 
-For step\-by\-step instructions to run the following example, see [Running Java Examples for Amazon Redshift Using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and provide a cluster subnet group name and two subnet identifiers\. 
+For step\-by\-step instructions to run the following example, see [Running Java examples for Amazon Redshift using Eclipse](using-aws-sdk-for-java.md#setting-up-and-testing-sdk-java)\. You need to update the code and provide a cluster subnet group name and two subnet identifiers\. 
 
 **Example**  
 
 ```
+/**
+ * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * This file is licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License. A copy of
+ * the License is located at
+ *
+ * http://aws.amazon.com/apache2.0/
+ *
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
+*/
+
+// snippet-sourcedescription:[CreateAndModifyClusterSubnetGroup demonstrates how to create and modify an Amazon Redshift subnet group.]
+// snippet-service:[redshift]
+// snippet-keyword:[Java]
+// snippet-keyword:[Amazon Redshift]
+// snippet-keyword:[Code Sample]
+// snippet-keyword:[CreateClusterSubnetGroup]
+// snippet-keyword:[DescribeClusterSubnetGroups]
+// snippet-sourcetype:[full-example]
+// snippet-sourcedate:[2019-02-01]
+// snippet-sourceauthor:[AWS]
+// snippet-start:[redshift.java.CreateAndModifyClusterSubnetGroup.complete]
+package com.amazonaws.services.redshift;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.PropertiesCredentials;
-import com.amazonaws.services.redshift.AmazonRedshiftClient;
 import com.amazonaws.services.redshift.model.*;
 
 public class CreateAndModifyClusterSubnetGroup {
 
-    public static AmazonRedshiftClient client;
-    public static String clusterSubnetGroupName = "***provide a cluster subnet group name ****";
+    public static AmazonRedshift client;
+    public static String clusterSubnetGroupName = "subnet-group-name";
     // You can use the VPC console to find subnet IDs to use.
-    public static String subnetId1 = "***provide a subnet ID****"; 
+    public static String subnetId1 = "***provide a subnet ID****";
     public static String subnetId2 = "***provide a subnet ID****";
-        
+
     public static void main(String[] args) throws IOException {
-            
-        AWSCredentials credentials = new PropertiesCredentials(
-                CreateAndModifyClusterSubnetGroup.class
-                        .getResourceAsStream("AwsCredentials.properties"));
-    
-        client = new AmazonRedshiftClient(credentials);
-        
-        try {            
-             createClusterSubnetGroup();   
+
+        // Default client using the {@link com.amazonaws.auth.DefaultAWSCredentialsProviderChain}
+       client = AmazonRedshiftClientBuilder.defaultClient();
+
+        try {
+             createClusterSubnetGroup();
              describeClusterSubnetGroups();
              modifyClusterSubnetGroup();
         } catch (Exception e) {
@@ -55,7 +75,7 @@ public class CreateAndModifyClusterSubnetGroup {
         client.createClusterSubnetGroup(request);
         System.out.println("Created cluster subnet group: " + clusterSubnetGroupName);
     }
-    
+
     private static void modifyClusterSubnetGroup() {
         // Get existing subnet list.
         DescribeClusterSubnetGroupsRequest request1 = new DescribeClusterSubnetGroupsRequest()
@@ -76,12 +96,12 @@ public class CreateAndModifyClusterSubnetGroup {
         System.out.println("\nSubnet group modified.");
         printResultSubnetGroup(result2);
     }
-    
+
 
     private static void describeClusterSubnetGroups() {
         DescribeClusterSubnetGroupsRequest request = new DescribeClusterSubnetGroupsRequest()
         .withClusterSubnetGroupName(clusterSubnetGroupName);
-       
+
     DescribeClusterSubnetGroupsResult result = client.describeClusterSubnetGroups(request);
     printResultSubnetGroups(result);
     }
@@ -96,16 +116,17 @@ public class CreateAndModifyClusterSubnetGroup {
 
         for (ClusterSubnetGroup group : result.getClusterSubnetGroups())
         {
-            printResultSubnetGroup(group);            
+            printResultSubnetGroup(group);
         }
-        
+
     }
     private static void printResultSubnetGroup(ClusterSubnetGroup group) {
         System.out.format("Name: %s, Description: %s\n", group.getClusterSubnetGroupName(), group.getDescription());
         for (Subnet subnet : group.getSubnets()) {
-            System.out.format("  Subnet: %s, %s, %s\n", subnet.getSubnetIdentifier(), 
+            System.out.format("  Subnet: %s, %s, %s\n", subnet.getSubnetIdentifier(),
                     subnet.getSubnetAvailabilityZone().getName(), subnet.getSubnetStatus());
         }
     }
 }
+// snippet-end:[redshift.java.CreateAndModifyClusterSubnetGroup.complete]
 ```

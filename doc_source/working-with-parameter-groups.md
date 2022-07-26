@@ -1,10 +1,10 @@
-# Amazon Redshift Parameter Groups<a name="working-with-parameter-groups"></a>
+# Amazon Redshift parameter groups<a name="working-with-parameter-groups"></a>
 
 ## Overview<a name="working-with-parameter-groups-overview"></a>
 
- In Amazon Redshift, you associate a *parameter group* with each cluster that you create\. The parameter group is a group of parameters that apply to all of the databases that you create in the cluster\. These parameters configure database settings such as query timeout and datestyle\. 
+ In Amazon Redshift, you associate a parameter group with each cluster that you create\. A *parameter group* is a group of parameters that apply to all of the databases that you create in the cluster\. These parameters configure database settings such as query timeout and date style\. 
 
-## About Parameter Groups<a name="about-parameter-groups"></a>
+## About parameter groups<a name="about-parameter-groups"></a>
 
 Each parameter group has several parameters to configure settings for the database\. The list of available parameters depends on the parameter group family to which the parameter group belongs\. The *parameter group family* is the version of the Amazon Redshift engine to which the parameters in the parameter group apply\. The format of the parameter group family name is `redshift-version` where *version* is the engine version\. For example, the current version of the engine is `redshift-1.0`\. 
 
@@ -18,42 +18,45 @@ If you want to use different parameter values than the default parameter group, 
 **Note**  
 The Amazon Redshift console does not display the `source` of each parameter\. You must use the Amazon Redshift API, the AWS CLI, or one of the AWS SDKs to view the `source`\.
 
-For parameter groups that you create, you can modify a parameter value at any time, or you can reset all parameter values to their defaults\. You can also associate a different parameter group with a cluster\. If you modify parameter values in a parameter group that is already associated with a cluster or you associate a different parameter group with the cluster, you might need to restart the cluster for the updated parameter values to take effect\. If the cluster fails and is restarted by Amazon Redshift, your changes are applied at that time\. For more information, see [WLM Dynamic and Static Properties](workload-mgmt-config.md#wlm-dynamic-and-static-properties)\.
+For parameter groups that you create, you can modify a parameter value at any time, or you can reset all parameter values to their defaults\. You can also associate a different parameter group with a cluster\. In some cases, you might modify parameter values in a parameter group that is already associated with a cluster or associate a different parameter group with a cluster\. In these cases, you might need to restart the cluster for the updated parameter values to take effect\. If the cluster fails and is restarted by Amazon Redshift, your changes are applied at that time\. Changes aren't applied if your cluster is restarted during maintenance\. For more information, see [WLM dynamic and static properties](workload-mgmt-config.md#wlm-dynamic-and-static-properties)\.
 
-## Default Parameter Values<a name="default-param-group-values"></a>
+## Default parameter values<a name="default-param-group-values"></a>
 
 The following table shows the default parameter values at a glance with links to more in\-depth information about each parameter\. These are the default values for the `redshift-1.0` parameter group family\. 
 
 
-| Parameter Name | Value | More Information | 
+| Parameter name | Value | More information | 
 | --- | --- | --- | 
-|  analyze\_threshold\_percent  |  10  |  [analyze\_threshold\_percent](http://docs.aws.amazon.com/redshift/latest/dg/r_analyze_threshold_percent.html) in the Amazon Redshift Database Developer Guide  | 
-|  datestyle  |   ISO, MDY   |  [datestyle](http://docs.aws.amazon.com/redshift/latest/dg/r_datestyle.html) in the Amazon Redshift Database Developer Guide  | 
-|  enable\_user\_activity\_logging  |   false   |  [Database Audit Logging](db-auditing.md) in this guide  | 
-|  extra\_float\_digits  |  0  |  [extra\_float\_digits](http://docs.aws.amazon.com/redshift/latest/dg/r_extra_float_digits.html) in the Amazon Redshift Database Developer Guide  | 
-|  query\_group  |  default   |  [query\_group](http://docs.aws.amazon.com/redshift/latest/dg/r_query_group.html) in the Amazon Redshift Database Developer Guide  | 
-|  require\_ssl  |  false  |  [Configure Security Options for Connections](connecting-ssl-support.md) in this guide  | 
-|  search\_path  |   $user, public   |  [search\_path](http://docs.aws.amazon.com/redshift/latest/dg/r_search_path.html) in the Amazon Redshift Database Developer Guide  | 
-|  statement\_timeout  |  0  |  [statement\_timeout](http://docs.aws.amazon.com/redshift/latest/dg/r_statement_timeout.html) in the Amazon Redshift Database Developer Guide  | 
-|  wlm\_json\_configuration  |   \[\{"query\_concurrency":5\}\]   |  [Configuring Workload Management](workload-mgmt-config.md) in this guide  | 
-|  use\_fips\_ssl  |  false  |  Enable FIPS\-compliant SSL mode only if your system is required to be FIPS compliant\. | 
+|  auto\_analyze  |  true  |  [auto\_analyze](https://docs.aws.amazon.com/redshift/latest/dg/r_auto_analyze.html) in the Amazon Redshift Database Developer Guide  | 
+|  datestyle  |   ISO, MDY   |  [datestyle](https://docs.aws.amazon.com/redshift/latest/dg/r_datestyle.html) in the Amazon Redshift Database Developer Guide  | 
+|  enable\_case\_sensitive\_identifier  |   false   |  [enable\_case\_sensitive\_identifier](https://docs.aws.amazon.com/redshift/latest/dg/r_enable_case_sensitive_identifier.html) in the Amazon Redshift Database Developer Guide  | 
+|  enable\_user\_activity\_logging  |   false   |  [Database audit logging](db-auditing.md) in this guide  | 
+|  extra\_float\_digits  |  0  |  [extra\_float\_digits](https://docs.aws.amazon.com/redshift/latest/dg/r_extra_float_digits.html) in the Amazon Redshift Database Developer Guide  | 
+|  max\_concurrency\_scaling\_clusters  |  1  |  [max\_concurrency\_scaling\_clusters](https://docs.aws.amazon.com/redshift/latest/dg/r_max_concurrency_scaling_clusters.html) in the Amazon Redshift Database Developer Guide  | 
+|  query\_group  |  default   |  [query\_group](https://docs.aws.amazon.com/redshift/latest/dg/r_query_group.html) in the Amazon Redshift Database Developer Guide  | 
+|  require\_ssl  |  false  |  [Configuring security options for connections](connecting-ssl-support.md) in this guide  | 
+|  search\_path  |   $user, public   |  [search\_path](https://docs.aws.amazon.com/redshift/latest/dg/r_search_path.html) in the Amazon Redshift Database Developer Guide  | 
+|  statement\_timeout  |  0  |  [statement\_timeout](https://docs.aws.amazon.com/redshift/latest/dg/r_statement_timeout.html) in the Amazon Redshift Database Developer Guide  | 
+|  wlm\_json\_configuration  |   \[\{"auto\_wlm":true\}\]   |  [Configuring workload management](workload-mgmt-config.md) in this guide | 
+|  use\_fips\_ssl  |  false  |  Enable FIPS\-compliant SSL mode only if your system is required to be FIPS\-compliant\. | 
+|  auto\_mv  |  true  |  [Automated materialized views](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-auto-mv.html) in the Amazon Redshift Database Developer Guide | 
 
 **Note**  
-The `max_cursor_result_set_size` parameter is deprecated\. For more information about cursor result set size, see [ Cursor Constraints](http://docs.aws.amazon.com/redshift/latest/dg/declare.html#declare-constraints) in the *Amazon Redshift Database Developer Guide*\.
+The `max_cursor_result_set_size` parameter is deprecated\. For more information about cursor result set size, see [ Cursor constraints](https://docs.aws.amazon.com/redshift/latest/dg/declare.html#declare-constraints) in the *Amazon Redshift Database Developer Guide*\.
 
-You can temporarily override a parameter by using the `SET` command in the database\. The `SET` command overrides the parameter for the duration of your current session only\. In addition to the parameters listed in the preceding table, you can also temporarily adjust the slot count by setting `wlm_query_slot_count` in the database\. The `wlm_query_slot_count` parameter is not available for configuration in parameter groups\. For more information about adjusting the slot count, see [wlm\_query\_slot\_count](http://docs.aws.amazon.com/redshift/latest/dg/r_wlm_query_slot_count.html) in the *Amazon Redshift Database Developer Guide*\. For more information about temporarily overriding the other parameters, see [ Modifying the Server Configuration](http://docs.aws.amazon.com/redshift/latest/dg/t_Modifying_the_default_settings.html) in the *Amazon Redshift Database Developer Guide*\.
+You can temporarily override a parameter by using the `SET` command in the database\. The `SET` command overrides the parameter for the duration of your current session only\. In addition to the parameters listed in the preceding table, you can also temporarily adjust the slot count by setting `wlm_query_slot_count` in the database\. The `wlm_query_slot_count` parameter is not available for configuration in parameter groups\. For more information about adjusting the slot count, see [wlm\_query\_slot\_count](https://docs.aws.amazon.com/redshift/latest/dg/r_wlm_query_slot_count.html) in the *Amazon Redshift Database Developer Guide*\. For more information about temporarily overriding the other parameters, see [ Modifying the server configuration](https://docs.aws.amazon.com/redshift/latest/dg/t_Modifying_the_default_settings.html) in the *Amazon Redshift Database Developer Guide*\.
 
-## Configuring Parameter Values Using the AWS CLI<a name="configure-parameters-using-the-cli"></a>
+## Configuring parameter values using the AWS CLI<a name="configure-parameters-using-the-cli"></a>
 
  To configure Amazon Redshift parameters by using the AWS CLI, you use the `modify-cluster-parameter-group` command for a specific parameter group\. You specify the parameter group to modify in `parameter-group-name`\. You use the `parameters` parameter \(for the `modify-cluster-parameter-group` command\) to specify name/value pairs for each parameter that you want to modify in the parameter group\. 
 
 **Note**  
-There are special considerations when configuring the `wlm_json_configuration` parameter by using the AWS CLI\. The examples in this section apply to all of the parameters except `wlm_json_configuration`\. For more information about configuring `wlm_json_configuration` by using the AWS CLI, see [Configuring Workload Management](workload-mgmt-config.md)\. 
+There are special considerations when configuring the `wlm_json_configuration` parameter by using the AWS CLI\. The examples in this section apply to all of the parameters except `wlm_json_configuration`\. For more information about configuring `wlm_json_configuration` by using the AWS CLI, see [Configuring workload management](workload-mgmt-config.md)\. 
 
-After you modify parameter values, you must reboot any clusters that are associated with the modified parameter group\. The cluster status displays `applying` for `ParameterApplyStatus` while the values are being applied, and then `pending-reboot` after the values have been applied\. After you reboot, the databases in your cluster begin use the new parameter values\. For more information about rebooting clusters, see [Rebooting a Cluster](managing-clusters-console.md#reboot-cluster)\. 
+After you modify parameter values, you must reboot any clusters that are associated with the modified parameter group\. The cluster status displays `applying` for `ParameterApplyStatus` while the values are being applied, and then `pending-reboot` after the values have been applied\. After you reboot, the databases in your cluster begin to use the new parameter values\. For more information about rebooting clusters, see [Rebooting a cluster](managing-clusters-console.md#reboot-cluster)\. 
 
 **Note**  
-The `wlm_json_configuration` parameter contains some properties that are dynamic and do not require you to reboot associated clusters for the changes to be applied\. For more information about dynamic and static properties, see [WLM Dynamic and Static Properties](workload-mgmt-config.md#wlm-dynamic-and-static-properties)\. 
+The `wlm_json_configuration` parameter contains some properties that are dynamic and do not require you to reboot associated clusters for the changes to be applied\. For more information about dynamic and static properties, see [WLM dynamic and static properties](workload-mgmt-config.md#wlm-dynamic-and-static-properties)\. 
 
 Syntax
 
@@ -75,3 +78,5 @@ aws redshift modify-cluster-parameter-group
 --parameter-group-name myclusterparametergroup 
 --parameters ParameterName=statement_timeout,ParameterValue=20000 ParameterName=enable_user_activity_logging,ParameterValue=true
 ```
+
+You can manage parameter groups using the console\. For more information, see [Managing parameter groups using the console](managing-parameter-groups-console.md)\. 
