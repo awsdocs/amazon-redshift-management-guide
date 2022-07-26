@@ -39,6 +39,7 @@ The following table shows the default parameter values at a glance with links to
 |  statement\_timeout  |  0  |  [statement\_timeout](https://docs.aws.amazon.com/redshift/latest/dg/r_statement_timeout.html) in the Amazon Redshift Database Developer Guide  | 
 |  wlm\_json\_configuration  |   \[\{"auto\_wlm":true\}\]   |  [Configuring workload management](workload-mgmt-config.md) in this guide | 
 |  use\_fips\_ssl  |  false  |  Enable FIPS\-compliant SSL mode only if your system is required to be FIPS\-compliant\. | 
+|  auto\_mv  |  true  |  [Automated materialized views](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-auto-mv.html) in the Amazon Redshift Database Developer Guide | 
 
 **Note**  
 The `max_cursor_result_set_size` parameter is deprecated\. For more information about cursor result set size, see [ Cursor constraints](https://docs.aws.amazon.com/redshift/latest/dg/declare.html#declare-constraints) in the *Amazon Redshift Database Developer Guide*\.

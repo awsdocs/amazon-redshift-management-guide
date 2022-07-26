@@ -2,6 +2,7 @@
 
 When you set up [Access control](redshift-iam-authentication-access-control.md#redshift-iam-accesscontrol), you write permission policies that you can attach to an IAM identity \(identity\-based policies\)\. For detailed reference information, see the following topics in the *Service Authorization Reference*:
 + [Actions, resources, and condition keys for Amazon Redshift](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonredshift.html)\.
++ [Actions, resources, and condition keys for Amazon Redshift Serverless](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonredshiftserverless.html)\.
 + [Actions, resources, and condition keys for Amazon Redshift Data API](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonredshiftdataapi.html)\.
 + [Actions, resources, and condition keys for AWS SQL Workbench](https://docs.aws.amazon.com/service-authorization/latest/reference/list_awssqlworkbench.html) which list actions for Amazon Redshift query editor v2\.
 

@@ -4,7 +4,7 @@ The Amazon Redshift service manages all of the work of setting up, operating, an
 
 ## Cluster management<a name="rs-overview-cluster-management"></a>
 
-An Amazon Redshift cluster is a set of nodes, which consists of a leader node and one or more compute nodes\. The type and number of compute nodes that you need depends on the size of your data, the number of queries you will execute, and the query execution performance that you need\.
+An Amazon Redshift cluster is a set of nodes, which consists of a leader node and one or more compute nodes\. The type and number of compute nodes that you need depends on the size of your data, the number of queries you will run, and the query execution performance that you need\.
 
 ### Creating and managing clusters<a name="rs-overview-create-and-manage-clusters"></a>
 

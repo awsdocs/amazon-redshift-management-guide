@@ -10,8 +10,6 @@ For more information, see [Permissions required to use the Amazon Redshift conso
 
 When you connect to your cluster from the new query editor, you can use one of two authentication methods, as described in [Connecting with the query editor](#query-editor-connecting)\. 
 
-The old query editor is available on the Amazon Redshift console for a limited time\. You can switch to it and back on the query editor console page\. With the old query editor, use your existing permissions\. For more information, see [Connecting with the old query editor](#query-editor-old)\. 
-
 Using the query editor, you can do the following:
 + Run single SQL statement queries\.
 + Download result sets as large as 100 MB to a comma\-separated value \(CSV\) file\.
@@ -99,56 +97,6 @@ For more information about the minimum permissions, see [Creating and Managing S
 
 1. Use the AWS Secrets Manager console to view the details for the secret you created, or run the `aws secretsmanager describe-secret` AWS CLI command\.
 
-## Connecting with the old query editor<a name="query-editor-old"></a>
-
-The following cluster node types support the old query editor:
-+ dc1\.8xlarge
-+ dc2\.large
-+ dc2\.8xlarge
-+ ds2\.8xlarge
-+ ra3\.xlplus
-+ ra3\.4xlarge
-+ ra3\.16xlarge
-
-Be aware of the following considerations when you use the old query editor on the Amazon Redshift console:
-+ Up to 50 users can connect to a cluster with the query editor at the same time\.
-+ The maximum number of users connecting to a cluster includes those connecting through the query editor\.
-+ Up to 50 workload management \(WLM\) query slots can be active at the same time\. For more information about query slots, see [Implementing workload management](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-implementing-workload-management.html)\.
-+ The query editor only runs short queries that can complete within 10 minutes\. 
-+ Query result sets are paginated with 100 rows per page\.
-+ You can't use the query editor with enhanced VPC routing\. For more information, see [Enhanced VPC routing in Amazon Redshift ](enhanced-vpc-routing.md)\. 
-+ You can't use transactions in the query editor\. For more information about transactions, see [BEGIN](https://docs.aws.amazon.com/redshift/latest/dg/r_BEGIN.html) in the *Amazon Redshift Database Developer Guide\.*
-+ You can save a query up to 3,000 characters long\. 
-
-To access the old query editor, you need permission\. To enable access, attach the AWS\-managed policies `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess`  for IAM permissions to the IAM user that you use to access your cluster\.
-
-If you have already created an IAM user to access Amazon Redshift, you can attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` policies to that user\. If you haven't created an IAM user yet, create one and attach the policies to the IAM user\.
-
-The AWS\-managed policy `AmazonRedshiftQueryEditor`  allows the action `redshift:GetClusterCredentials`, which by default gives a database user superuser access to the database\. To restrict access, you can do one of the following:
-+ Create a custom policy that allows calling `redshift:GetClusterCredentials` and restricts the resource to a given value for `DbUser`\.
-+ Add a policy to the user that denies permission to `redshift:GetClusterCredentials` and then requires users of the query editor to sign in with temporary credentials\. For example, a denial policy might be similar to the following policy\.
-
-  ```
-  {
-    "Version": "2012-10-17",
-    "Statement": {
-      "Effect": "Deny",
-      "Action": "redshift:GetClusterCredentials",
-      "Resource": "*"
-    }
-  }
-  ```
-
-For more information, see [Create an IAM role or user role or user with permissions to call GetClusterCredentials](generating-iam-credentials-role-permissions.md)\.
-
-When you connect to a cluster with the old query editor, you use one of the following authentication methods\. Each method requires a different combination of input from the Amazon Redshift console\. 
-
-**Connect with database password**  
-With this method, provide the admin user password for the default database\. You provided this password when you created your cluster\. 
-
-**Temporary credentials**  
-With this method, provide your **database** and **db\-user** values\. 
-
 ## Using the query editor<a name="using-query-editor"></a>
 
 In the following example, you use the query editor to perform the following tasks:
@@ -159,16 +107,11 @@ In the following example, you use the query editor to perform the following task
 
 To complete the following example, you need an existing Amazon Redshift cluster\. If you don't have a cluster, create one by following the procedure described in [Creating a cluster](managing-clusters-console.md#create-cluster)\.
 
-**Note**  
-A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
-
-### New console<a name="query-editor-use"></a>
-
 **To use the query editor on the Amazon Redshift console**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **EDITOR**, then connect to a database in your cluster\. 
+1. On the navigation menu, choose **Query editor**, then connect to a database in your cluster\. 
 
 1. For **Schema**, choose **public** to create a new table based on that schema\.
 
@@ -204,47 +147,3 @@ A new console is available for Amazon Redshift\. Choose either the **New console
 1. Choose **Execution** to view the run details\.
 
 1. Choose **Data**, then **Export** to download the query results as a file\.
-
-### Original console<a name="query-editor-use-originalconsole"></a>
-
-**To use the query editor**
-
-1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-
-1. In the navigation pane, choose **Query Editor**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-qe-overview.png)
-
-1. For **Schema**, choose **public **to create a new table based on that schema\.
-
-1. Enter the following in the Query Editor window and choose **Run query** to create a new table\.
-
-   ```
-   create table shoes(
-                   shoetype varchar (10),
-                   color varchar(10));
-   ```
-
-1. Choose **Clear**\.
-
-1. Enter the following command in the Query Editor window and choose **Run query** to add rows to the table\.
-
-   ```
-   insert into shoes values 
-   ('loafers', 'brown'),
-   ('sandals', 'black');
-   ```
-
-1. Choose **Clear**\.
-
-1. Enter the following command in the Query Editor window and choose **Run query** to query the new table\.
-
-   ```
-   select * from shoes;                                       
-   ```
-
-   You should see the following results\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-qe-example1.png)
-
-1. Choose **View execution** to view the execution details\.
-
-1. Choose **Download CSV** to download the query results as a CSV file\.

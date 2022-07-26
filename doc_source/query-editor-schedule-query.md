@@ -17,7 +17,7 @@ To create a schedule to run a SQL statement, you can use the query editor on the
 
 You can also manage and update scheduled queries using the Amazon Redshift console\. Depending on your version of the console, scheduled queries might be listed in the following places: 
 + On the **Schedules** tab of the details page of your cluster\.
-+ On the scheduled queries list that you can reach from the navigation pane\. To see the list, on the navigation pane choose **QUERIES**, **Schedule query list**\.
++ On the scheduled queries list that you can reach from the navigation pane\. To see the list, on the navigation menu, choose **Queries and loads**, **Schedule query list**\.
 + On the **Scheduled queries** tab of the query editor\.
 
 If you choose **Schedule name** from one of these locations, you can view and edit your scheduled query's definition\. 
@@ -139,5 +139,54 @@ The `AmazonRedshiftDataFullAccess` policy allows the database user named `redshi
             ]
         }
     ]
+}
+```
+
+## Create an Amazon EventBridge rule that runs when a query finishes<a name="data-api-eventbridge-finished-notification"></a>
+
+You can create an event rule to send a notification when a query finishes\. For the procedure using the Amazon EventBridge console, see [Creating Amazon EventBridge rules that react to events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule.html) in the *Amazon EventBridge User Guide*\. For more information about event patterns, see [Amazon EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html) in the *Amazon EventBridge User Guide*\. 
+
+For example, the following sample event is sent when a query is `FINISHED`\.
+
+```
+{
+    "version": "0",
+    "id": "6a7e8feb-b491-4cf7-a9f1-bf3703467718",
+    "detail-type": "Redshift Data Statement Status Change",
+    "source": "aws.redshift-data",
+    "account": "123456789012",
+    "time": "2020-12-22T17:00:00Z",
+    "region": "us-west-1",
+    "resources": [
+        "arn:aws:redshift:us-east-2:123456789:cluster:t1"
+    ],
+    "detail": {
+        "statementId": "01bdaca2-8967-4e34-ae3f-41d9728d5644",
+        "clusterId": "test-dataapi",
+        "statementName": "awsome query",
+        "state": "FINISHED",
+        "pages": 5,
+        "expireAt": "2020-12-22T18:43:48Z",
+        "principal": "arn:aws:sts::123456789012:assumed-role/any",
+        "queryId": 123456
+    }
+}
+```
+
+You can create an event pattern rule to filter the event\.
+
+```
+{
+    "source": [
+        "aws.redshift-data"
+    ],
+    "detail-type": [
+        "Redshift Data Statement Status Change"
+    ],
+    "detail": {
+        "state": [
+            "FINISHED"
+        ]
+    }
 }
 ```

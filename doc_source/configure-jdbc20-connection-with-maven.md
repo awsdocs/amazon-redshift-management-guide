@@ -47,7 +47,7 @@ The URL in the following code example returns an error if used in a browser\. Us
 
 1. Declare the version of the driver that you want to use in the dependencies section of your `pom.xml` file\.
 
-   Amazon Redshift offers drivers for tools that are compatible with the JDBC 4\.2 API\.  For information about the functionality supported by these drivers, see [Download the Amazon Redshift JDBC driver](configure-jdbc-connection.md#download-jdbc-driver)\. 
+   Amazon Redshift offers drivers for tools that are compatible with the JDBC 4\.2 API\.  For information about the functionality supported by these drivers, see [Download the Amazon Redshift JDBC driver, version 2\.1](jdbc20-download-driver.md)\. 
 
    Add a dependency for the driver as shown following\. 
 
@@ -90,8 +90,6 @@ The Amazon Redshift Maven drivers need the following optional dependencies when 
       <optional>true</optional>
 </dependency>
 ```
-
-If your tool requires a specific previous version of a driver, see [Use previous JDBC driver versions with Maven](configure-jdbc-connection.md#jdbc-previous-versions-maven)\.
 
 ## Upgrading the driver to the latest version<a name="configure-jdbc20-connection-with-maven-upgrading"></a>
 

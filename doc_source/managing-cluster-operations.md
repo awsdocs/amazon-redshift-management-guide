@@ -1,78 +1,54 @@
 # Overview of managing clusters in Amazon Redshift<a name="managing-cluster-operations"></a>
 
-After your cluster is created, there are several operations you can perform on it\. The operations include resizing, pausing, resuming, renaming, and deleting\. 
+After your cluster is created, there are several operations you can perform on it\. The operations include resizing, pausing, resuming, renaming, and deleting\.
 
 ## Resizing clusters in Amazon Redshift<a name="rs-resize-tutorial"></a>
 
-As your data warehousing capacity and performance needs change or grow, you can resize your cluster to make the best use of the computing and storage options that Amazon Redshift provides\. 
+As your data warehousing capacity and performance needs change, you can resize your cluster to make the best use of Amazon Redshift's computing and storage options\. 
 
- You can use elastic resize to scale your cluster by changing the node type and number of nodes\. We recommend using elastic resize, which typically completes in minutes\. If your new node configuration isn't available through elastic resize, you can use classic resize\. Classic resize takes more time to complete, because it involves provisioning a new cluster and copying data blocks to it\. In contrast, elastic resize redistributes data slices, which requires fewer resources\. 
+A resize operation comes in two types:
++ **Elastic resize** – You can add nodes to or remove nodes from your cluster\. You can also change the node type, such as from DS2 nodes to RA3 nodes\. Elastic resize is a fast operation, typically completing in minutes\. For this reason, we recommend it as a first option\. When you perform an elastic resize, it redistributes data slices, which are partitions that are allocated memory and disk space in each node\. Elastic resize is appropriate when you:
+  + *Add or reduce nodes in an existing cluster, but you don't change the node type* – This is commonly called an *in\-place* resize\. When you perform this type of resize, some running queries complete successfully, but others can be dropped as part of the operation\. An elastic resize completes within a few minutes\.
+  + *Change the node type for a cluster* – When you change the node type, a snapshot is created and data is redistributed from the original cluster to a cluster comprised of the new node type\. On completion, running queries are dropped\. Like the *in\-place* resize, it completes quickly\.
++ **Classic resize** – You can change the node type, number of nodes, or both, in a similar manner to elastic resize\. Classic resize takes more time to complete, but it can be useful in cases where the change in node count or the node type to migrate to doesn't fall within the bounds for elastic resize\. This can apply, for instance, when the change in node count is really large\. You can also use classic resize to change the cluster encryption\. For example, you can use it to modify your unencrypted cluster to use AWS KMS encryption\.
 
-To resize your cluster, use one of the following approaches: 
-+ **Elastic resize** – Use it to change the node type, number of nodes, or both\. Elastic resize works quickly by changing or adding nodes to your existing cluster\. If you change only the number of nodes, queries are temporarily paused and connections are held open, if possible\. Typically, elastic resize takes 10–15 minutes\. During the resize operation, the cluster is read\-only\. 
-
-  We recommend using elastic resize whenever possible, because it completes much more quickly than classic resize\.
-+ **Classic resize** – Use it to change the node type, number of nodes, or both\. Classic resize provisions a new cluster and copies the data from the source cluster to the new cluster\. Choose this option only when you are resizing to a configuration that isn't available through elastic resize, because it takes considerably more time to complete\. An example of when to use it is when resizing to or from a single\-node cluster\. During the resize operation, the cluster is read\-only\. Classic resize can take several hours to several days, or longer, depending on the amount of data to transfer and the difference in cluster size and computing resources\.
-
-  If your configuration warrants performing a classic resize, you can minimize production impact by making a copy of your existing cluster and subsequently resizing the copy\. [Snapshot, restore, and resize](#rs-tutorial-snapshot-restore-resize-overview) describes the steps\.
-
-You can resize \(both elastic resize and classic resize\) your cluster on a schedule\. When you use the new Amazon Redshift console, you can set up a schedule to resize your cluster\. For more information, see [Resizing a cluster](managing-clusters-console.md#resizing-cluster)\. You can also use the AWS CLI or Amazon Redshift API operations to schedule a resize\. For more information, see [create\-scheduled\-action](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-scheduled-action.html) in the *AWS CLI Command Reference* or [CreateScheduledAction](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateScheduledAction.html) in the *Amazon Redshift API Reference*\. 
+*Scheduling a resize* – You can schedule resize operations for your cluster to scale up to anticipate high use or to scale down for cost savings\. Scheduling works for both elastic resize and classic resize\. You can set up a schedule on the Amazon Redshift console\. For more information, see [Resizing a cluster](managing-clusters-console.md#resizing-cluster), under **Managing clusters using the console**\. You can also use AWS CLI or Amazon Redshift API operations to schedule a resize\. For more information, see [create\-scheduled\-action](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-scheduled-action.html) in the *AWS CLI Command Reference* or [CreateScheduledAction](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateScheduledAction.html) in the *Amazon Redshift API Reference*\.
 
 **Topics**
 + [Elastic resize](#elastic-resize)
-+ [Classic resize](#classic-resize)
-+ [Snapshot, restore, and resize](#rs-tutorial-snapshot-restore-resize-overview)
-+ [Details of resizing a cluster](#cluster-resize-intro)
++ [Classic resize](#classic-resize-faster)
 
 ### Elastic resize<a name="elastic-resize"></a>
 
-Elastic resize is the fastest method to resize a cluster\. You can use elastic resize to add or remove nodes and change node types\.
+An elastic resize operation, when you add or remove nodes of the same type, has the following stages:
 
-When a cluster is resized using elastic resize with the same node type, it automatically redistributes the data to the new nodes\. Because it doesn't create a new cluster in this scenario, the elastic resize operation completes quickly, usually in a few minutes\. You might notice a slight increase in execution time for some queries while the data is redistributed in the background\. An elastic resize operation occurs in the following stages: 
+1. Elastic resize takes a cluster snapshot\. This snapshot always includes [no\-backup tables](working-with-snapshots.md#snapshots-no-backup-tables) for nodes where it's applicable\. \(Some node types, like RA3, don't have no\-backup tables\.\) If your cluster doesn't have a recent snapshot, because you disabled automated snapshots, the backup operation can take longer\. \(To minimize the time before the resize operation begins, we recommend that you enable automated snapshots or create a manual snapshot before starting the resize\.\)  When you start an elastic resize and a snapshot operation is in progress, the resize can fail if the snapshot operation doesn't complete within a few minutes\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.
 
-1. Elastic resize takes a cluster snapshot\. 
-
-   The snapshot that elastic resize creates includes [no\-backup tables](working-with-snapshots.md#snapshots-no-backup-tables)\. If your cluster doesn't have a recent snapshot because you disabled automated snapshots, the backup operation takes longer\. To minimize the time before the resize operation begins, we recommend that you enable automated snapshots or create a manual snapshot before starting an elastic resize\.  When you start an elastic resize and a snapshot operation is currently in progress, then elastic resize might fail if the snapshot operation doesn't complete within a few minutes\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\. 
-
-1. The cluster is temporarily unavailable while elastic resize migrates cluster metadata\. 
-
-   This stage is very short, just a few minutes at most\. Amazon Redshift holds session connections and queries remain queued\. Some sessions and queries might time out\. 
+1. The operation migrates cluster metadata\. The cluster is unavailable for a few minutes\. The majority of queries are temporarily paused and connections are held open\. It is possible, however, for some queries to be dropped\. This stage is short\.
 
 1. Session connections are reinstated and queries resume\. 
 
-1. Elastic resize redistributes data to the node slices in the background\. 
+1. Elastic resize redistributes data to node slices, in the background\. The cluster is available for read and write operations, but some queries can take longer to run\.
 
-   The cluster is available for read and write operations, but some queries might take longer to execute\. 
+1. After the operation completes, Amazon Redshift sends an event notification\.
 
-When a cluster is resized using elastic resize to change the node type, a snapshot is created\. A new cluster is provisioned for you with the latest data from the snapshot\. The cluster is temporarily unavailable for writes when the data is transferred to the new cluster\. It is available for reads\. The new cluster is populated in the background\. After the new cluster is fully populated, queries should reach optimal performance\. When the resize process nears completion, Amazon Redshift updates the endpoint of the new cluster, and all connections to the original cluster are terminated\.
+When you use elastic resize to change the node type, it works similarly to when you add or substract nodes of the same type\. First, a snapshot is created\. A target cluster is provisioned with the latest data from the snapshot, and the data is transferred to the new cluster in the background\. During this period, data is read only\. When the node\-type change nears completion, Amazon Redshift updates the endpoint to point the new cluster and all connections to the original cluster are dropped\.
 
-After the resize completes, Amazon Redshift sends an event notification\. You can connect to the new cluster and resume running read and write queries\.
-
-If you have reserved nodes, for example DS2 reserved nodes, you can upgrade to RA3 reserved nodes\. You can do this when you use the console to restore from a snapshot or to perform an elastic resize\. You can use the console to guide you through this process\. For more information about upgrading to RA3 nodes, see [Upgrading to RA3 node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-upgrading-to-ra3)\. 
-
-**Note**  
-A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
+If you have reserved nodes, for example DS2 reserved nodes, you can upgrade to RA3 reserved nodes when you perform a resize\. You can do this when you perform an elastic resize or use the console to restore from a snapshot\. The console guides you through this process\. For more information about upgrading to RA3 nodes, see [Upgrading to RA3 node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-upgrading-to-ra3)\. 
 
 #### New console<a name="resize-monitor"></a>
 
 To monitor the progress of a resize operation using the Amazon Redshift console, choose **CLUSTERS**, then choose the cluster being resized to see the details\. 
 
-#### Original console<a name="resize-monitor-originalconsole"></a>
-
-To monitor the progress of an elastic resize operation using the Amazon Redshift console, choose the **Status** tab on the cluster details page\.
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-clusters-resize-status-example.png)
-
-You can't use elastic resize on single\-node clusters\. 
-
-To run an elastic resize on a cluster that is transferring data from a shared snapshot, at least one backup must be available for the cluster\. You can view your backups on the Amazon Redshift console snapshots list, the `describe-cluster-snapshots` CLI command, or the `DescribeClusterSnapshots` API operation\.
-
-Elastic resize doesn't sort tables or reclaim disk space, so it isn't a substitute for a vacuum operation\. A classic resize copies tables to a new cluster, so it can reduce the need to vacuum\. For more information, see [Vacuuming tables](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html)\.
+Elastic resize doesn't sort tables or reclaim disk space, so it isn't a substitute for a vacuum operation\.  For more information, see [Vacuuming tables](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html)\.
 
  Elastic resize has the following constraints:
-+ Elastic resize is available only for clusters that use the EC2\-VPC platform\. For more information, see [Use EC2\-VPC when you create your cluster](working-with-clusters.md#cluster-platforms)\. 
-+ Make sure that your new node configuration has enough storage for existing data\. Even when you add nodes, your new configuration might not have enough storage because of the way that data is redistributed\. 
-+ The possible configurations of node number and type that you can resize to is determined by the number of nodes in the original cluster and the target node type of the resized cluster\. To determine the possible configurations available, you can use the console\. Or you can use the `describe-node-configuration-options` AWS CLI command with the `action-type resize-cluster` option\. For more information about the resizing using the Amazon Redshift console, see [Resizing a cluster](managing-clusters-console.md#resizing-cluster)\. 
++ *Single\-node clusters* \- You can't use elastic resize to resize from or to a single\-node cluster\.
++ *Data transfer from a shared snapshot* \- To run an elastic resize on a cluster that is transferring data from a shared snapshot, at least one backup must be available for the cluster\. You can view your backups on the Amazon Redshift console snapshots list, the `describe-cluster-snapshots` CLI command, or the `DescribeClusterSnapshots` API operation\.
++ *Data sharing and elastic resize* \- If you use data sharing between clusters, performing an elastic resize interrupts the connection\. For example, during an elastic resize on a producer cluster, queries from the consumer cluster are disconnected for a short period\.
++ *Platform restriction* \- Elastic resize is available only for clusters that use the EC2\-VPC platform\. For more information, see [Use EC2\-VPC when you create your cluster](working-with-clusters.md#cluster-platforms)\. 
++ *Storage considerations* \- Make sure that your new node configuration has enough storage for existing data\. You may have to add additional nodes or change configuration\. 
++ *Source vs target cluster size* \- The possible configurations of node number and type that you can resize to with elastic resize is determined by the number of nodes in the original cluster and the target node type of the resized cluster\. To determine the possible configurations available, you can use the console\. Or you can use the `describe-node-configuration-options` AWS CLI command with the `action-type resize-cluster` option\. For more information about the resizing using the Amazon Redshift console, see [Resizing a cluster](managing-clusters-console.md#resizing-cluster)\. 
 
   The following example CLI command describes the configuration options available\. In this example, the cluster named `mycluster` is a `dc2.large` 8\-node cluster\.
 
@@ -81,41 +57,52 @@ Elastic resize doesn't sort tables or reclaim disk space, so it isn't a substitu
   ```
 
   This command returns an option list with recommended node types, number of nodes, and disk utilization for each option\. The configurations returned can vary based on the specific input cluster\. You can choose one of the returned configurations when you specify the options of the `resize-cluster` CLI command\. 
-+ Elastic resize has limits on the nodes that you can add to a cluster\. For example, a dc2 cluster supports elastic resize up to double the number of nodes\. To illustrate, you can add a node to a 4\-node dc2\.8xlarge cluster to make it a 5\-node cluster, or add more nodes until you reach 8\.
++ *Ceiling on additional nodes* \- Elastic resize has limits on the nodes that you can add to a cluster\. For example, a dc2 cluster supports elastic resize up to double the number of nodes\. To illustrate, you can add a node to a 4\-node dc2\.8xlarge cluster to make it a five\-node cluster, or add more nodes until you reach eight\.
 
-  With some ra3 node types, you can increase the number of nodes up to four times the existing count\. Specifically, suppose that your cluster consists of ra3\.4xlarge or ra3\.16xlarge nodes\. You can then use elastic resize to increase the number of nodes in an 8\-node cluster to 32\. Or you can pick a value below the limit\. If your cluster has ra3\.xlplus nodes, the limit is double\.
+  With some ra3 node types, you can increase the number of nodes up to four times the existing count\. Specifically, suppose that your cluster consists of ra3\.4xlarge or ra3\.16xlarge nodes\. You can then use elastic resize to increase the number of nodes in an 8\-node cluster to 32\. Or you can pick a value below the limit\. \(Keep in mind in this case that the ability to grow the cluster by 4x depends on the original cluster size\.\)If your cluster has ra3\.xlplus nodes, the limit is double\.
 
   All ra3 node types support a decrease in the number of nodes to a quarter of the existing count\. For example, you can decrease the size of a cluster with ra3\.4xlarge nodes from 12 nodes to 3, or to a number above the minimum\.
 
   The following table lists growth and reduction limits for each node type that supports elastic resize\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-operations.html)
 
-### Classic resize<a name="classic-resize"></a>
+### Classic resize<a name="classic-resize-faster"></a>
 
-With the classic resize operation, your data is copied in parallel from the compute node or nodes in your source cluster to the compute node or nodes in the target cluster\. The time that it takes to resize depends on the amount of data and the number of nodes in the smaller cluster\. It can take anywhere from a couple of hours to a couple of days or longer\. 
+Classic resize handles cases where the change in cluster size or node type isn't within the specifications supported by elastic resize\. Classic resize has undergone performance improvements in order that migration of large data volumes, which could take hours or days in the past, completes much more quickly\. It does this by making use of a backup and restore operation between the source and target cluster\. It also uses more efficient distribution to merge the data to the target cluster\. 
 
-The duration of a classic resize varies based several factors, including: 
-+ The workload on the source cluster\.
-+ The number and size of the tables being transferred\.
-+ How evenly data is distributed across the compute nodes and slices\.
-+ The node configuration in the source and target clusters\.
+Classic resize has the following stages:
 
-When you start the resize operation, Amazon Redshift puts the existing cluster into read\-only mode until the resize finishes\. During this time, you can only run queries that read from the database\. You can't run any queries that write to the database, including read\-write queries\. For more information, see [Write and read\-write operations](https://docs.aws.amazon.com/redshift/latest/dg/c_write_readwrite.html) in the *Amazon Redshift Database Developer Guide\. *
+1. Initial migration from source cluster to target cluster\. When the new \(target\) cluster is provisioned, Amazon Redshift sends an event notification that the resize has started, then it restarts your existing \(source\) cluster in read\-only mode\. The restart closes all existing connections to the cluster\. All uncommitted transactions \(including COPY\) are rolled back\.  This step typically completes within a few minutes\. After it completes, both reads and writes are available\. 
+
+1. Distribution Key tables migrated as Distribution Even are converted back to their original distribution style, using background workers\. The duration of this phase is dependent on the data\-set size\. For more information, see [Distribution styles](https://docs.aws.amazon.com/redshift/latest/dg/c_choosing_dist_sort.html)\.
+
+   Both reads and writes to the database work during this step\. There can be degredation in query performance\. 
+
+1. When the resize process nears completion, Amazon Redshift updates the endpoint to the target cluster, and all connections to the source cluster are dropped\.
+
+1. After the resize completes, Amazon Redshift sends an event notification\.
+
+You can view the resize progress on the Amazon Redshift console\. The time it takes to resize a cluster depends on the amount of data\.  
 
 **Note**  
-To resize with minimal production impact, you can use the steps in the following section, [Snapshot, restore, and resize](#rs-tutorial-snapshot-restore-resize-overview)\. You can use these steps to create a copy of your cluster, resize the copy, and then switch the connection endpoint to the resized cluster when the resize is complete\. 
+If you perform a classic resize on a cluster with a large volume of data, and the nodes are not RA3, data migration can be very slow\. It can take several days to migrate a cluster with multiple terabytes of data\. Data transfer for RA3 nodes completes much more quickly\.
 
-Both the classic resize approach and the snapshot and restore approach copy user tables and data to the new cluster; they don't retain system tables and data\. With either classic resize or snapshot and restore, if you have enabled audit logging in your source cluster, you can continue to access the logs in Amazon S3\. With these approaches, you can still access the logs after you delete the source cluster\. You can keep or delete these logs as your data policies specify\. Elastic resize retains the system log tables\. 
+#### Elastic resize vs classic resize<a name="classic-resize-vs-classic-resize"></a>
 
-After Amazon Redshift puts the source cluster into read\-only mode, it provisions a new cluster, the target cluster\. It does so using the information that you specify for the node type, cluster type, and number of nodes\. Then Amazon Redshift copies the data from the source cluster to the target cluster\. When this is complete, all connections switch to use the target cluster\. If you have any queries in progress at the time this switch happens, your connection is lost and you must restart the query on the target cluster\. You can view the resize progress on the Amazon Redshift console\. 
+The following table compares behavior between the two resize types\.
 
-Amazon Redshift doesn't sort tables during a resize operation, so the existing sort order is maintained\. When you resize a cluster, Amazon Redshift distributes the database tables to the new nodes based on their distribution styles and runs an ANALYZE command to update statistics\. Rows that are marked for deletion aren't transferred, so you need to run only a VACUUM command if your tables need to be resorted\. For more information, see [Vacuuming tables](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) in the* Amazon Redshift Database Developer Guide\. *
 
-You can cancel a classic resize operation before it completes by choosing **Cancel resize** from the cluster details in the Amazon Redshift console\. The amount of time it takes to cancel a resize depends on the stage of the resize operation when you cancel\. The cluster isn't available until the cancel resize operation completes\. If the resize operation is in the final stage, you can't cancel the operation\.
+**Elastic resize vs classic resize**  
 
-### Snapshot, restore, and resize<a name="rs-tutorial-snapshot-restore-resize-overview"></a>
+| Behavior | Elastic resize | Classic resize | Comments | 
+| --- | --- | --- | --- | 
+| System data retention | Elastic resize retains system log data\. | Classic resize doesn't retain system tables and data\. | If you have audit logging enabled in your source cluster, you can continue to access the logs in Amazon S3 or in CloudWatch, following a resize\. You can keep or delete these logs as your data policies specify\. | 
+| Changing node types | Elastic resize, when the node type doesn't change: In\-place resize, and most queries are held\. Elastic resize, with a new node type selected: A new cluster is created\. Queries are dropped as the resize process completes\. | Classic Resize: A new cluster is created\. Queries are dropped during the resize process\. |  | 
+| Session and query retention | Elastic resize retains sessions and queries when the node type is the same in the source cluster and target\. If you choose a new node type, queries are dropped\. | Classic resize doesn't retain sessions and queries\. Queries are dropped\. | When queries are dropped, you can expect some performance degredation\. It's best to perform a resize operation during a period of light use\. | 
+| Table sort | Tables are not sorted as part of the resize operation\. | Tables are not sorted as part of the resize operation\. | Amazon Redshift doesn't sort tables during a resize operation, so the existing sort order is maintained\. When you resize a cluster, Amazon Redshift distributes the database tables to the new nodes  and runs an ANALYZE command to update statistics\. Rows that are marked for deletion aren't transferred, so you need to run a VACUUM command only if your tables need to be resorted\. For more information about a vacuum operation, see [Vacuuming tables](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) in the Amazon Redshift Database Developer Guide\. | 
+| Cancelling a resize operation | You can't cancel an elastic resize\. | You can cancel a classic resize operation before it completes by choosing **Cancel resize** from the cluster details in the Amazon Redshift console\.  | The amount of time it takes to cancel a resize depends on the stage of the resize operation when you cancel\. When you do this, the cluster isn't available until the cancel operation completes\. If the resize operation is in the final stage, you can't cancel\. | 
 
-As described in the preceding section, the time it takes to resize a cluster with the classic resize operation depends heavily on the amount of data in the cluster\. 
+#### Snapshot, restore, and resize<a name="rs-tutorial-snapshot-restore-resize-overview"></a>
 
 [Elastic resize](#elastic-resize) is the fastest method to resize an Amazon Redshift cluster\. If elastic resize isn't an option for you and you require near\-constant write access to your cluster, use the snapshot and restore operations with classic resize as described in the following section\. This approach requires that any data that is written to the source cluster after the snapshot is taken must be copied manually to the target cluster after the switch\. Depending on how long the copy takes, you might need to repeat this several times until you have the same data in both clusters\. Then you can make the switch to the target cluster\. This process might have a negative impact on existing queries until the full set of data is available in the target cluster\. However, it minimizes the amount of time that you can't write to the database\. 
 
@@ -145,27 +132,7 @@ The rename process is only required if you want applications to continue using t
 
 There are a couple of benefits to reusing a cluster name\. First, you don't need to update application connection strings because the endpoint doesn't change, even though the underlying cluster changes\. Second, related items such as Amazon CloudWatch alarms and Amazon Simple Notification Service \(Amazon SNS\) notifications are tied to the cluster name\. This tie means that you can continue using the same alarms and notifications that you set up for the cluster\. This continued use is primarily a concern in production environments where you want the flexibility to resize the cluster without reconfiguring related items, such as alarms and notifications\. 
 
-### Details of resizing a cluster<a name="cluster-resize-intro"></a>
-
- If your storage and performance needs change after you initially provision your cluster, you can resize your cluster\. You can scale the cluster in or out by adding or removing nodes\. Additionally, you can scale the cluster up or down by specifying a different node type\. 
-
- For example, you can add more nodes, change node types, change a single\-node cluster to a multi\-node cluster, or change a multi\-node cluster to a single\-node cluster\. However, you must ensure that the resulting cluster is large enough to hold the data that you currently have or else the resize will fail\. When using the API, you have to specify the node type, node size, and the number of nodes even if you only change one of the properties\. 
-
- The following describes the resize process: 
-
-1. When you initiate the resize process, Amazon Redshift sends an event notification that acknowledges the resize request and starts to provision the new \(target\) cluster\.
-
-1. When the new \(target\) cluster is provisioned, Amazon Redshift sends an event notification that the resize has started, then restarts your existing \(source\) cluster in read\-only mode\. The restart terminates all existing connections to the cluster\. All uncommitted transactions \(including COPY\) are rolled back\. While the cluster is in read\-only mode, you can run read queries but not write queries\.
-
-1. Amazon Redshift starts to copy data from the source cluster to the target cluster\.
-
-1. When the resize process nears completion, Amazon Redshift updates the endpoint of the target cluster, and all connections to the source cluster are terminated\.
-
-1. After the resize completes, Amazon Redshift sends an event notification that the resize has completed\. You can connect to the target cluster and resume running read and write queries\.
-
-When you resize your cluster, it will remain in read\-only mode until the resize completes\. You can view the resize progress on the Amazon Redshift console\. The time it takes to resize a cluster depends on the amount of data in each node\. Typically, the resize process varies from a couple of hours to a day, although clusters with larger amounts of data might take even longer\. This is because the data is copied in parallel from each node on the source cluster to the nodes in the target cluster\. For more information about resizing clusters, see [Resizing a cluster](managing-clusters-console.md#resizing-cluster)\. 
-
-Amazon Redshift doesn't sort tables during a resize operation\. When you resize a cluster, Amazon Redshift distributes the database tables to the new compute nodes based on their distribution styles and runs an ANALYZE to update statistics\. Rows that are marked for deletion aren't transferred, so you need to run a VACUUM only if your tables need to be resorted\. For more information, see [Vacuuming tables](https://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) in the *Amazon Redshift Database Developer Guide*\. 
+#### Getting the leader node IP address<a name="cluster-resize-intro"></a>
 
 If your cluster is public and is in a VPC, it keeps the same Elastic IP address \(EIP\) for the leader node after resizing\. If your cluster is private and is in a VPC, it keeps the same private IP address for the leader node after resizing\. If your cluster isn't in a VPC, a new public IP address is assigned for the leader node as part of the resize operation\.
 
@@ -185,7 +152,7 @@ If you have a cluster that only needs to be available at specific times, you can
 
 When you pause a cluster, Amazon Redshift creates a snapshot, begins terminating queries, and puts the cluster in a pausing state\. If you delete a paused cluster without requesting a final snapshot, then you can't restore the cluster\. You can't cancel or roll back a pause or resume operation after it's initiated\. 
 
-You can pause and resume a cluster on the new Amazon Redshift console \(not the original console\), with the AWS CLI, or with Amazon Redshift API operations\. 
+You can pause and resume a cluster on the Amazon Redshift console, with the AWS CLI, or with Amazon Redshift API operations\. 
 
 You can schedule actions to pause and resume a cluster\. When you use the new Amazon Redshift console to create a recurring schedule to pause and resume, then two scheduled actions are created for the date range that you choose\. The scheduled action names are suffixed with `-pause` and `-resume`\. The total length of the name must fit within the maximum size of a scheduled action name\. 
 
@@ -201,9 +168,10 @@ When deciding to pause a cluster, consider the following:
 + You can't modify a paused cluster\. Any scheduled actions on the cluster aren't done\. These include creating snapshots, resizing clusters, and cluster maintenance operations\. 
 + Hardware metrics aren't created\. Update your CloudWatch alarms if you have alarms set on missing metrics\. 
 + You can't copy the latest automated snapshots of a paused cluster to manual snapshots\. 
-+ While a cluster is pausing it can't be resumed until the pause operation is complete\. 
++ While a cluster is pausing, it can't be resumed until the pause operation is complete\. 
 + When you pause a cluster, billing is suspended\. However, the pause operation typically completes within 15 minutes, depending upon the size of the cluster\. 
-+  Audit logs are archived and not restored on resume\. 
++ Audit logs are archived and not restored on resume\. 
++ No\-backup tables on the cluster are not restored on resume\. For more information about no\-backup tables, see [Excluding tables from snapshots](working-with-snapshots.md#snapshots-no-backup-tables)\.
 
 When you resume a cluster, consider the following: 
 + The cluster version of the resumed cluster is updated to the maintenance version based on the maintenance window of the cluster\. 

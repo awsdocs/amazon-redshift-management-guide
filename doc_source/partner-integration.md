@@ -6,9 +6,10 @@ By working with Amazon Redshift, you can integrate with AWS Partners from the **
 + [Fivetran](https://fivetran.com/partners/aws)
 + [Informatica](https://www.informatica.com/solutions/explore-ecosystems/aws.html)
 + [SnapLogic](https://www.snaplogic.com/partners/amazon-web-services)
++ [Stitch](https://www.stitchdata.com/data-warehouses/amazon-redshift/)
++ [Upsolver](https://www.upsolver.com/integrations/redshift)
 + [Matillion \(preview\)](https://www.matillion.com/technology/cloud-data-warehouse/amazon-redshift/)
 + [Sisense \(preview\)](https://www.sisense.com/)
-+ [Stitch \(preview\)](https://www.stitchdata.com/data-warehouses/amazon-redshift/)
 
 AWS Partners can integrate with Amazon Redshift using the AWS CLI or Amazon Redshift API operations\. For more information, see the *AWS CLI Command Reference* or the *Amazon Redshift API Reference*\. 
 
@@ -20,7 +21,7 @@ Use the following procedure to integrate a cluster with an AWS Partner\.
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation pane, choose **CLUSTERS**\. 
+1. On the navigation menu, choose **Clusters**\. 
 
 1. Choose the cluster that you want to integrate\. 
 

@@ -48,7 +48,7 @@ If the VPC that you want to access your cluster is in another AWS account, make 
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation pane, choose **CLUSTERS**\. 
+1. On the navigation menu, choose **Clusters**\. 
 
 1. For the cluster that you want to allow access, view the cluster details by choosing the cluster name\. Choose the **Properties** tab of the cluster\. 
 
@@ -68,7 +68,7 @@ If you own a cluster or you have been granted access to it, you can create a Red
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation pane, choose **CONFIG**\. 
+1. On the navigation menu, choose **Configurations**\. 
 
    The **Configurations** page displays the Redshift\-managed VPC endpoints that have been created\. To view details for an endpoint, choose its name\.
 

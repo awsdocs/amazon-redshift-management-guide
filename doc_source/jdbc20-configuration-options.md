@@ -37,6 +37,7 @@ You can set configuration properties using the connection URL\. For more informa
 + [IdP\_Response\_Timeout](#jdbc20-idp_response_timeout-option)
 + [IniFile](#jdbc20-inifile-option)
 + [IniSection](#jdbc20-inisection-option)
++ [isServerless](#jdbc20-isserverless-option)
 + [Login\_URL](#jdbc20-login_url-option)
 + [loginTimeout](#jdbc20-logintimeout-option)
 + [loginToRp](#jdbc20-logintorp-option)
@@ -56,8 +57,11 @@ You can set configuration properties using the connection URL\. For more informa
 + [reWriteBatchedInsertsSize](#jdbc20-rewritebatchedinsertssize-option)
 + [roleArn](#jdbc20-rolearn-option)
 + [roleSessionName](#jdbc20-roleaessionname-option)
++ [scope](#jdbc20-scope-option)
 + [SecretAccessKey](#jdbc20-secretaccesskey-option)
 + [SessionToken](#jdbc20-sessiontoken-option)
++ [serverlessAcctId](#jdbc20-serverlessacctid-option)
++ [serverlessWorkGroup](#jdbc20-serverlessworkgroup-option)
 + [socketFactory](#jdbc20-socketfactory-option)
 + [socketTimeout](#jdbc20-sockettimeout-option)
 + [SSL](#jdbc20-ssl-option)
@@ -406,6 +410,20 @@ IniSection="Prod"
 
 This parameter is optional\.
 
+## isServerless<a name="jdbc20-isserverless-option"></a>
++ **Default Value** – false
++ **Data Type** – Boolean
+
+This option specifies whether the Amazon Redshift endpoint host is a serverless instance\. The driver attempts to detect this parameter from the given host\. If you're using a Network Load Balancer \(NLB\), the driver will fail to detect it, so you can set it here\. 
+
+This parameter is optional\.
+
+**true**  
+The Amazon Redshift endpoint host is a serverless instance\.
+
+**false**  
+The Amazon Redshift endpoint host is a provisioned cluster\.
+
 ## Login\_URL<a name="jdbc20-login_url-option"></a>
 + **Default Value** – None
 + **Data Type** – String
@@ -511,6 +529,7 @@ The following provider options are supported:
 + **`BasicJwtCredentialsProvider`** – JSON Web Tokens \(JWT\) Service
 + **`BasicSamlCredentialsProvider`** – Security Assertion Markup Language \(SAML\) credentials which you can use with many SAML service providers\.
 + **`BrowserAzureCredentialsProvider`** – Browser Microsoft Azure Active Directory \(AD\) Service
++ **`BrowserAzureOAuth2CredentialsProvider`** – Browser Microsoft Azure Active Directory \(AD\) Service for Native Authentication
 + **`BrowserSamlCredentialsProvider`** – Browser SAML for SAML services such as Okta, Ping, or ADFS
 + **`OktaCredentialsProvider`** – Okta Service
 + **`PingCredentialsProvider`** – PingFederate Service
@@ -551,7 +570,7 @@ This parameter is optional\.
 + **Default Value** – null
 + **Data Type** – String
 
-This option assigns a query to a queue at runtime by assigning your query to the appropriate query group\. The query group is set for the session\. All queries that execute on the connection belong to this query group\. 
+This option assigns a query to a queue at runtime by assigning your query to the appropriate query group\. The query group is set for the session\. All queries that run on the connection belong to this query group\. 
 
 This parameter is optional\.
 
@@ -611,6 +630,14 @@ An identifier for the assumed role session\. Typically, you pass the name or ide
 
 This parameter is optional\.
 
+## scope<a name="jdbc20-scope-option"></a>
++ **Default Value** – None
++ **Data Type** – String
+
+A space\-separated list of scopes to which the user can consent\. You specify this parameter so that your Microsoft Azure application can get consent for APIs that you want to call\. You can specify this parameter when you specify BrowserAzureOAuth2CredentialsProvider for the Plugin\_Name option\. 
+
+This parameter is required for the BrowserAzureOAuth2CredentialsProvider plug\-in\.
+
 ## SecretAccessKey<a name="jdbc20-secretaccesskey-option"></a>
 + **Default Value** – None
 + **Data Type** – String
@@ -624,6 +651,22 @@ This parameter is optional\.
 + **Data Type** – String
 
 The temporary IAM session token associated with the IAM role you are using to authenticate\. 
+
+This parameter is optional\.
+
+## serverlessAcctId<a name="jdbc20-serverlessacctid-option"></a>
++ **Default Value** – null
++ **Data Type** – String
+
+The Amazon Redshift Serverless account ID\. The driver attempts to detect this parameter from the given host\. If you're using a Network Load Balancer \(NLB\), the driver will fail to detect it, so you can set it here\. 
+
+This parameter is optional\.
+
+## serverlessWorkGroup<a name="jdbc20-serverlessworkgroup-option"></a>
++ **Default Value** – null
++ **Data Type** – String
+
+The Amazon Redshift Serverless workgroup name\. The driver attempts to detect this parameter from the given host\. If you're using a Network Load Balancer \(NLB\), the driver will fail to detect it, so you can set it here\. 
 
 This parameter is optional\.
 
@@ -730,7 +773,7 @@ This parameter is required if SSLKey is specified and the key file is encrypted\
 The full path of a \.pem or \.crt file containing the root CA certificate for verifying the Amazon Redshift Server instance when using SSL\. 
 
 ## StsEndpointUrl<a name="jdbc20-stsendpointurl-option"></a>
-+ **Default Value** – Null
++ **Default Value** – null
 + **Data Type** – String
 
 You can specify an AWS Security Token Service \(AWS STS\) endpoint\. If you specify this option, the Region option is ignored\. You can only specify a secure protocol \(HTTPS\) for this endpoint\. 

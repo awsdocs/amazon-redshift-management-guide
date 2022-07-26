@@ -44,7 +44,7 @@ Use the following procedure to enable relocation when creating a new cluster\.
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation pane, choose **CLUSTERS**\. 
+1. On the navigation menu, choose **Clusters**\. 
 
 1. Choose **Create cluster** to create a new cluster\. For more information on how to create a cluster, see [Create a sample Amazon Redshift cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-launch-sample-cluster.html) in *Amazon Redshift Getting Started Guide*\.
 
@@ -62,7 +62,7 @@ Use the following procedure to change the relocation setting for an existing clu
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation pane, choose **CLUSTERS**\. The clusters for your account in the current AWS Region are listed\. A subset of properties of each cluster is displayed in columns in the list\.
+1. On the navigation menu, choose **Clusters**\. The clusters for your account in the current AWS Region are listed\. A subset of properties of each cluster is displayed in columns in the list\.
 
 1. Choose the name of the cluster that you want to modify from the list\. The cluster details page appears\.
 
@@ -71,8 +71,6 @@ Use the following procedure to change the relocation setting for an existing clu
 1. Under **Backup**, choose **Enable**\. Relocation is disabled by default\. 
 
 1. Choose the **Properties** tab, then in the **Network and security** section make sure to choose **Disable** for the **Publicly accessible** option\.
-
-1. In the **Network and security** section, make sure to choose **Disable** for the **Publicly accessible** option\.
 
 1. Choose **Modify cluster**\.
 
@@ -84,7 +82,7 @@ Use the following procedure to manually relocate a cluster to another Availabili
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation pane, choose **CLUSTERS**\. The clusters for your account in the current AWS Region are listed\. A subset of properties of each cluster is displayed in columns in the list\.
+1. On the navigation menu, choose **Clusters**\. The clusters for your account in the current AWS Region are listed\. A subset of properties of each cluster is displayed in columns in the list\.
 
 1. Choose the name of the cluster that you want to move from the list\. The cluster details page appears\.
 

@@ -9,8 +9,10 @@ Install Amazon Redshift RSQL on a computer with a Linux, macOS, or Microsoft Win
 1. Install the driver manager with the following command:
 
    ```
-   sudo yum install unixODBC
+   sudo yum install unixODBC openssl
    ```
+
+   OpenSSL is required for Linux distributions\. The OpenSSL library is located in the [Linux OpenSSL](https://github.com/openssl/openssl) Github repository\. For more information about OpenSSL, see [OpenSSL](https://www.openssl.org/)\.
 
 1. Install the ODBC driver: [Installing the Amazon Redshift driver on Linux operating systems](configure-odbc-connection.md#odbc-driver-linux-how-to-install)\.
 
@@ -28,14 +30,14 @@ Install Amazon Redshift RSQL on a computer with a Linux, macOS, or Microsoft Win
    export AMAZONREDSHIFTODBCINI=/opt/amazon/redshiftodbc/lib/64/amazon.redshiftodbc.ini
    ```
 
-    For more information about configuring environment variables, see [Configuring environment variables](configure-odbc-connection.md#rs-mgmt-config-global-env-variables)\. 
+    For more information about configuring ODBC environment variables, see [Configuring environment variables](configure-odbc-connection.md#rs-mgmt-config-global-env-variables)\. 
 
 *Mac OSX:*
 
 1. Install the driver manager with the following command:
 
    ```
-   brew install unixodbc openssl --build-from-source
+   brew install unixodbc openssl@1.1 --build-from-source
    ```
 
 1. Install the ODBC driver: [Install the Amazon Redshift ODBC driver on macOS X](configure-odbc-connection.md#install-odbc-driver-mac)\.
@@ -54,7 +56,7 @@ Install Amazon Redshift RSQL on a computer with a Linux, macOS, or Microsoft Win
    export AMAZONREDSHIFTODBCINI=/opt/amazon/redshift/lib/amazon.redshiftodbc.ini
    ```
 
-    For more information about configuring environment variables, see [Configuring environment variables](configure-odbc-connection.md#rs-mgmt-config-global-env-variables)\. 
+    For more information about configuring ODBC environment variables, see [Configuring environment variables](configure-odbc-connection.md#rs-mgmt-config-global-env-variables)\. 
 
 1. Set `DYLD_LIBRARY_PATH` to location of your libodbc\.dylib if its not in `/usr/local/lib`\.
 
@@ -64,12 +66,16 @@ Install Amazon Redshift RSQL on a computer with a Linux, macOS, or Microsoft Win
 
 *Windows:*
 
-Follow the instructions at [Install and configure the Amazon Redshift ODBC driver on Microsoft Windows](configure-odbc-connection.md#install-odbc-driver-windows) to install the driver\. Windows doesn't require a driver manager\. OpenSSL is required for Amazon Redshift RSQL on Windows\.
+Follow the instructions at [Install and configure the Amazon Redshift ODBC driver on Microsoft Windows](configure-odbc-connection.md#install-odbc-driver-windows) to install the driver\. Windows doesn't require a driver manager\.
+
+OpenSSL is required for Amazon Redshift RSQL on Windows\. The Windows OpenSSL library is located in the [Windows OpenSSL](https://github.com/winlibs/openssl) GitHub repository\. For more information about OpenSSL, see [OpenSSL](https://www.openssl.org/)\.
 
 ## Download RSQL<a name="rsql-query-tool-download"></a>
-+ Linux rpm file: [64\-bit RSQL Version 1\.0\.1 rpm file](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.1/AmazonRedshiftRsql-1.0.1-1.x86_64.rpm)\.
-+ Mac OS dmg file: [64\-bit RSQL Version 1\.0\.1 dmg file](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.1/AmazonRedshiftRsql-1.0.1.dmg)\.
-+ Windows msi file: [64\-bit RSQL Version 1\.0\.1 msi file](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.1/AmazonRedshiftRsql-1.0.1.msi)\.
++ Linux 64\-bit RPM: [RSQL Version 1\.0\.5](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.5/AmazonRedshiftRsql-1.0.5-1.x86_64.rpm)
++ Mac OS 64\-bit DMG: [RSQL Version 1\.0\.5](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.5/AmazonRedshiftRsql-1.0.5.dmg)
++ Windows 64\-bit MSI: [RSQL Version 1\.0\.5](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.5/AmazonRedshiftRsql-1.0.5.msi)
+
+See the change log and downloads for previous versions at [Amazon Redshift RSQL change log](rsql-query-tool-changelog.md)\.
 
 ## Install RSQL<a name="rsql-query-tool-installation"></a>
 

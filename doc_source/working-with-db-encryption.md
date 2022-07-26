@@ -86,8 +86,6 @@ You provide Amazon Redshift with the HSM IP address, HSM partition name, HSM par
 **Important**  
 When you modify your cluster to use a different HSM partition, Amazon Redshift verifies that it can connect to the new partition, but it does not verify that a valid encryption key exists\. Before you use the new partition, you must replicate your keys to the new partition\. If the cluster is restarted and Amazon Redshift cannot find a valid key, the restart fails\. For more information, see [Replicating Keys Across HSMs](https://docs.aws.amazon.com/cloudhsm/latest/userguide/cli-clone-hapg.html)\. 
 
-For more information about configuring Amazon Redshift to use an HSM, see [Configuring Amazon Redshift to use an HSM using the Amazon Redshift console](configuring-db-encryption-console.md#manage-HSM-console) and [Configuring Amazon Redshift to use an HSM using the Amazon Redshift API and AWS CLI](configuring-db-encryption-api.md#manage-HSM-api-cli)\.
-
 After initial configuration, if Amazon Redshift fails to connect to the HSM, an event is logged\. For more information about these events, see [Amazon Redshift Event Notifications](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-event-notifications.html)\.
 
 ## Encryption key rotation in Amazon Redshift<a name="working-with-key-rotation"></a>

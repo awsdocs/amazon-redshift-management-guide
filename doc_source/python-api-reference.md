@@ -65,6 +65,9 @@ Following, you can find a description of the cursor API operation\.
 `__init__(connection[, paramstyle])`  
 Initializes a raw cursor object\.
 
+`insert_bulk_data(filename, table_name, parameter_indices, column_names, delimiter, batch_size)`  
+Runs a bulk INSERT statement\.
+
 `execute(operation[, args, stream, …])`  
 Runs a database operation\.
 
@@ -81,7 +84,7 @@ Fetches the next set of rows of a query result\.
 Fetches all remaining rows of a query result\.
 
 `close`  
-Close the cursor now\. 
+Closes the cursor now\. 
 
 `__iter__`  
 A cursor object can be iterated to retrieve the rows from a query\.

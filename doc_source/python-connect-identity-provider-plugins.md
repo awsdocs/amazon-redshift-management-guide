@@ -43,7 +43,7 @@ Following is an example of authentication using the Azure identity provider plug
 
 Following is an example of using the Azure Browser identity provider plugin to authenticate a user connecting to an Amazon Redshift database\.
 
-The password parameter is required\. However, you don't have to enter this parameter because multi\-factor authentication occurs in the browser\.
+Multi\-factor authentication occurs in the browser, where the username and password are provided by the user\.
 
 ```
 >>>con = redshift_connector.connect(
@@ -52,11 +52,8 @@ The password parameter is required\. However, you don't have to enter this param
     host='my-testing-cluster.abc.us-east-2.redshift.amazonaws.com',
     cluster_identifier='my-testing-cluster',
     credentials_provider='BrowserAzureCredentialsProvider',
-    user='brooke@myazure.org',
-    password='',
     idp_tenant='my_idp_tenant',
     client_id='my_client_id',
-    client_secret='my_client_secret',
 )
 ```
 

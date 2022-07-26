@@ -4,6 +4,8 @@ Amazon Redshift enhanced VPC routing routes specific traffic through your VPC\. 
 
 When your cluster is configured to use enhanced VPC routing, traffic between Redshift Spectrum and Amazon S3 is securely routed through the AWS private network, outside of your VPC\. In\-flight traffic is signed using Amazon Signature Version 4 protocol \(SIGv4\) and encrypted using HTTPS\. This traffic is authorized based on the IAM role that is attached to your Amazon Redshift cluster\. To further manage Redshift Spectrum traffic, you can modify your cluster's IAM role and your policy attached to the Amazon S3 bucket\. You might also need to configure your VPC to allow your cluster to access AWS Glue or Athena, as detailed following\. 
 
+ Note that because enhanced VPC routing affects the way that Amazon Redshift accesses other resources, queries might fail unless you configure your VPC correctly\. For more information, see [Enhanced VPC routing in Amazon Redshift](enhanced-vpc-routing.md), which discusses in more detail creating a VPC endpoint, a NAT gateway, and other networking resources to direct traffic to your Amazon S3 buckets\. 
+
 ## Considerations for using enhanced VPC routing for Redshift Spectrum<a name="spectrum-enhanced-vpc-considerations"></a>
 
 Following are considerations when using Redshift Spectrum enhanced VPC routing: 
@@ -79,6 +81,8 @@ For more information, see [IAM Policies for Amazon Redshift Spectrum](https://do
 
 One benefit of using Amazon Redshift enhanced VPC routing is that all COPY and UNLOAD traffic is logged in the VPC flow logs\. Traffic originating from Redshift Spectrum to Amazon S3 doesn't pass through your VPC, so it isn't logged in the VPC flow logs\. When Redshift Spectrum accesses data in Amazon S3, it performs these operations in the context of the AWS account and respective role privileges\. You can log and audit Amazon S3 access using server access logging in AWS CloudTrail and Amazon S3\. 
 
+Ensure that the S3 IP ranges are added to your allow list\. To learn more about the required S3 IP ranges, see [Network isolation](https://docs.aws.amazon.com/redshift/latest/mgmt/security-network-isolation.html#network-isolation)\.
+
 **AWS CloudTrail Logs** 
 
 To trace all access to objects in Amazon S3, including Redshift Spectrum access, enable CloudTrail logging for Amazon S3 objects\. 
@@ -103,4 +107,4 @@ You can configure the following pathways in your VPC:
 + **Internet gateway** –To connect to AWS services outside your VPC, you can attach an [internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) to your VPC subnet, as described in the *Amazon VPC User Guide\.* To use an internet gateway, your cluster must have a public IP address to allow other services to communicate with your cluster\. 
 + **NAT gateway **–To connect to an Amazon S3 bucket in another AWS Region or to another service within the AWS network, configure a [network address translation \(NAT\) gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html), as described in the *Amazon VPC User Guide\.* Use this configuration also to access a host instance outside the AWS network\.
 
-For more information, see [Enhanced VPC routing in Amazon Redshift ](enhanced-vpc-routing.md)\.
+For more information, see [Enhanced VPC routing in Amazon Redshift](enhanced-vpc-routing.md)\.

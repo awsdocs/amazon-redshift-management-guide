@@ -4,7 +4,7 @@ Amazon Redshift supports Secure Sockets Layer \(SSL\) connections to encrypt dat
 
 ## Connect using SSL<a name="connect-using-ssl"></a>
 
-To support SSL connections, Amazon Redshift creates and installs an [AWS Certificate Manager \(ACM\)](https://aws.amazon.com/certificate-manager/) issued SSL certificate on each cluster\. ACM certificates are publicly trusted by most operating systems, web browsers, and clients\. You might need to download a certificate bundle if your SQL clients or applications connect to Amazon Redshift using SSL with the `sslMode` connection option set to `require`, `verify-ca`, or `verify-full`\. If your client needs a certificate, Amazon Redshift provides a bundle certificate as follows:
+To support SSL connections, Amazon Redshift creates and installs an [AWS Certificate Manager \(ACM\)](https://aws.amazon.com/certificate-manager/) issued SSL certificate on each cluster\. ACM certificates are publicly trusted by most operating systems, web browsers, and clients\. You might need to download a certificate bundle if your SQL clients or applications connect to Amazon Redshift using SSL with the `sslmode` connection option set to `require`, `verify-ca`, or `verify-full`\. If your client needs a certificate, Amazon Redshift provides a bundle certificate as follows:
 + Download the bundle from [https://s3\.amazonaws\.com/redshift\-downloads/amazon\-trust\-ca\-bundle\.crt](https://s3.amazonaws.com/redshift-downloads/amazon-trust-ca-bundle.crt)\. 
   + The expected MD5 checksum number is 418dea9b6d5d5de7a8f1ac42e164cdcf\.
   + The sha256 checksum number is 36dba8e4b8041cd14b9d60158893963301bcbb92e1c456847784de2acb5bd550\.
@@ -77,8 +77,6 @@ You can determine whether SSL is used and server certificates are verified in a 
 SSL provides one layer of security by encrypting data that moves between your client and cluster\. Using a server certificate provides an extra layer of security by validating that the cluster is an Amazon Redshift cluster\. It does so by checking the server certificate that is automatically installed on all clusters that you provision\. For more information about using server certificates with JDBC, go to [Configuring the client](https://jdbc.postgresql.org/documentation/91/ssl-client.html) in the PostgreSQL documentation\.
 
 ### Connect using trust CA certificates in Java<a name="connecting-ssl-support-java-with-cert"></a>
-
-If you connect using the latest Amazon Redshift JDBC drivers \(version 1\.2\.8\.1005 or later\), you can skip this section\. To download the latest drivers, see [Configure a JDBC connection](https://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html)\. 
 
 **Important**  
 Amazon Redshift has changed the way that SSL certificates are managed\. You might need to update your current trust root CA certificates to continue to connect to your clusters using SSL\. For more information, see [Connect using SSL](#connect-using-ssl)\.

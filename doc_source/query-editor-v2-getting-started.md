@@ -1,6 +1,6 @@
 # Configuring your AWS account<a name="query-editor-v2-getting-started"></a>
 
-When you choose the query editor v2 from the Amazon Redshift console, a new tab in your browser opens with the query editor v2 interface\. With the proper permissions, you can access data in an Amazon Redshift cluster owned by your AWS account that is in the current AWS Region\.
+When you choose the query editor v2 from the Amazon Redshift console, a new tab in your browser opens with the query editor v2 interface\. With the proper permissions, you can access data in an Amazon Redshift cluster or workgroup owned by your AWS account that is in the current AWS Region\.
 
 The first time an administrator configures query editor v2 for your AWS account, they choose the AWS KMS key that is used to encrypt query editor v2 resources\. By default, an AWS owned key is used to encrypt resources\. Or an administrator can use a customer managed key by choosing the Amazon Resource Name \(ARN\) for the key in the configuration page\. After configuring an account, AWS KMS encryption settings can't be changed\. 
 
@@ -23,9 +23,9 @@ You can set up IAM roles and IAM users with IAM policies to share queries with o
 
 ## Creating an AWS KMS customer managed key to use with query editor v2<a name="query-editor-v2-kms-key"></a>
 
-**To create a symmetric customer managed key**:
+**To create a symmetric encryption customer managed key**:
 
-You can create a symmetric customer managed key to encrypt query editor v2 resources using the AWS KMS console or AWS KMS API operations\. For instructions about creating a key, see [Creating symmetric AWS KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk) in the *AWS Key Management Service Developer Guide*\.
+You can create a symmetric encryption customer managed key to encrypt query editor v2 resources using the AWS KMS console or AWS KMS API operations\. For instructions about creating a key, see [Creating symmetric encryption AWS KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk) in the *AWS Key Management Service Developer Guide*\.
 
 **Key policy**
 
@@ -84,7 +84,7 @@ The following resources provide more information about AWS KMS keys:
 
 ## Accessing the query editor v2<a name="query-editor-v2-configure"></a>
 
-To access the query editor v2, you need permission\. An administrator can attach one of the following AWS\-managed policies to the IAM user or role to grant permission\. These AWS\-managed policies are written with different options that control how tagging resources allows sharing of queries\. You can use the IAM console \([https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\) to attach IAM policies\. 
+To access the query editor v2, you need permission\. An administrator can attach one of the following AWS managed policies to the IAM user or role to grant permission\. These AWS managed policies are written with different options that control how tagging resources allows sharing of queries\. You can use the IAM console \([https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\) to attach IAM policies\. 
 + **AmazonRedshiftQueryEditorV2FullAccess** – Grants full access to the Amazon Redshift query editor v2 operations and resources\. This policy also grants access to other required services\.
 + **AmazonRedshiftQueryEditorV2NoSharing** – Grants the ability to work with Amazon Redshift query editor v2 without sharing resources\. This policy also grants access to other required services\. 
 + **AmazonRedshiftQueryEditorV2ReadSharing** – Grants the ability to work with Amazon Redshift query editor v2 with limited sharing of resources\. The granted principal can read the resources shared with its team but can’t update them\. This policy also grants access to other required services\. 
@@ -94,20 +94,9 @@ You can also create your own policy based on the permissions allowed and denied 
 
 For a principal \(an IAM user or IAM role\) to connect to an Amazon Redshift cluster, they need the permissions in one of the query editor v2 managed policies\. They also need the `redshift:GetClusterCredentials` permission to the cluster\. To get this permission, someone with administrative permission can attach a policy to the IAM users or IAM roles that need to connect to the cluster by using temporary credentials\. You can scope the policy to specific clusters or be more general\. For more information about permission to use temporary credentials, see [Create an IAM role or user with permissions to call GetClusterCredentials](generating-iam-credentials-role-permissions.md)\. 
 
-For a principal \(an IAM user or IAM role\) to view their query editor v2 resources \(such as a query\), in addition to the permissions allowed in one of the query editor v2 managed policies, they also need the `tag:GetResources` permission\. The following snippet of a policy is an example:
+For a principal \(an IAM user or IAM role\) to turn on the ability in the **Account settings** page for others in the account to **Export result set**, they need the `sqlworkbench:UpdateAcountExportSettings` permission\. This permission is included in the `AmazonRedshiftQueryEditorV2FullAccess` AWS managed policy\.
 
-```
-{
-    "Sid": "ResourceGroupPermissions",
-    "Effect": "Allow",
-    "Action": "tag:GetResources",
-    "Resource": "*"
-}
-```
-
-To get this permission, someone with administrative permission can attach a policy to the IAM users or IAM roles used by query editor v2 users\. You can scope the policy to specific clusters or be more general\. For information about permissions and tagging principals to form teams, see [Permissions required to use the query editor v2 ](redshift-iam-access-control-identity-based.md#redshift-policy-resources.required-permissions.query-editor-v2)\. 
-
-For a principal \(an IAM user or IAM role\) to use the SQL Notebooks \(preview\) feature, you need to add the following policy to one of the principal's existing query editor v2 managed policies\.
+For a principal \(an IAM user or IAM role\) to use the SQL Notebooks \(preview\) feature, you must add the following policy to one of the principal's existing query editor v2 managed policies\.
 
 ```
 {
@@ -211,3 +200,58 @@ You can use the IAM console to attach IAM policies to an IAM user or an IAM role
 1. Choose **Attach policy**\.
 
 For more information about using IAM to manage users and roles, see [Changing permissions for an IAM user](https://docs.aws.amazon.com/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) in the *IAM User Guide*\. 
+
+## Setting up principal tags to connect to query editor v2 as a federated user<a name="query-editor-v2-principal-tags-iam"></a>
+
+To access the query editor v2 as a federated user, either set up your IAM role or IAM user with principal tags\. Or, set up your identity provider \(IdP\) to pass in `RedshiftDbUser` and \(optionally\) `RedshiftDbGroups`\. For more information about using IAM to manage tags, see [Passing session tags in AWS Security Token Service](https://docs.aws.amazon.com/latest/UserGuide/id_session-tags.html) in the *IAM User Guide*\. To set up access using AWS Identity and Access Management, an administrator can add tags using the IAM console \([https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\)\. 
+
+**To add principal tags to an IAM role**
+
+1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. Choose **Roles** in the navigation pane\.
+
+1. Choose the role which needs access to the query editor v2 using a federated user\.
+
+1. Choose the **Tags** tab\.
+
+1. Choose the **Manage tags**\.
+
+1. Choose **Add tag** and enter the **Key** as `RedshiftDbUser` and enter a **Value** of the federated user name\.
+
+1. Optionally choose **Add tag** and enter the **Key** as `RedshiftDbGroups` and enter a **Value** of the group name to associate to the user\.
+
+1. Choose **Save changes** to view the list of tags associated with your chosen IAM role\. Propagating changes might take several seconds\.
+
+1. To use the federated user, refresh your query editor v2 page after the changes have propagated\.
+
+You can similarly add principal tags to IAM users\.
+
+**Setup your identity provider \(IdP\) to pass principal tags**  
+The procedure to set up tags using an identity provider \(IdP\) varies by IdP\. See your IdP documentation for instructions on how to pass user and group information to SAML attributes\. When configured correctly, the following attributes appear in your SAML response which is used by the AWS Security Token Service to populate in the principal tags for `RedshiftDbUser` and `RedshiftDbGroups`\. 
+
+```
+<Attribute Name="https://aws.amazon.com/SAML/Attributes/PrincipalTag:RedshiftDbUser">
+    <AttributeValue>db-user-name</AttributeValue>
+</Attribute>
+<Attribute Name="https://aws.amazon.com/SAML/Attributes/PrincipalTag:RedshiftDbGroups">
+    <AttributeValue>db-groups</AttributeValue>
+</Attribute>
+```
+
+ The optional *db\_groups* must be a colon\-separated list such as `group1:group2:group3`\.
+
+Additionally, you can set the `TransitiveTagKeys` attribute to persist the tags during role chaining\.
+
+```
+<Attribute Name="https://aws.amazon.com/SAML/Attributes/TransitiveTagKeys">
+  <AttributeValue>RedshiftDbUser</AttributeValue>
+  <AttributeValue>RedshiftDbGroups</AttributeValue>
+</Attribute>
+```
+
+For more information about setting up query editor v2, see [Permissions required to use the query editor v2 ](redshift-iam-access-control-identity-based.md#redshift-policy-resources.required-permissions.query-editor-v2)\.
+
+For information about how to set up Active Directory Federation Services \(AD FS\), see the blog post: [ Federate access to Amazon Redshift query editor v2 with Active Directory Federation Services \(AD FS\)](http://aws.amazon.com/blogs/big-data/federate-access-to-amazon-redshift-query-editor-v2-with-active-directory-federation-services-ad-fs-part-3/)\. 
+
+For information about how to set up Okta, see the blog post: [ Federate single sign\-on access to Amazon Redshift query editor v2 with Okta](http://aws.amazon.com/blogs/big-data/federate-single-sign-on-access-to-amazon-redshift-query-editor-v2-with-okta/)\. 

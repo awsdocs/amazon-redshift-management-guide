@@ -12,7 +12,7 @@ If you use an identity provider for authentication, specify the name of a creden
 
 **To configure a JDBC connection to use IAM credentials**
 
-1. Download the latest Amazon Redshift JDBC driver from the [Configuring a JDBC driver version 1\.x connection](configure-jdbc-connection.md) page\.
+1. Download the latest Amazon Redshift JDBC driver from the [Configuring a connection for JDBC driver version 2\.1 for Amazon Redshift](jdbc20-install.md) page\.
 
 1. Create a JDBC URL with the IAM credentials options in one of the following formats\. To use IAM authentication, add `iam:` to the Amazon Redshift JDBC URL following `jdbc:redshift:` as shown in the following example\.
 

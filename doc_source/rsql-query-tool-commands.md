@@ -1,6 +1,6 @@
-# Amazon Redshift RSQL commands<a name="rsql-query-tool-commands"></a>
+# Amazon Redshift RSQL meta commands<a name="rsql-query-tool-commands"></a>
 
-Amazon Redshift RSQL commands return informational records about databases or specific database objects\. Results can include various columns and metadata\. Other commands perform specific actions\.
+Amazon Redshift RSQL meta commands return informational records about databases or specific database objects\. Results can include various columns and metadata\. Other commands perform specific actions\. These commands are preceeded with a backslash\.
 
 ## \\d\[S\+\]<a name="rsql-query-tool-describe-d"></a>
 
@@ -321,6 +321,32 @@ Type "help" for help.
 15
 ```
 
+## \\EXPORT<a name="rsql-query-tool-export"></a>
+
+ Specifies the name of an export file that RSQL uses to store database information returned by a subsequent SQL SELECT statement\.
+
+export\_01\.sql
+
+```
+\export report file='E:\\accounts.out'
+\rset rformat off
+\rset width 1500
+\rset heading "General Title"
+\rset titledashes on
+select * from td_dwh.accounts;
+\export reset
+```
+
+Console output
+
+```
+Rformat is off.
+Target width is 1500.
+Heading is set to: General Title
+Titledashes is on.
+(exported 40 rows)
+```
+
 ## \\LOGON<a name="rsql-query-tool-flow-control-logon"></a>
 
  Connects to a database\. You can specify connection parameters using positional syntax or as a connection string\.
@@ -356,10 +382,6 @@ You are now connected to database "dev" as user "user2" on host "testcluster2.ex
 (testcluster2) user2@dev=#
 ```
 
-## \\LOGOFF<a name="rsql-query-tool-flow-control-logoff"></a>
-
-Ends database sessions without exiting RSQL\.
-
 ## \\REMARK<a name="rsql-query-tool-flow-control-remark"></a>
 
  An extension of the `\echo` command\. `\REMARK` prints the specified string to the output stream\. `\REMARK `extends `\echo` by adding the ability to break the output over separate lines\.
@@ -371,6 +393,26 @@ The following sample shows output from the command\.
 hello
 world
 ```
+
+## \\RSET<a name="rsql-query-tool-rset"></a>
+
+The command `\rset` sets command parameters and variables\. `\rset` has both an interactive and a batch mode\. It doesn’t support options as bash options, like *\-x*, or arguments, for instance *\-\-<arg>*\.
+
+It sets variables, such as the following:
++ ERRORLEVEL
++ HEADING and RTITLE
++ RFORMAT
++ MAXERROR
++ TITLEDASHES
++ WIDTH
+
+The following example specifies a heading\.
+
+```
+\rset heading "Winter Sales Report"
+```
+
+For more examples of how to use `\rset`, you can find several in the [Amazon Redshift RSQL variables](rsql-query-tool-variables.md) topics\.
 
 ## \\RUN<a name="rsql-query-tool-flow-control-run"></a>
 

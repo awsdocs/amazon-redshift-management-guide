@@ -64,7 +64,7 @@ If you resize your cluster into a different node type and you haven’t reserved
 
 ### Reserved nodes and consolidated billing<a name="reserved-nodes-consolidated-billing"></a>
 
-The pricing benefits of Reserved Nodes are shared when the purchasing account is part of a set of accounts billed under one consolidated billing payer account\. The hourly usage across all sub\-accounts is aggregated in the payer account every month\. This is typically useful for companies in which there are different functional teams or groups; then, the normal Reserved Nodes logic is applied to calculate the bill\. For more information, see [Consolidated Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html) in the AWS Billing and Cost Management User Guide\.
+The pricing benefits of Reserved Nodes are shared when the purchasing account is part of a set of accounts billed under one consolidated billing payer account\. The hourly usage across all sub\-accounts is aggregated in the payer account every month\. This is typically useful for companies in which there are different functional teams or groups; then, the normal Reserved Nodes logic is applied to calculate the bill\. For more information, see [Consolidated Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html) in the AWS Billing User Guide\.
 
 ### Reserved node examples<a name="reserved-node-examples"></a>
 

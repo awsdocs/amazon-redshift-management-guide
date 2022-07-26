@@ -11,7 +11,7 @@ In this section, you can find steps to programmatically call the `GetClusterCred
 
 1. Create or modify an IAM user or role with the required permissions\. For more information about IAM permissions, see [Create an IAM role or user role or user with permissions to call GetClusterCredentials](generating-iam-credentials-role-permissions.md)\.
 
-1. As an IAM user or role you authorized in the previous step, execute the get\-cluster\-credentials CLI command or call the `GetClusterCredentials` API operation and provide the following values:
+1. As an IAM user or role you authorized in the previous step, run the get\-cluster\-credentials CLI command or call the `GetClusterCredentials` API operation and provide the following values:
    + **Cluster identifier** – The name of the cluster that contains the database\.
    + **Database user name** – The name of an existing or new database user\.
      + If the user doesn't exist in the database and AutoCreate is true, a new user is created with PASSWORD disabled\.

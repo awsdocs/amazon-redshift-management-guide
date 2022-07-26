@@ -90,7 +90,7 @@ This parameter is optional\.
 
 The name of the database to which you want to connect\. 
 
-This parameter is required\.
+This parameter is optional\.
 
 ## database\_metadata\_current\_db\_only<a name="python-database-metadata-current-db-only-option"></a>
 + **Default value** – True
@@ -124,13 +124,27 @@ The Amazon Redshift endpoint URL\. This option is only for AWS internal use\.
 
 This parameter is required\.
 
+## group\_federation<a name="python-group-federation-option"></a>
++ **Default value** – False
++ **Data type** – Boolean
+
+This option specifies whether to use Amazon Redshift IDP groups\.
+
+This parameter is optional\.
+
+**true**  
+Use Amazon Redshift Identity Provider \(IDP\) groups\.
+
+**false**  
+Use STS API and GetClusterCredentials for user federation and specify **db\_groups** for the connection\.
+
 ## host<a name="python-host-option"></a>
 + **Default value** – None
 + **Data type** – String
 
 The hostname of Amazon Redshift cluster\. 
 
-This parameter is required\.
+This parameter is optional\.
 
 ## iam<a name="python-iam-option"></a>
 + **Default value** – False
@@ -196,6 +210,18 @@ The maximum number of prepared statements that can be open concurrently\.
 
 This parameter is required\.
 
+## numeric\_to\_float<a name="python-numeric-to-float-option"></a>
++ **Default value** – False
++ **Data type** – Boolean
+
+This option specifies if the connector converts numeric data type values from decimal\.Decimal to float\. By default, the connector receives numeric data type values as decimal\.Decimal and does not convert them\. 
+
+We don't recommend enabling numeric\_to\_float for use cases that require precision, as results may be rounded\. 
+
+For more information on decimal\.Decimal and the tradeoffs between it and float, see [decimal — Decimal fixed point and floating point arithmetic](https://docs.python.org/3/library/decimal.html) on the Python website\. 
+
+This parameter is optional\.
+
 ## partner\_sp\_id<a name="python-partner-sp-id-option"></a>
 + **Default value** – None
 + **Data type** – String
@@ -210,10 +236,10 @@ This parameter is optional\.
 
 The password to use for authentication\. 
 
-This parameter is required\.
+This parameter is optional\.
 
 ## port<a name="python-port-option"></a>
-+ **Default value** – 5432
++ **Default value** – 5439
 + **Data type** – Integer
 
 The port number of the Amazon Redshift cluster\. 
@@ -244,6 +270,14 @@ The name of a profile in an AWS credentials file that contains AWS credentials\.
 
 This parameter is optional\.
 
+## provider\_name<a name="python-provider_name-option"></a>
++ **Default value** – None
++ **Data type** – String
+
+The name of the Redshift Native Authentication Provider\. 
+
+This parameter is optional\.
+
 ## region<a name="python-region-option"></a>
 + **Default value** – None
 + **Data type** – String
@@ -268,6 +302,14 @@ An identifier for the assumed role session\. Typically, you pass the name or ide
 
 This parameter is optional\.
 
+## scope<a name="python-scope-option"></a>
++ **Default value** – None
++ **Data type** – String
+
+A space\-separated list of scopes to which the user can consent\. You specify this parameter so that your application can get consent for APIs that you want to call\. You can specify this parameter when you specify BrowserAzureOAuth2CredentialsProvider for the Plugin\_Name option\.
+
+This parameter is required for the BrowserAzureOAuth2CredentialsProvider plug\-in\.
+
 ## secret\_access\_key\_id<a name="python-secret-access-key-id-option"></a>
 + **Default value** – None
 + **Data type** – String
@@ -281,6 +323,22 @@ This parameter is optional\.
 + **Data type** – String
 
 The access key for the IAM role or user configured for IAM database authentication\. This parameter is required if temporary AWS credentials are being used\. 
+
+This parameter is optional\.
+
+## serverless\_acct\_id<a name="python-serverless-acct-id-option"></a>
++ **Default value** – None
++ **Data type** – String
+
+The Amazon Redshift Serverless account ID\.
+
+This parameter is optional\.
+
+## serverless\_work\_group<a name="python-serverless-work-group-option"></a>
++ **Default value** – None
++ **Data type** – String
+
+The Amazon Redshift Serverless workgroup name\.
 
 This parameter is optional\.
 
@@ -310,13 +368,21 @@ The security of the connection to Amazon Redshift\. You can specify either of th
 
 This parameter is required\.
 
+## timeout<a name="python-timeout-option"></a>
++ **Default value** – None
++ **Data type** – Integer
+
+The number of seconds before the connection to the server times out\. 
+
+This parameter is optional\.
+
 ## user<a name="python-user-option"></a>
 + **Default value** – None
 + **Data type** – String
 
 The user name to use for authentication\. 
 
-This parameter is required\.
+This parameter is optional\.
 
 ## web\_identity\_token<a name="python-web-identity-token-option"></a>
 + **Default value** – None

@@ -1,12 +1,13 @@
 # Working with query editor v2<a name="query-editor-v2-using"></a>
 
-The query editor v2 is primarily used to edit and run queries, visualize results, and share your work with your team\. With query editor v2, you can create databases, schemas, tables, and user\-defined functions \(UDFs\)\. In a tree\-view panel, for each of your clusters, you can view its schemas\. For each schema, you can view its tables, views, UDFs, and stored procedures\.
+The query editor v2 is primarily used to edit and run queries, visualize results, and share your work with your team\. With query editor v2, you can create databases, schemas, tables, and user\-defined functions \(UDFs\)\. In a tree\-view panel, for each of your databases, you can view its schemas\. For each schema, you can view its tables, views, UDFs, and stored procedures\.
 
 **Topics**
 + [Opening query editor v2](#query-editor-v2-open)
 + [Connecting to an Amazon Redshift database](#query-editor-v2-connecting)
 + [Browsing an Amazon Redshift database](#query-editor-v2-object-browse)
 + [Creating database objects](#query-editor-v2-object-create)
++ [Loading sample data](#query-editor-v2-loading-sample-data)
 + [Loading data from Amazon S3](#query-editor-v2-loading-data)
 + [Working with SQL notebooks \(preview\)](#query-editor-v2-notebooks)
 
@@ -20,13 +21,13 @@ The query editor v2 is primarily used to edit and run queries, visualize results
 
 The query editor v2 opens in a new tab\.
 
-The query editor page has a navigator menu where you choose **Database** to work with data in your cluster, **Queries** to work with saved queries, and **Charts** to work with saved charts\. The navigator menu is similar to the following\.
+The query editor page has a navigator menu where you choose **Database** to work with data in your cluster or workgroup, **Queries** to work with saved queries, and **Charts** to work with saved charts\. The navigator menu is similar to the following\.
 
 ![\[Navigator icons\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/sqlworkbench-navigator-menu.png)
 
 When working in the **Database** view, you have the following controls: 
-+ The **Cluster** field displays the name of the cluster you are currently connected to\. The **Database** field displays the databases within the cluster\. The actions that you perform in the **Database** view default to act on the database you have selected\. 
-+ A tree\-view hierarchical view of your clusters, databases, and schemas\. Under schemas, you can work with your tables, views, functions, and stored procedures\. Each object in the tree view supports a context menu to perform associated actions, such as **Refresh** or **Drop**, for the object\. 
++ The **Cluster** or **Workgroup** field displays the name of the cluster or workgroup you are currently connected to\. The **Database** field displays the databases within the cluster or workgroup\. The actions that you perform in the **Database** view default to act on the database you have selected\. 
++ A tree\-view hierarchical view of your clusters or workgroups, databases, and schemas\. Under schemas, you can work with your tables, views, functions, and stored procedures\. Each object in the tree view supports a context menu to perform associated actions, such as **Refresh** or **Drop**, for the object\. 
 + A ![\[Create\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) **Create** action to create databases, schemas, tables, and functions\.
 + A ![\[Load\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/download.png) **Load data** action to load data from Amazon S3 into your databases\.
 + A ![\[Settings\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/settings.png) preferences icon to edit your preferences\.
@@ -37,17 +38,23 @@ When working in the **Database** view, you have the following controls:
 
 ## Connecting to an Amazon Redshift database<a name="query-editor-v2-connecting"></a>
 
-To connect to a database, choose the cluster name in the tree\-view panel\. If prompted, enter the connection parameters\.
+To connect to a database, choose the cluster or workgroup name in the tree\-view panel\. If prompted, enter the connection parameters\.
 
-When you connect to a cluster and its databases, you provide a  **Database** name and **User name**\. You also provide parameters required for one of the following authentication methods:
+When you connect to a cluster or workgroup and its databases, you provide a  **Database** name\.  You also provide parameters required for one of the following authentication methods:
+
+**Federated user**  
+With this method, the principal tags of your IAM role or IAM user must provide the connection details\. You configure these tags in AWS Identity and Access Management or your identity provider \(IdP\)\. The query editor v2 relies on the following tags\.  
++ `RedshiftDbUser` – This tag defines the database user that is used by query editor v2\. This tag is required\.
++ `RedshiftDbGroups` – This tag defines the database groups that are joined when connecting to query editor v2\. This tag is optional and its value must be a colon\-separated list such as `group1:group2:group3`\. Empty values are ignored, that is, `group1::::group2` is interpreted as `group1:group2`\. 
+These tags are forwarded to the `redshift:GetClusterCredentials `  API to get credentials for your cluster\. For more information, see [Setting up principal tags to connect to query editor v2 as a federated user](query-editor-v2-getting-started.md#query-editor-v2-principal-tags-iam)\.
 
 **Database user name and password**  
-With this method, also provide a **Password** for the database that you are connecting to\. The query editor v2 creates a secret on your behalf stored in AWS Secrets Manager\. This secret contains credentials to connect to your database\. 
+With this method, also provide a **User name** and **Password** for the database that you are connecting to\. The query editor v2 creates a secret on your behalf stored in AWS Secrets Manager\. This secret contains credentials to connect to your database\. 
 
 **Temporary credentials**  
-With this method, query editor v2, generates a temporary password to connect to the database\. 
+With this method, query editor v2, provide a **User name** for the database\. query editor v2 generates a temporary password to connect to the database\. 
 
-When you select a cluster with query editor v2, depending on the context, you can create, edit, and delete connections using the context \(right\-click\) menu\.
+When you select a cluster or workgroup with query editor v2, depending on the context, you can create, edit, and delete connections using the context \(right\-click\) menu\.
 
 ## Browsing an Amazon Redshift database<a name="query-editor-v2-object-browse"></a>
 
@@ -72,7 +79,7 @@ The hierarchical tree\-view panel is similar to the following\. Open the context
 
 ## Creating database objects<a name="query-editor-v2-object-create"></a>
 
-You can create database objects, including databases, schemas, tables, and user\-defined functions \(UDFs\)\.
+You can create database objects, including databases, schemas, tables, and user\-defined functions \(UDFs\)\. You must be connected to a cluster or workgroup and a database to create database objects\.
 
 **To create a database**
 
@@ -86,7 +93,7 @@ For information about databases, see [CREATE DATABASE](https://docs.aws.amazon.c
 
 1. Choose **Create database**\.
 
-   The new database displays in the object browser panel\.
+   The new database displays in the tree\-view panel\.
 
 **To create a schema**
 
@@ -100,7 +107,7 @@ For information about schemas, see [Schemas](https://docs.aws.amazon.com/redshif
 
 1. Choose **Create schema**\.
 
-   The new schema appears in the object browser panel\.
+   The new schema appears in the tree\-view panel\.
 
 **To create a table**
 
@@ -138,7 +145,7 @@ Choose **Open query in editor** to view and edit the CREATE TABLE statement befo
 1. \(Optional\) Choose **Table details** and choose any of the following options:
    + Distribution key column and style\.
    + Sort key column and sort type\.
-   + Turn on **Backup** to include the table in cluster snapshots\.
+   + Turn on **Backup** to include the table in snapshots\.
    + Turn on **Temporary table** to create the table as a temporary table\.
 
 1. Choose **Open query in editor** to continue specifying options to define the table or choose **Create table** to create the table\.
@@ -165,6 +172,23 @@ Choose **Open query in editor** to view and edit the CREATE TABLE statement befo
 
 For more information about user\-defined functions \(UDFs\), see [Creating user\-defined functions](https://docs.aws.amazon.com/redshift/latest/dg/user-defined-functions.html) in the *Amazon Redshift Database Developer Guide*\. 
 
+## Loading sample data<a name="query-editor-v2-loading-sample-data"></a>
+
+The query editor v2 comes with sample data and queries available to be loaded into a sample database and corresponding schema\. 
+
+To load sample data, choose the ![\[External\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/external.png) icon associated with the sample data you want to load\. The query editor v2 then loads the data into a schema in database `sample_data_dev` and creates a folder of saved queries in your **Queries** folder\. 
+
+The following sample datasets are available\.
+
+**tickit**  
+Most of the examples in the Amazon Redshift documentation use a sample data called `tickit`\. This data consists of seven tables: two fact tables and five dimensions\. When you load this data the schema `tickit` is updated with sample data\. For more information about the `tickit` data, see [Sample database](https://docs.aws.amazon.com/redshift/latest/dg/c_sampledb.html) in the *Amazon Redshift Database Developer Guide*\. 
+
+**tpch**  
+This data is used for a decision support benchmark\. When you load this data the schema `tpch` is updated with sample data\. For more information about the `tpch` data, see [TPC\-H](http://www.tpc.org/tpch/)\. 
+
+**tpcds**  
+This data is used for a decision support benchmark\. When you load this data the schema `tpcds` is updated with sample data\. For more information about the `tpcds` data, see [TPC\-DS](http://www.tpc.org/tpcds/)\. 
+
 ## Loading data from Amazon S3<a name="query-editor-v2-loading-data"></a>
 
 You can load data into an existing table from Amazon S3\.
@@ -179,7 +203,7 @@ The COPY command is used by query editor v2 to load data from Amazon S3\. The CO
 
 1. In **S3 URIs**, choose **Browse S3** to look for the Amazon S3 bucket that contains the data to load\. 
 
-1. If the specified Amazon S3 bucket isn't in the same AWS Region with the target Amazon Redshift cluster, then choose the **S3 file location** for the AWS Region where the data is located\.
+1. If the specified Amazon S3 bucket isn't in the same AWS Region with the target table, then choose the **S3 file location** for the AWS Region where the data is located\.
 
 1. Choose **This file is a manifest file** if the Amazon S3 file is actually a manifest containing multiple Amazon S3 bucket URIs\.
 
@@ -212,6 +236,10 @@ You can use SQL notebooks to organize, annotate, and share multiple SQL queries 
 
 To use the SQL notebook feature, you must add a policy for the SQL notebook \(preview\) feature to a principal \(an IAM user or IAM role\) that already has one of the query editor v2 managed policies\. For more information, see [Accessing the query editor v2](query-editor-v2-getting-started.md#query-editor-v2-configure)\.
 
+For a demo of notebooks, watch the following video\. 
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/8mPocHMP0C8/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/8mPocHMP0C8)
+
 **To create an SQL notebook**
 
 1. Choose ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) and then choose **Notebook**\.
@@ -232,7 +260,7 @@ To use the SQL notebook feature, you must add a policy for the SQL notebook \(pr
 
 1. From the navigator menu, choose **Notebooks**\.
 
-1. Choose the SQL notebook you want to open and double\-click it\.
+1. Choose the SQL notebook that you want to open and double\-click it\.
 
 **To share an SQL notebook with your team**
 + Choose **Share to *team\-name***\.

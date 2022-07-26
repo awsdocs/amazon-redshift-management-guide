@@ -2,7 +2,7 @@
 
 To help you get started using the AWS Command Line Interface \(AWS CLI\), this section shows how to perform basic administrative tasks for an Amazon Redshift cluster\. These tasks are very similar to those in the [Amazon Redshift Getting Started Guide](https://docs.aws.amazon.com/redshift/latest/gsg/), but they are focused on the AWS CLI rather than the Amazon Redshift console\.
 
-This section walks you through the process of creating a cluster, creating database tables, uploading data, and testing queries\. You use the AWS CLI to provision a cluster and to authorize necessary access permissions\. You will then use the SQL Workbench client to connect to the cluster and create sample tables, upload sample data, and execute test queries\.
+This section walks you through the process of creating a cluster, creating database tables, uploading data, and testing queries\. You use the AWS CLI to provision a cluster and to authorize necessary access permissions\. You will then use the SQL Workbench client to connect to the cluster and create sample tables, upload sample data, and run test queries\.
 
 ## Step 1: Before you begin<a name="getting-started-cli.before-you-begin"></a>
 
@@ -37,11 +37,11 @@ The `create-cluster` command has a large number of parameters\. For this exercis
 
 | Parameter name | Parameter value for this exercise | 
 | --- | --- | 
-|  Cluster Identifier |  `examplecluster`  | 
-|  Master Username |  `masteruser`  | 
-|  Master Password |  `TopSecret1`  | 
-| Node Type  | ds2\.xlarge or the node size that you want to use\. For more information, see [Clusters and nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes) | 
-| Cluster Type | single\-node | 
+|  cluster\-identifier |  `examplecluster`  | 
+|  master\-username |  `adminuser`  | 
+|  master\-user\-password |  `TopSecret1`  | 
+| node\-type  | ds2\.xlarge or the node size that you want to use\. For more information, see [Clusters and nodes in Amazon Redshift](working-with-clusters.md#rs-about-clusters-and-nodes) | 
+| cluster\-type | single\-node | 
 
 To create your cluster, enter the following command\.
 

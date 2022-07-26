@@ -14,9 +14,16 @@ You can filter and sort **Result** for each column\. To enter filter criteria in
 
 If the query contains an error, the query editor v2 displays an error message in the results area\. The message provides information on how to correct the query\.
 
-You can export the query results on the current page to a file in JSON or comma\-separated value \(CSV\) format\. To save the file in either format, open the context \(right\-click\) menu in the results area, then choose **Export current page** and either **JSON** or **CSV**\. You can also select rows and export the results for specific rows\.
+You can export or copy the results of your query by using the context \(right\-click\) menu in the results area as follows:
++ Choose **Export result set** and either **JSON** or **CSV** to download the entire set of row results to a file\. The number of rows in the result set might be limited by the **Limit** option or the SQL `limit` clause in the query\. The maximum size of the downloaded result set is 5 MB\.
++ If no rows are selected, then choose **Export current page** and either **JSON** or **CSV** to download the rows from the current page to a file\.
++ If rows are selected, then choose **Export selected rows** and either **JSON** or **CSV** to download the rows that are selected to a file\.
++ If rows are selected, then choose **Copy rows** to copy the selected rows to the clipboard\.
++ If rows are selected, then choose **Copy rows with headers** to copy the selected rows with column headers to the clipboard\.
 
-To add a new query tab, choose the ![\[New query tab\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) tab, which appears in the row with the query tabs\. 
+You can also use the shortcut Ctrl\+C on Windows or Cmd\+C on Mac to copy data from the current results page to the clipboard\. If no rows are selected, then the cell with focus is copied to the clipboard\. If rows are selected, then the selected rows are copied to the clipboard\.
+
+To add a new query tab, choose the ![\[New query tab\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) icon, which appears in the row with the query tabs\. 
 
 **To run a query**
 
@@ -25,9 +32,11 @@ To add a new query tab, choose the ![\[New query tab\]](http://docs.aws.amazon.c
    + Paste a query that you copied\.
    + Choose the **Queries** folder, open the context menu \(right\-click\) a saved query, and choose **Open query**\.
 
-1. Confirm that you chose the correct **Cluster** and **Database** value for the SQL you plan to run\. 
+1. Confirm that you chose the correct **Cluster** or **Workgroup**, and **Database** value for the SQL you plan to run\. 
 
-   Change your **Cluster** value by choosing another cluster in the tree view\. Change your database by choosing a different **Database** in the interface\.
+   Initially, you can choose your **Cluster** or **Workgroup** in the tree view\. Choose your **Database** in the tree view also\.
+
+   Change your **Cluster** or **Workgroup** value by choosing another in the tree view\. Change your database by choosing a different **Database** in the interface\.
 
 1. Choose **Run**\.
 
@@ -47,7 +56,6 @@ To add a new query tab, choose the ![\[New query tab\]](http://docs.aws.amazon.c
 
 The query editor v2 supports the following features:
 + You can author queries with multiple SQL statements in one query tab\. The queries are run in serially and multiple results tabs open for each query\. 
-+ You can run queries in parallel by opening a query tab, choose a database, run the query\. While that query is running, you can choose a different database \(and different cluster if you want\), and run another query\.
 + You can author queries with session variables and temporary tables\.
 + You can author queries with replaceable parameters designated by `${parameter}`\. You can author your SQL query with multiple replaceable parameters and use the same parameter in multiple places in your SQL statement\. 
 
@@ -66,7 +74,7 @@ The following examples demonstrate some of these features\.
 
 Following, you can find descriptions of the various types of queries that you can run\. 
 
-The data used in these queries is from the `tickit` sample schema\.  For more information about the `tickit` data, see [Sample database](https://docs.aws.amazon.com/redshift/latest/dg/c_sampledb.html) in the *Amazon Redshift Database Developer Guide*\. 
+The data used in many of these queries is from the `tickit` sample schema\. For more information about the `tickit` data, see [Loading sample data](query-editor-v2-using.md#query-editor-v2-loading-sample-data)\.
 
 When you run these example queries, confirm that you choose the correct database in the editor, such as `sample_data_dev`\.
 
@@ -178,7 +186,6 @@ Beach Boys             58         30383
 
 Consider the following information about working with queries when you use the query editor:
 + The maximum query result size is the smaller of 5 MB or 100,000 rows\. 
-+ You can export only the current page of results or selected result rows to a JSON or CSV file\. 
 + You can run a query up to 300,000 characters long\. 
 + You can save a query up to 30,000 characters long\. 
 + You can't use transactions in the editor\. For more information about transactions, see [BEGIN](https://docs.aws.amazon.com/redshift/latest/dg/r_BEGIN.html) in the *Amazon Redshift Database Developer Guide\.*

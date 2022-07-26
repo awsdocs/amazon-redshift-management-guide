@@ -59,12 +59,12 @@ System.out.println("Created cluster " + createResponse.getClusterIdentifier());
       java -help
       ```
 
-1. Put the code that you want to run in a \.java file, and save the file in the `src` folder\. To illustrate the process, we use the code from [Managing cluster security groups using the AWS SDK for Java](managing-security-groups-java.md) so that the file in the `src` directory is ` CreateAndModifyClusterSecurityGroup.java`\.
+1. Put the code that you want to run in a \.java file, and save the file in the `src` folder\. To illustrate the process, we use the code from [Managing clusters using the AWS SDK for Java](managing-clusters-java.md) so that the file in the `src` directory is ` CreateAndModifyClusters.java`\.
 
 1. Compile the code\. 
 
    ```
-   javac -cp sdk/lib/aws-java-sdk-1.3.18.jar -d bin src\CreateAndModifyClusterSecurityGroup.java
+   javac -cp sdk/lib/aws-java-sdk-1.3.18.jar -d bin src\CreateAndModifyClusters.java
    ```
 
    If you are using a different version of the AWS SDK for Java, adjust the classpath \(`-cp`\) for your version\.
@@ -77,7 +77,7 @@ System.out.println("Created cluster " + createResponse.getClusterIdentifier());
              sdk/third-party/commons-logging-1.1.1/*;
              sdk/third-party/httpcomponents-client-4.1.1/*;
              sdk/third-party/jackson-core-1.8/*" 
-             CreateAndModifyClusterSecurityGroup
+             CreateAndModifyClusters
    ```
 
    Change the class path separator as needed for your operating system\. For example, for Windows, the separator is ";" \(as shown\), and for Unix, it is ":"\. Other code examples may require more libraries than are shown in this example, or the version of the AWS SDK you are working with may have different third\-party folder names\. For these cases, adjust the classpath \(`-cp`\) as appropriate\.

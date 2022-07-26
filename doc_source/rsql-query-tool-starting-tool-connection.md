@@ -212,3 +212,18 @@ Type "help" for help.
 
 (testcluster) testuser@dev=>
 ```
+
+### Using a DSN connection with the default credential provider chain<a name="rsql-query-tool-starting-tool-connection-dsn-provider-chain"></a>
+
+To connect using the default credential provider chain, specify only the IAM property, and Amazon Redshift RSQL will attempt to acquire credentials in the order described in [Working with AWS Credentials](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html) in the AWS SDK for Java\. At least one of the providers in the chain must have `GetClusterCredentials` permission\. This is useful for connecting from ECS containers, for example\.
+
+```
+[iamcredentials]
+Driver=Default
+Host=testcluster.example.com
+Database=dev
+DbUser=testuser
+ClusterID=rsqltestcluster
+Region=us-east-1
+IAM=1
+```

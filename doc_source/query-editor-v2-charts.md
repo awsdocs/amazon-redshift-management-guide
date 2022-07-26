@@ -199,3 +199,9 @@ order by total_price desc;
 1. Under **Axis Line**, choose **Show** and for **Position**, choose **Right**\.
 
 ![\[Revenue and sales chart\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/chart-revenue-sales.png)
+
+## Demo: Build visualizations using Amazon Redshift query editor v2<a name="query-editor-v2-demo-visualizations"></a>
+
+For a demo of how to build visualizations, watch the following video\. 
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/-FYqTIER-6U/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/-FYqTIER-6U)

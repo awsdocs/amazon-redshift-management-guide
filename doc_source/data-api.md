@@ -26,9 +26,14 @@ Before you use the Amazon Redshift Data API, review the following steps:
 
 To access the Data API, a user must be authorized\. You can authorize a user to access the Data API by adding a managed policy, which is a predefined AWS Identity and Access Management \(IAM\) policy, to that user\. To see the permissions allowed and denied by managed policies, see the IAM console \([https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\)\. 
 
-Amazon Redshift provides the `AmazonRedshiftDataFullAccess` managed policy\. This policy provides full access to Amazon Redshift Data API operations\. This policy also allows scoped access to specific Amazon Redshift, AWS Secrets Manager, and IAM API operations needed to authenticate and access an Amazon Redshift cluster\. If you use AWS Secrets Manager to authenticate, the policy allows use of the `secretsmanager:GetSecretValue` action to retrieve the secret tagged with the key `RedshiftDataFullAccess`\. If you use temporary credentials to authenticate, the policy allows use of the `redshift:GetClusterCredentials` action to the database user name `redshift_data_api_user` for any database in the cluster\. This user name must have already been created in your database\. 
+Amazon Redshift provides the `AmazonRedshiftDataFullAccess` managed policy\. This policy provides full access to Amazon Redshift Data API operations\. This policy also allows scoped access to specific Amazon Redshift, AWS Secrets Manager, and IAM API operations needed to authenticate and access an Amazon Redshift cluster\. 
 
 You can also create your own IAM policy that allows access to specific resources\. To create your policy, use the `AmazonRedshiftDataFullAccess` policy as your starting template\. After you create your policy, add it to each user that requires access to the Data API\.
+
+Consider the following requirements of the IAM policy associated with the IAM user:
++ If you use AWS Secrets Manager to authenticate, confirm the policy allows use of the `secretsmanager:GetSecretValue` action to retrieve the secret tagged with the key `RedshiftDataFullAccess`\.
++ If you use temporary credentials to authenticate to a cluster, confirm the policy allows the use of the `redshift:GetClusterCredentials` action to the database user name `redshift_data_api_user` for any database in the cluster\. This user name must have already been created in your database\.
++ If you use temporary credentials to authenticate to a serverless workgroup, confirm the policy allows the use of the `redshift-serverless:GetCredentials` action to retrieve the workgroup tagged with the key `RedshiftDataFullAccess`\. The database user is mapped 1:1 to the source AWS Identity and Access Management \(IAM\) identity\. For example, IAM user foo is mapped to database user `IAM:foo`, and IAM role bar is mapped to `IAMR:bar`\.  For more information about IAM identities, see [IAM Identities \(users, user groups, and roles\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html) in the IAM User Guide\.
 
 To run a query on a cluster that is owned by another account, the owning account must provide an IAM role that the Data API can assume in the calling account\. For example, suppose Account B owns a cluster that Account A needs to access\. Account B can attach the AWS\-managed policy `AmazonRedshiftDataFullAccess` to Account B's IAM role\. Then Account B trusts Account A using a trust policy such as the following:``
 
@@ -69,18 +74,51 @@ The following links provide more information about AWS Identity and Access Manag
 
 ## Storing database credentials in AWS Secrets Manager<a name="data-api-secrets"></a>
 
-When you call the Data API, you can pass credentials for the cluster by using a secret in AWS Secrets Manager\. To pass credentials in this way, you specify the name of the secret or the Amazon Resource Name \(ARN\) of the secret\. 
+When you call the Data API, you can pass credentials for the cluster or serverless workgroup by using a secret in AWS Secrets Manager\. To pass credentials in this way, you specify the name of the secret or the Amazon Resource Name \(ARN\) of the secret\. 
 
 To store credentials with Secrets Manager, you need `SecretManagerReadWrite` managed policy permission\. For more information about the minimum permissions, see [Creating and Managing Secrets with AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/managing-secrets.html) in the *AWS Secrets Manager User Guide*\. 
 
 **To store your credentials in a secret for an Amazon Redshift cluster**
 
-1. Use AWS Secrets Manager to create a secret that contains credentials for your cluster:
+1. Use the AWS Secrets Manager console to create a secret that contains credentials for your cluster:
    + When you choose **Store a new secret**, choose **Credentials for Redshift cluster**\. 
    + Store your values for **User name** \(database user\), **Password**, and **DB cluster **\(cluster identifier\) in your secret\. 
    + Tag the secret with the key `RedshiftDataFullAccess`\. The AWS\-managed policy `AmazonRedshiftDataFullAccess` only allows the action `secretsmanager:GetSecretValue` for secrets tagged with the key `RedshiftDataFullAccess`\. 
 
    For instructions, see [Creating a Basic Secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html) in the *AWS Secrets Manager User Guide*\.
+
+1. Use the AWS Secrets Manager console to view the details for the secret you created, or run the `aws secretsmanager describe-secret` AWS CLI command\.
+
+   Note the name and ARN of the secret\. You can use these in calls to the Data API\.
+
+**To store your credentials in a secret for a serverless workgroup**
+
+1. Use AWS Secrets Manager AWS CLI commands to store a secret that contains credentials for your serverless workgroup:
+   + Create your secret in a file, for example a JSON file named `mycreds.json`\. Provide the values for **User name** \(database user\) and **Password** in the file\.
+
+     ```
+     {
+           "username": "myusername",
+           "password": "mypassword"
+     }
+     ```
+   + Store your values in your secret and tag the secret with the key `RedshiftDataFullAccess`\.
+
+     ```
+     aws secretsmanager create-secret --name MyRedshiftSecret  --tags Key="RedshiftDataFullAccess",Value="serverless" --secret-string file://mycreds.json
+     ```
+
+     The following shows the output\.
+
+     ```
+     {
+         "ARN": "arn:aws:secretsmanager:region:accountId:secret:MyRedshiftSecret-mvLHxf",
+         "Name": "MyRedshiftSecret",
+         "VersionId": "a1603925-e8ea-4739-9ae9-e509eEXAMPLE"
+     }
+     ```
+
+   For more information, see [Creating a Basic Secret with AWS CLI](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html#proc-create-api) in the *AWS Secrets Manager User Guide*\.
 
 1. Use the AWS Secrets Manager console to view the details for the secret you created, or run the `aws secretsmanager describe-secret` AWS CLI command\.
 
@@ -145,7 +183,8 @@ Consider the following when calling the Data API:
   + ra3\.4xlarge
   + ra3\.16xlarge
 + The cluster must be in a virtual private cloud \(VPC\) based on the Amazon VPC service\. 
-+ By default, users with the same IAM role or IAM user as the runner of an `ExecuteStatement` or `BatchExecuteStatement` API operation can act on the same statement with `CancelStatement`, `DescribeStatement`, `GetStatementResult`, and `ListStatements` API operations\.
++ By default, users with the same IAM role or IAM user as the runner of an `ExecuteStatement` or `BatchExecuteStatement` API operation can act on the same statement with `CancelStatement`, `DescribeStatement`, `GetStatementResult`, and `ListStatements` API operations\. To act on the same SQL statement from another IAM user, the user must be able to assume the IAM role of the user who ran the SQL statement\. For more information about how to assume a role, see [Authorizing access to the Amazon Redshift Data API](#data-api-access)\. 
++ The SQL statements in the `Sqls` parameter of `BatchExecuteStatement` API operation are run as a single transaction\. 
 + For a list of AWS Regions where the Data API is available, see [Redshift Data API Endpoints](https://docs.aws.amazon.com/general/latest/gr/redshift-service.html) in the *Amazon Web Services General Reference*\. 
 
 ### Choosing authentication credentials when calling the Amazon Redshift Data API<a name="data-api-calling-considerations-authentication"></a>
@@ -153,10 +192,10 @@ Consider the following when calling the Data API:
 When you call the Data API, you use one of the following authentication methods for some API operations\. Each method requires a different combination of parameters\. 
 
 **AWS Secrets Manager**  
-With this method, provide the `secret-arn` secret value that is stored in AWS Secrets Manager\. The specified secret contains credentials to connect to your database\. You also supply a value for `cluster-identifier` that matches the cluster identifier in the secret\. 
+With this method, provide the `secret-arn` secret value that is stored in AWS Secrets Manager\. The specified secret contains credentials to connect to the `database` you specify\. When you are connecting to a cluster, you also supply the database name, and the cluster identifier that matches the cluster in the secret\. When you are connecting to a serverless workgroup, you also supply the database name\. 
 
 **Temporary credentials**  
-With this method, provide your `cluster-identifier`, `database`, and `db-user` values\.
+With this method, when connecting to a cluster, specify the cluster identifier, the database name, and the database user name\. Also, permission to call the `redshift:GetClusterCredentials` operation is required\. When connecting to a serverless workgroup, specify the database name\.
 
 With either method, you can also supply a `region` value that specifies the AWS Region where your cluster is located\. 
 
@@ -215,7 +254,7 @@ Consider the following when using named parameters:
 
 ## Calling the Data API<a name="data-api-calling"></a>
 
-You can call the Data API or the AWS CLI to run SQL statements on your cluster\. The primary operation to run an SQL statement is [https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_ExecuteStatement.html](https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_ExecuteStatement.html)\. The Data API supports the programming languages that are supported by the AWS SDK\. For more information on these, see [Tools to Build on AWS](https://aws.amazon.com/tools/)\.
+You can call the Data API or the AWS CLI to run SQL statements on your cluster or serverless workgroup\. The primary operations to run SQL statements are [https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_ExecuteStatement.html](https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_ExecuteStatement.html) and [https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_BatchExecuteStatement.html](https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_BatchExecuteStatement.html)\. The Data API supports the programming languages that are supported by the AWS SDK\. For more information on these, see [Tools to Build on AWS](https://aws.amazon.com/tools/)\.
 
 To see code examples of calling the Data API, see [Getting Started with Redshift Data API](https://github.com/aws-samples/getting-started-with-amazon-redshift-data-api#getting-started-with-redshift-data-api) in *GitHub*\. This repository has examples of using AWS Lambda to access Amazon Redshift data from Amazon EC2, AWS Glue Data Catalog, and Amazon SageMaker\. Example programing languages include Python, Go, Java, and Javascript\.
 
@@ -223,7 +262,7 @@ To see code examples of calling the Data API, see [Getting Started with Redshift
 
 You can call the Data API using the AWS CLI\.
 
-The following examples use the AWS CLI to call the Data API\. To run the examples, edit the parameter values to match your environment\. These examples demonstrate a few of the Data API operations\. For more information, see the *AWS CLI Command Reference*\.   
+The following examples use the AWS CLI to call the Data API\. To run the examples, edit the parameter values to match your environment\. In many of the examples a `cluster-identifier` is provided to run against a cluster\. When you run against a serverless workgroup, you provide a `workgroup-name` instead\. These examples demonstrate a few of the Data API operations\. For more information, see the *AWS CLI Command Reference*\.   
 
 Commands in the following examples have been split and formatted for readability\.
 
@@ -231,7 +270,7 @@ Commands in the following examples have been split and formatted for readability
 
 To run an SQL statement, use the `aws redshift-data execute-statement` AWS CLI command\.
 
-The following AWS CLI command runs an SQL statement and returns an identifier to fetch the results\. This example uses the AWS Secrets Manager authentication method\.
+The following AWS CLI command runs an SQL statement against a cluster and returns an identifier to fetch the results\. This example uses the AWS Secrets Manager authentication method\.
 
 ```
 aws redshift-data execute-statement 
@@ -254,7 +293,7 @@ The following is an example of the response\.
 }
 ```
 
-The following AWS CLI command runs an SQL statement and returns an identifier to fetch the results\. This example uses the temporary credentials authentication method\.
+The following AWS CLI command runs an SQL statement against a cluster and returns an identifier to fetch the results\. This example uses the temporary credentials authentication method\.
 
 ```
 aws redshift-data execute-statement 
@@ -277,11 +316,32 @@ The following is an example of the response\.
 }
 ```
 
+The following AWS CLI command runs an SQL statement against a serverless workgroup and returns an identifier to fetch the results\. This example uses the temporary credentials authentication method\.
+
+```
+aws redshift-data execute-statement 
+    --database dev 
+    --workgroup-name myworkgroup 
+    --sql "select 1;"
+```
+
+The following is an example of the response\.
+
+```
+{
+ "CreatedAt": "2022-02-11T06:25:28.748000+00:00",
+ "Database": "dev",
+ "DbUser": "IAMR:RoleName",
+ "Id": "89dd91f5-2d43-43d3-8461-f33aa093c41e",
+ "WorkgroupName": "myworkgroup"
+}
+```
+
 #### To run an SQL statement with parameters<a name="data-api-calling-cli-execute-statement-parameters"></a>
 
 To run an SQL statement, use the `aws redshift-data execute-statement` AWS CLI command\.
 
-The following AWS CLI command runs an SQL statement and returns an identifier to fetch the results\. This example uses the AWS Secrets Manager authentication method\. The SQL text has named parameters `colname` and `distance`\. In this case, the column name in the table is `ratecode` and the distance used in the predicate is `5`\. Values for named parameters for the SQL statement are specified in the `parameters` option\.
+The following AWS CLI command runs an SQL statement against a cluster and returns an identifier to fetch the results\. This example uses the AWS Secrets Manager authentication method\. The SQL text has named parameters `colname` and `distance`\. In this case, the column name in the table is `ratecode` and the distance used in the predicate is `5`\. Values for named parameters for the SQL statement are specified in the `parameters` option\.
 
 ```
 aws redshift-data execute-statement 
@@ -501,7 +561,7 @@ Provides the following results:
 
 To run multiple SQL statements with one command, use the `aws redshift-data batch-execute-statement` AWS CLI command\.
 
-The following AWS CLI command runs three SQL statements and returns an identifier to fetch the results\. This example uses the temporary credentials authentication method\.
+The following AWS CLI command runs three SQL statements against a cluster and returns an identifier to fetch the results\. This example uses the temporary credentials authentication method\.
 
 ```
 aws redshift-data batch-execute-statement 
@@ -890,7 +950,7 @@ The following is an example of the response to a call to `get-statement-result`\
 
 To get metadata that describes a table, use the `aws redshift-data describe-table` AWS CLI command\.
 
-The following AWS CLI command runs an SQL statement and returns metadata that describes a table\. This example uses the AWS Secrets Manager authentication method\.
+The following AWS CLI command runs an SQL statement against a cluster and returns metadata that describes a table\. This example uses the AWS Secrets Manager authentication method\.
 
 ```
 aws redshift-data describe-table 
@@ -937,7 +997,7 @@ The following is an example of the response\.
 }
 ```
 
-The following AWS CLI command runs an SQL statement that describes a table\. This example uses the temporary credentials authentication method\.
+The following AWS CLI command runs an SQL statement against a cluster that describes a table\. This example uses the temporary credentials authentication method\.
 
 ```
 aws redshift-data describe-table 
@@ -1053,7 +1113,7 @@ The following is an example of the response\.
 
 To list the databases in a cluster, use the `aws redshift-data list-databases` AWS CLI command\.
 
-The following AWS CLI command runs an SQL statement to list databases\. This example uses the AWS Secrets Manager authentication method\.
+The following AWS CLI command runs an SQL statement against a cluster to list databases\. This example uses the AWS Secrets Manager authentication method\.
 
 ```
 aws redshift-data list-databases 
@@ -1073,7 +1133,7 @@ The following is an example of the response\.
 }
 ```
 
-The following AWS CLI command runs an SQL statement to list databases\. This example uses the temporary credentials authentication method\.
+The following AWS CLI command runs an SQL statement against a cluster to list databases\. This example uses the temporary credentials authentication method\.
 
 ```
 aws redshift-data list-databases 
@@ -1097,7 +1157,7 @@ The following is an example of the response\.
 
 To list the schemas in a database, use the `aws redshift-data list-schemas` AWS CLI command\.
 
-The following AWS CLI command runs an SQL statement to list schemas in a database\. This example uses the AWS Secrets Manager authentication method\.
+The following AWS CLI command runs an SQL statement against a cluster to list schemas in a database\. This example uses the AWS Secrets Manager authentication method\.
 
 ```
 aws redshift-data list-schemas 
@@ -1120,7 +1180,7 @@ The following is an example of the response\.
 }
 ```
 
-The following AWS CLI command runs an SQL statement to list schemas in a database\. This example uses the temporary credentials authentication method\.
+The following AWS CLI command runs an SQL statement against a cluster to list schemas in a database\. This example uses the temporary credentials authentication method\.
 
 ```
 aws redshift-data list-schemas 
@@ -1147,7 +1207,7 @@ The following is an example of the response\.
 
 To list the tables in a database, use the `aws redshift-data list-tables` AWS CLI command\.
 
-The following AWS CLI command runs an SQL statement to list tables in a database\. This example uses the AWS Secrets Manager authentication method\.
+The following AWS CLI command runs an SQL statement against a cluster to list tables in a database\. This example uses the AWS Secrets Manager authentication method\.
 
 ```
 aws redshift-data list-tables 
@@ -1176,7 +1236,7 @@ The following is an example of the response\.
 }
 ```
 
-The following AWS CLI command runs an SQL statement to list tables in a database\. This example uses the temporary credentials authentication method\.
+The following AWS CLI command runs an SQL statement against a cluster to list tables in a database\. This example uses the temporary credentials authentication method\.
 
 ```
 aws redshift-data list-tables 

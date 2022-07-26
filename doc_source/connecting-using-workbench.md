@@ -23,7 +23,7 @@ For information about installing and configuring the Java Runtime Environment, g
 ## Connect to your cluster over a JDBC connection in SQL Workbench/J<a name="connect-to-workbench-via-jdbc"></a>
 
 **Important**  
-Before you perform the steps in this procedure, make sure that your client computer or Amazon EC2 instance has the recommended Amazon Redshift JDBC driver\. For links to download the latest drivers, see [Download the Amazon Redshift JDBC driver](configure-jdbc-connection.md#download-jdbc-driver)\. Also, make sure you have configured firewall settings to allow access to your cluster\. For more information, see [Step 4: Authorize access to the cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html)\.
+Before you perform the steps in this procedure, make sure that your client computer or Amazon EC2 instance has the recommended Amazon Redshift JDBC driver\. For links to download the latest drivers, see [Download the Amazon Redshift JDBC driver, version 2\.1](jdbc20-download-driver.md)\. Also, make sure you have configured firewall settings to allow access to your cluster\. For more information, see [Step 4: Authorize access to the cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html)\.
 
 **To use a JDBC connection in SQL Workbench/J**
 
@@ -47,7 +47,7 @@ Before you perform the steps in this procedure, make sure that your client compu
 
 1. In **URL**, copy the JDBC URL from the Amazon Redshift console and paste it here\.
 
-   For more information about finding the JDBC URL, see [Configuring a JDBC driver version 1\.x connection](configure-jdbc-connection.md)\.
+   For more information about finding the JDBC URL, see [Configuring a connection for JDBC driver version 2\.1 for Amazon Redshift](jdbc20-install.md)\.
 
 1. In **Username**, type the name of the admin user\.
 

@@ -2,7 +2,7 @@
 
 The Amazon Redshift JDBC driver supports prepared statements\. You can use prepared statements to improve the performance of parameterized queries that need to be run multiple times during the same connection\.
 
-A *prepared statement* is a SQL statement that is compiled on the server side but not executed immediately\. The compiled statement is stored on the server as a PreparedStatement object until you close the object or the connection\. While that object exists, you can execute the prepared statement as many times as needed using different parameter values, without having to compile the statement again\. This reduced overhead enables the set of queries to be executed more quickly\.
+A *prepared statement* is a SQL statement that is compiled on the server side but not run immediately\. The compiled statement is stored on the server as a PreparedStatement object until you close the object or the connection\. While that object exists, you can run the prepared statement as many times as needed using different parameter values, without having to compile the statement again\. This reduced overhead enables the set of queries to be run more quickly\.
 
 For more information about prepared statements, see "Using Prepared Statements" in [JDBC Basics tutorial from Oracle](https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html)\.
 
@@ -24,4 +24,4 @@ TABLE MyTable(col1 int, col2 varchar); INSERT INTO myTable
 VALUES (1, 'abc');");
 ```
 
-If you try to prepare this statement, the server returns an error stating that the destination table \(myTable\) doesn't exist yet\. The CREATE query must be executed before the INSERT query can be prepared\.
+If you try to prepare this statement, the server returns an error stating that the destination table \(myTable\) doesn't exist yet\. The CREATE query must be run before the INSERT query can be prepared\.

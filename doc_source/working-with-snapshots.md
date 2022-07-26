@@ -248,7 +248,7 @@ You can restore a single table from a snapshot instead of restoring an entire cl
 
 The new table name cannot be the name of an existing table\. To replace an existing table with a restored table from a snapshot, rename or drop the existing table before you restore the table from the snapshot\.
 
-The target table is created using the source table's column definitions, table attributes, and column attributes except for foreign keys\. To prevent conflicts due to dependencies, the target table doesn't inherit foreign keys from the source table\. Any dependencies, such as views or permissions granted on the source table, are not applied to the target table\. 
+The target table is created using the source table's column definitions, table attributes, and column attributes except for foreign keys\. To prevent conflicts due to dependencies, the target table doesn't inherit foreign keys from the source table\. Any dependencies, such as views or permissions granted on the source table, aren't applied to the target table\. 
 
 If the owner of the source table exists, then that user is the owner of the restored table, provided that the user has sufficient permissions to become the owner of a relation in the specified database and schema\. Otherwise, the restored table is owned by the admin user that was created when the cluster was launched\.
 
@@ -257,60 +257,19 @@ The restored table returns to the state it was in at the time the backup was tak
 Restoring a table from a snapshot has the following limitations:
 + You can restore a table only to the current, active running cluster and from a snapshot that was taken of that cluster\.
 + You can restore only one table at a time\.
-+ You cannot restore a table from a cluster snapshot that was taken prior to a cluster being resized\.
-
-**Note**  
-A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
-
-### New console<a name="snapshot-table-restore"></a>
++ You can't restore a table from a cluster snapshot that was taken prior to a cluster being resized\.  An exception is that you can restore a table after an elastic resize if the node type didn't change\. 
++ Any dependencies, such as views or permissions granted on the source table, aren't applied to the target table\.
++ If row\-level security is turned on for a table being restored, Amazon Redshift restores the table with row\-level security turned on\. 
 
 **To restore a table from a snapshot**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster that you want to use to restore a table\. 
+1. On the navigation menu, choose **Clusters**, then choose the cluster that you want to use to restore a table\. 
 
 1. For **Actions**, choose **Restore table** to display the **Restore table** page\. 
 
 1. Enter the information about which snapshot, source table, and target table to use, and then choose **Restore table**\. 
-
-### Original console<a name="snapshot-table-restore-originalconsole"></a>
-
-**To restore a table from a snapshot using the Amazon Redshift console**
-
-1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-
-1. Choose **Clusters** and choose a cluster\.
-
-1. Choose the **Table restore** tab\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-restore-table-from-snapshot.png)
-
-1. Choose **Restore table**\.
-
-1. In the **Table restore** panel, select a date range that contains the cluster snapshot that you want to restore from\. For example, you might select `Last 1 Week` for cluster snapshots taken in the previous week\.
-
-1. Add the following information:
-   + **From snapshot** – The identifier of the cluster snapshot that contains the table to restore from\.
-   + **Source table to restore from**
-     + **Database** – The name of the database from the cluster snapshot that contains the table to restore from\.
-     + **Schema** – The name of the database schema from the cluster snapshot that contains the table to restore from\.
-     + **Table** – The name of the table from the cluster snapshot to restore from\.
-   + **Target table to restore to**
-     + **Database** – The name of the database in the target cluster to restore the table to\.
-     + **Schema** – The name of the database schema in the target cluster to restore the table to\.
-     + **New table name** – The new name of the restored table\. This name cannot be the name of an existing table in the target database\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-restore-table-from-snapshot-2.png)
-
-1. Choose **Restore** to restore the table\.
-
-If you have restored at least one table from a cluster snapshot, you can copy the values from a previous table restore request into a new table restore request\. This approach means you don't have to retype values that will be the same for several table restore operations\.
-
-**To copy from a previous table restore request to a new table restore operation:**
-
-1. In the **Table restore** tab, choose an existing table restore status\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/rs-mgmt-restore-table-from-snapshot-3.png)
-
-1. Choose **Copy restore request**\.
 
 **Example: Restoring a table from a snapshot using the AWS CLI**  
 The following example uses the `restore-table-from-cluster-snapshot` AWS CLI command to restore the `my-source-table` table from the `sample-database` schema in the `my-snapshot-id`\. The example restores the snapshot to the `mycluster-example` cluster with a new table name of `my-new-table`\.  

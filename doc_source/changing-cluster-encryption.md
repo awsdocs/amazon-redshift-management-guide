@@ -6,39 +6,17 @@ During the migration operation, your cluster is available in read\-only mode, an
 
 If your cluster is configured to enable cross\-AWS Region snapshot copy, you must disable it before changing encryption\. For more information, see [Copying snapshots to another AWS Region](working-with-snapshots.md#cross-region-snapshot-copy) and [Configure cross\-Region snapshot copy for an AWS KMS–encrypted cluster](managing-snapshots-console.md#xregioncopy-kms-encrypted-snapshot)\. You can't enable hardware security module \(HSM\) encryption by modifying the cluster\. Instead, create a new, HSM\-encrypted cluster and migrate your data to the new cluster\. For more information, see [Migrating to an HSM\-encrypted cluster](#migrating-to-an-encrypted-cluster)\. 
 
-**Note**  
-A new console is available for Amazon Redshift\. Choose either the **New console** or the **Original console** instructions based on the console that you are using\. The **New console** instructions are open by default\.
-
-## New console<a name="cluster-database-encryption-modify"></a>
-
 **To modify database encryption on a cluster**
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **CLUSTERS**, then choose the cluster that you want to modify encryption\.
+1. On the navigation menu, choose **Clusters**, then choose the cluster that you want to modify encryption\.
 
 1. Choose **Properties**\.
 
 1. In the **Database configurations** section, choose **Edit**, then choose **Edit encryption**\. 
 
 1. Choose one of the encryption options and choose **Save changes**\.
-
-## Original console<a name="cluster-database-encryption-modify-originalconsole"></a><a name="changing-cluster-encryption-console"></a>
-
-**To change cluster encryption using the console**
-
-1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
-
-1.  In the navigation pane, choose **Clusters**, and then choose the cluster that you want to modify\. 
-
-1. Choose **Cluster**, and then choose **Modify**\.
-
-1. For **Encrypt database**, choose **KMS** to enable encryption, or choose **None** to disable encryption\.
-
-1. To use a customer managed key, for **Master Key** choose **Enter a key ARN** and enter the ARN in the **ARN** field\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/modify-encryption.png)
-
-1. Choose **Modify**\.
 
 <a name="changing-cluster-encryption-cli"></a>**To change cluster encryption using the CLI** 
 

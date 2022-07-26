@@ -18,7 +18,7 @@ In the China Regions on January 5, 2021, Amazon Redshift is replacing the SSL ce
 
 ## Using the latest Amazon Redshift ODBC or JDBC drivers<a name="connecting-transitioning-to-acm-latest-odbc-jdbc"></a>
 
-The preferred method is to use the latest Amazon Redshift ODBC or JDBC drivers\. Amazon Redshift drivers beginning with ODBC version 1\.3\.7\.1000 and JDBC version 1\.2\.8\.1005 automatically manage the transition from an Amazon Redshift self\-signed certificate to an ACM certificate\. To download the latest drivers, see [Configuring an ODBC connection](configure-odbc-connection.md) or [Configuring a JDBC driver version 1\.x connection](configure-jdbc-connection.md)\. 
+The preferred method is to use the latest Amazon Redshift ODBC or JDBC drivers\. Amazon Redshift drivers beginning with ODBC version 1\.3\.7\.1000 and JDBC version 1\.2\.8\.1005 automatically manage the transition from an Amazon Redshift self\-signed certificate to an ACM certificate\. To download the latest drivers, see [Configuring an ODBC connection](configure-odbc-connection.md) or [Configuring a connection for JDBC driver version 2\.1 for Amazon Redshift](jdbc20-install.md)\. 
 
 If you use the latest Amazon Redshift JDBC driver, it's best not to use `-Djavax.net.ssl.trustStore` in JVM options\. If you must use `-Djavax.net.ssl.trustStore`, import the Redshift certificate authority bundle into the truststore it points to\. For download information, see [Connect using SSL](connecting-ssl-support.md#connect-using-ssl)\. For more information, see [Importing the Amazon Redshift certificate authority bundle into a TrustStore](#importing-the-acm-bundle-to-truststore)\.
 

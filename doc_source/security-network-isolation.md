@@ -19,4 +19,20 @@ An Amazon Redshift cluster is locked down by default upon provisioning\. To allo
 
 To allow traffic only to or from specific IP address ranges, update the security groups with your VPC\. An example is allowing traffic only from or to your corporate network\.
 
+While configuring network access control lists associated with the subnet\(s\) your cluster is tagged with, ensure that the respective AWS Region's S3 CIDR ranges are added to the allowlist for both ingress and egress rules\. Doing so lets you execute S3\-based operations such as Redshift Spectrum, COPY, and UNLOAD without any disruptions\.
+
+The following example command parses the JSON response for all IPv4 addresses used in Amazon S3 in the us\-east\-1 Region\.
+
+```
+curl https://ip-ranges.amazonaws.com/ip-ranges.json | jq -r '.prefixes[] | select(.region=="us-east-1") | select(.service=="S3") | .ip_prefix'
+
+54.231.0.0/17
+
+52.92.16.0/20
+
+52.216.0.0/15
+```
+
+For instructions on how to get S3 IP ranges for a particular region, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html)\.
+
 Amazon Redshift supports deploying clusters into dedicated tenancy VPCs\. For more information, see [Dedicated instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html) in the *Amazon EC2 User Guide\.*
