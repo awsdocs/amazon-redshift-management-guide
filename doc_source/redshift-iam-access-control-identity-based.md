@@ -1186,11 +1186,11 @@ The following policy enables the `GetCredentials`, `CreateClusterUser`, and `Joi
         "arn:aws:redshift:us-west-2:123456789012:dbname:examplecluster/testdb",
         "arn:aws:redshift:us-west-2:123456789012:dbgroup:examplecluster/common_group"
       ],
-        "Condition": {
-            "StringEquals": {
-           "aws:userid":"AIDIODR4TAW7CSEXAMPLE:${redshift:DbUser}@yourdomain.com"
-                            }
-                      }
+      "Condition": {
+        "StringEquals": {
+          "aws:userid":"AIDIODR4TAW7CSEXAMPLE:${redshift:DbUser}@yourdomain.com"
+        }
+      }
     },
     {
       "Sid": "CreateClusterUserStatement",
@@ -1218,9 +1218,5 @@ The following policy enables the `GetCredentials`, `CreateClusterUser`, and `Joi
       ]
     }
   ]
-}
-          
- 
-  }
 }
 ```
