@@ -34,7 +34,7 @@ The following example bucket policy permits access to the specified bucket only 
      "Sid":"BucketPolicyForSpectrum",
      "Effect":"Allow",
      "Principal": {"AWS": ["arn:aws:iam::123456789012:root"]},
-     "Action":[“s3:GetObject",”s3:List*"],
+     "Action":["s3:GetObject","s3:List*"],
      "Resource":["arn:aws:s3:::examplebucket/*"],
      "Condition":{"StringEquals":{"aws:UserAgent": "AWS Redshift/Spectrum"]}}
    }
