@@ -24,7 +24,7 @@ You can create an Amazon Redshift event notification subscription so you can be 
 An Amazon Redshift event subscription can specify these event criteria:
 + Source type, the values are cluster, snapshot, parameter\-groups, and security\-groups\.
 + Source ID of a resource, such as `my-cluster-1` or `my-snapshot-20130823`\. The ID must be for a resource in the same AWS Region as the event subscription\.
-+ Event category, the values are Configuration, Management, Monitoring, and Security\.
++ Event category, the values are Configuration, Management, Monitoring, Security and Pending\.
 + Event severity, the values are INFO or ERROR\.
 
 The event criteria can be specified independently, except that you must specify a source type before you can specify source IDs in the console\. For example, you can specify an event category without having to specify a source type, source ID, or severity\. While you can specify source IDs for resources that are not of the type specified in source type, no notifications will be sent for events from those resources\. For example, if you specify a source type of cluster and the ID of a security group, none of the events raised by that security group would match the source type filter criteria, so no notifications would be sent for those events\.
