@@ -40,7 +40,7 @@ jdbc:redshift://my_host:5439/dev?ssl=false?defaultRowFetchSize=100
 The following URL example specifies a log level of 6 and the path for the logs\.
 
 ```
-jdbc:redshift://redshift.amazonaws.com:5439/dev;DSILogLevel=6;LogPath=/home/user/logs";
+jdbc:redshift://redshift.amazonaws.com:5439/dev;DSILogLevel=6;LogPath=/home/user/logs
 ```
 
 Don't duplicate properties in the connection URL\.
