@@ -14,7 +14,7 @@
    +  *<endpoint>* is the **Endpoint** you recorded in the previous step\.
    +  *<username>* is the name of a user with permissions to connect to the cluster\.
    +  *<databasename>* is the **Database Name** you recorded in the previous step\.
-   +  *<port>* is the **Port** you recorded in the previous step\. *<port>* is an optional parameter which has a default value of 5439\.
+   +  *<port>* is the **Port** you recorded in the previous step\. *<port>* is an optional parameter\.
 
    An example follows\.
 
@@ -81,7 +81,7 @@ Type "help" for help.
 
 ### Using Single sign\-on DSN<a name="rsql-query-tool-starting-tool-connection-dsn"></a>
 
-You can configure a DSN for single sign\-on \(SSO\) authentication\. The following shows an example of a DSN\-connection configuration that uses Okta SSO\.
+You can configure a DSN for single sign\-on authentication\. The following shows an example of a DSN\-connection configuration that uses Okta single sign on\.
 
 ```
 [testokta]
@@ -119,7 +119,7 @@ Type "help" for help.
 (testcluster) user1@dev=#
 ```
 
-The following example shows an example of a DSN\-connection configuration that uses Azure SSO\.
+The following example shows an example of a DSN\-connection configuration that uses Azure single sign on\.
 
 ```
 [testazure]

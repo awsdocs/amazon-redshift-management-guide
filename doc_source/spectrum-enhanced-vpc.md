@@ -1,14 +1,17 @@
-# Using Amazon Redshift Spectrum with enhanced VPC routing<a name="spectrum-enhanced-vpc"></a>
+# Redshift Spectrum and enhanced VPC routing<a name="spectrum-enhanced-vpc"></a>
 
-Amazon Redshift enhanced VPC routing routes specific traffic through your VPC\. All traffic between your cluster and your Amazon S3 buckets is forced to pass through your Amazon VPC\. Redshift Spectrum runs on AWS\-managed resources that are owned by Amazon Redshift\. Because these resources are outside your VPC, Redshift Spectrum doesn't use enhanced VPC routing\. 
+Amazon Redshift Spectrum doesn't support enhanced VPC routing with provisioned clusters\. Amazon Redshift enhanced VPC routing routes specific traffic through your VPC\. All traffic between your cluster and your Amazon S3 buckets is forced to pass through your Amazon VPC\. Redshift Spectrum runs on AWS managed resources that are owned by Amazon Redshift\. Because these resources are outside your VPC, Redshift Spectrum doesn't use enhanced VPC routing\. 
 
 When your cluster is configured to use enhanced VPC routing, traffic between Redshift Spectrum and Amazon S3 is securely routed through the AWS private network, outside of your VPC\. In\-flight traffic is signed using Amazon Signature Version 4 protocol \(SIGv4\) and encrypted using HTTPS\. This traffic is authorized based on the IAM role that is attached to your Amazon Redshift cluster\. To further manage Redshift Spectrum traffic, you can modify your cluster's IAM role and your policy attached to the Amazon S3 bucket\. You might also need to configure your VPC to allow your cluster to access AWS Glue or Athena, as detailed following\. 
 
  Note that because enhanced VPC routing affects the way that Amazon Redshift accesses other resources, queries might fail unless you configure your VPC correctly\. For more information, see [Enhanced VPC routing in Amazon Redshift](enhanced-vpc-routing.md), which discusses in more detail creating a VPC endpoint, a NAT gateway, and other networking resources to direct traffic to your Amazon S3 buckets\. 
 
-## Considerations for using enhanced VPC routing for Redshift Spectrum<a name="spectrum-enhanced-vpc-considerations"></a>
+**Note**  
+Amazon Redshift Serverless supports enhanced VPC routing for queries to external tables on Amazon S3\.
 
-Following are considerations when using Redshift Spectrum enhanced VPC routing: 
+## Considerations when using Amazon Redshift Spectrum<a name="spectrum-enhanced-vpc-considerations"></a>
+
+Following are considerations when using Redshift Spectrum: 
 + [Bucket access policies](#spectrum-enhanced-vpc-considerations-policies)
 + [Cluster IAM role](#spectrum-enhanced-vpc-considerations-cluster-role)
 + [Logging and auditing Amazon S3 access](#spectrum-enhanced-vpc-considerations-logging-s3)
@@ -18,9 +21,9 @@ Following are considerations when using Redshift Spectrum enhanced VPC routing:
 
 You can control access to data in your Amazon S3 buckets by using a bucket policy attached to the bucket and by using an IAM role attached to the cluster\. 
 
-Redshift Spectrum can't access data stored in Amazon S3 buckets that use a bucket policy that restricts access to only specified VPC endpoints\. Instead, use a bucket policy that restricts access to only specific principals, such as a specific AWS account or specific users\. 
+Redshift Spectrum on provisioned clusters can't access data stored in Amazon S3 buckets that use a bucket policy that restricts access to only specified VPC endpoints\. Instead, use a bucket policy that restricts access to only specific principals, such as a specific AWS account or specific users\. 
 
-For the IAM role that is granted access to the bucket, use a trust relationship that allows the role to be assumed only by the Amazon Redshift service principal\. When attached to your cluster, the role can be used only in the context of Amazon Redshift and can't be shared outside of the cluster\. For more information, see [Restricting access to IAM roles](authorizing-redshift-service.md#authorizing-redshift-service-database-users)\.
+For the IAM role that is granted access to the bucket, use a trust relationship that allows the role to be assumed only by the Amazon Redshift service principal\. When attached to your cluster, the role can be used only in the context of Amazon Redshift and can't be shared outside of the cluster\. For more information, see [Restricting access to IAM roles](authorizing-redshift-service.md#authorizing-redshift-service-database-users)\. A service control policy \(SCP\) can also be used to further restrict the role, see [Prevent IAM users and roles from making specified changes, with an exception for a specified admin role](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples_general.html#example-scp-restricts-with-exception) in the *AWS Organizations User Guide*\.
 
 To use Redshift Spectrum, no IAM policies blocking the use of presigned URLs can be in place\.
 
@@ -28,17 +31,21 @@ The following example bucket policy permits access to the specified bucket only 
 
 ```
 {
-  "Version":"2012-10-17",
-  "Statement":[
-  {
-     "Sid":"BucketPolicyForSpectrum",
-     "Effect":"Allow",
-     "Principal": {"AWS": ["arn:aws:iam::123456789012:root"]},
-     "Action":["s3:GetObject","s3:List*"],
-     "Resource":["arn:aws:s3:::examplebucket/*"],
-     "Condition":{"StringEquals":{"aws:UserAgent": "AWS Redshift/Spectrum"]}}
-   }
-  ]
+	"Version": "2012-10-17",
+	"Statement": [{
+		"Sid": "BucketPolicyForSpectrum",
+		"Effect": "Allow",
+		"Principal": {
+			"AWS": ["arn:aws:iam::123456789012:role/redshift"]
+		},
+		"Action": ["s3:GetObject", "s3:List*"],
+		"Resource": ["arn:aws:s3:::examplebucket/*"],
+		"Condition": {
+			"StringEquals": {
+				"aws:UserAgent": "AWS Redshift/Spectrum"
+			}
+		}
+	}]
 }
 ```
 
@@ -75,7 +82,7 @@ You can add a policy to the cluster role that prevents COPY and UNLOAD access to
 }
 ```
 
-For more information, see [IAM Policies for Amazon Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-iam-policies.html) in the *Amazon Redshift Database Developer Guide*\.
+For more information, see [IAM Policies for Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-iam-policies.html) in the *Amazon Redshift Database Developer Guide*\.
 
 ### Logging and auditing Amazon S3 access<a name="spectrum-enhanced-vpc-considerations-logging-s3"></a>
 

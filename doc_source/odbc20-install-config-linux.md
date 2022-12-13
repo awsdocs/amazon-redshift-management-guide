@@ -1,4 +1,4 @@
-# Installing and configuring the Amazon Redshift ODBC driver on Linux<a name="jdbc20-install-config-linux"></a>
+# Installing and configuring the Amazon Redshift ODBC driver on Linux<a name="odbc20-install-config-linux"></a>
 
 ## System Requirements<a name="odbc20-system-requirements-linux"></a>
 

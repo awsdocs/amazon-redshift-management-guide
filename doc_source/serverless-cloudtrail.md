@@ -1,3 +1,0 @@
-# CloudTrail for Amazon Redshift Serverless<a name="serverless-cloudtrail"></a>
-
-Amazon Redshift Serverless is integrated with AWS CloudTrail in order to provide a record of actions taken in Amazon Redshift Serverless\. CloudTrail captures all API calls for Amazon Redshift Serverless as events\. For more information, see [Logging Amazon Redshift Serverless calls with AWS CloudTrail](serverless-logging-using-cloudtrail.md), which details how information is sent to CloudTrail and shows a sample log\-file entry\.

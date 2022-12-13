@@ -41,6 +41,7 @@ The `AWS/Redshift` namespace includes the following metrics\. Unless stated othe
 | ReadIOPS |  The average number of disk read operations per second\. Units: Count/Second Dimensions: `ClusterIdentifier`, `NodeID` Dimensions: `ClusterIdentifier`  | 
 | ReadLatency |  The average amount of time taken for disk read I/O operations\. Units: Seconds Dimensions: `ClusterIdentifier`, `NodeID` Dimensions: `ClusterIdentifier`  | 
 | ReadThroughput |  The average number of bytes read from disk per second\. Units: Bytes \(GB/s in the Amazon Redshift console\) Dimensions: `ClusterIdentifier`, `NodeID` Dimensions: `ClusterIdentifier`  | 
+| RedshiftManagedStorageTotalCapacity |  Total managed storage capacity\. Units: Megabytes Dimensions: `ClusterIdentifier`  | 
 | TotalTableCount |  The number of user tables open at a particular point in time\. This total doesn't include Amazon Redshift Spectrum tables\. Units: Count  Dimensions: `ClusterIdentifier`  | 
 | WLMQueueLength |  The number of queries waiting to enter a workload management \(WLM\) queue\. Units: Count     Dimensions: `ClusterIdentifier`, `service class` Dimensions: `ClusterIdentifier`, `QueueName`  | 
 | WLMQueueWaitTime |  The total time queries spent waiting in the workload management \(WLM\) queue\. Reported in 5\-minute intervals\. Units: Milliseconds\. Dimensions: `ClusterIdentifier`, `QueryPriority` Dimensions: `ClusterIdentifier`, `wlmid` Dimensions: `ClusterIdentifier`, `QueueName`  | 

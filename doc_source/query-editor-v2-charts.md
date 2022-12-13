@@ -1,6 +1,6 @@
 # Visualizing query results<a name="query-editor-v2-charts"></a>
 
-After you run a query and the results display, you can turn on **Chart** to display a graphic visualization of the results\. You can use the following controls to define the content, structure, and appearance of your chart:
+After you run a query and the results display, you can turn on **Chart** to display a graphic visualization of the current page of results\. You can use the following controls to define the content, structure, and appearance of your chart:
 
 ![\[Trace\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) Trace  
 Represents a set of related graphical marks in a chart\. You can define multiple traces in a chart\.

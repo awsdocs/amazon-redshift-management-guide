@@ -1,6 +1,6 @@
 # Managing snapshots using the console<a name="managing-snapshots-console"></a>
 
-Amazon Redshift takes automatic, incremental snapshots of your data periodically and saves them to Amazon S3\. Additionally, you can take manual snapshots of your data whenever you want\. In this section, you can find how to manage your snapshots from the Amazon Redshift console\. For more information about snapshots, see [Amazon Redshift snapshots](working-with-snapshots.md)\.
+Amazon Redshift takes automatic, incremental snapshots of your data periodically and saves them to Amazon S3\. Additionally, you can take manual snapshots of your data whenever you want\. In this section, you can find how to manage your snapshots from the Amazon Redshift console\. For more information about snapshots, see [Amazon Redshift snapshots and backups](working-with-snapshots.md)\.
 
 All snapshot tasks in the Amazon Redshift console start from the snapshot list\. You can filter the list by using a time range, the snapshot type, and the cluster associated with the snapshot\. In addition, you can sort the list by date, size, and snapshot type\.  Depending on the snapshot type that you select, you might have different options available for working with the snapshot\. 
 

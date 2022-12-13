@@ -1,4 +1,4 @@
-# Step 1: Create an IAM role for IAM Single Sign\-On \(SSO\) access<a name="generating-iam-credentials-sso-role"></a>
+# Step 1: Create an IAM role for IAM single sign\-on access<a name="generating-iam-credentials-sso-role"></a>
 
 If you don't use an identity provider for single sign\-on access, you can skip this step\.
 

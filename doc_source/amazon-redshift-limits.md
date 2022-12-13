@@ -1,8 +1,10 @@
 # Quotas and limits in Amazon Redshift<a name="amazon-redshift-limits"></a>
 
-## Amazon Redshift quotas<a name="amazon-redshift-limits-quota"></a>
-
 Amazon Redshift has quotas that limit the use of several resources in your AWS account per AWS Region\. There is a default value for each quota and some quotas are adjustable\. For adjustable quotas, you can request an increase for your AWS account in an AWS Region by submitting an [Amazon Redshift Limit Increase Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-redshift)\. 
+
+## Quotas for Amazon Redshift objects<a name="amazon-redshift-limits-quota"></a>
+
+Amazon Redshift has quotas that limit the use of several object types\. There is a default value for each\.
 
 
 | Quota name | AWS default value | Adjustable | Description | 
@@ -37,9 +39,29 @@ Amazon Redshift has quotas that limit the use of several resources in your AWS a
 | Tables for `16xlarge` cluster node type | 100,000 | No | The maximum number of tables for the `16xlarge` cluster node type\. This limit includes permanent tables, temporary tables, datashare tables, and materialized views\. External tables are counted as temporary tables\. Temporary tables include user\-defined temporary tables and temporary tables created by Amazon Redshift during query processing or system maintenance\. Views and system tables aren't included in this limit\.  | 
 | User\-defined databases in a cluster | 60 | No | The maximum number of user\-defined databases that you can create per cluster\. | 
 | Timeout for idle or inactive sessions | 4 hours | No | This setting applies to the cluster\. For information about setting the idle\-session timeout value for a user, see [ ALTER USER](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_USER.html) in the *Amazon Redshift Database Developer Guide*\. The user setting takes precedence over the cluster setting\. | 
+| Timeout for idle transactions | 6 hours | No | The maximum period of inactivity for an open transaction before Amazon Redshift ends the session associated with the transaction\. This setting takes precedence over any user\-defined idle timeout setting\. It applies to the cluster\. | 
 | Stored procedures in a database | 10,000 | No | The maximum number of stored procedures\. See [Limits and differences for stored procedure support](https://docs.aws.amazon.com/redshift/latest/dg/stored-procedure-constraints.html) for more limits\. | 
 
-The query editor v2 also has quotas as follows\.
+## Quotas for Amazon Redshift Serverless objects<a name="serverless-limits-account"></a>
+
+Amazon Redshift has quotas that limit the use of several object types in your Amazon Redshift Serverless instance\. There is a default value for each\.
+
+
+| Quota name | AWS default value | Adjustable | Description | 
+| --- | --- | --- | --- | 
+| Number of databases | 100 | No | The maximum allowed count of databases in an Amazon Redshift Serverless instance\. | 
+| Number of schemas | 9,900 | No | The maximum allowed count of schemas in an Amazon Redshift Serverless instance\. | 
+| Number of tables | 100,000 | No | The maximum allowed count of tables in an Amazon Redshift Serverless instance\. | 
+| Timeout for idle or inactive sessions | 4 hours | No | For information about setting the idle\-session timeout value for a user, see [ ALTER USER](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_USER.html) in the *Amazon Redshift Database Developer Guide*\. The user setting takes precedence\. | 
+| Timeout for a running query | 86,399 seconds \(24 hours\) | No | The maximum time for a running query before Amazon Redshift ends it\. | 
+| Timeout for idle transactions | 6 hours | No | The maximum period of inactivity for an open transaction before Amazon Redshift Serverless ends the session associated with the transaction\. This setting takes precedence over any user\-defined idle timeout setting\. | 
+| Number of maximum connections | 2000 | No | The maximum number of connections allowed to connect to a workgroup\. | 
+
+For more information about how Amazon Redshift Serverless billing is affected by timeout configuration, see [Billing for Amazon Redshift Serverless](serverless-billing.md)\.
+
+## Quotas for query editor v2 objects<a name="query-editor-limits-account"></a>
+
+Amazon Redshift has quotas that limit the use of several object types in your Amazon Redshift query editor v2\. There is a default value for each\.
 
 
 | Quota name | AWS default value | Adjustable | Description | 
@@ -53,7 +75,7 @@ The query editor v2 also has quotas as follows\.
 | Simultaneous socket connections per principal | 10 | Yes | Maximum number of simultaneous socket connections to query editor v2 that a single principal can establish in the current Region\. Evaluate whether to increase this quota if you receive errors that your socket connections are over the limit\. | 
 | Simultaneous socket connections per account | 250 | Yes | Maximum number of simultaneous socket connections to query editor v2 that all principals in the account can establish in the current Region\. Evaluate whether to increase this quota if you receive errors that your socket connections are over the limit\. | 
 
-## Amazon Redshift Spectrum quotas and limits<a name="amazon-redshift-limits-spectrum"></a>
+## Quotas and limits for Amazon Redshift Spectrum objects<a name="amazon-redshift-limits-spectrum"></a>
 
 Amazon Redshift Spectrum has the following quotas and limits: 
 + The maximum number of databases per AWS account when using an AWS Glue Data Catalog\. For this value, see [AWS Glue service quotas](https://docs.aws.amazon.com/general/latest/gr/glue.html#limits_glue) in the *Amazon Web Services General Reference*\. 

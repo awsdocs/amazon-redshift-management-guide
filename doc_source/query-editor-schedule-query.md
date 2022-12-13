@@ -1,10 +1,10 @@
-# Scheduling a query on the Amazon Redshift console<a name="query-editor-schedule-query"></a>
+# Scheduling a query<a name="query-editor-schedule-query"></a>
 
 To create a schedule to run a SQL statement, you can use the query editor on the Amazon Redshift console\. You can create a schedule to run your SQL statement at the time intervals that match your business needs\. When it's time for the scheduled query to run, Amazon EventBridge initiates the query\.  
 
-**To create a schedule to run a SQL statement on the console**
+**To create a schedule to run a SQL statement**
 
-1. Open the console and query editor as described in [Using the query editor](query-editor.md#using-query-editor)\.
+1. Open the console and query editor as described in [Using the query editor](query-editor.md#using-query-editor)\. You can only use this query editor with provisioned clusters\.
 
 1. Choose **Schedule** to create a schedule to run an SQL statement\. 
 
@@ -17,7 +17,6 @@ To create a schedule to run a SQL statement, you can use the query editor on the
 
 You can also manage and update scheduled queries using the Amazon Redshift console\. Depending on your version of the console, scheduled queries might be listed in the following places: 
 + On the **Schedules** tab of the details page of your cluster\.
-+ On the scheduled queries list that you can reach from the navigation pane\. To see the list, on the navigation menu, choose **Queries and loads**, **Schedule query list**\.
 + On the **Scheduled queries** tab of the query editor\.
 
 If you choose **Schedule name** from one of these locations, you can view and edit your scheduled query's definition\. 
@@ -70,7 +69,7 @@ For the IAM role that you specify to enable the scheduler to run a query, do the
 + Attach the `AmazonRedshiftDataFullAccess` AWS\-managed policy to the IAM role\. 
 + To allow IAM users to view schedule history, edit the IAM role to add the `sts:AssumeRole` permission\. 
 
-The following is an example of the definition of an IAM role\.
+The following is an example of a trust policy in an IAM role\.
 
 ```
 {

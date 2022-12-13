@@ -2,11 +2,9 @@
 
 You can share queries with your team\. 
 
-## Sharing queries and collaborating with your team<a name="query-editor-v2-share"></a>
+A team is defined for a set of users who collaborate and share query editor v2 resources\. An administrator can create a team by adding a tag to an IAM role\. For more information, see [Permissions required to use the query editor v2 ](redshift-iam-access-control-identity-based.md#redshift-policy-resources.required-permissions.query-editor-v2)\. 
 
-You can share queries with others on your team\. A team is set up by an administrator and is based on the IAM policy associated with an IAM user or IAM role\. For information about how to set up a team within query editor v2, see [Permissions required to use the query editor v2 ](redshift-iam-access-control-identity-based.md#redshift-policy-resources.required-permissions.query-editor-v2)\. 
-
-### Saving, browsing for, and deleting queries<a name="query-editor-v2-save-delete-queries"></a>
+## Saving, browsing for, and deleting queries<a name="query-editor-v2-save-delete-queries"></a>
 
 Before you can share your query with your team, save your query\. You can view and delete saved queries\. 
 
@@ -40,11 +38,11 @@ Before you can share your query with your team, save your query\. You can view a
 
    You can now move queries in and out of the folder using drag\-and\-drop\.
 
-### Sharing a query<a name="query-editor-v2-query-share"></a>
+## Sharing a query<a name="query-editor-v2-query-share"></a>
 
 You can share your queries with your team\. You can also view the history of saved queries and manage query versions\. 
 
-To share a query with your team, make sure that you have the principal tag `sqlworkbench-team` set to the same value as the rest of your team members in your account\. For example, an administrator might set the value to `accounting-team` for everyone in the accounting department\.
+To share a query with your team, make sure that you have the principal tag `sqlworkbench-team` set to the same value as the rest of your team members in your account\. For example, an administrator might set the value to `accounting-team` for everyone in the accounting department\.  For an example, see [Permissions required to use the query editor v2 ](redshift-iam-access-control-identity-based.md#redshift-policy-resources.required-permissions.query-editor-v2)\.
 
 **To share a query with a team**
 
@@ -54,7 +52,7 @@ To share a query with your team, make sure that you have the principal tag `sqlw
 
 1. Choose the team or teams that you want to share the query with and then choose **Save sharing options**\. 
 
-Every time you save an SQL query, the query editor v2 saves it as a new version\. You can browse earlier query versions, save a copy of a query, or restore a query\. 
+Every time you save a SQL query, the query editor v2 saves it as a new version\. You can browse earlier query versions, save a copy of a query, or restore a query\. 
 
 **To manage query versions**
 

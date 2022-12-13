@@ -38,7 +38,7 @@ You can associate multiple roles to a namespace using the console, as described 
 
 ##### Managing namespace associated IAM roles<a name="serverless-endpoint-iam-role-namespace-console"></a>
 
-On the AWS Management Console you can manage permissions policies for roles in AWS Identity and Access Management\. You can manage IAM roles for the namespace, using settings available under **Namespace configuration**\. For more information about setting up the Amazon Redshift Serverless instance and assigning IAM roles, see [Setting up Amazon Redshift Serverless for the first time](serverless-console-getting-started.md)\. For more information about namespaces and their use in Amazon Redshift Serverless, see [Overview of Amazon Redshift Serverless workgroups and namespaces](serverless-workgroup-namespace.md)\.
+On the AWS Management Console you can manage permissions policies for roles in AWS Identity and Access Management\. You can manage IAM roles for the namespace, using settings available under **Namespace configuration**\. For more information about namespaces and their use in Amazon Redshift Serverless, see [Overview of Amazon Redshift Serverless workgroups and namespaces](serverless-workgroup-namespace.md)\.
 
 ### Getting started with IAM credentials for Amazon Redshift<a name="serverless-iam-credentials"></a>
 

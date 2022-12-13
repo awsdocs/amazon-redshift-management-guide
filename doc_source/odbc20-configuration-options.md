@@ -156,7 +156,7 @@ This parameter is optional\.
 + **Default Value** – 0
 + **Data Type** – Boolean
 
-A boolean specifying whether the driver lowercases all DbGroups sent from the identity provider to Amazon Redshift when using SSO authentication\. 
+A boolean specifying whether the driver lowercases all DbGroups sent from the identity provider to Amazon Redshift when using single sign\-on authentication\. 
 +  1 \| TRUE: The driver lowercases all DbGroups that are sent from the identity provider\. 
 +  0 \| FALSE: The driver does not alter DbGroups\. 
 
@@ -216,7 +216,7 @@ This parameter is optional\.
 + **Default Value** – None
 + **Data Type** – Integer
 
-The port for an IdP \(identity provider\) you are using to authenticate into Amazon Redshift\. The default port is 5439\.
+The port for an IdP \(identity provider\) you are using to authenticate into Amazon Redshift\. Depending on the port you selected when creating, modifying or migrating the cluster, allow access to the selected port\. 
 
 This parameter is optional\.
 

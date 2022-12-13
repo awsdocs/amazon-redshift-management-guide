@@ -2,6 +2,9 @@
 
 Using the query editor is an easy way to run queries on databases hosted by your Amazon Redshift cluster\. After creating your cluster, you can immediately run queries by using the query editor on the Amazon Redshift console\.
 
+**Note**  
+You can't query data in Amazon Redshift Serverless using this original query editor\. Use Amazon Redshift query editor v2 instead\.
+
 In February 2021, an updated query editor was deployed and authorization permissions to use the query editor changed\. The new query editor uses the Amazon Redshift Data API to run queries\. The `AmazonRedshiftQueryEditor` policy, which is an AWS\-managed AWS Identity and Access Management \(IAM\) policy, was updated to include the necessary permissions\. If you have a custom IAM policy, make sure that you update it\. Use `AmazonRedshiftQueryEditor` as a guide\. The changes to `AmazonRedshiftQueryEditor` include the following: 
 + Permission to manage query editor statement results requires the statement owner user\. 
 + Permission to use Secrets Manager to connect to a database has been added\.

@@ -126,9 +126,19 @@ View details about updates to AWS managed policies for Amazon Redshift since thi
 
 | Change | Description | Date | 
 | --- | --- | --- | 
-|  [AmazonRedshiftFullAccess](#redshift-policy-managed-policies-full-access) – Update to an existing policy  |  Permissions for Amazon Redshift Serverless are added to the to existing AmazonRedshiftFullAccess managed policy\.  | July 22, 2022 | 
+|  [AmazonRedshiftQueryEditorV2NoSharing](#redshift-policy-managed-policies-query-editor-V2-no-sharing) – Update to an existing policy  |  To grant permission to use notebooks, Amazon Redshift added permission for the following actions: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html)  | October 17, 2022 | 
+|  [AmazonRedshiftQueryEditorV2ReadSharing](#redshift-policy-managed-policies-query-editor-V2-read-sharing) – Update to an existing policy  |  To grant permission to use notebooks, Amazon Redshift added permission for the following actions: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html)  | October 17, 2022 | 
+|  [AmazonRedshiftQueryEditorV2ReadWriteSharing](#redshift-policy-managed-policies-query-editor-V2-write-sharing) – Update to an existing policy  |  To grant permission to use notebooks, Amazon Redshift added permission for the following actions: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html)  | October 17, 2022 | 
+|  [AmazonRedshiftServiceLinkedRolePolicy](#redshift-policy-managed-policies-service-linked-role-policy) – Update to an existing policy  |  Amazon Redshift added the namespace `AWS/Redshift` to allow publishing metrics to CloudWatch\.  | September 7, 2022 | 
+|  [AmazonRedshiftQueryEditorV2NoSharing](#redshift-policy-managed-policies-query-editor-V2-no-sharing) – Update to an existing policy  |  Amazon Redshift added permission to the actions `sqlworkbench:ListQueryExecutionHistory` and `sqlworkbench:GetQueryExecutionHistory`\. This grants permission to see query history\.  | August 30, 2022 | 
+|  [AmazonRedshiftQueryEditorV2ReadSharing](#redshift-policy-managed-policies-query-editor-V2-read-sharing) – Update to an existing policy  |  Amazon Redshift added permission to the actions `sqlworkbench:ListQueryExecutionHistory` and `sqlworkbench:GetQueryExecutionHistory`\. This grants permission to see query history\.  | August 30, 2022 | 
+|  [AmazonRedshiftQueryEditorV2ReadWriteSharing](#redshift-policy-managed-policies-query-editor-V2-write-sharing) – Update to an existing policy  |  Amazon Redshift added permission to the actions `sqlworkbench:ListQueryExecutionHistory` and `sqlworkbench:GetQueryExecutionHistory`\. This grants permission to see query history\.  | August 30, 2022 | 
+|  [AmazonRedshiftFullAccess](#redshift-policy-managed-policies-full-access) – Update to an existing policy  |  Permissions for Amazon Redshift Serverless are added to the existing AmazonRedshiftFullAccess managed policy\.  | July 22, 2022 | 
 |  [AmazonRedshiftDataFullAccess](#redshift-policy-managed-policies-data-full-access) – Update to an existing policy  |  Amazon Redshift updated redshift\-serverless:GetCredentials default scoping condition of tag aws:ResourceTag/RedshiftDataFullAccess permission from StringEquals to StringLike to grant access to resources tagged with tag key RedshiftDataFullAccess and any tag value\.  | July 11, 2022 | 
 |  [AmazonRedshiftDataFullAccess](#redshift-policy-managed-policies-data-full-access) – Update to an existing policy  |  Amazon Redshift added new permissions to allow redshift\-serverless:GetCredentials for temporary credentials to Amazon Redshift Serverless\.  | July 8, 2022 | 
+|  [AmazonRedshiftQueryEditorV2NoSharing](#redshift-policy-managed-policies-query-editor-V2-no-sharing) – Update to an existing policy  |  Amazon Redshift added permission to the action `sqlworkbench:GetAccountSettings`\. This grants permission to get account settings\.  | June 15, 2022 | 
+|  [AmazonRedshiftQueryEditorV2ReadSharing](#redshift-policy-managed-policies-query-editor-V2-read-sharing) – Update to an existing policy  |  Amazon Redshift added permission to the action `sqlworkbench:GetAccountSettings`\. This grants permission to get account settings\.  | June 15, 2022 | 
+|  [AmazonRedshiftQueryEditorV2ReadWriteSharing](#redshift-policy-managed-policies-query-editor-V2-write-sharing) – Update to an existing policy  |  Amazon Redshift added permission to the action `sqlworkbench:GetAccountSettings`\. This grants permission to get account settings\.  | June 15, 2022 | 
 |  [AmazonRedshiftServiceLinkedRolePolicy](#redshift-policy-managed-policies-service-linked-role-policy) – Update to an existing policy  |  To enable public access to new Amazon Redshift Serverless endpoints, Amazon Redshift allocates and associates Elastic IP addresses to the VPC endpoint's Elastic network interface in the customer account\. It does this via permissions provided through the service linked role\. To enable this use case, actions to allocate and release an Elastic IP address are added to the Amazon Redshift Serverless service linked role\.   | May 26, 2022 | 
 |  [AmazonRedshiftQueryEditorV2FullAccess](#redshift-policy-managed-policies-query-editor-V2) – Update to an existing policy  |  Permissions to the action `sqlworkbench:ListTaggedResources`\. It is scoped specifically to Amazon Redshift query editor v2 resources\. This policy update gives the right to call `tag:GetResources` only through query editor v2\.   | February 22, 2022 | 
 |  [AmazonRedshiftQueryEditorV2NoSharing](#redshift-policy-managed-policies-query-editor-V2-no-sharing) – Update to an existing policy  |  Permissions to the action `sqlworkbench:ListTaggedResources`\. It is scoped specifically to Amazon Redshift query editor v2 resources\. This policy update gives the right to call `tag:GetResources` only through query editor v2\.   | February 22, 2022 | 
@@ -222,6 +232,8 @@ You can also set up teams at the session level using an Identity Provider \(IdP\
 ```
 
 Follow the instructions for your Identity provider \(IdP\) to populate the SAML attribute with the content coming from your directory\. For more information about Identity providers \(IdPs\) and Amazon Redshift, see [Using IAM authentication to generate database user credentials](generating-user-credentials.md) and [Identity providers and federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html) in the *IAM User Guide*\. 
+
+The `sqlworkbench:CreateNotebookVersion` grants permission to get the current content of notebook cells and create a notebook version on your account\. Meaning, at the time of version creation, the current content of the notebook is the same as the version’s content\. Later on, the content of the cells in the version stay the same as the current notebook is updated\. The `sqlworkbench:GetNotebookVersion` grants permission to get a version of the notebook\. A user who doesn’t have `sqlworkbench:BatchGetNotebookCell` permission but has `sqlworkbench:CreateNotebookVersion` and `sqlworkbench:GetNotebookVersion` permissions on a notebook has access to notebook cells in the version\. This user without the `sqlworkbench:BatchGetNotebookCell` permission is still able to retrieve the content of a notebook’s cells by first creating a version and then getting this created version\.
 
 ## Permissions required to use the Amazon Redshift scheduler<a name="iam-permission-scheduler"></a>
 
@@ -459,7 +471,7 @@ The following policy shows the permissions required to run SageMaker Autopilot w
                 "StringEquals": {
                     "iam:PassedToService": [
                         "redshift.amazonaws.com",
-                        "sagemaker.amazonaws.com",
+                        "sagemaker.amazonaws.com"
                     ]
                 }
             }
@@ -1186,11 +1198,11 @@ The following policy enables the `GetCredentials`, `CreateClusterUser`, and `Joi
         "arn:aws:redshift:us-west-2:123456789012:dbname:examplecluster/testdb",
         "arn:aws:redshift:us-west-2:123456789012:dbgroup:examplecluster/common_group"
       ],
-      "Condition": {
-        "StringEquals": {
-          "aws:userid":"AIDIODR4TAW7CSEXAMPLE:${redshift:DbUser}@yourdomain.com"
+        "Condition": {
+           "StringEquals": {
+           "aws:userid":"AIDIODR4TAW7CSEXAMPLE:${redshift:DbUser}@yourdomain.com"
+           }
         }
-      }
     },
     {
       "Sid": "CreateClusterUserStatement",
@@ -1218,5 +1230,9 @@ The following policy enables the `GetCredentials`, `CreateClusterUser`, and `Joi
       ]
     }
   ]
+}
+          
+ 
+  }
 }
 ```

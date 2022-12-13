@@ -2,18 +2,7 @@
 
 Once you've set up your Amazon Redshift Serverless instance, you can connect to it in a variety of methods, outlined below\. If you have multiple teams or projects and want to manage costs separately, you can use separate AWS accounts\.
 
-Amazon Redshift Serverless is available in the following AWS Regions:
-+ US East \(N\. Virginia\) Region 
-+ US East \(Ohio\) Region 
-+ US West \(Oregon\) Region 
-+ Europe \(Ireland\) Region 
-+ Europe \(London\) Region 
-+ Europe \(Frankfurt\) Region 
-+ Europe \(Stockholm\) Region 
-+ Asia Pacific \(Seoul\) Region 
-+ Asia Pacific \(Singapore\) Region 
-+ Asia Pacific \(Sydney\) Region 
-+ Asia Pacific \(Tokyo\) Region 
+For a list of AWS Regions where the Amazon Redshift Serverless is available, see the endpoints listed for [Redshift Serverless API](https://docs.aws.amazon.com/general/latest/gr/redshift-service.html) in the *Amazon Web Services General Reference*\.
 
 Amazon Redshift Serverless connects to the serverless environment in your AWS account in the current AWS Region\. Amazon Redshift Serverless runs in a VPC on port 5439\.
 
@@ -35,7 +24,7 @@ default.123456789012.us-east-1.redshift-serverless.amazonaws.com:5439/dev
 
 You can use one of the following methods to connect to Amazon Redshift Serverless with your preferred SQL client using the Amazon Redshift\-provided JDBC driver version 2 driver\.
 
-To connect with a username and password for database authentication using JDBC driver version 2\.1\.x or later, use the following syntax\. The port number is optional; if not included, Amazon Redshift Serverless defaults to port number 5439\.
+To connect with a username and password for database authentication using JDBC driver version 2\.1\.x or later, use the following syntax\. The port number is optional; if not included, Amazon Redshift Serverless defaults to port number 5439\. You can change to another port from the port range of 5431\-5455 or 8191\-8215\. To change the default port for a serverless endpoint, use the AWS CLI and Amazon Redshift API\.
 
 ```
 jdbc:redshift://workgroup-name.account-number.aws-region.redshift-serverless.amazonaws.com:5439/dev
@@ -47,7 +36,7 @@ For example, the following connection string specifies the workgroup default, th
 jdbc:redshift://default.123456789012.us-east-2.redshift-serverless.amazonaws.com:5439/dev
 ```
 
-To connect with IAM using JDBC driver version 2\.1\.x or later, use the following syntax\. The port number is optional; if not included, Amazon Redshift Serverless defaults to port number 5439\. 
+To connect with IAM using JDBC driver version 2\.1\.x or later, use the following syntax\. The port number is optional; if not included, Amazon Redshift Serverless defaults to port number 5439\. You can change to another port from the port range of 5431\-5455 or 8191\-8215\. To change the default port for a serverless endpoint, use the AWS CLI and Amazon Redshift API\.
 
 ```
 jdbc:redshift:iam://workgroup-name.account-number.aws-region.redshift-serverless.amazonaws.com:5439/dev
@@ -77,7 +66,7 @@ For example, the following connection string specifies the workgroup default and
 jdbc:redshift:iam://redshift-serverless-default:us-east-1/dev
 ```
 
-For more information about drivers, see [Configuring connections](https://docs.aws.amazon.com/redshift/latest/mgmt/configuring-connections.html) in the *Amazon Redshift Cluster Management Guide*\. 
+For more information about drivers, see [Configuring connections](https://docs.aws.amazon.com/redshift/latest/mgmt/configuring-connections.html) in the *Amazon Redshift Management Guide*\. 
 
 ## Connecting to Amazon Redshift Serverless with the Data API<a name="serverless-data-api"></a>
 
@@ -155,16 +144,18 @@ These steps walk you through configuring Amazon Redshift Serverless to accept co
 
 After you configure Amazon Redshift Serverless to accept connections from public clients, follow these steps to connect\.
 
-1. On the Amazon Redshift console, select the Serverless dashboard, choose **Workgroup configuration**, and select the workgroup\. Under **Data access**, choose **Edit** to view the **Network and security** settings\. Note the VPC security group for the workgroup\. Go to Amazon VPC and choose **Security groups** from the menu\. Choose your security group ID in the list\. The security group has configuration settings that include **Inbound rules**\. Choose **Edit inbound rules** and create a rule that specifies the source IP address to allow, and the port\. The default port for Amazon Redshift is 5439\.
+1. On the Amazon Redshift console, select the Serverless dashboard, choose **Workgroup configuration**, and select the workgroup\. Under **Data access**, choose **Edit** to view the **Network and security** settings\. Note the VPC security group for the workgroup\. Go to Amazon VPC and choose **Security groups** from the menu\. Choose your security group ID in the list\. The security group has configuration settings that include **Inbound rules**\. Choose **Edit inbound rules** and create a rule that specifies the source IP address to allow, and the port\. 
 
 1. On the Amazon VPC service console, verify that your VPC has an internet gateway attached to it\. To connect to a publicly accessible cluster from the public internet, an internet gateway must be attached to the route table\. Confirm that the internet gateway's target is set with source 0\.0\.0\.0/0 or a public IP CIDR\. The route table must be associated with the VPC subnet where your cluster resides\.
 
    For more information about attaching an internet gateway, see the section *Create and attach an internet gateway* in [Connect to the internet using an internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)\.
 
-1. On your client, set an inbound firewall rule to accept traffic on port 5439\.
+1. On your client, set an inbound firewall rule to accept traffic on the port you chose when creating the serverless endpoint\.
 
 1. Connect with your client tool, such as PSQL\. Using your Amazon Redshift Serverless domain as the host, enter the following:
 
    ```
-   psql "host=redshift-serverless-dns-name.region.amazonaws.com dbname=dev port=5439 user=admin"
+   psql "workgroup-name.account-id.region.amazonaws.com dbname=dev port=5439 user=admin"
    ```
+
+When you turn on the publicly accessible setting, Amazon Redshift Serverless creates an Elastic IP address\. It's a static IP address that is associated with your AWS account\. Clients outside the VPC can use it to connect\. It gives you the ability to change your underlying network configuration without affecting client connections\. 

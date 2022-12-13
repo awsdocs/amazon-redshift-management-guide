@@ -32,7 +32,7 @@ For more information about provisioned cluster snapshots, see [Amazon Redshift s
 
 ## Using a driver endpoint<a name="serverless-migration-drivers"></a>
 
- To connect to Amazon Redshift Serverless with your preferred SQL client, you can use the Amazon Redshift provided JDBC driver version 2 driver\. We recommend connecting using JDBC driver version 2\.1\.x or later\. The port number is optional\. If you don’t include it, Amazon Redshift Serverless defaults to port number 5439\. 
+ To connect to Amazon Redshift Serverless with your preferred SQL client, you can use the Amazon Redshift provided JDBC driver version 2 driver\. We recommend connecting using JDBC driver version 2\.1\.x or later\. The port number is optional\. If you don’t include it, Amazon Redshift Serverless defaults to port number 5439\. You can change to another port from the port range of 5431\-5455 or 8191\-8215\. To change the default port for a serverless endpoint, use the AWS CLI and Amazon Redshift API\. 
 
  To find the exact endpoint to use for the JDBC or ODBC driver, see **Workgroup configuration** in your Amazon Redshift Serverless instance\. You can also use the Amazon Redshift Serverless API operation `GetWorkgroup` operation or the AWS CLI operation `get-workgroups` to return information about your workgroup, and then connect\. 
 
@@ -49,7 +49,7 @@ jdbc:redshift://<workgroup-name>.<account-number>.<aws-region>.redshift-serverle
  If you prefer logging in with IAM, use the following driver endpoint\. This driver endpoint lets you connect to a specific database and uses the Amazon Redshift Serverless [https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_GetCredentials.html](https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_GetCredentials.html) API operation\. 
 
 ```
-jdbc:redshift://<workgroup-name>.<account-number>.<aws-region>.redshift-serverless.amazonaws.com:5439/<database-name>
+jdbc:redshift:iam://<workgroup-name>.<account-number>.<aws-region>.redshift-serverless.amazonaws.com:5439/<database-name>
 ```
 
 This driver endpoint doesn’t support customizing `dbUser`, `dbGroup` and `auto-create`\. By default, the driver automatically creates database users at login and assigns them to the groups according to the IAM user groups you defined in IAM\. Note: IAM user group names you specify in IAM must contain only lowercase letters, numbers, underscore \('\_'\), plus sign \('\+'\), period \(dot\), at symbol \(@\), or hyphen \('\-'\)\. Otherwise, the driver might not connect to `dbGroup`\.

@@ -14,9 +14,9 @@ In the following sections, you can learn the basics of creating a data warehouse
 + [Default disk space alarm](#rs-clusters-default-disk-usage-alarm)
 + [Cluster status](#rs-mgmt-cluster-status)
 + [Overview of managing clusters in Amazon Redshift](managing-cluster-operations.md)
-+ [Working with AQUA \(Advanced Query Accelerator\)](managing-cluster-aqua.md)
 + [Managing usage limits in Amazon Redshift](managing-cluster-usage-limits.md)
 + [Managing cluster relocation in Amazon Redshift](managing-cluster-recovery.md)
++ [Configuring Multi\-AZ deployment \(preview\)](managing-cluster-multi-az.md)
 + [Working with Redshift\-managed VPC endpoints in Amazon Redshift](managing-cluster-cross-vpc.md)
 + [Managing clusters using the console](managing-clusters-console.md)
 + [Managing clusters using the AWS CLI and Amazon Redshift API](manage-clusters-api-cli.md)
@@ -29,7 +29,36 @@ In the following sections, you can learn the basics of creating a data warehouse
 An Amazon Redshift data warehouse is a collection of computing resources called *nodes*, which are organized into a group called a *cluster*\. Each cluster runs an Amazon Redshift engine and contains one or more databases\. 
 
 **Note**  
-At this time, Amazon Redshift version 1\.0 engine is available\. However, as the engine is updated, multiple Amazon Redshift engine versions might be available for selection\. 
+At this time, Amazon Redshift version 1\.0 engine is available\. However, as the engine is updated, multiple Amazon Redshift engine versions might be available for selection\.
+
+### Preview features when using Amazon Redshift clusters<a name="cluster-preview"></a>
+
+You can create an Amazon Redshift cluster in **Preview** to test new features of Amazon Redshift\. You can't use those features in production or move your **Preview** cluster to a production cluster or a cluster on another track\. For preview terms and conditions, see *Beta and Previews* in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.
+
+**To create a cluster in **Preview****
+
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **Provisioned clusters dashboard**, and choose **Clusters**\. The clusters for your account in the current AWS Region are listed\. A subset of properties of each cluster is displayed in columns in the list\.
+
+1. A banner displays on the **Clusters** list page that introduces preview\. Choose the button **Create preview cluster** to open the create cluster page\.
+
+1. Enter properties for your cluster\. Choose the **Preview track** that contains the features you want to test\. We recommend entering a name for the cluster that indicates that it is on a preview track\. Choose options for your cluster, including options labeled as **\-preview**, for the features you want to test\. For general information about creating clusters, see [Creating a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster) in the *Amazon Redshift Management Guide*\.
+
+1. Choose **Create preview cluster** to create a cluster in preview\.
+
+1. When your preview cluster is available, use your SQL client to load and query data\.
+
+The following features are currently available in preview clusters:
++ SQL MERGE command – see [MERGE](https://docs.aws.amazon.com/redshift/latest/dg/r_MERGE.html) in the *Amazon Redshift Database Developer Guide*\.
++ SQL SELECT GROUP BY aggregation extensions – see [Aggregation extensions](https://docs.aws.amazon.com/redshift/latest/dg/r_GROUP_BY_aggregation-extensions.html) in the *Amazon Redshift Database Developer Guide*\.
++ SUPER data type larger than 1 MB – see [Limitations](https://docs.aws.amazon.com/redshift/latest/dg/limitations-super.html) in the *Amazon Redshift Database Developer Guide*\.
++ Dynamic data masking – see [Dynamic data masking](https://docs.aws.amazon.com/redshift/latest/dg/t_ddm.html) in the *Amazon Redshift Database Developer Guide*\.
++ Auto\-copy – see [Continuous file ingestion from Amazon S3](https://docs.aws.amazon.com/redshift/latest/dg/loading-data-copy-job.html) in the *Amazon Redshift Database Developer Guide*\.
++ Lake Formation for data sharing – see [AWS Lake Formation\-managed Redshift datashares](https://docs.aws.amazon.com/redshift/latest/dg/lake-formation-datashare.html) in the *Amazon Redshift Database Developer Guide*\.
++ Multi\-AZ – see [Managing Multi\-AZ using the console](https://docs.aws.amazon.com/redshift/latest/mgmt/multi-az-console.html)\.
+
+For information about preview in serverless workgroups, see [Preview when using Amazon Redshift Serverless](serverless-known-issues.md#serverless-preview)\.
 
 ### Clusters and nodes in Amazon Redshift<a name="rs-about-clusters-and-nodes"></a>
 
@@ -79,26 +108,27 @@ You might be restricted to fewer nodes depending on the quota that is applied to
 
 **RA3 node types**  
 
-| Node size | vCPU | RAM \(GiB\) | Default slices per node | Managed storage limit per node | Node range with create cluster  | Total managed storage capacity | 
+| Node type | vCPU | RAM \(GiB\) | Default slices per node | Managed storage limit per node 1 | Node range with create cluster  | Total managed storage capacity 2 | 
 | --- | --- | --- | --- | --- | --- | --- | 
-| ra3\.xlplus | 4 | 32 | 2 | 32 TB1,5 | 1–162 | 1024 TB2,4 | 
-| ra3\.4xlarge | 12 | 96 | 4 | 128 TB1 | 2–323 | 8192 TB3,4 | 
-| ra3\.16xlarge | 48 | 384 | 16 | 128 TB1 | 2–128 | 16,384 TB4 | 
+| ra3\.xlplus \(single\-node\) | 4 | 32 | 2 | 4 TB | 1 | 4 TB3 | 
+| ra3\.xlplus \(multi\-node\) | 4 | 32 | 2 | 32 TB | 2–164 | 1024 TB4 | 
+| ra3\.4xlarge | 12 | 96 | 4 | 128 TB | 2–325 | 8192 TB5 | 
+| ra3\.16xlarge | 48 | 384 | 16 | 128 TB | 2–128 | 16,384 TB | 
 
 1 The storage limit for Amazon Redshift managed storage\. This is a hard limit\.
 
-2 You can create a cluster with the ra3\.xlplus node type that has up to 16 nodes\. For single\-node clusters, only classic resize is supported\. For multiple\-node clusters, you can resize with elastic resize to a maximum of 32 nodes\. 
+2 Total managed storage limit is the maximum number of nodes times the managed storage limit per node\.
 
-3 You can create cluster with the ra3\.4xlarge or ra3\.16xlarge node type with up to 16 nodes\. You can resize it with elastic resize to a maximum of 64 nodes\. 
+3 To resize a single\-node cluster to multi\-node, only classic resize is supported\.
 
-4 Total managed storage limit is the maximum number of nodes times the managed storage limit per node\.
+4 You can create a cluster with the ra3\.xlplus \(multi\-node\) node type that has up to 16 nodes\. For multiple\-node clusters, you can resize with elastic resize to a maximum of 32 nodes\. 
 
-5 Total managed storage limit for a one\-node ra3\.xlplus cluster is 4 TB\.
+5 You can create a cluster with the ra3\.4xlarge  node type with up to 32 nodes\. You can resize it with elastic resize to a maximum of 64 nodes\. 
 
 
 **Dense storage node types**  
 
-| Node size | vCPU | RAM \(GiB\) | Default slices per node | Storage per node | Node range | Total capacity | 
+| Node type | vCPU | RAM \(GiB\) | Default slices per node | Storage per node | Node range | Total capacity | 
 | --- | --- | --- | --- | --- | --- | --- | 
 | ds2\.xlarge | 4 | 31 | 2 | 2 TB HDD | 1–32 | 64 TB | 
 | ds2\.8xlarge | 36 | 244 | 16 | 16 TB HDD | 2–128 | 2 PB | 
@@ -106,7 +136,7 @@ You might be restricted to fewer nodes depending on the quota that is applied to
 
 **Dense compute node types**  
 
-| Node size | vCPU | RAM \(GiB\) | Default slices per node | Storage per node | Node range | Total capacity | 
+| Node type | vCPU | RAM \(GiB\) | Default slices per node | Storage per node | Node range | Total capacity | 
 | --- | --- | --- | --- | --- | --- | --- | 
 | dc2\.large | 2 | 15 | 2 | 160 GB NVMe\-SSD | 1–32 | 5\.12 TB | 
 | dc2\.8xlarge | 32 | 244 | 16 | 2\.56 TB NVMe\-SSD | 2–128 | 326 TB | 
@@ -195,7 +225,6 @@ Make sure that you use the new Amazon Redshift console when working with RA3 nod
 In addition, to use RA3 node types with Amazon Redshift operations that use the maintenance track, the maintenance track value must be set to a cluster version that supports RA3\. For more information about maintenance tracks, see [Choosing cluster maintenance tracks](#rs-mgmt-maintenance-tracks)\. 
 
 Consider the following when using single\-node RA3 node types\.
-+ AQUA is supported\.
 + Datasharing producers and consumers are supported\.
 + To change node types, only classic resize is supported\. Changing the node type with elastic resize or snapshot restore is not supported\. The following scenarios are supported: 
   + Classic resize of a 1\-node ds2\.xlarge to a 1\-node ra3\.xlplus, and vice versa\.
@@ -228,6 +257,7 @@ The RA3 node types are available only in the following AWS Regions:
 + US West \(Oregon\) Region \(us\-west\-2\) 
 + Africa \(Cape Town\) Region \(af\-south\-1\) 
 + Asia Pacific \(Hong Kong\) Region \(ap\-east\-1\) 
++ Asia Pacific \(Hyderabad\) Region \(ap\-south\-2\) 
 + Asia Pacific \(Jakarta\) Region \(ap\-southeast\-3\) – only ra3\.4xlarge and ra3\.16xlarge node types are supported 
 + Asia Pacific \(Mumbai\) Region \(ap\-south\-1\) 
 + Asia Pacific \(Osaka\) Region \(ap\-northeast\-3\) 
@@ -239,12 +269,15 @@ The RA3 node types are available only in the following AWS Regions:
 + China \(Beijing\) Region \(cn\-north\-1\) 
 + China \(Ningxia\) Region \(cn\-northwest\-1\) 
 + Europe \(Frankfurt\) Region \(eu\-central\-1\) 
++ Europe \(Zurich\) Region \(eu\-central\-2\) 
 + Europe \(Ireland\) Region \(eu\-west\-1\)
 + Europe \(London\) Region \(eu\-west\-2\)
 + Europe \(Milan\) Region \(eu\-south\-1\) 
++ Europe \(Spain\) Region \(eu\-south\-2\)
 + Europe \(Paris\) Region \(eu\-west\-3\)
 + Europe \(Stockholm\) Region \(eu\-north\-1\) 
 + Middle East \(Bahrain\) Region \(me\-south\-1\) 
++ Middle East \(UAE\) Region \(me\-central\-1\) – only ra3\.4xlarge and ra3\.16xlarge node types are supported 
 + South America \(São Paulo\) Region \(sa\-east\-1\)
 + AWS GovCloud \(US\-East\) \(us\-gov\-east\-1\)
 + AWS GovCloud \(US\-West\) \(us\-gov\-west\-1\)
@@ -278,7 +311,7 @@ The following table shows recommendations when upgrading to RA3 node types\. \(T
 | dc2\.8xlarge | 2–15 | ra3\.4xlarge | Create 2 nodes of ra3\.4xlarge for every 1 node of dc2\.8xlarge1\.  | 
 | dc2\.8xlarge | 16–128 | ra3\.16xlarge | Create 1 node of ra3\.16xlarge for every 2 nodes of dc2\.8xlarge1\. | 
 | dc2\.large | 1–4 | none | Keep existing dc2\.large cluster\.  | 
-| dc2\.large | 4–15 | ra3\.xlplus | Create 3 nodes of ra3\.xlplus for every 8 nodes of dc2\.large1\.  | 
+| dc2\.large | 5–15 | ra3\.xlplus | Create 3 nodes of ra3\.xlplus for every 8 nodes of dc2\.large1\.  | 
 | dc2\.large | 16–32 | ra3\.4xlarge | Create 1 node of ra3\.4xlarge for every 8 nodes of dc2\.large1,2\. | 
 
 1Extra nodes might be needed depending on workload requirements\. Add or remove nodes based on the compute requirements of your required query performance\. 
@@ -315,7 +348,7 @@ Clusters that use the DC2 node type must be launched in a virtual private cloud 
 
 If your DC1 cluster is not in a VPC: 
 
-1. Create a snapshot of your DC1 cluster\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.
+1. Create a snapshot of your DC1 cluster\. For more information, see [Amazon Redshift snapshots and backups](working-with-snapshots.md)\.
 
 1. Create a VPC, or choose an existing VPC in your account\. For more information, see [Managing clusters in a VPC](managing-clusters-vpc.md)\. 
 
@@ -345,7 +378,7 @@ Amazon Redshift clusters run in Amazon EC2 instances that are configured for the
 
 **To upgrade your DS2 cluster on EC2\-Classic to EC2\-VPC**
 
-1. Create a snapshot of your DS2 cluster\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.
+1. Create a snapshot of your DS2 cluster\. For more information, see [Amazon Redshift snapshots and backups](working-with-snapshots.md)\.
 
 1. Create a VPC, or choose an existing VPC in your account\. For more information, see [Managing clusters in a VPC](managing-clusters-vpc.md)\. 
 
@@ -384,6 +417,7 @@ The following list shows the time blocks for each AWS Region from which the defa
 + US West \(Oregon\) Region: 06:00–14:00 UTC
 + Africa \(Cape Town\) Region: 20:00–04:00 UTC
 + Asia Pacific \(Hong Kong\) Region: 13:00–21:00 UTC
++ Asia Pacific \(Hyderabad\) Region: 16:30–00:30 UTC
 + Asia Pacific \(Jakarta\) Region: 15:00–23:00 UTC
 + Asia Pacific \(Mumbai\) Region: 16:30–00:30 UTC
 + Asia Pacific \(Osaka\) Region: 13:00–21:00 UTC
@@ -400,7 +434,10 @@ The following list shows the time blocks for each AWS Region from which the defa
 + Europe \(Milan\) Region: 21:00–05:00 UTC
 + Europe \(Paris\) Region: 23:00–07:00 UTC
 + Europe \(Stockholm\) Region: 23:00–07:00 UTC
++ Europe \(Zurich\) Region: 20:00–04:00 UTC
++ Europe \(Spain\) Region: 21:00–05:00 UTC
 + Middle East \(Bahrain\) Region: 13:00–21:00 UTC
++  Region: 18:00–02:00 UTC
 + South America \(São Paulo\) Region: 19:00–03:00 UTC
 
 If a maintenance event is scheduled for a given week, it starts during the assigned 30\-minute maintenance window\. While Amazon Redshift is performing maintenance, it terminates any queries or other operations that are in progress\. Most maintenance completes during the 30\-minute maintenance window, but some maintenance tasks might continue running after the window closes\. If there are no maintenance tasks to perform during the scheduled maintenance window, your cluster continues to operate normally until the next scheduled maintenance window\. 
@@ -525,11 +562,11 @@ The cluster status displays the current state of the cluster\. The following tab
 | creating | Amazon Redshift is creating the cluster\. For more information, see [Creating a cluster](managing-clusters-console.md#create-cluster)\. | 
 | deleting | Amazon Redshift is deleting the cluster\. For more information, see [Deleting a cluster](managing-clusters-console.md#delete-cluster)\. | 
 | final\-snapshot | Amazon Redshift is taking a final snapshot of the cluster before deleting it\. For more information, see [Deleting a cluster](managing-clusters-console.md#delete-cluster)\. | 
-| hardware\-failure |  The cluster suffered a hardware failure\. If you have a single\-node cluster, the node cannot be replaced\. To recover your cluster, restore a snapshot\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.  | 
+| hardware\-failure |  The cluster suffered a hardware failure\. If you have a single\-node cluster, the node cannot be replaced\. To recover your cluster, restore a snapshot\. For more information, see [Amazon Redshift snapshots and backups](working-with-snapshots.md)\.  | 
 | incompatible\-hsm |  Amazon Redshift cannot connect to the hardware security module \(HSM\)\. Check the HSM configuration between the cluster and HSM\. For more information, see [Encryption for Amazon Redshift using hardware security modules](working-with-db-encryption.md#working-with-HSM)\.  | 
 | incompatible\-network |  There is an issue with the underlying network configuration\. Make sure that the VPC in which you launched the cluster exists and its settings are correct\. For more information, see [Managing clusters in a VPC](managing-clusters-vpc.md)\.  | 
 | incompatible\-parameters | There is an issue with one or more parameter values in the associated parameter group, and the parameter value or values cannot be applied\. Modify the parameter group and update any invalid values\. For more information, see [Amazon Redshift parameter groups](working-with-parameter-groups.md)\.  | 
-| incompatible\-restore |  There was an issue restoring the cluster from the snapshot\. Try restoring the cluster again with a different snapshot\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\.  | 
+| incompatible\-restore |  There was an issue restoring the cluster from the snapshot\. Try restoring the cluster again with a different snapshot\. For more information, see [Amazon Redshift snapshots and backups](working-with-snapshots.md)\.  | 
 | modifying |  Amazon Redshift is applying changes to the cluster\. For more information, see [Modifying a cluster](managing-clusters-console.md#modify-cluster)\.  | 
 | paused |  The cluster is paused\. For more information, see [Pausing and resuming clusters](managing-cluster-operations.md#rs-mgmt-pause-resume-cluster)\.  | 
 | rebooting |  Amazon Redshift is rebooting the cluster\. For more information, see [Rebooting a cluster](managing-clusters-console.md#reboot-cluster)\.  | 

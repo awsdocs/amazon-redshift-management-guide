@@ -39,7 +39,7 @@ Before you create a cluster, read [Overview of Amazon Redshift clusters](working
 
    Choose one of the following methods to size your cluster:
 **Note**  
-The following step describes an Amazon Redshift console that is running in an AWS Region that supports RA3 node types\. For a list of AWS Regions that support RA3 node types, see [Overview of RA3 node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-ra3-node-types) in the *Amazon Redshift Cluster Management Guide*\. 
+The following step describes an Amazon Redshift console that is running in an AWS Region that supports RA3 node types\. For a list of AWS Regions that support RA3 node types, see [Overview of RA3 node types](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-ra3-node-types) in the *Amazon Redshift Management Guide*\. 
    + If your AWS Region supports RA3 node types, choose either **Production** or **Free trial** to answer the question **What are you planning to use this cluster for?** 
 
      If your organization is eligible, you might be able to create a cluster under the Amazon Redshift free trial program\. To do this, choose **Free trial** to create a configuration with the dc2\.large node type\. For more information about choosing a free trial, see [Amazon Redshift free trial](http://aws.amazon.com/redshift/free-trial/)\. 
@@ -115,7 +115,7 @@ When you modify a cluster, changes to the following options are applied immediat
   Amazon Redshift restarts the cluster automatically when you change **Enhanced VPC routing**\.
 + **Cluster parameter group** 
 
-If you decrease the automated snapshot retention period, existing automated snapshots whose settings fall outside of the new retention period are deleted\. For more information, see [Amazon Redshift snapshots](working-with-snapshots.md)\. 
+If you decrease the automated snapshot retention period, existing automated snapshots whose settings fall outside of the new retention period are deleted\. For more information, see [Amazon Redshift snapshots and backups](working-with-snapshots.md)\. 
 
 For more information about cluster properties, see [Additional configurations](#cluster-create-console-configuration)\. 
 

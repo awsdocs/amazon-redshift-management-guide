@@ -9,7 +9,7 @@ For the latest information about ODBC driver changes, see the [change log](https
 **Topics**
 + [Getting the ODBC URL](odbc20-getting-url.md)
 + [Installing and configuring the Amazon Redshift ODBC driver on Microsoft Windows](odbc20-install-config-win.md)
-+ [Installing and configuring the Amazon Redshift ODBC driver on Linux](jdbc20-install-config-linux.md)
++ [Installing and configuring the Amazon Redshift ODBC driver on Linux](odbc20-install-config-linux.md)
 + [Configuring authentication](odbc20-authentication-ssl.md)
 + [Converting data types](odbc20-converting-data-types.md)
 + [Configuring ODBC driver options](odbc20-configuration-options.md)

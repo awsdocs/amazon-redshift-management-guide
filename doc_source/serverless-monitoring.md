@@ -60,13 +60,13 @@ Users with `sys:monitor` permission can view all queries\. In addition, users wi
 1. Enter the following command to provide system monitor access, where *user\-name* is the name of the user for whom you want to provide access\.
 
    ```
-   grant "sys:monitor" to "IAM:user-name";
+   grant role sys:monitor to "IAM:user-name";
    ```
 
 1. \(Optional\) Enter the following command to provide system operator access, where *user\-name* is the name of the user for whom you want to provide access\.
 
    ```
-   grant "sys:operator" to "IAM:user-name";
+   grant role sys:operator to "IAM:user-name";
    ```
 
 **To grant query monitoring permission for a role**
@@ -76,13 +76,13 @@ Users with a role that has `sys:monitor` permission can view all queries\. In ad
 1. Enter the following command to provide system monitor access, where *role\-name* is the name of the role for which you want to provide access\.
 
    ```
-   grant "sys:monitor" to "IAMR:role-name";
+   grant role sys:monitor to "IAMR:role-name";
    ```
 
 1. \(Optional\) Enter the following command to provide system operator access, where *role\-name* is the name of the role for which you want to provide access\.
 
    ```
-   grant "sys:operator" to "IAMR:role-name";
+   grant role sys:operator to "IAMR:role-name";
    ```
 
 ### Monitoring views<a name="serverless_views-monitoring"></a>
@@ -117,25 +117,50 @@ You can't query STL, STV, SVCS, SVL, and some SVV system tables and views with A
 + [SVV\_ALL\_COLUMNS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_ALL_COLUMNS.html) 
 + [SVV\_ALL\_SCHEMAS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_ALL_SCHEMAS.html) 
 + [SVV\_ALL\_TABLES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_ALL_TABLES.html) 
++ [SVV\_ALTER\_TABLE\_RECOMMENDATIONS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_ALTER_TABLE_RECOMMENDATIONS.html) 
 + [SVV\_COLUMNS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_COLUMNS.html) 
++ [SVV\_COLUMN\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_COLUMN_PRIVILEGES.html) 
++ [SVV\_DATABASE\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_DATABASE_PRIVILEGES.html) 
 + [SVV\_DATASHARES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_DATASHARES.html) 
 + [SVV\_DATASHARE\_CONSUMERS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_DATASHARE_CONSUMERS.html) 
 + [SVV\_DATASHARE\_OBJECTS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_DATASHARE_OBJECTS.html) 
++ [SVV\_DATASHARE\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_DATASHARE_PRIVILEGES.html) 
++ [SVV\_DEFAULT\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_DEFAULT_PRIVILEGES.html) 
 + [SVV\_EXTERNAL\_COLUMNS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_EXTERNAL_COLUMNS.html) 
 + [SVV\_EXTERNAL\_DATABASES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_EXTERNAL_DATABASES.html) 
 + [SVV\_EXTERNAL\_PARTITIONS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_EXTERNAL_PARTITIONS.html) 
 + [SVV\_EXTERNAL\_SCHEMAS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_EXTERNAL_SCHEMAS.html) 
 + [SVV\_EXTERNAL\_TABLES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_EXTERNAL_TABLES.html) 
++ [SVV\_MV\_INFO](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_MV_INFO.html) 
++ [SVV\_FUNCTION\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_FUNCTION_PRIVILEGES.html) 
++ [SVV\_IDENTITY\_PROVIDERS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_IDENTITY_PROVIDERS.html) 
++ [SVV\_INTERLEAVED\_COLUMNS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_INTERLEAVED_COLUMNS.html) 
++ [SVV\_LANGUAGE\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_LANGUAGE_PRIVILEGES.html) 
++ [SVV\_ML\_MODEL\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_ML_MODEL_PRIVILEGES.html) 
 + [SVV\_REDSHIFT\_COLUMNS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_REDSHIFT_COLUMNS.html) 
 + [SVV\_REDSHIFT\_DATABASES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_REDSHIFT_DATABASES.html) 
 + [SVV\_REDSHIFT\_FUNCTIONS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_REDSHIFT_FUNCTIONS.html) 
 + [SVV\_REDSHIFT\_SCHEMAS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_REDSHIFT_SCHEMAS.html) 
 + [SVV\_REDSHIFT\_TABLES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_REDSHIFT_TABLES.html) 
++ [SVV\_RELATION\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_RELATION_PRIVILEGES.html) 
++ [SVV\_RLS\_ATTACHED\_POLICY](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_RLS_ATTACHED_POLICY.html) 
++ [SVV\_RLS\_POLCY](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_RLS_POLCY.html) 
++ [SVV\_RLS\_RELATION](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_RLS_RELATION.html) 
++ [SVV\_ROLE\_GRANTS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_ROLE_GRANTS.html) 
++ [SVV\_ROLES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_ROLES.html) 
++ [SVV\_SCHEMA\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_SCHEMA_PRIVILEGES.html) 
++ [SVV\_SYSTEM\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_SYSTEM_PRIVILEGES.html) 
 + [SVV\_TABLES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_TABLES.html) 
 + [SVV\_TABLE\_INFO](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_TABLE_INFO.html) 
 + [SVV\_TRANSACTIONS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_TRANSACTIONS.html) 
++ [SVV\_USER\_INFO](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_USER_INFO.html) 
++ [SVV\_USER\_GRANTS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_USER_GRANTS.html) 
 
 You can query the following SYS system views to monitor Amazon Redshift Serverless\. 
++ [SYS\_CONNECTION\_LOG](https://docs.aws.amazon.com/redshift/latest/dg/SYS_CONNECTION_LOG.html)
++ [SYS\_DATASHARE\_CHANGE\_LOG](https://docs.aws.amazon.com/redshift/latest/dg/SYS_DATASHARE_CHANGE_LOG.html)
++ [SYS\_DATASHARE\_USAGE\_CONSUMER](https://docs.aws.amazon.com/redshift/latest/dg/SYS_DATASHARE_USAGE_CONSUMER.html)
++ [SYS\_DATASHARE\_USAGE\_PRODUCER](https://docs.aws.amazon.com/redshift/latest/dg/SYS_DATASHARE_USAGE_PRODUCER.html)
 + [SYS\_QUERY\_HISTORY](https://docs.aws.amazon.com/redshift/latest/dg/SYS_QUERY_HISTORY.html)
 + [SYS\_QUERY\_DETAIL](https://docs.aws.amazon.com/redshift/latest/dg/SYS_QUERY_DETAIL.html)
 + [SYS\_EXTERNAL\_QUERY\_DETAIL](https://docs.aws.amazon.com/redshift/latest/dg/SYS_EXTERNAL_QUERY_DETAIL.html)

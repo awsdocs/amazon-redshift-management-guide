@@ -85,7 +85,7 @@ To use IAM authentication, use one of the following connection string formats:
 | --- | --- | 
 |  `jdbc:redshift:iam:// [host]:[port]/[db]`  |  A regular connection string\. The driver infers the ClusterID and Region from the host\.  | 
 |  `jdbc:redshift:iam:// [cluster-id]: [region]/[db]`  |  The driver retrieves host information, given the ClusterID and Region\.  | 
-|  `jdbc:redshift:iam:// [host]/[db]`  |  The driver defaults to port 5439, and infers ClusterID and Region from the host\.  | 
+|  `jdbc:redshift:iam:// [host]/[db]`  |  The driver defaults to port 5439, and infers ClusterID and Region from the host\. Depending on the port you selected when creating, modifying or migrating the cluster, allow access to the selected port\.   | 
 
 ## Specifying profiles<a name="jdbc20-aws-credentials-profiles"></a>
 

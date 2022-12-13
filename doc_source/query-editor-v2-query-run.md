@@ -4,7 +4,7 @@ You can enter a query in the editor or select a saved query from the **Queries**
 
 By default, **Limit 100** is set to limit the results to 100 rows\. You can turn off this option to return a larger result set\. If you turn off this option, you can include the LIMIT option in your SQL statement if you want to avoid very large result sets\. For more information, see [ORDER BY clause](https://docs.aws.amazon.com/redshift/latest/dg/r_ORDER_BY_clause.html) in the *Amazon Redshift Database Developer Guide*\.
 
-To display a query plan in the results area, turn on **Explain**\.
+To display a query plan in the results area, turn on **Explain**\. Turn on **Explain graph** for the results to also display a graphical representation of the explain plan\.
 
 To save a query to the **Queries** folder, choose **Save**\.
 
@@ -21,9 +21,9 @@ You can export or copy the results of your query by using the context \(right\-c
 + If rows are selected, then choose **Copy rows** to copy the selected rows to the clipboard\.
 + If rows are selected, then choose **Copy rows with headers** to copy the selected rows with column headers to the clipboard\.
 
-You can also use the shortcut Ctrl\+C on Windows or Cmd\+C on Mac to copy data from the current results page to the clipboard\. If no rows are selected, then the cell with focus is copied to the clipboard\. If rows are selected, then the selected rows are copied to the clipboard\.
+You can also use the shortcut Ctrl\+C on Windows or Cmd\+C on MacOS to copy data from the current results page to the clipboard\. If no rows are selected, then the cell with focus is copied to the clipboard\. If rows are selected, then the selected rows are copied to the clipboard\.
 
-To add a new query tab, choose the ![\[New query tab\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) icon, which appears in the row with the query tabs\. 
+To add a new query tab, choose the ![\[New query tab\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) icon, then **Editor**, which appears in the row with the query tabs\. The query tab is either using an `Isolated session` or not\. With an isolated session, the results of a SQL command, such as creating a temporary table in one editor tab, are not visible in another editor tab\. When you open an editor tab in query editor v2, the default is an isolated session\. 
 
 **To run a query**
 
@@ -36,7 +36,9 @@ To add a new query tab, choose the ![\[New query tab\]](http://docs.aws.amazon.c
 
    Initially, you can choose your **Cluster** or **Workgroup** in the tree view\. Choose your **Database** in the tree view also\.
 
-   Change your **Cluster** or **Workgroup** value by choosing another in the tree view\. Change your database by choosing a different **Database** in the interface\.
+   You can change the **Cluster** or **Workgroup**, and **Database** within each editor tab with the drop\-down control located near the **Isolated session** header of each editor tab\.
+
+   For each editor tab, you choose whether to run the SQL in an **Isolated session**\. An isolated session has its own connection to a database\. Use it to run SQL that is isolated from other query editor sessions\. For more information about connections, see [Opening query editor v2](query-editor-v2-using.md#query-editor-v2-open)\.
 
 1. Choose **Run**\.
 
@@ -55,7 +57,7 @@ To add a new query tab, choose the ![\[New query tab\]](http://docs.aws.amazon.c
    The query runs and the explain plan displays in the query **Result** area\.
 
 The query editor v2 supports the following features:
-+ You can author queries with multiple SQL statements in one query tab\. The queries are run in serially and multiple results tabs open for each query\. 
++ You can author queries with multiple SQL statements in one query tab\. The queries are run serially and multiple results tabs open for each query\. 
 + You can author queries with session variables and temporary tables\.
 + You can author queries with replaceable parameters designated by `${parameter}`\. You can author your SQL query with multiple replaceable parameters and use the same parameter in multiple places in your SQL statement\. 
 
@@ -64,11 +66,18 @@ The query editor v2 supports the following features:
   For an example, see [Example: Sales greater than a specific parameter](#query-editor-v2-example-sales-qtysold-greater-than-parameter)\. 
 + Queries are versioned automatically\. You can choose an earlier version of a query to run\.
 + You don't need to wait for a query to complete before continuing on with your workflow\. Your queries continue to run even if you close the query editor\.
-+ When authoring queries, automatic completion of schema, table, and column names is supported using a shortcut\. 
++ When authoring queries, automatic completion of schema, table, and column names is supported\.
 
-  Choose the ![\[Shortcuts\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/shortcuts-icon.png) **Shortcuts** icon to find the **Auto complete** shortcut\.
+The SQL editor supports the following features:
++ The beginning and ending brackets used in SQL have matching colors\. Vertical lines are shown in the editor to help you match brackets\.
++ You can collapse and expand sections of your SQL\. 
++ You can search and replace text in your SQL\.
++ You can use shortcut keys for several common editing tasks\.
++ SQL errors are highlighted in the editor for easier location of problem areas\.
 
-The following examples demonstrate some of these features\.
+For a demo of editor features, watch the following video\. 
+
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/9JAq0yDs0YE/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/9JAq0yDs0YE)
 
 ## Query examples<a name="query-editor-v2-examples"></a>
 

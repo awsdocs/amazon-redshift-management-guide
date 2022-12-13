@@ -198,7 +198,7 @@ This parameter is optional\.
 + **Default value** – None
 + **Data type** – String
 
-The SSO Url for the IdP\. 
+The single sign\-on Url for the IdP\. 
 
 This parameter is optional\.
 

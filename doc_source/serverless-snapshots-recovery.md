@@ -79,7 +79,7 @@ To restore a snapshot to a provisioned cluster
 
 1. Choose a **Node type**\. The number of nodes depends on the node type\.
 
-1. Follow the instructions on the page on the console page to enter the properties for **Cluster configuration**\. See [ Creating a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster)for more information\.
+1. Follow the instructions on the page on the console page to enter the properties for **Cluster configuration**\. See [ Creating a cluster](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-clusters-console.html#create-cluster) for more information\.
 
 To update a snapshot's retention period
 
@@ -93,7 +93,7 @@ To update a snapshot's retention period
 
 1. Choose **Save changes**\.
 
-To delete a snapshot from serverless namespace
+To delete a snapshot
 
 1. On the Amazon Redshift Serverless console, choose **Data backup**\.
 
@@ -131,11 +131,11 @@ To share a snapshot with another AWS account
 
 1. Choose **Save changes**\.
 
-For more information about snapshots on provisioned clusters, see [Amazon Redshift snapshots](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html) in the *Amazon Redshift Cluster Management Guide*\.
+For more information about snapshots on provisioned clusters, see [Amazon Redshift snapshots](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html) in the *Amazon Redshift Management Guide*\.
 
 ### Recovery points<a name="serverless-recovery-point"></a>
 
-Recovery points are created for your Amazon Redshift Serverless instance every 30 minutes and saved for 24 hours\. 
+Recovery points in Amazon Redshift Serverless are created every 30 minutes and saved for 24 hours\. 
 
 On the Amazon Redshift Serverless console, choose **Data backup** to manage recovery points\. You can do the following operations:
 + Restore a recovery point to a serverless namespace\.
@@ -163,13 +163,40 @@ To convert a recovery point to a snapshot
 
 1. Choose **Create**\.
 
+### Restoring a table from a snapshot<a name="serverless-table-restore"></a>
+
+ Rather than restore an entire snapshot to your serverless namespace, you can also restore a specific table from a snapshot\. When you do so, you specify the source snapshot, database, schema, table, and the target database, schema, and new table name\. This new table cannot have the same name as an existing table\. If you want to replace an existing table by restoring a table from a snapshot, you must first rename or drop the table before you restore the table\.
+
+ The target table is created using the source table's column definitions, table attributes, and column attributes except for foreign keys\. To prevent conflicts due to dependencies, the target table doesn't inherit foreign keys from the source table\. Any dependencies, such as views or permissions granted on the source table, aren't applied to the target table\. 
+
+If the owner of the source table exists, then that user is the owner of the restored table, provided that the user has sufficient permissions to become the owner of a relation in the specified database and schema\. Otherwise, the restored table is owned by the admin user that was created when the cluster was launched\.
+
+The restored table returns to the state it was in at the time the backup was taken\. This includes transaction visibility rules defined by the Amazon Redshift adherence to [serializable isolation](https://docs.aws.amazon.com/redshift/latest/dg/c_serial_isolation.html), meaning that data will be immediately visible to in flight transactions started after the backup\.
+
+ You can use the Amazon Redshift Serverless console to restore tables from a snapshot\. 
+
+Restoring a table from a snapshot has the following limitations:
++ You can only restore one table at a time\.
++ Any dependencies, such as views or permissions granted on the source table, aren't applied to the target table\.
++ If row\-level security is turned on for a table being restored, Amazon Redshift Serverless restores the table with row\-level security turned on\.
+
+To restore a table from a snapshot using the Amazon Redshift Serverless console
+
+1. On the Amazon Redshift Serverless console, choose **Data backup**\.
+
+1. Choose a snapshot to restore\.
+
+1. Choose **Actions**, **Restore table from snapshot**\.
+
+1. Enter information about the source snapshot and target table, then choose **Restore table**\.
+
 ### Managing snapshots and recovery points using the AWS Command Line Interface and Amazon Redshift Serverless API<a name="serverless-snapshots-and-recovery-points-cli"></a>
 
  Aside from using the AWS console, you can also use the AWS CLI or the Amazon Redshift Serverless API to interact with snapshots and recovery points\. 
 
  To create a snapshot, use the AWS Command Line Interface operation create\-snapshot\. You can also use the Amazon Redshift Serverless API operation `CreateSnapshot`\. Snapshots must be associated with a namespace, so you must include the name of a namespace in your request\. By default, Amazon Redshift Serverless keeps snapshots for an indefinite period, but you can specify a retention period in your request\. 
 
- To restore a snapshot to Amazon Redshift Serverless, use `restore-from-snapshot` or `RestoreFromSnapshot`\. 
+ To restore a snapshot, use `restore-from-snapshot` or `RestoreFromSnapshot`\. If you're restoring a snapshot from Amazon Redshift Serverless to a provisioned cluster, you must specify the `snapshotArn` of the snapshot you're restoring\. Otherwise, if you're restoring from serverless to serverless, you can specify `snapshotArn` or `snapshotName`, but not both\. 
 
  To retrieve information about a snapshot, such as which namespace it is associated with or how large the data inside a snapshot is, use the AWS CLI operation `get-snapshot`\. Alternatively, you can also use the API operation `GetSnapshot`\. To get information about multiple snapshots at once, use `list-snapshots` or `ListSnapshots`\. 
 

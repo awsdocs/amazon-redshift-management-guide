@@ -39,6 +39,7 @@ You can't modify the default parameter group\.
 
 1. Choose **Edit parameters** to enable changing settings for these parameters: 
    + `auto_analyze`
+   + `auto_mv`
    + `datestyle`
    + `enable_case_sensitive_identifier`
    + `enable_user_activity_logging`

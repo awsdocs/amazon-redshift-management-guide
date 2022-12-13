@@ -16,7 +16,7 @@ If you intend to keep your cluster running for a year or longer, you can save mo
 
 ### Creating cluster snapshots<a name="rs-overview-create-cluster-snapshots"></a>
 
-Snapshots are point\-in\-time backups of a cluster\. There are two types of snapshots: automated and manual\. Amazon Redshift stores these snapshots internally in Amazon Simple Storage Service \(Amazon S3\) by using an encrypted Secure Sockets Layer \(SSL\) connection\. If you need to restore from a snapshot, Amazon Redshift creates a new cluster and imports data from the snapshot that you specify\. For more information about snapshots, see [Amazon Redshift snapshots](working-with-snapshots.md)\.
+Snapshots are point\-in\-time backups of a cluster\. There are two types of snapshots: automated and manual\. Amazon Redshift stores these snapshots internally in Amazon Simple Storage Service \(Amazon S3\) by using an encrypted Secure Sockets Layer \(SSL\) connection\. If you need to restore from a snapshot, Amazon Redshift creates a new cluster and imports data from the snapshot that you specify\. For more information about snapshots, see [Amazon Redshift snapshots and backups](working-with-snapshots.md)\.
 
 ## Cluster access and security<a name="rs-overview-cluster-access-and-security"></a>
 

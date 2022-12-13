@@ -294,7 +294,7 @@ This parameter is optional\.
 + **Default Value** – false
 + **Data Type** – Boolean
 
-This option specifies whether the driver lowercases all database groups \(DbGroups\) sent from the identity provider to Amazon Redshift when using SSO authentication\. 
+This option specifies whether the driver lowercases all database groups \(DbGroups\) sent from the identity provider to Amazon Redshift when using single sign\-on authentication\. 
 
 This parameter is optional\.
 
@@ -362,7 +362,7 @@ This parameter is optional\.
 + **Default Value** – None
 + **Data Type** – String
 
-The port used by an IdP \(identity provider\)\. You can specify the port in either the connection string or in a profile\. The default port is 5439\. 
+The port used by an IdP \(identity provider\)\. You can specify the port in either the connection string or in a profile\. The default port is 5439\. Depending on the port you selected when creating, modifying or migrating the cluster, allow access to the selected port\. 
 
 This parameter is optional\.
 
@@ -650,7 +650,7 @@ This parameter is optional\.
 + **Default Value** – None
 + **Data Type** – String
 
-The temporary IAM session token associated with the IAM role you are using to authenticate\. 
+The temporary IAM session token associated with the IAM role you are using to authenticate\. If passed in the JDBC URL, the temporary IAM session token must be URL encoded\. 
 
 This parameter is optional\.
 

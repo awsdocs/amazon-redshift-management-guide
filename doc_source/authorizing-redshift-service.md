@@ -1,6 +1,6 @@
 # Authorizing Amazon Redshift to access other AWS services on your behalf<a name="authorizing-redshift-service"></a>
 
-Some Amazon Redshift features require Amazon Redshift to access other AWS services on your behalf\. For example, the [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) and [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) commands can load or unload data into your Amazon Redshift cluster using an Amazon S3 bucket\. The [CREATE EXTERNAL FUNCTION](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_EXTERNAL_FUNCTION.html) command can invoke an AWS Lambda function using a scalar Lambda user\-defined function \(UDF\)\. Amazon Redshift Spectrum can use a data catalog in Amazon Athena or AWS Glue\. For your Amazon Redshift clusters to act on your behalf, you supply security credentials to your clusters\. The preferred method to supply security credentials is to specify an AWS Identity and Access Management \(IAM\) role\. For COPY and UNLOAD, you can provide AWS access keys\.
+Some Amazon Redshift features require Amazon Redshift to access other AWS services on your behalf\. For example, the [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) and [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) commands can load or unload data into your Amazon Redshift cluster using an Amazon S3 bucket\. The [CREATE EXTERNAL FUNCTION](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_EXTERNAL_FUNCTION.html) command can invoke an AWS Lambda function using a scalar Lambda user\-defined function \(UDF\)\. Amazon Redshift Spectrum can use a data catalog in Amazon Athena or AWS Glue\. For your Amazon Redshift clusters to act on your behalf, you supply security credentials to your clusters\. The preferred method to supply security credentials is to specify an AWS Identity and Access Management \(IAM\) role\. For COPY and UNLOAD, you can provide AWS access keys\. 
 
 Following, find out how to create an IAM role with the appropriate permissions to access other AWS services\. You also need to associate the role with your cluster and specify the Amazon Resource Name \(ARN\) of the role when you run the Amazon Redshift command\. For more information, see [Authorizing COPY, UNLOAD, CREATE EXTERNAL FUNCTION, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)\.
 
@@ -37,12 +37,12 @@ To create an IAM role to permit your Amazon Redshift cluster to communicate with
 1. The new role is available to all users on clusters that use the role\. To restrict access to only specific users on specific clusters, or to clusters in specific regions, edit the trust relationship for the role\. For more information, see [Restricting access to IAM roles](#authorizing-redshift-service-database-users)\.
 
 1. Associate the role with your cluster\. You can associate an IAM role with a cluster when you create the cluster, or you add the role to an existing cluster\. For more information, see [Associating IAM roles with clusters](copy-unload-iam-role.md#copy-unload-iam-role-associating-with-clusters)\.
-**Note**
+**Note**  
 To restrict access to specific data, use an IAM role that grants the least privileges required\.
 
 ## Restricting access to IAM roles<a name="authorizing-redshift-service-database-users"></a>
 
-By default, IAM roles that are available to an Amazon Redshift cluster are available to all users on that cluster\. You can choose to restrict IAM roles to specific Amazon Redshift database users on specific clusters or to specific regions\.
+By default, IAM roles that are available to an Amazon Redshift cluster are available to all users on that cluster\. You can choose to restrict IAM roles to specific Amazon Redshift database users on specific clusters or to specific regions\. 
 
 To permit only specific database users to use an IAM role, take the following steps\.<a name="identify-db-users-for-iam-role"></a>
 
@@ -83,8 +83,8 @@ To permit only specific database users to use an IAM role, take the following st
      "Statement": [
      {
        "Effect": "Allow",
-       "Principal": {
-         "Service": "redshift.amazonaws.com"
+       "Principal": { 
+         "Service": "redshift.amazonaws.com" 
        },
        "Action": "sts:AssumeRole",
        "Condition": {
@@ -158,13 +158,13 @@ To restrict use of an IAM role by region, take the following steps\.<a name="ide
 
 ## Chaining IAM roles in Amazon Redshift<a name="authorizing-redshift-service-chaining-roles"></a>
 
-When you attach a role to your cluster, your cluster can assume that role to access Amazon S3, Amazon Athena, AWS Glue, and AWS Lambda on your behalf\. If a role attached to your cluster doesn't have access to the necessary resources, you can chain another role, possibly belonging to another account\. Your cluster then temporarily assumes the chained role to access the data\. You can also grant cross\-account access by chaining roles\. Each role in the chain assumes the next role in the chain, until the cluster assumes the role at the end of chain\.   The maximum number of IAM roles that you can associate is subject to a quota\. For more information, see the quota "Cluster IAM roles for Amazon Redshift to access other AWS services" in [Amazon Redshift quotas](amazon-redshift-limits.md#amazon-redshift-limits-quota)\.
+When you attach a role to your cluster, your cluster can assume that role to access Amazon S3, Amazon Athena, AWS Glue, and AWS Lambda on your behalf\. If a role attached to your cluster doesn't have access to the necessary resources, you can chain another role, possibly belonging to another account\. Your cluster then temporarily assumes the chained role to access the data\. You can also grant cross\-account access by chaining roles\. Each role in the chain assumes the next role in the chain, until the cluster assumes the role at the end of chain\.   The maximum number of IAM roles that you can associate is subject to a quota\. For more information, see the quota "Cluster IAM roles for Amazon Redshift to access other AWS services" in [Quotas for Amazon Redshift objects](amazon-redshift-limits.md#amazon-redshift-limits-quota)\. 
 
-For example, suppose Company A wants to access data in an Amazon S3 bucket that belongs to Company B\. Company A creates an AWS service role for Amazon Redshift named `RoleA` and attaches it to their cluster\. Company B creates a role named `RoleB` that's authorized to access the data in the Company B bucket\. To access the data in the Company B bucket, Company A runs a COPY command using an `iam_role` parameter that chains `RoleA` and `RoleB`\. For the duration of the COPY operation, `RoleA` temporarily assumes `RoleB` to access the Amazon S3 bucket\.
+For example, suppose Company A wants to access data in an Amazon S3 bucket that belongs to Company B\. Company A creates an AWS service role for Amazon Redshift named `RoleA` and attaches it to their cluster\. Company B creates a role named `RoleB` that's authorized to access the data in the Company B bucket\. To access the data in the Company B bucket, Company A runs a COPY command using an `iam_role` parameter that chains `RoleA` and `RoleB`\. For the duration of the COPY operation, `RoleA` temporarily assumes `RoleB` to access the Amazon S3 bucket\. 
 
-To chain roles, you establish a trust relationship between the roles\. A role that assumes another role \(for example, `RoleA`\) must have a permissions policy that allows it to assume the next chained role \(for example, `RoleB`\)\. In turn, the role that passes permissions \(`RoleB`\) must have a trust policy that allows it to pass its permissions to the previous chained role \(`RoleA`\)\. For more information, see [Using IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) in the IAM User Guide\.
+To chain roles, you establish a trust relationship between the roles\. A role that assumes another role \(for example, `RoleA`\) must have a permissions policy that allows it to assume the next chained role \(for example, `RoleB`\)\. In turn, the role that passes permissions \(`RoleB`\) must have a trust policy that allows it to pass its permissions to the previous chained role \(`RoleA`\)\. For more information, see [Using IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) in the IAM User Guide\. 
 
-The first role in the chain must be a role attached to the cluster\. The first role, and each subsequent role that assumes the next role in the chain, must have a policy that includes a specific statement\. This statement has the `Allow` effect on the `sts:AssumeRole `action and the Amazon Resource Name \(ARN\) of the next role in a `Resource` element\. In our example, `RoleA` has the following permission policy that allows it to assume `RoleB`, owned by AWS account `210987654321`\.
+The first role in the chain must be a role attached to the cluster\. The first role, and each subsequent role that assumes the next role in the chain, must have a policy that includes a specific statement\. This statement has the `Allow` effect on the `sts:AssumeRole `action and the Amazon Resource Name \(ARN\) of the next role in a `Resource` element\. In our example, `RoleA` has the following permission policy that allows it to assume `RoleB`, owned by AWS account `210987654321`\. 
 
 ```
 {
@@ -176,8 +176,8 @@ The first role in the chain must be a role attached to the cluster\. The first r
             "Action": [
                 "sts:AssumeRole"
             ],
-            "Resource": "arn:aws:iam::210987654321:role/RoleB"
-		    }
+            "Resource": "arn:aws:iam::210987654321:role/RoleB"        
+       }
     ]
 }
 ```
@@ -211,29 +211,29 @@ The following trust policy establishes a trust relationship with the owner of `R
       "Principal": {
         "AWS": "arn:aws:iam::123456789012:root"
       }
-    }
+    }      
   ]
 }
 ```
 
-**Note**
+**Note**  
 To restrict role chaining authorization to specific users, define a condition\. For more information, see [Restricting access to IAM roles](#authorizing-redshift-service-database-users)\.
 
-When you run an UNLOAD, COPY, CREATE EXTERNAL FUNCTION, or CREATE EXTERNAL SCHEMA command, you chain roles by including a comma\-separated list of role ARNs in the `iam_role` parameter\. The following shows the syntax for chaining roles in the `iam_role` parameter\.
+When you run an UNLOAD, COPY, CREATE EXTERNAL FUNCTION, or CREATE EXTERNAL SCHEMA command, you chain roles by including a comma\-separated list of role ARNs in the `iam_role` parameter\. The following shows the syntax for chaining roles in the `iam_role` parameter\. 
 
 ```
-unload ('select * from venue limit 10')
+unload ('select * from venue limit 10') 
 to 's3://acmedata/redshift/venue_pipe_'
 IAM_ROLE 'arn:aws:iam::<aws-account-id-1>:role/<role-name-1>[,arn:aws:iam::<aws-account-id-2>:role/<role-name-2>][,...]';
 ```
 
-**Note**
+**Note**  
 The entire role chain is enclosed in single quotes and must not contain spaces\.
 
-In the following examples, `RoleA` is attached to the cluster belonging to AWS account `123456789012`\. `RoleB`, which belongs to account `210987654321`, has permission to access the bucket named `s3://companyb/redshift/`\. The following example chains `RoleA` and `RoleB` to UNLOAD data to the s3://companyb/redshift/ bucket\.
+In the following examples, `RoleA` is attached to the cluster belonging to AWS account `123456789012`\. `RoleB`, which belongs to account `210987654321`, has permission to access the bucket named `s3://companyb/redshift/`\. The following example chains `RoleA` and `RoleB` to UNLOAD data to the s3://companyb/redshift/ bucket\. 
 
 ```
-unload ('select * from venue limit 10')
+unload ('select * from venue limit 10') 
 to 's3://companyb/redshift/venue_pipe_'
 iam_role 'arn:aws:iam::123456789012:role/RoleA,arn:aws:iam::210987654321:role/RoleB';
 ```
@@ -241,7 +241,7 @@ iam_role 'arn:aws:iam::123456789012:role/RoleA,arn:aws:iam::210987654321:role/Ro
 The following example uses a COPY command to load the data that was unloaded in the previous example\.
 
 ```
-copy venue
+copy venue 
 from 's3://companyb/redshift/venue_pipe_'
 iam_role 'arn:aws:iam::123456789012:role/RoleA,arn:aws:iam::210987654321:role/RoleB';
 ```
@@ -249,8 +249,8 @@ iam_role 'arn:aws:iam::123456789012:role/RoleA,arn:aws:iam::210987654321:role/Ro
 In the following example, CREATE EXTERNAL SCHEMA uses chained roles to assume the role `RoleB`\.
 
 ```
-create external schema spectrumexample from data catalog
-database 'exampledb' region 'us-west-2'
+create external schema spectrumexample from data catalog 
+database 'exampledb' region 'us-west-2' 
 iam_role 'arn:aws:iam::123456789012:role/RoleA,arn:aws:iam::210987654321:role/RoleB';
 ```
 

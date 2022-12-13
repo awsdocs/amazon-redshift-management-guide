@@ -28,6 +28,7 @@ The following table shows the default parameter values at a glance with links to
 | Parameter name | Value | More information | 
 | --- | --- | --- | 
 |  auto\_analyze  |  true  |  [auto\_analyze](https://docs.aws.amazon.com/redshift/latest/dg/r_auto_analyze.html) in the Amazon Redshift Database Developer Guide  | 
+|  auto\_mv  |  true  |  [Automated materialized views](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-auto-mv.html) in the Amazon Redshift Database Developer Guide | 
 |  datestyle  |   ISO, MDY   |  [datestyle](https://docs.aws.amazon.com/redshift/latest/dg/r_datestyle.html) in the Amazon Redshift Database Developer Guide  | 
 |  enable\_case\_sensitive\_identifier  |   false   |  [enable\_case\_sensitive\_identifier](https://docs.aws.amazon.com/redshift/latest/dg/r_enable_case_sensitive_identifier.html) in the Amazon Redshift Database Developer Guide  | 
 |  enable\_user\_activity\_logging  |   false   |  [Database audit logging](db-auditing.md) in this guide  | 
@@ -39,7 +40,6 @@ The following table shows the default parameter values at a glance with links to
 |  statement\_timeout  |  0  |  [statement\_timeout](https://docs.aws.amazon.com/redshift/latest/dg/r_statement_timeout.html) in the Amazon Redshift Database Developer Guide  | 
 |  wlm\_json\_configuration  |   \[\{"auto\_wlm":true\}\]   |  [Configuring workload management](workload-mgmt-config.md) in this guide | 
 |  use\_fips\_ssl  |  false  |  Enable FIPS\-compliant SSL mode only if your system is required to be FIPS\-compliant\. | 
-|  auto\_mv  |  true  |  [Automated materialized views](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-auto-mv.html) in the Amazon Redshift Database Developer Guide | 
 
 **Note**  
 The `max_cursor_result_set_size` parameter is deprecated\. For more information about cursor result set size, see [ Cursor constraints](https://docs.aws.amazon.com/redshift/latest/dg/declare.html#declare-constraints) in the *Amazon Redshift Database Developer Guide*\.

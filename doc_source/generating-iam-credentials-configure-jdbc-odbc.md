@@ -20,7 +20,7 @@ If you use an identity provider for authentication, specify the name of a creden
    jdbc:redshift:iam://
    ```
 
-   Add `cluster-name`, `region`, and `account-id`\. The JDBC driver uses your IAM account information and cluster name to retrieve the cluster ID and AWS Region\. To do so, your IAM user or role must have permission to call the `redshift:DescribeClusters` operation with the specified cluster\. If your IAM user or role doesn't have permission to call the `redshift:DescribeClusters` operation, include the cluster ID, AWS Region, and port as shown in the following example\. The port number is optional\. The default port is 5439\.
+   Add `cluster-name`, `region`, and `account-id`\. The JDBC driver uses your IAM account information and cluster name to retrieve the cluster ID and AWS Region\. To do so, your IAM user or role must have permission to call the `redshift:DescribeClusters` operation with the specified cluster\. If your IAM user or role doesn't have permission to call the `redshift:DescribeClusters` operation, include the cluster ID, AWS Region, and port as shown in the following example\. The port number is optional\.
 
    ```
    jdbc:redshift:iam://examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com:5439/dev
@@ -72,7 +72,7 @@ The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
 
       If your IAM user or role has permission to call the `redshift:DescribeClusters` operation, only **Data Source Name** and **Database** are required\. Amazon Redshift uses **ClusterId** and **Region** to get the server and port by calling the `DescribeCluster` operation\. 
 
-      If your IAM user or role doesn't have permission to call the `redshift:DescribeClusters` operation, specify **Server** and **Port**\. The default port is 5439\.
+      If your IAM user or role doesn't have permission to call the `redshift:DescribeClusters` operation, specify **Server** and **Port**\. 
 
    1. Under **Authentication**, choose a value for **Auth Type**\.
 

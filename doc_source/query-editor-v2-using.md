@@ -7,9 +7,10 @@ The query editor v2 is primarily used to edit and run queries, visualize results
 + [Connecting to an Amazon Redshift database](#query-editor-v2-connecting)
 + [Browsing an Amazon Redshift database](#query-editor-v2-object-browse)
 + [Creating database objects](#query-editor-v2-object-create)
++ [Viewing query and tab history](#query-editor-v2-history)
 + [Loading sample data](#query-editor-v2-loading-sample-data)
 + [Loading data from Amazon S3](#query-editor-v2-loading-data)
-+ [Working with SQL notebooks \(preview\)](#query-editor-v2-notebooks)
++ [Changing account settings](#query-editor-v2-settings)
 
 ## Opening query editor v2<a name="query-editor-v2-open"></a>
 
@@ -17,30 +18,54 @@ The query editor v2 is primarily used to edit and run queries, visualize results
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. From the navigator menu, choose **Editor**, then **Query editor V2**\.
+1. From the navigator menu, choose **Editor**, then **Query editor V2**\. The query editor v2 opens in a new browser tab\.
 
-The query editor v2 opens in a new tab\.
+The query editor page has a navigator menu where you choose a view as follows:
 
-The query editor page has a navigator menu where you choose **Database** to work with data in your cluster or workgroup, **Queries** to work with saved queries, and **Charts** to work with saved charts\. The navigator menu is similar to the following\.
-
-![\[Navigator icons\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/sqlworkbench-navigator-menu.png)
-
-When working in the **Database** view, you have the following controls: 
-+ The **Cluster** or **Workgroup** field displays the name of the cluster or workgroup you are currently connected to\. The **Database** field displays the databases within the cluster or workgroup\. The actions that you perform in the **Database** view default to act on the database you have selected\. 
+**Database ![\[Database\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-database.png)**  
+You manage and query your data organized as tables and contained in a database\. The database can contain stored data or contain a reference to data stored elsewhere, such as Amazon S3\. You connect to a database contained in either a cluster or a serverless workgroup\.  
+When working in the **Database** view, you have the following controls:   
++ The **Cluster** or **Workgroup** field displays the name you are currently connected to\. The **Database** field displays the databases within the cluster or workgroup\. The actions that you perform in the **Database** view default to act on the database you have selected\. 
 + A tree\-view hierarchical view of your clusters or workgroups, databases, and schemas\. Under schemas, you can work with your tables, views, functions, and stored procedures\. Each object in the tree view supports a context menu to perform associated actions, such as **Refresh** or **Drop**, for the object\. 
 + A ![\[Create\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) **Create** action to create databases, schemas, tables, and functions\.
 + A ![\[Load\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/download.png) **Load data** action to load data from Amazon S3 into your databases\.
-+ A ![\[Settings\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/settings.png) preferences icon to edit your preferences\.
-+ A ![\[Save\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/save-icon.png) **Save** icon to save your query\. 
-+ A ![\[Shortcuts\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/shortcuts-icon.png) **Shortcuts** icon to display keyboard shortcuts for the editor\. 
-+ An editor area where you can enter and run your query\. 
-+ After you run a query, a **Result** tab appears with the results\. Here is where you can turn on **Chart** to visualize your results\.
++ A ![\[Save\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-floppy-disk.png) **Save** icon to save your query\. 
++ A ![\[Shortcuts\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-key-command.png) **Shortcuts** icon to display keyboard shortcuts for the editor\. 
++ An ![\[Editor\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) **Editor** area where you can enter and run your query\. 
+
+  After you run a query, a **Result** tab appears with the results\. Here is where you can turn on **Chart** to visualize your results\. You can also **Export** your results\.
++ A ![\[Notebook\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) **Notebook** area where you can add sections to enter and run SQL or add Markdown\. 
+
+  After you run a query, a **Result** tab appears with the results\. Here is where you can **Export** your results\.
+
+**Queries ![\[Queries\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-folder-close.png)**  
+A query contains the SQL commands to manage and query your data in a database\. When you use query editor v2 to load sample data, it also creates and saves sample queries for you\. You can share a saved query with your team\.
+
+**Notebooks ![\[Notebooks\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-manual.png)**  
+A SQL notebook contains SQL and Markdown cells\. Use notebooks to organize, annotate, and share multiple SQL commands in a single document\. You can share a notebook with your team\. For more information, see [Authoring and running notebooks](query-editor-v2-notebooks.md)\.
+
+**Charts ![\[Chart\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-chart.png)**  
+A chart is a visual representation of your data\. The query editor v2 provides the tools to create many types of charts and save them\. You can share a chart with your team\. For more information, see [Visualizing query results](query-editor-v2-charts.md)\. 
+
+**History ![\[History\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-clock.png)**  
+The query history is a list of queries you ran using Amazon Redshift query editor v2\. These queries either ran as individual queries or as part of a SQL notebook\. For more information, see [Viewing query and tab history](#query-editor-v2-history)\. 
+
+ All query editor v2 views have the following icons:
++ A ![\[Visual mode\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-moon.png) **Visual mode** icon to toggle between light mode and dark mode\.
++ A ![\[Settings\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/settings.png) **Settings** icon to show a menu of the different settings screens\.
+  + An ![\[Editor preferences\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-properties.png) **Editor preferences** icon to edit your preferences when you use query editor v2\.
+  + A ![\[Connections\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-connection.png) **Connections** icon to view the connections used by your editor tabs\.
+
+    A connection is used to retrieve data from a database\. A connection is created for a specific database\. With an isolated connection, the results of a SQL command that changes the database, such as creating a temporary table, in one editor tab, are not visible in another editor tab\. When you open an editor tab in query editor v2, the default is an isolated connection\. When you create a shared connection, that is, turn off the **Isolated session** switch, then the results in other shared connections to the same database are visible to each other\. However, editor tabs using a shared connection to a database don't run in parallel\. Queries using the same connection must wait until the connection is available\. A connection to one database can't be shared with another database, and thus SQL results are not visible across different database connections\.
+
+    The number of connections any user in the account can have active is controlled by a query editor v2 administrator\.
+  + An ![\[Account settings\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-settings.png) **Account settings** icon used by an administrator to change certain settings of all users in the account\. For more information, see [Changing account settings](#query-editor-v2-settings)\.
 
 ## Connecting to an Amazon Redshift database<a name="query-editor-v2-connecting"></a>
 
 To connect to a database, choose the cluster or workgroup name in the tree\-view panel\. If prompted, enter the connection parameters\.
 
-When you connect to a cluster or workgroup and its databases, you provide a  **Database** name\.  You also provide parameters required for one of the following authentication methods:
+When you connect to a cluster or workgroup and its databases, you usually provide a  **Database** name\.  You also provide parameters required for one of the following authentication methods:
 
 **Federated user**  
 With this method, the principal tags of your IAM role or IAM user must provide the connection details\. You configure these tags in AWS Identity and Access Management or your identity provider \(IdP\)\. The query editor v2 relies on the following tags\.  
@@ -48,17 +73,27 @@ With this method, the principal tags of your IAM role or IAM user must provide t
 + `RedshiftDbGroups` – This tag defines the database groups that are joined when connecting to query editor v2\. This tag is optional and its value must be a colon\-separated list such as `group1:group2:group3`\. Empty values are ignored, that is, `group1::::group2` is interpreted as `group1:group2`\. 
 These tags are forwarded to the `redshift:GetClusterCredentials `  API to get credentials for your cluster\. For more information, see [Setting up principal tags to connect to query editor v2 as a federated user](query-editor-v2-getting-started.md#query-editor-v2-principal-tags-iam)\.
 
+**Temporary credentials**  
+This option is only available when connecting to a cluster\. With this method, query editor v2, provide a **User name** for the database\. The query editor v2 generates a temporary password to connect to the database\. Your query editor v2 administrator chooses whether this method is shown to all users in the account by configuring it in **Account settings**\. For more information, see [Changing account settings](#query-editor-v2-settings)\.
+
+**Temporary credentials using your IAM identity**  
+This option is only available when connecting to a cluster\. With this method, query editor v2 maps a user name to your IAM identity and generates a temporary password to connect to the database\. Your query editor v2 administrator chooses whether this method is shown to all users in the account by configuring it in **Account settings**\. For more information, see [Changing account settings](#query-editor-v2-settings)\. 
+
 **Database user name and password**  
 With this method, also provide a **User name** and **Password** for the database that you are connecting to\. The query editor v2 creates a secret on your behalf stored in AWS Secrets Manager\. This secret contains credentials to connect to your database\. 
 
-**Temporary credentials**  
-With this method, query editor v2, provide a **User name** for the database\. query editor v2 generates a temporary password to connect to the database\. 
+**AWS Secrets Manager**  
+This option is only available when connecting to a cluster\. With this method, instead of a database name, you provide a **Secret** stored in Secrets Manager that contains your database and sign in credentials\.
 
 When you select a cluster or workgroup with query editor v2, depending on the context, you can create, edit, and delete connections using the context \(right\-click\) menu\.
 
 ## Browsing an Amazon Redshift database<a name="query-editor-v2-object-browse"></a>
 
 Within a database, you can manage schemas, tables, views, functions, and stored procedures in the tree\-view panel\. Each object in the view has actions associated with it in a context \(right\-click\) menu\.
+
+The hierarchical tree\-view panel displays database objects\. To refresh the tree\-view panel to display database objects which might have been created after the tree\-view was last displayed, choose the ![\[Refresh\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-refresh.png) icon\. Open the context \(right\-click\) menu for an object to see what actions you can perform\.
+
+![\[Tree-view icons\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/sqlworkbench-tree-view.png)
 
 After you choose a table, you can do the following:
 + To start a query in the editor with a SELECT statement that queries all columns in the table, use **Select table**\.
@@ -72,10 +107,6 @@ Choose a view to **Show view definition** or **Drop view**\.
 Choose a function to **Show function definition** or **Drop function**\. 
 
 Choose a stored procedure to **Show procedure definition** or **Drop procedure**\. 
-
-The hierarchical tree\-view panel is similar to the following\. Open the context \(right\-click\) menu for an icon to see what actions you can perform\.
-
-![\[Tree-view icons\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/sqlworkbench-tree-view.png)
 
 ## Creating database objects<a name="query-editor-v2-object-create"></a>
 
@@ -103,7 +134,14 @@ For information about schemas, see [Schemas](https://docs.aws.amazon.com/redshif
 
 1. Enter a **Schema name**\.
 
-1. \(Optional\) Select **Authorize user**, and choose a **Database user**\.
+1. Choose either **Local** or **External** as the **Schema type**\.
+
+   For more information about local schemas, see [CREATE SCHEMA](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_SCHEMA.html) in the *Amazon Redshift Database Developer Guide*\. For more information about external schemas, see [CREATE EXTERNAL SCHEMA](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_EXTERNAL_SCHEMA.html) in the *Amazon Redshift Database Developer Guide*\.
+
+1. If you choose **External**, then you have the following choices of an external schema\.
+   + **Glue Data Catalog** – to create an external schema in Amazon Redshift that references tables in AWS Glue\. Besides choosing the AWS Glue database, choose the IAM role associated with the cluster and the IAM role associated with the Data Catalog\.
+   + **PostgreSQL** – to create an external schema in Amazon Redshift that references an Amazon RDS for PostgreSQL or Amazon Aurora PostgreSQL\-Compatible Edition database\. Also provide the connection information to the database\. For more information about federated queries, see [Querying data with federated queries](https://docs.aws.amazon.com/redshift/latest/dg/federated-overview.html) in the *Amazon Redshift Database Developer Guide*\.
+   + **MySQL** – to create an external schema in Amazon Redshift that references an Amazon RDS for MySQL or and Amazon Aurora MySQL\-Compatible Edition database\. Also provide the connection information to the database\. For more information about federated queries, see [Querying data with federated queries](https://docs.aws.amazon.com/redshift/latest/dg/federated-overview.html) in the *Amazon Redshift Database Developer Guide*\.
 
 1. Choose **Create schema**\.
 
@@ -115,7 +153,7 @@ You can create a table based on a comma\-separated value \(CSV\) file that you s
 
 Choose **Open query in editor** to view and edit the CREATE TABLE statement before you run the query to create the table\. 
 
-1. Choose ![\[Create\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png)**Create** and select **Table**\.
+1. Choose ![\[Create\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png)**Create**, and choose **Table**\.
 
 1. Choose a schema\.
 
@@ -172,16 +210,29 @@ Choose **Open query in editor** to view and edit the CREATE TABLE statement befo
 
 For more information about user\-defined functions \(UDFs\), see [Creating user\-defined functions](https://docs.aws.amazon.com/redshift/latest/dg/user-defined-functions.html) in the *Amazon Redshift Database Developer Guide*\. 
 
+## Viewing query and tab history<a name="query-editor-v2-history"></a>
+
+You can view your query history with query editor v2\. Only queries that you ran using query editor v2 appear in the query history\. Both queries that ran from using an **Editor** tab or **Notebook** tab are shown\. You can filter the list displayed by a time period, such as `This week`, where a week is defined as Monday–Sunday\. The list of queries fetches 25 rows of queries that match your filter at a time\. Choose **Load more** to see the next set\. Choose a query and from the **Actions** menu\. The actions available depend on whether the choosen query has been saved\. You can choose the following operations:
++ **View query details** – Displays a query details page with more information about the query that ran\.
++ **Open query in a new tab** – Opens a new editor tab and primes it with the chosen query\. If still connected, the cluster or workgroup and database are automatically selected\. To run the query, first confirm that the correct cluster or workgroup and database are chosen\.
++ **Open source tab** – If it is still open, navigates to the editor or notebook tab that contained the query when it ran\. The contents of the editor or notebook might have changed after the query ran\.
++ **Open saved query** – Navigates to the editor or notebook tab and opens the query\.
+
+You can also view the history of queries run in an **Editor** tab or the history of queries run in a **Notebook** tab\. To see a history of queries in a tab, choose **Tab history**\. Within the tab history, you can do the following operations:
++ **Copy query** – Copies the query version SQL content to the clipboard\.
++ **Open query in a new tab** – Opens a new editor tab and primes it with the chosen query\. To run the query, you must choose the cluster or workgroup and database\.
++ **View query details** – Displays a query details page with more information about the query that ran\.
+
 ## Loading sample data<a name="query-editor-v2-loading-sample-data"></a>
 
-The query editor v2 comes with sample data and queries available to be loaded into a sample database and corresponding schema\. 
+The query editor v2 comes with sample data and notebooks available to be loaded into a sample database and corresponding schema\. 
 
-To load sample data, choose the ![\[External\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/external.png) icon associated with the sample data you want to load\. The query editor v2 then loads the data into a schema in database `sample_data_dev` and creates a folder of saved queries in your **Queries** folder\. 
+To load sample data, choose the ![\[External\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/external.png) icon associated with the sample data you want to load\. The query editor v2 then loads the data into a schema in database `sample_data_dev` and creates a folder of saved notebooks in your **Notebooks** folder\. 
 
 The following sample datasets are available\.
 
 **tickit**  
-Most of the examples in the Amazon Redshift documentation use a sample data called `tickit`\. This data consists of seven tables: two fact tables and five dimensions\. When you load this data the schema `tickit` is updated with sample data\. For more information about the `tickit` data, see [Sample database](https://docs.aws.amazon.com/redshift/latest/dg/c_sampledb.html) in the *Amazon Redshift Database Developer Guide*\. 
+Most of the examples in the Amazon Redshift documentation use sample data called `tickit`\. This data consists of seven tables: two fact tables and five dimensions\. When you load this data the schema `tickit` is updated with sample data\. For more information about the `tickit` data, see [Sample database](https://docs.aws.amazon.com/redshift/latest/dg/c_sampledb.html) in the *Amazon Redshift Database Developer Guide*\. 
 
 **tpch**  
 This data is used for a decision support benchmark\. When you load this data the schema `tpch` is updated with sample data\. For more information about the `tpch` data, see [TPC\-H](http://www.tpc.org/tpch/)\. 
@@ -195,7 +246,7 @@ You can load data into an existing table from Amazon S3\.
 
 **To load data into an existing table**
 
-The COPY command is used by query editor v2 to load data from Amazon S3\. The COPY command generated and used in the query editor v2 Load data wizard supports all the parameters available to the COPY command syntax to copy from Amazon S3\. For information about the COPY command and its options used to load data from Amazon S3, see [COPY from Amazon Simple Storage Service](https://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-data-source-s3.html) in the *Amazon Redshift Database Developer Guide*\. 
+The COPY command is used by query editor v2 to load data from Amazon S3\. The COPY command generated and used in the query editor v2 load data wizard supports all the parameters available to the COPY command syntax to copy from Amazon S3\. For information about the COPY command and its options used to load data from Amazon S3, see [COPY from Amazon Simple Storage Service](https://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-data-source-s3.html) in the *Amazon Redshift Database Developer Guide*\. 
 
 1. Confirm that the table is already created in the database where you want to load data\. The query editor v2 can only load data into an existing table\.
 
@@ -225,42 +276,13 @@ The COPY command is used by query editor v2 to load data from Amazon S3\. The CO
 
    When the load completes, the query editor displays with the generated COPY command that was used to load your data\. The **Result** of the COPY is shown\. If successful, you can now use SQL to select data from the loaded table\. When there is an error, query the system view STL\_LOAD\_ERRORS to get more details\. For information about COPY command errors, see [STL\_LOAD\_ERRORS](https://docs.aws.amazon.com/redshift/latest/dg/r_STL_LOAD_ERRORS.html) in the *Amazon Redshift Database Developer Guide*\.
 
-## Working with SQL notebooks \(preview\)<a name="query-editor-v2-notebooks"></a>
+## Changing account settings<a name="query-editor-v2-settings"></a>
 
-
-|  | 
-| --- |
-| This is prerelease documentation for query editor v2 notebooks, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only in test environments, and not in production environments\. For preview terms and conditions, see Beta Service Participation in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
-
-You can use SQL notebooks to organize, annotate, and share multiple SQL queries in a single document\. You can add multiple SQL query and Markdown cells to an SQL notebook\. SQL notebooks provide a way to group queries and explanations associated with a data analysis in a single document by using multiple query and Markdown cells\. You can add text and format the appearance using Markdown syntax to provide context and additional information for your data analysis tasks\. You can share your SQL notebooks with team members\.
-
-To use the SQL notebook feature, you must add a policy for the SQL notebook \(preview\) feature to a principal \(an IAM user or IAM role\) that already has one of the query editor v2 managed policies\. For more information, see [Accessing the query editor v2](query-editor-v2-getting-started.md#query-editor-v2-configure)\.
-
-For a demo of notebooks, watch the following video\. 
-
-[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/8mPocHMP0C8/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/8mPocHMP0C8)
-
-**To create an SQL notebook**
-
-1. Choose ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) and then choose **Notebook**\.
-
-   By default, an SQL query cell appears in the new SQL notebook\.
-
-1. \(Optionally\) Choose **Rename** and enter a name for the SQL notebook\.
-
-1. In the SQL query cell, do one of the following:
-   + Enter a query\.
-   + Paste a query that you copied\.
-
-1. \(Optionally\) Choose **Add markdown** to add a Markdown cell where you can provide descriptive or explanatory text using standard Markdown syntax\. 
-
-1. \(Optionally\) Choose **Add SQL** and **Add markdown** to insert additional SQL and Markdown text cells\. 
-
-**To open a notebook**
-
-1. From the navigator menu, choose **Notebooks**\.
-
-1. Choose the SQL notebook that you want to open and double\-click it\.
-
-**To share an SQL notebook with your team**
-+ Choose **Share to *team\-name***\.
+A user with the right IAM permissions can view and change **Account settings** for other users in the same AWS account\. This administrator can view or set the following:
++ The maximum concurrent database connections per user in the account\. This includes connections for **Isolated sessions**\. When you change this value, it can take 10 minutes for the change to take effect\.
++ Select whether to **Authenticate with IAM credentials**:
+  + When you select this option, then account users are shown **Temporary credentials using your IAM identity** on the connection window to authenticate with their IAM credentials\.
+  + When you deselect this option, then account users are shown **Temporary credentials** on the connection window to authenticate with database user name and password\. The default is for this option to be deselected\.
++ Allow users in the account to export an entire result set from a SQL command to a file\.
++ Load and display sample databases with some associated saved queries\.
++ View the KMS key ARN used to encrypt query editor v2 resources\.

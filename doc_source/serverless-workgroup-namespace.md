@@ -8,13 +8,13 @@ Namespace is a collection of database objects and users\. The storage\-related n
 
 Workgroup is a collection of compute resources\. The compute\-related workgroup groups together compute resources like RPUs, VPC subnet groups, and security groups\. Properties for the workgroup include network and security settings\. Other resources that are grouped under workgroups include access and usage limits\. You can configure these compute properties using the Amazon Redshift Serverless console, the AWS Command Line Interface, or the Amazon Redshift Serverless APIs\.
 
-You can create one or more namespaces and workgroups\. A namespace can exist without any workgroup associated with it\. Each namespace can have only one workgroup associated with it\. Conversely, each workgroup can be associated with only one namespace\.
+You can create one or more namespaces and workgroups\. Each namespace can have only one workgroup associated with it\. Conversely, each workgroup can be associated with only one namespace\.
 
 ### Getting started with Amazon Redshift Serverless using the console<a name="serverless-workgroups-and-namespaces-console"></a>
 
 Setting up Amazon Redshift Serverless involves walking through several configuration steps\. When you follow the steps to set up Amazon Redshift Serverless, you create a namespace and workgroup, and associate them with each other\. To get started setting Amazon Redshift Serverless configuration using the Amazon Redshift Serverless console, you can choose **Get started with Amazon Redshift Serverless** to set up Amazon Redshift Serverless and begin to interact with it\. You can choose an environment with default settings, which makes for quicker setup, or explicitly configure the settings per your organization's requirements\. During this process, you specify settings for your workgroup and namespace\.
 
-For more information about getting started, see [Setting up Amazon Redshift Serverless using the console](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-console-getting-started.html), which goes into detail about the choices and settings\. After you set up the environment, [Configuring a workgroup](serverless-workgroup-describe.md) and [Configuring a namespace ](serverless-console-namespace-config.md) help you get familiar with the settings\.
+After you set up the environment, [Workgroup properties](serverless-console-workgroups.md#serverless-workgroup-describe) and [Namespace properties ](serverless-console-configure-namespace-working.md#serverless-console-namespace-config) help you get familiar with the settings\.
 
 ### Managing Amazon Redshift Serverless using the AWS Command Line Interface and Amazon Redshift Serverless API<a name="serverless-workgroups-and-namespaces-cli"></a>
 

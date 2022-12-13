@@ -365,7 +365,7 @@ The arguments for `--parameters` are stored in file `modify_pg.json`\. The file 
 #### Rules for configuring WLM by using the AWS CLI in the command line on the Linux and macOS X operating systems<a name="wlm-cli-linux-and-mac"></a>
 
 Follow these rules to run an AWS CLI command with parameters on one line:
-+ The entire JSON structure must be enclosed in single quotation marks \('\) and brackets \(\[ \]\)\.
++ The entire JSON structure must be enclosed in single quotation marks \('\) and one set of brackets \(\[ \]\)\. 
 + All parameter names and parameter values must be enclosed in double quotation marks \("\)\.
 + Within the `ParameterValue` value, you must enclose the entire nested structure in double\-quotation marks \("\) and brackets \(\[ \]\)\.
 + Within the nested structure, each of the properties and values for each queue must be enclosed in curly braces \(\{ \}\)\.
@@ -377,7 +377,7 @@ Follow these rules to run an AWS CLI command with parameters on one line:
 #### Rules for configuring WLM by using the AWS CLI in Windows PowerShell on Microsoft Windows operating systems<a name="wlm-cli-windows-powershell"></a>
 
 Follow these rules to run an AWS CLI command with parameters on one line:
-+ The entire JSON structure must be enclosed in single quotation marks \('\) and brackets \(\[ \]\)\.
++ The entire JSON structure must be enclosed in single quotation marks \('\) and one set of brackets \(\[ \]\)\.
 + All parameter names and parameter values must be enclosed in double quotation marks \("\)\.
 + Within the `ParameterValue` value, you must enclose the entire nested structure in double\-quotation marks \("\) and brackets \(\[ \]\)\.
 + Within the nested structure, each of the properties and values for each queue must be enclosed in curly braces \(\{ \}\)\.
@@ -389,7 +389,7 @@ Follow these rules to run an AWS CLI command with parameters on one line:
 #### Rules for configuring WLM by using the command prompt on Windows operating systems<a name="wlm-cli-cmd-windows"></a>
 
 Follow these rules to run an AWS CLI command with parameters on one line:
-+ The entire JSON structure must be enclosed in double\-quotation marks \("\) and brackets \(\[ \]\)\.
++ The entire JSON structure must be enclosed in double\-quotation marks \("\) and one set of brackets \(\[ \]\)\.
 + All parameter names and parameter values must be enclosed in double quotation marks \("\)\.
 + Within the `ParameterValue` value, you must enclose the entire nested structure in double\-quotation marks \("\) and brackets \(\[ \]\)\.
 + Within the nested structure, each of the properties and values for each queue must be enclosed in curly braces \(\{ \}\)\.

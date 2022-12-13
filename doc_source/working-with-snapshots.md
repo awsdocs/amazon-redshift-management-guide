@@ -1,7 +1,7 @@
-# Amazon Redshift snapshots<a name="working-with-snapshots"></a>
+# Amazon Redshift snapshots and backups<a name="working-with-snapshots"></a>
 
 **Topics**
-+ [Overview](#working-with-snapshots-overview)
++ [Overview of snapshots](#working-with-snapshots-overview)
 + [Automated snapshots](#about-automated-snapshots)
 + [Automated snapshot schedules](#automated-snapshot-schedules)
 + [Snapshot schedule format](#working-with-snapshot-scheduling)
@@ -15,8 +15,9 @@
 + [Managing snapshots using the console](managing-snapshots-console.md)
 + [Managing snapshots using the AWS SDK for Java](managing-snapshots-java.md)
 + [Managing snapshots using the AWS CLI and Amazon Redshift API](manage-snapshots-api-cli.md)
++ [Working with AWS Backup](managing-aws-backup.md)
 
-## Overview<a name="working-with-snapshots-overview"></a>
+## Overview of snapshots<a name="working-with-snapshots-overview"></a>
 
 Snapshots are point\-in\-time backups of a cluster\. There are two types of snapshots: *automated* and *manual*\. Amazon Redshift stores these snapshots internally in Amazon S3 by using an encrypted Secure Sockets Layer \(SSL\) connection\. 
 
@@ -272,7 +273,7 @@ Restoring a table from a snapshot has the following limitations:
 1. Enter the information about which snapshot, source table, and target table to use, and then choose **Restore table**\. 
 
 **Example: Restoring a table from a snapshot using the AWS CLI**  
-The following example uses the `restore-table-from-cluster-snapshot` AWS CLI command to restore the `my-source-table` table from the `sample-database` schema in the `my-snapshot-id`\. The example restores the snapshot to the `mycluster-example` cluster with a new table name of `my-new-table`\.  
+The following example uses the `restore-table-from-cluster-snapshot` AWS CLI command to restore the `my-source-table` table from the `sample-database` schema in the `my-snapshot-id`\. You can use the AWS CLI command `describe-table-restore-status` to review the status of your restore operation\. The example restores the snapshot to the `mycluster-example` cluster with a new table name of `my-new-table`\.  
 
 ```
 aws redshift restore-table-from-cluster-snapshot --cluster-identifier mycluster-example 

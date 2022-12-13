@@ -1,17 +1,5 @@
 # Amazon Redshift Serverless console<a name="serverless-console"></a>
 
-The Amazon Redshift Serverless console navigation menu contains the following pages and links: 
-+ **Query editor** link to open the Amazon Redshift query editor v2 to manage and query the data in your Amazon Redshift Serverless instance\. The query editor v2 is an SQL client where you can run queries and interact with the database\.
-+ **Workgroup configuration** to view, create, and update workgroups\. For more information about workgroups, see [Overview of Amazon Redshift Serverless workgroups and namespaces](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-workgroup-namespace.html)\.
-+ **Namespace configuration** to view and delete namespaces\. For more information about namespaces, see [Overview of Amazon Redshift Serverless workgroups and namespaces](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-workgroup-namespace.html)\.
-+ **Data backup** to view, create, and manage snapshots and recovery points\.
-+ **Query and database monitoring** to review and analyze your query activity\.
-+ **Resource monitoring** to review your capacity and compute usage\.
-+ **Datashares** to manage account level data sharing\. This page is where you can manage the datashares available in Amazon Redshift Serverless\. For more information, see [Data sharing in Amazon Redshift Serverless](serverless-datasharing.md)\.
-+ **Alarms** to let you track metrics listed in [ Audit logging for Amazon Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-audit-logging.html)\.
-+ **Provisioned clusters dashboard** to see a summary of your provisioned clusters and open the Amazon Redshift console\.
-+ **Documentation** link to open the documentation landing page\.
-
 On the **Serverless dashboard** page, you can view a summary of your resources and graphs of your usage\. 
 + **Namespace overview** – This section shows the amount of snapshots and datashares within your namespace\.
 + **Workgroups** – This section shows all of the workgroups within Amazon Redshift Serverless\.
@@ -25,7 +13,7 @@ On the **Data backup** tab you can work with the following:
 + **Recovery points** – Displays the recovery points that are automatically created so you can recover from an accidental write or delete within the last 24 hours\. To recover data, you can restore a recovery point to any available namespace\. You can create a snapshot from a recovery point if you want to keep a point of recovery for a longer time period\. The default retention period is `indefinitely`, but you can configure the retention period to be any value between 1 and 3653 days\.
 
 On the **Data access** tab you can work with the following:
-+ **Network and security** settings – You can view VPC\-related values, AWS KMS encryption values, and audit logging values\. You can update only audit logging\. For more information on setting network and security settings using the console, see [Configuring Amazon Redshift Serverless](serverless-console-configuration.md)\.
++ **Network and security** settings – You can view VPC\-related values, AWS KMS encryption values, and audit logging values\. You can update only audit logging\. For more information on setting network and security settings using the console, see [Managing usage limits, query limits, and other administrative tasks](serverless-console-configuration.md)\.
 + **AWS KMS key** – The AWS KMS key used to encrypt resources in Amazon Redshift Serverless\. 
 + **Permissions** – You can manage the IAM roles that Amazon Redshift Serverless can assume to use resources on your behalf\. For more information, see [Identity and access management in Amazon Redshift Serverless](serverless-security.md#serverless-iam)\.
 + **Redshift\-managed VPC endpoints** – You can access your Amazon Redshift Serverless instance from another VPC or subnet\. For more information, see [Connecting to Amazon Redshift Serverless from a Redshift managed VPC endpoint](serverless-connecting.md#database-connect-from-managed-vpc-endpoint)\.
@@ -36,7 +24,7 @@ On the **Limits** tab, you can work with the following:
   + Send an alert\.
   + Log an entry to a system table\.
   + Turn off user queries\.
-+  **Query limits** – The maximum time that a query runs before Amazon Redshift Serverless stops the query\. 
++  **Query limits** – You can add a limit to monitor performance and limits\. For more information about query monitoring limits, see [WLM query monitoring rules](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html)\. 
 
 For more information, see [Understanding Amazon Redshift Serverless capacity](serverless-capacity.md#serverless-rpu-capacity)\.
 

@@ -78,7 +78,7 @@ If you own a cluster or you have been granted access to it, you can create a Red
 
    The subnet group in **Subnet group** defines the subnets and IP addresses where Amazon Redshift deploys the endpoint\. Amazon Redshift chooses a subnet that has IP addresses available for the network interface associated with the endpoint\. 
 
-   The optional security group in **Security group** defines the ports, protocols, and sources for inbound traffic that you are authorizing for your endpoint\. Commonly, you allow access to port 5439 to the security group or the CIDR range where your workloads run\.  
+   The security group rules in Security group define the ports, protocols, and sources for inbound traffic that you are authorizing for your endpoint\. Depending on the port you selected when creating, modifying, or migrating the cluster, you allow access to the selected port via the security group or the CIDR range where your workloads run\.  
 
 1. Choose **Create endpoint** to create the endpoint\. 
 

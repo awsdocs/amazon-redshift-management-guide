@@ -1,8 +1,8 @@
-# Enabling enhanced VPC routing<a name="enhanced-vpc-enabling-cluster"></a>
+# Enhanced VPC routing<a name="enhanced-vpc-enabling-cluster"></a>
 
-You can enable enhanced VPC routing when you create a cluster, or you can modify an existing cluster to enable enhanced VPC routing\.
+You can turn on enhanced VPC routing when you create or modify a cluster, and when you create or modify a Amazon Redshift Serverless workgroup\.
 
-To work with enhanced VPC routing, your cluster must meet the following requirements and constraints:
+To work with enhanced VPC routing for a cluster, your cluster must meet the following requirements and constraints:
 + Your cluster must be in a VPC\. 
 
   If you attach an Amazon S3 VPC endpoint, your cluster uses the VPC endpoint only for access to Amazon S3 buckets in the same AWS Region\. To access buckets in another AWS Region \(not using the VPC endpoint\) or to access other AWS services, make your cluster publicly accessible or use a [network address translation \(NAT\) gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)\. For more information, see [Creating a cluster in a VPC](getting-started-cluster-in-vpc.md)\.
@@ -14,18 +14,24 @@ To work with enhanced VPC routing, your cluster must meet the following requirem
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
-1. On the navigation menu, choose **Clusters**, then choose **Create cluster** and enter the **Cluster details** properties\. 
+1. On the navigation menu, choose **Provisioned clusters dashboard**, then choose **Create cluster** and enter the **Cluster details** properties\. 
 
 1. To display the **Additional configurations** section, choose to switch off **Use defaults**\. 
 
-1. To enable **Enhanced VPC routing** select **Enabled** to force cluster traffic through the VPC\. 
+1. Navigate to the **Network and security** section\.
+
+1. To turn on **Enhanced VPC routing**, choose **Turn on** to force cluster traffic through the VPC\. 
 
 1. Choose **Create cluster** to create the cluster\. The cluster might take several minutes to be ready to use\.
 
-You can use the following AWS Command Line Interface \(AWS CLI\) operations for Amazon Redshift to enable enhanced VPC routing:
-+ [create\-cluster ](https://docs.aws.amazon.com/cli/latest/reference/redshift/create-cluster.html)
-+ [modify\-cluster](https://docs.aws.amazon.com/cli/latest/reference/redshift/modify-cluster.html)
+**To create a Amazon Redshift Serverless workgroup with enhanced VPC routing**
 
- You can use the following Amazon Redshift API actions to enable enhanced VPC routing:
-+ [CreateCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateCluster.html)
-+ [ModifyCluster](https://docs.aws.amazon.com/redshift/latest/APIReference/API_ModifyCluster.html)
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
+
+1. On the navigation menu, choose **Serverless dashboard**, then choose **Create workgroup** and enter the properties for your workgroup\. 
+
+1. Navigate to the **Network and security** section\.
+
+1. Select **Turn on enhanced VPC routing** to route network traffic through the VPC\. 
+
+1. Choose **Next** and finish entering your workgroup properties until you **Create** the workgroup\.

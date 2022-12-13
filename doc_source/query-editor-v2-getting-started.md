@@ -11,7 +11,9 @@ Amazon Redshift query editor v2 supports authentication, encryption, isolation, 
 + [Encryption in transit](security-encryption-in-transit.md)
 + [Configuration and vulnerability analysis in Amazon Redshift](security-vulnerability-analysis-and-management.md)
 
-The query editor v2 has adjustable quotas for some of its resources\. For more information, see [Amazon Redshift quotas](amazon-redshift-limits.md#amazon-redshift-limits-quota)\. 
+AWS CloudTrail captures API calls and related events made by or on behalf of your AWS account and delivers the log files to an Amazon S3 bucket that you specify\. You can identify which users and accounts called AWS, the source IP address from which the calls were made, and when the calls occurred\. To learn more about how query editor v2 is integrated with AWS CloudTrail, see [Logging with CloudTrail](logging-with-cloudtrail.md)\. For more information about CloudTrail, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)\. 
+
+The query editor v2 has adjustable quotas for some of its resources\. For more information, see [Quotas for Amazon Redshift objects](amazon-redshift-limits.md#amazon-redshift-limits-quota)\. 
 
 ## Resources created with query editor v2<a name="query-editor-v2-resources"></a>
 
@@ -96,74 +98,7 @@ For a principal \(an IAM user or IAM role\) to connect to an Amazon Redshift clu
 
 For a principal \(an IAM user or IAM role\) to turn on the ability in the **Account settings** page for others in the account to **Export result set**, they need the `sqlworkbench:UpdateAcountExportSettings` permission\. This permission is included in the `AmazonRedshiftQueryEditorV2FullAccess` AWS managed policy\.
 
-For a principal \(an IAM user or IAM role\) to use the SQL Notebooks \(preview\) feature, you must add the following policy to one of the principal's existing query editor v2 managed policies\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "AmazonRedshiftQueryEditorV2NonResourceLevelPermissions",
-            "Effect": "Allow",
-            "Action": [
-                "sqlworkbench:ListNotebooks"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Sid": "AmazonRedshiftQueryEditorV2CreateOwnedResourcePermissions",
-            "Effect": "Allow",
-            "Action": [
-                "sqlworkbench:CreateNotebook"
-            ],
-            "Resource": "*",
-            "Condition": {
-                "StringEquals": {
-                    "aws:RequestTag/sqlworkbench-resource-owner": "${aws:userid}"
-                }
-            }
-        },
-        {
-            "Sid": "AmazonRedshiftQueryEditorV2OwnerSpecificPermissions",
-            "Effect": "Allow",
-            "Action": [
-                "sqlworkbench:GetNotebook",
-                "sqlworkbench:UpdateNotebook",
-                "sqlworkbench:DeleteNotebook",
-                "sqlworkbench:CreateNotebookCell",
-                "sqlworkbench:DeleteNotebookCell",
-                "sqlworkbench:UpdateNotebookCellContent",
-                "sqlworkbench:UpdateNotebookCellLayout",
-                "sqlworkbench:BatchGetNotebookCell",
-                "sqlworkbench:AssociateNotebookWithTab"
-            ],
-            "Resource": "*",
-            "Condition": {
-                "StringEquals": {
-                    "aws:ResourceTag/sqlworkbench-resource-owner": "${aws:userid}"
-                }
-            }
-        },
-        {
-            "Sid": "AmazonRedshiftQueryEditorV2TeamReadAccessPermissions",
-            "Effect": "Allow",
-            "Action": [
-                "sqlworkbench:GetNotebook",
-                "sqlworkbench:BatchGetNotebookCell",
-                "sqlworkbench:AssociateNotebookWithTab"
-            ],
-            "Resource": "*",
-            "Condition": {
-                "StringEquals": {
-                    "aws:ResourceTag/sqlworkbench-team": "${aws:PrincipalTag/sqlworkbench-team}"
-                }
-            }
-        }
-    ]
-}
-```
-
-For more information about managed policies in Amazon Redshift, see [AWS\-managed \(predefined\) policies for Amazon Redshift](redshift-iam-access-control-identity-based.md#redshift-policy-resources.managed-policies)\.
+As new features are added to query editor v2, the AWS managed policies are updated as needed\. If you create your own policy based on the permissions allowed and denied in the provided managed policies, edit your policies to keep them up to date with changes to the managed policies\. For more information about managed policies in Amazon Redshift, see [AWS\-managed \(predefined\) policies for Amazon Redshift](redshift-iam-access-control-identity-based.md#redshift-policy-resources.managed-policies)\.
 
 You can use the IAM console to attach IAM policies to an IAM user or an IAM role\. After you attach a policy to a role, you can attach the role to an IAM user\.
 

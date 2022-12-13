@@ -59,7 +59,7 @@ To create a system DSN entry for an ODBC connection:
  Specify the endpoint host for your Amazon Redshift cluster\. You can find this information in the Amazon Redshift console on the cluster's details page\. For more information, see [ Configuring connections in Amazon Redshift ](https://docs.aws.amazon.com/redshift/latest/mgmt/configuring-connections.html)\. 
 
 **Port**  
- Enter the port number that the database uses\. By default, Amazon Redshift uses 5439, but you should use the port that the cluster was configured to use when it was launched\. 
+ Enter the port number that the database uses\. Depending on the port you selected when creating, modifying or migrating the cluster, allow access to the selected port\.  
 
 **Database**  
  Enter the name of the Amazon Redshift database\. If you launched your cluster without specifying a database name, enter `dev`\. Otherwise, use the name that you chose during the launch process\. If you followed the *Amazon Redshift Getting Started Guide*, enter `dev`\. 

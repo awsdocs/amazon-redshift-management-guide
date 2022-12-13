@@ -4,7 +4,7 @@ In this section, you can find how to configure your system to generate temporary
 
 At a high level, the process flows as follows:
 
-1. [Step 1: Create an IAM role for IAM Single Sign\-On \(SSO\) access](generating-iam-credentials-sso-role.md)
+1. [Step 1: Create an IAM role for IAM single sign\-on access](generating-iam-credentials-sso-role.md)
 
    \(Optional\) You can authenticate users for access to an Amazon Redshift database by integrating IAM authentication and a third\-party identity provider \(IdP\)\. 
 

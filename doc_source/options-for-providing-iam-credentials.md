@@ -59,9 +59,9 @@ The following table lists the JDBC and ODBC options for providing IAM credential
 
 ## Using a credentials provider plugin<a name="using-credentials-provider-plugin"></a>
 
-Amazon Redshift uses credentials provider plugins for SSO authentication\.
+Amazon Redshift uses credentials provider plugins for single sign\-on authentication\.
 
-To support SSO authentication, Amazon Redshift provides the Azure AD plugin for Microsoft Azure Active Directory\. For information on how to configure this plugin, see [Setting up JDBC or ODBC single sign\-on authentication with Microsoft Azure AD](#setup-azure-ad-identity-provider)\.
+To support single sign\-on authentication, Amazon Redshift provides the Azure AD plugin for Microsoft Azure Active Directory\. For information on how to configure this plugin, see [Setting up JDBC or ODBC single sign\-on authentication with Microsoft Azure AD](#setup-azure-ad-identity-provider)\.
 
 ### Setting up multi\-factor authentication<a name="setting_mfa"></a>
 
@@ -75,7 +75,7 @@ With the browser SAML plugin, SAML authentication flows like this:
 
 1. The plugin launches a local server to listen to incoming connections on the localhost\.
 
-1. The plugin launches a web browser to request a SAML response over HTTPS from the specified SSO login URL federated identity provider endpoint\.
+1. The plugin launches a web browser to request a SAML response over HTTPS from the specified single sign\-on login URL federated identity provider endpoint\.
 
 1. The web browser follows the link and prompts the user to enter credentials\.
 
@@ -115,7 +115,7 @@ See the following sections:
 
   Ping is supported only with the predetermined PingOne IdP Adapter using Forms authentication\. 
 
-  For more information, see [Setting up JDBC or ODBC Single Sign\-on authentication with Ping Identity](#setup-pingfederate-identity-provider)\.
+  For more information, see [Setting up JDBC or ODBC single sign\-on authentication with Ping Identity](#setup-pingfederate-identity-provider)\.
 + Okta 
 
   Okta is supported only for the Okta\-supplied application used with the AWS Management Console\. 
@@ -160,7 +160,7 @@ To learn how to federate Amazon Redshift access with Microsoft Azure AD single s
 
 1. Choose **SAML**\. The Amazon Web Services \(AWS\) \| SAML\-based Sign\-on page appears\.
 
-1. Choose **Yes** to proceed to the Set up Single Sign\-On with SAML page\. This page shows the list of pre\-configured AWS SSO\-related attributes\.
+1. Choose **Yes** to proceed to the Set up Single Sign\-On with SAML page\. This page shows the list of pre\-configured single sign\-on related attributes\.
 
 1. For **Basic SAML Configuration**, choose the edit icon and choose **Save**\.
 
@@ -195,7 +195,7 @@ To learn how to federate Amazon Redshift access with Microsoft Azure AD single s
 
 1. Under **App Registration > ***your\-application\-name*** > Authentication**, add **Mobile And Desktop Application**\. Specify the URL as http://localhost/redshift/\.
 
-1. In the **SAML Signing Certificate** section, choose **Download** to download and save the federation metadata XML file for use when you create an IAM SAML identity provider\. This file is used to create the AWS SSO federated identity\.
+1. In the **SAML Signing Certificate** section, choose **Download** to download and save the federation metadata XML file for use when you create an IAM SAML identity provider\. This file is used to create the single sign\-on federated identity\.
 
 1. Create an IAM SAML identity provider on the IAM console\. The metadata document that you provide is the federation metadata XML file that you saved when you set up Azure Enterprise Application\. For detailed steps, see [Creating and Managing an IAM Identity Provider \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml.html#idp-manage-identityprovider-console) in the *IAM User Guide*\. 
 
@@ -291,16 +291,16 @@ To learn how to federate Amazon Redshift access with Microsoft Azure AD single s
 
   1. Choose **Extended Properties** to add additional information to the connection properties, as described following\.
 
-     For Azure AD SSO configuration, add additional information as follows:
+     For Azure AD single sign\-on configuration, add additional information as follows:
      + For **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.AzureCredentialsProvider**\. This value specifies to the driver to use Azure AD Single Sign\-On as the authentication method\. 
      + For **idp\_tenant**, enter ***your\-idp\-tenant***\. Used only for Microsoft Azure AD\. This is the tenant name of your company configured on Azure AD\. This value can either be the tenant name or the tenant unique ID with hyphens\.
      + For **client\_secret**, enter ***your\-azure\-redshift\-application\-client\-secret***\. Used only for Microsoft Azure AD\. This is your client secret of the Amazon Redshift application that you created when setting up your Azure Single Sign\-On configuration\. This is only applicable to the com\.amazon\.redshift\.plugin\.AzureCredentialsProvider plugin\. 
      + For **client\_id**, enter ***your\-azure\-redshift\-application\-client\-id***\. Used only for Microsoft Azure AD\. This is the client ID \(with hyphens\) of the Amazon Redshift application that you created when setting up your Azure Single Sign\-On configuration\. 
 
-     For Azure AD SSO with MFA configuration, add additional information to the connection properties as follows:
-     + For **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserAzureCredentialsProvider**\. This value specifies to the driver to use Azure AD SSO with MFA as the authentication method\. 
+     For Azure AD single sign\-on with MFA configuration, add additional information to the connection properties as follows:
+     + For **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserAzureCredentialsProvider**\. This value specifies to the driver to use Azure AD single sign\-on with MFA as the authentication method\. 
      + For **idp\_tenant**, enter ***your\-idp\-tenant***\. Used only for Microsoft Azure AD\. This is the tenant name of your company configured on Azure AD\. This value can either be the tenant name or the tenant unique ID with hyphens\.
-     + For **client\_id**, enter ***your\-azure\-redshift\-application\-client\-id***\. This option is used only for Microsoft Azure AD\. This is the client ID \(with hyphens\) of the Amazon Redshift application that you created when setting up your Azure AD SSO with MFA configuration\. 
+     + For **client\_id**, enter ***your\-azure\-redshift\-application\-client\-id***\. This option is used only for Microsoft Azure AD\. This is the client ID \(with hyphens\) of the Amazon Redshift application that you created when setting up your Azure AD single sign\-on with MFA configuration\. 
      + For **listen\_port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. 
      + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the number of seconds to wait before timing out when the IdP server sends back a response\. The minimum number of seconds must be 10\. If establishing the connection takes longer than this threshold, then the connection is aborted\.
 
@@ -316,8 +316,8 @@ To learn how to federate Amazon Redshift access with Microsoft Azure AD single s
 
   On Windows, in the **Amazon Redshift ODBC Driver DSN Setup** page, under **Connection Settings**, enter the following information: 
   + For **Data Source Name**, enter ***your\-DSN***\. This specifies the data source name used as the ODBC profile name\. 
-  + For **Auth type** for Azure AD SSO configuration, choose **Identity Provider: Azure AD**\. This is the authentication method that the ODBC driver uses to authenticate using Azure single sign\-on\.
-  + For **Auth type** for Azure AD SSO with MFA configuration, choose **Identity Provider: Browser Azure AD**\. This is the authentication method that the ODBC driver uses to authenticate using Azure single sign\-on with MFA\.
+  + For **Auth type** for Azure AD single sign\-on configuration, choose **Identity Provider: Azure AD**\. This is the authentication method that the ODBC driver uses to authenticate using Azure single sign\-on\.
+  + For **Auth type** for Azure AD single sign\-on with MFA configuration, choose **Identity Provider: Browser Azure AD**\. This is the authentication method that the ODBC driver uses to authenticate using Azure single sign\-on with MFA\.
   + For **Cluster ID**, enter ***your\-cluster\-identifier***\. 
   + For **Region**, enter ***your\-cluster\-region***\.
   + For **Database**, enter ***your\-database\-name***\.
@@ -337,8 +337,8 @@ All entries are case\-insensitive\.
   + For **database**, enter ***your\-database\-name***\. This is the name of the database that you're trying to access on the Amazon Redshift cluster\.
   + For **locale**, enter **en\-us**\. This is the language that error messages display in\.
   + For **iam**, enter **1**\. This value specifies to the driver to authenticate using IAM credentials\.
-  + For **plugin\_name** for Azure AD SSO configuration, enter **AzureAD**\. This specifies to the driver to use Azure Single Sign\-On as the authentication method\. 
-  + For **plugin\_name** for Azure AD SSO with MFA configuration, enter **BrowserAzureAD**\. This specifies to the driver to use Azure Single Sign\-On with MFA as the authentication method\. 
+  + For **plugin\_name** for Azure AD single sign\-on configuration, enter **AzureAD**\. This specifies to the driver to use Azure Single Sign\-On as the authentication method\. 
+  + For **plugin\_name** for Azure AD single sign\-on with MFA configuration, enter **BrowserAzureAD**\. This specifies to the driver to use Azure Single Sign\-On with MFA as the authentication method\. 
   + For **uid**, enter ***your\-azure\-username***\. This is the user name of the Microsoft Azure account you are using for single sign\-on that has permission to the cluster you are trying to authenticate against\. Use this only for **plugin\_name** is **AzureAD**\.
   + For **pwd**, enter ***your\-azure\-password***\. Use this only for **plugin\_name** is **AzureAD**\. 
   + For **idp\_tenant**, enter ***your\-idp\-tenant***\. This is the tenant name of your company configured on your IdP \(Azure\)\. This value can either be the tenant name or the tenant unique ID with hyphens\.
@@ -455,9 +455,9 @@ You can use AD FS as an identity provider \(IdP\) to access your Amazon Redshift
 1. Create an IAM policy that you can attach to the IAM role that you created for SAML 2\.0 federation on the IAM console\. For detailed steps, see [Creating IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) in the *IAM User Guide*\. For an Azure AD example, see [Setting up JDBC or ODBC single sign\-on authentication with Microsoft Azure AD](#setup-azure-ad-identity-provider)\. 
 
 **To set up JDBC for authentication to AD FS**
-+ Configure your database client to connect to your cluster through JDBC using AD FS SSO\. 
++ Configure your database client to connect to your cluster through JDBC using AD FS single sign\-on\. 
 
-  You can use any client that uses a JDBC driver to connect using AD FS SSO or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a connection for JDBC driver version 2\.1 for Amazon Redshift](jdbc20-install.md)\.
+  You can use any client that uses a JDBC driver to connect using AD FS single sign\-on or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a connection for JDBC driver version 2\.1 for Amazon Redshift](jdbc20-install.md)\.
 
   For example, you can use SQLWorkbench/J as the client\. When you configure SQLWorkbench/J, the URL of your database uses the following format\.
 
@@ -479,10 +479,10 @@ You can use AD FS as an identity provider \(IdP\) to access your Amazon Redshift
      + For **Drivers**, choose **Amazon Redshift \(com\.amazon\.redshift\.jdbc\.Driver\)**\.
      + For **URL**, enter **jdbc:redshift:iam//*your\-cluster\-identifier*:*your\-cluster\-region*/*your\-database\-name***\.
 
-  1. Choose **Extended Properties**\. For **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.AdfsCredentialsProvider**\. This value specifies to the driver to use AD FS SSO as the authentication method\. 
+  1. Choose **Extended Properties**\. For **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.AdfsCredentialsProvider**\. This value specifies to the driver to use AD FS single sign\-on as the authentication method\. 
 
 **To set up ODBC for authentication to AD FS**
-+ Configure your database client to connect to your cluster through ODBC using AD FS SSO\. 
++ Configure your database client to connect to your cluster through ODBC using AD FS single sign\-on\. 
 
   Amazon Redshift provides ODBC drivers for Linux, Windows, and macOS operating systems\. Before you install an ODBC driver, determine whether your SQL client tool is 32\-bit or 64\-bit\. Install the ODBC driver that matches the requirements of your SQL client tool\. 
 
@@ -493,11 +493,11 @@ You can use AD FS as an identity provider \(IdP\) to access your Amazon Redshift
 
   On Windows, in the **Amazon Redshift ODBC Driver DSN Setup** page, under **Connection Settings**, enter the following information: 
   + For **Data Source Name**, enter ***your\-DSN***\. This specifies the data source name used as the ODBC profile name\. 
-  + For **Auth type**, choose **Identity Provider: SAML**\. This is the authentication method that the ODBC driver uses to authenticate using AD FS SSO\.
+  + For **Auth type**, choose **Identity Provider: SAML**\. This is the authentication method that the ODBC driver uses to authenticate using AD FS single sign\-on\.
   + For **Cluster ID**, enter ***your\-cluster\-identifier***\. 
   + For **Region**, enter ***your\-cluster\-region***\.
   + For **Database**, enter ***your\-database\-name***\.
-  + For **User**, enter ***your\-adfs\-username***\. This is the user name for the AD FS account that you are using for SSO that has permission to the cluster that you're trying to authenticate using\. Use this only for **Auth type** is **Identity Provider: SAML**\.
+  + For **User**, enter ***your\-adfs\-username***\. This is the user name for the AD FS account that you are using for single sign\-on that has permission to the cluster that you're trying to authenticate using\. Use this only for **Auth type** is **Identity Provider: SAML**\.
   + For **Password**, enter ***your\-adfs\-password***\. Use this only for **Auth type** is **Identity Provider: SAML**\. 
 
   On macOS and Linux, edit the `odbc.ini` file as follows: 
@@ -509,9 +509,9 @@ All entries are case\-insensitive\.
   + For **locale**, enter **en\-us**\. This is the language that error messages display in\.
   + For **iam**, enter **1**\. This value specifies to the driver to authenticate using IAM credentials\.
   + For **plugin\_name**, do one of the following:
-    + For AD FS SSO with MFA configuration, enter **BrowserSAML**\. This is the authentication method that the ODBC driver uses to authenticate to AD FS\. 
-    + For AD FS SSO configuration, enter **ADFS**\. This is the authentication method that the ODBC driver uses to authenticate using Azure AD SSO\. 
-  + For **uid**, enter ***your\-adfs\-username***\. This is the user name of the Microsoft Azure account that you are using for SSO that has permission to the cluster you are trying to authenticate against\. Use this only for **plugin\_name** is **ADFS**\.
+    + For AD FS single sign\-on with MFA configuration, enter **BrowserSAML**\. This is the authentication method that the ODBC driver uses to authenticate to AD FS\. 
+    + For AD FS single sign\-on configuration, enter **ADFS**\. This is the authentication method that the ODBC driver uses to authenticate using Azure AD single sign\-on\. 
+  + For **uid**, enter ***your\-adfs\-username***\. This is the user name of the Microsoft Azure account that you are using for single sign\-on that has permission to the cluster you are trying to authenticate against\. Use this only for **plugin\_name** is **ADFS**\.
   + For **pwd**, enter ***your\-adfs\-password***\. Use this only for **plugin\_name** is **ADFS**\. 
 
   On macOS and Linux, also edit the profile settings to add the following exports\.
@@ -524,7 +524,7 @@ All entries are case\-insensitive\.
   export ODBCINSTINI=/opt/amazon/redshift/Setup/odbcinst.ini
   ```
 
-## Setting up JDBC or ODBC Single Sign\-on authentication with Ping Identity<a name="setup-pingfederate-identity-provider"></a>
+## Setting up JDBC or ODBC single sign\-on authentication with Ping Identity<a name="setup-pingfederate-identity-provider"></a>
 
 You can use Ping Identity as an identity provider \(IdP\) to access your Amazon Redshift cluster\. Following, you can find a procedure that describes how to set up a trust relationship for this purpose using the PingOne portal\. For more information about configuring AWS as a service provider for Ping Identity, see [Configuring Your SAML 2\.0 IdP with Relying Party Trust and Adding Claims](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_relying-party.html#saml_relying-party) in the *IAM User Guide*\.
 
@@ -570,9 +570,9 @@ You can use Ping Identity as an identity provider \(IdP\) to access your Amazon 
 1. Create an IAM policy that you can attach to the IAM role that you created for SAML 2\.0 federation on the IAM console\. For detailed steps, see [Creating IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) in the *IAM User Guide*\. For an Azure AD example, see [Setting up JDBC or ODBC single sign\-on authentication with Microsoft Azure AD](#setup-azure-ad-identity-provider)\. 
 
 **To set up JDBC for authentication to Ping Identity**
-+ Configure your database client to connect to your cluster through JDBC using Ping Identity SSO\. 
++ Configure your database client to connect to your cluster through JDBC using Ping Identity single sign\-on\. 
 
-  You can use any client that uses a JDBC driver to connect using Ping Identity SSO or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a connection for JDBC driver version 2\.1 for Amazon Redshift](jdbc20-install.md)\.
+  You can use any client that uses a JDBC driver to connect using Ping Identity single sign\-on or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a connection for JDBC driver version 2\.1 for Amazon Redshift](jdbc20-install.md)\.
 
   For example, you can use SQLWorkbench/J as the client\. When you configure SQLWorkbench/J, the URL of your database uses the following format\.
 
@@ -595,12 +595,12 @@ You can use Ping Identity as an identity provider \(IdP\) to access your Amazon 
      + For **URL**, enter **jdbc:redshift:iam//*your\-cluster\-identifier*:*your\-cluster\-region*/*your\-database\-name***\.
 
   1. Choose **Extended Properties** and do one of the following:
-     + For **login\_url**, enter ***your\-ping\-sso\-login\-url***\. This value specifies to the URL to use SSO as the authentication to log in\. 
-     + For Ping Identity, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.PingCredentialsProvider**\. This value specifies to the driver to use Ping Identity SSO as the authentication method\. 
-     + For Ping Identity with SSO, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserSamlCredentialsProvider**\. This value specifies to the driver to use Ping Identity PingOne with SSO as the authentication method\. 
+     + For **login\_url**, enter ***your\-ping\-sso\-login\-url***\. This value specifies to the URL to use single sign\-on as the authentication to log in\. 
+     + For Ping Identity, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.PingCredentialsProvider**\. This value specifies to the driver to use Ping Identity single sign\-on as the authentication method\. 
+     + For Ping Identity with single sign\-on, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserSamlCredentialsProvider**\. This value specifies to the driver to use Ping Identity PingOne with single sign\-on as the authentication method\. 
 
 **To set up ODBC for authentication to Ping Identity**
-+ Configure your database client to connect to your cluster through ODBC using Ping Identity PingOne SSO\. 
++ Configure your database client to connect to your cluster through ODBC using Ping Identity PingOne single sign\-on\. 
 
   Amazon Redshift provides ODBC drivers for Linux, Windows, and macOS operating systems\. Before you install an ODBC driver, determine whether your SQL client tool is 32\-bit or 64\-bit\. Install the ODBC driver that matches the requirements of your SQL client tool\. 
 
@@ -612,12 +612,12 @@ You can use Ping Identity as an identity provider \(IdP\) to access your Amazon 
   On Windows, in the **Amazon Redshift ODBC Driver DSN Setup** page, under **Connection Settings**, enter the following information: 
   + For **Data Source Name**, enter ***your\-DSN***\. This specifies the data source name used as the ODBC profile name\. 
   + For **Auth type**, do one of the following:
-    + For Ping Identity configuration, choose **Identity Provider: Ping Federate**\. This is the authentication method that the ODBC driver uses to authenticate using Ping Identity SSO\.
-    + For Ping Identity with SSO configuration, choose **Identity Provider: Browser SAML**\. This is the authentication method that the ODBC driver uses to authenticate using Ping Identity with SSO\.
+    + For Ping Identity configuration, choose **Identity Provider: Ping Federate**\. This is the authentication method that the ODBC driver uses to authenticate using Ping Identity single sign\-on\.
+    + For Ping Identity with single sign\-on configuration, choose **Identity Provider: Browser SAML**\. This is the authentication method that the ODBC driver uses to authenticate using Ping Identity with single sign\-on\.
   + For **Cluster ID**, enter ***your\-cluster\-identifier***\. 
   + For **Region**, enter ***your\-cluster\-region***\.
   + For **Database**, enter ***your\-database\-name***\.
-  + For **User**, enter ***your\-ping\-username***\. This is the user name for the PingOne account that you are using for SSO that has permission to the cluster that you're trying to authenticate using\. Use this only for **Auth type** is **Identity Provider: PingFederate**\.
+  + For **User**, enter ***your\-ping\-username***\. This is the user name for the PingOne account that you are using for single sign\-on that has permission to the cluster that you're trying to authenticate using\. Use this only for **Auth type** is **Identity Provider: PingFederate**\.
   + For **Password**, enter ***your\-ping\-password***\. Use this only for **Auth type** is **Identity Provider: PingFederate**\. 
   + For **Listen Port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies only to the Browser SAML plugin\. 
   +  For **Response Timeout**, enter ***the\-number\-of\-seconds***\. This is the number of seconds to wait before timing out when the IdP server sends back a response\. The minimum number of seconds must be 10\. If establishing the connection takes longer than this threshold, then the connection is aborted\. This applies only to the Browser SAML plugin\.
@@ -633,10 +633,10 @@ All entries are case\-insensitive\.
   + For **iam**, enter **1**\. This value specifies to the driver to authenticate using IAM credentials\.
   + For **plugin\_name**, do one of the following:
     + For Ping Identity configuration, enter **BrowserSAML**\. This is the authentication method that the ODBC driver uses to authenticate to Ping Identity\. 
-    + For Ping Identity with SSO configuration, enter **Ping**\. This is the authentication method that the ODBC driver uses to authenticate using Ping Identity with SSO\. 
-  + For **uid**, enter ***your\-ping\-username***\. This is the user name of the Microsoft Azure account you are using for SSO that has permission to the cluster you are trying to authenticate against\. Use this only for **plugin\_name** is **Ping**\.
+    + For Ping Identity with single sign\-on configuration, enter **Ping**\. This is the authentication method that the ODBC driver uses to authenticate using Ping Identity with single sign\-on\. 
+  + For **uid**, enter ***your\-ping\-username***\. This is the user name of the Microsoft Azure account you are using for single sign\-on that has permission to the cluster you are trying to authenticate against\. Use this only for **plugin\_name** is **Ping**\.
   + For **pwd**, enter ***your\-ping\-password***\. Use this only for **plugin\_name** is **Ping**\. 
-  + For **login\_url**, enter ***your\-login\-url***\. This is the Initiate SSO URL that returns the SAML Response\. This applies only to the Browser SAML plugin\.
+  + For **login\_url**, enter ***your\-login\-url***\. This is the Initiate single sign\-on URL that returns the SAML Response\. This applies only to the Browser SAML plugin\.
   + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the specified period of time in seconds to wait for response from PingOne Identity\. This applies only to the Browser SAML plugin\.
   + For **listen\_port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies only to the Browser SAML plugin\.
 
@@ -686,9 +686,9 @@ You can use Okta as an identity provider \(IdP\) to access your Amazon Redshift 
 1. Create an IAM policy that you can attach to the IAM role that you created for SAML 2\.0 federation on the IAM console\. For detailed steps, see [Creating IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) in the *IAM User Guide*\. For an Azure AD example, see [Setting up JDBC or ODBC single sign\-on authentication with Microsoft Azure AD](#setup-azure-ad-identity-provider)\. 
 
 **To set up JDBC for authentication to Okta**
-+ Configure your database client to connect to your cluster through JDBC using Okta SSO\. 
++ Configure your database client to connect to your cluster through JDBC using Okta single sign\-on\.
 
-  You can use any client that uses a JDBC driver to connect using Okta SSO or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a connection for JDBC driver version 2\.1 for Amazon Redshift](jdbc20-install.md)\.
+  You can use any client that uses a JDBC driver to connect using Okta single sign\-on or use a language like Java to connect using a script\. For installation and configuration information, see [Configuring a connection for JDBC driver version 2\.1 for Amazon Redshift](jdbc20-install.md)\.
 
   For example, you can use SQLWorkbench/J as the client\. When you configure SQLWorkbench/J, the URL of your database uses the following format\.
 
@@ -711,12 +711,12 @@ You can use Okta as an identity provider \(IdP\) to access your Amazon Redshift 
      + For **URL**, enter **jdbc:redshift:iam//*your\-cluster\-identifier*:*your\-cluster\-region*/*your\-database\-name***\.
 
   1. Choose **Extended Properties** and do one of the following:
-     + For **login\_url**, enter ***your\-okta\-sso\-login\-url***\. This value specifies to the URL to use SSO as the authentication to log in to Okta\. 
-     + For Okta SSO, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.OktaCredentialsProvider**\. This value specifies to the driver to use Okta SSO as the authentication method\. 
-     + For Okta SSO with MFA, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserSamlCredentialsProvider**\. This value specifies to the driver to use Okta SSO with MFA as the authentication method\. 
+     + For **login\_url**, enter ***your\-okta\-sso\-login\-url***\. This value specifies to the URL to use single sign\-on as the authentication to log in to Okta\. 
+     + For Okta single sign\-on, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.OktaCredentialsProvider**\. This value specifies to the driver to use Okta single sign\-on as the authentication method\. 
+     + For Okta single sign\-on with MFA, for **plugin\_name**, enter **com\.amazon\.redshift\.plugin\.BrowserSamlCredentialsProvider**\. This value specifies to the driver to use Okta single sign\-on with MFA as the authentication method\. 
 
 **To set up ODBC for authentication to Okta**
-+ Configure your database client to connect to your cluster through ODBC using Okta SSO\. 
++ Configure your database client to connect to your cluster through ODBC using Okta single sign\-on\. 
 
   Amazon Redshift provides ODBC drivers for Linux, Windows, and macOS operating systems\. Before you install an ODBC driver, determine whether your SQL client tool is 32\-bit or 64\-bit\. Install the ODBC driver that matches the requirements of your SQL client tool\. 
 
@@ -728,12 +728,12 @@ You can use Okta as an identity provider \(IdP\) to access your Amazon Redshift 
   On Windows, in the **Amazon Redshift ODBC Driver DSN Setup** page, under **Connection Settings**, enter the following information: 
   + For **Data Source Name**, enter ***your\-DSN***\. This specifies the data source name used as the ODBC profile name\. 
   + For **Auth type**, do one of the following:
-    + For Okta SSO configuration, choose **Identity Provider: Okta**\. This is the authentication method that the ODBC driver uses to authenticate using Okta SSO\.
-    + For Okta SSO with MFA configuration, choose **Identity Provider: Browser SAML**\. This is the authentication method that the ODBC driver uses to authenticate using Okta SSO with MFA\.
+    + For Okta single sign\-on configuration, choose **Identity Provider: Okta**\. This is the authentication method that the ODBC driver uses to authenticate using Okta single sign\-on\.
+    + For Okta single sign\-on with MFA configuration, choose **Identity Provider: Browser SAML**\. This is the authentication method that the ODBC driver uses to authenticate using Okta single sign\-on with MFA\.
   + For **Cluster ID**, enter ***your\-cluster\-identifier***\. 
   + For **Region**, enter ***your\-cluster\-region***\.
   + For **Database**, enter ***your\-database\-name***\.
-  + For **User**, enter ***your\-okta\-username***\. This is the user name for the Okta account that you are using for SSO that has permission to the cluster that you're trying to authenticate using\. Use this only for **Auth type** is **Identity Provider: Okta**\.
+  + For **User**, enter ***your\-okta\-username***\. This is the user name for the Okta account that you are using for single sign\-on that has permission to the cluster that you're trying to authenticate using\. Use this only for **Auth type** is **Identity Provider: Okta**\.
   + For **Password**, enter ***your\-okta\-password***\. Use this only for **Auth type** is **Identity Provider: Okta**\. 
 
   On macOS and Linux, edit the `odbc.ini` file as follows: 
@@ -745,11 +745,11 @@ All entries are case\-insensitive\.
   + For **locale**, enter **en\-us**\. This is the language that error messages display in\.
   + For **iam**, enter **1**\. This value specifies to the driver to authenticate using IAM credentials\.
   + For **plugin\_name**, do one of the following:
-    + For Okta SSO with MFA configuration, enter **BrowserSAML**\. This is the authentication method that the ODBC driver uses to authenticate to Okta SSO with MFA\. 
-    + For Okta SSO configuration, enter **Okta**\. This is the authentication method that the ODBC driver uses to authenticate using Okta SSO\. 
-  + For **uid**, enter ***your\-okta\-username***\. This is the user name of the Okta account you are using for SSO that has permission to the cluster you are trying to authenticate against\. Use this only for **plugin\_name** is **Okta**\.
+    + For Okta single sign\-on with MFA configuration, enter **BrowserSAML**\. This is the authentication method that the ODBC driver uses to authenticate to Okta single sign\-on with MFA\. 
+    + For Okta single sign\-on configuration, enter **Okta**\. This is the authentication method that the ODBC driver uses to authenticate using Okta single sign\-on\. 
+  + For **uid**, enter ***your\-okta\-username***\. This is the user name of the Okta account you are using for single sign\-on that has permission to the cluster you are trying to authenticate against\. Use this only for **plugin\_name** is **Okta**\.
   + For **pwd**, enter ***your\-okta\-password***\. Use this only for **plugin\_name** is **Okta**\. 
-  + For **login\_url**, enter ***your\-login\-url***\. This is the Initiate SSO URL that returns the SAML Response\. This applies only to the Browser SAML plugin\.
+  + For **login\_url**, enter ***your\-login\-url***\. This is the Initiate single sign\-on URL that returns the SAML Response\. This applies only to the Browser SAML plugin\.
   + For **idp\_response\_timeout**, enter ***the\-number\-of\-seconds***\. This is the specified period of time in seconds to wait for response from PingOne\. This applies only to the Browser SAML plugin\.
   + For **listen\_port**, enter ***your\-listen\-port***\. This is the port that local server is listening to\. The default is 7890\. This applies only to the Browser SAML plugin\.
 
