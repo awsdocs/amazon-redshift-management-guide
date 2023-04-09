@@ -9,7 +9,7 @@ You must install the Amazon Redshift ODBC driver on client computers accessing a
     + Windows 10 or 8\.1\.
     + Windows Server 2019, 2016, or 2012\.
   + 100 MB of available disk space\.
-  + Visual C\+\+ Redistributable for Visual Studio 2015 for 64\-bit Windows installed\. You can download the installation package at [ Download Visual C\+\+ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-ca/download/details.aspx?id=48145) on the Microsoft website\.
+  + Visual C\+\+ Redistributable for Visual Studio 2015 for 64\-bit Windows installed\. You can download the installation package at [ Download Visual C\+\+ Redistributable for Visual Studio 2022](https://visualstudio.microsoft.com/downloads/#microsoft-visual-c-redistributable-for-visual-studio-2022) on the Microsoft website\.
 
 ## Installing the Amazon Redshift ODBC driver<a name="odbc20-install-win"></a>
 
@@ -17,7 +17,7 @@ Use the following procedure to download and install the Amazon Redshift ODBC dri
 
 To download and install the ODBC driver: 
 
-1. Download the following driver: [64\-bit ODBC driver version 2\.0\.0\.1](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/2.0.0.1/AmazonRedshiftODBC64-2.0.0.1.msi) 
+1. Download the following driver: [64\-bit ODBC driver version 2\.0\.0\.5](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/2.0.0.5/AmazonRedshiftODBC64-2.0.0.5.msi) 
 
    The name for this driver is **Amazon Redshift ODBC Driver \(x64\)**\.
 **Note**  
@@ -31,7 +31,7 @@ To download and install the ODBC driver:
 
 After you download and install the ODBC driver, add a data source name \(DSN\) entry to the client computer or Amazon EC2 instance\. SQL client tools can use this data source to connect to the Amazon Redshift database\. 
 
-We recommend that you create a system DSN instead of a user DSN\. Some applications load the data using a different user account, and might not be able to detect user DSNs that are created under another user account\.
+We recommend that you create a system DSN instead of a user DSN\. Some applications load the data using a different database user account, and might not be able to detect user DSNs that are created under another database user account\.
 
 **Note**  
 For authentication using AWS Identity and Access Management \(IAM\) credentials or identity provider \(IdP\) credentials, additional steps are required\. For more information, see [ Configure a JDBC or ODBC connection to use IAM credentials](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-iam-credentials-configure-jdbc-odbc.html)\.
@@ -44,7 +44,7 @@ To create a system DSN entry for an ODBC connection:
 
 1. In the **ODBC Data Source Administrator**, choose the **Driver** tab and locate the following driver folder: **Amazon Redshift ODBC Driver \(x64\)**\.
 
-1. Choose the **System DSN** tab to configure the driver for all users on the computer, or the **User DSN** tab to configure the driver for your user account only\.
+1. Choose the **System DSN** tab to configure the driver for all users on the computer, or the **User DSN** tab to configure the driver for your database user account only\.
 
 1. Choose **Add**\. The **Create New Data Source** window opens\.
 

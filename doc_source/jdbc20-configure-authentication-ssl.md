@@ -8,9 +8,9 @@ The SSL version that the driver supports depends on the JVM version that you are
 
 The SSL version used for the connection is the highest version that is supported by both the driver and the server, which is determined at connection time\.
 
-Configure the Amazon Redshift JDBC driver version 2\.1 to authenticate your connection according to the security requirements of the Amazon Redshift server that you are connecting to\. 
+Configure the Amazon Redshift JDBC driver version 2\.1 to authenticate your connection according to the security requirements of the Redshift server that you are connecting to\. 
 
-You must always provide your Amazon Redshift user name and password to authenticate the connection\. Depending on whether SSL is enabled and required on the server, you might also need to configure the driver to connect through SSL\. Or you might use one\-way SSL authentication so that the client \(the driver itself\) verifies the identity of the server\. 
+You must always provide your Redshift user name and password to authenticate the connection\. Depending on whether SSL is enabled and required on the server, you might also need to configure the driver to connect through SSL\. Or you might use one\-way SSL authentication so that the client \(the driver itself\) verifies the identity of the server\. 
 
 You provide the configuration information to the driver in the connection URL\. For more information about the syntax of the connection URL, see [Building the connection URL](jdbc20-build-connection-url.md)\. 
 
@@ -18,13 +18,13 @@ You provide the configuration information to the driver in the connection URL\. 
 
 ## Using user name and password only<a name="jdbc20-authentication-username-password"></a>
 
-If the server you are connecting to doesn't use SSL, then you only need to provide your user name and password to authenticate the connection\. 
+If the server you are connecting to doesn't use SSL, then you only need to provide your Redshift user name and password to authenticate the connection\. 
 
-**To configure authentication using your user name and password only**
+**To configure authentication using your Redshift user name and password only**
 
-1. Set the `UID` property to your user name for accessing the Amazon Redshift server\.
+1. Set the `UID` property to your Redshift user name for accessing the Amazon Redshift server\.
 
-1. Set the PWD property to the password corresponding to your user name\.
+1. Set the PWD property to the password corresponding to your Redshift user name\.
 
 ## Using SSL without identity verification<a name="jdbc20-use-ssl-without-identity-verification"></a>
 
@@ -32,9 +32,9 @@ If the server you are connecting to uses SSL but doesn't require identity verifi
 
 **To configure an SSL connection without identity verification**
 
-1. Set the `UID` property to your user name for accessing the Amazon Redshift server\.
+1. Set the `UID` property to your Redshift user name for accessing the Amazon Redshift server\.
 
-1. Set the `PWD` property to the password corresponding to your user name\.
+1. Set the `PWD` property to the password corresponding to your Redshift user name\.
 
 1. Set the `SSLFactory` property to `com.amazon.redshift.ssl.NonValidatingFactory`\.
 
@@ -46,9 +46,9 @@ One\-way authentication requires a signed, trusted SSL certificate for verifying
 
 **To configure one\-way SSL authentication**
 
-1. Set the UID property to your user name for accessing the Amazon Redshift server\.
+1. Set the UID property to your Redshift user name for accessing the Amazon Redshift server\.
 
-1. Set the PWD property to the password corresponding to your user name\.
+1. Set the PWD property to the password corresponding to your Redshift user name\.
 
 1. Set the SSL property to true\.
 

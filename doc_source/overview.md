@@ -1,10 +1,10 @@
-# Amazon Redshift management overview<a name="overview"></a>
+# Amazon Redshift provisioned clusters overview<a name="overview"></a>
 
 The Amazon Redshift service manages all of the work of setting up, operating, and scaling a data warehouse\. These tasks include provisioning capacity, monitoring and backing up the cluster, and applying patches and upgrades to the Amazon Redshift engine\.
 
 ## Cluster management<a name="rs-overview-cluster-management"></a>
 
-An Amazon Redshift cluster is a set of nodes, which consists of a leader node and one or more compute nodes\. The type and number of compute nodes that you need depends on the size of your data, the number of queries you will run, and the query execution performance that you need\.
+An Amazon Redshift cluster is a set of nodes, which consists of a leader node and one or more compute nodes\. The type and number of compute nodes that you need depends on the size of your data, the number of queries you will run, and the query runtime performance that you need\.
 
 ### Creating and managing clusters<a name="rs-overview-create-and-manage-clusters"></a>
 
@@ -24,7 +24,7 @@ There are several features related to cluster access and security in Amazon Reds
 
 ### AWS accounts and IAM credentials<a name="rs-overview-aws-accounts-and-iam-credentials"></a>
 
-By default, an Amazon Redshift cluster is only accessible to the AWS account that creates the cluster\. The cluster is locked down so that no one else has access\. Within your AWS account, you use the AWS Identity and Access Management \(IAM\) service to create user accounts and manage permissions for those accounts to control cluster operations\. For more information, see [Security in Amazon Redshift](iam-redshift-user-mgmt.md)\.
+By default, an Amazon Redshift cluster is only accessible to the AWS account that creates the cluster\. The cluster is locked down so that no one else has access\. Within your AWS account, you use the AWS Identity and Access Management \(IAM\) service to create user accounts and manage permissions for those accounts to control cluster operations\. For more information, see [Security in Amazon Redshift](iam-redshift-user-mgmt.md)\. For more information about managing IAM identities, including guidance and best practices for IAM roles, see [Identity and access management in Amazon Redshift](redshift-iam-authentication-access-control.md)\.
 
 ### Security groups<a name="rs-overview-security-groups"></a>
 
@@ -52,7 +52,7 @@ You can use Secure Sockets Layer \(SSL\) encryption to encrypt the connection be
 
 ## Monitoring clusters<a name="rs-overview-monitoring-clusters"></a>
 
-There are several features related to monitoring in Amazon Redshift\. You can use database audit logging to generate activity logs, configure events and notification subscriptions to track information of interest,\. Use the metrics in Amazon Redshift and Amazon CloudWatch to learn about the health and performance of your clusters and databases\.
+There are several features related to monitoring in Amazon Redshift\. You can use database audit logging to generate activity logs, configure events and notification subscriptions to track information of interest\. Use the metrics in Amazon Redshift and Amazon CloudWatch to learn about the health and performance of your clusters and databases\.
 
 ### Database audit logging<a name="rs-overview-database-audit-logging"></a>
 
@@ -60,7 +60,7 @@ You can use the database audit logging feature to track information about authen
 
 ### Events and notifications<a name="rs-overview-events-and-notifications"></a>
 
-Amazon Redshift tracks events and retains information about them for a period of several weeks in your AWS account\. For each event, Amazon Redshift reports information such as the date the event occurred, a description, the event source \(for example, a cluster, a parameter group, or a snapshot\), and the source ID\. You can create Amazon Redshift event notification subscriptions that specify a set of event filters\. When an event occurs that matches the filter criteria, Amazon Redshift uses Amazon Simple Notification Service to actively inform you that the event has occurred\. For more information about events and notifications, see [Amazon Redshift events](working-with-events.md)\.
+Amazon Redshift tracks events and retains information about them for a period of several weeks in your AWS account\. For each event, Amazon Redshift reports information such as the date the event occurred, a description, the event source \(for example, a cluster, a parameter group, or a snapshot\), and the source ID\. You can create Amazon Redshift event notification subscriptions that specify a set of event filters\. When an event occurs that matches the filter criteria, Amazon Redshift uses Amazon Simple Notification Service to inform you that the event has occurred\. For more information about events and notifications, see [Amazon Redshift events](working-with-events.md)\.
 
 ### Performance<a name="rs-overview-performance"></a>
 
@@ -68,7 +68,7 @@ Amazon Redshift provides performance metrics and data so that you can track the 
 
 ## Databases<a name="rs-overview-databases"></a>
 
-Amazon Redshift creates one database when you provision a cluster\. This is the database you use to load data and run queries on your data\. You can create additional databases as needed by running a SQL command\. For more information about creating additional databases, go to [Step 1: Create a database](https://docs.aws.amazon.com/redshift/latest/dg/t_creating_database.html) in the *Amazon Redshift Database Developer Guide*\.
+Amazon Redshift creates one database when you provision a cluster\. This is the database that you use to load data and run queries on your data\. You can create additional databases as needed by running a SQL command\. For more information about creating additional databases, go to [Step 1: Create a database](https://docs.aws.amazon.com/redshift/latest/dg/t_creating_database.html) in the *Amazon Redshift Database Developer Guide*\.
 
 When you provision a cluster, you specify an admin user who has access to all of the databases that are created within the cluster\. This admin user is a superuser who is the only user with access to the database initially, though this user can create additional superusers and users\. For more information, go to [Superusers](https://docs.aws.amazon.com/redshift/latest/dg/r_superusers.html) and [Users](https://docs.aws.amazon.com/redshift/latest/dg/r_Users.html) in the *Amazon Redshift Database Developer Guide*\.
 

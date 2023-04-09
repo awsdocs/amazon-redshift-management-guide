@@ -21,7 +21,7 @@ You can export or copy the results of your query by using the context \(right\-c
 + If rows are selected, then choose **Copy rows** to copy the selected rows to the clipboard\.
 + If rows are selected, then choose **Copy rows with headers** to copy the selected rows with column headers to the clipboard\.
 
-You can also use the shortcut Ctrl\+C on Windows or Cmd\+C on MacOS to copy data from the current results page to the clipboard\. If no rows are selected, then the cell with focus is copied to the clipboard\. If rows are selected, then the selected rows are copied to the clipboard\.
+You can also use the shortcut Ctrl\+C on Windows or Cmd\+C on macOS to copy data from the current results page to the clipboard\. If no rows are selected, then the cell with focus is copied to the clipboard\. If rows are selected, then the selected rows are copied to the clipboard\.
 
 To add a new query tab, choose the ![\[New query tab\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) icon, then **Editor**, which appears in the row with the query tabs\. The query tab is either using an `Isolated session` or not\. With an isolated session, the results of a SQL command, such as creating a temporary table in one editor tab, are not visible in another editor tab\. When you open an editor tab in query editor v2, the default is an isolated session\. 
 
@@ -73,7 +73,7 @@ The SQL editor supports the following features:
 + You can collapse and expand sections of your SQL\. 
 + You can search and replace text in your SQL\.
 + You can use shortcut keys for several common editing tasks\.
-+ SQL errors are highlighted in the editor for easier location of problem areas\.
++ SQL errors are highlighted in the editor for convenient location of problem areas\.
 
 For a demo of editor features, watch the following video\. 
 
@@ -83,7 +83,7 @@ For a demo of editor features, watch the following video\.
 
 Following, you can find descriptions of the various types of queries that you can run\. 
 
-The data used in many of these queries is from the `tickit` sample schema\. For more information about the `tickit` data, see [Loading sample data](query-editor-v2-using.md#query-editor-v2-loading-sample-data)\.
+The data used in many of these queries is from the `tickit` sample schema\. For more information about the `tickit` data, see [Loading sample data](query-editor-v2-loading.md#query-editor-v2-loading-sample-data)\.
 
 When you run these example queries, confirm that you choose the correct database in the editor, such as `sample_data_dev`\.
 

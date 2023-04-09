@@ -18,8 +18,8 @@ The preceding format's fields have the following values:
 | Driver | The name of the 64\-bit ODBC driver to use: Amazon Redshift ODBC Driver \(x64\) | 
 | Server | The endpoint host of the Amazon Redshift cluster\. | 
 | Database | The database that you created for your cluster\. | 
-| UID | The user name of a user account that has permission to connect to the database\. Although this value is a database\-level permission and not a cluster\-level permission, you can use the admin user account that you set up when you launched the cluster\. | 
-| PWD | The password for the user account to connect to the database\. | 
+| UID | The user name of a database user account that has permission to connect to the database\. Although this value is a database\-level permission and not a cluster\-level permission, you can use the Redshift admin user account that you set up when you launched the cluster\. | 
+| PWD | The password for the database user account to connect to the database\. | 
 | Port | The port number that you specified when you launched the cluster\. If you have a firewall, ensure that this port is open for you to use\. | 
 
 The following is an example ODBC URL: 

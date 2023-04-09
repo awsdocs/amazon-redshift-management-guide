@@ -9,19 +9,84 @@ SELECT version();
 ```
 
 **Topics**
++ [Amazon Redshift patch 174](#cluster-version-174)
++ [Amazon Redshift patch 173](#cluster-version-173)
 + [Amazon Redshift patch 172](#cluster-version-172)
 + [Amazon Redshift patch 171](#cluster-version-171)
 + [Amazon Redshift patch 170](#cluster-version-170)
 + [Amazon Redshift patch 169](#cluster-version-169)
 + [Amazon Redshift patch 168](#cluster-version-168)
 
+## Amazon Redshift patch 174<a name="cluster-version-174"></a>
+
+### 1\.0\.48805 – Released on April 5, 2023<a name="cluster-version-2023-03-11-features"></a>
+
+Release notes for this version:
++ Amazon Redshift introduced additional performance enhancements to string\-heavy queries using BYTEDICT, a new compression encoding in Amazon Redshift that speeds up string\-based data processing between 5x to 63x compared to alternative compression encodings such as LZO or ZSTD\. For more information on this feature, see [ Byte\-dictionary encoding](https://docs.aws.amazon.com/redshift/latest/dg/c_Byte_dictionary_encoding.html) in the *Amazon Redshift Database Developer Guide*\. 
+
+### 1\.0\.48004 – Released on March 17, 2023<a name="cluster-version-2023-03-11-features"></a>
+
+Maintenance release\. No release notes\.
+
+### 1\.0\.47470 – Released on March 11, 2023<a name="cluster-version-2023-03-11-features"></a>
+
+Release notes for this version:
++ Improves query performance on `pg_catalog.svv_table_info`\. Also adds new column `create_date`\. When creating a table, this column stores the date/time stamp in UTC\.
++ Adds support for specifying session level timeout on federated query\.
+
+## Amazon Redshift patch 173<a name="cluster-version-173"></a>
+
+### 1\.0\.48766 – Released on April 5, 2023<a name="cluster-version-2023-01-20-features"></a>
+
+Maintenance release\. No release notes\.
+
+### 1\.0\.48714 – Released on April 5, 2023<a name="cluster-version-2023-01-20-features"></a>
+
+Maintenance release\. No release notes\.
+
+### 1\.0\.48022 – Released on March 17, 2023<a name="cluster-version-2023-01-20-features"></a>
+
+Maintenance release\. No release notes\.
+
+### 1\.0\.47357 – Released on March 7, 2023<a name="cluster-version-2023-01-20-features"></a>
+
+Maintenance release\. No release notes\.
+
+### 1\.0\.46987 – Released on February 24, 2023<a name="cluster-version-2023-01-20-features"></a>
+
+Maintenance release\. No release notes\.
+
+### 1\.0\.46806 – Released on February 18, 2023<a name="cluster-version-2023-01-20-features"></a>
+
+Maintenance release\. No release notes\.
+
+### 1\.0\.46607 – Released on February 13, 2023<a name="cluster-version-2023-01-20-features"></a>
+
+Release notes for this version:
++ We now automatically convert tables with manually set interleaved sort keys to compound sort keys if their distribution style has been set to **DISTSTYLE KEY**, to improve the performance of these tables\. This is done at the time of restoring a snapshot into Amazon Redshift Serverless\.
+
+### 1\.0\.45698 – Released on January 20, 2023<a name="cluster-version-2023-01-20-features"></a>
+
+Release notes for this version:
++ Adds a file extension parameter to the UNLOAD command, so file extensions are automatically added to filenames\.
++ Supports protecting RLS\-protected objects by default when adding them to a datashare or if they're already part of a datashare\. Administrators can now turn off RLS for datashares to allow consumers access to the protected object\.
++ Adds new system tables for monitoring: `SVV_ML_MODEL_INFO`, `SVV_MV_DEPENDENCY`, and `SYS_LOAD_DETAIL`\. Also adds the columns `data_skewness` and `time_skewness` to the system table `SYS_QUERY_DETAIL`\.
+
 ## Amazon Redshift patch 172<a name="cluster-version-172"></a>
 
 Cluster versions in this patch: 
++ 1\.0\.46534 – Released on February 18, 2023
++ 1\.0\.46523 – Released on February 13, 2023
++ 1\.0\.46206 – Released on February 1, 2023
++ 1\.0\.45603 – Released on January 20, 2023
++ 1\.0\.44924 – Released on December 19, 2022
++ 1\.0\.44903 – Released on December 18, 2022
++ 1\.0\.44540 – Released on December 13, 2022
 + 1\.0\.44126 – Released on November 23, 2022
 + 1\.0\.43980 – Released on November 17, 2022
 
 ### New features and improvements in this patch<a name="cluster-version-2022-11-17-features"></a>
++ Tables created by CTAS are AUTO by default\.
 + Adds support for row\-level security \(RLS\) on materialized views\.
 + Increases the S3 timeout to improve cross\-Region data sharing\.
 + Adds new spatial function `ST_GeomFromGeohash`\.
@@ -31,6 +96,7 @@ Cluster versions in this patch:
 + Improves data sharing query performance\.
 + Adds Machine Learning probability metrics for classification models\.
 + Adds new system tables for monitoring: `SVV_USER_INFO`, `SVV_MV_INFO`, `SYS_CONNECTION_LOG`, `SYS_DATASHARE_USAGE_PRODUCER`, `SYS_DATASHARE_USAGE_CONSUMER`, and `SYS_DATASHARE_CHANGE_LOG`\.
++ Adds support for querying VARBYTE columns in external tables for Parquet and ORC file types\.
 
 ## Amazon Redshift patch 171<a name="cluster-version-171"></a>
 

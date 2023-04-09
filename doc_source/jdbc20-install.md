@@ -27,5 +27,4 @@ By default, the Amazon Redshift JDBC driver is configured to use TCP keepalives 
 
 | Property | Description | 
 | --- | --- | 
-|  `TCPKeepAliveMinutes`  |  To specify when the driver sends keepalive packets, set the number of minutes of inactivity before the driver starts sending TCP keepalive packets\.  | 
 |  `TCPKeepAlive`  |  To turn off TCP keepalives, set this property to `FALSE`\.  | 

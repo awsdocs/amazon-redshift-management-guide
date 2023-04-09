@@ -55,7 +55,7 @@ You can use `redshift-keytool.jar` to import CA certificates in the Amazon Redsh
 Follow the steps in this section if you connect using any of the following:
 +  Open source ODBC driver 
 +  Open source JDBC driver 
-+  The psql command line interface 
++  The [Amazon Redshift RSQL](https://docs.aws.amazon.com/redshift/latest/mgmt/rsql-query-tool.html) command line interface 
 +  Any language bindings based on libpq, such as psycopg2 \(Python\) and ruby\-pg \(Ruby\) 
 
 **To use ACM certificates with other SSL connection types:**

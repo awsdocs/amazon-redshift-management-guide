@@ -41,9 +41,11 @@ You are charged the applicable hourly rate for every hour in the specified durat
 
 | Payment option | Payment schedule | Comparative savings | Duration | Upfront charges | Recurring monthly charges | 
 | --- | --- | --- | --- | --- | --- | 
-| No Upfront | Monthly installments for the duration of the reservation\. No upfront payment\. | About a 20 percent discount over on\-demand rates\. | One\-year term | None | Yes | 
+| No Upfront | Monthly installments for the duration of the reservation\. No upfront payment\. | About a 20 percent discount over on\-demand rates\. | One\-year or three\-year term | None | Yes | 
 | Partial Upfront | Partial upfront payment, and monthly installments for the duration of the reservation\. | Up to 41 percent to 73 percent discount depending on duration\. | One\-year or three\-year term | Yes | Yes | 
 | All Upfront | Full upfront payment for the reservation\. No monthly charges\. | Up to 42 percent to 76 percent discount depending on duration\. | One\-year or three\-year term | Yes | None | 
+
+Specific options and durations are subject to availability\.
 
 **Note**  
 If you previously purchased **Heavy Utilization** offerings for Amazon Redshift, the comparable offering is the **Partial Upfront** offering\.

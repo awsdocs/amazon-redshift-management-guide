@@ -9,9 +9,9 @@ In this section, you can find steps to programmatically call the `GetClusterCred
 
 **To generate and use temporary database credentials**
 
-1. Create or modify an IAM user or role with the required permissions\. For more information about IAM permissions, see [Create an IAM role or user role or user with permissions to call GetClusterCredentials](generating-iam-credentials-role-permissions.md)\.
+1. Create or modify a user or role with the required permissions\. For more information about IAM permissions, see [Create an IAM role with permissions to call GetClusterCredentials](generating-iam-credentials-role-permissions.md)\.
 
-1. As an IAM user or role you authorized in the previous step, run the get\-cluster\-credentials CLI command or call the `GetClusterCredentials` API operation and provide the following values:
+1. As a user or role you authorized in the previous step, run the get\-cluster\-credentials CLI command or call the `GetClusterCredentials` API operation and provide the following values:
    + **Cluster identifier** – The name of the cluster that contains the database\.
    + **Database user name** – The name of an existing or new database user\.
      + If the user doesn't exist in the database and AutoCreate is true, a new user is created with PASSWORD disabled\.
@@ -19,10 +19,10 @@ In this section, you can find steps to programmatically call the `GetClusterCred
      + For this example, the database user name is `temp_creds_user`\. 
    +  **Autocreate ** – \(Optional\) Create a new user if the database user name doesn't exist\.
    +  **Database name ** – \(Optional\) The name of the database that the user is authorized to log on to\. If database name isn't specified, the user can log on to any cluster database\.
-   +  **Database groups ** – \(Optional\) A list of existing database user groups\. Upon successful login, the database user is added to the specified user groups\. If no group is specified, the user has only PUBLIC permissions\. The user group names must match the dbgroup resources ARNs specified in the IAM policy attached to the IAM user or role\. 
+   +  **Database groups ** – \(Optional\) A list of existing database user groups\. Upon successful login, the database user is added to the specified user groups\. If no group is specified, the user has only PUBLIC permissions\. The user group names must match the dbgroup resources ARNs specified in the IAM policy attached to the user or role\. 
    +  **Expiration time** – \(Optional\) The time, in seconds, until the temporary credentials expire\. You can specify a value between 900 seconds \(15 minutes\) and 3600 seconds \(60 minutes\)\. The default is 900 seconds\.
 
-1. Amazon Redshift verifies that the IAM user has permission to call the `GetClusterCredentials` operation with the specified resources\. 
+1. Amazon Redshift verifies that the user has permission to call the `GetClusterCredentials` operation with the specified resources\. 
 
 1. Amazon Redshift returns a temporary password and the database user name\.
 

@@ -6,7 +6,7 @@ Following, you can find descriptions for the options that you can specify for th
 + **Default value** – None
 + **Data type** – String
 
-The access key for the IAM role or IAM user configured for IAM database authentication\. 
+The access key for the IAM role or user configured for IAM database authentication\. 
 
 This parameter is optional\.
 
@@ -258,7 +258,7 @@ This parameter is optional\.
 + **Default value** – None
 + **Data type** – String
 
-The Amazon Resource Name \(ARN\) of the IAM user or role for which you are generating a policy\. 
+The Amazon Resource Name \(ARN\) of the user or IAM role for which you are generating a policy\. It's recommended that you attach a policy to a role and then assign the role to your user, for access\. 
 
 This parameter is optional\.
 

@@ -10,122 +10,59 @@ To learn how to query a data lake, watch the following video\.
 
 ## Prerequisites<a name="query-editor-v2-querying-data-lake-prerequisites"></a>
 
+Before you work with your data lake in query editor v2, confirm the following was set up in your Amazon Redshift environment:
++ Crawl your Amazon S3 data using AWS Glue and enable your Data Catalog for AWS Lake Formation\.
++ Create an IAM role for Amazon Redshift using the AWS Glue enabled Data Catalog for AWS Lake Formation\. For details on this procedure, see [ To create an IAM role for Amazon Redshift using an AWS Glue Data Catalog enabled for AWS Lake Formation](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum-create-role.html#spectrum-get-stared-create-role-lake-formation)\. For more information about using Redshift Spectrum and Lake Formation, see [ Using Redshift Spectrum with AWS Lake Formation](https://docs.aws.amazon.com/redshift/latest/dg/spectrum-lake-formation.html)\.
++ Grant SELECT permissions on the table to query in the Lake Formation database\. For details on this procedure, see [ To grant SELECT permissions on the table to query in the Lake Formation database](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum-create-role.html#spectrum-get-started-grant-lake-formation-table)\.
 
+  You can verify in the Lake Formation console \(https://console\.aws\.amazon\.com/lakeformation/\), **Permissions** section, **Data lake permissions** page, that the IAM role, AWS Glue database, and tables have the proper permissions\.
++ Confirm your connected user has permission to create schemas in the Amazon Redshift database and access data in your data lake\. When you connect to a database in query editor v2, you choose an authentication method that includes credentials, which can be a database user or IAM user\. The connected user must have the proper permissions and database privileges, such as a `superuser`\. The Amazon Redshift `admin` user who created the cluster or workgroup has `superuser` privileges and can create schemas and manage the Redshift database\. For more information about connecting to a database with query editor v2, see [Connecting to an Amazon Redshift database](query-editor-v2-using.md#query-editor-v2-connecting)\.
 
-## Creating an IAM role<a name="query-editor-v2-create-role-lake-formation"></a>
+## Creating an external schema<a name="query-editor-v2-create-external-schema"></a>
 
-You create an IAM role to access an AWS Glue Data Catalog enabled for AWS Lake Formation\.
+To query data in an Amazon S3 data lake, first create an external schema\. The external schema references the external database in the [AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/components-overview.html#data-catalog-intro)\.
 
-1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+1. In the **Editor** view of query editor v2, choose ![\[Create\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-add.png)**Create**, and then choose **Schema**\.
 
-1. In the navigation pane, choose **Policies**\.
+1. Enter a **Schema** name\.
 
-   If this is your first time choosing **Policies**, the **Welcome to Managed Policies** page appears\. Choose **Get Started**\.
+1. For **Schema type**, choose **External**\.
 
-1. Choose **Create policy**\. 
+1. Within **Data Catalog** details, the **Region** defaults to the AWS Region where your Redshift database is located\.
 
-1. Choose to create the policy on the **JSON** tab\. 
+1. Choose the **AWS Glue database** that the external schema will map to and that contains references to the AWS Glue tables\.
 
-1. Paste in the following JSON policy document, which grants access to the Data Catalog but denies the administrator permissions for Lake Formation\.
+1. Choose an **IAM role** for Amazon Redshift that has the required permissions to query data on Amazon S3\.
 
-   ```
-   {
-       "Version": "2012-10-17",
-       "Statement": [
-           {
-               "Sid": "RedshiftPolicyForLF",
-               "Effect": "Allow",
-               "Action": [
-                   "glue:*",
-                   "lakeformation:GetDataAccess"
-               ],
-               "Resource": "*"
-           }
-       ]
-   }
-   ```
-
-1. When you are finished, choose **Review** to review the policy\. The policy validator reports any syntax errors\.
-
-1. On the **Review policy** page, for **Name** enter a name for the policy that you are creating, for example, *mydatalake\_policy*\. Enter a **Description** \(optional\)\. Review the policy **Summary** to see the permissions that are granted by your policy\. Then choose **Create policy** to save your work\.
-
-   After you create a policy, you can create a role and apply the policy\. 
-
-1. In the navigation pane of the IAM console, choose **Roles**, and then choose **Create role**\.
-
-1. For **Select type of trusted entity**, choose **AWS service**\.
-
-1. Choose the Amazon Redshift service to assume this role\.
-
-1. Choose the **Redshift Customizable** use case for your service\. Then choose **Next: Permissions**\.
-
-1. Choose the permissions policy that you created, `mydatalake_policy`, to attach to the role\.
-
-1. Choose **Next: Tagging**\.
-
-1. Choose **Next: Review**\. 
-
-1. For **Role name**, enter a name for the role, for example, *mydatalake\_role*\. 
-
-1. \(Optional\) For **Role description**, enter a description for the new role\.
-
-1. Review the role, and then choose **Create role**\.
-
-## Granting permissions<a name="query-editor-v2-grant-lake-formation-table"></a>
-
-You grant SELECT permissions on the table to query in the Lake Formation database\.
-
-1. Open the Lake Formation console at [https://console\.aws\.amazon\.com/lakeformation/](https://console.aws.amazon.com/lakeformation/)\.
-
-1. In the navigation pane, choose **Permissions**, and then choose **Grant**\.
-
-1. Provide the following information:
-   + For **IAM role**, choose the IAM role you created, `myspectrum_role`\. When you run the Amazon Redshift Query Editor, it uses this IAM role for permission to the data\. 
-**Note**  
-To grant SELECT permission on the table in a Lake Formation–enabled Data Catalog to query, do the following:  
-Register the path for the data in Lake Formation\. 
-Grant users permission to that path in Lake Formation\. 
-Created tables can be found in the path registered in Lake Formation\. 
-   + For **Database**, choose your Lake Formation database\. 
-   + For **Table**, choose a table within the database to query\. 
-   + For **Columns**, choose **All Columns**\.
-   + Choose the **Select** permission\.
-
-1. Choose **Save**\.
-
-**Important**  
-As a best practice, allow access only to the underlying Amazon S3 objects through Lake Formation permissions\. To prevent unapproved access, remove any permission granted to Amazon S3 objects outside of Lake Formation\. If you previously accessed Amazon S3 objects before setting up Lake Formation, remove any IAM policies or bucket permissions that previously were set up\. For more information, see [Upgrading AWS Glue Data Permissions to the AWS Lake Formation Model](https://docs.aws.amazon.com/lake-formation/latest/dg/upgrade-glue-lake-formation.html) and [Lake Formation Permissions](https://docs.aws.amazon.com/lake-formation/latest/dg/lake-formation-permissions.html)\. 
-
-## Creating the external schema<a name="query-editor-v2-create-external-schema"></a>
-
-To query data in an Amazon S3 data lake, you create an external schema\. The external schema references the external database in the [AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/components-overview.html#data-catalog-intro)\.
-
-1. Choose ![\[Create\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/query-editor-new-tab.png)**Create**, and then choose **Schema**\.
-
-1. Enter a schema name\.
-
-1. To grant ownership of the database to a user, choose **Authorize user** and choose a user\. 
-
-1. Choose **External**\.
-
-1. Under **AWS Glue Data Catalog** details, Region defaults to the Region where your Redshift database is located\.
-
-1. Choose the **AWS Glue database** that the external schema will map to\.
-
-1. Choose an **IAM role** that has the required permissions to query data on Amazon S3\.
+1. Optionally, choose an **IAM role** that has permission to the Data Catalog\.
 
 1. Choose **Create schema**\.
 
-   The schema appears in the database browser\.
+   The schema appears under your database in the tree\-view panel\.
+
+When creating the schema, if you receive a permission denied error for your database, check if the connected user has the database privilege to create a schema\.
 
 ## Querying data in your Amazon S3 data lake<a name="query-editor-v2-query-data-lake"></a>
 
 You use the schema that you created in the previous procedure\. 
 
-1. In the database browser, choose the schema\.
+1. In the tree\-view panel, choose the schema\.
 
-1. To view a table definition, choose a table\.
+1. To view a table definition, choose a table\. The table columns and data types display\.
 
-   The table columns and data types display\.
+1. To query a table, choose the table and in the context menu \(right\-click\), choose **Select table** to generate a query\.
 
-1. To query a table, choose the table and use the context menu \(right\-click\) to choose **Select table**\.
+1. Run the query in the **Editor**\.
+
+   The following example SQL was generated by query editor v2 to query all the rows in AWS Glue table named `flightscsv`\. The columns and rows shown in the output are truncated for simplicity\.
+
+   ```
+   SELECT * FROM "dev"."mydatalake_schema"."flightscsv";
+                           
+   year    quarter   month   dom  day_of_week   fl_date    unique_carrier  airline_id   carrier   tail_num   fl_num		
+   2016    4         10      19   3             10/19/16   OO              20304        OO         N753SK    3086	 
+   2016    4         10      19   3             10/19/16   OO              20304        OO         N753SK    3086	
+   2016    4         10      19   3             10/19/16   OO              20304        OO         N778SK    3087		
+   2016	4         10      19   3             10/19/16   OO              20304        OO         N778SK    3087	
+   ...
+   ```

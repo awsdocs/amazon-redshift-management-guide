@@ -8,7 +8,13 @@ You can create database user groups with the permissions you want the IAM databa
 
 1. Log in to your Amazon Redshift database and create a database user using [CREATE USER](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html) or alter an existing user using [ALTER USER](https://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_USER.html)\. 
 
-1. Optionally, specify the PASSWORD DISABLE option to prevent the user from using a password\. When a user's password is disabled, the user can log on only using temporary IAM user credentials\. If the password is not disabled, the user can log on either with the password or using temporary IAM user credentials\. You can't disable the password for a superuser\.
+1. Optionally, specify the PASSWORD DISABLE option to prevent the user from using a password\. When a user's password is disabled, the user can log on only using temporary credentials\. If the password is not disabled, the user can log on either with the password or using temporary credentials\. You can't disable the password for a superuser\.
+
+   Users need programmatic access if they want to interact with AWS outside of the AWS Management Console\. The way to grant programmatic access depends on the type of user that's accessing AWS\.
+
+   To grant users programmatic access, choose one of the following options\.  
+****    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/generating-iam-credentials-user-and-groups.html)
 
    The following example creates a user with password disabled\.
 

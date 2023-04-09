@@ -60,9 +60,6 @@ Audit logging to CloudWatch or to Amazon S3 is an optional process\. Logging to 
 
 The connection log, user log, and user activity log are enabled together by using the AWS Management Console, the Amazon Redshift API Reference, or the AWS Command Line Interface \(AWS CLI\)\. For the user activity log, you must also enable the `enable_user_activity_logging` database parameter\. If you enable only the audit logging feature, but not the associated parameter, the database audit logs log information for only the connection log and user log, but not for the user activity log\. The `enable_user_activity_logging` parameter is not enabled \(`false`\) by default\. You can set it to `true` to enable the user activity log\. For more information, see [Amazon Redshift parameter groups](working-with-parameter-groups.md)\. 
 
-**Note**  
-Currently, you can only use Amazon S3\-managed keys \(SSE\-S3\) encryption \(AES\-256\) for audit logging\.
-
 ## Sending audit logs to Amazon CloudWatch<a name="db-auditing-cloudwatch-provisioned"></a>
 
 When you enable logging to CloudWatch, Amazon Redshift exports cluster connection, user, and user\-activity log data to an Amazon CloudWatch Logs log group\. The log data doesn't change, in terms of schema\. CloudWatch is built for monitoring applications, and you can use it to perform real\-time analysis or set it to take actions\. You can also use Amazon CloudWatch Logs to store your log records in durable storage\. 
@@ -97,11 +94,17 @@ The number and size of Amazon Redshift log files in Amazon S3 depends heavily on
 
 When Amazon Redshift uses Amazon S3 to store logs, you incur charges for the storage that you use in Amazon S3\. Before you configure logging to Amazon S3, plan for how long you need to store the log files\. As part of this, determine when the log files can either be deleted or archived, based on your auditing needs\. The plan that you create depends heavily on the type of data that you store, such as data subject to compliance or regulatory requirements\. For more information about Amazon S3 pricing, go to [Amazon Simple Storage Service \(S3\) Pricing](https://aws.amazon.com/s3/pricing/)\.
 
+### Limitations when you enable logging to Amazon S3<a name="db-auditing-enable-logging-limitations"></a>
+
+Audit logging has the following constraints:
++ You can use only Amazon S3\-managed keys \(SSE\-S3\) encryption \(AES\-256\)\.
++ The Amazon S3 buckets must have the S3 Object Lock feature turned off\.
+
 ### Bucket permissions for Amazon Redshift audit logging<a name="db-auditing-bucket-permissions"></a>
 
 When you turn on logging to Amazon S3, Amazon Redshift collects logging information and uploads it to log files stored in Amazon S3\. You can use an existing bucket or a new bucket\. Amazon Redshift requires the following IAM permissions to the bucket: 
 + `s3:GetBucketAcl` The service requires read permissions to the Amazon S3 bucket so it can identify the bucket owner\. 
-+ `s3:PutObject` The service requires put object permissions to upload the logs\. Also, the IAM user or IAM role that enables logging must have `s3:PutObject` permission to the Amazon S3 bucket\. Each time logs are uploaded, the service determines whether the current bucket owner matches the bucket owner at the time logging was enabled\. If these owners don't match, you receive an error\. 
++ `s3:PutObject` The service requires put object permissions to upload the logs\. Also, the user or IAM role that turns on logging must have `s3:PutObject` permission to the Amazon S3 bucket\. Each time logs are uploaded, the service determines whether the current bucket owner matches the bucket owner at the time logging was enabled\. If these owners don't match, you receive an error\. 
 
 If, when you enable audit logging, you select the option to create a new bucket, correct permissions are applied to it\. However, if you create your own bucket in Amazon S3, or use an existing bucket, make sure to add a bucket policy that includes the bucket name\. Logs are delivered using service\-principal credentials\. For most AWS Regions, you add the Redshift service\-principal name, *redshift\.amazonaws\.com*\. 
 

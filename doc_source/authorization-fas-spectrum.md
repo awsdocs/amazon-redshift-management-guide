@@ -5,13 +5,13 @@ Using identity federation in AWS with credentials provided from `GetDatabaseCred
 The benefits of using federated credentials are the following: 
 + You don't have to manage cluster\-attached IAM roles for Redshift Spectrum\.
 + Cluster administrators can create an external schema that's accessible by consumers with different IAM contexts\. This is useful, for example, to perform column filtering on a table, where different consumers query the same external schema and get varying fields in returned records\.
-+ You can query Amazon Redshift using an IAM user identity, rather than only with a role\.
++ You can query Amazon Redshift using a user with IAM permissions, rather than only with a role\.
 
 ## Preparing an identity to log in with federated identity<a name="authorization-fas-spectrum-getting-started-iam"></a>
 
 Before logging in with federated identity, you must perform several preliminary steps\. These instructions assume you have an existing Redshift Spectrum external schema that references a data file stored in an Amazon S3 bucket, and the bucket is in the same account as your Amazon Redshift cluster or Amazon Redshift Serverless data warehouse\. 
 
-1. Create an IAM identity\. This can be an IAM user or an IAM role\. Use any name supported by IAM\.
+1. Create an IAM identity\. This can be a user or an IAM role\. Use any name supported by IAM\.
 
 1. Attach permissions policies to the identity\. Specify either of the following:
    + `redshift:GetClusterCredentialsWithIAM` \(for an Amazon Redshift provisioned cluster\)
@@ -25,7 +25,7 @@ Before logging in with federated identity, you must perform several preliminary 
 
     The last managed policy is required if you're using AWS Glue to prepare your external data\. For more information about the steps for granting access to Amazon Redshift Spectrum, see [Create an IAM role for Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum-create-role.html), which is part of the getting\-started guide for Amazon Redshift and Redshift Spectrum\. It shows the steps for adding IAM policies to access Redshift Spectrum\. 
 
-1. Set up your SQL client to connect to Amazon Redshift\. Use the Amazon Redshift JDBC driver, and add your IAM user's credentials to the tool's credential properties\. A client like SQL Workbench/J works well for this\. Set the following client\-connection extended properties:
+1. Set up your SQL client to connect to Amazon Redshift\. Use the Amazon Redshift JDBC driver, and add your user's credentials to the tool's credential properties\. A client like SQL Workbench/J works well for this\. Set the following client\-connection extended properties:
    + *AccessKeyID* – Your access key identifier\.
    + *SecretAccessKey* – Your secret access key\. \(Note the security risk of transmitting the secret key if you don't use encryption\.\) 
    + *SessionToken* – A set of temporary credentials for an IAM role\.
@@ -40,7 +40,7 @@ Before logging in with federated identity, you must perform several preliminary 
 
      Example: `jdbc:redshift:iam://default.123456789012.us-east-1.redshift-serverless.amazonaws.com:5439/dev`
 
-   After you connect to the database for the first time, using an IAM identity, Amazon Redshift automatically creates an Amazon Redshift identity with the same name, prefixed with `IAM:` for an IAM user or `IAMR:` for an IAM role\. The remaining steps in this topic show examples for an IAM user\.
+   After you connect to the database for the first time, using an IAM identity, Amazon Redshift automatically creates an Amazon Redshift identity with the same name, prefixed with `IAM:` for a user or `IAMR:` for an IAM role\. The remaining steps in this topic show examples for a user\.
 
    If a Redshift user isn't automatically created, you can create one by running a `CREATE USER` statement, using an admin account, specifying the user name in the format `IAM:<user name>`\.
 
@@ -56,7 +56,7 @@ Before logging in with federated identity, you must perform several preliminary 
    ALTER SCHEMA my_schema owner to "IAM:my_user";
    ```
 
-1. To verify the configuration, run a query as the IAM user, using the SQL client, after permissions are granted\. This query sample retrieves data from an external table\. 
+1. To verify the configuration, run a query as the user, using the SQL client, after permissions are granted\. This query sample retrieves data from an external table\. 
 
    ```
    SELECT * FROM my_schema.my_table;

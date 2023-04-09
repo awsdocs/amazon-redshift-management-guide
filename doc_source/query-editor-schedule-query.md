@@ -26,7 +26,7 @@ If you choose **Schedule name** from one of these locations, you can view and ed
 To schedule queries, the AWS Identity and Access Management \(IAM\) user defining the schedule and the IAM role associated with the schedule must be configured as follows\. 
 
 For the IAM user logged into the Amazon Redshift console, do the following: 
-+ Attach the `AmazonEventBridgeFullAccess` AWS\-managed policy\. 
++ Attach the `AmazonEventBridgeFullAccess` AWS managed policy to an IAM role and assign the role to the user\.
 + Attach a policy with the `sts:AssumeRole` permission of the IAM role that you specify when you define the scheduled SQL statement\. 
 
   The following example shows a policy that assumes a specified IAM role\.
@@ -66,8 +66,8 @@ For the IAM role that you specify to enable the scheduler to run a query, do the
   ```
 
   For more information about how to create an IAM role for EventBridge events, see [Permissions required to use the Amazon EventBridge scheduler](redshift-iam-access-control-identity-based.md#iam-permission-eventbridge-scheduler)\. 
-+ Attach the `AmazonRedshiftDataFullAccess` AWS\-managed policy to the IAM role\. 
-+ To allow IAM users to view schedule history, edit the IAM role to add the `sts:AssumeRole` permission\. 
++ Attach the `AmazonRedshiftDataFullAccess` AWS managed policy to the IAM role\. 
++ To allow users to view schedule history, edit the IAM role to add the `sts:AssumeRole` permission\. 
 
 The following is an example of a trust policy in an IAM role\.
 
@@ -83,33 +83,9 @@ The following is an example of a trust policy in an IAM role\.
                 ]
             },
             "Action": "sts:AssumeRole"
-        },
-        {
-            "Sid": "AssumeRole",
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "arn:aws:iam::account-id:user/user-name"
-            },
-            "Action": "sts:AssumeRole"
         }
     ]
 }
-```
-
-The following example snippet allows specific IAM users to view schedule history\.
-
-```
-{
-      "Sid": "AssumeRole",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": [
-          "arn:aws:iam::account-id:user/testRedshiftUser",
-          "arn:aws:iam::account-id:user/myusername"
-        ]
-      },
-      "Action": "sts:AssumeRole"
-    }
 ```
 
 ## Authenticating a scheduled query<a name="query-editor-schedule-query-authentication"></a>

@@ -6,8 +6,6 @@ You use AWS published API calls to access Amazon Redshift through the network\. 
 
 Additionally, requests must be signed by using an access key ID and a secret access key that is associated with an IAM principal\. Or you can use the [AWS Security Token Service \(AWS STS\)](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html) to generate temporary security credentials to sign requests\.
 
-You can call these API operations from any network location\. In addition, Amazon Redshift supports resource\-based access policies that can include restrictions based on the source IP address\. 
-
 ## Network isolation<a name="network-isolation"></a>
 
 A virtual private cloud \(VPC\) based on the Amazon VPC service is your private, logically isolated network in the AWS Cloud\. You can deploy an Amazon Redshift cluster within a VPC by taking the following steps:
@@ -19,7 +17,7 @@ An Amazon Redshift cluster is locked down by default upon provisioning\. To allo
 
 To allow traffic only to or from specific IP address ranges, update the security groups with your VPC\. An example is allowing traffic only from or to your corporate network\.
 
-While configuring network access control lists associated with the subnet\(s\) your cluster is tagged with, ensure that the respective AWS Region's S3 CIDR ranges are added to the allowlist for both ingress and egress rules\. Doing so lets you execute S3\-based operations such as Redshift Spectrum, COPY, and UNLOAD without any disruptions\.
+While configuring network access control lists associated with the subnet\(s\) your Amazon Redshift cluster is tagged with, ensure that the respective AWS Region's S3 CIDR ranges are added to the allowlist for both ingress and egress rules\. Doing so lets you execute S3\-based operations such as Redshift Spectrum, COPY, and UNLOAD without any disruptions\.
 
 The following example command parses the JSON response for all IPv4 addresses used in Amazon S3 in the us\-east\-1 Region\.
 

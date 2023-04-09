@@ -1,4 +1,4 @@
-# Creating temporary IAM user credentials<a name="generating-iam-credentials-steps"></a>
+# Creating temporary IAM credentials<a name="generating-iam-credentials-steps"></a>
 
 In this section, you can find how to configure your system to generate temporary IAM\-based database user credentials and log in to your database using the new credentials\.
 
@@ -12,9 +12,9 @@ At a high level, the process flows as follows:
 
    \(Optional\) To use IAM authentication using an IdP, you need to define a claim rule in your IdP application that maps users or groups in your organization to the IAM role\. Optionally, you can include attribute elements to set `GetClusterCredentials` parameters\.
 
-1. [Step 3: Create an IAM role or user with permissions to call GetClusterCredentials](generating-iam-credentials-role-permissions.md)
+1. [Step 3: Create an IAM role with permissions to call GetClusterCredentials](generating-iam-credentials-role-permissions.md)
 
-   Your SQL client application assumes the IAM role when it calls the `GetClusterCredentials` operation\. If you created an IAM role for identity provider access, you can add the necessary permission to that role\.
+   Your SQL client application assumes the user when it calls the `GetClusterCredentials` operation\. If you created an IAM role for identity provider access, you can add the necessary permission to that role\.
 
 1. [Step 4: Create a database user and database groups](generating-iam-credentials-user-and-groups.md)
 

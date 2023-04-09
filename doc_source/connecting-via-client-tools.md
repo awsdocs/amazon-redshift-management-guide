@@ -5,6 +5,6 @@ This section provides some options for third\-party tools to connect to the clus
 **Topics**
 + [Amazon Redshift RSQL](rsql-query-tool.md)
 + [Connect to your cluster by using SQL Workbench/J](connecting-using-workbench.md)
-+ [Connect to your cluster by using the psql tool](connecting-from-psql.md)
++ [Connect to your cluster by using the Amazon Redshift RSQL client](connecting-from-rsql.md)
 + [Connect to your cluster programmatically](connecting-in-code.md)
 + [Using an authentication profile to connect to Amazon Redshift](connecting-with-authentication-profiles.md)

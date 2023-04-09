@@ -4,20 +4,24 @@
 
 You can configure Amazon Redshift Serverless to export connection, user, and user\-activity log data to a log group in Amazon CloudWatch Logs\. With Amazon CloudWatch Logs, you can perform real\-time analysis of the log data and use CloudWatch to create alarms and view metrics\. You can use CloudWatch Logs to store your log records in durable storage\.
 
+You can create CloudWatch alarms to track your metrics using the Amazon Redshift console\. For more information on creating alarms, see [Managing alarms](https://docs.aws.amazon.com/redshift/latest/mgmt/performance-metrics-alarms.html)\.
+
  To export generated log data to Amazon CloudWatch Logs, the respective logs must be selected for export in your Amazon Redshift Serverless configuration settings, on the console\. 
 
 ### Monitoring log events in CloudWatch<a name="db-auditing-manage-logs-cloudwatch-monitoring"></a>
 
-After selecting which Redshift logs to export, you can monitor events in Amazon CloudWatch Logs\. A new log group is automatically created for Amazon Redshift Serverless under the following prefix, in which `log_type` represents the log type\.
+After selecting which Redshift logs to export, you can monitor events in Amazon CloudWatch Logs\. A new log group is automatically created for Amazon Redshift Serverless, in which `log_type` represents the log type\.
 
 ```
-/aws/redshift/serverless/<log_type>
+/aws/redshift/<namespace>/<log_type>
 ```
 
-For example, if you choose to export the connection log, log data is stored in the following log group\.
+When you create your first workgroup and namespace, *default* is the namespace name\. The log group name varies according to what you call the namespace\.
+
+For example, if you export the connection log, log data is stored in the following log group\.
 
 ```
-/aws/redshift/serverless/connectionlog
+/aws/redshift/default/connectionlog
 ```
 
 Log events are exported to a log group using the serverless log stream\. The behavior depends on which of the following conditions are true:

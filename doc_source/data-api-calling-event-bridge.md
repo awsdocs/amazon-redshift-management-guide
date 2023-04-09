@@ -4,11 +4,13 @@ Amazon EventBridge helps you to respond to state changes in your AWS resources\.
 
 To schedule Data API operations with EventBridge, the associated IAM role must trust the principal for CloudWatch Events \(events\.amazonaws\.com\)\. This role should have the equivalent of the managed policy `AmazonEventBridgeFullAccess` attached\. It should also have `AmazonRedshiftDataFullAccess` policy permissions that are managed by the Data API\. You can create an IAM role with these permissions on the IAM console\. When creating a role on the IAM console, choose the AWS service trusted entity for CloudWatch Events\. For more information about creating an IAM role, see [Creating a Role for an AWS Service \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html#roles-creatingrole-service-console) in the *IAM User Guide*\.
 
-The following example uses the AWS CLI to create an EventBridge rule that is used to run a SQL statement\. 
+When you create a schedule in EventBridge, you can run the SQL statement against an Amazon Redshift cluster or an Amazon Redshift Serverless workgroup\.
+
+The following example uses the AWS CLI to create an EventBridge rule that is used to run a SQL statement against an Amazon Redshift cluster\. 
 
 ```
 aws events put-rule 
---name test-redshift-data 
+--name test-redshift-cluster-data 
 --schedule-expression "rate(1 minute)"
 ```
 
@@ -23,7 +25,7 @@ The input data\.json file is as follows\.
 
 ```
 {
-    "Rule": "test-redshift-data",
+    "Rule": "test-redshift-cluster-data",
     "EventBusName": "default",
     "Targets": [
         {
@@ -39,5 +41,42 @@ The input data\.json file is as follows\.
             }
         }
     ]
+}
+```
+
+The following example uses the AWS CLI to create an EventBridge rule that is used to run a SQL statement against an Amazon Redshift Serverless workgroup\. 
+
+```
+aws events put-rule 
+--name  test-redshift-serverless-workgroup-data 
+--schedule-expression "rate(1 minute)"
+```
+
+Then an EventBridge target is created to run on the schedule specified in the rule\. 
+
+```
+aws events put-targets 
+--cli-input-json file://data.json
+```
+
+The input data\.json file is as follows\. 
+
+```
+{
+    "Rule": "test-redshift-serverless-workgroup-data", 
+    "EventBusName": "default", 
+    "Targets": [ 
+        {
+            "Id": "2",
+            "Arn": "arn:aws:redshift-serverless:us-east-1:123456789012:workgroup/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+            "RoleArn": "arn:aws:iam::123456789012:role/Administrator", 
+            "RedshiftDataParameters": {
+                "Database": "dev",
+                "Sql": "select 1;",
+                "StatementName": "test-scheduler-statement", 
+                "WithEvent": true 
+            } 
+        } 
+    ] 
 }
 ```

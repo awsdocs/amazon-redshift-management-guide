@@ -27,7 +27,7 @@ The following table shows the default parameter values at a glance with links to
 
 | Parameter name | Value | More information | 
 | --- | --- | --- | 
-|  auto\_analyze  |  true  |  [auto\_analyze](https://docs.aws.amazon.com/redshift/latest/dg/r_auto_analyze.html) in the Amazon Redshift Database Developer Guide  | 
+|  auto\_analyze  |  true  |  [auto\_analyze](https://docs.aws.amazon.com/redshift/latest/dg/t_Analyzing_tables.html#t_Analyzing_tables-auto-analyze) in the Amazon Redshift Database Developer Guide  | 
 |  auto\_mv  |  true  |  [Automated materialized views](https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-auto-mv.html) in the Amazon Redshift Database Developer Guide | 
 |  datestyle  |   ISO, MDY   |  [datestyle](https://docs.aws.amazon.com/redshift/latest/dg/r_datestyle.html) in the Amazon Redshift Database Developer Guide  | 
 |  enable\_case\_sensitive\_identifier  |   false   |  [enable\_case\_sensitive\_identifier](https://docs.aws.amazon.com/redshift/latest/dg/r_enable_case_sensitive_identifier.html) in the Amazon Redshift Database Developer Guide  | 

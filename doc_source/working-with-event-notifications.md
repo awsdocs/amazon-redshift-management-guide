@@ -4,6 +4,9 @@
 
  Amazon Redshift uses the Amazon Simple Notification Service \(Amazon SNS\) to communicate notifications of Amazon Redshift events\. You enable notifications by creating an Amazon Redshift event subscription\. In the Amazon Redshift subscription, you specify a set of filters for Amazon Redshift events and an Amazon SNS topic\. Whenever an event occurs that matches the filter criteria, Amazon Redshift publishes a notification message to the Amazon SNS topic\. Amazon SNS then transmits the message to any Amazon SNS consumers that have an Amazon SNS subscription to the topic\. The messages sent to the Amazon SNS consumers can be in any form supported by Amazon SNS for an AWS Region, such as an email, a text message, or a call to an HTTP endpoint\. For example, all regions support email notifications, but SMS notifications can only be created in the US East \(N\. Virginia\) Region\.
 
+**Note**  
+Currently, you can only create an event subscription to an Amazon SNS standard topic \(not to an Amazon SNS FIFO topic\)\. For more information, see [Amazon SNS event sources](https://docs.aws.amazon.com/sns/latest/dg/sns-event-sources.html) in the *Amazon Simple Notification Service Developer Guide*\. 
+
 When you create an event notification subscription, you specify one or more event filters\. Amazon Redshift sends notifications through the subscription any time an event occurs that matches all of the filter criteria\. The filter criteria include source type \(such as cluster or snapshot\), source ID \(such as the name of a cluster or snapshot\), event category \(such as Monitoring or Security\), and event severity \(such as INFO or ERROR\)\.
 
 You can easily turn off notification without deleting a subscription by setting the **Enabled** radio button to `No` in the AWS Management Console or by setting the `Enabled` parameter to `false` using the Amazon Redshift CLI or API\.
@@ -12,10 +15,7 @@ Billing for Amazon Redshift event notification is through the Amazon Simple Noti
 
 You can also view Amazon Redshift events that have occurred by using the management console\. For more information, see [Amazon Redshift events](working-with-events.md)\.
 
-**Topics**
-+ [Subscribing to Amazon Redshift event notifications](#working-with-event-notifications-subscribe)
-
-### Subscribing to Amazon Redshift event notifications<a name="working-with-event-notifications-subscribe"></a>
+### Subscribing to Amazon Redshift cluster event notifications<a name="working-with-event-notifications-subscribe"></a>
 
 You can create an Amazon Redshift event notification subscription so you can be notified when an event occurs for a given cluster, snapshot, security group, or parameter group\. The simplest way to create a subscription is with the Amazon SNS console\. For information on creating an Amazon SNS topic and subscribing to it, see [Getting started with Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/GettingStarted.html)\.
 
@@ -39,7 +39,22 @@ If you delete or rename an object whose name is referenced as a source ID in an 
 
 Amazon Redshift publishes event notifications to an Amazon SNS topic, which is identified by its Amazon Resource Name \(ARN\)\. When you create an event subscription using the Amazon Redshift console, you can either specify an existing Amazon SNS topic, or request that the console create the topic when it creates the subscription\. All Amazon Redshift event notifications sent to the Amazon SNS topic are in turn transmitted to all Amazon SNS consumers that are subscribed to that topic\. Use the Amazon SNS console to make changes to the Amazon SNS topic, such as adding or removing consumer subscriptions to the topic\. For more information about creating and subscribing to Amazon SNS topics, go to [Getting started with Amazon Simple Notification Service](https://docs.aws.amazon.com/sns/latest/dg/GettingStarted.html)\.
 
-The following section lists all categories and events that you can be notified of\. It also provides information about subscribing to and working with Amazon Redshift event subscriptions\.
+The following sections list all categories and events that you can be notified of\. It also provides information about subscribing to and working with Amazon Redshift event subscriptions\.
+
+## Amazon Redshift Serverless event notifications with Amazon EventBridge<a name="serverless-event-notifications-eventbridge"></a>
+
+Amazon Redshift Serverless uses Amazon EventBridge to manage event notifications to keep you up\-to\-date regarding changes in your data warehouse\. Amazon EventBridge is a serverless event bus service that you can use to connect your applications with data from a variety of sources\. In this case, the event source is Amazon Redshift\. Events, which are monitored changes in an environment, are sent to EventBridge from your Amazon Redshift data warehouse automatically\. Events are delivered in near\-real time\.
+
+Capabilities of EventBridge include providing an environment for you to write event rules, which can specify actions to take for specific events\. You can also set up targets, which are resources that EventBridge can send an event to\. A target can include an API destination, an Amazon CloudWatch log group, and others\. For more information about rules, see [Amazon EventBridge rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html)\. For more information about targets, see [Amazon EventBridge targets](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html)\.
+
+Events can be classified into severities and categories\. The following filters are available:
++ *Resource filtering* – Receive messages based on the resource the events are associated with\. Resources include a workgroup, a snapshot, and so on\.
++ *Time window filtering* – Scope events in a specific time period\.
++ *Category filtering* – Receive event notifications for all events in specified categories\.
+
+The following table includes Amazon Redshift Serverless events, with additional metadata:
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-event-notifications.html)
 
 ## Amazon Redshift event categories and event messages<a name="redshift-event-messages"></a>
 

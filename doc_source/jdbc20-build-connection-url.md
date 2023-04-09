@@ -9,15 +9,15 @@ jdbc:redshift://[Host]:[Port]
 The following is the format of a connection URL that specifies some optional settings\.
 
 ```
-jdbc:redshift://[Host]:[Port]/[Schema];[Property1]=[Value];
+jdbc:redshift://[Host]:[Port]/[database];[Property1]=[Value];
 [Property2]=[Value];
 ```
 
-For example, suppose that you want to connect to port 9000 on an Amazon Redshift cluster in the US West \(N\. California\) Region on AWS\. You also want to access the schema named Default and authenticate the connection using a user name and password\. In this case, you use the following connection URL\.
+For example, suppose that you want to connect to port 9000 on an Amazon Redshift cluster in the US West \(N\. California\) Region on AWS\. You also want to access the schema named Default and authenticate the connection using a database user name and password\. In this case, you use the following connection URL\.
 
 ```
 jdbc:redshift://redshift.company.us-west-
-                1.redshift.amazonaws.com:9000/Default;UID=amazon;PWD=amazon
+                1.redshift.amazonaws.com:9000/dev;UID=amazon;PWD=amazon
 ```
 
 You can use the following characters to separate configuration options in the URL string:

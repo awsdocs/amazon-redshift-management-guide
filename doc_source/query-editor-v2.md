@@ -18,8 +18,10 @@ The query editor v2 has a rich set of features to manage and run your SQL statem
 **Topics**
 + [Configuring your AWS account](query-editor-v2-getting-started.md)
 + [Working with query editor v2](query-editor-v2-using.md)
++ [Loading data into a database](query-editor-v2-loading.md)
 + [Authoring and running queries](query-editor-v2-query-run.md)
 + [Authoring and running notebooks](query-editor-v2-notebooks.md)
++ [Querying the AWS Glue Data Catalog \(preview\)](query-editor-v2-glue.md)
 + [Querying a data lake](query-editor-v2-querying-data-lake.md)
 + [Working with datashares](query-editor-v2-datashare-using.md)
 + [Visualizing query results](query-editor-v2-charts.md)

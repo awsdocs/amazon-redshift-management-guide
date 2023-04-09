@@ -1,6 +1,6 @@
 # Using identity provider plugins<a name="python-connect-identity-provider-plugins"></a>
 
-For general information on how to use identity provider plugins, see [Options for providing IAM credentials](options-for-providing-iam-credentials.md)\.
+For general information on how to use identity provider plugins, see [Options for providing IAM credentials](options-for-providing-iam-credentials.md)\. For more information about managing IAM identities, including best practices for IAM roles, see [Identity and access management in Amazon Redshift](redshift-iam-authentication-access-control.md)\.
 
 ## Authentication using the ADFS identity provider plugin<a name="python-connect-identity-provider-active-dir"></a>
 
@@ -43,7 +43,7 @@ Following is an example of authentication using the Azure identity provider plug
 
 Following is an example of using the Azure Browser identity provider plugin to authenticate a user connecting to an Amazon Redshift database\.
 
-Multi\-factor authentication occurs in the browser, where the username and password are provided by the user\.
+Multi\-factor authentication occurs in the browser, where the sign\-in credentials are provided by the user\.
 
 ```
 >>>con = redshift_connector.connect(

@@ -33,7 +33,7 @@ To ensure that your backups are always available to your cluster, Amazon Redshif
 
 ## Automated snapshots<a name="about-automated-snapshots"></a>
 
-When automated snapshots are enabled for a cluster, Amazon Redshift periodically takes snapshots of that cluster\. By default Amazon Redshift takes a snapshot about every eight hours or following every 5 GB per node of data changes, or whichever comes first\. Alternatively, you can create a snapshot schedule to control when automated snapshots are taken\. Automated snapshots are enabled by default when you create a cluster\. 
+When automated snapshots are enabled for a cluster, Amazon Redshift periodically takes snapshots of that cluster\. By default Amazon Redshift takes a snapshot about every eight hours or following every 5 GB per node of data changes, or whichever comes first\. If your data is larger than 5 GB \* the number of nodes, the shortest amount of time in between automated snapshot creation is 15 minutes\. Alternatively, you can create a snapshot schedule to control when automated snapshots are taken\. If you're using custom schedules, the minimum amount of time between automated snapshots is one hour\. Automated snapshots are enabled by default when you create a cluster\.
 
 Automated snapshots are deleted at the end of a retention period\. The default retention period is one day, but you can modify it by using the Amazon Redshift console or programmatically by using the Amazon Redshift API or CLI\.
 
@@ -77,7 +77,11 @@ cron(Minutes Hours Day-of-week)
 + The **/** \(forward slash\) wildcard specifies increments\. In the `Hours` field, you could enter **1/10** to specify every 10th hour, starting from the first hour of the day \(for example, the 01:00, 11:00, and 21:00\)\.
 
 **Limits**
-+ Snapshot schedules that lead to backup frequencies less than 1 hour or greater than 24 hours are not supported\. If you have overlapping schedules that result in scheduling snapshots within a 1 hour window, a validation error results\. 
++ Snapshot schedules don't support the following frequencies: 
+  + Snapshots scheduled more frequently than 1 per hour\.
+  + Snapshots scheduled less frequently than 1 per day \(24 hours\)\.
+
+  If you have overlapping schedules that result in scheduling snapshots within a 1 hour window, a validation error results\.
 
 When creating a schedule, you can use the following sample cron strings\.
 
@@ -245,13 +249,13 @@ If you have reserved nodes, for example DS2 or DC2 reserved nodes, you can upgra
 
 ## Restoring a table from a snapshot<a name="working-with-snapshot-restore-table-from-snapshot"></a>
 
-You can restore a single table from a snapshot instead of restoring an entire cluster\. When you restore a single table from a snapshot, you specify the source snapshot, database, schema, and table name, and the target cluster, schema, and a new table name for the restored table\.
+You can restore a single table from a snapshot instead of restoring an entire cluster\. When you restore a single table from a snapshot, you specify the source snapshot, database, schema, and table name, and the target database, schema, and a new table name for the restored table\.
 
 The new table name cannot be the name of an existing table\. To replace an existing table with a restored table from a snapshot, rename or drop the existing table before you restore the table from the snapshot\.
 
 The target table is created using the source table's column definitions, table attributes, and column attributes except for foreign keys\. To prevent conflicts due to dependencies, the target table doesn't inherit foreign keys from the source table\. Any dependencies, such as views or permissions granted on the source table, aren't applied to the target table\. 
 
-If the owner of the source table exists, then that user is the owner of the restored table, provided that the user has sufficient permissions to become the owner of a relation in the specified database and schema\. Otherwise, the restored table is owned by the admin user that was created when the cluster was launched\.
+If the owner of the source table exists, then that database user is the owner of the restored table, provided that the user has sufficient permissions to become the owner of a relation in the specified database and schema\. Otherwise, the restored table is owned by the admin user that was created when the cluster was launched\.
 
 The restored table returns to the state it was in at the time the backup was taken\. This includes transaction visibility rules defined by the Amazon Redshift adherence to [serializable isolation](https://docs.aws.amazon.com/redshift/latest/dg/c_serial_isolation.html), meaning that data will be immediately visible to in flight transactions started after the backup\.
 
@@ -291,8 +295,8 @@ A manual snapshot is permanently owned by the AWS customer account under which i
 
 AWS customer accounts are always authorized to access snapshots owned by the account\. Attempts to authorize or revoke access to the owner account will receive an error\. You cannot restore or describe a snapshot that is owned by an inactive AWS customer account\. 
 
-After you have authorized access to an AWS customer account, no IAM users in that account can perform any actions on the snapshot unless they have IAM policies that allow them to do so\.
-+ IAM users in the snapshot owner account can authorize and revoke access to a snapshot only if they have an IAM policy that allows them to perform those actions with a resource specification that includes the snapshot\. For example, the following policy allows a user in AWS account `012345678912` to authorize other accounts to access a snapshot named `my-snapshot20130829`:
+After you have authorized access to an AWS customer account, no  users in that account can perform any actions on the snapshot unless they assume a role with policies that allow them to do so\.
++ Users in the snapshot owner account can authorize and revoke access to a snapshot only if they assume a role with an IAM policy that allows them to perform those actions with a resource specification that includes the snapshot\. For example, the following policy allows a user or role in AWS account `012345678912` to authorize other accounts to access a snapshot named `my-snapshot20130829`:
 
   ```
   {
@@ -311,7 +315,7 @@ After you have authorized access to an AWS customer account, no IAM users in tha
     ]
   }
   ```
-+ IAM users in an AWS account with which a snapshot has been shared cannot perform actions on that snapshot unless they have IAM policies allowing those actions:
++ Users in an AWS account with which a snapshot has been shared cannot perform actions on that snapshot unless they have permissions allowing those actions\. You can do this by assigning the policy to a role and assuming the role\. 
   + To list or describe a snapshot, they must have an IAM policy that allows the `DescribeClusterSnapshots` action\. The following code shows an example:
 
     ```
@@ -330,7 +334,7 @@ After you have authorized access to an AWS customer account, no IAM users in tha
       ]
     }
     ```
-  + To restore a snapshot, users must have an IAM policy that allows the `RestoreFromClusterSnapshot` action and has a resource element that covers both the cluster they are attempting to create and the snapshot\. For example, if a user in account `012345678912` has shared snapshot `my-snapshot20130829` with account `219876543210`, in order to create a cluster by restoring the snapshot, a user in account `219876543210` must have a policy such as the following:
+  + To restore a snapshot, a user must assume a role with an IAM policy that allows the `RestoreFromClusterSnapshot` action and has a resource element that covers both the cluster they are attempting to create and the snapshot\. For example, if a user in account `012345678912` has shared snapshot `my-snapshot20130829` with account `219876543210`, in order to create a cluster by restoring the snapshot, a user in account `219876543210` must assume a role with a policy such as the following:
 
     ```
     {
@@ -349,4 +353,4 @@ After you have authorized access to an AWS customer account, no IAM users in tha
       ]
     }
     ```
-  + After access to a snapshot has been revoked from an AWS account, no users in that account can access the snapshot\. This is so even if they have IAM policies that allow actions on the previously shared snapshot resource\.
+  + After access to a snapshot has been revoked from an AWS account, no users in that account can access the snapshot\. This is the case even if those accounts have IAM policies that allow actions on the previously shared snapshot resource\.

@@ -1,6 +1,19 @@
 # Authorizing Amazon Redshift to access other AWS services on your behalf<a name="authorizing-redshift-service"></a>
 
-Some Amazon Redshift features require Amazon Redshift to access other AWS services on your behalf\. For example, the [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) and [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) commands can load or unload data into your Amazon Redshift cluster using an Amazon S3 bucket\. The [CREATE EXTERNAL FUNCTION](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_EXTERNAL_FUNCTION.html) command can invoke an AWS Lambda function using a scalar Lambda user\-defined function \(UDF\)\. Amazon Redshift Spectrum can use a data catalog in Amazon Athena or AWS Glue\. For your Amazon Redshift clusters to act on your behalf, you supply security credentials to your clusters\. The preferred method to supply security credentials is to specify an AWS Identity and Access Management \(IAM\) role\. For COPY and UNLOAD, you can provide AWS access keys\. 
+Some Amazon Redshift features require Amazon Redshift to access other AWS services on your behalf\. For example, the [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html) and [UNLOAD](https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html) commands can load or unload data into your Amazon Redshift cluster using an Amazon S3 bucket\. The [CREATE EXTERNAL FUNCTION](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_EXTERNAL_FUNCTION.html) command can invoke an AWS Lambda function using a scalar Lambda user\-defined function \(UDF\)\. Amazon Redshift Spectrum can use a data catalog in Amazon Athena or AWS Glue\. For your Amazon Redshift clusters to act on your behalf, you supply security credentials to your clusters\. The preferred method to supply security credentials is to specify an AWS Identity and Access Management \(IAM\) role\. For COPY and UNLOAD, you can provide temporary credentials\. 
+
+Users need programmatic access if they want to interact with AWS outside of the AWS Management Console\. The way to grant programmatic access depends on the type of user that's accessing AWS\.
+
+To grant users programmatic access, choose one of the following options\.
+
+
+****  
+
+| Which user needs programmatic access? | To | By | 
+| --- | --- | --- | 
+|  Workforce identity \(Users managed in IAM Identity Center\)  | Use temporary credentials to sign programmatic requests to the AWS CLI, AWS SDKs, or AWS APIs\. |  Following the instructions for the interface that you want to use\. [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html)  | 
+| IAM | Use temporary credentials to sign programmatic requests to the AWS CLI, AWS SDKs, or AWS APIs\. | Following the instructions in [Using temporary credentials with AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html) in the IAM User Guide\. | 
+| IAM | \(Not recommended\)Use long\-term credentials to sign programmatic requests to the AWS CLI, AWS SDKs, or AWS APIs\. |  Following the instructions for the interface that you want to use\. [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html)  | 
 
 Following, find out how to create an IAM role with the appropriate permissions to access other AWS services\. You also need to associate the role with your cluster and specify the Amazon Resource Name \(ARN\) of the role when you run the Amazon Redshift command\. For more information, see [Authorizing COPY, UNLOAD, CREATE EXTERNAL FUNCTION, and CREATE EXTERNAL SCHEMA operations using IAM roles](copy-unload-iam-role.md)\.
 

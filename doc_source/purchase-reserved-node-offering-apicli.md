@@ -9,3 +9,5 @@ You can use the following AWS CLI operations to purchase reserved node offerings
 + [ PurchaseReservedNodeOffering](https://docs.aws.amazon.com/redshift/latest/APIReference/API_PurchaseReservedNodeOffering.html)
 + [DescribeReservedNodeOfferings](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeReservedNodeOfferings.html)
 + [DescribeOrderableClusterOptions](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeOrderableClusterOptions.html)
+
+You can't convert all node types to reserved nodes, and it's also possible that an existing reserved node isn't available for renewal\. This might be because the node type is discontinued\.

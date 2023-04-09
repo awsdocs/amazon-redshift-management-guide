@@ -79,7 +79,7 @@ You can use SQL commands or the query editor v2 tree\-view panel to create the d
 
 **To use the query editor v2 tree\-view panel**
 
-1. Choose ![\[Create\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png)**Create**, and then choose **Database**\.
+1. Choose ![\[Create\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-add.png)**Create**, and then choose **Database**\.
 
 1. Enter a **Database name**\.
 

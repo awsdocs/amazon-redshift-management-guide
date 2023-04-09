@@ -42,13 +42,13 @@ On the AWS Management Console you can manage permissions policies for roles in A
 
 ### Getting started with IAM credentials for Amazon Redshift<a name="serverless-iam-credentials"></a>
 
-When you sign in to the Amazon Redshift console for the first time and first try out Amazon Redshift Serverless, you can either log on as an IAM user or an IAM role\. After you get started creating an Amazon Redshift Serverless instance, Amazon Redshift records your IAM user name or role name that you used when you signed in\. You can use the same IAM credentials to sign in to the Amazon Redshift console and the Amazon Redshift Serverless console\.
+When you sign in to the Amazon Redshift console for the first time and first try out Amazon Redshift Serverless, we recommend that you sign in as a user with an attached IAM role that has the policies required\. After you get started creating an Amazon Redshift Serverless instance, Amazon Redshift records the IAM  role name that you used to sign in\. You can use the same  credentials to sign in to the Amazon Redshift console and the Amazon Redshift Serverless console\.
 
 While creating the Amazon Redshift Serverless instance, you can create a database\. Use the query editor v2 to connect to the database with the temporary credentials option\.
 
 To add a new admin user name and password that persist for the database, choose **Customize admin user credentials** and enter a new admin user name and admin user password\. 
 
-To get started using Amazon Redshift Serverless and create a workgroup and namespace in the console for the first time, use an IAM user or IAM role\. Make sure that this user or role has either the administrator permission ` arn:aws:iam::aws:policy/AdministratorAccess` or the full Amazon Redshift permission `arn:aws:iam::aws:policy/AmazonRedshiftFullAccess` attached to the IAM policy that you used\.
+To get started using Amazon Redshift Serverless and create a workgroup and namespace in the console for the first time, use an  IAM role with a permissions policy attached\. Make sure that this  role has either the administrator permission ` arn:aws:iam::aws:policy/AdministratorAccess` or the full Amazon Redshift permission `arn:aws:iam::aws:policy/AmazonRedshiftFullAccess` attached to the IAM policy\. 
 
 The following scenarios outline how your IAM credentials are used by Amazon Redshift Serverless when you get started on the Amazon Redshift Serverless console:
 + If you choose **Use default settings** – Amazon Redshift Serverless translates your current IAM identity to a database superuser\. You can use the same IAM identity with the Amazon Redshift Serverless console to perform superuser actions in your database in Amazon Redshift Serverless\.

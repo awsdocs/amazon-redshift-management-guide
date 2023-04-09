@@ -4,4 +4,8 @@ The AWS global infrastructure is built around AWS Regions and Availability Zones
 
 Almost all AWS Regions have multiple Availability Zones and data centers\. You can deploy your applications across multiple Availability Zones in the same Region for fault tolerance and low latency\. 
 
+To move a cluster to another Availability Zone without any loss of data or changes to your applications, you can set up relocation for your cluster\. With relocation, you can continue operations when there is an interruption of service on your cluster with minimal impact\. When cluster relocation is turned on, Amazon Redshift might choose to relocate clusters in some situations\. For more information on relocation in Amazon Redshift, see [Managing cluster relocation in Amazon Redshift](managing-cluster-recovery.md)\.
+
+In failure scenarios where an unexpected event happens in an Availability Zone, you can set up a multiple Availability Zones \(Multi\-AZ\) deployment to ensure that your Amazon Redshift data warehouse can continue operating\. Amazon Redshift deploys equal compute resources in two Availability Zones that can be accessed through a single endpoint\. In the event of an entire Availability Zone failure, the remaining compute resources in the second Availability Zone will be available to continue processing workloads\. For more information on Multi\-AZ deployments, see [Configuring Multi\-AZ deployment \(preview\)](managing-cluster-multi-az.md)\. 
+
 For more information on AWS Regions and Availability Zones, see [AWS global infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)\.

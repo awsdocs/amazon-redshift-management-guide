@@ -4,10 +4,20 @@ Amazon Redshift requires that every request you send to the management API be au
 
 If you are using one of the AWS Software Development Kits \(SDKs\) or the AWS Command Line Interface, request signing is handled automatically, and you can skip this section\. For more information about using AWS SDKs, see [Using the Amazon Redshift management interfaces](using-aws-sdk.md)\. For more information about using the Amazon Redshift Command Line Interface, go to [Amazon Redshift command line reference](https://docs.aws.amazon.com/cli/latest/reference/redshift/index.html)\.
 
-To sign a request, you calculate a digital signature by using a cryptographic hash function\. A cryptographic hash is a function that returns a unique hash value that is based on the input\. The input to the hash function includes the text of your request and your secret access key\. The hash function returns a hash value that you include in the request as your signature\. The signature is part of the `Authorization` header of your request\.
+To sign a request, you calculate a digital signature by using a cryptographic hash function\. A cryptographic hash is a function that returns a unique hash value that is based on the input\. The input to the hash function includes the text of your request and your secret access key that you can get from temporary credentials\. The hash function returns a hash value that you include in the request as your signature\. The signature is part of the `Authorization` header of your request\.
 
 **Note**  
-For API access, you need an access key ID and secret access key\. Use IAM user access keys instead of AWS account root user access keys\. For more information about creating access keys, see [Managing access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) in the *IAM User Guide*\. 
+Users need programmatic access if they want to interact with AWS outside of the AWS Management Console\. The way to grant programmatic access depends on the type of user that's accessing AWS\.  
+To grant users programmatic access, choose one of the following options\.  
+
+
+****  
+
+| Which user needs programmatic access? | To | By | 
+| --- | --- | --- | 
+|  Workforce identity \(Users managed in IAM Identity Center\)  | Use temporary credentials to sign programmatic requests to the AWS CLI, AWS SDKs, or AWS APIs\. |  Following the instructions for the interface that you want to use\. [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-signing-requests.html)  | 
+| IAM | Use temporary credentials to sign programmatic requests to the AWS CLI, AWS SDKs, or AWS APIs\. | Following the instructions in [Using temporary credentials with AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html) in the IAM User Guide\. | 
+| IAM | \(Not recommended\)Use long\-term credentials to sign programmatic requests to the AWS CLI, AWS SDKs, or AWS APIs\. |  Following the instructions for the interface that you want to use\. [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-signing-requests.html)  | 
 
 After Amazon Redshift receives your request, it recalculates the signature by using the same hash function and input that you used to sign the request\. If the resulting signature matches the signature in the request, Amazon Redshift processes the request; otherwise, the request is rejected\. 
 

@@ -42,14 +42,14 @@ The following table summarizes whether a property is applicable to automatic WLM
 | Memory | No | Yes | 
 | Query Monitoring Rules | Yes | Yes | 
 
-The following list describes the WLM properties that you can configure for each queue\. 
+The following list describes the WLM properties that you can configure\.
 
 **Auto WLM**  
 **Auto WLM** set to `true` enables automatic WLM\. Automatic WLM sets the values for **Concurrency on main** and **Memory \(%\)** to `Auto`\. Amazon Redshift manages query concurrency and memory allocation\. The default is `true`\.  
 JSON property: `auto_wlm`
 
 **Enable short query acceleration**  
-Short query acceleration \(SQA\) prioritizes selected short\-running queries ahead of longer\-running queries\. SQA executes short\-running queries in a dedicated space, so that SQA queries aren't forced to wait in queues behind longer queries\. With SQA, short\-running queries begin executing more quickly and users see results sooner\. When you enable SQA, you can also specify the maximum run time for short queries\. To enable SQA, specify `true`\. The default is `false`\.  
+Short query acceleration \(SQA\) prioritizes selected short\-running queries ahead of longer\-running queries\. SQA executes short\-running queries in a dedicated space, so that SQA queries aren't forced to wait in queues behind longer queries\. With SQA, short\-running queries begin executing more quickly and users see results sooner\. When you enable SQA, you can also specify the maximum run time for short queries\. To enable SQA, specify `true`\. The default is `false`\. This setting is applied for each parameter group rather than queue\.  
 JSON property: `short_query_queue`
 
 ****Maximum run time for short queries****  

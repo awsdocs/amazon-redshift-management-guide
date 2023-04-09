@@ -13,3 +13,4 @@ For the latest information about ODBC driver changes, see the [change log](https
 + [Configuring authentication](odbc20-authentication-ssl.md)
 + [Converting data types](odbc20-converting-data-types.md)
 + [Configuring ODBC driver options](odbc20-configuration-options.md)
++ [Previous ODBC driver versions](odbc20-previous-versions.md)

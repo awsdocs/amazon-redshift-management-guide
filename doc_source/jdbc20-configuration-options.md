@@ -43,6 +43,7 @@ You can set configuration properties using the connection URL\. For more informa
 + [loginToRp](#jdbc20-logintorp-option)
 + [LogLevel](#jdbc20-loglevel-option)
 + [LogPath](#jdbc20-logpath-option)
++ [OverrideSchemaPatternType](#jdbc20-override-schema-pattern-type)
 + [Partner\_SPID](#jdbc20-partner_spid-option)
 + [Password](#jdbc20-password-option)
 + [Plugin\_Name](#jdbc20-plugin_name-option)
@@ -82,7 +83,7 @@ You can set configuration properties using the connection URL\. For more informa
 + **Default Value** – None
 + **Data Type** – String
 
-You can specify this parameter to enter the IAM access key for the IAM user or role\. You can usually locate the key by looking at and existing string or user profile\. If you specify this parameter, you must also specify the `SecretAccessKey` parameter\. 
+You can specify this parameter to enter the IAM access key for the user or role\. You can usually locate the key by looking at and existing string or user profile\. If you specify this parameter, you must also specify the `SecretAccessKey` parameter\. If passed in the JDBC URL, AccessKeyID must be URL encoded\.
 
 This parameter is optional\.
 
@@ -499,6 +500,23 @@ To be sure that the connection URL is compatible with all JDBC applications, we 
 
 This parameter is optional\.
 
+## OverrideSchemaPatternType<a name="jdbc20-override-schema-pattern-type"></a>
++ **Default Value** – null
++ **Data Type** – Integer
+
+This option specifies whether to override the type of query used in getTables calls\.
+
+**0**  
+No Schema Universal Query
+
+**1**  
+Local Schema Query
+
+**2**  
+External Schema Query
+
+This parameter is optional\.
+
 ## Partner\_SPID<a name="jdbc20-partner_spid-option"></a>
 + **Default Value** – None
 + **Data Type** – String
@@ -642,7 +660,7 @@ This parameter is required for the BrowserAzureOAuth2CredentialsProvider plug\-i
 + **Default Value** – None
 + **Data Type** – String
 
-The IAM access key for the user or role\. If this is specified, then AccessKeyID must also be specified\. 
+The IAM access key for the user or role\. If this is specified, then AccessKeyID must also be specified\. If passed in the JDBC URL, SecretAccessKey must be URL encoded\. 
 
 This parameter is optional\.
 
@@ -798,7 +816,7 @@ The driver doesn't use TCP keepalives\.
 + **Default Value** – None
 + **Data Type** – String
 
-The user name that you use to access the database\. 
+The database user name that you use to access the database\. 
 
 This parameter is required\.
 
@@ -806,7 +824,7 @@ This parameter is required\.
 + **Default Value** – None
 + **Data Type** – String
 
-When connecting using IAM authentication through an IDP, this is the user name for the idp\_host server\. When using standard authentication this can be used for the Amazon Redshift database user name\. 
+When connecting using IAM authentication through an IDP, this is the user name for the idp\_host server\. When using standard authentication, this can be used for the Amazon Redshift database user name\. 
 
 This parameter is optional\.
 

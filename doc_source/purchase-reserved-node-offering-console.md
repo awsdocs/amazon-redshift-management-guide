@@ -10,11 +10,13 @@ After you purchase an offering, the **Reserved Node** list displays your reserva
 
 1. On the navigation menu, choose **Clusters**, then choose **Reserved nodes** to display the list of reserved nodes\. 
 
-1. Choose **Purchase reserved nodes** to display the page to choose the properties of the node that you want to purchase\. 
+1. Choose **Purchase reserved nodes** to display the page to choose the properties of the node that you want to purchase\.
 
 1. Enter the properties of the node, then choose **Purchase reserved nodes**\. 
 
 To upgrade a reserved node, use  the AWS CLI\.
+
+You can't convert all node types to reserved nodes, and it's also possible that an existing reserved node isn't available for renewal\. This might be because the node type is discontinued\. Contact customer support to renew a discontinued node type\.
 
 ## Upgrading reserved nodes with the AWS CLI<a name="reserved-node-upgrade-cli"></a><a name="upgrade-reserved-nodes-cli"></a>
 

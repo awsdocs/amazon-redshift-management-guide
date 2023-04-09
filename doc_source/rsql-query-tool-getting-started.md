@@ -71,9 +71,9 @@ Follow the instructions at [Install and configure the Amazon Redshift ODBC drive
 OpenSSL is required for Amazon Redshift RSQL on Windows\. The Windows OpenSSL library is located in the [Windows OpenSSL](https://github.com/winlibs/openssl) GitHub repository\. For more information about OpenSSL, see [OpenSSL](https://www.openssl.org/)\.
 
 ## Download RSQL<a name="rsql-query-tool-download"></a>
-+ Linux 64\-bit RPM: [RSQL Version 1\.0\.5](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.5/AmazonRedshiftRsql-1.0.5-1.x86_64.rpm)
-+ Mac OS 64\-bit DMG: [RSQL Version 1\.0\.5](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.5/AmazonRedshiftRsql-1.0.5.dmg)
-+ Windows 64\-bit MSI: [RSQL Version 1\.0\.5](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.5/AmazonRedshiftRsql-1.0.5.msi)
++ Linux 64\-bit RPM: [RSQL Version 1\.0\.7](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.7/AmazonRedshiftRsql-1.0.7.x86_64.rpm)
++ Mac OS 64\-bit DMG: [RSQL Version 1\.0\.7](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.7/AmazonRedshiftRsql-1.0.7.x86_64.dmg)
++ Windows 64\-bit MSI: [RSQL Version 1\.0\.7](https://s3.amazonaws.com/redshift-downloads/amazon-redshift-rsql/1.0.7/AmazonRedshiftRsql-1.0.7.x86_64.msi)
 
 See the change log and downloads for previous versions at [Amazon Redshift RSQL change log](rsql-query-tool-changelog.md)\.
 

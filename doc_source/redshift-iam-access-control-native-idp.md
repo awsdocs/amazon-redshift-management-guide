@@ -66,9 +66,11 @@ Complete the following steps in Amazon Redshift:
    GRANT SELECT on table foo to aad:alice@example.com
    ```
 
+   Note that a federated external user's role membership is available only in that user's session\. This has implications for creating database objects\. When a federated external user creates any view or stored procedure, for instance, the same user can't delegate permission of those objects to other users and roles\.
+
 **An explanation of namespaces**
 
-A namespace maps a user or role to a specific identity provider\. For example, IAM users are prefixed by `iam:`\. This is done to avoid user name collisions and support multiple identity stores\.  If a user alice@example\.com from the identity source registered with *aad* namespace logs in, the user `aad:alice@example.com` is created in Redshift if it doesn't already exist\. Note that a user and role namespace has a different function than an Amazon Redshift cluster namespace, which is a unique identifier associated with a cluster\.
+A namespace maps a user or role to a specific identity provider\. For example, the prefix for users created in AWS IAM is `iam:`\. This prefix prevents user name collisions and makes support for multiple identity stores possible\.  If a user alice@example\.com from the identity source registered with *aad* namespace logs in, the user `aad:alice@example.com` is created in Redshift if it doesn't already exist\. Note that a user and role namespace has a different function than an Amazon Redshift cluster namespace, which is a unique identifier associated with a cluster\.
 
 ## How login works with native identity provider \(IdP\) federation<a name="redshift-iam-access-control-native-idp-login"></a>
 

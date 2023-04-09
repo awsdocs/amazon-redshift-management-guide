@@ -47,11 +47,18 @@ A superuser can provide access to users who aren't superusers so that they can p
 
 1. Choose **Create policy**\.
 
-1. Under **Policies**, choose the policy you created\.
+After you create the policy, you can grant the appropriate permissions\.
 
-1. Under **Actions**, choose **Attach**\.
+To provide access, add permissions to your users, groups, or roles:
++ Users and groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\):
 
-1. Choose the users or roles to which you want to attach the policy and choose **Attach policy**\.
+  Create a permission set\. Follow the instructions in [Create a permission set](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
++ Users managed in IAM through an identity provider:
+
+  Create a role for identity federation\. Follow the instructions in [Creating a role for a third\-party identity provider \(federation\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp.html) in the *IAM User Guide*\.
++ IAM users:
+  + Create a role that your user can assume\. Follow the instructions in [Creating a role for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+  + \(Not recommended\) Attach a policy directly to a user or add a user to a user group\. Follow the instructions in [Adding permissions to a user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) in the *IAM User Guide*\.
 
 **To grant query monitoring permission for a user**
 
@@ -131,12 +138,14 @@ You can't query STL, STV, SVCS, SVL, and some SVV system tables and views with A
 + [SVV\_EXTERNAL\_PARTITIONS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_EXTERNAL_PARTITIONS.html) 
 + [SVV\_EXTERNAL\_SCHEMAS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_EXTERNAL_SCHEMAS.html) 
 + [SVV\_EXTERNAL\_TABLES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_EXTERNAL_TABLES.html) 
++ [SVV\_MV\_DEPENDENCY](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_MV_DEPENDENCY.html) 
 + [SVV\_MV\_INFO](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_MV_INFO.html) 
 + [SVV\_FUNCTION\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_FUNCTION_PRIVILEGES.html) 
 + [SVV\_IDENTITY\_PROVIDERS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_IDENTITY_PROVIDERS.html) 
 + [SVV\_INTERLEAVED\_COLUMNS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_INTERLEAVED_COLUMNS.html) 
 + [SVV\_LANGUAGE\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_LANGUAGE_PRIVILEGES.html) 
 + [SVV\_ML\_MODEL\_PRIVILEGES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_ML_MODEL_PRIVILEGES.html) 
++ [SVV\_ML\_MODEL\_INFO](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_ML_MODEL_INFO.html) 
 + [SVV\_REDSHIFT\_COLUMNS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_REDSHIFT_COLUMNS.html) 
 + [SVV\_REDSHIFT\_DATABASES](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_REDSHIFT_DATABASES.html) 
 + [SVV\_REDSHIFT\_FUNCTIONS](https://docs.aws.amazon.com/redshift/latest/dg/r_SVV_REDSHIFT_FUNCTIONS.html) 
@@ -164,6 +173,7 @@ You can query the following SYS system views to monitor Amazon Redshift Serverle
 + [SYS\_QUERY\_HISTORY](https://docs.aws.amazon.com/redshift/latest/dg/SYS_QUERY_HISTORY.html)
 + [SYS\_QUERY\_DETAIL](https://docs.aws.amazon.com/redshift/latest/dg/SYS_QUERY_DETAIL.html)
 + [SYS\_EXTERNAL\_QUERY\_DETAIL](https://docs.aws.amazon.com/redshift/latest/dg/SYS_EXTERNAL_QUERY_DETAIL.html)
++ [SYS\_LOAD\_DETAIL](https://docs.aws.amazon.com/redshift/latest/dg/SYS_LOAD_DETAIL.html)
 + [SYS\_LOAD\_HISTORY](https://docs.aws.amazon.com/redshift/latest/dg/SYS_LOAD_HISTORY.html)
 + [SYS\_LOAD\_ERROR\_DETAIL](https://docs.aws.amazon.com/redshift/latest/dg/SYS_LOAD_ERROR_DETAIL.html)
 + [SYS\_UNLOAD\_HISTORY](https://docs.aws.amazon.com/redshift/latest/dg/SYS_UNLOAD_HISTORY.html)

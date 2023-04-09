@@ -190,7 +190,7 @@ This parameter is optional\.
 + **Default Value** – None
 + **Data Type** – String
 
-The user name that you use to access the proxy server\. It’s used for IAM authentication\.
+The user name that you use to access the proxy server\. It's used for IAM authentication\.
 
 This parameter is optional\.
 
@@ -368,7 +368,7 @@ This parameter is optional\.
 + **Default Value** – None
 + **Data Type** – String
 
-The password corresponding to the user name that you provided in the User field \(**UID** \| **User** \| **LogonID**\)\. 
+The password corresponding to the database user name that you provided in the User field \(**UID** \| **User** \| **LogonID**\)\. 
 
 This parameter is optional\.
 

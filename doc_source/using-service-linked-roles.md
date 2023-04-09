@@ -58,6 +58,15 @@ The following permissions allow actions on Amazon EC2 for creation and managemen
 
 See more information about actions and resources in Amazon EC2 at [Actions, resources, and condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html)\.
 
+Additionally, the following permissions allow action on Amazon EC2 for creation and management of security group rules\. These security groups and rules are specifically associated with the Amazon Redshift `aws:RequestTag/Redshift` resource tag\. This limits the scope of the permissions to specific Amazon Redshift resources\.
++ `ec2:CreateSecurityGroup`
++ `ec2:AuthorizeSecurityGroupEgress`
++ `ec2:AuthorizeSecurityGroupIngress`
++ `ec2:RevokeSecurityGroupEgress`
++ `ec2:RevokeSecurityGroupIngress`
++ `ec2:ModifySecurityGroupRules`
++ `ec2:DeleteSecurityGroup`
+
 **Actions for audit logging**
 
 Actions listed with the `logs` prefix pertain to audit logging and related features\. Specifically, creation and management of log groups and log streams\. 

@@ -1,10 +1,10 @@
-# Step 3: Create an IAM role or user with permissions to call GetClusterCredentials<a name="generating-iam-credentials-role-permissions"></a>
+# Step 3: Create an IAM role with permissions to call GetClusterCredentials<a name="generating-iam-credentials-role-permissions"></a>
 
-Your SQL client needs authorization to call the `GetClusterCredentials` operation on your behalf\. To provide that authorization, you create an IAM user or role and attach a policy that grants the necessary permissions\.
+Your SQL client needs authorization to call the `GetClusterCredentials` operation on your behalf\. To provide that authorization, you create a user or role and attach a policy that grants the necessary permissions\.
 
 **To create an IAM role with permissions to call GetClusterCredentials**
 
-1. Using the IAM service, create an IAM user or role\. You can also use an existing user or role\. For example, if you created an IAM role for identity provider access, you can attach the necessary IAM policies to that role\. 
+1. Using the IAM service, create a user or role\. You can also use an existing user or role\. For example, if you created an IAM role for identity provider access, you can attach the necessary IAM policies to that role\. 
 
 1. Attach a permission policy with permission to call the `redshift:GetClusterCredentials` operation\. Depending on which optional parameters you specify, you can also allow or restrict additional actions and resources in your policy:
    + To permit your SQL client to retrieve cluster ID, AWS Region, and port, include permission to call the `redshift:DescribeClusters` operation with the Redshift cluster resource\. 

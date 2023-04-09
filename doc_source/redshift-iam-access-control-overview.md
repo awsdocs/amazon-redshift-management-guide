@@ -27,8 +27,8 @@ These query editor v2 resources have unique Amazon Resource Names \(ARNs\) assoc
 
 A *resource owner* is the AWS account that created a resource\. That is, the resource owner is the AWS account of the *principal entity* \(the root account, an IAM user, or an IAM role\) that authenticates the request that creates the resource\. The following examples illustrate how this works:
 + If you use the root account credentials of your AWS account to create a DB cluster, your AWS account is the owner of the Amazon Redshift resource\.
-+ If you create an IAM user in your AWS account and grant permissions to create Amazon Redshift resources to that user, the user can create Amazon Redshift resources\. However, your AWS account, to which the user belongs, owns the Amazon Redshift resources\.
 + If you create an IAM role in your AWS account with permissions to create Amazon Redshift resources, anyone who can assume the role can create Amazon Redshift resources\. Your AWS account, to which the role belongs, owns the Amazon Redshift resources\. 
++ If you create an IAM user in your AWS account and grant permissions to create Amazon Redshift resources to that user, the user can create Amazon Redshift resources\. However, your AWS account, to which the user belongs, owns the Amazon Redshift resources\. In most cases this method isn't recommended\. We recommend creating an IAM role and attaching permissions to the role, then assigning the role to a user\.
 
 ## Managing access to resources<a name="redshift-iam-accesscontrol-managingaccess"></a>
 
@@ -41,19 +41,7 @@ Policies attached to an IAM identity are referred to as *identity\-based* polici
 
 ### Identity\-based policies \(IAM policies\)<a name="redshift-iam-manage-access-identity-based"></a>
 
-You can attach policies to IAM identities\. For example, you can do the following: 
-+ **Attach a permissions policy to a user or a group in your account** – An account administrator can use a permissions policy that is associated with a particular user\. Such a policy grants permissions for that user to create an Amazon Redshift resource, such as a cluster\. 
-+ **Attach a permissions policy to a role \(grant cross\-account permissions\)** – You can attach an identity\-based permissions policy to an IAM role to grant cross\-account permissions\. For example, the administrator in Account A can create a role to grant cross\-account permissions to another AWS account \(for example, Account B\) or an AWS service as follows:
-
-  1. Account A administrator creates an IAM role and attaches a permissions policy to the role that grants permissions on resources in Account A\.
-
-  1. Account A administrator attaches a trust policy to the role identifying Account B as the principal who can assume the role\. 
-
-  1. Account B administrator can then delegate permissions to assume the role to any users in Account B\. Doing this allows users in Account B to create or access resources in Account A\. The principal in the trust policy can also be an AWS service principal if you want to grant an AWS service permissions to assume the role\.
-
-   For more information about using IAM to delegate permissions, see [Access management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\. 
-
-The following is an example policy that allows a user to create, delete, modify, and reboot Amazon Redshift clusters for your AWS account\.
+You can assign permissions by attaching polices to an IAM role and then assigning that role to a user or group\. The following is an example policy that containing permissions to create, delete, modify, and reboot Amazon Redshift clusters for your AWS account\.
 
 ```
 {

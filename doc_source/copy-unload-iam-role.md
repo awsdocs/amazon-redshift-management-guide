@@ -4,7 +4,20 @@ You can use the [COPY](https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.htm
 
 When you use Amazon Redshift Spectrum, you use the [CREATE EXTERNAL SCHEMA](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_EXTERNAL_SCHEMA.html) command to specify the location of an Amazon S3 bucket that contains your data\. When you run the COPY, UNLOAD, or CREATE EXTERNAL SCHEMA commands, you provide security credentials\. These credentials authorize your Amazon Redshift cluster to read or write data to and from your target destination, such as an Amazon S3 bucket\. 
 
-When you run the CREATE EXTERNAL FUNCTION, you provide security credentials using the IAM role parameter\. These credentials authorize your Amazon Redshift cluster to invoke Lambda functions from AWS Lambda\. The preferred method to supply security credentials is to specify an AWS Identity and Access Management \(IAM\) role\. For COPY and UNLOAD, you can provide AWS access keys\. For information about creating an IAM role, see [Authorizing Amazon Redshift to access other AWS services on your behalf](authorizing-redshift-service.md)\.
+When you run the CREATE EXTERNAL FUNCTION, you provide security credentials using the IAM role parameter\. These credentials authorize your Amazon Redshift cluster to invoke Lambda functions from AWS Lambda\. The preferred method to supply security credentials is to specify an AWS Identity and Access Management \(IAM\) role\. For COPY and UNLOAD, you can provide temporary credentials\. For information about creating an IAM role, see [Authorizing Amazon Redshift to access other AWS services on your behalf](authorizing-redshift-service.md)\.
+
+Users need programmatic access if they want to interact with AWS outside of the AWS Management Console\. The way to grant programmatic access depends on the type of user that's accessing AWS\.
+
+To grant users programmatic access, choose one of the following options\.
+
+
+****  
+
+| Which user needs programmatic access? | To | By | 
+| --- | --- | --- | 
+|  Workforce identity \(Users managed in IAM Identity Center\)  | Use temporary credentials to sign programmatic requests to the AWS CLI, AWS SDKs, or AWS APIs\. |  Following the instructions for the interface that you want to use\. [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html)  | 
+| IAM | Use temporary credentials to sign programmatic requests to the AWS CLI, AWS SDKs, or AWS APIs\. | Following the instructions in [Using temporary credentials with AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html) in the IAM User Guide\. | 
+| IAM | \(Not recommended\)Use long\-term credentials to sign programmatic requests to the AWS CLI, AWS SDKs, or AWS APIs\. |  Following the instructions for the interface that you want to use\. [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html)  | 
 
 The steps for using an IAM role are as follows:
 + Create an IAM role for use with your Amazon Redshift cluster\.
@@ -19,9 +32,9 @@ After you have created an IAM role that authorizes Amazon Redshift to access oth
 
 ### Permissions required to associate an IAM role with a cluster<a name="copy-unload-iam-role-associating-with-clusters-perms"></a>
 
-To associate an IAM role with a cluster, an IAM user must have `iam:PassRole` permission for that IAM role\. This permission allows an administrator to restrict which IAM roles a user can associate with Amazon Redshift clusters\. 
+To associate an IAM role with a cluster, a user must have `iam:PassRole` permission for that IAM role\. This permission allows an administrator to restrict which IAM roles a user can associate with Amazon Redshift clusters\. As a best practice, we recommend attaching permissions policies to an IAM role and then assigning it to users and groups as needed\. For more information, see [Identity and access management in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-authentication-access-control.html)\.
 
-The following example shows an IAM policy that can be attached to an IAM user that allows the user to take these actions: 
+The following example shows an IAM policy that can be attached to a user that allows the user to take these actions: 
 + Get the details for all Amazon Redshift clusters owned by that user's account\.
 + Associate any of three IAM roles with either of two Amazon Redshift clusters\.
 
@@ -58,7 +71,7 @@ The following example shows an IAM policy that can be attached to an IAM user th
 }
 ```
 
-After an IAM user has the appropriate permissions, that user can associate an IAM role with an Amazon Redshift cluster\. The IAM role is then ready to use with the COPY or UNLOAD command or other Amazon Redshift commands\.
+After a user has the appropriate permissions, that user can associate an IAM role with an Amazon Redshift cluster\. The IAM role is then ready to use with the COPY or UNLOAD command or other Amazon Redshift commands\.
 
 For more information on IAM policies, see [Overview of IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) in the *IAM User Guide*\.
 
@@ -87,11 +100,11 @@ You can manage IAM role associations for a cluster with the console by using the
 
 1. Choose **Done** to save your changes\. 
 
-#### Using the AWS CLI to manage IAM role associations<a name="w251aac30c24c32c19c15b7c11"></a>
+#### Using the AWS CLI to manage IAM role associations<a name="w33aac30c30c36c37c33b7c11"></a>
 
 You can manage IAM role associations for a cluster with the AWS CLI by using the following approaches\.
 
-##### Associating an IAM role with a cluster using the AWS CLI<a name="w251aac30c24c32c19c15b7c11b5"></a>
+##### Associating an IAM role with a cluster using the AWS CLI<a name="w33aac30c30c36c37c33b7c11b5"></a>
 
 To associate an IAM role with a cluster when the cluster is created, specify the Amazon Resource Name \(ARN\) of the IAM role for the `--iam-role-arns` parameter of the `create-cluster` command\. The maximum number of IAM roles that you can add when calling the `create-cluster` command is subject to a quota\. 
 
@@ -118,7 +131,7 @@ aws redshift modify-cluster-iam-roles \
     --add-iam-roles "arn:aws:iam::123456789012:role/RedshiftCopyUnload"
 ```
 
-##### Disassociating an IAM role from a cluster using the AWS CLI<a name="w251aac30c24c32c19c15b7c11b7"></a>
+##### Disassociating an IAM role from a cluster using the AWS CLI<a name="w33aac30c30c36c37c33b7c11b7"></a>
 
 To disassociate an IAM role from a cluster, specify the ARN of the IAM role for the `--remove-iam-roles` parameter of the `modify-cluster-iam-roles` command\. `modify-cluster-iam-roles` The maximum number of IAM roles that you can remove when calling the `modify-cluster-iam-roles` command is subject to a quota\.
 
@@ -130,7 +143,7 @@ aws redshift modify-cluster-iam-roles \
     --remove-iam-roles "arn:aws:iam::123456789012:role/RedshiftCopyUnload"
 ```
 
-##### Listing IAM role associations for a cluster using the AWS CLI<a name="w251aac30c24c32c19c15b7c11b9"></a>
+##### Listing IAM role associations for a cluster using the AWS CLI<a name="w33aac30c30c36c37c33b7c11b9"></a>
 
 To list all of the IAM roles that are associated with an Amazon Redshift cluster, and the status of the IAM role association, call the `describe-clusters` command\. The ARN for each IAM role associated with the cluster is returned in the `IamRoles` list as shown in the following example output\.
 

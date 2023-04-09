@@ -35,18 +35,32 @@ There are several ways you can estimate usage and billing for Amazon Redshift Se
 
 ##### Visualizing usage by querying a system view<a name="serverless-billing-visualizing-sysview"></a>
 
-You can query the `sys_serverless_usage` system table to track usage\. Query it to retrieve an approximation of the duration that queries were processed:
+Query the SYS\_SERVERLESS\_USAGE system table to track usage and get the charges for queries:
 
 ```
-select
-  trunc(start_time) "Day",
-  sum(compute_seconds)/60/60 * <Price for 1 RPU>
-from sys_serverless_usage
-group by trunc(start_time)
+select trunc(start_time) "Day", 
+(sum(charged_seconds)/3600::double 
+precision) * <Price for 1 RPU> as cost_incurred 
+from sys_serverless_usage 
+group by 1 
 order by 1
 ```
 
-This query approximates the cost per day incurred for Amazon Redshift Serverless\. Variations like how Amazon Redshift Serverless reports to AWS billing, differences in aggregation frequency, and rounding can affect the billing\. It may differ slightly from the results from `sys_serverless_usage`\. Additionally, `sys_serverless_usage` shows your usage in near real time\. The billing report is created after queries complete\. There may be usage logged in `sys_serverless_usage` that isn't reflected in the billing report\. Thus, the information in `sys_serverless_usage`  should be used to approximate to your end\-of\-month billing\. It won't match exactly\. For more information about monitoring tables and views, see [Monitoring queries and workloads with Amazon Redshift Serverless](serverless-monitoring.md)\.
+ This query provides the cost per day incurred for Amazon Redshift Serverless, based on usage\. 
+
+##### Usage notes for determining usage and cost<a name="serverless-billing-visualizing-usage"></a>
++ There is a minimum charge of 60 seconds, metered on a per\-minute basis\.
++ Records from the sys\_serverless\_usage system table show cost incurred in 1\-minute time intervals\. Understanding the following columns is important:
+
+  The charged\_seconds column:
+  + Provides the compute unit \(RPU\) seconds that were charged during the time interval\. The results include any minimum charges in Amazon Redshift Serverless\.
+  + Has information about compute\-resource usage after transactions complete\. Thus, this column value may be 0 if transactions haven't finished\.
+
+  The compute\_seconds column:
+  + Provides real\-time compute usage information\. This doesn't include any minimum charges in Amazon Redshift Serverless\. Thus it can differ to some degree from the charged seconds billed during the interval\.
+  + Shows usage information during each transaction \(even if a transaction hasn’t ended\), and hence the data provided is real\-time\.
+
+ For more information about monitoring tables and views, see [Monitoring queries and workloads with Amazon Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-monitoring.html)\. 
 
 ##### Visualizing usage with CloudWatch<a name="serverless-billing-visualizing-cw"></a>
 
@@ -71,7 +85,7 @@ Amazon Redshift Serverless offers a free trial\. If you participate in the free 
 + **Writing explicit transactions** \- It's important as a best practice to end transactions\. If you don't end or roll back an open transaction, Amazon Redshift Serverless continues to use RPUs\. For example, if you write an explicit `BEGIN TRAN`, it's important to have corresponding `COMMIT` and `ROLLBACK` statements\.
 + **Cancelled queries** \- If you run a query and cancel it before it finishes, you are still billed for the time the query ran\. 
 + **Scaling** \- The Amazon Redshift Serverless instance may initiate scaling for handling periods of higher load, in order to maintain consistent performance\. Your Amazon Redshift Serverless billing includes both base compute and scaled capacity at the same RPU rate\.
-+ **Scaling down** \- Amazon Redshift Serverless scales up from its base RPU capacity to handle periods of higher load\. It some cases, RPU capacity can remain at a higher setting for a period after query load falls\. We recommend that you set maximum RPU hours in the console to guard against unexpected cost\. For more information, see [Billing for Amazon Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-billing.html)\.
++ **Scaling down** \- Amazon Redshift Serverless scales up from its base RPU capacity to handle periods of higher load\. It some cases, RPU capacity can remain at a higher setting for a period after query load falls\. We recommend that you set maximum RPU hours in the console to guard against unexpected cost\.
 + **System tables** \- When you query a system table, the query time is billed\. 
 + **Redshift Spectrum** \- When you have Amazon Redshift Serverless, and you run queries, there isn't a separate charge for data\-lake queries\. For queries on data stored in Amazon S3, the charge is the same, by transaction time, as queries on local data\.
 + **Federated queries** \- Federated queries are charged in terms of RPUs used over a specific time interval, in the same manner as queries on the data warehouse or data lake\.

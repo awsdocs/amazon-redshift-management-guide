@@ -63,7 +63,7 @@ The URL in the following code example returns an error if used in a browser\. Us
    </dependency>
    ```
 
-   The class name for this driver is `com.amazon.redshift.jdbc42.Driver`\.
+   The class name for this driver is `com.amazon.redshift.Driver`\.
 
 The Amazon Redshift Maven drivers need the following optional dependencies when you use IAM database authentication\. 
 

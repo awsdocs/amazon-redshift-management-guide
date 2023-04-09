@@ -3,7 +3,7 @@
 
 |  | 
 | --- |
-| This is prerelease documentation for the Multi Availability Zones feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. Public preview will end on February 28, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For inquiries, email redshift\-maz@amazon\.com\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
+| This is prerelease documentation for the Multi Availability Zones feature for Amazon Redshift, which is in preview release\. The documentation and the feature are both subject to change\. We recommend that you use this feature only with test clusters, and not in production environments\. Public preview will end on April 26, 2023\. Preview clusters and preview serverless workgroups and namespaces will be removed automatically two weeks after the end of the preview\. For inquiries, email redshift\-maz@amazon\.com\. For preview terms and conditions, see Betas and Previews in [AWS Service Terms](https://aws.amazon.com/service-terms/)\.   | 
 
 By using *multiple Availability Zones \(Multi\-AZ\)* in Amazon Redshift, your Amazon Redshift data warehouse can continue operating in failure scenarios where an unexpected event happens in an Availability Zone\. 
 

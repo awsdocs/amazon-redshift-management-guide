@@ -1,10 +1,11 @@
 # Examples of using the Amazon Redshift Python connector<a name="python-connect-examples"></a>
 
-Following are examples of how to use the Amazon Redshift Python connector\. To run them, you must first install the Python connector\. For more information on installing the Amazon Redshift Python connector, see [Installing the Amazon Redshift Python connector](python-driver-install.md)\.
+Following are examples of how to use the Amazon Redshift Python connector\. To run them, you must first install the Python connector\. For more information on installing the Amazon Redshift Python connector, see [Installing the Amazon Redshift Python connector](python-driver-install.md)\. For more information on configuration options you can use with the Python connector, see [Configuration options for the Amazon Redshift Python connector](python-configuration-options.md)\.
 
 **Topics**
 + [Connecting to and querying an Amazon Redshift cluster using AWS credentials](#python-connect-cluster)
 + [Enabling autocommit](#python-connect-enable-autocommit)
++ [Configuring cursor paramstyle](#python-connect-config-paramstyle)
 + [Using COPY to copy data from an Amazon S3 bucket and UNLOAD to write data to it](#python-connect-copy-unload-s3)
 
 ## Connecting to and querying an Amazon Redshift cluster using AWS credentials<a name="python-connect-cluster"></a>
@@ -17,6 +18,7 @@ The following example guides you through connecting to an Amazon Redshift cluste
 >>> conn = redshift_connector.connect(
      host='examplecluster.abc123xyz789.us-west-1.redshift.amazonaws.com',
      database='dev',
+     port=5439,
      user='awsuser',
      password='my_password'
   )
@@ -51,6 +53,39 @@ The autocommit property is off by default, following the Python Database API Spe
 
 # Turn off autocommit
 >>>  conn.autocommit = False
+```
+
+## Configuring cursor paramstyle<a name="python-connect-config-paramstyle"></a>
+
+The paramstyle for a cursor can be modified via cursor\.paramstyle\. The default paramstyle used is `format`\. Valid values for paramstyle are `qmark`, `numeric`, `named`, `format`, and `pyformat`\.
+
+The following are examples of using various paramstyles to pass parameters to a sample SQL statement\.
+
+```
+# qmark
+redshift_connector.paramstyle = 'qmark'
+sql = 'insert into foo(bar, jar) VALUES(?, ?)'
+cursor.execute(sql, (1, "hello world"))
+
+# numeric
+redshift_connector.paramstyle = 'numeric'
+sql = 'insert into foo(bar, jar) VALUES(:1, :2)'
+cursor.execute(sql, (1, "hello world"))
+
+# named
+redshift_connector.paramstyle = 'named'
+sql = 'insert into foo(bar, jar) VALUES(:p1, :p2)'
+cursor.execute(sql, {"p1":1, "p2":"hello world"})
+
+# format
+redshift_connector.paramstyle = 'format'
+sql = 'insert into foo(bar, jar) VALUES(%s, %s)'
+cursor.execute(sql, (1, "hello world"))
+
+# pyformat
+redshift_connector.paramstyle = 'pyformat'
+sql = 'insert into foo(bar, jar) VALUES(%(bar)s, %(jar)s)'
+cursor.execute(sql, {"bar": 1, "jar": "hello world"})
 ```
 
 ## Using COPY to copy data from an Amazon S3 bucket and UNLOAD to write data to it<a name="python-connect-copy-unload-s3"></a>
@@ -91,6 +126,8 @@ Following is an example of the Python code, which first connects to the Amazon R
 >>>     print(cursor.fetchall())
  >> ([12, 'Shows', 'Musicals', 'Musical theatre'], [13, 'Shows', 'Plays', 'All "non-musical" theatre'], [14, 'Shows', 'Opera', 'All opera, light, and "rock" opera'], [15, 'Concerts', 'Classical', 'All symphony, concerto, and choir concerts'])
 ```
+
+If you don't have `autocommit` set to true, commit with `conn.commit()` after running the `execute()` statements\.
 
 The data is unloaded into the file `unloaded_category_csv.text0000_part00` in the S3 bucket, with the following content:
 

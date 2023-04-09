@@ -105,9 +105,9 @@ If you have reserved nodes, for example DS2 or DC2 reserved nodes, you can upgra
 
 ## Restoring a serverless namespace from a snapshot<a name="snapshot-restore-provisioned-to-serverless"></a>
 
- Restoring a serverless namespace from a snapshot replaces all of the namespace’s databases with databases in the snapshot\. For more information about serverless snapshots, see [ Working with snapshots and recovery points](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-snapshots-recovery.html)\. 
+ Restoring a serverless namespace from a snapshot replaces all of the namespace’s databases with databases in the snapshot\. For more information about serverless snapshots, see [ Working with snapshots and recovery points](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-snapshots-recovery.html)\. Amazon Redshift automatically converts tables with interleaved keys into compound keys when you restore a provisioned cluster snapshot to a serverless namespace\. For more information about sort keys, see [Working with sort keys](https://docs.aws.amazon.com/redshift/latest/dg/t_Sorting_data.html)\. 
 
-To restore a snapshot from your provisioned cluster to your Amazon Redshift Serverless instance\.
+To restore a snapshot from your provisioned cluster to your serverless namespace\.
 
 1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
@@ -117,7 +117,7 @@ To restore a snapshot from your provisioned cluster to your Amazon Redshift Serv
 
 1. Choose the namespace you want to restore to\.
 
-1. Confirm you want to restore from your snapshot\. Choose **restore**\. This action replaces all the databases in your Amazon Redshift Serverless instance with the data from your provisioned cluster\.
+1. Confirm you want to restore from your snapshot\. Choose **restore**\. This action replaces all the databases in serverless namespace with the data from your provisioned cluster\.
 
 ## Sharing a cluster snapshot<a name="snapshot-share"></a>
 

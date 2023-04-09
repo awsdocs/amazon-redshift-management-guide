@@ -7,15 +7,17 @@ A serverless snapshot includes all objects and data within a namespace\. There a
 + Restore a serverless snapshot to a provisioned cluster\.
 + Restore a provisioned cluster snapshot to a serverless namespace\.
 
-You can restore a snapshot you created on the Amazon Redshift Serverless console to a provisioned Amazon Redshift cluster\. When you do so, you choose the node type to use, such as RA3, and the number of nodes, letting you control settings at the cluster or node level\. To initiate the restore, you choose a snapshot from the Amazon Redshift Serverless console and then specify the ID of the provisioned cluster to restore to\. To restore a provisioned cluster snapshot to a serverless namespace, start from the Redshift provisioned console, choose the snapshot to restore, then choose **Restore from snapshot**, **Restore to serverless namespace**\.
+You can restore a snapshot you created on the Amazon Redshift Serverless console to a provisioned Amazon Redshift cluster\. When you do so, you choose the node type to use, such as RA3, and the number of nodes, letting you control settings at the cluster or node level\. To initiate the restore, you choose a snapshot from the Amazon Redshift Serverless console and then specify the ID of the provisioned cluster to restore to\.
 
-Restoring a snapshot to a serverless namespace replaces the database with the database in the snapshot\. You can also restore recovery points, which are created every 30 minutes and kept for 24 hours, to your serverless namespace\. 
+To restore a provisioned cluster snapshot to a serverless namespace, start from the Redshift provisioned console, choose the snapshot to restore, then choose **Restore from snapshot**, **Restore to serverless namespace**\. Amazon Redshift converts tables with interleaved keys into compound sort keys when you restore a provisioned cluster snapshot to a serverless namespace\. For more information about sort keys, see [Working with sort keys](https://docs.aws.amazon.com/redshift/latest/dg/t_Sorting_data.html)\. 
 
-To restore a provisioned cluster snapshot to a serverless namespace, navigate to the Redshift provisioned console\.
+Restoring a snapshot to a serverless namespace replaces the database with the database in the snapshot\. You can also restore recovery points, which are created approximately every 30 minutes and kept for 24 hours, to your serverless namespace\.
 
 Restoring a snapshot to a serverless namespace is completed in two phases\. The first phase completes in a few minutes, restores the data to your namespace, and makes it available for queries\. The second phase of restoration is where your database is tuned, which can cause minor performance issues\. This second phase can last from a few hours to several days, and in some cases, a couple of weeks\. The amount of time depends on the size of the data, but performance progressively improves as the database gets tuned\. At the end of this phase, your serverless namespace is fully tuned, and you can submit queries without performance issues\.
 
-Finally, you can also share snapshots with other AWS accounts, which lets them access data within the snapshot and run queries\. 
+If you want to add additional context, you can tag snapshots and recovery points with key\-value pairs that provide metadata and information to snapshots and recovery points\. For more information about tagging resources, see [Tagging resources overview](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-tagging-resources.html)\.
+
+Finally, you can also share snapshots with other AWS accounts, which lets them access data within the snapshot and run queries\.
 
 You can view a snapshot's details by viewing the details page in the Amazon Redshift Serverless console, or by calling the Amazon Redshift Serverless API operation `ListSnapshots` or the `list-snapshots` operation in the AWS CLI\. The Amazon Redshift Serverless console also contains details page for recovery points, or you can call `list-recovery-points` in the AWS CLI or the `ListRecoveryPoints` API operation\.
 
@@ -135,7 +137,7 @@ For more information about snapshots on provisioned clusters, see [Amazon Redshi
 
 ### Recovery points<a name="serverless-recovery-point"></a>
 
-Recovery points in Amazon Redshift Serverless are created every 30 minutes and saved for 24 hours\. 
+Recovery points in Amazon Redshift Serverless are created approximately every 30 minutes and saved for 24 hours\. 
 
 On the Amazon Redshift Serverless console, choose **Data backup** to manage recovery points\. You can do the following operations:
 + Restore a recovery point to a serverless namespace\.

@@ -81,19 +81,43 @@ The following is an example of the response\.
 }
 ```
 
-## To run a SQL statement with parameters<a name="data-api-calling-cli-execute-statement-parameters"></a>
-
-To run a SQL statement, use the `aws redshift-data execute-statement` AWS CLI command\.
-
-The following AWS CLI command runs a SQL statement against a cluster and returns an identifier to fetch the results\. This example uses the AWS Secrets Manager authentication method\. The SQL text has named parameters `colname` and `distance`\. In this case, the column name in the table is `ratecode` and the distance used in the predicate is `5`\. Values for named parameters for the SQL statement are specified in the `parameters` option\.
+The following AWS CLI command runs a SQL statement against a cluster and returns an identifier to fetch the results\. This example uses the AWS Secrets Manager authentication method and an idempotency token\.
 
 ```
 aws redshift-data execute-statement 
     --region us-west-2 
     --secret arn:aws:secretsmanager:us-west-2:123456789012:secret:myuser-secret-hKgPWn 
     --cluster-identifier mycluster-test 
-    --sql "SELECT :colname, COUNT(*) FROM demo_table WHERE trip_distance > :distance" 
-    --parameters "[{\"name\": \"colname\", \"value\": \"ratecode\"}, \ {\"name\": \"distance\", \"value\": \"5\"}]"
+    --sql "select * from stl_query limit 1" 
+    --database dev 
+    --client-token b855dced-259b-444c-bc7b-d3e8e33f94g1
+```
+
+The following is an example of the response\.
+
+```
+{
+    "ClusterIdentifier": "mycluster-test",
+    "CreatedAt": 1598323175.823,
+    "Database": "dev",
+    "Id": "c016234e-5c6c-4bc5-bb16-2c5b8ff61814",
+    "SecretArn": "arn:aws:secretsmanager:us-west-2:123456789012:secret:yanruiz-secret-hKgPWn"
+}
+```
+
+## To run a SQL statement with parameters<a name="data-api-calling-cli-execute-statement-parameters"></a>
+
+To run a SQL statement, use the `aws redshift-data execute-statement` AWS CLI command\.
+
+  The following AWS CLI command runs a SQL statement against a cluster and returns an identifier to fetch the results\. This example uses the AWS Secrets Manager authentication method\. The SQL text has named parameter `distance`\. In this case, the distance used in the predicate is `5`\. In a SELECT statement, named parameters for column names can only be used in the predicate\. Values for named parameters for the SQL statement are specified in the `parameters` option\.
+
+```
+aws redshift-data execute-statement 
+    --region us-west-2 
+    --secret arn:aws:secretsmanager:us-west-2:123456789012:secret:myuser-secret-hKgPWn 
+    --cluster-identifier mycluster-test 
+    --sql "SELECT ratecode FROM demo_table WHERE trip_distance > :distance"  
+    --parameters "[{\"name\": \"distance\", \"value\": \"5\"}]"
     --database dev
 ```
 

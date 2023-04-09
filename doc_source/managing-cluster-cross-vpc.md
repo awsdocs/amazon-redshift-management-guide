@@ -26,11 +26,12 @@ You can manage this process with the Amazon Redshift console, the AWS CLI, or th
 When using Redshift\-managed VPC endpoints, keep the following in mind: 
 + Make sure that the cluster to access is an RA3 node type\. 
 + Make sure that the cluster to access has cluster relocation turned on\. For information about requirements to turn on cluster relocation, see [Managing cluster relocation in Amazon Redshift](managing-cluster-recovery.md)\. 
-+ Make sure that the cluster to access is available through port 5439\.
++ Make sure that the cluster to access is available within the valid port ranges 5431\-5455 and 8191\-8215\. The default is 5439\.
 + You can modify the VPC security groups associated with an existing Redshift\-managed VPC endpoint\. To modify other settings, delete the current Redshift\-managed VPC endpoint and create a new one\.
 + The number of Redshift\-managed VPC endpoints that you can create is limited to your VPC endpoint quota\. 
 + The Redshift\-managed VPC endpoints aren't accessible from the internet\. A Redshift\-managed VPC endpoint is accessible only within the VPC where the endpoint is provisioned or any VPCs peered with the VPC where the endpoint is provisioned as permitted by the route tables and security groups\.
 + You can't use the Amazon VPC console to manage Redshift\-managed VPC endpoints\.
++ When you create a Redshift\-managed VPC endpoint, the VPC you choose must have a cluster subnet group\. To create a cluster subnet group, see [Managing cluster subnet groups using the console ](managing-cluster-subnet-group-console.md)\.
 
 For information about quotas and naming constraints, see [Quotas and limits in Amazon Redshift](amazon-redshift-limits.md)\. 
 

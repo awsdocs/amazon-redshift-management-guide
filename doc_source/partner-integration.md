@@ -1,6 +1,6 @@
 # Integrating Amazon Redshift with an AWS Partner<a name="partner-integration"></a>
 
-By working with Amazon Redshift, you can integrate with AWS Partners from the **Cluster details** page on the Amazon Redshift console\. From the **Cluster details** page, you can speed up your data onboarding into your Amazon Redshift data warehouse with AWS Partner applications\. You can also join and analyze data from different sources together with existing data in your cluster\. Before completing integration with Informatica and Confluent, you must add the partner's IP addresses to the allowlist of inbound traffic\. The following AWS Partners can integrate with Amazon Redshift: 
+By working with Amazon Redshift, you can integrate with AWS Partners from the **Cluster details** page on the Amazon Redshift console\. From the **Cluster details** page, you can speed up your data onboarding into your Amazon Redshift data warehouse with AWS Partner applications\. You can also join and analyze data from different sources together with existing data in your cluster\. Before completing integration with Informatica, you must add the partner's IP addresses to the allowlist of inbound traffic\. The following AWS Partners can integrate with Amazon Redshift: 
 + [Datacoral](https://www.datacoral.com/aws-partnership/)
 + [Etleap](https://etleap.com/partners/aws-amazon-web-services/)
 + [Fivetran](https://fivetran.com/partners/aws)

@@ -5,7 +5,7 @@ Using the query editor is an easy way to run queries on databases hosted by your
 **Note**  
 You can't query data in Amazon Redshift Serverless using this original query editor\. Use Amazon Redshift query editor v2 instead\.
 
-In February 2021, an updated query editor was deployed and authorization permissions to use the query editor changed\. The new query editor uses the Amazon Redshift Data API to run queries\. The `AmazonRedshiftQueryEditor` policy, which is an AWS\-managed AWS Identity and Access Management \(IAM\) policy, was updated to include the necessary permissions\. If you have a custom IAM policy, make sure that you update it\. Use `AmazonRedshiftQueryEditor` as a guide\. The changes to `AmazonRedshiftQueryEditor` include the following: 
+In February 2021, an updated query editor was deployed and authorization permissions to use the query editor changed\. The new query editor uses the Amazon Redshift Data API to run queries\. The `AmazonRedshiftQueryEditor` policy, which is an AWS managed AWS Identity and Access Management \(IAM\) policy, was updated to include the necessary permissions\. If you have a custom IAM policy, make sure that you update it\. Use `AmazonRedshiftQueryEditor` as a guide\. The changes to `AmazonRedshiftQueryEditor` include the following: 
 + Permission to manage query editor statement results requires the statement owner user\. 
 + Permission to use Secrets Manager to connect to a database has been added\.
 
@@ -35,13 +35,13 @@ Consider the following about working with queries when you use the query editor:
 
 ## Enabling access to the query editor<a name="query-cluster-configure"></a>
 
-To access the query editor, you need permission\. To enable access, attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` AWS\-managed policies for IAM permissions to the IAM user that you use to access your cluster\. You can use the IAM console \([https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\) to attach IAM policies\. 
+To access the query editor, you need permission\. To enable access, we recommend that you attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` AWS managed policies for IAM permissions to the IAM role that you use to access your cluster\. Then, you can assign the role to a user\. You can use the IAM console \([https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\) to attach IAM policies\. For more information, see [Using identity\-based policies \(IAM policies\) for Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html)\.
 
-If you have already created an IAM user to access Amazon Redshift, you can attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` AWS\-managed policies to that user\. If you haven't created an IAM user yet, create one and attach the policy to the IAM user\. 
+If you have already created a user to access Amazon Redshift, you can attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` AWS managed policies to that user by means of an assigned role\. If you haven't created a  user yet, create one and attach the policy to the IAM role and assign the role to the user\. 
 
-The AWS\-managed policy `AmazonRedshiftQueryEditor` allows the action `redshift:GetClusterCredentials`, which by default gives a database user superuser access to the database\. To restrict access, you can do one of the following:
+The AWS managed policy `AmazonRedshiftQueryEditor` allows the action `redshift:GetClusterCredentials`, which by default gives superuser access to the database\. To restrict access, you can do one of the following:
 + Create a custom policy that allows calling `redshift:GetClusterCredentials` and restricts the resource to a given value for `DbUser`\.
-+ Add a policy to the user that denies permission to `redshift:GetClusterCredentials` and then requires users of the query editor to sign in with temporary credentials\. For example, a denial policy might be similar to the following policy\.
++ Add a policy  that denies permission to `redshift:GetClusterCredentials`\. Any user assigned a role with this permission attached must sign in the query editor with temporary credentials\. This denial policy illustrates the example\.
 
   ```
   {
@@ -54,27 +54,22 @@ The AWS\-managed policy `AmazonRedshiftQueryEditor` allows the action `redshift:
   }
   ```
 
-For more information, see [Create an IAM role or user role or user with permissions to call GetClusterCredentials](generating-iam-credentials-role-permissions.md)\.
+For more information about creating a role with the required permissions, see [Create an IAM role with permissions to call GetClusterCredentials](generating-iam-credentials-role-permissions.md)\.
 
-If you are granted access to Amazon Redshift query editor by attaching the AWS\-managed policy `AmazonRedshiftQueryEditor`, then you can list all secrets\. However, you can create and retrieve only secrets that are tagged with the key `RedshiftQueryOwner` and the value `${aws:userid}`\. If you create the key from the Amazon Redshift query editor, then the key is automatically tagged\. To use a secret that wasn't created with the Amazon Redshift query editor, confirm that the secret is tagged with the key `RedshiftQueryOwner` and a value of your unique IAM user identifier, for example `AIDACKCEVSQ6C2EXAMPLE`\. 
+Any user granted access to Amazon Redshift query editor by means of the AWS managed policy `AmazonRedshiftQueryEditor` can list all secrets\. However, this policy allows creation and retrieval of only secrets tagged with the key `RedshiftQueryOwner` and the value `${aws:userid}`\. If you create the key from the Amazon Redshift query editor, the key is automatically tagged\. To use a secret that wasn't created with the Amazon Redshift query editor, confirm that the secret is tagged with the key `RedshiftQueryOwner` and a value of your unique IAM user identifier, for example `AIDACKCEVSQ6C2EXAMPLE`\. 
 
-**To attach the required IAM policies for the query editor**
+The required permissions to use the Amazon Redshift query editor are **AmazonRedshiftQueryEditor** and **AmazonRedshiftReadOnlyAccess**\.
 
-1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+To provide access, add permissions to your users, groups, or roles:
++ Users and groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\):
 
-1. Choose **Users**\.
+  Create a permission set\. Follow the instructions in [Create a permission set](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
++ Users managed in IAM through an identity provider:
 
-1. Choose the user that needs access to the query editor\.
-
-1. Choose **Add permissions**\.
-
-1. Choose **Attach existing policies directly**\.
-
-1. For **Policy names**, choose **AmazonRedshiftQueryEditor** and **AmazonRedshiftReadOnlyAccess**\. 
-
-1. Choose **Next: Review**\.
-
-1. Choose **Add permissions**\.
+  Create a role for identity federation\. Follow the instructions in [Creating a role for a third\-party identity provider \(federation\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp.html) in the *IAM User Guide*\.
++ IAM users:
+  + Create a role that your user can assume\. Follow the instructions in [Creating a role for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+  + \(Not recommended\) Attach a policy directly to a user or add a user to a user group\. Follow the instructions in [Adding permissions to a user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) in the *IAM User Guide*\.
 
 ## Connecting with the query editor<a name="query-editor-connecting"></a>
 

@@ -30,4 +30,4 @@ Following are considerations for using AWS Backup with Amazon Redshift:
 
 Following are limitations for using AWS Backup in Amazon Redshift:
 + You can't use AWS Backup to manage Amazon Redshift automated snapshots\. To manage automated snapshots, use tags\. For information about tagging resources, see [Tagging resources in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-tagging.html)\.
-+ You can't use AWS Backup to manage Amazon Redshift Serverless recovery points\. You can manage only the manual snapshots created for your Serverless namespace through AWS Backup\.
++ AWS Backup doesn't support Amazon Redshift Serverless\.

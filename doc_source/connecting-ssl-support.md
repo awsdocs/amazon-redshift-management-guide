@@ -74,7 +74,7 @@ You can determine whether SSL is used and server certificates are verified in a 
 
 ## Using SSL and server certificates in Java<a name="connecting-ssl-support-java"></a>
 
-SSL provides one layer of security by encrypting data that moves between your client and cluster\. Using a server certificate provides an extra layer of security by validating that the cluster is an Amazon Redshift cluster\. It does so by checking the server certificate that is automatically installed on all clusters that you provision\. For more information about using server certificates with JDBC, go to [Configuring the client](https://jdbc.postgresql.org/documentation/91/ssl-client.html) in the PostgreSQL documentation\.
+SSL provides one layer of security by encrypting data that moves between your client and cluster\. Using a server certificate provides an extra layer of security by validating that the cluster is an Amazon Redshift cluster\. It does so by checking the server certificate that is automatically installed on all clusters that you provision\. For more information about using server certificates with JDBC, go to [Configuring the client](https://jdbc.postgresql.org/documentation/ssl/#configuring-the-client) in the PostgreSQL documentation\.
 
 ### Connect using trust CA certificates in Java<a name="connecting-ssl-support-java-with-cert"></a>
 

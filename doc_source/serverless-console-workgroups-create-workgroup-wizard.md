@@ -12,7 +12,7 @@ Complete the following steps to create a workgroup:
 
 1. Choose one or more **VPC security groups**\. For more information, see [Control traffic to resources using security groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)\.
 
-1. Under **Subnet**, specify one or more subnets to associate with your database\. These subnets are contained in the VPC you chose previously and must be in three distinct Availability Zones\. 
+1. Under **Subnet**, specify one or more subnets to associate with your database\. These subnets are contained in the VPC you chose previously and must be in three distinct Availability Zones\. For more information, see [Considerations when using Amazon Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-known-issues.html)\.
 
 1. Select the base RPU capacity that conforms with your requirements\.
 

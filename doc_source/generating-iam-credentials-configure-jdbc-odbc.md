@@ -20,7 +20,7 @@ If you use an identity provider for authentication, specify the name of a creden
    jdbc:redshift:iam://
    ```
 
-   Add `cluster-name`, `region`, and `account-id`\. The JDBC driver uses your IAM account information and cluster name to retrieve the cluster ID and AWS Region\. To do so, your IAM user or role must have permission to call the `redshift:DescribeClusters` operation with the specified cluster\. If your IAM user or role doesn't have permission to call the `redshift:DescribeClusters` operation, include the cluster ID, AWS Region, and port as shown in the following example\. The port number is optional\.
+   Add `cluster-name`, `region`, and `account-id`\. The JDBC driver uses your IAM account information and cluster name to retrieve the cluster ID and AWS Region\. To do so, your user or role must have permission to call the `redshift:DescribeClusters` operation with the specified cluster\. If your user or role doesn't have permission to call the `redshift:DescribeClusters` operation, include the cluster ID, AWS Region, and port as shown in the following example\. The port number is optional\.
 
    ```
    jdbc:redshift:iam://examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com:5439/dev
@@ -28,7 +28,7 @@ If you use an identity provider for authentication, specify the name of a creden
 
 1. Add JDBC options to provide IAM credentials\. You use different combinations of JDBC options to provide IAM credentials\. For details, see [JDBC and ODBC Options for Creating Database User Credentials](jdbc-and-odbc-options-for-database-credentials.md)\.
 
-   The following URL specifies AccessKeyID and SecretAccessKey for an IAM user\.
+   The following URL specifies AccessKeyID and SecretAccessKey for a user\.
 
    ```
    jdbc:redshift:iam://examplecluster:us-west-2/dev?AccessKeyID=AKIAIOSFODNN7EXAMPLE&SecretAccessKey=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
@@ -70,9 +70,9 @@ The Amazon Redshift ODBC driver must be version 1\.3\.6\.1000 or later\.
       + **Port** \(optional\) 
       + **Database** 
 
-      If your IAM user or role has permission to call the `redshift:DescribeClusters` operation, only **Data Source Name** and **Database** are required\. Amazon Redshift uses **ClusterId** and **Region** to get the server and port by calling the `DescribeCluster` operation\. 
+      If your user or role has permission to call the `redshift:DescribeClusters` operation, only **Data Source Name** and **Database** are required\. Amazon Redshift uses **ClusterId** and **Region** to get the server and port by calling the `DescribeCluster` operation\. 
 
-      If your IAM user or role doesn't have permission to call the `redshift:DescribeClusters` operation, specify **Server** and **Port**\. 
+      If your user or role doesn't have permission to call the `redshift:DescribeClusters` operation, specify **Server** and **Port**\. 
 
    1. Under **Authentication**, choose a value for **Auth Type**\.
 
@@ -96,7 +96,7 @@ Enter the following information:
       + **Region** 
       + **AccessKeyID** and **SecretAccessKey** 
 
-        The access key ID and secret access key for the IAM role or IAM user configured for IAM database authentication\. 
+        The access key ID and secret access key for the IAM role or user configured for IAM database authentication\. 
       + **SessionToken** 
 
         **SessionToken** is required for an IAM role with temporary credentials\. For more information, see [Temporary Security Credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html)\. 

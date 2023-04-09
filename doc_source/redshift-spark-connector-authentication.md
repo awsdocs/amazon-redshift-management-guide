@@ -6,13 +6,13 @@ The following diagram describes the authentication between Amazon S3, Amazon Red
 
 ## Authentication between Redshift and Spark<a name="redshift-spark-authentication"></a>
 
- You can use the Amazon Redshift provided JDBC driver version 2 driver to connect to Amazon Redshift with the Spark connector by specifying a username and password\. To use IAM, [configure your JDBC url to use IAM authentication](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-iam-credentials-configure-jdbc-odbc.html)\. To connect to a Redshift cluster from Amazon EMR or AWS Glue, make sure that your IAM role has the necessary permissions to retrieve temporary IAM credentials\. The following list describes all of the permissions that your IAM role needs to retrieve credentials and run Amazon S3 operations\. 
+ You can use the Amazon Redshift provided JDBC driver version 2 driver to connect to Amazon Redshift with the Spark connector by specifying sign\-in credentials\. To use IAM, [configure your JDBC url to use IAM authentication](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-iam-credentials-configure-jdbc-odbc.html)\. To connect to a Redshift cluster from Amazon EMR or AWS Glue, make sure that your IAM role has the necessary permissions to retrieve temporary IAM credentials\. The following list describes all of the permissions that your IAM role needs to retrieve credentials and run Amazon S3 operations\. 
 + [ Redshift:GetClusterCredentials](https://docs.aws.amazon.com/redshift/latest/APIReference/API_GetClusterCredentials.html) \(for provisioned Redshift clusters\)
 + [ Redshift:DescribeClusters](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusters.html) \(for provisioned Redshift clusters\)
-+ [ Redshift:GetWorkgroup](https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_GetWorkgroup.html) \(for Amazon Redshift Serverless; workgroups\)
++ [ Redshift:GetWorkgroup](https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_GetWorkgroup.html) \(for Amazon Redshift Serverless workgroups\)
 + [ Redshift:GetCredentials](https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_GetCredentials.html) \(for Amazon Redshift Serverless workgroups\)
++ [ s3:ListBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html)
 + [ s3:GetBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html)
-+ [ s3:GetBucketLocation](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLocation.html)
 + [ s3:GetObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html)
 + [ s3:PutObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
 + [ s3:GetBucketLifecycleConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLifecycleConfiguration.html)
@@ -82,6 +82,8 @@ sc._jsc.hadoopConfiguration().set("fs.s3n.awsSecretAccessKey", "YOUR_SECRET_ACCE
 ## Authentication between Redshift and Amazon S3<a name="redshift-s3-authentication"></a>
 
  If you’re using the COPY and UNLOAD commands in your query, you also must grant Amazon S3 access to Amazon Redshift to run queries on your behalf\. To do so, first [authorize Amazon Redshift to access other AWS services](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html), then authorize the [ COPY and UNLOAD operations using IAM roles](https://docs.aws.amazon.com/redshift/latest/mgmt/copy-unload-iam-role.html)\. 
+
+As a best practice, we recommend attaching permissions policies to an IAM role and then assigning it to users and groups as needed\. For more information, see [Identity and access management in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-authentication-access-control.html)\.
 
 **Note**  
  Acknowledgement: This documentation contains sample code and language developed by the [Apache Software Foundation](http://www.apache.org/) licensed under the [Apache 2\.0 license](https://www.apache.org/licenses/LICENSE-2.0)\. 

@@ -9,13 +9,13 @@ You must install the Amazon Redshift ODBC driver on client computers accessing a
   + CentOS 7 or 8\.
 + 150 MB of available disk space\.
 + unixODBC 2\.2\.14 or later\.
-+ glibc 2\.17 or later\.
++ glibc 2\.26 or later\.
 
 ## Installing the Amazon Redshift ODBC driver<a name="odbc20-install-linux"></a>
 
 To download and install the Amazon Redshift ODBC driver version 2\.x for Linux:
 
-1.  Download the following driver: [64\-bit RPM driver version 2\.0\.0\.1](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/2.0.0.1/AmazonRedshiftODBC-64-bit-2.0.0.1.x86_64.rpm) 
+1.  Download the following driver: [64\-bit RPM driver version 2\.0\.0\.5](https://s3.amazonaws.com/redshift-downloads/drivers/odbc/2.0.0.5/AmazonRedshiftODBC-64-bit-2.0.0.5.x86_64.rpm) 
 **Note**  
 32\-bit ODBC drivers are discontinued\. Further updates will not be released, except for urgent security patches\.
 

@@ -179,7 +179,7 @@ namespace redshift.amazon.com.docsamples
                     server, DBName, masterUsername,
                     masterUserPassword, port);
 
-                // Make a connection using the psqlODBC provider.
+                // Make a connection using the ODBC provider.
                 OdbcConnection conn = new OdbcConnection(connString);
                 conn.Open();
 

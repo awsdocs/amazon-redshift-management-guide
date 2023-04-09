@@ -9,6 +9,8 @@ Tags are not required for resources, but they help provide context\. You might w
 Each resource has one tag set, which is a collection of one or more tags assigned to the resource\. Each resource can have up to 50 tags per tag set\. You can add tags when you create a resource and after a resource has been created\. You can add tags to the following serverless resource types: 
 + Workgroups
 + Namespaces
++ Snapshots
++ Recovery points
 
 Tags have the following requirements:
 + Keys can't be prefixed with `aws:`\.
@@ -23,8 +25,8 @@ To manage tags of your Amazon Redshift Serverless resources
 
 1. On the Amazon Redshift Serverless console, choose **Manage Tags**\.
 
-1. Enter the resource type to search for and choose **Search resources**\. Choose the resource\(s\) for which you want to manage tags, then choose **Manage tags**\.
+1. Enter the resource type to search for and choose **Search resources**\. Choose the resource for which you want to manage tags, then choose **Manage tags**\.
 
-1. Specify the keys and optional values you want to add to the resource\(s\)\. When modifying a tag, you can change the tag's value, but not the key\.
+1. Specify the keys and optional values you want to add to the resource\. When modifying a tag, you can change the tag's value, but not the key\.
 
 1. After you're done adding, removing, or modifying tags, choose **Save changes**, then choose **Apply** to save your changes\.

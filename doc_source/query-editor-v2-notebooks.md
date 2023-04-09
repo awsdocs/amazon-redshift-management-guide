@@ -2,7 +2,7 @@
 
 You can use notebooks to organize, annotate, and share multiple SQL queries in a single document\. You can add multiple SQL query and Markdown cells to a notebook\. Notebooks provide a way to group queries and explanations associated with a data analysis in a single document by using multiple query and Markdown cells\. You can add text and format the appearance using Markdown syntax to provide context and additional information for your data analysis tasks\. You can share your notebooks with team members\.
 
-To use notebooks, you must add permission for notebooks to your IAM principal \(an IAM user or IAM role\)\. You can add the permission to one of the query editor v2 managed policies\. For more information, see [Accessing the query editor v2](query-editor-v2-getting-started.md#query-editor-v2-configure)\.
+To use notebooks, you must add permission for notebooks to your IAM principal \(an IAM user or IAM role\)\. As a best practice, we recommend attaching permissions policies to an IAM role and then assigning it to users and groups as needed\. For more information, see [Identity and access management in Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-authentication-access-control.html)\. You can add the permission to one of the query editor v2 managed policies\. For more information, see [Accessing the query editor v2](query-editor-v2-getting-started.md#query-editor-v2-configure)\.
 
 You can **Run all** the cells of a notebook sequentially\. The SQL query cell of a notebook has most of the same capabilities as a query editor tab\. For more information, see [Authoring and running queries](query-editor-v2-query-run.md)\. The following are differences between a query editor tab and a SQL cell in a notebook\.
 + There isn't a control to run `Explain` on a SQL statement in a notebook\.
@@ -12,9 +12,9 @@ You can export and import notebooks to files created with query editor v2\. The 
 
 **To create a notebook**
 
-1. From the navigator menu, choose ![\[Databases\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-database.png) **Database**\.
+1. From the navigator menu, choose ![\[Editor\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/qev2-align-left.png) **Editor**\.
 
-1. Choose ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png) and then choose **Notebook**\.
+1. Choose ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/redshift/latest/mgmt/images/add-plus.png), and then choose **Notebook**\.
 
    By default, a SQL query cell appears in the notebook\.
 

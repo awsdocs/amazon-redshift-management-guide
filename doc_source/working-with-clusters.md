@@ -57,6 +57,7 @@ The following features are currently available in preview clusters:
 + Auto\-copy – see [Continuous file ingestion from Amazon S3](https://docs.aws.amazon.com/redshift/latest/dg/loading-data-copy-job.html) in the *Amazon Redshift Database Developer Guide*\.
 + Lake Formation for data sharing – see [AWS Lake Formation\-managed Redshift datashares](https://docs.aws.amazon.com/redshift/latest/dg/lake-formation-datashare.html) in the *Amazon Redshift Database Developer Guide*\.
 + Multi\-AZ – see [Managing Multi\-AZ using the console](https://docs.aws.amazon.com/redshift/latest/mgmt/multi-az-console.html)\.
++ Query Data Catalog – see [Querying the AWS Glue Data Catalog \(preview\)](query-editor-v2-glue.md)\.
 
 For information about preview in serverless workgroups, see [Preview when using Amazon Redshift Serverless](serverless-known-issues.md#serverless-preview)\.
 
@@ -110,7 +111,7 @@ You might be restricted to fewer nodes depending on the quota that is applied to
 
 | Node type | vCPU | RAM \(GiB\) | Default slices per node | Managed storage limit per node 1 | Node range with create cluster  | Total managed storage capacity 2 | 
 | --- | --- | --- | --- | --- | --- | --- | 
-| ra3\.xlplus \(single\-node\) | 4 | 32 | 2 | 4 TB | 1 | 4 TB3 | 
+| ra3\.xlplus \(single\-node\) | 4 | 32 | 2 | 4 TB | 1 | 32 TB3 | 
 | ra3\.xlplus \(multi\-node\) | 4 | 32 | 2 | 32 TB | 2–164 | 1024 TB4 | 
 | ra3\.4xlarge | 12 | 96 | 4 | 128 TB | 2–325 | 8192 TB5 | 
 | ra3\.16xlarge | 48 | 384 | 16 | 128 TB | 2–128 | 16,384 TB | 
@@ -259,6 +260,7 @@ The RA3 node types are available only in the following AWS Regions:
 + Asia Pacific \(Hong Kong\) Region \(ap\-east\-1\) 
 + Asia Pacific \(Hyderabad\) Region \(ap\-south\-2\) 
 + Asia Pacific \(Jakarta\) Region \(ap\-southeast\-3\) – only ra3\.4xlarge and ra3\.16xlarge node types are supported 
++ Asia Pacific \(Melbourne\) Region \(ap\-southeast\-4\)
 + Asia Pacific \(Mumbai\) Region \(ap\-south\-1\) 
 + Asia Pacific \(Osaka\) Region \(ap\-northeast\-3\) 
 + Asia Pacific \(Seoul\) Region \(ap\-northeast\-2\)
@@ -419,6 +421,7 @@ The following list shows the time blocks for each AWS Region from which the defa
 + Asia Pacific \(Hong Kong\) Region: 13:00–21:00 UTC
 + Asia Pacific \(Hyderabad\) Region: 16:30–00:30 UTC
 + Asia Pacific \(Jakarta\) Region: 15:00–23:00 UTC
++ Asia Pacific \(Melbourne\) Region: 12:00–20:00 UTC
 + Asia Pacific \(Mumbai\) Region: 16:30–00:30 UTC
 + Asia Pacific \(Osaka\) Region: 13:00–21:00 UTC
 + Asia Pacific \(Seoul\) Region: 13:00–21:00 UTC
@@ -437,7 +440,7 @@ The following list shows the time blocks for each AWS Region from which the defa
 + Europe \(Zurich\) Region: 20:00–04:00 UTC
 + Europe \(Spain\) Region: 21:00–05:00 UTC
 + Middle East \(Bahrain\) Region: 13:00–21:00 UTC
-+  Region: 18:00–02:00 UTC
++ Middle East \(UAE\) Region: 18:00–02:00 UTC
 + South America \(São Paulo\) Region: 19:00–03:00 UTC
 
 If a maintenance event is scheduled for a given week, it starts during the assigned 30\-minute maintenance window\. While Amazon Redshift is performing maintenance, it terminates any queries or other operations that are in progress\. Most maintenance completes during the 30\-minute maintenance window, but some maintenance tasks might continue running after the window closes\. If there are no maintenance tasks to perform during the scheduled maintenance window, your cluster continues to operate normally until the next scheduled maintenance window\. 
@@ -474,6 +477,7 @@ A **Preview** track might not always be available to choose\. When you choose a 
 + Use the new Amazon Redshift console when working with preview tracks\. For example, when you create a cluster to use with preview features\. 
 + You can't switch a cluster from one preview track to another\. 
 + You can't switch a cluster to a preview track from a current or trailing track\. 
++ You can't switch a cluster from a preview track to a current or trailing track\. 
 + You can't restore from a snapshot created from a different preview track\.
 + You can only use the preview track when creating a new cluster, or when restoring from a snapshot\. 
 + You can't restore from a snapshot created from a different preview track, or with a cluster maintenance version later than the preview track cluster version\. For example, when you restore a cluster to a preview track, you can only use a snapshot created from an earlier cluster maintenance version than that of the preview track\. 

@@ -29,27 +29,27 @@ After relocation is complete, you use the same endpoint to access the cluster\. 
 When using Amazon Redshift relocation, be aware of the following limitations:
 + Cluster relocation might not be possible in all scenarios due to potential resource limitations in a given Availability Zone\. If this happens, Amazon Redshift doesn't change the original cluster\.
 + Relocation isn't supported on DC1, DC2, or the DS2 instance families of products\.
-+ Relocation isn't available for a publicly accessible Amazon Redshift cluster\.
 + You can't perform a relocation across AWS Regions\.
-+ You can turn on relocation only for a cluster that uses the default port setting \(5439\)\. Otherwise, turning on relocation fails\. 
++ Amazon Redshift relocation defaults to port number 5439\. You can also change to another port from the port range of 5431\-5455 or 8191\-8215\.
 + If you have turned on relocation successfully and later attempt to modify the default port setting, the modify operation fails\.
 + Relocation is available in the following Regions:
-  + US East \(N\. Virginia\) \(us\-east\-1\)
-  + US East \(Ohio\) \(us\-east\-2\)
-  + US West \(N\. California\) \(us\-west\-1\)
-  + US West \(Oregon\) \(us\-west\-2\)
-  + Canada \(Central\) \(ca\-central\-1\)
-  + Asia Pacific \(Singapore\) \(ap\-southeast\-1\)
-  + Asia Pacific \(Sydney\) \(ap\-southeast\-2\)
-  + Asia Pacific \(Tokyo\) \(ap\-northeast\-1\)
-  + Asia Pacific \(Seoul\) \(ap\-northeast\-2 \)
-  + Asia Pacific \(Mumbai\) \(ap\-south\-1\)
-  + Europe \(Ireland\) \(eu\-west\-1\)
-  + Europe \(London\) \(eu\-west\-2\)
-  + Europe \(Paris\) \(eu\-west\-3\)
-  + Europe \(Stockholm\) \(eu\-north\-1\)
-  + Europe \(Frankfurt\) \(eu\-central\-1\)
-  + South America \(Sao Paulo\) \(sa\-east\-1\)
+  + US East \(Ohio\) Region \(us\-east\-2\)
+  + US East \(N\. Virginia\) Region \(us\-east\-1\)
+  + US West \(N\. California\) Region \(us\-west\-1\)
+  + US West \(Oregon\) Region \(us\-west\-2\)
+  + Asia Pacific \(Melbourne\) Region \(ap\-southeast\-4\)
+  + Asia Pacific \(Mumbai\) Region \(ap\-south\-1\)
+  + Asia Pacific \(Seoul\) Region \(ap\-northeast\-2 \)
+  + Asia Pacific \(Singapore\) Region \(ap\-southeast\-1\)
+  + Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)
+  + Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)
+  + Canada \(Central\) Region \(ca\-central\-1\)
+  + Europe \(Frankfurt\) Region \(eu\-central\-1\)
+  + Europe \(Ireland\) Region \(eu\-west\-1\)
+  + Europe \(London\) Region \(eu\-west\-2\)
+  + Europe \(Paris\) Region \(eu\-west\-3\)
+  + Europe \(Stockholm\) Region \(eu\-north\-1\)
+  + South America \(São Paulo\) Region \(sa\-east\-1\)
 
 ## Turning on cluster relocation<a name="using-recovery"></a>
 
@@ -75,7 +75,7 @@ Use the following procedure to turn on relocation when creating a new cluster\.
 
 1. Choose **Create cluster** to create a new cluster\. For more information on how to create a cluster, see [Create a sample Amazon Redshift cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-launch-sample-cluster.html) in *Amazon Redshift Getting Started Guide*\.
 
-1. Under **Backup**, for **Cluster relocation**, choose **Enabled**\. Relocation is disabled by default\.
+1. Under **Backup**, for **Cluster relocation**, choose **Enabled**\. Relocation is turned off by default\.
 
 1. Under **Network and security**, for **Publicly accessible**, accept the default **Disabled**\. If you choose **Enabled**, Amazon Redshift returns an error\.
 
@@ -95,7 +95,7 @@ Use the following procedure to change the relocation setting for an existing clu
 
 1. Choose the **Maintenance** tab, then in the **Backup details** section choose **Edit**\.
 
-1. Under **Backup**, choose **Enabled**\. Relocation is disabled by default\. 
+1. Under **Backup**, choose **Enabled**\. Relocation is turned off by default\. 
 
 1. Choose the **Properties** tab, then in the **Network and security** section make sure to choose **Disabled** for the **Publicly accessible** option\.
 
@@ -129,7 +129,7 @@ With the AWS CLI, the following example command creates an Amazon Redshift clust
 aws redshift create-cluster --cluster-identifier mycluster --number-of-nodes 2 --master-username adminuser --master-user-password TopSecret1 --node-type ra3.4xlarge --port 5439 --no-publicly-accessible --availability-zone-relocation
 ```
 
-If your current cluster is using a different port, you have to modify it to use 5439 before modifying it to turn on relocation\. The following example command modify the port in case your cluster doesn't use 5439\.
+If your current cluster is using a different port, you must modify it to use from the port range of 5431\-5455 or 8191\-8215 before modifying it to turn on relocation\. The default is 5439\. The following example command modifies the port in case your cluster doesn't use one from the given range\.
 
 ```
 aws redshift modify-cluster --cluster-identifier mycluster --port 5439
@@ -141,7 +141,7 @@ The following example command includes the availability\-zone\-relocation parame
 aws redshift modify-cluster --cluster-identifier mycluster --availability-zone-relocation
 ```
 
-The following example command disables the availability\-zone\-relocation parameter on the Amazon Redshift cluster\.
+The following example command turns off the availability\-zone\-relocation parameter on the Amazon Redshift cluster\.
 
 ```
 aws redshift modify-cluster --cluster-identifier mycluster --no-availability-zone-relocation

@@ -37,6 +37,7 @@ Following, you can find examples of VPC endpoint policies\.
 
 **Topics**
 + [Example: VPC endpoint policy to deny all access from a specified AWS account](#security-private-link-example-1)
++ [Example: VPC endpoint policy to allow VPC access only to a specified IAM role](#security-private-link-example-1.1)
 + [Example: VPC endpoint policy to allow VPC access only to a specified IAM principal \(user\)](#security-private-link-example-2)
 + [Example: VPC endpoint policy to allow read\-only Amazon Redshift operations](#security-private-link-example-3)
 + [Example: VPC endpoint policy denying access to a specified cluster](#security-private-link-example-4)
@@ -68,6 +69,28 @@ The following VPC endpoint policy denies the AWS account `123456789012` all acce
 }
 ```
 
+### Example: VPC endpoint policy to allow VPC access only to a specified IAM role<a name="security-private-link-example-1.1"></a>
+
+The following VPC endpoint policy allows full access only to the IAM role *`redshiftrole`* in AWS account *123456789012*\. All other IAM principals are denied access using the endpoint\.
+
+```
+   {
+    "Statement": [
+        {
+            "Action": "*",
+            "Effect": "Allow",
+            "Resource": "*",
+            "Principal": {
+                "AWS": [
+                    "arn:aws:iam::123456789012:role/redshiftrole"
+                ]
+            }
+        }]
+}
+```
+
+This is only a sample\. In most use cases we recommend attaching permissions for specific actions to narrow the scope of permissions\.
+
 ### Example: VPC endpoint policy to allow VPC access only to a specified IAM principal \(user\)<a name="security-private-link-example-2"></a>
 
 The following VPC endpoint policy allows full access only to the IAM user *`redshiftadmin`* in AWS account *123456789012*\. All other IAM principals are denied access using the endpoint\.
@@ -87,6 +110,8 @@ The following VPC endpoint policy allows full access only to the IAM user *`reds
         }]
 }
 ```
+
+This is only a sample\. In most use cases we recommend attaching permissions to a role before assigning to a user\. Additionally, we recommend using specific actions to narrow the scope of permissions\.
 
 ### Example: VPC endpoint policy to allow read\-only Amazon Redshift operations<a name="security-private-link-example-3"></a>
 

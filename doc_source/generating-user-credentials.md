@@ -8,5 +8,5 @@ For more information, see [Identity Providers and Federation](https://docs.aws.a
 
 **Topics**
 + [Overview](generating-iam-credentials-overview.md)
-+ [Creating temporary IAM user credentials](generating-iam-credentials-steps.md)
++ [Creating temporary IAM credentials](generating-iam-credentials-steps.md)
 + [Options for providing IAM credentials](options-for-providing-iam-credentials.md)
