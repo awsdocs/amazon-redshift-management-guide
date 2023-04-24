@@ -19,6 +19,10 @@ SELECT version();
 
 ## Amazon Redshift patch 174<a name="cluster-version-174"></a>
 
+### 1\.0\.49087 – Released on April 12, 2023<a name="cluster-version-2023-03-11-features"></a>
+
+Maintenance release\. No release notes\.
+
 ### 1\.0\.48805 – Released on April 5, 2023<a name="cluster-version-2023-03-11-features"></a>
 
 Release notes for this version:
@@ -31,10 +35,14 @@ Maintenance release\. No release notes\.
 ### 1\.0\.47470 – Released on March 11, 2023<a name="cluster-version-2023-03-11-features"></a>
 
 Release notes for this version:
-+ Improves query performance on `pg_catalog.svv_table_info`\. Also adds new column `create_date`\. When creating a table, this column stores the date/time stamp in UTC\.
++ Improves query performance on `pg_catalog.svv_table_info`\. Also adds new column `create_time`\. When creating a table, this column stores the date/time stamp in UTC\.
 + Adds support for specifying session level timeout on federated query\.
 
 ## Amazon Redshift patch 173<a name="cluster-version-173"></a>
+
+### 1\.0\.49074 – Released on April 12, 2023<a name="cluster-version-2023-01-20-features"></a>
+
+Maintenance release\. No release notes\.
 
 ### 1\.0\.48766 – Released on April 5, 2023<a name="cluster-version-2023-01-20-features"></a>
 

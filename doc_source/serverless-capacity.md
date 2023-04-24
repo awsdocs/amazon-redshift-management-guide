@@ -12,7 +12,7 @@ Amazon Redshift Serverless measures data warehouse capacity in Redshift Processi
 
 With a minimum capacity of 8 RPU, you now have more flexibility to run simpler to more complex workloads based on performance requirements\. The 8, 16, and 24 RPU base RPU capacities are targeted towards workloads that require less than 128TB of data\. If your data requirements are greater than 128 TB, you must use a minimum of 32 RPU\. For workloads that have tables with large number columns and higher concurrency, we recommend using 32 or more RPU\.
 
-### Considerations and limitations for Amazon Redshift Serverless capacity<a name="w33aab8c13b3c15"></a>
+### Considerations and limitations for Amazon Redshift Serverless capacity<a name="w30aab8c13b3c15"></a>
 
 The following are considerations and limitations for Amazon Redshift Serverless capacity\.
 + Configurations of 8 or 16 RPU support Redshift managed storage capacity of up to 128 TB\. If you're using more than 128 TB of managed storage, you can't downgrade to less than 32 RPU\.

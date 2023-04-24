@@ -43,7 +43,7 @@ The policy has two statements:
 + The first statement grants permissions for a user to a user to create, delete, modify, and reboot clusters\. The statement specifies a wildcard character \(\*\) as the `Resource` value so that the policy applies to all Amazon Redshift resources owned by the root AWS account\. 
 + The second statement denies permission to delete or modify a cluster\. The statement specifies a cluster Amazon Resource Name \(ARN\) for the `Resource` value that includes a wildcard character \(\*\)\. As a result, this statement applies to all Amazon Redshift clusters owned by the root AWS account where the cluster identifier begins with `production`\.
 
-## AWS\-managed \(predefined\) policies for Amazon Redshift<a name="redshift-policy-resources.managed-policies"></a>
+## AWS managed policies for Amazon Redshift<a name="redshift-policy-resources.managed-policies"></a>
 
 AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. Managed policies grant necessary permissions for common use cases so you can avoid having to investigate what permissions are needed\. For more information, see [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\.
 
@@ -55,61 +55,61 @@ The following sections describe AWS managed policies, which you can attach to us
 
 Grants read\-only access to all Amazon Redshift resources for an AWS account\.
 
-You can find the [AmazonRedshiftReadOnlyAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftReadOnlyAccess) policy on the IAM console\.
+You can find the [AmazonRedshiftReadOnlyAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftReadOnlyAccess) policy on the IAM console and [AmazonRedshiftReadOnlyAccess](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonRedshiftReadOnlyAccess.html) in the *AWS Managed Policy Reference Guide*\.
 
 ## AmazonRedshiftFullAccess<a name="redshift-policy-managed-policies-full-access"></a>
 
 Grants full access to all Amazon Redshift resources for an AWS account\. Additionally, this policy grants full access to all Amazon Redshift Serverless resources\.
 
-You can find the [AmazonRedshiftFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftFullAccess) policy on the IAM console\.
+You can find the [AmazonRedshiftFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftFullAccess) policy on the IAM console and [AmazonRedshiftFullAccess](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonRedshiftFullAccess.html) in the *AWS Managed Policy Reference Guide*\.
 
 ## AmazonRedshiftQueryEditor<a name="redshift-policy-managed-policies-query-editor"></a>
 
 Grants full access to the query editor on the Amazon Redshift console\.
 
-You can find the [AmazonRedshiftQueryEditor](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditor) policy on the IAM console\.
+You can find the [AmazonRedshiftQueryEditor](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditor) policy on the IAM console and [AmazonRedshiftQueryEditor](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonRedshiftQueryEditor.html) in the *AWS Managed Policy Reference Guide*\.
 
 ## AmazonRedshiftDataFullAccess<a name="redshift-policy-managed-policies-data-full-access"></a>
 
 Grants full access to the Amazon Redshift Data API operations and resources for an AWS account\. 
 
-You can find the [AmazonRedshiftDataFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftDataFullAccess) policy on the IAM console\.
+You can find the [AmazonRedshiftDataFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftDataFullAccess) policy on the IAM console and [AmazonRedshiftDataFullAccess](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonRedshiftDataFullAccess.html) in the *AWS Managed Policy Reference Guide*\.
 
 ## AmazonRedshiftQueryEditorV2FullAccess<a name="redshift-policy-managed-policies-query-editor-V2"></a>
 
 Grants full access to the Amazon Redshift query editor v2 operations and resources\. This policy also grants access to other required services\.
 
-You can find the [AmazonRedshiftQueryEditorV2FullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2FullAccess) policy on the IAM console\.
+You can find the [AmazonRedshiftQueryEditorV2FullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2FullAccess) policy on the IAM console and [AmazonRedshiftQueryEditorV2FullAccess](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonRedshiftQueryEditorV2FullAccess.html) in the *AWS Managed Policy Reference Guide*\.
 
 ## AmazonRedshiftQueryEditorV2NoSharing<a name="redshift-policy-managed-policies-query-editor-V2-no-sharing"></a>
 
 Grants the ability to work with Amazon Redshift query editor v2 without sharing resources\. This policy also grants access to other required services\. The principal using this policy can't tag its resources \(such as queries\) to share them with other principals in the same AWS account\. 
 
-You can find the [AmazonRedshiftQueryEditorV2NoSharing](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2NoSharing) policy on the IAM console\.
+You can find the [AmazonRedshiftQueryEditorV2NoSharing](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2NoSharing) policy on the IAM console and [AmazonRedshiftQueryEditorV2NoSharing](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonRedshiftQueryEditorV2NoSharing.html) in the *AWS Managed Policy Reference Guide*\.
 
 ## AmazonRedshiftQueryEditorV2ReadSharing<a name="redshift-policy-managed-policies-query-editor-V2-read-sharing"></a>
 
 Grants the ability to work with Amazon Redshift query editor v2 with limited sharing of resources\. This policy also grants access to other required services\. The principal using this policy can tag its resources \(such as queries\) to share them with other principals in the same AWS account\. The granted principal can read the resources shared with its team but can't update them\. 
 
-You can find the [AmazonRedshiftQueryEditorV2ReadSharing](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2ReadSharing) policy on the IAM console\.
+You can find the [AmazonRedshiftQueryEditorV2ReadSharing](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2ReadSharing) policy on the IAM console and [AmazonRedshiftQueryEditorV2ReadSharing](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonRedshiftQueryEditorV2ReadSharing.html) in the *AWS Managed Policy Reference Guide*\.
 
 ## AmazonRedshiftQueryEditorV2ReadWriteSharing<a name="redshift-policy-managed-policies-query-editor-V2-write-sharing"></a>
 
 Grants the ability to work with Amazon Redshift query editor v2 with sharing of resources\. This policy also grants access to other required services\. The principal using this policy can tag its resources \(such as queries\) to share them with other principals in the same AWS account\. The granted principal can read and update the resources shared with its team\. 
 
-You can find the [AmazonRedshiftQueryEditorV2ReadWriteSharing](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2ReadWriteSharing) policy on the IAM console\.
+You can find the [AmazonRedshiftQueryEditorV2ReadWriteSharing](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftQueryEditorV2ReadWriteSharing) policy on the IAM console and [AmazonRedshiftQueryEditorV2ReadWriteSharing](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonRedshiftQueryEditorV2ReadWriteSharing.html) in the *AWS Managed Policy Reference Guide*\.
 
 ## AmazonRedshiftServiceLinkedRolePolicy<a name="redshift-policy-managed-policies-service-linked-role-policy"></a>
 
 You can't attach AmazonRedshiftServiceLinkedRolePolicy to your IAM entities\. This policy is attached to a service\-linked role that allows Amazon Redshift to access account resources\. For more information, see [Using service\-linked roles for Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/using-service-linked-roles.html)\. 
 
-You can find the [AmazonRedshiftServiceLinkedRolePolicy](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftServiceLinkedRolePolicy) policy on the IAM console\.
+You can find the [AmazonRedshiftServiceLinkedRolePolicy](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftServiceLinkedRolePolicy) policy on the IAM console and [AmazonRedshiftServiceLinkedRolePolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonRedshiftServiceLinkedRolePolicy.html) in the *AWS Managed Policy Reference Guide*\.
 
 ## AmazonRedshiftAllCommandsFullAccess<a name="redshift-policy-managed-policies-service-linked-role-commands"></a>
 
 Grants the ability to use the IAM role created from the Amazon Redshift console and set it as default for the cluster to run the COPY from Amazon S3, UNLOAD, CREATE EXTERNAL SCHEMA, CREATE EXTERNAL FUNCTION, and CREATE MODEL commands\. The policy also grants permissions to run SELECT statements for related services, such as Amazon S3, CloudWatch Logs, Amazon SageMaker, or AWS Glue\.
 
-You can find the [AmazonRedshiftAllCommandsFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftAllCommandsFullAccess) policy on the IAM console\.
+You can find the [AmazonRedshiftAllCommandsFullAccess](https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/AmazonRedshiftAllCommandsFullAccess) policy on the IAM console and [AmazonRedshiftAllCommandsFullAccess](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonRedshiftAllCommandsFullAccess.html) in the *AWS Managed Policy Reference Guide*\.
 
 You can also create your own custom IAM policies to allow permissions for Amazon Redshift API operations and resources\. You can attach these custom policies to the IAM roles or groups that require those permissions\. 
 
@@ -117,7 +117,7 @@ You can also create your own custom IAM policies to allow permissions for Amazon
 
 
 
-## Amazon Redshift updates to AWS\-managed policies<a name="security-iam-awsmanpol-updates"></a>
+## Amazon Redshift updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
 
 
 
@@ -130,6 +130,9 @@ View details about updates to AWS managed policies for Amazon Redshift since thi
 | --- | --- | --- | 
 |  [AmazonRedshiftDataFullAccess](#redshift-policy-managed-policies-data-full-access) – Update to an existing policy  |  Permission for the action `redshift:GetClusterCredentialsWithIAM` is added to the managed policy\. Adding it grants permission to get enhanced temporary credentials to access an Amazon Redshift database by the specified AWS account\.  | April 7, 2023 | 
 |  [AmazonRedshiftServiceLinkedRolePolicy](#redshift-policy-managed-policies-service-linked-role-policy) – Update to an existing policy  |  Permissions for the actions on Amazon EC2 for creation and management of security group rules are added to the managed policy\. These security groups and rules ares specifically associated with the Amazon Redshift `aws:RequestTag/Redshift` resource tag\. This limits the scope of the permissions to specific Amazon Redshift resources\.  | April 06, 2023 | 
+|  [AmazonRedshiftQueryEditorV2NoSharing](#redshift-policy-managed-policies-query-editor-V2-no-sharing) – Update to an existing policy  |  Permission for the action `sqlworkbench:GetSchemaInference` is added to the managed policy\. Adding it grants permission to get the columns and data types inferred from a file\.  | March 21, 2023 | 
+|  [AmazonRedshiftQueryEditorV2ReadSharing](#redshift-policy-managed-policies-query-editor-V2-read-sharing) – Update to an existing policy  |  Permission for the action `sqlworkbench:GetSchemaInference` is added to the managed policy\. Adding it grants permission to get the columns and data types inferred from a file\.  | March 21, 2023 | 
+|  [AmazonRedshiftQueryEditorV2ReadWriteSharing](#redshift-policy-managed-policies-query-editor-V2-write-sharing) – Update to an existing policy  |  Permission for the action `sqlworkbench:GetSchemaInference` is added to the managed policy\. Adding it grants permission to get the columns and data types inferred from a file\.  | March 21, 2023 | 
 |  [AmazonRedshiftQueryEditorV2NoSharing](#redshift-policy-managed-policies-query-editor-V2-no-sharing) – Update to an existing policy  |  Permission for the action `sqlworkbench:AssociateNotebookWithTab` is added to the managed policy\. Adding it grants permission to create and update tabs linked to a user's own notebook\.  | February 2, 2023 | 
 |  [AmazonRedshiftQueryEditorV2ReadSharing](#redshift-policy-managed-policies-query-editor-V2-read-sharing) – Update to an existing policy  |  Permission for the action `sqlworkbench:AssociateNotebookWithTab` is added to the managed policy\. Adding it grants permission to create and update tabs linked to a user's own notebook or to a notebook that is shared with them\.  | February 2, 2023 | 
 |  [AmazonRedshiftQueryEditorV2ReadWriteSharing](#redshift-policy-managed-policies-query-editor-V2-write-sharing) – Update to an existing policy  |  Permission for the action `sqlworkbench:AssociateNotebookWithTab` is added to the managed policy\. Adding it grants permission to create and update tabs linked to a user's own notebook or to a notebook that is shared with them\.  | February 2, 2023 | 
@@ -163,7 +166,7 @@ View details about updates to AWS managed policies for Amazon Redshift since thi
 |  [AmazonRedshiftFullAccess](#redshift-policy-managed-policies-full-access) – Update to an existing policy  |  Amazon Redshift added new permissions to allow `sagemaker:*Job*`\.  | August 18, 2021 | 
 |  [AmazonRedshiftDataFullAccess](#redshift-policy-managed-policies-data-full-access) – Update to an existing policy  |  Amazon Redshift added new permissions to allow `AuthorizeDataShare`\.  | August 12, 2021 | 
 |  [AmazonRedshiftDataFullAccess](#redshift-policy-managed-policies-data-full-access) – Update to an existing policy  |  Amazon Redshift added new permissions to allow `BatchExecuteStatement`\.  | July 27, 2021 | 
-|  Amazon Redshift started tracking changes  |  Amazon Redshift started tracking changes for its AWS\-managed policies\.  | July 27, 2021 | 
+|  Amazon Redshift started tracking changes  |  Amazon Redshift started tracking changes for its AWS managed policies\.  | July 27, 2021 | 
 
 ## Permissions required to use Redshift Spectrum<a name="redshift-spectrum-policy-resources"></a>
 
@@ -173,7 +176,7 @@ Amazon Redshift Spectrum requires permissions to other AWS services to access re
 
 For a user to work with the Amazon Redshift console, that user must have a minimum set of permissions that allows the user to describe the Amazon Redshift resources for their AWS account\. These permissions must also allow the user to describe other related information, including Amazon EC2 security, Amazon CloudWatch, Amazon SNS, and network information\.
 
-If you create an IAM policy that is more restrictive than the minimum required permissions, the console doesn't function as intended for users with that IAM policy\. To ensure that those users can still use the Amazon Redshift console, also attach the `AmazonRedshiftReadOnlyAccess` managed policy to the user\. How to do this is described in [AWS\-managed \(predefined\) policies for Amazon Redshift](#redshift-policy-resources.managed-policies)\.
+If you create an IAM policy that is more restrictive than the minimum required permissions, the console doesn't function as intended for users with that IAM policy\. To ensure that those users can still use the Amazon Redshift console, also attach the `AmazonRedshiftReadOnlyAccess` managed policy to the user\. How to do this is described in [AWS managed policies for Amazon Redshift](#redshift-policy-resources.managed-policies)\.
 
 For information to give a user access to the query editor on the Amazon Redshift console, see [Permissions required to use the Amazon Redshift console query editor](#redshift-policy-resources.required-permissions.query-editor)\. 
 
@@ -183,7 +186,7 @@ You don't need to allow minimum console permissions for users that are making ca
 
 For a user to work with the Amazon Redshift query editor, that user must have a minimum set of permissions to Amazon Redshift and Amazon Redshift Data API operations\. To connect to a database using a secret, you must also have Secrets Manager permissions\.
 
-To give a user access to the query editor on the Amazon Redshift console, attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` AWS\-managed policies\. The `AmazonRedshiftQueryEditor` policy allows the user permission to retrieve the results of only their own SQL statements\. That is, statements submitted by the same `aws:userid` as shown in this section of the `AmazonRedshiftQueryEditor` AWS\-managed policy\.
+To give a user access to the query editor on the Amazon Redshift console, attach the `AmazonRedshiftQueryEditor` and `AmazonRedshiftReadOnlyAccess` AWS managed policies\. The `AmazonRedshiftQueryEditor` policy allows the user permission to retrieve the results of only their own SQL statements\. That is, statements submitted by the same `aws:userid` as shown in this section of the `AmazonRedshiftQueryEditor` AWS managed policy\.
 
 ```
 {
@@ -210,9 +213,9 @@ To allow a user to retrieve the results of SQL statements of others in the same 
 
 For a user to work with the Amazon Redshift query editor v2, that user must have a minimum set of permissions to Amazon Redshift, the query editor v2 operations, and other AWS services such as AWS Key Management Service, AWS Secrets Manager, and tagging service\. 
 
-To give a user full access to the query editor v2, attach the `AmazonRedshiftQueryEditorV2FullAccess` AWS\-managed policy\. The `AmazonRedshiftQueryEditorV2FullAccess` policy allows the user permission to share query editor v2 resources, such as queries, with others in the same team\. For details about how access to query editor v2 resources are controlled, see the definition of the specific managed policy for query editor v2 in the IAM console\. 
+To give a user full access to the query editor v2, attach the `AmazonRedshiftQueryEditorV2FullAccess` AWS managed policy\. The `AmazonRedshiftQueryEditorV2FullAccess` policy allows the user permission to share query editor v2 resources, such as queries, with others in the same team\. For details about how access to query editor v2 resources are controlled, see the definition of the specific managed policy for query editor v2 in the IAM console\. 
 
-Some Amazon Redshift query editor v2 AWS\-managed policies use AWS tags within conditions to scope access to resources\. Within query editor v2, sharing queries is based on the tag key and value `"aws:ResourceTag/sqlworkbench-team": "${aws:PrincipalTag/sqlworkbench-team}"` in the IAM policy attached to principal \(the IAM role\)\. Principals in the same AWS account with the same tag value \(for example, `accounting-team`\), are on the same team in query editor v2\. You can only be associated with one team at a time\. A user with administrative permissions can set up teams in the IAM console by giving all team members the same value for the `sqlworkbench-team` tag\. If the tag value of the `sqlworkbench-team` is changed for an IAM user or an IAM role, there might be a delay until the change is reflected in shared resources\. If the tag value of a resource \(such as a query\) is changed, again there might be a delay until the change is reflected\. Team members must also have the `tag:GetResources` permission to share\.
+Some Amazon Redshift query editor v2 AWS managed policies use AWS tags within conditions to scope access to resources\. Within query editor v2, sharing queries is based on the tag key and value `"aws:ResourceTag/sqlworkbench-team": "${aws:PrincipalTag/sqlworkbench-team}"` in the IAM policy attached to principal \(the IAM role\)\. Principals in the same AWS account with the same tag value \(for example, `accounting-team`\), are on the same team in query editor v2\. You can only be associated with one team at a time\. A user with administrative permissions can set up teams in the IAM console by giving all team members the same value for the `sqlworkbench-team` tag\. If the tag value of the `sqlworkbench-team` is changed for an IAM user or an IAM role, there might be a delay until the change is reflected in shared resources\. If the tag value of a resource \(such as a query\) is changed, again there might be a delay until the change is reflected\. Team members must also have the `tag:GetResources` permission to share\.
 
 **Example: To add the `accounting-team` tag for an IAM role**
 

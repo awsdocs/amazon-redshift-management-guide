@@ -25,6 +25,7 @@ sponsored by Amazon.
    + [Compute capacity for Amazon Redshift Serverless](serverless-capacity.md)
    + [Billing for Amazon Redshift Serverless](serverless-billing.md)
    + [Connecting to Amazon Redshift Serverless](serverless-connecting.md)
+      + [Defining database roles to grant to federated users in Amazon Redshift Serverless](redshift-iam-access-federated-db-roles.md)
    + [Security and connections in Amazon Redshift Serverless](serverless-security.md)
    + [Migrating a provisioned cluster to Amazon Redshift Serverless](serverless-migration.md)
    + [Overview of Amazon Redshift Serverless workgroups and namespaces](serverless-workgroup-namespace.md)

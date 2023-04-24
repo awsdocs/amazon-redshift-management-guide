@@ -65,7 +65,7 @@ Following, you can find a description of the cursor API operation\.
 `__init__(connection[, paramstyle])`  
 Initializes a raw cursor object\.
 
-`insert_bulk_data(filename, table_name, parameter_indices, column_names, delimiter, batch_size)`  
+`insert_data_bulk(filename, table_name, parameter_indices, column_names, delimiter, batch_size)`  
 Runs a bulk INSERT statement\.
 
 `execute(operation[, args, stream, …])`  

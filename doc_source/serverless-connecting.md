@@ -173,3 +173,11 @@ After you configure Amazon Redshift Serverless to accept connections from public
    ```
 
 When you turn on the publicly accessible setting, Amazon Redshift Serverless creates an Elastic IP address\. It's a static IP address that is associated with your AWS account\. Clients outside the VPC can use it to connect\. It gives you the ability to change your underlying network configuration without affecting client connections\. 
+
+## Defining database roles to grant to federated users in Amazon Redshift Serverless<a name="serverless-roles-sso"></a>
+
+You can define roles in your organization that determine which database roles to grant in Amazon Redshift Serverless\. For more information, see [Defining database roles to grant to federated users in Amazon Redshift Serverless](redshift-iam-access-federated-db-roles.md)\.
+
+## Additional resources<a name="serverless-connecting-additional"></a>
+
+For more information about secure connections to Amazon Redshift Serverless, including granting permissions, authorizing access to additional services, and creating IAM roles, see [Security and connections in Amazon Redshift Serverless](serverless-security.md)\.

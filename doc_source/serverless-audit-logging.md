@@ -6,7 +6,7 @@ You can configure Amazon Redshift Serverless to export connection, user, and use
 
 You can create CloudWatch alarms to track your metrics using the Amazon Redshift console\. For more information on creating alarms, see [Managing alarms](https://docs.aws.amazon.com/redshift/latest/mgmt/performance-metrics-alarms.html)\.
 
- To export generated log data to Amazon CloudWatch Logs, the respective logs must be selected for export in your Amazon Redshift Serverless configuration settings, on the console\. 
+ To export generated log data to Amazon CloudWatch Logs, the respective logs must be selected for export in your Amazon Redshift Serverless configuration settings, on the console\. You can do this by choosing the **Namespace configuration** settings, under **Security and encryption**\. 
 
 ### Monitoring log events in CloudWatch<a name="db-auditing-manage-logs-cloudwatch-monitoring"></a>
 

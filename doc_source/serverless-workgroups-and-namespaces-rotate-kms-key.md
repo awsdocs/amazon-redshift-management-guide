@@ -10,7 +10,7 @@ In Amazon Redshift, encryption protects data at rest\. Amazon Redshift Serverles
 
 When you change the AWS KMS key, the data remains unchanged\.
 
-1. Sign in to the [AWS console](console.aws.amazon.com)\. Select the Amazon Redshift console\.
+1. Sign in to the AWS Management Console and open the Amazon Redshift console at [https://console\.aws\.amazon\.com/redshift/](https://console.aws.amazon.com/redshift/)\.
 
 1. On the navigation menu, choose **Namespace configuration**\. Choose your namespace from the list\.
 

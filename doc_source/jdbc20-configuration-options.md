@@ -169,7 +169,7 @@ This parameter is required if authenticating through the Azure AD service\.
 + **Default Value** – None
 + **Data Type** – String
 
-The name of the Amazon Redshift cluster that you want to connect to\. 
+The name of the Amazon Redshift cluster that you want to connect to\. The driver attempts to detect this parameter from the given host\. If you're using a Network Load Balancer \(NLB\) and connecting via IAM, the driver will fail to detect it, so you can set it using this connection option\. 
 
 This parameter is optional\.
 

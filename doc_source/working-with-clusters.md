@@ -111,7 +111,7 @@ You might be restricted to fewer nodes depending on the quota that is applied to
 
 | Node type | vCPU | RAM \(GiB\) | Default slices per node | Managed storage limit per node 1 | Node range with create cluster  | Total managed storage capacity 2 | 
 | --- | --- | --- | --- | --- | --- | --- | 
-| ra3\.xlplus \(single\-node\) | 4 | 32 | 2 | 4 TB | 1 | 32 TB3 | 
+| ra3\.xlplus \(single\-node\) | 4 | 32 | 2 | 4 TB | 1 | 4 TB3 | 
 | ra3\.xlplus \(multi\-node\) | 4 | 32 | 2 | 32 TB | 2–164 | 1024 TB4 | 
 | ra3\.4xlarge | 12 | 96 | 4 | 128 TB | 2–325 | 8192 TB5 | 
 | ra3\.16xlarge | 48 | 384 | 16 | 128 TB | 2–128 | 16,384 TB | 

@@ -49,7 +49,7 @@ order by 1
  This query provides the cost per day incurred for Amazon Redshift Serverless, based on usage\. 
 
 ##### Usage notes for determining usage and cost<a name="serverless-billing-visualizing-usage"></a>
-+ There is a minimum charge of 60 seconds, metered on a per\-minute basis\.
++ There is a minimum charge of 60 seconds for compute\-resource usage, metered on a per\-minute basis\.
 + Records from the sys\_serverless\_usage system table show cost incurred in 1\-minute time intervals\. Understanding the following columns is important:
 
   The charged\_seconds column:
@@ -90,7 +90,7 @@ Amazon Redshift Serverless offers a free trial\. If you participate in the free 
 + **Redshift Spectrum** \- When you have Amazon Redshift Serverless, and you run queries, there isn't a separate charge for data\-lake queries\. For queries on data stored in Amazon S3, the charge is the same, by transaction time, as queries on local data\.
 + **Federated queries** \- Federated queries are charged in terms of RPUs used over a specific time interval, in the same manner as queries on the data warehouse or data lake\.
 + **Storage** \- Storage is billed separately, by GB / month\.
-+ **Minimum charge** \- The minimum charge is for 60 seconds, metered on a per\-second basis\.
++ **Minimum charge** \- The minimum charge is for 60 seconds of resource usage, metered on a per\-second basis\.
 + **Snapshot billing** \- Snapshot billing doesn't change\. It's charged according to storage, billed at a rate of GB / month\. You can restore your data warehouse to specific points in the last 24 hours at a 30 minute granularity, free of charge\. For more information, see [Amazon Redshift pricing](http://aws.amazon.com/redshift/pricing/)\.
 
 #### Amazon Redshift Serverless best practices for keeping billing predictable<a name="db-serverless-billing-session-timeout"></a>

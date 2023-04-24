@@ -31,7 +31,6 @@ When using Amazon Redshift relocation, be aware of the following limitations:
 + Relocation isn't supported on DC1, DC2, or the DS2 instance families of products\.
 + You can't perform a relocation across AWS Regions\.
 + Amazon Redshift relocation defaults to port number 5439\. You can also change to another port from the port range of 5431\-5455 or 8191\-8215\.
-+ If you have turned on relocation successfully and later attempt to modify the default port setting, the modify operation fails\.
 + Relocation is available in the following Regions:
   + US East \(Ohio\) Region \(us\-east\-2\)
   + US East \(N\. Virginia\) Region \(us\-east\-1\)
@@ -77,8 +76,6 @@ Use the following procedure to turn on relocation when creating a new cluster\.
 
 1. Under **Backup**, for **Cluster relocation**, choose **Enabled**\. Relocation is turned off by default\.
 
-1. Under **Network and security**, for **Publicly accessible**, accept the default **Disabled**\. If you choose **Enabled**, Amazon Redshift returns an error\.
-
 1. Choose **Create cluster**\.
 
 ### Modifying relocation for an existing cluster<a name="modify-relocate-cluster."></a>
@@ -96,8 +93,6 @@ Use the following procedure to change the relocation setting for an existing clu
 1. Choose the **Maintenance** tab, then in the **Backup details** section choose **Edit**\.
 
 1. Under **Backup**, choose **Enabled**\. Relocation is turned off by default\. 
-
-1. Choose the **Properties** tab, then in the **Network and security** section make sure to choose **Disabled** for the **Publicly accessible** option\.
 
 1. Choose **Modify cluster**\.
 
@@ -126,7 +121,7 @@ You can manage the settings for cluster relocation using the AWS Command Line In
 With the AWS CLI, the following example command creates an Amazon Redshift cluster named **mycluster** that has relocation turned on\.
 
 ```
-aws redshift create-cluster --cluster-identifier mycluster --number-of-nodes 2 --master-username adminuser --master-user-password TopSecret1 --node-type ra3.4xlarge --port 5439 --no-publicly-accessible --availability-zone-relocation
+aws redshift create-cluster --cluster-identifier mycluster --number-of-nodes 2 --master-username adminuser --master-user-password TopSecret1 --node-type ra3.4xlarge --port 5439 --availability-zone-relocation
 ```
 
 If your current cluster is using a different port, you must modify it to use from the port range of 5431\-5455 or 8191\-8215 before modifying it to turn on relocation\. The default is 5439\. The following example command modifies the port in case your cluster doesn't use one from the given range\.

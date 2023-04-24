@@ -56,7 +56,7 @@ Use the following procedure to set up Multi\-AZ for a cluster restored from a sn
 
 1. Optionally, do one of the following to load sample data or bring your own data:
    + In **Sample data**, choose **Load sample data** to load the sample dataset into your Amazon Redshift cluster\. Amazon Redshift loads the sample dataset Tickit into the default dev database and public schema\. Amazon Redshift automatically loads the sample dataset into your Amazon Redshift cluster\. You can start using the query editor v2 to query data\.
-   + To bring your own data to your Amazon Redshift cluster, follow the steps in [Bringing your own data to Amazon Redshift](https://docs.aws.amazon.com/https://docs.aws.amazon.com/redshift/latest/dg/bring-own-data.html)\.
+   + To bring your own data to your Amazon Redshift cluster, follow the steps in [Bringing your own data to Amazon Redshift](https://docs.aws.amazon.com/redshift/latest/gsg/bring-own-data.html)\.
 
 1. Scroll down to **Additional configurations**, expand **Network and security**, and make sure that you either accept the default **Cluster subnet group** or choose another one\. If you choose another cluster subnet group, make sure that there are 3 Availability Zones in the subnet group you selected\.
 

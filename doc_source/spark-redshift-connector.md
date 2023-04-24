@@ -14,7 +14,7 @@ Currently, you can use the versions 3\.3\.0 and 3\.3\.1 of Spark with this integ
 
 ## Considerations and limitations when using the Spark connector<a name="spark-redshift-connector-considerations"></a>
 + The parameter `unload_s3_format` supports the Parquet format when running read operations from Redshift, but write operations are currently unsupported\.
-+  The tempdir URI points to an Amazon S3 location\. This temp directory is not cleaned up automatically and could add additional cost\. We recommend using [Amazon S3 lifecycle policies](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html) to define the retention rules for the Amazon S3 bucket\. 
++  The tempdir URI points to an Amazon S3 location\. This temp directory is not cleaned up automatically and could add additional cost\. We recommend using [ Amazon S3 lifecycle policies](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html) in the *Amazon Simple Storage Service User Guide* to define the retention rules for the Amazon S3 bucket\. 
 +  By default, copies between Amazon S3 and Redshift will not work if the S3 bucket and Redshift cluster are in different AWS Regions\. To use separate AWS Regions, set the `tempdir_region` parameter to the Region of the S3 bucket used for the `tempdir`\.
 + We recommend using [Amazon S3 server\-side encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html) to encrypt the Amazon S3 buckets used\. 
 + We recommend [ blocking public access to Amazon S3 buckets](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)\. 

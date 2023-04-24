@@ -66,11 +66,8 @@ You can create an Amazon Redshift Serverless workgroup in **Preview** to test ne
 1. When your preview workgroup is available, use your SQL client to load and query data\.
 
 The following features are currently available in preview workgroups:
-+ SQL MERGE command – see [MERGE](https://docs.aws.amazon.com/redshift/latest/dg/r_MERGE.html) in the *Amazon Redshift Database Developer Guide*\.
 + SUPER data type larger than 1 MB – see [Limitations](https://docs.aws.amazon.com/redshift/latest/dg/limitations-super.html) in the *Amazon Redshift Database Developer Guide*\.
-+ Dynamic data masking – see [Dynamic data masking](https://docs.aws.amazon.com/redshift/latest/dg/t_ddm.html) in the *Amazon Redshift Database Developer Guide*\.
 + Auto\-copy – see [Continuous file ingestion from Amazon S3](https://docs.aws.amazon.com/redshift/latest/dg/loading-data-copy-job.html) in the *Amazon Redshift Database Developer Guide*\.
-+ Lake Formation for data sharing – see [AWS Lake Formation\-managed Redshift datashares](https://docs.aws.amazon.com/redshift/latest/dg/lake-formation-datashare.html) in the *Amazon Redshift Database Developer Guide*\.
 + Query Data Catalog – see [Querying the AWS Glue Data Catalog \(preview\)](query-editor-v2-glue.md)\.
 
 For information about preview in provisioned clusters, see [Preview features when using Amazon Redshift clusters](working-with-clusters.md#cluster-preview)\.
