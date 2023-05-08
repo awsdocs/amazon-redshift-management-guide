@@ -25,6 +25,9 @@ For information about installing and configuring the Java Runtime Environment, g
 **Important**  
 Before you perform the steps in this procedure, make sure that your client computer or Amazon EC2 instance has the recommended Amazon Redshift JDBC driver\. For links to download the latest drivers, see [Download the Amazon Redshift JDBC driver, version 2\.1](jdbc20-download-driver.md)\. Also, make sure you have configured firewall settings to allow access to your cluster\. For more information, see [Step 4: Authorize access to the cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html)\.
 
+Make sure in your cluster configuration (in console *Properties*, under *Network and security settings*) that *Publicly accessible* option is set to *Enabled*. In the VPC security group configuration of the cluster (accessible via the link in the same section) add a new inbound rule selecting for the **Type** of traffic "Redshift" and for the **Source** "My IP". The IP address of the local machine is automatically discovered and inserted in the rule. Don't forget to save the rule. 
+
+
 **To use a JDBC connection in SQL Workbench/J**
 
 1. Open SQL Workbench/J\.
@@ -48,6 +51,14 @@ Before you perform the steps in this procedure, make sure that your client compu
 1. In **URL**, copy the JDBC URL from the Amazon Redshift console and paste it here\.
 
    For more information about finding the JDBC URL, see [Configuring a connection for JDBC driver version 2\.1 for Amazon Redshift](jdbc20-install.md)\.
+   
+At the end of the resulting URL string paste the string to enable connection via SSL:
+
+**?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory**
+
+The resulting full URL string will look similar to this:
+
+jdbc:postgresql:/< .... >:5439/<*database name*>?ssl=true&sslfactory=com.amazon.redshift.ssl.NonValidatingFactory
 
 1. In **Username**, type the name of the admin user\.
 
