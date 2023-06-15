@@ -1,3 +1,0 @@
-# Working with workgroups<a name="serverless-console-configure-workgroup-working"></a>
-
-To isolate workloads and manage resources in Amazon Redshift Serverless, you can create workgroups and namespaces\. The compute\-related workgroup groups together compute resources like RPUs and VPC subnet groups\. If you haven't created a workgroup and a namespace, and you are looking for instructions that show how to get started with Amazon Redshift Serverless, see [Setting up Amazon Redshift Serverless for the first time](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-console-first-time-setup.html)\.

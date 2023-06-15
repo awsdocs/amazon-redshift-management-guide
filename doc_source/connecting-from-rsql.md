@@ -1,3 +1,0 @@
-# Connect to your cluster by using the Amazon Redshift RSQL client<a name="connecting-from-rsql"></a>
-
- After you create an Amazon Redshift cluster, you can use Amazon Redshift RSQL for interacting with your cluster and databases\. It's a terminal\-based client that you connect to an Amazon Redshift cluster and use to describe database objects, query data, and view query results in various output formats\. For instructions about how to install and use RSQL, see [Getting started with Amazon Redshift RSQL](https://docs.aws.amazon.com/redshift/latest/mgmt/rsql-query-tool-getting-started.html)\.

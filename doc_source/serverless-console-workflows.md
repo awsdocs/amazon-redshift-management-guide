@@ -1,5 +1,0 @@
-# Managing Amazon Redshift Serverless using the console<a name="serverless-console-workflows"></a>
-
-To create, edit, and delete your Amazon Redshift Serverless data warehouse, use the **Serverless dashboard** on the Amazon Redshift console\. Access to individual console settings depends on your IAM role and your permissions\. 
-
-For information on setting up Amazon Redshift Serverless, see [Setting up Amazon Redshift Serverless for the first time](https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-console-first-time-setup.html)\. For information on creating and configuring workgroups, see [Working with workgroups](serverless-console-configure-workgroup-working.md)\. For information on configuring namespaces, see [Working with namespaces](serverless-console-configure-namespace-working.md)\.
